@@ -733,13 +733,13 @@ if ((isset($USE_GOOGLE_ANALYTICS) && $USE_GOOGLE_ANALYTICS) && !empty($PGV_GOOGL
 	define('PGV_GOOGLE_ANALYTICS', $PGV_GOOGLE_ANALYTICS);		// This PGV site's Google Analytics account number
 }
 if ((isset($USE_PIWIK_ANALYTICS) && $USE_PIWIK_ANALYTICS) && !empty($PGV_PIWIK_URL) && !empty($PGV_PIWIK_SITE)) {
-	// Piwik tracking has been enabled in PGV site configuration
+	// Matomo tracking has been enabled in PGV site configuration
 	$temp = rtrim($PGV_PIWIK_URL, '/');
 	if (strtolower(substr($temp,0,7)) == 'http://') $temp = substr($temp,7);
 	else if (strtolower(substr($temp,0,8)) == 'https://') $temp = substr($temp,8);
 
-	define('PGV_PIWIK_URL', $temp);					// The URL to the Piwik server (without the "http://" or "https://" part)
-	define('PGV_PIWIK_SITE', $PGV_PIWIK_SITE);		// The number assigned by Piwik to your PGV site
+	define('PGV_PIWIK_URL', $temp);					// The URL to the Matomo server (without the "http://" or "https://" part)
+	define('PGV_PIWIK_SITE', $PGV_PIWIK_SITE);		// The number assigned by Matomo to your PGV site
 }
 
 if (isset($USE_CLUSTRMAPS_ANALYTICS) && $USE_CLUSTRMAPS_ANALYTICS) {
