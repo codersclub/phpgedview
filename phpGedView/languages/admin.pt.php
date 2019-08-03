@@ -3,7 +3,7 @@
  * Portugese Language file for PhpGedView.
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2016  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2019  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -35,9 +35,9 @@ $pgv_lang["analytics_config"]       = "Web Analytics";
 $pgv_lang["google_analytics"]       = "Google Analytics";
 $pgv_lang["USE_GOOGLE_ANALYTICS"]   = "Ativar Google Analytics?";
 $pgv_lang["PGV_GOOGLE_ANALYTICS"]   = "Número da conta Google Analytics";
-$pgv_lang["piwik_analytics"]        = "Piwik Analytics";
-$pgv_lang["USE_PIWIK_ANALYTICS"]    = "Ativar Piwik Analytics?";
-$pgv_lang["PGV_PIWIK_URL"]          = "URL do servidor de Piwik Analytics";
+$pgv_lang["piwik_analytics"]        = "Matomo Analytics";
+$pgv_lang["USE_PIWIK_ANALYTICS"]    = "Ativar Matomo Analytics?";
+$pgv_lang["PGV_PIWIK_URL"]          = "URL do servidor de Matomo Analytics";
 $pgv_lang["PGV_PIWIK_SITE"]         = "Número site";
 $pgv_lang["clustrmaps_analytics"]   = "ClustrMaps Analytics";
 $pgv_lang["USE_CLUSTRMAPS_ANALYTICS"] = "Ativar ClustrMaps Analytics?";

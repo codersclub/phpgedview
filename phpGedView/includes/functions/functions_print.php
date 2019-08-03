@@ -704,29 +704,28 @@ function linkWebAnalytics() {
 		$result .= '<!-- End Google Analytics Tracking Code -->'."\n";
 	}
 /*
- * ---------- Piwik -------
+ * ---------- Matomo -------
  *
  * Enable by adding two constants to "includes/session.php" as follows:
- *		define('PGV_PIWIK_URL', 'PIWIK website address');		// The URL to the Piwik engine
- *		define('PGV_PIWIK_SITE', 'your PIWIK site number');		// The number assigned by Piwik to your PGV site
+ *		define('PGV_PIWIK_URL', 'MATOMO website address');		// The URL to the Matomo engine
+ *		define('PGV_PIWIK_SITE', 'your MATOMO site number');	// The number assigned by Matomo to your PGV site
  */
 	if (defined('PGV_PIWIK_URL') && defined('PGV_PIWIK_SITE')) {
-		$result .= '<!-- Piwik -->'."\n";
+		$result .= '<!-- Matomo -->'."\n";
 		$result .= '<script type="text/javascript">'."\n";
-		$result .= 'var _paq = _paq || [];'."\n";
-		$result .= '_paq.push([\'setRequestMethod\', \'POST\']);'."\n";
-		$result .= '_paq.push([\'trackPageView\']);'."\n";
-		$result .= '_paq.push([\'enableLinkTracking\']);'."\n";
-		$result .= '(function() {'."\n";
-		$result .= '    var u=(("https:" == document.location.protocol) ? "https" : "http") + "://'.PGV_PIWIK_URL.'/";'."\n";
-		$result .= '    _paq.push([\'setTrackerUrl\', u+\'piwik.php\']);'."\n";
-		$result .= '    _paq.push([\'setSiteId\', '.PGV_PIWIK_SITE.']);'."\n";
-		$result .= '    var d=document, g=d.createElement(\'script\'), s=d.getElementsByTagName(\'script\')[0]; g.type=\'text/javascript\';'."\n";
-		$result .= '    g.defer=true; g.async=true; g.src=u+\'piwik.js\'; s.parentNode.insertBefore(g,s);'."\n";
-		$result .= '  })();'."\n";
+		$result .= '	var _paq = window._paq || [];'."\n";
+		$result .= '	/* tracker methods like "setCustomDimension" should be called before "trackPageView" */'."\n";
+		$result .= '	_paq.push([\'trackPageView\']);'."\n";
+		$result .= '	_paq.push([\'enableLinkTracking\']);'."\n";
+		$result .= '	(function() {'."\n";
+		$result .= '    	var u=(("https:" == document.location.protocol) ? "https" : "http") + "://'.PGV_PIWIK_URL.'/";'."\n";
+		$result .= '		_paq.push([\'setTrackerUrl\', u+\'matomo.php\']);'."\n";
+		$result .= '    	_paq.push([\'setSiteId\', '.PGV_PIWIK_SITE.']);'."\n";
+		$result .= '		var d=document, g=d.createElement(\'script\'), s=d.getElementsByTagName(\'script\')[0];'."\n";
+		$result .= '		g.type=\'text/javascript\'; g.async=true; g.defer=true; g.src=u+\'matomo.js\'; s.parentNode.insertBefore(g,s);'."\n";
+		$result .= '	})();'."\n";
 		$result .= '</script>'."\n";
-		$result .= '<noscript><p><img src="http://'.PGV_PIWIK_URL.'/piwik.php?idsite='.PGV_PIWIK_SITE.'" style="border:0;" alt="" /></p></noscript>'."\n";
-		$result .= '<!-- End Piwik Tracking Code -->'."\n";
+		$result .= '<!-- End Matomo Code -->'."\n";
 	}
 /*
  * ---------- ClustrMaps -------

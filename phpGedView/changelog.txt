@@ -9,6 +9,8 @@
 =====================================================================
 
 Version 4.3.1
+ - Changed: Updated Matomo JS code to version 3.x (canajun2eh)
+ - Changed: "Piwik" was re-named to "Matomo" (canajun2eh)
  - Fixed: GEDCOM configuration, GEONAMES_BIAS not showing "No preference" as "selected" (canajun2eh)
  - Changed: Remove useless "Open links in new tab/window" option in modules/googlemap/placecheck.php (David Smart)
  - Fixed: Quick-and-dirty fix to force acceptance of incorrectly formed autocomplete requests --permanent fix requires more research-- (canajun2eh)

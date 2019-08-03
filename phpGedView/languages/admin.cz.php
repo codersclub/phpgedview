@@ -3,7 +3,7 @@
  * Czech texts
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2016  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2019  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -35,10 +35,10 @@ $pgv_lang["analytics_config"]		= "Webová Analytika";
 $pgv_lang["google_analytics"]		= "Google Analytika";
 $pgv_lang["USE_GOOGLE_ANALYTICS"]	= "Aktivace Google Analytika?";
 $pgv_lang["PGV_GOOGLE_ANALYTICS"]	= "Google Analytika císlo úctu";
-$pgv_lang["piwik_analytics"]		= "Piwik Analytika";
-$pgv_lang["USE_PIWIK_ANALYTICS"]	= "Aktivace Piwik Analytika?";
-$pgv_lang["PGV_PIWIK_URL"]			= "Serveru Adresa Piwik Analytika";
-$pgv_lang["PGV_PIWIK_SITE"]			= "Tato stránka je císlo v Piwik Analytika";
+$pgv_lang["piwik_analytics"]		= "Matomo Analytika";
+$pgv_lang["USE_PIWIK_ANALYTICS"]	= "Aktivace Matomo Analytika?";
+$pgv_lang["PGV_PIWIK_URL"]			= "Serveru Adresa Matomo Analytika";
+$pgv_lang["PGV_PIWIK_SITE"]			= "Tato stránka je císlo v Matomo Analytika";
 $pgv_lang["clustrmaps_analytics"]	= "ClustrMaps Analytika";
 $pgv_lang["USE_CLUSTRMAPS_ANALYTICS"] = "Aktivace ClustrMaps Analytika?";
 $pgv_lang["PGV_CLUSTRMAPS_SITE"] 	= "URL této PhpGedView stránce";

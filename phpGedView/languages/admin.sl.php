@@ -3,7 +3,7 @@
  * Slovenian texts
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2016  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2019  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -36,10 +36,10 @@ $pgv_lang["analytics_config"]		= "Spletna analiza";
 $pgv_lang["google_analytics"]		= "Google Analytics";
 $pgv_lang["USE_GOOGLE_ANALYTICS"]	= "Aktiviraj Google Analytics?";
 $pgv_lang["PGV_GOOGLE_ANALYTICS"]	= "Številka racuna na Google Analytics";
-$pgv_lang["piwik_analytics"]		= "Piwik Analytics";
-$pgv_lang["USE_PIWIK_ANALYTICS"]	= "Aktiviraj Piwik Analytics?";
-$pgv_lang["PGV_PIWIK_URL"]			= "Piwik Analytics server URL";
-$pgv_lang["PGV_PIWIK_SITE"]			= "Piwik Analytics številka spletne strani";
+$pgv_lang["piwik_analytics"]		= "Matomo Analytics";
+$pgv_lang["USE_PIWIK_ANALYTICS"]	= "Aktiviraj Matomo Analytics?";
+$pgv_lang["PGV_PIWIK_URL"]			= "Matomo Analytics server URL";
+$pgv_lang["PGV_PIWIK_SITE"]			= "Matomo Analytics številka spletne strani";
 $pgv_lang["clustrmaps_analytics"]	= "ClustrMaps Analytics";
 $pgv_lang["USE_CLUSTRMAPS_ANALYTICS"] = "Aktiviraj ClustrMaps Analytics?";
 $pgv_lang["PGV_CLUSTRMAPS_SITE"] 	= "Naslov PhpGedView URL";
