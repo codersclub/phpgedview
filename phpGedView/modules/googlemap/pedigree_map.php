@@ -8,7 +8,7 @@
  * GEDCOM '2 PLAC' tag (within the '1 BIRT' event) and the place_locations table.
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2010  PGV Development Team. All rights reserved.
+ * Copyright (C) 2002 to 2019  PGV Development Team. All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -26,7 +26,7 @@
  *
  * @author Nigel Osborne
  * @Developed for the 'Our-Families' web site (http://www.our-families.info)
- * @modified and added to PGV by Łukasz Wileński
+ * @modified and added to PGV by Lukasz Wilenski
  * @package PhpGedView
  * $Id$
  */
@@ -72,7 +72,7 @@ $MAX_PEDIGREE_GENERATIONS = min($MAX_PEDIGREE_GENERATIONS, 8);
 
 // End of internal configuration variables
 
-global $theme_name, $TEXT_DIRECTION;
+global $theme_name, $TEXT_DIRECTION, $GOOGLEMAP_ENABLED;
 
 // -- print html header information
 print_header($controller->getPageTitle());
@@ -228,10 +228,10 @@ if (!$controller->isPrintPreview()) {
 				</td>
 			</tr>
 		</table>
- 	  </form>
+	  </form>
 	</td></tr>
 </table>
-	
+
 <?php } ?>
 <!-- end of form -->
 
@@ -288,6 +288,8 @@ for ($i=0; $i<($controller->treesize); $i++) {
 //<!-- end of count records by type -->
 
 //<!-- start of map display -->
+global $GOOGLEMAP_XSIZE, $GOOGLEMAP_YSIZE, $GOOGLEMAP_API_KEY;
+
 echo '<table class="pedigree_map" ';
 if (($cloudy_locked == 0) || ($theme_name != "Cloudy")) {
 	echo "width=\"100%\"";
@@ -644,7 +646,7 @@ for ($i=0; $i<($controller->treesize); $i++) {
 					} else if ($sex == "M") {
 						$relationship = $pgv_lang["pm_grandfather"];
 					} else {
-						$relationship = $pgv_lang["pm_grandparent"]; 
+						$relationship = $pgv_lang["pm_grandparent"];
 					}
 					$event = "<img src='modules/googlemap/images/sq".$curgen.".png' width='10'" .
 						 " height='10'><strong>&nbsp;".$pgv_lang["pm_gt"]."&nbsp;</strong>";
@@ -657,6 +659,8 @@ for ($i=0; $i<($controller->treesize); $i++) {
 		}
 
 		// add thumbnail image
+		global $PGV_IMAGE_DIR, $PGV_IMAGES;
+
 		$image = "<div class='pedigree_image'>";
 		if ($MULTI_MEDIA && $SHOW_HIGHLIGHT_IMAGES && showFact("OBJE", $pid)) {
 			$object = find_highlighted_object($pid, PGV_GED_ID, $indirec);
@@ -687,7 +691,7 @@ for ($i=0; $i<($controller->treesize); $i++) {
 		$datamid  .= "</a></span>";
 		$dataright = "<br /><strong>". $pgv_lang["birth"] . "&nbsp;</strong>" .
 				addslashes($bdate->Display(false))."<br />".$bplace;
-	
+
 		$latlongval[$i] = get_lati_long_placelocation($person->getBirthPlace());
 		if ($latlongval[$i] != NULL){
 			$lat[$i] = str_replace(array('N', 'S', ','), array('', '-', '.'), $latlongval[$i]["lati"]);
@@ -755,13 +759,13 @@ for ($i=0; $i<($controller->treesize); $i++) {
 				if (!$hidelines) {
 					$to_child = (intval(($i-1)/2)); // Draw a line from parent to child
 					if ($to_child >= 0 && $to_child < 127 && !empty($lat[$to_child]) &&
-					    ($lat[$to_child] != $lat[$i] || $lon[$to_child] != $lon[$i]) ) {
+						($lat[$to_child] != $lat[$i] || $lon[$to_child] != $lon[$i]) ) {
 						echo "var pline = new google.maps.Polyline({
-    path: [{ lat: ".$lat[$i].", lng: ".$lon[$i]." }, { lat: ".$lat[$to_child].", lng: ".$lon[$to_child]." }],
-    geodesic: true,
-    strokeColor: '".$colored_line[$curgen]."',
-    strokeOpacity: 1.0,
-    strokeWeight: 3
+	path: [{ lat: ".$lat[$i].", lng: ".$lon[$i]." }, { lat: ".$lat[$to_child].", lng: ".$lon[$to_child]." }],
+	geodesic: true,
+	strokeColor: '".$colored_line[$curgen]."',
+	strokeOpacity: 1.0,
+	strokeWeight: 3
 });\n";
 						echo "pline.setMap(pm_map);\n";
 					}
@@ -778,6 +782,40 @@ for ($i=0; $i<($controller->treesize); $i++) {
 }
 ?>
 pm_map.fitBounds(bounds);
+
+<?php global $GOOGLEMAP_PH_CONTROLS; if ($GOOGLEMAP_PH_CONTROLS) {?>
+var hide_cntls_timeout = null;
+
+// hide controls
+google.maps.event.addDomListener(pm_map.getDiv(), 'mouseleave', function (event) {
+	hide_cntls_timeout = setTimeout(function () {
+		pm_map.setOptions({
+			zoomControl: false,
+			mapTypeControl: false,
+			scaleControl: true,
+			streetViewControl: false,
+			rotateControl: false,
+			fullscreenControl: false
+		});
+	}, 2000);
+});
+
+// show controls
+google.maps.event.addDomListener(pm_map.getDiv(), 'mouseenter', function (event) {
+	clearTimeout(hide_cntls_timeout);
+	pm_map.setOptions({
+		zoomControl: true,
+		mapTypeControl: true,
+		scaleControl: true,
+		streetViewControl: false,
+		rotateControl: false,
+		fullscreenControl: true
+	});
+});
+google.maps.event.trigger(pm_map.getDiv(), 'mouseleave');
+<?php
+}
+?>
 
 // put the assembled side_bar_html contents into the side_bar div
 side_bar_html += '<a href="javascript:pm_map.fitBounds(bounds);">reset map</a>';

@@ -1,33 +1,34 @@
 <?php
 /**
-* Individual Page
-*
-* Display all of the information about an individual
-*
-* phpGedView: Genealogy Viewer
-* Copyright (C) 2002 to 2018  PGV Development Team.  All rights reserved.
-*
-* This program is free software; you can redistribute it and/or modify
-* it under the terms of the GNU General Public License as published by
-* the Free Software Foundation; either version 2 of the License, or
-* (at your option) any later version.
-*
-* This program is distributed in the hope that it will be useful,
-* but WITHOUT ANY WARRANTY; without even the implied warranty of
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-* GNU General Public License for more details.
-*
-* You should have received a copy of the GNU General Public License
-* along with this program; if not, write to the Free Software
-* Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-*
-* @package PhpGedView
-* @subpackage Charts
-* @version $Id$
-*/
+ * Individual Page
+ *
+ * Display all of the information about an individual
+ *
+ * phpGedView: Genealogy Viewer
+ * Copyright (C) 2002 to 2019  PGV Development Team.  All rights reserved.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ *
+ * @package PhpGedView
+ * @subpackage Charts
+ * @version $Id$
+ */
 
 define('PGV_SCRIPT_NAME', 'individual.php');
 require './config.php';
+@include PGV_ROOT.'modules/googlemap/defaultconfig.php';
 require PGV_ROOT.'includes/controllers/individual_ctrl.php';
 
 // We have finished writing to $_SESSION, so release the lock
@@ -272,19 +273,35 @@ function tempObj(tab, oXmlHttp) {
 			if (tabid[tab]=='googlemap') {
 				SetBounds();
 				if (!loadedTabs[tab]) {
-					loadMap();
+					map = loadMap();
 					<?php if ($GOOGLEMAP_PH_CONTROLS) {?>
 					// hide controls
-					GEvent.addListener(map, 'mouseout', function()
-					{
-						map.hideControls();
+					google.maps.event.addDomListener(map.getDiv(), 'mouseleave', function (event) {
+						hide_cntls_timeout = setTimeout(function () {
+							map.setOptions({
+								zoomControl: false,
+								mapTypeControl: false,
+								scaleControl: true,
+								streetViewControl: false,
+								rotateControl: false,
+								fullscreenControl: false
+							});
+						}, 2000);
 					});
+
 					// show controls
-					GEvent.addListener(map, 'mouseover', function()
-					{
-						map.showControls();
+					google.maps.event.addDomListener(map.getDiv(), 'mouseenter', function (event) {
+						clearTimeout(hide_cntls_timeout);
+						map.setOptions({
+							zoomControl: true,
+							mapTypeControl: true,
+							scaleControl: true,
+							streetViewControl: false,
+							rotateControl: false,
+							fullscreenControl: false
+						});
 					});
-					GEvent.trigger(map, 'mouseout');
+					google.maps.event.trigger(map.getDiv(), 'mouseleave');
 					<?php
 					}
 					?>

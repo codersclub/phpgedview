@@ -1,28 +1,28 @@
 <?php
 /**
-* Displays the details about a repository record.  Also shows how many sources
-* reference this repository.
-*
-* phpGedView: Genealogy Viewer
-* Copyright (C) 2002 to 2009 PGV Development Team.  All rights reserved.
-*
-* This program is free software; you can redistribute it and/or modify
-* it under the terms of the GNU General Public License as published by
-* the Free Software Foundation; either version 2 of the License, or
-* (at your option) any later version.
-*
-* This program is distributed in the hope that it will be useful,
-* but WITHOUT ANY WARRANTY; without even the implied warranty of
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-* GNU General Public License for more details.
-*
-* You should have received a copy of the GNU General Public License
-* along with this program; if not, write to the Free Software
-* Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-*
-* @package PhpGedView
-* @version $Id$
-*/
+ * Displays the details about a repository record.  Also shows how many sources
+ * reference this repository.
+ *
+ * phpGedView: Genealogy Viewer
+ * Copyright (C) 2002 to 2019  PGV Development Team.  All rights reserved.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ *
+ * @package PhpGedView
+ * @version $Id$
+ */
 
 define('PGV_SCRIPT_NAME', 'repo.php');
 require './config.php';
@@ -71,7 +71,7 @@ if ($controller->accept_success) {
 }
 echo '<span class="name_head">', PrintReady(htmlspecialchars($controller->repository->getFullName()));
 if ($SHOW_ID_NUMBERS) {
-	echo ' ', getLRM(), '(', $controller->rid, ')', getLRM(); 
+	echo ' ', getLRM(), '(', $controller->rid, ')', getLRM();
 }
 echo '</span><br /></td><td valign="top" class="noprint">';
 if (!$controller->isPrintPreview()) {
@@ -82,27 +82,27 @@ if (!$controller->isPrintPreview()) {
 			echo '<table class="sublinks_table" cellspacing="4" cellpadding="0">';
 			echo '<tr><td class="list_label ', $TEXT_DIRECTION, '" colspan="2">', $pgv_lang['repo_menu'], '</td></tr>';
 			echo '<tr>';
-		} else { 
+		} else {
 			echo '<div id="optionsmenu" class="sublinks_table">';
 			echo '<div class="list_label ', $TEXT_DIRECTION, '">', $pgv_lang["repo_menu"], '</div>';
-		} 
+		}
 		if ($editmenu) {
 			if (!$PGV_MENUS_AS_LISTS) {
 				echo '<td class="sublinks_cell ', $TEXT_DIRECTION, '">', $editmenu->printMenu(), '</td>';
-			} else { 
+			} else {
 				echo '<ul class="sublinks_cell ', $TEXT_DIRECTION, '">', $editmenu->printMenu(), '</ul>';
 			}
 		}
 		if ($othermenu) {
 			if (!$PGV_MENUS_AS_LISTS) {
 				echo '<td class="sublinks_cell ', $TEXT_DIRECTION, '">', $othermenu->printMenu(), '</td>';
-			} else { 
+			} else {
 				echo '<ul class="sublinks_cell ', $TEXT_DIRECTION, '">', $editmenu->printMenu(), '</ul>';
 			}
 		}
 		if (!$PGV_MENUS_AS_LISTS) {
 			echo '</tr></table>';
-		} else { 
+		} else {
 			echo '</div>';
 		}
 	}
@@ -121,20 +121,22 @@ foreach ($repositoryfacts as $fact) {
 }
 
 // Print media
-print_main_media($controller->rid);
+if ($MULTI_MEDIA) print_main_media($controller->rid);
 
 // new fact link
 if (!$controller->isPrintPreview() && $controller->userCanEdit()) {
 	print_add_new_fact($controller->rid, $repositoryfacts, 'REPO');
 	// new media
-	echo '<tr><td class="descriptionbox ', $TEXT_DIRECTION, '">';
-	print_help_link('add_media_help', 'qm', 'add_media_lbl');
-	echo $pgv_lang['add_media_lbl'] , '</td>';
-	echo '<td class="optionbox ', $TEXT_DIRECTION, '">';
-	echo '<a href="javascript: ', $pgv_lang['add_media_lbl'], '" onclick="window.open(\'addmedia.php?action=showmediaform&linktoid=', $controller->rid, '\', \'_blank\', \'top=50, left=50, width=600, height=500, resizable=1, scrollbars=1\'); return false;">', $pgv_lang['add_media'], '</a>';
-	echo '<br />';
-	echo '<a href="javascript:;" onclick="window.open(\'inverselink.php?linktoid=', $controller->rid, '&linkto=repository\', \'_blank\', \'top=50, left=50, width=600, height=500, resizable=1, scrollbars=1\'); return false;">', $pgv_lang['link_to_existing_media'], '</a>';
-	echo '</td></tr>';
+	if ($MULTI_MEDIA) {
+		echo '<tr><td class="descriptionbox ', $TEXT_DIRECTION, '">';
+		print_help_link('add_media_help', 'qm', 'add_media_lbl');
+		echo $pgv_lang['add_media_lbl'], '</td>';
+		echo '<td class="optionbox ', $TEXT_DIRECTION, '">';
+		echo '<a href="javascript: ', $pgv_lang['add_media_lbl'], '" onclick="window.open(\'addmedia.php?action=showmediaform&linktoid=', $controller->rid, '\', \'_blank\', \'top=50, left=50, width=600, height=500, resizable=1, scrollbars=1\'); return false;">', $pgv_lang['add_media'], '</a>';
+		echo '<br />';
+		echo '<a href="javascript:;" onclick="window.open(\'inverselink.php?linktoid=', $controller->rid, '&linkto=repository\', \'_blank\', \'top=50, left=50, width=600, height=500, resizable=1, scrollbars=1\'); return false;">', $pgv_lang['link_to_existing_media'], '</a>';
+		echo '</td></tr>';
+	}
 }
 echo '</table><br /><br /></td></tr><tr class="center"><td colspan="2">';
 

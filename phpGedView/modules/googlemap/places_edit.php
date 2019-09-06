@@ -3,7 +3,7 @@
  * Interface to edit place locations
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2018  PGV Development Team. All rights reserved.
+ * Copyright (C) 2002 to 2019  PGV Development Team. All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -270,9 +270,9 @@ if ($action=="add") {
 }
 
 ?>
-    <script src="https://maps.googleapis.com/maps/api/js?key=<?php echo $GOOGLEMAP_API_KEY;
-        ?>&language=<?php echo $language_settings[$LANGUAGE]['lang_short_cut']; ?>" type="text/javascript"></script>
-    <script type="text/javascript">
+	<script src="https://maps.googleapis.com/maps/api/js?key=<?php echo $GOOGLEMAP_API_KEY;
+		?>&language=<?php echo $language_settings[$LANGUAGE]['lang_short_cut']; ?>" type="text/javascript"></script>
+	<script type="text/javascript">
 <!--
 	if (window.attachEvent) {
 		window.attachEvent("onload", function() {
@@ -442,69 +442,69 @@ if ($action=="add") {
 			var update_timeout = null;
 
 			map.addListener('click', function(event){
-			    update_timeout = setTimeout(function(){ //workarount of a bug? in API - click is triggered also if dblclick occured
-			        if (event) {
-			            // map.clearOverlays();
-			            // Create our "tiny" yellow marker icon where the user clicked,
-			            // The full size red marker is at the stored coordinates.
-			            var smicon = "https://maps.gstatic.com/mapfiles/ridefinder-images/mm_20_yellow.png";
+				update_timeout = setTimeout(function(){ //workaround of a bug? in API - click is triggered also if dblclick occured
+					if (event) {
+						// map.clearOverlays();
+						// Create our "tiny" yellow marker icon where the user clicked,
+						// The full size red marker is at the stored coordinates.
+						var smicon = "https://maps.gstatic.com/mapfiles/ridefinder-images/mm_20_yellow.png";
 
-			            map.panTo(event.latLng);
-			            var lat = event.latLng.lat();
-			            var lon = event.latLng.lng();
-			            prec = 20;
-			            for (i=0;i<document.editplaces.NEW_PRECISION.length;i++) {
-			                if (document.editplaces.NEW_PRECISION[i].checked) {
-			                    prec = document.editplaces.NEW_PRECISION[i].value;
-			                }
-			            }
+						map.panTo(event.latLng);
+						var lat = event.latLng.lat();
+						var lon = event.latLng.lng();
+						prec = 20;
+						for (i=0;i<document.editplaces.NEW_PRECISION.length;i++) {
+							if (document.editplaces.NEW_PRECISION[i].checked) {
+								prec = document.editplaces.NEW_PRECISION[i].value;
+							}
+						}
 
-			            if (lat < 0.0) {
-			                document.editplaces.NEW_PLACE_LATI.value = (lat.toFixed(prec) * -1);
-			                document.editplaces.LATI_CONTROL.value = "PL_S";
-			            } else {
-			                document.editplaces.NEW_PLACE_LATI.value = lat.toFixed(prec);
-			                document.editplaces.LATI_CONTROL.value = "PL_N";
-			            }
-			            if (lon < 0.0) {
-			                document.editplaces.NEW_PLACE_LONG.value = (lon.toFixed(prec) * -1);
-			                document.editplaces.LONG_CONTROL.value = "PL_W";
-			            } else {
-			                document.editplaces.NEW_PLACE_LONG.value = lon.toFixed(prec);
-			                document.editplaces.LONG_CONTROL.value = "PL_E";
-			            }
-			            newval = new google.maps.LatLng (lat.toFixed(prec), lon.toFixed(prec));
-			            if (document.editplaces.icon.value == ""){
-			                new google.maps.Marker({
-			                    position: newval,
-			                    map: map
-			                });
-			            } else {
-			                new google.maps.Marker({
-			                    position: newval,
-			                    icon: document.editplaces.icon.value,
-			                    map: map
-			                });
-			            }
-			            // Trying to get the smaller yellow icon drawn in front.
-			            new google.maps.Marker({
-			                position: event.latLng,
-			                icon: smicon,
-			                map: map
-			            });
-			            //document.getElementById('resultDiv').innerHTML = "";
-			            document.editplaces.save1.disabled = "";
-			            document.editplaces.save2.disabled = "";
-			            var childicon = "https://maps.gstatic.com/mapfiles/ridefinder-images/mm_20_green.png";
-			            /* for (i=0; i < childplaces.length; i++) {
-                            map.addOverlay(childplaces[i]);
-                        } */
-			        }
-			    }, 200);
+						if (lat < 0.0) {
+							document.editplaces.NEW_PLACE_LATI.value = (lat.toFixed(prec) * -1);
+							document.editplaces.LATI_CONTROL.value = "PL_S";
+						} else {
+							document.editplaces.NEW_PLACE_LATI.value = lat.toFixed(prec);
+							document.editplaces.LATI_CONTROL.value = "PL_N";
+						}
+						if (lon < 0.0) {
+							document.editplaces.NEW_PLACE_LONG.value = (lon.toFixed(prec) * -1);
+							document.editplaces.LONG_CONTROL.value = "PL_W";
+						} else {
+							document.editplaces.NEW_PLACE_LONG.value = lon.toFixed(prec);
+							document.editplaces.LONG_CONTROL.value = "PL_E";
+						}
+						newval = new google.maps.LatLng (lat.toFixed(prec), lon.toFixed(prec));
+						if (document.editplaces.icon.value == ""){
+							new google.maps.Marker({
+								position: newval,
+								map: map
+							});
+						} else {
+							new google.maps.Marker({
+								position: newval,
+								icon: document.editplaces.icon.value,
+								map: map
+							});
+						}
+						// Trying to get the smaller yellow icon drawn in front.
+						new google.maps.Marker({
+							position: event.latLng,
+							icon: smicon,
+							map: map
+						});
+						//document.getElementById('resultDiv').innerHTML = "";
+						document.editplaces.save1.disabled = "";
+						document.editplaces.save2.disabled = "";
+						var childicon = "https://maps.gstatic.com/mapfiles/ridefinder-images/mm_20_green.png";
+						/* for (i=0; i < childplaces.length; i++) {
+							map.addOverlay(childplaces[i]);
+						} */
+					}
+				}, 200);
 			});
 
 			map.addListener('dblclick', function(event) {
-			    clearTimeout(update_timeout);
+				clearTimeout(update_timeout);
 			});
 
 			map.addListener("zoom_changed", function() {
@@ -540,14 +540,14 @@ if ($action=="add") {
 						$row->pl_long = "-".abs($pl_long);
 					} ?>
 
-			 	childplaces.push(new google.maps.Marker({
+				childplaces.push(new google.maps.Marker({
 					position: {lat: <?=$row->pl_lati?>, lng: <?=$row->pl_long?>},
 					icon: childicon,
 					title: "<?=addslashes($row->pl_place)?>",
 					map: map
 				}));
-			  	bounds.extend({ lat: <?=$row->pl_lati?>, lng: <?=$row->pl_long?>});
-			  	map.setCenter(bounds.getCenter());
+				bounds.extend({ lat: <?=$row->pl_lati?>, lng: <?=$row->pl_long?>});
+				map.setCenter(bounds.getCenter());
 <?php
 					$i++;
 				}
@@ -572,6 +572,41 @@ if ($action=="add") {
 			}
 		} ?>
 			// Our info window content
+
+		<?php global $GOOGLEMAP_PH_CONTROLS; if ($GOOGLEMAP_PH_CONTROLS) {?>
+		var hide_cntls_timeout = null;
+
+		// hide controls
+		google.maps.event.addDomListener(map.getDiv(), 'mouseleave', function (event) {
+			hide_cntls_timeout = setTimeout(function () {
+				map.setOptions({
+					zoomControl: false,
+					mapTypeControl: false,
+					scaleControl: true,
+					streetViewControl: false,
+					rotateControl: false,
+					fullscreenControl: false
+				});
+			}, 2000);
+		});
+
+		// show controls
+		google.maps.event.addDomListener(map.getDiv(), 'mouseenter', function (event) {
+			clearTimeout(hide_cntls_timeout);
+			map.setOptions({
+				zoomControl: true,
+				mapTypeControl: true,
+				scaleControl: true,
+				streetViewControl: false,
+				rotateControl: false,
+				fullscreenControl: false
+			});
+		});
+		google.maps.event.trigger(map.getDiv(), 'mouseleave');
+		<?php
+		}
+		?>
+
 	}
 
 	function edit_close() {
@@ -639,9 +674,9 @@ if ($action=="add") {
 	function addAddressToMap(response, status) {
 	   // map.clearOverlays();
 	   var bounds = new google.maps.LatLngBounds();
-           var place, point, name, marker;
+		   var place, point, name, marker;
 	   if (status != google.maps.GeocoderStatus.OK) {
-	 	 alert("<?=$pgv_lang["pl_no_places_found"]?>");
+		 alert("<?=$pgv_lang["pl_no_places_found"]?>");
 	   } else {
 		if(response.length>0) {
 			for (i=0;i<response.length;i++) {
@@ -738,7 +773,7 @@ if ($action=="add") {
 			<?=print_specialchar_link("NEW_PLACE_NAME", false)?>
 		</div>
 		<label for="new_pl_name"><a href="javascript:;" onclick="showLocation_level(document.getElementById('new_pl_name').value); return false">&nbsp;<?=$pgv_lang["pl_search_level"]?></a></label>&nbsp;&nbsp;|
-	 	<label for="new_pl_name"><a href="javascript:;" onclick="showLocation_all(document.getElementById('new_pl_name').value); return false">&nbsp;<?=$pgv_lang["pl_search_all"]?></a></label>
+		<label for="new_pl_name"><a href="javascript:;" onclick="showLocation_all(document.getElementById('new_pl_name').value); return false">&nbsp;<?=$pgv_lang["pl_search_all"]?></a></label>
 		</td>
 	</tr>
 	<tr>
@@ -782,8 +817,8 @@ if ($action=="add") {
 		<td class="optionbox">
 			<select name="LATI_CONTROL" tabindex="<?php echo ++$i;?>" onchange="updateMap();">
 				<option value="" <?php if ($place_lati == null) echo " selected=\"selected\"";?>></option>
-				<option value="PL_N" <?php if ($place_lati > 0) echo " selected=\"selected\""; echo ">", $pgv_lang["pl_north_short"]; ?></option>
-				<option value="PL_S" <?php if ($place_lati < 0) echo " selected=\"selected\""; echo ">", $pgv_lang["pl_south_short"]; ?></option>
+				<option value="PL_N" <?php if ($place_lati > 0) echo " selected=\"selected\""; ?>><?php echo $pgv_lang["pl_north_short"]; ?></option>
+				<option value="PL_S" <?php if ($place_lati < 0) echo " selected=\"selected\""; ?>><?php echo $pgv_lang["pl_south_short"]; ?></option>
 			</select>
 			<input type="text" name="NEW_PLACE_LATI" value="<?php if ($place_lati != null) echo abs($place_lati);?>" size="20" tabindex="<?php echo ++$i;?>" onchange="updateMap();" /></td>
 	</tr>
@@ -792,8 +827,8 @@ if ($action=="add") {
 		<td class="optionbox">
 			<select name="LONG_CONTROL" tabindex="<?php echo ++$i;?>" onchange="updateMap();">
 				<option value="" <?php if ($place_long == null) echo " selected=\"selected\"";?>></option>
-				<option value="PL_E" <?php if ($place_long > 0) echo " selected=\"selected\""; echo ">", $pgv_lang["pl_east_short"]; ?></option>
-				<option value="PL_W" <?php if ($place_long < 0) echo " selected=\"selected\""; echo ">", $pgv_lang["pl_west_short"]; ?></option>
+				<option value="PL_E" <?php if ($place_long > 0) echo " selected=\"selected\""; ?>><?php echo $pgv_lang["pl_east_short"]; ?></option>
+				<option value="PL_W" <?php if ($place_long < 0) echo " selected=\"selected\""; ?>><?php echo $pgv_lang["pl_west_short"]; ?></option>
 			</select>
 			<input type="text" name="NEW_PLACE_LONG" value="<?php if ($place_long != null) echo abs($place_long);?>" size="20" tabindex="<?php echo ++$i;?>" onchange="updateMap();" /></td>
 	</tr>

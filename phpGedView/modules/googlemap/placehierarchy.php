@@ -1,9 +1,9 @@
 <?php
 /**
- * Displays a place hierachy
+ * Displays a place hierarchy
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2016  PGV Development Team. All rights reserved.
+ * Copyright (C) 2002 to 2019  PGV Development Team. All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -35,6 +35,8 @@ if (file_exists(PGV_ROOT.'modules/googlemap/defaultconfig.php')) {
 	require PGV_ROOT.'modules/googlemap/googlemap.php';
 }
 require_once PGV_ROOT.'includes/classes/class_stats.php';
+global $GEDCOM;
+
 $stats = new stats($GEDCOM);
 
 function check_exist_table() {
@@ -192,7 +194,7 @@ function create_map() {
 		echo "</td></tr>\n";
 		echo "</table>\n";
 	}
-	echo "</td><td style=\"margin-left:15; vertical-align: top;\">";
+	echo "</td><td style=\"margin-left:15px; vertical-align: top;\">";
 }
 
 function check_were_am_i($numls, $levelm) {
@@ -666,7 +668,7 @@ function map_scripts($numfound, $level, $parent, $linklevels, $placelevels, $pla
 							if ($place2['place']!="Unknown" || (($place2['lati'] != NULL) && ($place2['long'] != NULL))) {
 								if (isset ($levelo[$level-$i+1]) && $place2['place_id']==$levelo[$level-$i+1]) {
 									print_gm_markers($place2, ($level+1), $parent, $levelm, $linklevels, $placelevels, true);
-                                    if ($place2['zoom'] < $min_zoom) $min_zoom = $place2['zoom'];
+									if ($place2['zoom'] < $min_zoom) $min_zoom = $place2['zoom'];
 									$break = true;
 								}
 							}
@@ -699,11 +701,35 @@ function map_scripts($numfound, $level, $parent, $linklevels, $placelevels, $pla
 		});
 	}
 	<?php if ($GOOGLEMAP_PH_CONTROLS) {?>
+		var update_timeout = null;
+
 		// hide controls
-	//	GEvent.addListener(place_map, 'mouseout', function() {place_map.hideControls();});
+		google.maps.event.addDomListener(place_map.getDiv(), 'mouseleave', function (event) {
+			update_timeout = setTimeout(function () {
+				place_map.setOptions({
+					zoomControl: false,
+					mapTypeControl: false,
+					scaleControl: true,
+					streetViewControl: false,
+					rotateControl: false,
+					fullscreenControl: false
+			});
+			}, 2000);
+		});
+
 		// show controls
-	//	GEvent.addListener(place_map, 'mouseover', function() {place_map.showControls();});
-	//	GEvent.trigger(place_map, 'mouseout');
+	google.maps.event.addDomListener(place_map.getDiv(), 'mouseenter', function (event) {
+				clearTimeout(update_timeout);
+			place_map.setOptions({
+				zoomControl: true,
+				mapTypeControl: true,
+				scaleControl: true,
+				streetViewControl: false,
+				rotateControl: false,
+				fullscreenControl: false
+		});
+		});
+	google.maps.event.trigger(place_map.getDiv(), 'mouseleave');
 		<?php
 	}
 	if ($numfound>1)
