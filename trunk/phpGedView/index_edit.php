@@ -4,7 +4,7 @@
  * to keep bookmarks, see a list of upcoming events, etc.
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2017  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2019  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -218,6 +218,7 @@ if ($action=="updateconfig") {
 	$block = $ublocks[$side][$index];
 	if (isset($PGV_BLOCKS[$block[0]]["canconfig"]) && $PGV_BLOCKS[$block[0]]["canconfig"] && isset($PGV_BLOCKS[$block[0]]["config"]) && is_array($PGV_BLOCKS[$block[0]]["config"])) {
 		$config = $block[1];
+		if(!is_array($config)) $config = array();
 		foreach($PGV_BLOCKS[$block[0]]["config"] as $config_name=>$config_value) {
 			if (isset($_POST[$config_name])) {
 				$config[$config_name] = $_POST[$config_name];

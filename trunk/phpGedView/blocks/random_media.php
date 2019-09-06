@@ -5,7 +5,7 @@
  * This block will randomly choose media items and show them in a block
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2009  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2019  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -88,11 +88,11 @@ if ($MULTI_MEDIA) {
 
 		if (!$MULTI_MEDIA) return;
 
-			if (empty($config)) $config = $PGV_BLOCKS["print_random_media"]["config"];
-			if (isset($config["filter"])) $filter = $config["filter"];  // indi, event, or all
-			else $filter = "all";
-			if (!isset($config['controls'])) $config['controls'] ="yes";
-			if (!isset($config['start'])) $config['start'] ="no";
+		if (empty($config)) $config = $PGV_BLOCKS["print_random_media"]["config"];
+		if (isset($config["filter"])) $filter = $config["filter"];  // indi, event, or all
+		else $filter = "all";
+		if (!isset($config['controls'])) $config['controls'] ="yes";
+		if (!isset($config['start'])) $config['start'] ="no";
 
 		$medialist = array();
 		$foundlist = array();
@@ -258,9 +258,9 @@ if ($MULTI_MEDIA) {
 function openPic(filename, width, height) {
 		height=height+50;
 		screenW = screen.width;
-	 	screenH = screen.height;
-	 	if (width>screenW-100) width=screenW-100;
-	 	if (height>screenH-110) height=screenH-120;
+		screenH = screen.height;
+		if (width>screenW-100) width=screenW-100;
+		if (height>screenH-110) height=screenH-120;
 		if ((filename.search(/\.je?pg$/gi)!=-1)||(filename.search(/\.gif$/gi)!=-1)||(filename.search(/\.png$/gi)!=-1)||(filename.search(/\.bmp$/gi)!=-1))
 			win02 = window.open('imageview.php?filename='+filename,'win02','top=50,left=150,height='+height+',width='+width+',scrollbars=1,resizable=1');
 			// win03.resizeTo(winWidth 2,winHeight 30);

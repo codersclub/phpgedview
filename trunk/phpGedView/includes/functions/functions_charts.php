@@ -308,8 +308,8 @@ function print_family_children($famid, $childid = "", $sosa = 0, $label="", $per
 	print "<table border=\"0\" cellpadding=\"0\" cellspacing=\"2\"><tr>";
 	if ($sosa>0) print "<td></td>";
 	print "<td colspan='2'><span class=\"subheaders\">".$pgv_lang["children"]."</span>";
-    if ($TEXT_DIRECTION == 'ltr')
-    	 echo '<span class="font11">&nbsp;&nbsp;', getLRM(), '(';
+	if ($TEXT_DIRECTION == 'ltr')
+		 echo '<span class="font11">&nbsp;&nbsp;', getLRM(), '(';
 	else echo '<span class="font11">&nbsp;&nbsp;', getRLM(), '(';
 
 	if ($numchil==0) {
@@ -406,14 +406,14 @@ function print_family_children($famid, $childid = "", $sosa = 0, $label="", $per
 							print "</td>";
 						}
 						print "<td class=\"details1\" valign=\"middle\" align=\"center\">";
- 						$divrec = "";
+						$divrec = "";
 						if (showFact("MARR", $famid)) {
 							// marriage date
 							$famrec = find_family_record($famid, $ged_id);
 							$ct = preg_match("/2 DATE.*(\d\d\d\d)/", get_sub_record(1, "1 MARR", $famrec), $match);
 							if ($ct>0) {
 								echo '<span class="date">&nbsp;&nbsp;&nbsp;';
-    							if ($TEXT_DIRECTION == 'ltr') {
+								if ($TEXT_DIRECTION == 'ltr') {
 									echo '∞&nbsp;', trim($match[1]);
 								} else {
 									echo trim($match[1]), '&nbsp;∞';
@@ -425,7 +425,7 @@ function print_family_children($famid, $childid = "", $sosa = 0, $label="", $per
 							$ct = preg_match("/2 DATE.*(\d\d\d\d)/", $divrec, $match);
 							if ($ct>0) {
 								echo '<br /><span class="date">&nbsp;&nbsp;&nbsp;';
-    							if ($TEXT_DIRECTION == 'ltr') {
+								if ($TEXT_DIRECTION == 'ltr') {
 									echo '∞&nbsp;', trim($match[1]);
 								} else {
 									echo trim($match[1]), '&nbsp;∞';
@@ -514,6 +514,7 @@ function print_family_facts(&$family, $sosa = 0) {
 	global $TEXT_DIRECTION, $GEDCOM, $SHOW_ID_NUMBERS;
 	global $show_changes, $pgv_changes;
 	global $linkToID;
+	global $MULTI_MEDIA;
 
 	$famid=$family->getXref();
 	// -- if both parents are displayable then print the marriage facts
@@ -549,7 +550,7 @@ function print_family_facts(&$family, $sosa = 0) {
 					}
 				}
 				// NOTE: Print the media
-				print_main_media($famid);
+				if ($MULTI_MEDIA) print_main_media($famid);
 			}
 		}
 		else {
@@ -588,14 +589,16 @@ function print_family_facts(&$family, $sosa = 0) {
 			print "</td></tr>\n";
 
 			// -- new media
-			print "<tr><td class=\"descriptionbox\">";
-			print_help_link("add_media_help", "qm", "add_media_lbl");
-			print $pgv_lang["add_media_lbl"] . "</td>";
-			print "<td class=\"optionbox\">";
-			print "<a href=\"javascript: ".$pgv_lang["add_media_lbl"]."\" onclick=\"window.open('addmedia.php?action=showmediaform&linktoid={$famid}', '_blank', 'top=50,left=50,width=600,height=500,resizable=1,scrollbars=1'); return false;\">".$pgv_lang["add_media"]."</a>";
-			print "<br />\n";
-			print "<a href=\"javascript:;\" onclick=\"window.open('inverselink.php?linktoid={$famid}&linkto=family', '_blank', 'top=50,left=50,width=400,height=300,resizable=1,scrollbars=1'); return false;\">".$pgv_lang["link_to_existing_media"]."</a>";
-			print "</td></tr>\n";
+			if ($MULTI_MEDIA) {
+				print "<tr><td class=\"descriptionbox\">";
+				print_help_link("add_media_help", "qm", "add_media_lbl");
+				print $pgv_lang["add_media_lbl"] . "</td>";
+				print "<td class=\"optionbox\">";
+				print "<a href=\"javascript: " . $pgv_lang["add_media_lbl"] . "\" onclick=\"window.open('addmedia.php?action=showmediaform&linktoid={$famid}', '_blank', 'top=50,left=50,width=600,height=500,resizable=1,scrollbars=1'); return false;\">" . $pgv_lang["add_media"] . "</a>";
+				print "<br />\n";
+				print "<a href=\"javascript:;\" onclick=\"window.open('inverselink.php?linktoid={$famid}&linkto=family', '_blank', 'top=50,left=50,width=400,height=300,resizable=1,scrollbars=1'); return false;\">" . $pgv_lang["link_to_existing_media"] . "</a>";
+				print "</td></tr>\n";
+			}
 
 			// -- new source citation
 			print "<tr><td class=\"descriptionbox\">";
@@ -760,7 +763,7 @@ function get_sosa_name($sosa) {
 	$sosanr = floor($sosa/2);
 	$gen = floor(log($sosanr) / log(2));
 
-    // first try a generic algorithm, this is later overridden
+	// first try a generic algorithm, this is later overridden
 	// by language specific algorithms.
 	if (!empty($pgv_lang["sosa_$sosa"])) {
 		$sosaname = $pgv_lang["sosa_$sosa"];
@@ -816,9 +819,9 @@ function get_sosa_name($sosa) {
 			// reference: http://nl.wikipedia.org/wiki/Voorouder
 			// Our numbers are 2 less than those shown in the article.  We number parents
 			// as generation zero where the article numbers them as generation 2.
-		    $sosaname = "";
-		    // Please leave the following strings untranslated
-		    if ($gen & 512) break;					// 512 or higher
+			$sosaname = "";
+			// Please leave the following strings untranslated
+			if ($gen & 512) break;					// 512 or higher
 			if ($gen & 256) $sosaname .= "hoog";	// 256 to 511
 			if ($gen & 128) $sosaname .= "opper";	// 128 to 511
 			if ($gen & 64) $sosaname .= "aarts";	// 64 to 511
@@ -836,7 +839,7 @@ function get_sosa_name($sosa) {
 			break;
 
 		case "finnish":
-		    $sosaname = "";
+			$sosaname = "";
 			$father = UTF8_strtolower($pgv_lang["father"]);
 			$mother = UTF8_strtolower($pgv_lang["mother"]);
 	//		$father = "isä";
@@ -855,7 +858,7 @@ function get_sosa_name($sosa) {
 			break;
 
 		case "hebrew":
-		    $sosaname = "";
+			$sosaname = "";
 			$addname = "";
 			$father = $pgv_lang["father"];
 			$mother = $pgv_lang["mother"];
@@ -903,7 +906,7 @@ function get_sosa_name($sosa) {
 			if (!empty($pgv_lang["sosa_{$paternal}_{$male}_n_generations"])) {
 				$sosaname = sprintf($pgv_lang["sosa_{$paternal}_{$male}_n_generations"], $gen+1, $gen, $gen-1);
 			}
-	    }
+		}
 	}
 
 	if (!empty($sosaname)) return "$sosaname<!-- sosa=$sosa nr=$sosanr gen=$gen -->";

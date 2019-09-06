@@ -798,8 +798,8 @@ if ($action == "createform") {
 			?>
 			<tr>
 			<td><?php echo $ged_name; ?>:&nbsp;&nbsp;</td>
-			<td><input type="text" name="<?php echo $varname; ?>" id="<?php echo $varname; ?>" tabindex="<?php echo ++$tab; ?>" value="<?php
-			echo "\" />";
+			<td><input type="text" name="<?php echo $varname; ?>" id="<?php echo $varname; ?>" tabindex="<?php echo ++$tab; ?>" value="" />
+			<?php 
 			print_findindi_link($varname, "", false, false, $ged_name);
 			echo "</td></tr>";
 		}

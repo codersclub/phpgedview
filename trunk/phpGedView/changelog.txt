@@ -9,6 +9,8 @@
 =====================================================================
 
 Version 4.3.1
+ - Fixed: Show/Hide controls in Googlemap module (tbabczynski)
+ - Fixed: "Add new multimedia" links (and similar) should be hidden when multimedia is disabled (tbabczynski)
  - Changed: Updated Matomo JS code to version 3.x (canajun2eh)
  - Changed: "Piwik" was re-named to "Matomo" (canajun2eh)
  - Fixed: GEDCOM configuration, GEONAMES_BIAS not showing "No preference" as "selected" (canajun2eh)
