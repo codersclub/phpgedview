@@ -33,7 +33,7 @@ if (!defined('PGV_SCRIPT_NAME')) {
 // Identify ourself
 define('PGV_PHPGEDVIEW',      'PhpGedView');
 define('PGV_VERSION',         '4.3.1');
-define('PGV_VERSION_RELEASE', 'svn'); // 'svn', 'beta', 'rc1', '', etc.
+define('PGV_VERSION_RELEASE', ''); // 'svn', 'beta', 'rc1', '', etc.
 define('PGV_VERSION_TEXT',    trim(PGV_VERSION.' '.PGV_VERSION_RELEASE));
 define('PGV_PHPGEDVIEW_URL',  'http://www.phpgedview.net');
 define('PGV_PHPGEDVIEW_WIKI', 'http://wiki.phpgedview.net');

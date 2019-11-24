@@ -9,6 +9,8 @@
 =====================================================================
 
 Version 4.3.1
+ - Changed: Remove "svn" from version text in session.php (canajun2eh)
+ - Changed: Correct version number in build.xml script (canajun2eh)
  - Fixed: Show/Hide controls in Googlemap module (tbabczynski)
  - Fixed: "Add new multimedia" links (and similar) should be hidden when multimedia is disabled (tbabczynski)
  - Changed: Updated Matomo JS code to version 3.x (canajun2eh)
