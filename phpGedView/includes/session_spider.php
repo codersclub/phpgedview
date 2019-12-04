@@ -417,6 +417,7 @@ $known_spiders = array(
 	'Applebot',
 	'Ask Jeeves',
 	'bingbot',
+	'Clarabot',
 	'Ezooms',
 	'Feedfetcher-Google',
 	'Googlebot',
