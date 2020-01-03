@@ -4,7 +4,7 @@
 // and other common errors.
 //
 // phpGedView: Genealogy Viewer
-// Copyright (C) 2006-2017 Greg Roach and the PhpGedView team, all rights reserved
+// Copyright (C) 2006-2020 Greg Roach and the PhpGedView team, all rights reserved
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -34,7 +34,8 @@ if (!PGV_USER_GEDCOM_ADMIN) {
 	header('Location: login.php?url=gedcheck.php');
 	exit;
 }
-print_header($pgv_lang['gedcheck'].' - '.$GEDCOM);
+// print_header($pgv_lang['gedcheck'].' - '.$GEDCOM);
+print_header($pgv_lang['gedcheck']);
 
 ////////////////////////////////////////////////////////////////////////////////
 // Scan all the gedcom directories for gedcom files
@@ -126,7 +127,7 @@ if (!isset($_POST['action'])) {
 	print_footer();
 	exit();
 }
-
+echo '<br /><center><h2>' . $pgv_lang['gedcheck'] . ' : ' . $ged . '</h2></center><br /><br />';
 // If we're checking a gedcom that is imported into the database, check that the file is synchronised
 if ($ged==PGV_GEDCOM && !$SYNC_GEDCOM_FILE) {
 	$ged_link='href="javascript:" onclick="window.open(\''.encode_url("export_gedcom.php?export={$ged}").'\', \'_blank\',\'left=50,top=50,width=500,height=500,resizable=1,scrollbars=1\');"';
