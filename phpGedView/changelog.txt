@@ -9,6 +9,7 @@
 =====================================================================
 
 Version 4.3.1
+ - Changed: GEDCOM checker should show GEDCOM name on results page (canajun2eh)
  - Deleted: Useless scripts -- drupal.php, mosgedview.php, postgedview.php (canajun2eh)
  - Changed: Add Clarabot to list of well-behaved bots (canajun2eh)
  - Changed: Remove "svn" from version text in session.php (canajun2eh)
