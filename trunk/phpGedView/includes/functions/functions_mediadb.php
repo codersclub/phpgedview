@@ -4,7 +4,7 @@
 * Various functions used by the media DB interface
 *
 * phpGedView: Genealogy Viewer
-* Copyright (C) 2002 to 2019 PGV Development Team.  All rights reserved.
+* Copyright (C) 2002 to 2020 PGV Development Team.  All rights reserved.
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -190,6 +190,7 @@ function get_medialist($currentdirOnly = false, $directory = "", $linkOnly = fal
 	global $MEDIA_EXTERNAL, $pgv_changes, $USE_MEDIA_FIREWALL;
 
 	$medialist = array ();
+	$mediaObjects = array ();
 
 	if (empty($directory) || $directory=='ALL') {
 		$directory = $MEDIA_DIRECTORY;
