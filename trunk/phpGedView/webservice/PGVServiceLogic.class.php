@@ -3,7 +3,7 @@
  *  PGV SOAP implementation of the genealogy web service
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2016  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2020  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -643,12 +643,12 @@ class PGVServiceLogic extends GenealogyService {
 			$temp_queries = explode('&', $query);
 
 			// each part is gone through to select the field and the values
-			foreach ($temp_queries as $index=>$query) {
-				$part = explode('=', $query);
+			foreach ($temp_queries as $index=>$query_i) {
+				$part = explode('=', $query_i);
 				// $part[0] = field $part[1] = value;
 				$array_querys[$part[0]] = $part[1];
 			}
-			// a search on the name supply in $query if it exists
+			// a search on the name supplied in $query if it exists
 			if (array_key_exists('NAME', $array_querys)) {
 				$results_from_name = search_indis_names(array($array_querys['NAME']), array(PGV_GED_ID), 'AND');
 			}
@@ -677,7 +677,7 @@ class PGVServiceLogic extends GenealogyService {
 			// if both exist then merge them
 			// if not then is one set if so the set that to be the one that is merged with the $results_from_name array
 			if ($both_dates_exist) {
-				$results_from_dates = array_intersect_assoc($results_from_birth_date, $results_from_death_date);
+				$results_from_dates = array_intersect($results_from_birth_date, $results_from_death_date);
 			} elseif (isset($results_from_birth_date)|| isset($results_from_death_date)) {
 				if (isset($results_from_birth_date)) {
 					$results_from_dates = $results_from_birth_date;
@@ -688,9 +688,9 @@ class PGVServiceLogic extends GenealogyService {
 
 			// this array is used for storing the information about the people
 			// returned from the two searches and the unsimilar people are left out.
-			// only merge them is both are set else then set the one that is to $newarray
+			// only merge them if both are set else then set the one that is to $newarray
 			if (isset($results_from_name) && isset($results_from_dates)) {
-				$newarray = array_intersect_assoc($results_from_name, $results_from_dates);
+				$newarray = array_intersect($results_from_name, $results_from_dates);
 			} elseif (isset($results_from_name)|| isset($results_from_dates)) {
 				if (isset($results_from_name)) {
 					$newarray = $results_from_name;
