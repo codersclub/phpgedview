@@ -183,7 +183,7 @@ class SOAP_Base_Object extends PEAR
     {
         $this->_myfaultcode = $faultcode;
         $this->_debug_flag = $GLOBALS['SOAP_DEBUG'];
-        parent::PEAR('SOAP_Fault');
+        parent::__construct('SOAP_Fault');
     }
 
     /**
