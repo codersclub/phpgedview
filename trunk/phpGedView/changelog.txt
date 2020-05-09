@@ -9,6 +9,7 @@
 =====================================================================
 
 Version 4.3.1
+ - Fixed: PHP 7.x compatibility: SOAP/Base.php must use the __construct() constructor name instead of PEAR() (Pasquale Ceres)
  - Fixed: Search on mutiple keys (e.g.: NAME=BENINCASA&DEATHDATE=1764) does not return consistent results (Pasquale Ceres)
  - Fixed: Default GEDCOM config: NAME and ADDR missing from Level-1 quick update list when editing Repository records (canajun2eh)
  - Fixed: Default GEDCOM config: ADDR should not be a Level-1 Fact when editing Individual records (canajun2eh)
