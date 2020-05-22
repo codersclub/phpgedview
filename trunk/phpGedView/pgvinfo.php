@@ -5,7 +5,7 @@
  * Provides links for administrators to get to other administrative areas of the site
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2009  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2020  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -27,16 +27,15 @@
 define('PGV_SCRIPT_NAME', 'pgvinfo.php');
 require './config.php';
 
+if (isset($_REQUEST['action'])) $action = $_REQUEST['action'];
+if (!isset($action)) $action = "";
+
 if (!PGV_USER_GEDCOM_ADMIN) {
 	header("Location: login.php?url=pgvinfo.php?action=".$action);
 exit;
 }
 
 loadLangFile("pgv_confighelp");
-
-if (isset($_REQUEST['action'])) $action = $_REQUEST['action'];
-
-if (!isset($action)) $action = "";
 
 if ($action == "phpinfo") {
 	$helpindex = "phpinfo_help";
