@@ -9,6 +9,9 @@
 =====================================================================
 
 Version 4.3.1
+ - Changed: Don't give hackers any hints when trying to register new users and page referer is invalid (canajun2eh)
+ - Changed: Correct function call to isHTML , addCustomHeader , addAddress() , setLanguage() , isSMTP()
+ 			-- doesn't actually fix anything -- function names in PHP are not case sensitive (canajun2eh)
  - Fixed: Undefined $action in pgvinfo.php when user is not logged in with Admin rights (canajun2eh)
  - Fixed: PHP 7.x compatibility: SOAP/Base.php must use the __construct() constructor name instead of PEAR() (Pasquale Ceres)
  - Fixed: Search on mutiple keys (e.g.: NAME=BENINCASA&DEATHDATE=1764) does not return consistent results (Pasquale Ceres)

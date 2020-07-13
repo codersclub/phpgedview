@@ -3,7 +3,7 @@
  * Register as a new User or request new password if it is lost
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2018  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2020  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -337,9 +337,10 @@ switch ($action) {
 
 			//-- check referer for possible spam attack
 			if (!isset($_SERVER['HTTP_REFERER']) || stristr($_SERVER['HTTP_REFERER'],"login_register.php")===false) {
-				print "<center><br /><span class=\"error\">Invalid page referer.</span>\n";
-				print "<br /><br /></center>";
+//				print "<center><br /><span class=\"error\">Invalid page referer.</span>\n";
+//				print "<br /><br /></center>";
 				AddToLog('Invalid page referer while trying to register a user.  Possible spam attack.');
+				print "Go Away!";
 				exit;
 			}
 

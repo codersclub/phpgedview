@@ -3,7 +3,7 @@
  * Mail specific functions
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2018  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2020  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -129,9 +129,9 @@ function pgvMail($to, $from, $subject, $message, $bulkMail=false, $fromFullName=
 	if ($PGV_SMTP_ACTIVE  && ( $PGV_SMTP_HOST && $PGV_SMTP_PORT ) ) {
 		require_once PGV_ROOT.'includes/PHPMailer/PHPMailerAutoload.php';
 		$mail_object = new PHPMailer();
-		$mail_object->IsSMTP();					// Tell PHPMailer to use SMTP
+		$mail_object->isSMTP();					// Tell PHPMailer to use SMTP
 		$mail_object->SMTPDebug = 0;			// 0:off; 1:client messages; 2:client and server messages
-		$mail_object->SetLanguage('en','');		// PHPMailer errors are in English only
+		$mail_object->setLanguage('en','');		// PHPMailer errors are in English only
 		$mail_object->ShowWikiURL = false;		// Don't show Wiki URL on PHPMailer connect errors
 		if ( $PGV_SMTP_AUTH && ( $PGV_SMTP_AUTH_USER && $PGV_SMTP_AUTH_PASS ) ) {
 			$mail_object->SMTPAuth = $PGV_SMTP_AUTH;
@@ -161,7 +161,7 @@ function pgvMail($to, $from, $subject, $message, $bulkMail=false, $fromFullName=
 				$mail_object->FromName = $from;
 			}
 		}
-		$mail_object->AddAddress($to);
+		$mail_object->addAddress($to);
 		$mail_object->Subject = hex4email( $subject, $CHARACTER_SET );
 		$mail_object->ContentType = $mailFormatText;
 		if ( $mailFormat != "multipart" ) {
@@ -170,8 +170,8 @@ function pgvMail($to, $from, $subject, $message, $bulkMail=false, $fromFullName=
 			$mail_object->Encoding = '8bit';
 		}
 		if ( $mailFormat == "html" || $mailFormat == "multipart" ) {
-			$mail_object->AddCustomHeader( 'Mime-Version: 1.0' );
-			$mail_object->IsHTML(true);
+			$mail_object->addCustomHeader( 'Mime-Version: 1.0' );
+			$mail_object->isHTML(true);
 		}
 		$mail_object->Body = $message;
 		// attempt to send mail
