@@ -3,7 +3,7 @@
  * Administrative User Interface.
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2019  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2020  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -552,7 +552,7 @@ if ($action == "listusers") {
 			set_user_setting($user_id, 'language', $LANGUAGE);
 		if ($filter == "warnings") {
 			if (get_user_setting($user_id, 'comment_exp')) {
-				if ((strtotime(get_user_setting($user_id, 'comment_exp')) == "-1") || (strtotime(get_user_setting($user_id, 'comment_exp')) >= time("U"))) unset($users[$user_id]);
+				if ((strtotime(get_user_setting($user_id, 'comment_exp')) == "-1") || (strtotime(get_user_setting($user_id, 'comment_exp')) >= time())) unset($users[$user_id]);
 			}
 			else if (((date("U") - (int)get_user_setting($user_id, 'reg_timestamp')) <= 604800) || (get_user_setting($user_id, 'verified')=="yes")) unset($users[$user_id]);
 		}
@@ -641,7 +641,7 @@ if ($action == "listusers") {
 		else                        echo getRLM();
 		echo "</a></td>\n";
 		if (get_user_setting($user_id, "comment_exp")) {
-			if ((strtotime(get_user_setting($user_id, "comment_exp")) != "-1") && (strtotime(get_user_setting($user_id, "comment_exp")) < time("U"))) echo "\t<td class=\"optionbox red\">", $user_name;
+			if ((strtotime(get_user_setting($user_id, "comment_exp")) != "-1") && (strtotime(get_user_setting($user_id, "comment_exp")) < time())) echo "\t<td class=\"optionbox red\">", $user_name;
 			else echo "\t<td class=\"optionbox wrap\">", $user_name;
 		}
 		else echo "\t<td class=\"optionbox wrap\">", $user_name;
@@ -799,7 +799,7 @@ if ($action == "createform") {
 			<tr>
 			<td><?php echo $ged_name; ?>:&nbsp;&nbsp;</td>
 			<td><input type="text" name="<?php echo $varname; ?>" id="<?php echo $varname; ?>" tabindex="<?php echo ++$tab; ?>" value="" />
-			<?php 
+			<?php
 			print_findindi_link($varname, "", false, false, $ged_name);
 			echo "</td></tr>";
 		}
@@ -1143,7 +1143,7 @@ if ($action == "cleanup2") {
 		if (((date("U") - (int)get_user_setting($user_id, 'reg_timestamp')) > 604800) && (get_user_setting($user_id, 'verified')!="yes")) $warnusers++;
 		else {
 			if (get_user_setting($user_id, 'comment_exp')) {
-				if ((strtotime(get_user_setting($user_id, 'comment_exp')) != "-1") && (strtotime(get_user_setting($user_id, 'comment_exp')) < time("U"))) $warnusers++;
+				if ((strtotime(get_user_setting($user_id, 'comment_exp')) != "-1") && (strtotime(get_user_setting($user_id, 'comment_exp')) < time())) $warnusers++;
 			}
 		}
 		if ((get_user_setting($user_id, 'verified_by_admin') != "yes") && (get_user_setting($user_id, 'verified') == "yes")) {
