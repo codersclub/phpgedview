@@ -5,7 +5,7 @@
  * Provides links for administrators to get to other administrative areas of the site
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2010  PGV Development Team
+ * Copyright (C) 2002 to 2020  PGV Development Team
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -112,7 +112,7 @@ foreach(get_all_users() as $user_id=>$user_name) {
 		$verify_msg = true;
 	}
 	$comment_exp=get_user_setting($user_id, 'comment_exp');
-	if (!empty($comment_exp) && (strtotime($comment_exp) != "-1") && (strtotime($comment_exp) < time("U"))) {
+	if (!empty($comment_exp) && (strtotime($comment_exp) != "-1") && (strtotime($comment_exp) < time())) {
 		$warn_msg = true;
 	}
 	if ($verify_msg && $warn_msg) {

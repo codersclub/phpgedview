@@ -9,6 +9,7 @@
 =====================================================================
 
 Version 4.3.1
+ - Fixed: Incorrect use of PHP time() function in admin.php and useradmin.php (canajun2eh)
  - Changed: Don't give hackers any hints when trying to register new users and page referer is invalid (canajun2eh)
  - Changed: Correct function call to isHTML , addCustomHeader , addAddress() , setLanguage() , isSMTP()
  			-- doesn't actually fix anything -- function names in PHP are not case sensitive (canajun2eh)
