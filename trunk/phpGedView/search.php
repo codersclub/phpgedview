@@ -4,7 +4,7 @@
  * Searches based on user query.
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2016  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2020  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -29,6 +29,8 @@ define('PGV_SCRIPT_NAME', 'search.php');
 require './config.php';
 require_once PGV_ROOT.'includes/controllers/search_ctrl.php';
 require_once PGV_ROOT.'includes/functions/functions_print_lists.php';
+
+global $controller;
 
 $controller = new SearchController();
 $controller->init();
@@ -616,7 +618,7 @@ print_footer();
 <?php
 // -- Print the database selection checkboxes for General and Soundex searches
 function printDatabaseSelector() {
-	global $ALLOW_CHANGE_GEDCOM, $pgv_lang, $TEXT_DIRECTION;
+	global $ALLOW_CHANGE_GEDCOM, $pgv_lang, $TEXT_DIRECTION, $controller;
 
 	$all_gedcoms=get_all_gedcoms();
 	// If more than one GEDCOM, switching is allowed AND DB mode is set, let the user select
