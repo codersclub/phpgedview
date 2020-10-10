@@ -6,7 +6,7 @@
  * routines and sorting functions.
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2019  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2020  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -1007,10 +1007,10 @@ function find_parents($famid) {
 		if (PGV_USER_CAN_EDIT) {
 			$famrec = find_updated_record($famid, PGV_GED_ID);
 			if (empty($famrec)) {
-				return false;
+				return array();
 			}
 		} else {
-			return false;
+			return array();
 		}
 	}
 	return find_parents_in_record($famrec);

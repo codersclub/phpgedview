@@ -9,6 +9,8 @@
 =====================================================================
 
 Version 4.3.1
+ - Fixed: Error when privatizing a GEDCOM with families that have no recorded parents (canajun2eh)
+ - Fixed: Error while creating database selector in Search (canajun2eh)
  - Fixed: Incorrect use of PHP time() function in admin.php and useradmin.php (canajun2eh)
  - Changed: Don't give hackers any hints when trying to register new users and page referer is invalid (canajun2eh)
  - Changed: Correct function call to isHTML , addCustomHeader , addAddress() , setLanguage() , isSMTP()
