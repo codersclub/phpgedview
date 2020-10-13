@@ -3,7 +3,7 @@
  * Hungarian texts
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2018  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2020  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -67,7 +67,7 @@ $pgv_lang["menu_help_help"]			= "~Segítség menü~<br />#pgv_lang[help_help_ite
 //-- Index-page Portal
 $pgv_lang["index_portal_head_help"]		= "<div class='name_head center'><b>NYITÓOLDAL</b></div><br />";
 $pgv_lang["index_welcome_help"]			= "~FELHASZNÁLÓ ÜDVÖZLŐ BLOKK~<br />Ez a blokk a következőket közli:<br />Az aktuális GEDCOM-állomány, a dátum és az idő (ha az adminisztrátor engedélyezte) és a <b>Számláló</b>.<br />A számláló kizárólag a Nyitóoldalon illetve a személyi lapokon tüntethető fel. <br />A számláló az adott oldalt érintő \"találatokat\" rögzíti, vagyis azt, hogy az oldalt hányszor látogatták meg.<br />Nem ellenőrzi a látogató URL-jét, tehzát ha valaki visszatér az oldara, azt új találatként értelmezi. <br />";
-$pgv_lang["index_login_help"]			= "~BEJELENTKEZŐ BLOKK~<br />Bár Ön majdnem az összes oldalon be tud jelentkezni, leggyakrabban mégis a nyitóoldalon teszi ezt meg, mivel csak ezután kaphat jogosultságot bizonyos adatok megtekintéséhez.<br />A <b>felhasználónév</b> és a <b>jelszó</b> begépelésével valamint a Belépés gombra való kattintással tud bejelentkezni.<br /><br />#pgv_lang[new_password_help]#<br /><br />";
+$pgv_lang["index_login_help"]			= "~BEJELENTKEZŐ BLOKK~<br />Bár Ön majdnem az összes oldalon be tud jelentkezni, leggyakrabban mégis a nyitóoldalon teszi ezt meg, mivel csak ezután kaphat jogosultságot bizonyos adatok megtekintéséhez.<br />A <b>felhasználónév</b> és a <b>jelszó</b> begépelésével valamint a Belépés gombra való kattintással tud bejelentkezni.";
 $pgv_lang["index_events_help"]			= "~ELKÖVETKEZŐ ESEMÉNYEK BLOKK~<br />Ez a blokk az érintett GEDCOM-ból származó, a következő hónapban aktuális eseményeket tünteti fel.<br /><br />";
 $pgv_lang["index_onthisday_help"]		= "~A MAI NAPON AZ ÖN MÚLTJÁBÓL... BLOKK~<br />Ez a blokk hasonlóan működik, mint az  \"Elkövetkező események\" blokk, viszont csak a mai napot érintő eseményeket tünteti fel.<br />";
 $pgv_lang["index_favorites_help"]		= "~GEDCOM KEDVENCEK BLOKK~<br />A GEDCOM Kedvencek sokban hasonlít a MyGedView Portálon található \"Kedvenceim\" blokkra azzal a különbséggel, hogy ez esetben az adminisztrátornak van joga felvenni, törölni vagy megváltoztatni a kedvenceket.<br />A blokk szerepe, hogy a látogatók figyelmét felhívja a különleges érdeklődésre számot tartó személy(ek)re. <br />A \"GEDCOM kedvencek\" minden oldal fejlécében, egy lenyílóból érhetők el.<br />Az ott található hivatkozások az adott személy adatlapjára mutatnak.<br /><br />Helykímélés miatt a szövegdobozok minimális információt hordoznak, a cellák jobb oldalán található nagyító segítségével juthat több adathoz.<br />A személy nevére kattintva Ön eljuthat az illető személyi lapjához. <br />Szintén a jobb oldalon találhatja a menüt, melyen bővebb információt vagy grafikonokat tartalmazó oldalakra vezető hivatkozásokat találhat.<br />";

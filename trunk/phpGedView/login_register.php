@@ -152,10 +152,10 @@ switch ($action) {
 	case "register" :
 		$_SESSION["good_to_send"] = true;
 		if (!$USE_REGISTRATION_MODULE) {
-		header("Location: index.php");
-		exit;
-	}
-	$message = "";
+			header("Location: index.php");
+			exit;
+		}
+		$message = "";
 		if (!$user_name) {
 			$message .= $pgv_lang["enter_username"]."<br />";
 			$user_name_false = true;

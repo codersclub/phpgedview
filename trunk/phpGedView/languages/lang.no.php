@@ -3,7 +3,7 @@
  * Norwegian texts
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2019  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2020  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -439,18 +439,18 @@ $pgv_lang["text"]				= "Kildetekst:";
 $pgv_lang["note"]				= "Note";
 $pgv_lang["NN"]					= "(ukjent)";
 $pgv_lang["PN"]					= "(ukjent)";
-$pgv_lang["NNhebrew"] 			= "(לא ידוע)";
-$pgv_lang["PNhebrew"] 			= "(לא ידוע)";
-$pgv_lang["NNarabic"] 			= "(غير معروف)";
-$pgv_lang["PNarabic"] 			= "(غير معروف)";
-$pgv_lang["NNgreek"] 			= "(άγνωστος/η)";
-$pgv_lang["PNgreek"] 			= "(άγνωστος/η)";
-$pgv_lang["NNrussian"] 			= "(неопределено)";
-$pgv_lang["PNrussian"] 			= "(неопределено)";
-$pgv_lang["NNchinese"] 			= "(未知)";
-$pgv_lang["PNchinese"] 			= "(未知)";
-$pgv_lang["NNvietnamese"] 		= "(vô danh)";
-$pgv_lang["PNvietnamese"] 		= "(không biết tuổi)";
+$pgv_lang["NNhebrew"] 		= "(לא-ידוע)";
+$pgv_lang["PNhebrew"] 		= "(לא-ידוע)";
+$pgv_lang["NNarabic"] 		= "(غير معروف)";
+$pgv_lang["PNarabic"] 		= "(غير معروف)";
+$pgv_lang["NNgreek"] 		= "(άγνωστος/η)";
+$pgv_lang["PNgreek"] 		= "(άγνωστος/η)";
+$pgv_lang["NNrussian"] 		= "(неопределено)";
+$pgv_lang["PNrussian"] 		= "(неопределено)";
+$pgv_lang["NNchinese"] 		= "(未知)";
+$pgv_lang["PNchinese"] 		= "(未知)";
+$pgv_lang["NNvietnamese"] 	= "(vô danh)";
+$pgv_lang["PNvietnamese"] 	= "(không biết tuổi)";
 $pgv_lang["NNthai"] 			= "(ukjent)";
 $pgv_lang["PNthai"] 			= "(ukjent)";
 $pgv_lang["NNother"] 			= "(ukjent)";
@@ -1186,7 +1186,7 @@ $pgv_lang["day_not_set"]		= "Dag ikke angitt";
 $pgv_lang["lost_password"]		= "Glemt passordet ditt?";
 $pgv_lang["requestpassword"]	= "Be om nytt passord";
 $pgv_lang["no_account_yet"]		= "Har du ikke <b>egen</b> konto enda!?";
-$pgv_lang["requestaccount"]		= "Søke om brukerkonto";
+$pgv_lang["requestaccount"]		= "Søke om tillatelse til å logge på";
 $pgv_lang["emailadress"]		= "Epost-adresse";
 $pgv_lang["mandatory"] 			= "Felt merket med * må fylles ut.";
 $pgv_lang["mail01_line01"]		= "Hei #user_fullname# ...";
@@ -1236,7 +1236,7 @@ $pgv_lang["mail04_line02"]		= "Det ble bestilt et nytt passord til brukernavnet 
 $pgv_lang["mail04_line03"]		= "Anbefaling:";
 $pgv_lang["mail04_line04"]		= "Vennligst klikk på linken under. Logg deg inn med det nye passordet. Du bør så angi et nytt passord for å verne om sikkerheten til dataene dine.";
 $pgv_lang["mail04_line05"]		= "Etter at du har logget deg inn, velg da '#pgv_lang[myuserdata]#' i menyen '#pgv_lang[mygedview]#' og angi et nytt passord i feltet for å endre passordet ditt.";
-$pgv_lang["mail04_subject"]		= "Data anmodning fra #SERVER_NAME#";
+$pgv_lang["mail04_subject"]		= "Nytt passord fra #SERVER_NAME#";
 
 $pgv_lang["pwreqinfo"]			= "Hei...<br /><br />En epost med det nye passordet ble sendt til epost-adressen (#user[email]#).<br /><br />Vær vennlig å sjekk epost-kontoen din om noen minutter.<br /><br />Anbefaling:<br /><br />Etter at du har mottatt eposten, bør du logge deg inn på dette nettstedet med ditt nye passord og endre det. Dette bør gjøres for å verne om sikkerheten til dataene din.";
 

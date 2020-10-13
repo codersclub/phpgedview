@@ -3,7 +3,7 @@
  * German Language file for PhpGedView.
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2019  PGV Development Team.  All rights reerved.
+ * Copyright (C) 2002 to 2020  PGV Development Team.  All rights reerved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -1271,7 +1271,7 @@ $pgv_lang["mail04_line02"]				= "Für Ihren Benutzernamen wurde ein neues Kennwo
 $pgv_lang["mail04_line03"]				= "Empfehlung:";
 $pgv_lang["mail04_line04"]				= "Bitte klicken Sie jetzt auf den unten stehenden Link oder kopieren Sie ihn in die Adresszeile Ihres Browsers, melden sich mit dem neuen Kennwort an und ändern Sie es sofort aus Datenschutzgründen.";
 $pgv_lang["mail04_line05"]				= "Um Ihr Kennwort, nachdem Sie sich angemeldet haben zu ändern, wählen Sie die »#pgv_lang[editowndata]#« Verbindung innerhalb des »#pgv_lang[mygedview]#« Menüs und tragen Sie dann in beiden Kennwort Feldern Ihr gewünschtes Kennwort ein.";
-$pgv_lang["mail04_subject"]				= "Datenanforderung bei #SERVER_NAME#";
+$pgv_lang["mail04_subject"]				= "Neues Kennwort bei #SERVER_NAME#";
 
 $pgv_lang["pwreqinfo"]					= "Hallo...<br /><br />Das neue Kennwort wurde an die uns bekannte Mail Adresse von <b>#user[email]#</b> versandt.<br /><br />Sie sollten das Mail bald in Ihrem Postfach finden.<br /><br />Hinweis:<br />Sie sollten sich baldmöglichst mit dem neuen Kennwort anmelden und Ihr Kennwort aus Datenschutzgründen sofort ändern.";
 

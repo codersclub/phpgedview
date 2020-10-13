@@ -1266,7 +1266,7 @@ $pgv_lang["mail04_line02"]		= "Otrzymaliśmy zamówienie na nowe hasło dla twoj
 $pgv_lang["mail04_line03"]		= "Zalecenie:";
 $pgv_lang["mail04_line04"]		= "Kliknij na odnośnik poniżej lub wklej go do przeglądarki, zaloguj się korzystając z nowego hasła i od razu zmień je dla bezpieczeństwa swoich danych.";
 $pgv_lang["mail04_line05"]		= "Aby zmienić hasło, po zalogowaniu wybierz odnośnik «#pgv_lang[editowndata]#» w menu «#pgv_lang[mygedview]#» i wypełnij pola hasła.";
-$pgv_lang["mail04_subject"]		= "Prośba o dane na #SERVER_NAME#";
+$pgv_lang["mail04_subject"]		= "Nowe hasło na #SERVER_NAME#";
 
 $pgv_lang["pwreqinfo"]			= "Witaj...<br /><br />Email z twoim nowym hasłem został wysłany na adres #user[email]#<br /><br />Sprawdź pocztę; wiadomość powinna dojść w ciągu kilku minut.<br /><br />Ze względów bezpieczeństwa zaleca się, żeby jak najszybciej po otrzymaniu emaila zalogować się i zmienić hasło.";
 

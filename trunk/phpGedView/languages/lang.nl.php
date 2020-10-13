@@ -3,7 +3,7 @@
  * Dutch texts
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2019  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2020  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -458,18 +458,18 @@ $pgv_lang["text"]					= "Tekst:";
 $pgv_lang["note"]					= "Notitie";
 $pgv_lang["NN"]						= "Onbekend";
 $pgv_lang["PN"]						= "Voornaam onbekend";
-$pgv_lang["NNhebrew"] 				= "(לא-ידוע)";
-$pgv_lang["PNhebrew"] 				= "(לא-ידוע)";
-$pgv_lang["NNarabic"] 				= "(غير معروف)";
-$pgv_lang["PNarabic"] 				= "(غير معروف)";
-$pgv_lang["NNgreek"] 				= "(άγνωστος/η)";
-$pgv_lang["PNgreek"] 				= "(άγνωστος/η)";
-$pgv_lang["NNrussian"] 				= "(неопределено)";
-$pgv_lang["PNrussian"] 				= "(неопределено)";
-$pgv_lang["NNchinese"] 				= "(未知)";
-$pgv_lang["PNchinese"] 				= "(未知)";
-$pgv_lang["NNvietnamese"] 			= "(vô danh)";
-$pgv_lang["PNvietnamese"] 			= "(không biết tuổi)";
+$pgv_lang["NNhebrew"] 		= "(לא-ידוע)";
+$pgv_lang["PNhebrew"] 		= "(לא-ידוע)";
+$pgv_lang["NNarabic"] 		= "(غير معروف)";
+$pgv_lang["PNarabic"] 		= "(غير معروف)";
+$pgv_lang["NNgreek"] 		= "(άγνωστος/η)";
+$pgv_lang["PNgreek"] 		= "(άγνωστος/η)";
+$pgv_lang["NNrussian"] 		= "(неопределено)";
+$pgv_lang["PNrussian"] 		= "(неопределено)";
+$pgv_lang["NNchinese"] 		= "(未知)";
+$pgv_lang["PNchinese"] 		= "(未知)";
+$pgv_lang["NNvietnamese"] 	= "(vô danh)";
+$pgv_lang["PNvietnamese"] 	= "(không biết tuổi)";
 $pgv_lang["NNthai"] 				= "(Onbekend)";
 $pgv_lang["PNthai"] 				= "(Voornaam onbekend)";
 $pgv_lang["NNother"] 				= "(Onbekend)";
@@ -1219,7 +1219,7 @@ $pgv_lang["day_not_set"]				= "Dag niet bekend";
 $pgv_lang["lost_password"]			= "Wachtwoord vergeten?";
 $pgv_lang["requestpassword"]		= "Vraag nieuw wachtwoord aan";
 $pgv_lang["no_account_yet"]			= "Nog geen gebruikersnaam?";
-$pgv_lang["requestaccount"]			= "Vraag gebruikersnaam aan";
+$pgv_lang["requestaccount"]			= "Vraag toestemming om in te loggen";
 $pgv_lang["emailadress"]				= "E-mail adres";
 $pgv_lang["mandatory"] 				= "Vakken met een * zijn verplicht.";
 $pgv_lang["mail01_line01"]			= "Hallo #user_fullname# ...";
@@ -1269,7 +1269,7 @@ $pgv_lang["mail04_line02"]			= "Voor uw gebruikersnaam is een nieuw wachtwoord a
 $pgv_lang["mail04_line03"]			= "Aanbeveling:";
 $pgv_lang["mail04_line04"]			= "Klik op de onderstaande koppeling, meldt u aan met het nieuwe wachtwoord en wijzig het vervolgens.";
 $pgv_lang["mail04_line05"]			= "Doe het volgende nadat u bent aangemeld: klik op '#pgv_lang[myuserdata]#' in het menu '#pgv_lang[mygedview]#' en vul de gegevens bij wachtwoord in, om uw wachtwoord te wijzigen.";
-$pgv_lang["mail04_subject"]			= "Verzoek om gegevens op #SERVER_NAME#";
+$pgv_lang["mail04_subject"]			= "Nieuw wachtwoord op #SERVER_NAME#";
 
 $pgv_lang["pwreqinfo"]				= "Hallo....<br /><br />Een nieuw wachtwoord is per e-mail verzonden aan (#user[email]#).<br /><br />Binnen enkele minuten zal deze in uw mailbox worden bezorgd.<br /><br />Aanbeveling:<br /><br />Meldt u na ontvangst van de e-mail met uw gebruikersnaam en nieuwe wachtwoord aan en wijzig daarna uw wachtwoord.";
 

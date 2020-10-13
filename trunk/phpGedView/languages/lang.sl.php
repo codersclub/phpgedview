@@ -3,7 +3,7 @@
  * Slovenian texts
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2019  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2020  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -1275,7 +1275,7 @@ $pgv_lang["mail04_line02"]			= "Novo geslo je bilo zahtevano za vaše uporabniš
 $pgv_lang["mail04_line03"]			= "Priporočilo:";
 $pgv_lang["mail04_line04"]			= "Kliknite na spodno povezavo ali pa jo prelepite v brskalnik. Prijavite se z novim geslom in ga takoj zamenjajte, da ohranite vaše podatke varne.";
 $pgv_lang["mail04_line05"]			= "Potem ko ste se prijavili izberite povezavo «#pgv_lang[editowndata]#» v meniju «#pgv_lang[mygedview]#» in izpolnite polji za geslo.";
-$pgv_lang["mail04_subject"] 		= "Zahtevek za podatke na #SERVER_NAME#";
+$pgv_lang["mail04_subject"] 		= "Novo geslo na #SERVER_NAME#";
 
 $pgv_lang["pwreqinfo"]				= "Zdravo,...<br /><br />Pošta z vašim novim geslom je bila poslana na naveden naslov za uporabnika <b>#user[email]#</b>.<br /><br />Preverite vaš poštni predal. Sporočilo boste prejeli v kratkem.<br /><br />Nasvet:<br />Ponovno se prijavite semkaj kakor hitro je to mogoče in zamenjajte geslo, da ohranite varnost podatkov.";
 

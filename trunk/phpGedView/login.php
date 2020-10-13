@@ -3,7 +3,7 @@
  * Login Page.
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2019  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2020  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -232,17 +232,24 @@ $tab=0;		// initialize tab index
 $sessname = session_name();
 if (!isset($_COOKIE[$sessname])) print "<center><div class=\"error width50\">".$pgv_lang["cookie_help"]."</div></center><br /><br />";
 
-if ($USE_REGISTRATION_MODULE) { ?>
-	<table class="center facts_table width50">
-	<tr><td class="topbottombar" colspan="2"><?php print $pgv_lang["account_information"]; ?></td></tr>
-	<tr><td class="descriptionbox <?php print $TEXT_DIRECTION; ?> wrap width50"><?php print_help_link("new_user_help", "qm", "requestaccount"); print $pgv_lang["no_account_yet"]; ?></td>
-	<td class="optionbox <?php print $TEXT_DIRECTION; ?> wrap"><a href="login_register.php?action=register"><?php print $pgv_lang["requestaccount"]; ?></a></td></tr>
-	<tr><td class="descriptionbox <?php print $TEXT_DIRECTION; ?> wrap width50"><?php print_help_link("new_password_help", "qm", "lost_password"); print $pgv_lang["lost_password"]; ?></td>
-	<td class="optionbox <?php print $TEXT_DIRECTION; ?> wrap"><a href="login_register.php?action=pwlost"><?php print $pgv_lang["requestpassword"]; ?></a></td></tr>
-	<tr><td class="topbottombar ltr" colspan="2">&nbsp;</td></tr>
-	</table>
-<?php
+// Which registration link should be used?
+if ($USE_REGISTRATION_MODULE) {
+	$registerLink = "href='login_register.php?action=register'";
+} else {
+	$webmaster_user_id = get_user_id($WEBMASTER_EMAIL);
+	$registerLink = user_contact_link($webmaster_user_id, $SUPPORT_METHOD, true, $pgv_lang["requestaccount"]);
 }
+
+?>
+<table class="center facts_table width50">
+<tr><td class="topbottombar" colspan="2"><?php print $pgv_lang["account_information"]; ?></td></tr>
+<tr><td class="descriptionbox <?php print $TEXT_DIRECTION; ?> wrap width50"><?php print_help_link("new_user_help", "qm", "requestaccount"); print $pgv_lang["no_account_yet"]; ?></td>
+<td class="optionbox <?php print $TEXT_DIRECTION; ?> wrap"><a <?php print $registerLink?>><?php print $pgv_lang["requestaccount"]; ?></a></td></tr>
+<tr><td class="descriptionbox <?php print $TEXT_DIRECTION; ?> wrap width50"><?php print_help_link("new_password_help", "qm", "lost_password"); print $pgv_lang["lost_password"]; ?></td>
+<td class="optionbox <?php print $TEXT_DIRECTION; ?> wrap"><a href="login_register.php?action=pwlost"><?php print $pgv_lang["requestpassword"]; ?></a></td></tr>
+<tr><td class="topbottombar ltr" colspan="2">&nbsp;</td></tr>
+</table>
+<?php
 print "</div><br /><br />";
 ?>
 <script language="JavaScript" type="text/javascript">

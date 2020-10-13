@@ -3,7 +3,7 @@
  * French Language file for PhpGedView.
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2019  PGV Development Team. All rights reserved.
+ * Copyright (C) 2002 to 2020  PGV Development Team. All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -456,18 +456,18 @@ $pgv_lang["text"]                       = "Texte";
 $pgv_lang["note"]                       = "Note";
 $pgv_lang["NN"]                         = "(nom inconnu)";
 $pgv_lang["PN"]                         = "(prénom inconnu)";
-$pgv_lang["NNhebrew"] 					= "(לא-ידוע)";
-$pgv_lang["PNhebrew"] 					= "(לא-ידוע)";
-$pgv_lang["NNarabic"] 					= "(غير معروف)";
-$pgv_lang["PNarabic"] 					= "(غير معروف)";
-$pgv_lang["NNgreek"] 					= "(άγνωστος/η)";
-$pgv_lang["PNgreek"] 					= "(άγνωστος/η)";
-$pgv_lang["NNrussian"] 					= "(неопределено)";
-$pgv_lang["PNrussian"] 					= "(неопределено)";
-$pgv_lang["NNchinese"] 					= "(未知)";
-$pgv_lang["PNchinese"] 					= "(未知)";
-$pgv_lang["NNvietnamese"] 				= "(vô danh)";
-$pgv_lang["PNvietnamese"] 				= "(không biết tuổi)";
+$pgv_lang["NNhebrew"] 		= "(לא-ידוע)";
+$pgv_lang["PNhebrew"] 		= "(לא-ידוע)";
+$pgv_lang["NNarabic"] 		= "(غير معروف)";
+$pgv_lang["PNarabic"] 		= "(غير معروف)";
+$pgv_lang["NNgreek"] 		= "(άγνωστος/η)";
+$pgv_lang["PNgreek"] 		= "(άγνωστος/η)";
+$pgv_lang["NNrussian"] 		= "(неопределено)";
+$pgv_lang["PNrussian"] 		= "(неопределено)";
+$pgv_lang["NNchinese"] 		= "(未知)";
+$pgv_lang["PNchinese"] 		= "(未知)";
+$pgv_lang["NNvietnamese"] 	= "(vô danh)";
+$pgv_lang["PNvietnamese"] 	= "(không biết tuổi)";
 $pgv_lang["NNthai"]                     = "(nom inconnu)";
 $pgv_lang["PNthai"]                     = "(prénom inconnu)";
 $pgv_lang["NNother"]                    = "(nom inconnu)";
@@ -1214,9 +1214,9 @@ $pgv_lang["day_not_set"]                = "Jour absent";
 
 //-- user self registration module
 $pgv_lang["lost_password"]              = "Mot de passe perdu ?";
-$pgv_lang["requestpassword"]            = "Demander un nouveau mot de passe";
+$pgv_lang["requestpassword"]            = "Demande de nouveau mot de passe";
 $pgv_lang["no_account_yet"]             = "Vous n'êtes pas encore inscrit ?";
-$pgv_lang["requestaccount"]             = "Demander un compte utilisateur";
+$pgv_lang["requestaccount"]             = "Demander l'autorisation de vous connecter";
 $pgv_lang["emailadress"]                = "Adresse courriel";
 $pgv_lang["mandatory"]                  = "Les champs marqués * sont obligatoires.";
 $pgv_lang["mail01_line01"]              = "Bonjour #user_fullname# ...";
@@ -1266,7 +1266,7 @@ $pgv_lang["mail04_line02"]              = "Un nouveau mot de passe a été deman
 $pgv_lang["mail04_line03"]              = "Recommandation:";
 $pgv_lang["mail04_line04"]              = "Cliquez maintenant sur le lien ci-dessous, connectez-vous avec le nouveau mot de passe et, par précaution, changez-le immediatement.";
 $pgv_lang["mail04_line05"]              = "Pour changer votre mot de passe une fois connecté, cliquez le lien '#pgv_lang[myuserdata]#' dans le menu '#pgv_lang[mygedview]#' et remplissez les champs concernant le mot de passe.";
-$pgv_lang["mail04_subject"]             = "Demande d'informations pour #SERVER_NAME#";
+$pgv_lang["mail04_subject"]             = "Nouveau mot de passe à #SERVER_NAME#";
 
 $pgv_lang["pwreqinfo"]                  = "Bonjour...<br /><br />Un message a été envoyé à l'adresse (#user[email]#) avec le nouveau mot de passe.<br /><br />Merci de vérifier votre messagerie car vous devriez recevoir ce message dans les prochaines minutes.<br /><br />Recommandation:<br /><br />Après avoir récupéré ce message, connectez-vous à ce site et changez votre mot de passe pour conserver l'integrité de vos données.";
 
@@ -1401,8 +1401,8 @@ $pgv_lang["gedcom_stats_block"]         = "Bloc «Statistiques GEDCOM»";
 $pgv_lang["gedcom_stats_descr"]         = "Le bloc «Statistiques GEDCOM» affiche quelques informations générales sur la base : date de création, nombre d'individus...";
 $pgv_lang["gedcom_stats_show_surnames"] = "Montrer les noms les plus fréquents ?";
 $pgv_lang["portal_config_instructions"]  = "~#pgv_lang[customize_page]#~<br />~#pgv_lang[customize_gedcom_page]#~<br /><br />Depuis cette page vous pouvez personnaliser votre portail «Mon GedView» en arrangeant les blocs à votre convenance. Le portail est découpé en deux sections, la section Principale et la section de Droite. La section Principale est plus large et s'affiche sous le titre. La section de Droite s'affiche sur le côté droit de la page. Chaque section possède sa propre liste de blocs. Vous pouvez ajouter, supprimer et réordonner les blocs selon votre goût.";
-$pgv_lang["login_block"]                = "Bloc «Login»";
-$pgv_lang["login_descr"]                = "Le bloc «Login» permet de se connecter en saisissant son identifiant et son mot de passe.";
+$pgv_lang["login_block"]                = "Bloc «Connexion»";
+$pgv_lang["login_descr"]                = "Le bloc «Connexion» permet de se connecter en saisissant son identifiant et son mot de passe.";
 $pgv_lang["theme_select_block"]         = "Bloc «Changer de thème»";
 $pgv_lang["theme_select_descr"]         = "Le bloc «Changer de thème» affiche le sélecteur de thème même si le changement de thème est désactivé.";
 $pgv_lang["block_top10_title"]          = "Noms les plus fréquents";
@@ -1952,7 +1952,7 @@ $pgv_lang["button_reset"]               = "Retour à la liste complète.";
 $pgv_lang["button_SEX_F"]               = "Affichage des femmes uniquement.";
 $pgv_lang["button_SEX_M"]               = "Affichage des hommes uniquement.";
 $pgv_lang["button_SEX_U"]               = "Affichage des personnes de sexe indéterminé.";
-$pgv_lang["button_TREE_L"]              = "Affichage des couples ou individus &laquo;feuilles&raquo;, c'est-à-dire : vivants à la date d'aujourd'hui mais n'ayant pas d'enfant enregistré dans la base.";
-$pgv_lang["button_TREE_R"]              = "Affichage des couples ou individus &laquo;racines&raquo;, appelés également &laquo;patriarches&raquo;, c'est-à-dire : dont ni le père ni la mère ne sont enregistrés dans la base.";
+$pgv_lang["button_TREE_L"]              = "Affichage des couples ou individus «feuilles», c'est-à-dire : vivants à la date d'aujourd'hui mais n'ayant pas d'enfant enregistré dans la base.";
+$pgv_lang["button_TREE_R"]              = "Affichage des couples ou individus «racines», appelés également «patriarches» c'est-à-dire : dont ni le père ni la mère ne sont enregistrés dans la base.";
 $pgv_lang["sort_column"]                = "Trier sur cette colonne.";
 ?>

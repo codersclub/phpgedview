@@ -9,6 +9,8 @@
 =====================================================================
 
 Version 4.3.1
+ - Changed: New prospective users must contact Admin when self-registration is disabled (canajun2eh)
+ - Changed: Allow password change when self-registration is disabled (canajun2eh)
  - Fixed: Error when privatizing a GEDCOM with families that have no recorded parents (canajun2eh)
  - Fixed: Error while creating database selector in Search (canajun2eh)
  - Fixed: Incorrect use of PHP time() function in admin.php and useradmin.php (canajun2eh)

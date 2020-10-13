@@ -5,7 +5,7 @@
  * This block prints a form that will allow a user to login
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2018  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2020  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -46,7 +46,7 @@ $PGV_BLOCKS["print_login_block"]["config"]		= array("cache"=>0);
  */
 function print_login_block($block = true, $config="", $side, $index) {
 	global $pgv_lang, $QUERY_STRING, $USE_REGISTRATION_MODULE, $LOGIN_URL, $SEARCH_SPIDER;
-	global $TEXT_DIRECTION;
+	global $WEBMASTER_EMAIL, $SUPPORT_METHOD, $TEXT_DIRECTION;
 
 	if ($SEARCH_SPIDER) return;		// Don't show this block to search engines
 
@@ -69,8 +69,7 @@ function print_login_block($block = true, $config="", $side, $index) {
 
 		$i = 0;			// Initialize tab index
 
-		if ($USE_REGISTRATION_MODULE) $title .= print_help_link("index_login_register_help", "qm", "", false, true);
-		else $title .= print_help_link("index_login_help", "qm", "", false, true);
+		$title .= print_help_link("index_login_register_help", "qm", "", false, true);
 		$title .= $pgv_lang["login"];
 		$content = "<div class=\"center\"><form method=\"post\" action=\"$LOGIN_URL\" name=\"loginform\" onsubmit=\"t = new Date(); document.loginform.usertime.value=t.getFullYear()+'-'+(t.getMonth()+1)+'-'+t.getDate()+' '+t.getHours()+':'+t.getMinutes()+':'+t.getSeconds(); return true;\">";
 		$content .= "<input type=\"hidden\" name=\"url\" value=\"index.php\" />";
@@ -114,38 +113,42 @@ function print_login_block($block = true, $config="", $side, $index) {
 		$content .= "<input type=\"submit\" tabindex=\"{$i}\" value=\"".$pgv_lang["login"]."\" />&nbsp;";
 		$content .= "</td></tr>";
 
+		// Row 4: "Request Account" link
 		if ($USE_REGISTRATION_MODULE) {
-
-			// Row 4: "Request Account" link
-			$i++;
-			$content .= "<tr><td ";
-			$content .= write_align_with_textdir_check("right", true);
-			$content .= " class=\"{$TEXT_DIRECTION} wrap width50\"><br />";
-			$content .= print_help_link("new_user_help", "qm", "", false, true);
-			$content .= $pgv_lang["no_account_yet"]."</td>";
-			$content .= "<td ";
-			$content .= write_align_with_textdir_check("left", true);
-			$content .= " class=\"{$TEXT_DIRECTION}\"><br />";
-			$content .= "<a href=\"login_register.php?action=register\" tabindex=\"{$i}\">";
-			$content .= $pgv_lang["requestaccount"];
-			$content .= "</a>";
-			$content .= "</td></tr>";
-
-			// Row 5: "Lost Password" link
-			$i++;
-			$content .= "<tr><td ";
-			$content .= write_align_with_textdir_check("right", true);
-			$content .= " class=\"{$TEXT_DIRECTION} wrap width50\">";
-			$content .= print_help_link("new_password_help", "qm", "", false, true);
-			$content .= $pgv_lang["lost_password"]."</td>";
-			$content .= "<td ";
-			$content .= write_align_with_textdir_check("left", true);
-			$content .= " class=\"{$TEXT_DIRECTION}\">";
-			$content .= "<a href=\"login_register.php?action=pwlost\" tabindex=\"{$i}\">";
-			$content .= $pgv_lang["requestpassword"];
-			$content .= "</a>";
-			$content .= "</td></tr>";
+			$registerLink = "href='login_register.php?action=register'";
+		} else {
+			$webmaster_user_id = get_user_id($WEBMASTER_EMAIL);
+			$registerLink = user_contact_link($webmaster_user_id, $SUPPORT_METHOD, true, $pgv_lang["requestaccount"]);
 		}
+
+		$i++;
+		$content .= "<tr><td ";
+		$content .= write_align_with_textdir_check("right", true);
+		$content .= " class=\"{$TEXT_DIRECTION} wrap width50\"><br />";
+		$content .= print_help_link("new_user_help", "qm", "", false, true);
+		$content .= $pgv_lang["no_account_yet"]."</td>";
+		$content .= "<td ";
+		$content .= write_align_with_textdir_check("left", true);
+		$content .= " class=\"{$TEXT_DIRECTION}\"><br />";
+		$content .= "<a {$registerLink} tabindex='{$i}'>";
+		$content .= $pgv_lang["requestaccount"];
+		$content .= "</a>";
+		$content .= "</td></tr>";
+
+		// Row 5: "Lost Password" link
+		$i++;
+		$content .= "<tr><td ";
+		$content .= write_align_with_textdir_check("right", true);
+		$content .= " class=\"{$TEXT_DIRECTION} wrap width50\">";
+		$content .= print_help_link("new_password_help", "qm", "", false, true);
+		$content .= $pgv_lang["lost_password"]."</td>";
+		$content .= "<td ";
+		$content .= write_align_with_textdir_check("left", true);
+		$content .= " class=\"{$TEXT_DIRECTION}\">";
+		$content .= "<a href=\"login_register.php?action=pwlost\" tabindex=\"{$i}\">";
+		$content .= $pgv_lang["requestpassword"];
+		$content .= "</a>";
+		$content .= "</td></tr>";
 
 		$content .= "</table>";
 		$content .= "</form></div>";

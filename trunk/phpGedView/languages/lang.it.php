@@ -3,7 +3,7 @@
  * Italian Language file
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2019  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2020  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -1271,7 +1271,7 @@ $pgv_lang["mail04_line02"]			= "Una nuova password è stata richiesta per il tuo
 $pgv_lang["mail04_line03"]			= "Raccomandazione:";
 $pgv_lang["mail04_line04"]			= "Si prega di cliccare sul link sottostante o di incollarlo nella barra degli indirizzi del browser. Accedere con la nuova password e cambiarla immediatamente per mantenere l'integrità della sicurezza dei dati.";
 $pgv_lang["mail04_line05"]			= "Dopo aver effettuato l'accesso, selezionare il link «#pgv_lang[editowndata]#» sotto il menu «#pgv_lang[mygedview]#» e riempire i campi password per cambiarla.";
-$pgv_lang["mail04_subject"] 		= "Dati richiesti a #SERVER_NAME#";
+$pgv_lang["mail04_subject"] 		= "Nuova password a #SERVER_NAME#";
 
 $pgv_lang["pwreqinfo"]				= "Salve ...<br /><br />Una e-mail con la nuova password è stata inviata all'indirizzo registrato per <b>#user[email]#</b>.<br /><br />Per favore, controlla la posta, dovresti ricevere il nostro messaggio entro pochi secondi.<br /><br />Raccomandazione:<br />Dovresti accedere al sito il prima possibile con la nuova password e cambiarla per mantenere la sicurezza dei dati.";
 
