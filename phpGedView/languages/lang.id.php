@@ -3,7 +3,7 @@
  * Indonesian texts
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2019  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2020  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -1208,7 +1208,7 @@ $pgv_lang["mail04_line02"]			= "Sandi baru telah diminta untuk nama pengguna And
 $pgv_lang["mail04_line03"]			= "Rekomendasi:";
 $pgv_lang["mail04_line04"]			= "Silakan klik pada pranala di bawah atau temaple pada perambah Anda, catatmasuk dengan sandi yang baru, dan segera ganti untuk menjaga integritas keamanan data Anda.";
 $pgv_lang["mail04_line05"]			= "Setelah Anda masuk log, pilih pranala «#pgv_lang[editowndata]#» di bawah menu «#pgv_lang[mygedview]#» dan isilah isian sandi untuk mengubah sandi Anda.";
-$pgv_lang["mail04_subject"] 			= "Permintaan data di #SERVER_NAME#";
+$pgv_lang["mail04_subject"] 			= "Sandi baru di #SERVER_NAME#";
 
 $pgv_lang["pwreqinfo"]				= "Halo...<br /><br />Email dengan sandi baru Anda telah terkirim ke alamat yang kami miliki pada berkas untuk <b>#user[email]#</b>.<br /><br />Silakan periksa akun email Anda; Anda seharusnya segera menerima pesan kami.<br /><br />Rekomendasi:<br />Anda sebaiknya masuk log ke situs ini dengan sandi baru Anda secepat mungkin, dan Anda sebaiknya mengubah sandi Anda untuk mempertahankam keamanan data Anda.";
 

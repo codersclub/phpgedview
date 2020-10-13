@@ -3,7 +3,7 @@
  * Romanian texts
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2019  PGV Development Team
+ * Copyright (C) 2002 to 2020  PGV Development Team
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -1173,7 +1173,7 @@ $pgv_lang["mail04_line02"]			= "O nouă parolă a fost cerută pentru dumneavoas
 $pgv_lang["mail04_line03"]			= "Recomandare:";
 $pgv_lang["mail04_line04"]			= "Vă rugăm să daţi click pe linkul de mai jos sau sa-l copiaţi si să-l lipiţi în navigatorul dumneavoastră, să vă autentificaţi cu noua parolă, şi s-o schimbaţi imediat pentru a vă păstra datele sigure.";
 $pgv_lang["mail04_line05"]			= "După ce v-aţi autentificat, selectaţi linkul «#pgv_lang[editowndata]#» de sub meniul «#pgv_lang[mygedview]#» şi completaţi câmpurile de parole pentru a vă schimba parola.";
-$pgv_lang["mail04_subject"] 		= "Cerere de date la #SERVER_NAME#";
+$pgv_lang["mail04_subject"] 		= "Nouă parolă la #SERVER_NAME#";
 
 $pgv_lang["pwreqinfo"]				= "Bună...<br /><br />Un email cu parola nouă a fost trimis la adresa care o avem pentru  <b>#user[email]#</b>.<br /><br />Vă rugăm verificaţi adresa de email; ar trebui să primiţi mesajul nostru în curând.<br /><br />Recomandare:<br />Ar trebui să vă logaţi pe acest site cu noua parolă cât mai curând şi ar trebui să schimbaţi parola pentru a vă menţine datele în siguranţă.";
 

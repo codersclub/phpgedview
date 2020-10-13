@@ -3,7 +3,7 @@
  * Portugese Language file for PhpGedView.
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2019  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2020  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -1269,7 +1269,7 @@ $pgv_lang["mail04_line02"]="Uma nova senha foi solicitada para o seu nome de Mem
 $pgv_lang["mail04_line03"]="Recomendações:";
 $pgv_lang["mail04_line04"]="Agora clique no link abaixo, conecte com sua nova senha e altere-a para manter segura a integridade de seus dados.";
 $pgv_lang["mail04_line05"]="Após identificar-se, clique em '#pgv_lang[myuserdata]#' da opção de menu '#pgv_lang[mygedview]#' e altere sua senha.";
-$pgv_lang["mail04_subject"]="Requisição de Dados de #SERVER_NAME#";
+$pgv_lang["mail04_subject"]="Nova senha de #SERVER_NAME#";
 
 $pgv_lang["pwreqinfo"]="Olá ...<br /><br />Um e-mail foi enviado para seu endereço (#user[email]#) contendo a nova senha.<br /><br />Verifique no seu programa de e-mails o recebimento do mesmo.<br /><br />Recomendação:<br /><br />Após receber o e-mail, acesse o site utilizando a nova senha e altere-a para manter segura a integridade de seus dados.";
 

@@ -3,7 +3,7 @@
  * Turkish Language file for PhpGedView.
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2019  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2020  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -1268,7 +1268,7 @@ $pgv_lang["mail04_line02"]		= "Kullanıcı adınız için yeni bir şifre istenm
 $pgv_lang["mail04_line03"]		= "Tavsiye:";
 $pgv_lang["mail04_line04"]		= "Lütfen aşağıdaki linki tıklayın veya URL adresi tarayıcınıza yapıştırın. Yeni şifreniz giriş yaparak hesabinizi korumak için hemen şifrenizi değiştirin.";
 $pgv_lang["mail04_line05"]			= "Giriş yaptıktan sonra «#pgv_lang[mygedview]#» menüsü altında «#pgv_lang[editowndata]#» bağlantısını seçin ve şifrenizi değiştirmek için her iki alana yeni şifrenizi girerek kaydedin.";
-$pgv_lang["mail04_subject"] 		= "#SERVER_NAME# siteden yeni şifre talebi";
+$pgv_lang["mail04_subject"] 		= "#SERVER_NAME# siteden yeni şifre";
 
 $pgv_lang["pwreqinfo"]				= "Merhaba ...<br /><br /><b>#user[email]#</b> hesabi için yeni şifre talebiniz hesapta kayıtlı email adresine gönderilmiştir.<br /><br />Email hesabinizi kontrol edin; yeni şifre içeren mesajınız şimdi almış olmalısınız.<br /><br />Tavsiye:<br />Hesabinizi korumak için mümkün olan en kısa süre içinde yeni şifre ile siteye giriş yaparak hemen şifrenizi değiştirmeniz gerekir.";
 

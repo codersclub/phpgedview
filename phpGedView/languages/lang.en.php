@@ -3,7 +3,7 @@
  * English texts
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2019  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2020  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -1221,7 +1221,7 @@ $pgv_lang["day_not_set"]			= "Day not set";
 $pgv_lang["lost_password"]			= "Lost your password?";
 $pgv_lang["requestpassword"]		= "Request new password";
 $pgv_lang["no_account_yet"] 		= "No account?";
-$pgv_lang["requestaccount"] 		= "Request new user account";
+$pgv_lang["requestaccount"] 		= "Request permission to log in";
 $pgv_lang["emailadress"]			= "Email Address";
 $pgv_lang["mandatory"] 			= "Fields marked with * are mandatory.";
 $pgv_lang["mail01_line01"]			= "Hello #user_fullname# ...";
@@ -1271,7 +1271,7 @@ $pgv_lang["mail04_line02"]			= "A new password was requested for your user name.
 $pgv_lang["mail04_line03"]			= "Recommendation:";
 $pgv_lang["mail04_line04"]			= "Please click on the link below or paste it into your browser, login with the new password, and change it immediately to keep the integrity of your data secure.";
 $pgv_lang["mail04_line05"]			= "After you have logged in, select the «#pgv_lang[editowndata]#» link under the «#pgv_lang[mygedview]#» menu and fill in the password fields to change your password.";
-$pgv_lang["mail04_subject"] 		= "Data request at #SERVER_NAME#";
+$pgv_lang["mail04_subject"] 		= "New password at #SERVER_NAME#";
 
 $pgv_lang["pwreqinfo"]				= "Hello...<br /><br />An email with your new password was sent to the address we have on file for <b>#user[email]#</b>.<br /><br />Please check your email account; you should receive our message soon.<br /><br />Recommendation:<br />You should login to this site with your new password as soon as possible, and you should change your password to maintain your data's security.";
 

@@ -3,7 +3,7 @@
  * Croatian texts
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2010 to 2019  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2010 to 2020  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -1266,7 +1266,7 @@ $pgv_lang["mail04_line02"]			= "Nova lozinka je zatražena za vaše korisničko 
 $pgv_lang["mail04_line03"]			= "Recommendation:";
 $pgv_lang["mail04_line04"]			= "Molim kliknite na poveznicu ispod ili kopirajte ju u vaš browser, login sa novom lozinkom, i promijenite ju odmah da očuvate integritet sigurnosti vaših podataka.";
 $pgv_lang["mail04_line05"]			= "Nakon što ste se prijavili, odaberite «#pgv_lang[editowndata]#» poveznicu ispod «#pgv_lang[mygedview]#» meni i ispuni polja lozinki da promijenite vašu lozinku.";
-$pgv_lang["mail04_subject"] 		= "Zahtjev za podacima na #SERVER_NAME#";
+$pgv_lang["mail04_subject"] 		= "Nova lozinka na #SERVER_NAME#";
 
 $pgv_lang["pwreqinfo"]				= "Hello...<br /><br />Email sa novom lozinkom vam je poslan na adresu koju smo umali u datoteci za <b>#user[email]#</b>.<br /><br />Molimo provjerite vaš email račun; vi ćete primiti našu poruku uskoro.<br /><br />Preporuka:<br />Vi biste morali se prijaviti na ovu stranicu sa novom lozinkom što prije, i vi biste trebali promijeniti vašu lozinku da sačuvate svoje podatke sigurnim.";
 

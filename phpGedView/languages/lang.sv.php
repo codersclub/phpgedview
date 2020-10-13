@@ -3,7 +3,7 @@
  * Swedish Language file for PhpGedView.
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2019  PGV Development Team
+ * Copyright (C) 2002 to 2020  PGV Development Team
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -148,8 +148,8 @@ $pgv_lang["status"]				= "Status";
 $pgv_lang["source"]				= "Källa";
 $pgv_lang["text"]				= "Källtext:";
 $pgv_lang["note"]				= "Anteckning";
-$pgv_lang["NN"]				= "(Okänt)";
-$pgv_lang["PN"]				= "(Okänt)";
+$pgv_lang["NN"]					= "(Okänt)";
+$pgv_lang["PN"]					= "(Okänt)";
 $pgv_lang["NNhebrew"] 		= "(לא-ידוע)";
 $pgv_lang["PNhebrew"] 		= "(לא-ידוע)";
 $pgv_lang["NNarabic"] 		= "(غير معروف)";
@@ -162,10 +162,10 @@ $pgv_lang["NNchinese"] 		= "(未知)";
 $pgv_lang["PNchinese"] 		= "(未知)";
 $pgv_lang["NNvietnamese"] 	= "(vô danh)";
 $pgv_lang["PNvietnamese"] 	= "(không biết tuổi)";
-$pgv_lang["NNthai"] 		= "(Okänt)";
-$pgv_lang["PNthai"] 		= "(Okänt)";
-$pgv_lang["NNother"] 		= "(Okänt)";
-$pgv_lang["PNother"] 		= "(Okänt)";
+$pgv_lang["NNthai"] 			= "(Okänt)";
+$pgv_lang["PNthai"] 			= "(Okänt)";
+$pgv_lang["NNother"] 			= "(Okänt)";
+$pgv_lang["PNother"] 			= "(Okänt)";
 $pgv_lang["unrecognized_code"]	= "Okänd GEDCOM-kod";
 $pgv_lang["unrecognized_code_msg"]	= "Detta är ett fel och vi skulle gärna vilja rätta till det. Var vänlig rapportera detta till";
 $pgv_lang["indi_info"]			= "Personlig information";
@@ -659,7 +659,7 @@ $pgv_lang["lost_password"]		= "Förlorat ditt lösenord?";
 //-- user self registration module
 $pgv_lang["requestpassword"]	= "Begär nytt lösenord";
 $pgv_lang["no_account_yet"]		= "Inget konto än?";
-$pgv_lang["requestaccount"]		= "Begär nytt användarkonto";
+$pgv_lang["requestaccount"]		= "Begär tillstånd att logga in";
 $pgv_lang["emailadress"]		= "E-postadress";
 $pgv_lang["mandatory"] 			= "Fält markerat med * är obligatoriska.";
 $pgv_lang["mail01_line01"]		= "Hej #user_fullname# ...";
@@ -694,7 +694,7 @@ $pgv_lang["pls_note10"]			= "Adminstratören har blivit informerad. Så snart ha
 $pgv_lang["pls_note10a"]		= "Du kan nu logga in med ditt användarnamn och lösenord.";
 $pgv_lang["data_incorrect"]		= "Datan var inte korrekt, försök igen";
 $pgv_lang["user_not_found"]		= "Kunde inte verifiera informationen du skrev in. Gå tillbaka och försök igen.";
-$pgv_lang["lost_pw_reset"]		= "Begär återställning av bortglömt lösenord.";
+$pgv_lang["lost_pw_reset"]		= "Begär återställning av bortglömt lösenord";
 $pgv_lang["pls_note11"]			= "För att få lösenordet återställt, ange ditt användarnamn och din e-postadress för ditt användarkonto.<br /><br />Vi kommer att skicka en speciell länk (URL) via e-post. Länken innehåller en bekräftelse-hash för ditt konto. Genom att besöka den sända URLn kommer du att få rättigheter att ändra lösenord och användarnamn för sajten. För att öka säkerheten skall du inte ge bekräftelse hashen till någon, inklusive administratörerna av denna sajt (vi kommer inte att fråga efter den).<br /><br />Om du behöver hjälp, kontakta då sajtens administratör.";
 $pgv_lang["enter_email"]		= "Du måste skriva in en e-postadress.";
 $pgv_lang["mail04_line01"]		= "Hej #user_fullname#...";
@@ -702,7 +702,7 @@ $pgv_lang["mail04_line02"]		= "Ett nytt lösenord efterfrågas för ditt använd
 $pgv_lang["mail04_line03"]		= "Rekommendation:";
 $pgv_lang["mail04_line04"]		= "Klicka på länken nedan, logga in med ditt nya lösenord. Ändra sedan lösenordet så att säkerheten bibehålls för din data.";
 $pgv_lang["mail04_line05"]			= "Efter att du logat in, välj '#pgv_lang[myuserdata]#'-länken under '#pgv_lang[mygedview]#'-menyn, fyll i lösenordsfälten för att ändra dit lösenord.";
-$pgv_lang["mail04_subject"]		= "Dataförfrågan på #SERVER_NAME#";
+$pgv_lang["mail04_subject"]		= "Nytt lösenord på #SERVER_NAME#";
 $pgv_lang["pwreqinfo"]			= "Hej...<br /><br />Ett e-post med det nya lösenordet sändes till e-postadressen(#user[email]#).<br /><br />Kontrollera din e-postlåda om en liten stund.<br /><br />Rekommendation:<br /><br />Efter du fått ditt e-postmeddelande bör du logga in och ändra ditt lösenord för att öka säkerheten.";
 $pgv_lang["editowndata"]		= "Mitt konto";
 $pgv_lang["myuserdata"]			= "Mitt konto";
@@ -869,7 +869,7 @@ $pgv_lang["upcoming_events_descr"] 	= "Kommande händelser-blocket visar en list
 $pgv_lang["customize_page"]			= "Skräddarsy MyGedView-portalen";
 $pgv_lang["upcoming_events_block"] 	= "Kommande händelser-block";
 $pgv_lang["default_news_title"]		= "Välkommen till din släkt";
-$pgv_lang["default_news_text"]		= "Genealogiska informationen på denna sida drivs av <a href=\"http://www.phpgedview.net/\" target=\"_blank\">PhpGedView</a>. Denna sida tillhandahåller en introduktion och en översikt för denna genealogi. För att börja arbeta med datan, välj en av tavlorna från Tavelmenyn, gå till personlistan eller sök efter ett namn eller en ort.<br /><br />Om du har problem att använda sajten klicka på hjälpmenyn så får du hjälp om om hur du ska använda sidan du just nu år på.<br /><br />Tack för att du besöker denna sida.";
+$pgv_lang["default_news_text"]		= "Genealogiska informationen på denna sida drivs av <a href=\"http://www.phpgedview.net/\" target=\"_blank\">PhpGedView</a>. Denna sida tillhandahåller en introduktion och en översikt för denna genealogi. För att börja arbeta med datan, välj en av tavlorna från Tavelmenyn, gå till personlistan eller sök efter ett namn eller en ort.<br /><br />Om du har problem att använda sajten klicka på hjälpmenyn så får du hjälp om om hur du ska använda sidan du just nu ??r på.<br /><br />Tack för att du besöker denna sida.";
 $pgv_lang["reset_default_blocks"]	= "Återställ till standardområden";
 $pgv_lang["recent_changes"]			= "Senaste ändringar";
 $pgv_lang["recent_changes_block"]	= "Nyligen ändrade område";
@@ -1406,8 +1406,8 @@ $pgv_lang["button_reset"] = "Återställ listan till standard.";
 $pgv_lang["button_SEX_F"] = "Visa endast kvinnor.";
 $pgv_lang["button_SEX_M"] = "Visa endast män.";
 $pgv_lang["button_SEX_U"] = "Visa endast personer som inte har ett känt kön.";
-$pgv_lang["button_TREE_L"] = "Visa &laquo;löv&raquo; för par eller personer. Dessa är personer som lever men har inga barn registereade i databasen.";
-$pgv_lang["button_TREE_R"] = "Visa &laquo;rötter&raquo; för par eller personer. Dessa personer kan också kallas &laquo;patriarker&raquo;. Dessa är personer som inte har föräldrar registrerade i databasen.";
+$pgv_lang["button_TREE_L"] = "Visa «löv» för par eller personer. Dessa är personer som lever men har inga barn registereade i databasen.";
+$pgv_lang["button_TREE_R"] = "Visa «rötter» för par eller personer. Dessa personer kan också kallas «patriarker». Dessa är personer som inte har föräldrar registrerade i databasen.";
 $pgv_lang["sort_column"] = "Sortera på denna kolumn.";
 $pgv_lang["page_size"]					= "Sidstorlek";
 $pgv_lang["server_folder"]				= "Mappnamn på servern";

@@ -3,7 +3,7 @@
  * Catalan texts
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2019  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2020  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -1077,9 +1077,9 @@ $pgv_lang["day_not_set"]		= "Dia no localitzat";
 
 //-- user self registration module
 $pgv_lang["lost_password"]		= "Heu perdut la contrasenya?";
-$pgv_lang["requestpassword"]		= "Demaneu-ne una de nova";
+$pgv_lang["requestpassword"]		= "Demana contrasenya";
 $pgv_lang["no_account_yet"] 		= "No teniu permís d'accés?";
-$pgv_lang["requestaccount"] 		= "Sol·licitud d'accés";
+$pgv_lang["requestaccount"] 		= "Demana permís d'accés";
 $pgv_lang["emailadress"]		= "Adreça de correu electrònic";
 $pgv_lang["mandatory"] 			= "Els camps senyalats amb * són obligatoris.";
 $pgv_lang["mail01_line01"]		= "Hola #user_fullname# ...";
@@ -1130,7 +1130,7 @@ $pgv_lang["mail04_line02"]		= "S'ha demanat una nova contrasenya per al vostre u
 $pgv_lang["mail04_line03"]		= "Recomanació:";
 $pgv_lang["mail04_line04"]		= "Polseu a l'enllaç de sota o enganxeu-lo al vostre navegador, entrant amb la nova contrasenya i canvia-la immediatament per mantenir assegurada la integritat de les vostres dades.";
 $pgv_lang["mail04_line05"]		= "Un cop dins, seleccioneu l'enllaç '#pgv_lang[myuserdata]#' sota el menú '#pgv_lang[mygedview]#' i escriviu al camp corresponent la vostra nova contrasenya.";
-$pgv_lang["mail04_subject"] 		= "Sol·licitud de dades a #SERVER_NAME#";
+$pgv_lang["mail04_subject"] 		= "Nova contrasenya a #SERVER_NAME#";
 
 $pgv_lang["pwreqinfo"]			= "Hola...<br /><br />S'ha enviat un correu electrònic amb la vostra nova contrasenya a (#user[email]#).<br /><br />Reviseu el vostre correu: heu de rebre el nostre missatge aviat.<br /><br />Recomanació:<br />Us caldrà accedir a aquest lloc amb la nova contrasenya tant aviat com us sigui possible i canvia-la per mantenir les vostres dades segures.";
 

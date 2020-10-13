@@ -5,7 +5,7 @@
 * Various printing functions used by all scripts and included by the functions.php file.
 *
 * phpGedView: Genealogy Viewer
-* Copyright (C) 2002 to 2019  PGV Development Team.  All rights reserved.
+* Copyright (C) 2002 to 2020  PGV Development Team.  All rights reserved.
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -815,12 +815,14 @@ function print_user_links() {
 
 // Print a link to allow email/messaging contact with a user
 // Optionally specify a method (used for webmaster/genealogy contacts)
-function user_contact_link($user_id, $method=null) {
+function user_contact_link($user_id, $method=null, $linkOnly=false, $subject='') {
 	global $pgv_lang;
 
 	if (is_null($method)) {
 		$method=get_user_setting($user_id, 'contactmethod');
 	}
+	
+	$subject = str_replace(' ', '%20', $subject);
 
 	// Webmaster/contact addresses can be an email address as well as a user-id
 	if (strpos($user_id, '@')!==false) {
@@ -838,9 +840,17 @@ function user_contact_link($user_id, $method=null) {
 	case 'none':
 		return '';
 	case 'mailto':
-		return "<a href='mailto:{$email}'>{$fullname}</a>";
+		$result = '';
+		if (!$linkOnly) $result .= '<a ';
+		$result .= "href='mailto:{$email}?subject={$subject}'";
+		if (!$linkOnly) $result .= 	">{$fullname}</a>";
+		return $result;
 	default:
-		return "<a href='javascript:;' onclick='message(\"".get_user_name($user_id)."\", \"{$method}\");return false;'>{$fullname}</a>";
+		$result = '';
+		if (!$linkOnly) $result .= '<a ';
+		$result .= "href='javascript:;' onclick='message(\"".get_user_name($user_id)."\", \"{$method}\");return false;'";
+		if (!$linkOnly) $result .= 	">{$fullname}</a>";
+		return $result;
 	}
 }
 

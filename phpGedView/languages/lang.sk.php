@@ -3,7 +3,7 @@
  * Slovak Language file for PhpGedView.
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2019  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2020  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -779,7 +779,7 @@ $pgv_lang["mail04_line02"]		= "Bolo zažiadané o nové heslo pre vaše uživate
 $pgv_lang["mail04_line03"]		= "Doporučenie:";
 $pgv_lang["mail04_line04"]		= "Teraz prosím kliknite na odkaz dole, prihláste sa novým heslom a ihneď si ho zmeňte, aby ste uchovali svoje údaje v tajnosti.";
 $pgv_lang["mail04_line05"]		= "Po prihlásení vyberte link «#pgv_lang[editowndata]#» v menu «#pgv_lang[mygedview]#» a vyplňte pole heslo, pre zmenu vášho hesla.";
-$pgv_lang["mail04_subject"]		= "Dáta požadované na #SERVER_NAME#";
+$pgv_lang["mail04_subject"]		= "Nové heslo na #SERVER_NAME#";
 $pgv_lang["pwreqinfo"]			= "Ahoj...<br /><br />Na adresu (#user[email]#) bol zaslaný e-mail z novým heslom.<br /><br />Prosím skontrolujte svoju e-mailovú schránku, správu by ste mali obdržať v priebehu niekoľkých minút.<br /><br />Doporučenie:<br /><br />Potom, čo požiadate o e-mail, mali by ste sa na tieto stránky prihlásiť zo svojím novým heslom a zmeniť si ho, aby ste uchovali svoje údaje v tajnosti.";
 $pgv_lang["editowndata"]		= "Môj účet";
 $pgv_lang["myuserdata"]			= "Môj účet";
