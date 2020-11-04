@@ -9,6 +9,7 @@
 =====================================================================
 
 Version 4.3.1
+ - Fixed: Country code for Romania corrected to "ROU" (canajun2eh)
  - Changed: New prospective users must contact Admin when self-registration is disabled (canajun2eh)
  - Changed: Allow password change when self-registration is disabled (canajun2eh)
  - Fixed: Error when privatizing a GEDCOM with families that have no recorded parents (canajun2eh)
