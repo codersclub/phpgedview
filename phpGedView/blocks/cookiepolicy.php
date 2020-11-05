@@ -5,7 +5,7 @@
  * This block will show the cookie policy disclaimer required by the EU Cookie Law
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2016  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2016 to 2020  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -74,6 +74,7 @@ function print_block_cookie_policy($block=true, $config="", $side, $index) {
 	} else {
 		$content = print_text("block_cookiepolicy_body", 0, 1);
 	}
+	$content .= '<br /><br /><span style="font-size:larger">' . contact_links() . '</span>';		// Include the contact links in this block
 
 	global $THEME_DIR;
 	if ($block) {

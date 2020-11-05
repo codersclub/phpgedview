@@ -9,6 +9,7 @@
 =====================================================================
 
 Version 4.3.1
+ - Changed: Show contact link in Cookie Policy block (canajun2eh)
  - Fixed: Country code for Romania corrected to "ROU" (canajun2eh)
  - Changed: New prospective users must contact Admin when self-registration is disabled (canajun2eh)
  - Changed: Allow password change when self-registration is disabled (canajun2eh)
