@@ -3,7 +3,7 @@
  * Header for Cloudy theme
  *
  * PhpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2018  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2020  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -185,6 +185,13 @@ else { ?>
 										echo "</td>";
 									}
 									$menu = $menubar->getListsMenu();
+									if ($menu->link != "") {
+										echo '<td width="1">';
+										$menu->addLabel("", "none");
+										$menu->printMenu();
+										echo "</td>";
+									}
+									$menu = $menubar->getMediaMenu();
 									if ($menu->link != "") {
 										echo '<td width="1">';
 										$menu->addLabel("", "none");
