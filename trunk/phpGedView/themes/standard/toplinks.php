@@ -3,7 +3,7 @@
  * Top-of-page menu for Standard theme
  *
  * PhpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2018  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2020  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -55,6 +55,12 @@ $menubar = new MenuBar();
 				print "\t</td>\n";
 			}
 			$menu = $menubar->getListsMenu();
+			if($menu->link != "") {
+				print "\t<td width=\"7%\" valign=\"top\">\n";
+				$menu->printMenu();
+				print "\t</td>\n";
+			}
+			$menu = $menubar->getMediaMenu();
 			if($menu->link != "") {
 				print "\t<td width=\"7%\" valign=\"top\">\n";
 				$menu->printMenu();
