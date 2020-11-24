@@ -3,7 +3,7 @@
  * Edit Privacy Settings
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2009  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2020  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -285,6 +285,17 @@ if ($action=="update") {
 	<input type="hidden" name="action" value="update" />
 	<input type="hidden" name="ged" value="<?php print $GEDCOM;?>" />
 
+	<!-- NOTE: Save and Reset buttons bar -->
+	<table class="facts_table" border="0">
+		<tr>
+			<td class="topbottombar">
+				<input type="submit" value="<?php print $pgv_lang["save_config"]; ?>" onclick="closeHelp();" />
+				&nbsp;&nbsp;
+				<input type="reset" value="<?php print $pgv_lang["reset"]; ?>" /><br />
+			</td>
+		</tr>
+	</table>
+
 	<!-- NOTE: General Privacy Settings header bar -->
 	<table class="facts_table">
 		<tr>
@@ -424,6 +435,17 @@ if ($action=="update") {
 				</td>
 			</tr>
 		</table>
+
+		<!-- NOTE: Save and Reset buttons bar -->
+		<table class="facts_table" border="0">
+			<tr>
+				<td class="topbottombar">
+					<input type="submit" value="<?php print $pgv_lang["save_config"]; ?>" onclick="closeHelp();" />
+					&nbsp;&nbsp;
+					<input type="reset" value="<?php print $pgv_lang["reset"]; ?>" /><br />
+				</td>
+			</tr>
+		</table>
 	</div>
 
 	<!-- -------------- person_privacy -----------------------------------
@@ -503,6 +525,17 @@ if ($action=="update") {
 			<?php } ?>
 		</table>
 		<?php } ?>
+
+		<!-- NOTE: Save and Reset buttons bar -->
+		<table class="facts_table" border="0">
+			<tr>
+				<td class="topbottombar">
+					<input type="submit" value="<?php print $pgv_lang["save_config"]; ?>" onclick="closeHelp();" />
+					&nbsp;&nbsp;
+					<input type="reset" value="<?php print $pgv_lang["reset"]; ?>" /><br />
+				</td>
+			</tr>
+		</table>
 	</div>
 
 	<!-- -------------- user_privacy -----------------------------------
@@ -520,91 +553,103 @@ if ($action=="update") {
 
 	<!-- NOTE: User Privacy Settings options -->
 	<div id="user-privacy-options" style="display: none">
-	<table class="facts_table">
-		<tr>
-			<td class="topbottombar" colspan="3">
-				<b><?php print $pgv_lang["add_new_up_setting"]; ?></b>
-			</td>
-		</tr>
-
-		<tr>
-			<td class="descriptionbox"><?php print $pgv_lang["user_name"]; ?></td>
-			<td class="descriptionbox"><?php print $pgv_lang["id"]; ?></td>
-			<td class="descriptionbox"><?php print $pgv_lang["show_question"]; ?></td>
-		</tr>
-
-		<tr class="<?php print $TEXT_DIRECTION; ?>">
-			<td class="optionbox width20">
-				<select size="1" name="v_new_user_privacy_username">
-				<?php
-				foreach (get_all_users() as $user_id=>$user_name) {
-					echo '<option value="', $user_id, '">';
-					if ($TEXT_DIRECTION == 'ltr') {
-						echo $user_id, ' (', getUserFullName($user_id), ')</option>';
-					} else {
-						echo getLRM(), '(', getUserFullName($user_id), ')', getLRM(), ' ', $user_id, '</option>';
+		<table class="facts_table">
+			<tr>
+				<td class="topbottombar" colspan="3">
+					<b><?php print $pgv_lang["add_new_up_setting"]; ?></b>
+				</td>
+			</tr>
+	
+			<tr>
+				<td class="descriptionbox"><?php print $pgv_lang["user_name"]; ?></td>
+				<td class="descriptionbox"><?php print $pgv_lang["id"]; ?></td>
+				<td class="descriptionbox"><?php print $pgv_lang["show_question"]; ?></td>
+			</tr>
+	
+			<tr class="<?php print $TEXT_DIRECTION; ?>">
+				<td class="optionbox width20">
+					<select size="1" name="v_new_user_privacy_username">
+					<?php
+					foreach (get_all_users() as $user_id=>$user_name) {
+						echo '<option value="', $user_id, '">';
+						if ($TEXT_DIRECTION == 'ltr') {
+							echo $user_id, ' (', getUserFullName($user_id), ')</option>';
+						} else {
+							echo getLRM(), '(', getUserFullName($user_id), ')', getLRM(), ' ', $user_id, '</option>';
+						}
+	
 					}
-
-				}
-				?>
-				</select>
-			</td>
-			<td class="optionbox">
-				<input type="text" class="pedigree_form" name="v_new_user_privacy_access_ID" id="v_new_user_privacy_access_ID" size="4" />
-				<?php
-				print_findindi_link("v_new_user_privacy_access_ID","");
-				print_findfamily_link("v_new_user_privacy_access_ID");
-				print_findsource_link("v_new_user_privacy_access_ID");
-				print_findrepository_link("v_new_user_privacy_access_ID");
-				print_findmedia_link("v_new_person_privacy_access_ID", "1media");
-				?>
-			</td>
-			<td class="optionbox">
-				<select size="1" name="v_new_user_privacy_access_option"><?php write_access_option(""); ?></select>
-			</td>
-		</tr>
-	</table>
-	<?php if (count($user_privacy) > 0) { ?>
-	<table class="facts_table">
-		<tr>
-			<td class="topbottombar" colspan="5">
-				<?php print $pgv_lang["edit_exist_user_privacy_settings"]; ?>
-			</td>
-		</tr>
-		<tr>
-			<td class="descriptionbox"><?php print $pgv_lang["delete"]; ?></td>
-			<td class="descriptionbox"><?php print $pgv_lang["user_name"]; ?></td>
-			<td class="descriptionbox"><?php print $pgv_lang["id"]; ?></td>
-			<td class="descriptionbox"><?php print $pgv_lang["full_name"]; ?></td>
-			<td class="descriptionbox"><?php print $pgv_lang["show_question"]; ?></td>
-		</tr>
-
-		<?php
-		foreach ($user_privacy as $key=>$value) {
-			foreach ($value as $id=>$setting) {
-		?>
-		<tr class="<?php print $TEXT_DIRECTION; ?>">
-			<td class="optionbox">
-				<input type="checkbox" name="v_user_privacy_del[<?php print $key; ?>][<?php print $id; ?>]" value="1" />
-			</td>
-			<td class="optionbox">
-				<?php echo $key, '<br />', getLRM(), '(', getUserFullName($key), ')', getLRM(); ?>
-			</td>
-			<td class="optionbox">
-				<?php print $id; ?>
-			</td>
-			<td class="optionbox">
-				<?php search_ID_details($id, 2); ?>
-			</td>
-			<td class="optionbox">
-				<select size="1" name="v_user_privacy[<?php print $key; ?>][<?php print $id; ?>]"><?php write_access_option($setting); ?></select>
-			</td>
-		</tr>
-
-		<?php } } ?>
-	</table>
-	<?php } ?>
+					?>
+					</select>
+				</td>
+				<td class="optionbox">
+					<input type="text" class="pedigree_form" name="v_new_user_privacy_access_ID" id="v_new_user_privacy_access_ID" size="4" />
+					<?php
+					print_findindi_link("v_new_user_privacy_access_ID","");
+					print_findfamily_link("v_new_user_privacy_access_ID");
+					print_findsource_link("v_new_user_privacy_access_ID");
+					print_findrepository_link("v_new_user_privacy_access_ID");
+					print_findmedia_link("v_new_person_privacy_access_ID", "1media");
+					?>
+				</td>
+				<td class="optionbox">
+					<select size="1" name="v_new_user_privacy_access_option"><?php write_access_option(""); ?></select>
+				</td>
+			</tr>
+		</table>
+		<?php if (count($user_privacy) > 0) { ?>
+		<table class="facts_table">
+			<tr>
+				<td class="topbottombar" colspan="5">
+					<?php print $pgv_lang["edit_exist_user_privacy_settings"]; ?>
+				</td>
+			</tr>
+			<tr>
+				<td class="descriptionbox"><?php print $pgv_lang["delete"]; ?></td>
+				<td class="descriptionbox"><?php print $pgv_lang["user_name"]; ?></td>
+				<td class="descriptionbox"><?php print $pgv_lang["id"]; ?></td>
+				<td class="descriptionbox"><?php print $pgv_lang["full_name"]; ?></td>
+				<td class="descriptionbox"><?php print $pgv_lang["show_question"]; ?></td>
+			</tr>
+	
+			<?php
+			foreach ($user_privacy as $key=>$value) {
+				foreach ($value as $id=>$setting) {
+			?>
+			<tr class="<?php print $TEXT_DIRECTION; ?>">
+				<td class="optionbox">
+					<input type="checkbox" name="v_user_privacy_del[<?php print $key; ?>][<?php print $id; ?>]" value="1" />
+				</td>
+				<td class="optionbox">
+					<?php echo $key, '<br />', getLRM(), '(', getUserFullName($key), ')', getLRM(); ?>
+				</td>
+				<td class="optionbox">
+					<?php print $id; ?>
+				</td>
+				<td class="optionbox">
+					<?php search_ID_details($id, 2); ?>
+				</td>
+				<td class="optionbox">
+					<select size="1" name="v_user_privacy[<?php print $key; ?>][<?php print $id; ?>]"><?php write_access_option($setting); ?></select>
+				</td>
+			</tr>
+	
+			<?php } } ?>
+		</table>
+		<?php } ?>
+	
+		<!-- NOTE: Save and Reset buttons bar -->
+		<table class="facts_table" border="0">
+			<tr>
+				<td class="topbottombar">
+					<input type="submit" value="<?php print $pgv_lang["save_config"]; ?>" onclick="closeHelp();" />
+					&nbsp;&nbsp;
+					<input type="reset" value="<?php print $pgv_lang["reset"]; ?>" /><br />
+				</td>
+			</tr>
+		</table>
 	</div>
+
 	<!-- -------------- global_facts -----------------------------------
 
 	NOTE: Global Settings header bar -->
@@ -621,85 +666,98 @@ if ($action=="update") {
 
 	<!-- NOTE: Global Settings options -->
 	<div id="global-facts-options" style="display: none">
-	<table class="facts_table">
-		<tr>
-			<td class="topbottombar" colspan="3">
-				<b><?php print $pgv_lang["add_new_gf_setting"]; ?></b></td>
-		</tr>
-		<tr>
-			<td class="descriptionbox"><?php print $pgv_lang["name_of_fact"]; ?></td>
-			<td class="descriptionbox"><?php print $pgv_lang["choice"]; ?></td>
-			<td class="descriptionbox"><?php print $pgv_lang["accessible_by"]; ?></td>
-		</tr>
-		<tr class="<?php print $TEXT_DIRECTION; ?>">
-			<td class="optionbox">
-				<select size="1" name="v_new_global_facts_abbr">
-				<?php
-				print "<option value=\"\">".$pgv_lang["choose"]."</option>";
-				foreach ($factarray as $tag=>$label) {
-					print "<option";
-					print " value=\"";
-					print $tag;
-					print "\">";
-					print $tag . " - " . str_replace("<br />", " ", $label);
-					print "</option>";
-				}
-				?>
-				</select>
-			</td>
-			<td class="optionbox">
-				<select size="1" name="v_new_global_facts_choice">
-					<option value="details"><?php print $pgv_lang["fact_details"]; ?></option>
-					<option value="show"><?php print $pgv_lang["fact_show"]; ?></option>
-				</select>
-			</td>
-			<td class="optionbox">
-				<select size="1" name="v_new_global_facts_access_option"><?php write_access_option(""); ?></select>
-			</td>
-		</tr>
-	</table>
-	<?php if (count($global_facts) > 0) { ?>
-	<table class="facts_table">
-		<tr>
-			<td class="topbottombar" colspan="4">
-				<b><?php print $pgv_lang["edit_exist_global_facts_settings"]; ?></b>
-			</td>
-		</tr>
-		<tr>
-			<td class="descriptionbox"><?php print $pgv_lang["delete"]; ?></td>
-			<td class="descriptionbox"><?php print $pgv_lang["name_of_fact"]; ?></td>
-			<td class="descriptionbox"><?php print $pgv_lang["choice"]; ?></td>
-			<td class="descriptionbox"><?php print $pgv_lang["accessible_by"]; ?></td>
-		</tr>
-		<?php
-		foreach ($global_facts as $tag=>$value) {
-			foreach ($value as $key=>$setting) {
-		?>
-		<tr class="<?php print $TEXT_DIRECTION; ?>">
-			<td class="optionbox">
-				<input type="checkbox" name="v_global_facts_del[<?php print $tag; ?>][<?php print $key; ?>]" value="1" />
-			</td>
-			<td class="optionbox">
-				<?php
-				if (isset($factarray[$tag])) print $factarray[$tag];
-				else print $tag;
-				?>
-			</td>
-			<td class="optionbox">
-				<?php
-				if ($key == "show") print $pgv_lang["fact_show"];
-				if ($key == "details") print $pgv_lang["fact_details"];
-				?>
-			</td>
-			<td class="optionbox">
-				<select size="1" name="v_global_facts[<?php print $tag; ?>][<?php print $key; ?>]"><?php write_access_option($setting); ?></select>
-			</td>
-		</tr>
-		<?php } } ?>
-	</table>
-	<?php } else print "&nbsp;"; ?>
+		<table class="facts_table">
+			<tr>
+				<td class="topbottombar" colspan="3">
+					<b><?php print $pgv_lang["add_new_gf_setting"]; ?></b></td>
+			</tr>
+			<tr>
+				<td class="descriptionbox"><?php print $pgv_lang["name_of_fact"]; ?></td>
+				<td class="descriptionbox"><?php print $pgv_lang["choice"]; ?></td>
+				<td class="descriptionbox"><?php print $pgv_lang["accessible_by"]; ?></td>
+			</tr>
+			<tr class="<?php print $TEXT_DIRECTION; ?>">
+				<td class="optionbox">
+					<select size="1" name="v_new_global_facts_abbr">
+					<?php
+					print "<option value=\"\">".$pgv_lang["choose"]."</option>";
+					foreach ($factarray as $tag=>$label) {
+						print "<option";
+						print " value=\"";
+						print $tag;
+						print "\">";
+						print $tag . " - " . str_replace("<br />", " ", $label);
+						print "</option>";
+					}
+					?>
+					</select>
+				</td>
+				<td class="optionbox">
+					<select size="1" name="v_new_global_facts_choice">
+						<option value="details"><?php print $pgv_lang["fact_details"]; ?></option>
+						<option value="show"><?php print $pgv_lang["fact_show"]; ?></option>
+					</select>
+				</td>
+				<td class="optionbox">
+					<select size="1" name="v_new_global_facts_access_option"><?php write_access_option(""); ?></select>
+				</td>
+			</tr>
+		</table>
+		<?php if (count($global_facts) > 0) { ?>
+		<table class="facts_table">
+			<tr>
+				<td class="topbottombar" colspan="4">
+					<b><?php print $pgv_lang["edit_exist_global_facts_settings"]; ?></b>
+				</td>
+			</tr>
+			<tr>
+				<td class="descriptionbox"><?php print $pgv_lang["delete"]; ?></td>
+				<td class="descriptionbox"><?php print $pgv_lang["name_of_fact"]; ?></td>
+				<td class="descriptionbox"><?php print $pgv_lang["choice"]; ?></td>
+				<td class="descriptionbox"><?php print $pgv_lang["accessible_by"]; ?></td>
+			</tr>
+			<?php
+			foreach ($global_facts as $tag=>$value) {
+				foreach ($value as $key=>$setting) {
+			?>
+			<tr class="<?php print $TEXT_DIRECTION; ?>">
+				<td class="optionbox">
+					<input type="checkbox" name="v_global_facts_del[<?php print $tag; ?>][<?php print $key; ?>]" value="1" />
+				</td>
+				<td class="optionbox">
+					<?php
+					if (isset($factarray[$tag])) print $factarray[$tag];
+					else print $tag;
+					?>
+				</td>
+				<td class="optionbox">
+					<?php
+					if ($key == "show") print $pgv_lang["fact_show"];
+					if ($key == "details") print $pgv_lang["fact_details"];
+					?>
+				</td>
+				<td class="optionbox">
+					<select size="1" name="v_global_facts[<?php print $tag; ?>][<?php print $key; ?>]"><?php write_access_option($setting); ?></select>
+				</td>
+			</tr>
+			<?php } } ?>
+		</table>
+		<?php } else print "&nbsp;"; ?>
+
+		<!-- NOTE: Save and Reset buttons bar -->
+		<table class="facts_table" border="0">
+			<tr>
+				<td class="topbottombar">
+					<input type="submit" value="<?php print $pgv_lang["save_config"]; ?>" onclick="closeHelp();" />
+					&nbsp;&nbsp;
+					<input type="reset" value="<?php print $pgv_lang["reset"]; ?>" /><br />
+				</td>
+			</tr>
+		</table>
 	</div>
+	
 	<!-- -------------- person_facts -----------------------------------
+	
 	NOTE: Person Facts header bar -->
 	<table class="facts_table">
 		<tr>
@@ -713,97 +771,97 @@ if ($action=="update") {
 
 	<!-- NOTE: Person Facts options -->
 	<div id="person-facts-options" style="display: none">
-	<table class="facts_table">
-		<tr>
-			<td class="topbottombar" colspan="4">
-				<b><?php print $pgv_lang["add_new_pf_setting"]; ?></b>
-			</td>
-		</tr>
-		<tr>
-			<td class="descriptionbox"><?php print $pgv_lang["id"]; ?></td>
-			<td class="descriptionbox"><?php print $pgv_lang["name_of_fact"]; ?></td>
-			<td class="descriptionbox"><?php print $pgv_lang["choice"]; ?></td>
-			<td class="descriptionbox"><?php print $pgv_lang["accessible_by"]; ?></td>
-		</tr>
-		<tr class="<?php print $TEXT_DIRECTION; ?>">
-			<td class="optionbox">
-				<input type="text" class="pedigree_form" name="v_new_person_facts_access_ID" id="v_new_person_facts_access_ID" size="4" />
-				<?php
-				print_findindi_link("v_new_person_facts_access_ID","");
-				print_findfamily_link("v_new_person_facts_access_ID");
-				print_findsource_link("v_new_person_facts_access_ID");
-				print_findrepository_link("v_new_person_facts_access_ID");
-				?>
-			</td>
-			<td class="optionbox">
-				<select size="1" name="v_new_person_facts_abbr">
-				<?php
-				foreach ($factarray as $tag=>$label) {
-					print "<option";
-					print " value=\"";
-					print $tag;
-					print "\">";
-					print $tag . " - " . str_replace("<br />", " ", $label);
-					print "</option>";
-				}
-				?>
-				</select>
-			</td>
-			<td class="optionbox">
-				<select size="1" name="v_new_person_facts_choice">
-					<option value="details"><?php print $pgv_lang["fact_details"]; ?></option>
-					<option value="show"><?php print $pgv_lang["fact_show"]; ?></option>
-				</select>
-			</td>
-			<td class="optionbox">
-				<select size="1" name="v_new_person_facts_access_option"><?php write_access_option(""); ?></select>
-			</td>
-		</tr>
-	</table>
-	<?php if (count($person_facts) > 0) { ?>
-	<table class="facts_table">
-		<tr>
-			<td class="topbottombar" colspan="6"><b><?php print $pgv_lang["edit_exist_person_facts_settings"]; ?></b></td>
-		</tr>
-		<tr>
-			<td class="descriptionbox"><?php print $pgv_lang["delete"]; ?></td>
-			<td class="descriptionbox"><?php print $pgv_lang["id"]; ?></td>
-			<td class="descriptionbox"><?php print $pgv_lang["full_name"]; ?></td>
-			<td class="descriptionbox"><?php print $pgv_lang["name_of_fact"]; ?></td>
-			<td class="descriptionbox"><?php print $pgv_lang["choice"]; ?></td>
-			<td class="descriptionbox"><?php print $pgv_lang["accessible_by"]; ?></td>
-		</tr>
-		<?php
-		foreach ($person_facts as $id=>$value) {
-				foreach ($value as $tag=>$value1) {
-					foreach ($value1 as $key=>$setting) {
-		?>
-		<tr class="<?php print $TEXT_DIRECTION; ?>">
-			<td class="optionbox">
-				<input type="checkbox" name="v_person_facts_del[<?php print $id; ?>][<?php print $tag; ?>][<?php print $key; ?>]" value="1" />
-			</td>
-			<td class="optionbox">
-				<?php print $id; ?>
-			</td>
-			<td class="optionbox">
-				<?php search_ID_details($id, 2); ?>
-			</td>
-			<td class="optionbox">
-				<?php print $tag. " - ".$factarray[$tag]; ?>
-			</td>
-			<td class="optionbox">
-				<?php
-				if ($key == "show") print $pgv_lang["fact_show"];
-				if ($key == "details") print $pgv_lang["fact_details"];
-				?>
-			</td>
-			<td class="optionbox">
-				<select size="1" name="v_person_facts[<?php print $id; ?>][<?php print $tag; ?>][<?php print $key; ?>]"><?php write_access_option($setting); ?></select>
-			</td>
-		</tr>
-		<?php } } } ?>
-	</table>
-	<?php } ?>
+		<table class="facts_table">
+			<tr>
+				<td class="topbottombar" colspan="4">
+					<b><?php print $pgv_lang["add_new_pf_setting"]; ?></b>
+				</td>
+			</tr>
+			<tr>
+				<td class="descriptionbox"><?php print $pgv_lang["id"]; ?></td>
+				<td class="descriptionbox"><?php print $pgv_lang["name_of_fact"]; ?></td>
+				<td class="descriptionbox"><?php print $pgv_lang["choice"]; ?></td>
+				<td class="descriptionbox"><?php print $pgv_lang["accessible_by"]; ?></td>
+			</tr>
+			<tr class="<?php print $TEXT_DIRECTION; ?>">
+				<td class="optionbox">
+					<input type="text" class="pedigree_form" name="v_new_person_facts_access_ID" id="v_new_person_facts_access_ID" size="4" />
+					<?php
+					print_findindi_link("v_new_person_facts_access_ID","");
+					print_findfamily_link("v_new_person_facts_access_ID");
+					print_findsource_link("v_new_person_facts_access_ID");
+					print_findrepository_link("v_new_person_facts_access_ID");
+					?>
+				</td>
+				<td class="optionbox">
+					<select size="1" name="v_new_person_facts_abbr">
+					<?php
+					foreach ($factarray as $tag=>$label) {
+						print "<option";
+						print " value=\"";
+						print $tag;
+						print "\">";
+						print $tag . " - " . str_replace("<br />", " ", $label);
+						print "</option>";
+					}
+					?>
+					</select>
+				</td>
+				<td class="optionbox">
+					<select size="1" name="v_new_person_facts_choice">
+						<option value="details"><?php print $pgv_lang["fact_details"]; ?></option>
+						<option value="show"><?php print $pgv_lang["fact_show"]; ?></option>
+					</select>
+				</td>
+				<td class="optionbox">
+					<select size="1" name="v_new_person_facts_access_option"><?php write_access_option(""); ?></select>
+				</td>
+			</tr>
+		</table>
+		<?php if (count($person_facts) > 0) { ?>
+		<table class="facts_table">
+			<tr>
+				<td class="topbottombar" colspan="6"><b><?php print $pgv_lang["edit_exist_person_facts_settings"]; ?></b></td>
+			</tr>
+			<tr>
+				<td class="descriptionbox"><?php print $pgv_lang["delete"]; ?></td>
+				<td class="descriptionbox"><?php print $pgv_lang["id"]; ?></td>
+				<td class="descriptionbox"><?php print $pgv_lang["full_name"]; ?></td>
+				<td class="descriptionbox"><?php print $pgv_lang["name_of_fact"]; ?></td>
+				<td class="descriptionbox"><?php print $pgv_lang["choice"]; ?></td>
+				<td class="descriptionbox"><?php print $pgv_lang["accessible_by"]; ?></td>
+			</tr>
+			<?php
+			foreach ($person_facts as $id=>$value) {
+					foreach ($value as $tag=>$value1) {
+						foreach ($value1 as $key=>$setting) {
+			?>
+			<tr class="<?php print $TEXT_DIRECTION; ?>">
+				<td class="optionbox">
+					<input type="checkbox" name="v_person_facts_del[<?php print $id; ?>][<?php print $tag; ?>][<?php print $key; ?>]" value="1" />
+				</td>
+				<td class="optionbox">
+					<?php print $id; ?>
+				</td>
+				<td class="optionbox">
+					<?php search_ID_details($id, 2); ?>
+				</td>
+				<td class="optionbox">
+					<?php print $tag. " - ".$factarray[$tag]; ?>
+				</td>
+				<td class="optionbox">
+					<?php
+					if ($key == "show") print $pgv_lang["fact_show"];
+					if ($key == "details") print $pgv_lang["fact_details"];
+					?>
+				</td>
+				<td class="optionbox">
+					<select size="1" name="v_person_facts[<?php print $id; ?>][<?php print $tag; ?>][<?php print $key; ?>]"><?php write_access_option($setting); ?></select>
+				</td>
+			</tr>
+			<?php } } } ?>
+		</table>
+		<?php } ?>
 	</div>
 	<table class="facts_table" border="0">
 		<tr>

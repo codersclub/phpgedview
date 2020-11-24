@@ -9,6 +9,7 @@
 =====================================================================
 
 Version 4.3.1
+ - Changed: Add more "Save" and "Reset" buttons to Edit GEDCOM Privacy page (canajun2eh)
  - Changed: Add new "Media Options" top menu, move all existing media-related sub-menu items to the new top menu (canajun2eh)
  - Changed: Show contact link in Cookie Policy block (canajun2eh)
  - Fixed: Country code for Romania corrected to "ROU" (canajun2eh)
