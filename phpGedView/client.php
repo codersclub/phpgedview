@@ -8,7 +8,7 @@
 * When $action is 'delete' the gedcom record with $xref is removed from the file.
 *
 * phpGedView: Genealogy Viewer
-* Copyright (C) 2002 to 2016  PGV Development Team.  All rights reserved.
+* Copyright (C) 2002 to 2020  PGV Development Team.  All rights reserved.
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -397,8 +397,7 @@ case 'uploadmedia':
 		} else if (!isset($_FILES['thumbnail'])) {
 			$filename = $MEDIA_DIRECTORY.$_FILES['mediafile']['name'];
 			$thumbnail = $MEDIA_DIRECTORY."thumbs/".$_FILES['mediafile']['name'];
-			generate_thumbnail($filename, $thumbnail);
-			//if (!$thumbgenned) $error .= "ERROR 19: ".$pgv_lang["thumbgen_error"].$filename;
+			generate_thumbnail($filename, $thumbnail);		//	Don't say anything if this fails
 		}
 	}
 	if (isset($_FILES['thumbnail'])) {

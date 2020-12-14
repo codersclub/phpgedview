@@ -3,7 +3,7 @@
  * Startup and session logic
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2019  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2020  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -444,6 +444,9 @@ require PGV_ROOT.'includes/functions/functions_rtl.php';
 
 if ($MULTI_MEDIA) {
 	require PGV_ROOT.'includes/functions/functions_mediadb.php';
+	if (!function_exists('imagecreatefrombmp')) {			// If the GD library does not support the BMP image type
+		require PGV_ROOT.'includes/functions/functions_mediabmp.php';		// use our home-grown support
+	}
 }
 require PGV_ROOT.'includes/functions/functions_date.php';
 

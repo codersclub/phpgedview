@@ -8,7 +8,7 @@
  * Requires SQL mode.
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2009  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2020  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -185,11 +185,13 @@ if ($action=="newentry") {
 			else $parts = pathinfo_utf($_FILES["thumbnail"]["name"]);
 			$mediaFile = $parts["basename"];
 		}
+		global $whichFile;
 		if (!empty($_FILES["mediafile"]["name"])) {
 			$newFile = $realFolderName.$mediaFile;
 			// Copy main media file into the destination directory
 			if (file_exists(filename_decode($newFile))) {
-				$error .= $pgv_lang["media_exists"]."&nbsp;&nbsp;".$newFile."<br />";
+				$whichFile = str_replace($MEDIA_DIRECTORY, '', $newFile);		// Make this visible to the print_text function
+				$error .= print_text("media_exists", 0, 1).'<br />';
 			} else {
 				if (!move_uploaded_file($_FILES["mediafile"]["tmp_name"], filename_decode($newFile))) {
 					// the file cannot be copied
@@ -204,7 +206,8 @@ if ($action=="newentry") {
 			$newThum = $realThumbFolderName.$mediaFile;
 			// Copy user-supplied thumbnail file into the destination directory
 			if (file_exists(filename_decode($newThum))) {
-				$error .= $pgv_lang["media_thumb_exists"]."&nbsp;&nbsp;".$newThum."<br />";
+				$whichFile = str_replace($MEDIA_DIRECTORY.'thumbs/', '', $newThum);		// Make this visible to the print_text function
+				$error .= print_text("media_thumb_exists", 0, 1).'<br />';
 			} else {
 				if (!move_uploaded_file($_FILES["thumbnail"]["tmp_name"], filename_decode($newThum))) {
 					// the file cannot be copied
@@ -227,32 +230,21 @@ if ($action=="newentry") {
 				AddToLog("Media file {$folderName}{$mediaFile} copied from {$thumbFolderName}{$mediaFile}");
 			}
 		}
-		if ($error=="" && !empty($_FILES["mediafile"]["name"]) && empty($_FILES["thumbnail"]["name"])) {
-			if (safe_POST('genthumb', 'yes', 'no') == 'yes') {
-				// Generate thumbnail from main image
-				$parts = pathinfo_utf($mediaFile);
-				if (!empty($parts["extension"])) {
-					$ext = strtolower($parts["extension"]);
-					if (isImageTypeSupported($ext)) {
-						$thumbnail = $thumbFolderName.$mediaFile;
-						$okThumb = generate_thumbnail($folderName.$mediaFile, $thumbnail, "OVERWRITE");
-						if (!$okThumb) {
-							$error .= print_text("thumbgen_error", 0, 1);
-						} else {
-							print_text("thumb_genned");
-							print "<br />";
-							AddToLog("Media thumbnail {$thumbnail} generated");
-						}
-					}
+		if (!empty($error)) {
+			// Print all error messages (if any)
+			echo '<span class="error">', $error, "</span><br />\n";
+			$finalResult = false;
+		} else {
+			$finalResult = true;
+			if (!empty($_FILES["mediafile"]["name"]) && empty($_FILES["thumbnail"]["name"])) {
+				if (safe_POST('genthumb', 'yes', 'no') == 'yes') {
+					// Generate thumbnail from main image
+					$thumbnail = $thumbFolderName.$mediaFile;
+					$thumbResult = generate_thumbnail($folderName.$mediaFile, $thumbnail, true);
+					if ($thumbResult != 0) $finalResult = false;		// Could not generate thumbnail as requested, error message has already been produced.
 				}
 			}
 		}
-		// Let's see if there are any errors generated and print it
-		if (!empty($error)) {
-			echo '<span class="error">', $error, "</span><br />\n";
-			$mediaFile = "";
-			$finalResult = false;
-		} else $finalResult = true;
 	}
 	if ($mediaFile=="") {
 		// No upload: should be an existing file on server

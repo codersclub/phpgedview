@@ -3,7 +3,7 @@
 * PopUp Window to provide editing features.
 *
 * phpGedView: Genealogy Viewer
-* Copyright (C) 2002 to 2018  PGV Development Team.  All rights reserved.
+* Copyright (C) 2002 to 2020  PGV Development Team.  All rights reserved.
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -1406,21 +1406,17 @@ case 'update':
 			foreach ($_FILES as $upload) {
 				if (!empty($upload['tmp_name'])) {
 					if (!move_uploaded_file($upload['tmp_name'], $MEDIA_DIRECTORY.$folder.basename($upload['name']))) {
-						$error .= "<br />".$pgv_lang["upload_error"]."<br />".file_upload_error_text($upload['error']);
+						$error = "<br />".$pgv_lang["upload_error"]."<br />".file_upload_error_text($upload['error']);
+						echo '<span class="error">', $error, '</span>';
 						$uploaded_files[] = "";
-					}
-					else {
+					} else {
 						$filename = $MEDIA_DIRECTORY.$folder.basename($upload['name']);
 						$uploaded_files[] = $MEDIA_DIRECTORY.$folder.basename($upload['name']);
 						if (!is_dir($MEDIA_DIRECTORY."thumbs/".$folder)) mkdir($MEDIA_DIRECTORY."thumbs/".$folder);
 						$thumbnail = $MEDIA_DIRECTORY."thumbs/".$folder.basename($upload['name']);
-						generate_thumbnail($filename, $thumbnail);
-						if (!empty($error)) {
-							echo "<span class=\"error\">", $error, "</span>";
-						}
+						generate_thumbnail($filename, $thumbnail, true);		// Generate thumbnail & print suitable success / fail message
 					}
-				}
-				else $uploaded_files[] = "";
+				} else $uploaded_files[] = "";
 			}
 		}
 

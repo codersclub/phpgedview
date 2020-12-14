@@ -3,7 +3,7 @@
 * Various functions used by the Edit interface
 *
 * phpGedView: Genealogy Viewer
-* Copyright (C) 2002 to 2019  PGV Development Team.  All rights reserved.
+* Copyright (C) 2002 to 2020  PGV Development Team.  All rights reserved.
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -1462,7 +1462,7 @@ if (substr($tag, 0, strpos($tag, "CENS"))) {
 		<?php
 		if (!$PRIVACY_BY_RESN && $level==1) {
 			// warn user that level 1 RESN tags have no effect when PRIVACY_BY_RESN is false
-			echo "<small>", $pgv_lang["resn_disabled"], "</small>";
+			echo "<small>", print_text($pgv_lang["resn_disabled"], 0, 2), "</small>";
 		}
 		echo "<input type=\"hidden\" id=\"", $element_id, "\" name=\"", $element_name, "\" value=\"", $value, "\" />\n";
 		echo "<table><tr valign=\"top\">\n";

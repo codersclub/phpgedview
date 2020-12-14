@@ -3,7 +3,7 @@
  * Norwegian language file for PhpGedView
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2019  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2020  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -126,13 +126,10 @@ $pgv_lang["editors"]				= "Redigerer";
 $pgv_lang["gedcom_admins"]			= "GEDCOM administratorer";
 $pgv_lang["site_admins"]			= "Nettstedadministratorer";
 $pgv_lang["nobody"]					= "Ingen";
-$pgv_lang["thumbnail_deleted"]		= "Miniatyrbilde-fil er nå slettet.";
-$pgv_lang["thumbnail_not_deleted"]	= "Klarte ikke å slette miniatyrbilde-fil.";
 $pgv_lang["step2"]					= "Del 2 av 4:";
 $pgv_lang["refresh"]			= "Oppdater";
 $pgv_lang["move_file_success"]	= "Media- og miniatyrbilde-filer er nå flyttet.";
 $pgv_lang["media_folder_corrupt"]	= "Det er en feil med mediamappen.";
-$pgv_lang["media_file_not_deleted"]	= "Klarte ikke å slette mediafil.";
 $pgv_lang["gedcom_deleted"]		= "Slektsfilen [#GED#] er nå slettet.";
 $pgv_lang["gedadmin"]				= "Administrator av slektsfilen";
 $pgv_lang["full_name"]				= "Fullt navn";

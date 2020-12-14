@@ -3,7 +3,7 @@
  * Portugese Language file for PhpGedView.
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2011  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2020  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -47,9 +47,6 @@ $pgv_lang["append"]="Adicionar Registro";
 $pgv_lang["review_changes"]="Rever Alterações";
 $pgv_lang["remove_object"]="Excluir Objeto";
 $pgv_lang["remove_links"]="Excluir Ligações";
-$pgv_lang["media_not_deleted"]="Pasta de Mídia não foi excluída.";
-$pgv_lang["thumbs_not_deleted"]="Pasta de Miniaturas não foi excluída.";
-$pgv_lang["thumbs_deleted"]="Pasta de Miniaturas excluída com sucesso.";
 $pgv_lang["show_thumbnail"]="Exibir Miniaturas";
 $pgv_lang["link_media"]="Ligar Mídia";
 $pgv_lang["to_person"]="Com a Pessoa";
@@ -85,17 +82,29 @@ $pgv_lang["add_linkid_advice"]="Informe ou pesquise a ID da pessoa, família, ou
 $pgv_lang["use_browse_advice"]="Use o botão de &laquo;Procurar&raquo; e selecione em seu computador o arquivo desejado.";
 $pgv_lang["add_media_other_folder"]="Outra pasta...por favor informe";
 $pgv_lang["add_media_file"]="Arquivo de mídia existe no servidor";
-$pgv_lang["main_media_ok1"]="Arquivo principal de mídia <b>#GLOBALS[oldMediaName]#</b> foi renomeado com sucesso para <b>#GLOBALS[newMediaName]#</b>.";
-$pgv_lang["main_media_ok2"]="Arquivo principal de mídia <b>#GLOBALS[oldMediaName]#</b> foi movido com sucesso de <b>#GLOBALS[oldMediaFolder]#</b> para <b>#GLOBALS[newMediaFolder]#</b>.";
-$pgv_lang["main_media_ok3"]="Pasta principal de mídia foi movida e renomeada de  <b>#GLOBALS[oldMediaFolder]##GLOBALS[oldMediaName]#</b> para <b>#GLOBALS[newMediaFolder]##GLOBALS[newMediaName]#</b>.|";
+$pgv_lang["main_media_ok1"]="Arquivo principal de mídia <b>#GLOBALS[oldMediaName]#</b> foi renomeado para <b>#GLOBALS[newMediaName]#</b>.";
+$pgv_lang["main_media_ok2"]="Arquivo principal de mídia <b>#GLOBALS[oldMediaName]#</b> foi movido de <b>#GLOBALS[oldMediaFolder]#</b> para <b>#GLOBALS[newMediaFolder]#</b>.";
+$pgv_lang["main_media_ok3"]="Pasta principal de mídia foi movida e renomeada de <b>#GLOBALS[oldMediaFolder]##GLOBALS[oldMediaName]#</b> para <b>#GLOBALS[newMediaFolder]##GLOBALS[newMediaName]#</b>.";
 $pgv_lang["main_media_fail0"]="Pasta principal de mídia <b>#GLOBALS[oldMediaFolder]##GLOBALS[oldMediaName]#</b> não existe.";
 $pgv_lang["main_media_fail1"]="Não foi possível renomear o arquivo principal de mídia <b>#GLOBALS[oldMediaName]#</b> para <b>#GLOBALS[newMediaName]#</b>.";
 $pgv_lang["main_media_fail2"]="Não foi possível mover o arquivo principal de mídia <b>#GLOBALS[oldMediaName]#</b> de <b>#GLOBALS[oldMediaFolder]#</b> para <b>#GLOBALS[newMediaFolder]#.";
 $pgv_lang["main_media_fail3"]="Não foi possível mover e renomear o arquivo principal de mídia de <b>#GLOBALS[oldMediaFolder]##GLOBALS[oldMediaName]#</b> para <b>#GLOBALS[newMediaFolder]##GLOBALS[newMediaName]#</b>.";
-$pgv_lang["resn_disabled"]				= "Nota: Você deve ativar o recurso \"Usar RESN (GEDCOM restrição privacidade)\" para esta configuração tenha efeito.";
+$pgv_lang["resn_disabled"]				= "Nota: Você deve ativar o recurso &laquo;#pgv_lang[PRIVACY_BY_RESN]#&raquo; para esta configuração tenha efeito.";
 $pgv_lang["thumb_media_ok1"]="Pasta de miniaturas <b>#GLOBALS[oldMediaName]#</b> foi renomeada para <b>#GLOBALS[newMediaName]#</b>.";
 $pgv_lang["thumb_media_ok2"]="Pasta de miniaturas <b>#GLOBALS[oldMediaName]#</b> movida de <b>#GLOBALS[oldThumbFolder]#</b> para <b>#GLOBALS[newThumbFolder]#</b>.";
 $pgv_lang["thumb_media_ok3"]="<b>#GLOBALS[oldThumbFolder]##GLOBALS[oldMediaName]#</b> movido e renomeado para <b>#GLOBALS[newThumbFolder]##GLOBALS[newMediaName]#</b>.";
+$pgv_lang["thumb_create_ok0a"]			= "Miniatura <b>#GLOBALS[imageThumbnail]#</b> criada automaticamente.<br />";
+$pgv_lang["thumb_create_ok0b"]			= "Miniatura #GLOBALS[imageThumbnail]# criada automaticamente.";
+$pgv_lang["thumb_create_fail0a"]		= "Miniatura <span style=\"font-size:larger\">#GLOBALS[imageThumbnail]#</span> não pôde ser criada automaticamente : ";
+$pgv_lang["thumb_create_fail0b"]		= "Miniatura #GLOBALS[imageThumbnail]# não pôde ser criada automaticamente. Código do erro : ";
+$pgv_lang["thumb_create_fail1"]			= "Este recurso está desabilitado na configuração GEDCOM.";
+$pgv_lang["thumb_create_fail2"]			= "O diretório de destino não é gravável.";
+$pgv_lang["thumb_create_fail3"]			= "Este recurso não oferece suporte ao tipo de imagem <span style=\"font-size:larger\">#GLOBALS[imageType]#</span>.";
+$pgv_lang["thumb_create_fail4"]			= "O diretório de destino não pode ser criado.";
+$pgv_lang["thumb_create_fail5"]			= "A imagem de entrada <span style=\"font-size:larger\">#GLOBALS[imageFilename]#</span> não existe ou não pode ser lida.";
+$pgv_lang["thumb_create_fail6"]			= "O tamanho da imagem de entrada <span style=\"font-size:larger\">#GLOBALS[imageFilename]#</span> não pode ser determinado.";
+$pgv_lang["thumb_create_fail7"]			= "Não há memória livre suficiente.<br />Reduza o tamanho da imagem de entrada ou ajuste a alocação de memória em Configuração do site, Etapa 4, Configurações avançadas.";
+$pgv_lang["thumb_create_fail8"]			= "A imagem de entrada <span style=\"font-size:larger\">#GLOBALS[imageFilename]#</span> está com defeito.";
 $pgv_lang["thumb_media_fail0"]="Pasta de miniaturas <b>#GLOBALS[oldThumbFolder]##GLOBALS[oldMediaName]#</b> não existe.";
 $pgv_lang["thumb_media_fail1"]="Não foi possível renomear <b>#GLOBALS[oldMediaName]#</b> para  <b>#GLOBALS[newMediaName]#</b>.";
 $pgv_lang["thumb_media_fail2"]="Não foi possível mover <b>#GLOBALS[oldMediaName]#</b> de <b>#GLOBALS[oldThumbFolder]#</b> para <b>#GLOBALS[newThumbFolder]#</b>.";
@@ -157,10 +166,11 @@ $pgv_lang["current_person"]="O mesmo que agora";
 $pgv_lang["date"]="Data";
 $pgv_lang["deathdate_search"]="Data de Falecimento:";
 $pgv_lang["deathplace_search"]="Local onde Faleceu:";
-$pgv_lang["delete_dir_success"]="Pastas de Mídia e Miniatura foram excluídas com sucesso.";
+$pgv_lang["delete_dir_success"]="Pastas de Mídia e Miniatura <b>#GLOBALS[whichDir]#</b> foram excluídas.";
 $pgv_lang["delete_file"]="Excluir Arquivo";
 $pgv_lang["delete_repo"]="Excluir Reposição";
-$pgv_lang["directory_not_empty"]="Pasta não está vazia.";
+$pgv_lang["directory_not_empty"]="Pasta <span style=\"font-size:larger\">#GLOBALS[whichDir]#</span> não está vazia.";
+$pgv_lang["directory_not_mt"]="Pasta #GLOBALS[whichDir]# não está vazia.";
 $pgv_lang["directory_not_exist"]="Pasta inexistente.";
 $pgv_lang["error_remote"]="Site remoto selecionado.";
 $pgv_lang["error_same"]="Você selecionou o mesmo site.";
@@ -199,18 +209,25 @@ $pgv_lang["lbl_server_list"]="Usar um site que já exista.";
 $pgv_lang["lbl_type_server"]="Informe novo site.";
 $pgv_lang["link_as_child"]="Ligar esta pessoa como Filho de uma Família da árvore";
 $pgv_lang["link_as_husband"]="Ligar esta pessoa como Marido de uma Família da árvore";
-$pgv_lang["link_success"]="Ligação incluída com sucesso";
+$pgv_lang["link_success"]="Ligação incluída";
 $pgv_lang["link_to_existing_media"]="Ligar a uma mídia existente";
 $pgv_lang["max_media_depth"]="O máximo de níveis da pasta Mídia é de #MEDIA_DIRECTORY_LEVELS#";
 $pgv_lang["max_upload_size"]="Tamanho máximo para envio:";
-$pgv_lang["media_deleted"]="Pasta de Mídia excluída com sucesso.";
-$pgv_lang["media_exists"]="Arquivo de Mídia já existe.";
+$pgv_lang["media_deleted"]="Pasta <b>#GLOBALS[whichDir]#</b> excluída.";
+$pgv_lang["media_not_deleted"]		= "Pasta <span style=\"font-size:larger\">#GLOBALS[whichDir]#</span> não foi removido.";
+$pgv_lang["media_cant_delete"]		= "Pasta #GLOBALS[whichDir]# não foi removido.";
+$pgv_lang["media_exists"]="Arquivo de Mídia <span style=\"font-size:larger\">#GLOBALS[whichFile]#</span> já existe.";
 $pgv_lang["media_file"]="Arquivo de Mídia a enviar";
-$pgv_lang["media_file_deleted"]="Arquivo de Mídia excluído com sucesso.";
+$pgv_lang["media_file_deleted"]="Arquivo de Mídia <b>#GLOBALS[whichFile]#</b> excluído.";
+$pgv_lang["media_file_not_deleted"]	= "Não foi possível excluir o arquivo de mídia <span style=\"font-size:larger\">#GLOBALS[whichFile]#</span>.";
+$pgv_lang["media_file_cant_delete"]	= "Não foi possível excluir o arquivo de mídia #GLOBALS[whichFile]#.";
 $pgv_lang["media_file_moved"]		= "Arquivo de Mídia movido.";
 $pgv_lang["media_file_not_moved"]="Não foi possível mover o arquivo de Mídia.";
 $pgv_lang["media_file_not_renamed"]="Não foi possível mover nem renomear a Mídia.";
-$pgv_lang["media_thumb_exists"]="Miniatura da Mídia já existe.";
+$pgv_lang["media_thumb_exists"]="Miniatura <span style=\"font-size:larger\">#GLOBALS[whichFile]#</span> já existe.";
+$pgv_lang["media_thumb_deleted"]	= "Miniatura <b>#GLOBALS[whichFile]#</b> excluída.";
+$pgv_lang["media_thumb_not_deleted"]	= "Não foi possível excluir a miniatura <span style=\"font-size:larger\">#GLOBALS[whichFile]#</span>.";
+$pgv_lang["media_thumb_cant_delete"]	= "Não foi possível excluir a miniatura #GLOBALS[whichFile]#.";
 $pgv_lang["multiple_gedcoms"]="Esta árvore contém ligações para outra árvore genealógica neste mesmo servidor. Antes de excluir, mover ou renomear a árvore, é necessário excluir estas ligações.";
 $pgv_lang["must_provide"]="Informe um ";
 $pgv_lang["name_search"]="Nome:";
@@ -219,7 +236,7 @@ $pgv_lang["new_shared_note_created"] 	= "Nova Nota partilhada criado com sucesso
 $pgv_lang["shared_note_updated"] 	= "Nota partilhada atualizada com sucesso.";
 $pgv_lang["new_source_created"]="Nova fonte criada com sucesso.";
 $pgv_lang["no_changes"]="Não há mudança necessária a ser revisada.";
-$pgv_lang["no_known_servers"]="Nenhum Servidor conhecido<br />Nenhum resultado será encontrado";
+$pgv_lang["no_known_servers"]="Nenhum Servidor conhecido. Nenhum resultado será encontrado";
 $pgv_lang["no_temple"]="No Temple - Living Ordinance";
 $pgv_lang["no_upload"]="O envio de Mídia não é permitido porque esta opção está desabilitada ou porque a pasta de Mídia não possui permissão de escrita.";
 $pgv_lang["paste_id_into_field"]="Paste the following source ID into your editing fields to reference this source ";
@@ -227,8 +244,6 @@ $pgv_lang["paste_rid_into_field"]="Para referenciar esta Reposição, Cole a ID 
 $pgv_lang["record_marked_deleted"]="Este registro foi marcado para ser excluido após a aprovação do Administrador.";
 $pgv_lang["replace_with"]= "Substituir por";
 $pgv_lang["show_changes"]="Este registro foi atualizado. Clique aqui para exibir as alterações.";
-$pgv_lang["thumb_genned"]="Miniatura #thumbnail# gerada automaticamente.";
-$pgv_lang["thumbgen_error"]="Miniatura #thumbnail# não foi gerada.";
 $pgv_lang["thumbnail"]="Miniatura";
 $pgv_lang["title_remote_link"]="Adicionar Ligação Remota";
 $pgv_lang["undo"]="Desfazer";

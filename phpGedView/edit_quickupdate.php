@@ -3,7 +3,7 @@
 * PopUp Window to provide users with a simple quick update form.
 *
 * phpGedView: Genealogy Viewer
-* Copyright (C) 2002 to 2009  PGV Development Team.  All rights reserved.
+* Copyright (C) 2002 to 2020  PGV Development Team.  All rights reserved.
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -283,6 +283,7 @@ if ($action=="update") {
 
 	$updated = false;
 	$error = "";
+	$allOK = true;		// false when any errors occurred (empty $error is not a valid indicator)
 	$oldgedrec = $gedrec;
 	//-- check for name update
 	if (isset($_REQUEST['GIVN'])) $GIVN = $_REQUEST['GIVN'];
@@ -432,11 +433,17 @@ if ($action=="update") {
 	if (!empty($_FILES["FILE"]['tmp_name'])) {
 		if (!move_uploaded_file($_FILES['FILE']['tmp_name'], $MEDIA_DIRECTORY.basename($_FILES['FILE']['name']))) {
 			$error .= "<br />".$pgv_lang["upload_error"]."<br />".file_upload_error_text($_FILES['FILE']['error']);
-		}
-		else {
+		} else {
+			if (!empty($error)) {
+				// Any queued error messages have to be printed now to preserve correct sequence
+				echo '<span class="error">', $error, '</span>';
+				$error = '';
+				$allOK = false;
+			}
 			$filename = $MEDIA_DIRECTORY.basename($_FILES['FILE']['name']);
 			$thumbnail = $MEDIA_DIRECTORY."thumbs/".basename($_FILES['FILE']['name']);
-			generate_thumbnail($filename, $thumbnail);
+			$thumbResult = generate_thumbnail($filename, $thumbnail, true);  	// Generate thumbnail & print suitable success / fail message
+			if ($thumbResult != 0) $allOK = false;
 
 			if (isset($_REQUEST['TITL'])) $TITL = $_REQUEST['TITL'];
 			$objrec = "0 @new@ OBJE\n";
@@ -1253,7 +1260,7 @@ if ($action=="update") {
 		$i++;
 	}
 
-	if ($updated && empty($error)) {
+	if ($updated && $allOK) {
 		echo $pgv_lang["update_successful"], "<br />";
 		AddToChangeLog("Quick update for $pid by >".PGV_USER_NAME."<");
 		//echo "<pre>$gedrec</pre>";
@@ -1261,6 +1268,8 @@ if ($action=="update") {
 	}
 	if (!empty($error)) {
 		echo "<span class=\"error\">", $error, "</span>";
+		$error = '';
+		$allOK = false;
 	}
 
 	if ($closewin) {

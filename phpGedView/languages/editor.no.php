@@ -3,7 +3,7 @@
  * Norwegian texts
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2011  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2020  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -48,9 +48,6 @@ $pgv_lang["append"]				= "Legg til en ny oppføring";
 $pgv_lang["review_changes"]		= "Vis endringer i slektsbasen";
 $pgv_lang["remove_object"]			= "Fjern objekt";
 $pgv_lang["remove_links"]			= "Fjern koblinger";
-$pgv_lang["media_not_deleted"]	= "Media-mappen ble ikke slettet.";
-$pgv_lang["thumbs_not_deleted"]	= "Mappen for minityrbildene ble ikke slettet.";
-$pgv_lang["thumbs_deleted"]		= "Mappen for minityrbildene er nå slettet.";
 $pgv_lang["show_thumbnail"]		= "Vis miniatyrbilde(r)";
 $pgv_lang["link_media"]			= "Kobling av Media";
 $pgv_lang["to_person"]			= "Til person";
@@ -89,10 +86,22 @@ $pgv_lang["main_media_fail0"]			= "Hovedmediafilen <b>#GLOBALS[oldMediaFolder]##
 $pgv_lang["main_media_fail1"]			= "Klarte ikke å gi hovedmediafilen <b>#GLOBALS[oldMediaName]#</b> det nye navnet <b>#GLOBALS[newMediaName]#</b>.";
 $pgv_lang["main_media_fail2"]			= "Klarte ikke å flytte hovedmediafilen <b>#GLOBALS[oldMediaName]#</b> fra <b>#GLOBALS[oldMediaFolder]#</b> til <b>#GLOBALS[newMediaFolder]#</b>.";
 $pgv_lang["main_media_fail3"]			= "Klarte ikke å flytte eller å gi nytt navn til hovedmediafilen fra <b>#GLOBALS[oldMediaFolder]##GLOBALS[oldMediaName]#</b> til <b>#GLOBALS[newMediaFolder]##GLOBALS[newMediaName]#</b>.";
-$pgv_lang["resn_disabled"]				= "Merk: Du må slå på 'Bruk GEDCOM (RESN) Personvern' funksjonaliteten for at denne settingen skal ha effekt.";
+$pgv_lang["resn_disabled"]				= "Merk: Du må slå på &laquo;#pgv_lang[PRIVACY_BY_RESN]#&raquo; funksjonaliteten for at denne settingen skal ha effekt.";
 $pgv_lang["thumb_media_ok1"]			= "Miniatyrbildefilen <b>#GLOBALS[oldMediaName]#</b> heter nå <b>#GLOBALS[newMediaName]#</b>.";
 $pgv_lang["thumb_media_ok2"]			= "Miniatyrbildefilen <b>#GLOBALS[oldMediaName]#</b> er nå flyttet fra <b>#GLOBALS[oldThumbFolder]#</b> til <b>#GLOBALS[newThumbFolder]#</b>.";
 $pgv_lang["thumb_media_ok3"]			= "Miniatyrbildefilen er flyttet eller gitt nytt navn fra <b>#GLOBALS[oldThumbFolder]##GLOBALS[oldMediaName]#</b> til <b>#GLOBALS[newThumbFolder]##GLOBALS[newMediaName]#</b>.";
+$pgv_lang["thumb_create_ok0a"]			= "Miniatyrbilde <b>#GLOBALS[imageThumbnail]#</b> opprettet automatisk.<br />";
+$pgv_lang["thumb_create_ok0b"]			= "Miniatyrbilde #GLOBALS[imageThumbnail]# opprettet automatisk.";
+$pgv_lang["thumb_create_fail0a"]		= "Miniatyrbilde <span style=\"font-size:larger\">#GLOBALS[imageThumbnail]#</span> kunne ikke opprettes automatisk : ";
+$pgv_lang["thumb_create_fail0b"]		= "Miniatyrbilde #GLOBALS[imageThumbnail]# kunne ikke opprettes automatisk. Feil kode : ";
+$pgv_lang["thumb_create_fail1"]			= "Denne funksjonen er deaktivert i konfigurasjonen GEDCOM.";
+$pgv_lang["thumb_create_fail2"]			= "Destinasjonskatalogen er ikke skrivbar.";
+$pgv_lang["thumb_create_fail3"]			= "Denne funksjonen støtter ikke bildetypen <span style=\"font-size:larger\">#GLOBALS[imageType]#</span>.";
+$pgv_lang["thumb_create_fail4"]			= "Destinasjonskatalogen kan ikke opprettes.";
+$pgv_lang["thumb_create_fail5"]			= "Inngangsbildet <span style=\"font-size:larger\">#GLOBALS[imageFilename]#</span> eksisterer ikke eller kan ikke leses.";
+$pgv_lang["thumb_create_fail6"]			= "Størrelsen på inngangsbildet <span style=\"font-size:larger\">#GLOBALS[imageFilename]#</span> kan ikke bestemmes.";
+$pgv_lang["thumb_create_fail7"]			= "Det er ikke nok ledig minne.<br />Reduser størrelsen på inngangsbildet eller juster minnetildelingen i Program-innstillinger, Trinn 4, Avancerte instillinger.";
+$pgv_lang["thumb_create_fail8"]			= "Inngangsbildet <span style=\"font-size:larger\">#GLOBALS[imageFilename]#</span> er defekt.";
 $pgv_lang["thumb_media_fail0"]			= "Miniatyrbildefilen <b>#GLOBALS[oldThumbFolder]##GLOBALS[oldMediaName]#</b> finnes ikke.";
 $pgv_lang["thumb_media_fail1"]			= "Klarte ikke å gi miniatyrbildefilen <b>#GLOBALS[oldMediaName]#</b> det nye navnet <b>#GLOBALS[newMediaName]#</b>.";
 $pgv_lang["thumb_media_fail2"]			= "Klarte ikke å flytte miniatyrbildefilen <b>#GLOBALS[oldMediaName]#</b> fra <b>#GLOBALS[oldThumbFolder]#</b> til <b>#GLOBALS[newThumbFolder]#</b>.";
@@ -148,10 +157,11 @@ $pgv_lang["current_person"]         = "Samme som nåværende";
 $pgv_lang["date"]				= "Dato";
 $pgv_lang["deathdate_search"]		= "Dødsdato: ";
 $pgv_lang["deathplace_search"]		= "Dødssted: ";
-$pgv_lang["delete_dir_success"]	= "Mappene for media og minityrbilder er nå slettet.";
+$pgv_lang["delete_dir_success"]	= "Mappene for media og minityrbilder <b>#GLOBALS[whichDir]#</b> er nå slettet.";
 $pgv_lang["delete_file"]		= "Slett fil";
 $pgv_lang["delete_repo"]			= "Slett oppbevaringssted";
-$pgv_lang["directory_not_empty"]	= "Mappen er ikke tom.";
+$pgv_lang["directory_not_empty"]	= "Mappen <span style=\"font-size:larger\">#GLOBALS[whichDir]#</span> er ikke tom.";
+$pgv_lang["directory_not_mt"]		= "Mappen #GLOBALS[whichDir]# er ikke tom.";
 $pgv_lang["directory_not_exist"]	= "Mappen finnes ikke.";
 $pgv_lang["error_remote"]           = "Du har valgt et eksternt nettsted.";
 $pgv_lang["error_same"]             = "Du har valgt det samme nettstedet.";
@@ -195,21 +205,28 @@ $pgv_lang["link_success"]			= "Lenken ble lagt til";
 $pgv_lang["link_to_existing_media"]		= "Lenke til et eksisterende Mediaobjekt";
 $pgv_lang["max_media_depth"]		= "Du kan ikke ha fler enn #GLOBALS[MEDIA_DIRECTORY_LEVELS]# undermapper for media";
 $pgv_lang["max_upload_size"]		= "Maks størrelse for opplasting: ";
-$pgv_lang["media_deleted"]			= "Mediamappe ble slettet.";
-$pgv_lang["media_exists"]			= "Mediafilen finnes fra før.";
+$pgv_lang["media_deleted"]			= "Mediamappe <b>#GLOBALS[whichDir]#</b> ble slettet.";
+$pgv_lang["media_not_deleted"]		= "Mappen <span style=\"font-size:larger\">#GLOBALS[whichDir]#</span> ikke fjernet.";
+$pgv_lang["media_cant_delete"]		= "Mappen #GLOBALS[whichDir]# ikke fjernet.";
+$pgv_lang["media_exists"]			= "Mediafilen <span style=\"font-size:larger\">#GLOBALS[whichFile]#</span> finnes fra før.";
 $pgv_lang["media_file"] 			= "Mediafil for opplasting";
-$pgv_lang["media_file_deleted"]		= "Mediafil ble slettet.";
+$pgv_lang["media_file_deleted"]		= "Mediafil <b>#GLOBALS[whichFile]#</b> ble slettet.";
+$pgv_lang["media_file_not_deleted"]	= "Mediefilen <span style=\"font-size:larger\">#GLOBALS[whichFile]#</span> kunne ikke slettes.";
+$pgv_lang["media_file_cant_delete"]	= "Mediefilen #GLOBALS[whichFile]# kunne ikke slettes.";
 $pgv_lang["media_file_moved"]			= "Mediafilen er flyttet.";
 $pgv_lang["media_file_not_moved"]	= "Mediafilen kunne ikke flyttes.";
 $pgv_lang["media_file_not_renamed"]	= "Klarte ikke å flytte eller å gi mediafilen et nytt navn.";
-$pgv_lang["media_thumb_exists"]	= "Media-miniatyrbilde finnes fra før.";
+$pgv_lang["media_thumb_exists"]		= "Miniatyrbilde <span style=\"font-size:larger\">#GLOBALS[whichFile]#</span> eksisterer allerede.";
+$pgv_lang["media_thumb_deleted"]	= "Miniatyrbilde <b>#GLOBALS[whichFile]#</b> slettet.";
+$pgv_lang["media_thumb_not_deleted"]	= "Miniatyrbilde <span style=\"font-size:larger\">#GLOBALS[whichFile]#</span> kunne ikke slettes.";
+$pgv_lang["media_thumb_cant_delete"]	= "Miniatyrbilde #GLOBALS[whichFile]# kunne ikke slettes.";
 $pgv_lang["multiple_gedcoms"]	= "Denne filen har en kobling til en annen slektsbase på dette nettstedet.  Filen kan derfor ikke slettes, flyttes eller gis nytt navn før disse koblingene er fjernet.";
 $pgv_lang["must_provide"]		= "Du må sørge for et ";
 $pgv_lang["name_search"]			= "Navn: ";
 $pgv_lang["new_repo_created"]		= "Nytt oppbevaringssted er opprettet";
 $pgv_lang["new_source_created"]	= "Den nye kilden er lagret!";
 $pgv_lang["no_changes"]			= "Det er ikke noen endringer som det er nødvendig å vise på nytt.";
-$pgv_lang["no_known_servers"]		= "Ingen kjente tjenere<br />Ingen resultater vil vises";
+$pgv_lang["no_known_servers"]		= "Ingen kjente tjenere. Ingen resultater vil vises";
 $pgv_lang["no_temple"]			= "Ingen Tempel-Living tilordning";
 $pgv_lang["no_upload"]			= "Klarte ikke å laste opp (upload) mediafiler fordi multi-media-filer ikke er aktivert eller fordi mediamappen/-katalogen ikke har skriverettighet.";
 $pgv_lang["paste_id_into_field"]= "Legg inn følgende kilde-ID inn i endringsfeltet som en referanse til denne kilden ";
@@ -218,8 +235,6 @@ $pgv_lang["photo_replace"] 			= "Ønsker du å erstatte et eldre bilde med dette
 $pgv_lang["record_marked_deleted"]		= "Denne oppføringen er merket for sletting og venter på godkjenning av admin.";
 $pgv_lang["replace_with"]			= "Erstatt med";
 $pgv_lang["show_changes"]		= "Denne oppføringen er blitt oppdatert. Klikk her for å se endring(ene).";
-$pgv_lang["thumb_genned"]		= "Miniatyrbilde(r) er lagd automatisk.";
-$pgv_lang["thumbgen_error"]		= "Klarte ikke å lage miniatyrbilde(r) for ";
 $pgv_lang["thumbnail"]			= "Miniatyrbilde(r)";
 $pgv_lang["title_remote_link"]      = "Legg til ekstern kobling";
 $pgv_lang["undo"]				= "Angre";

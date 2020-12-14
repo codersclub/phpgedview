@@ -3,7 +3,7 @@
  * Allow admin users to upload media files using a web interface.
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2011  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2020  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -26,7 +26,6 @@
 
 define('PGV_SCRIPT_NAME', 'uploadmedia.php');
 require './config.php';
-require_once PGV_ROOT.'includes/functions/functions_mediadb.php';
 
 /**
  * This functions checks if an existing directory is physically writeable

@@ -3,7 +3,7 @@
  * Popup window that will allow a user to search for a family id, person id
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2009  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2020  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -515,7 +515,7 @@ if ($action=="filter") {
 		 */
 		if ($create=="thumbnail") {
 			$filename = $_REQUEST["file"];
-			generate_thumbnail($directory.$filename, $thumbdir.$filename);
+			generate_thumbnail($directory.$filename, $thumbdir.$filename, true);
 		}
 
 		echo "<br />";

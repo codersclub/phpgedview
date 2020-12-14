@@ -3,7 +3,7 @@
  * French language file for PhpGedView
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2019  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2020  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -115,14 +115,11 @@ $pgv_lang["log_message"]                = "Message de log";
 $pgv_lang["searchtype"]                 = "Type de recherche";
 $pgv_lang["query"]                      = "Requête";
 $pgv_lang["user"]                       = "Utilisateur authentifié";
-$pgv_lang["thumbnail_deleted"]          = "Vignette supprimée.";
-$pgv_lang["thumbnail_not_deleted"]      = "Ce fichier vignette est protégé et ne peut pas être supprimé sans autorisation.";
 $pgv_lang["step2"]                      = "Étape 2/4 :";
 $pgv_lang["refresh"]                    = "Rafraîchir";
 $pgv_lang["move_file_success"]          = "Le fichier MultiMédia et la vignette ont été déplacés.";
 $pgv_lang["media_folder_corrupt"]       = "Le dossier MultiMédia est corrompu.";
-$pgv_lang["media_file_not_deleted"]     = "Ce fichier MultiMédia est protégé et ne peut pas être supprimé sans autorisation.";
-$pgv_lang["gedcom_deleted"]             = "GEDCOM [#GED#] supprimé avec succès.";
+$pgv_lang["gedcom_deleted"]             = "GEDCOM [#GED#] supprimé.";
 $pgv_lang["gedadmin"]                   = "Administrateur GEDCOM";
 $pgv_lang["full_name"]                  = "Prénom et nom";
 $pgv_lang["error_header"]               = "Le fichier GEDCOM #GEDCOM# n'existe pas à l'emplacement indiqué.";
@@ -343,7 +340,7 @@ $pgv_lang["USE_REGISTRATION_MODULE"]    = "Permettre aux utilisateurs de demande
 $pgv_lang["user_auto_accept"]           = "Accepter automatiquement les modifications faites par cet utilisateur";
 $pgv_lang["user_contact_method"]        = "Préférence pour les contacts";
 $pgv_lang["user_create_error"]          = "Impossible d'ajouter cet utilisateur. Revenir en arrière et ré-essayer.";
-$pgv_lang["user_created"]               = "Nouvel utilisateur ajouté avec succès.";
+$pgv_lang["user_created"]               = "Nouvel utilisateur ajouté.";
 $pgv_lang["user_default_tab"]           = "Onglet par défaut sur les fiches individuelles";
 $pgv_lang["user_path_length"]           = "Degré de parenté max";
 $pgv_lang["user_relationship_priv"]     = "Limiter l'accès aux proches";
