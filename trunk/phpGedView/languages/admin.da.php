@@ -3,7 +3,7 @@
  * Danish language file for PhpGedView
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2019  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2020  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -55,13 +55,10 @@ $pgv_lang["log_message"]			= "Log besked";
 $pgv_lang["searchtype"]				= "Søgetype";
 $pgv_lang["query"]					= "Forespørgsel";
 $pgv_lang["user"]					= "Godkendt bruger";
-$pgv_lang["thumbnail_deleted"]		= "Miniaturebilledet blev slettet.";
-$pgv_lang["thumbnail_not_deleted"]	= "Miniaturebilledet kunne ikke slettes.";
 $pgv_lang["step2"]					= "Del 2 af 4:";
 $pgv_lang["refresh"]				= "Opdater";
 $pgv_lang["move_file_success"]		= "Mediefiler og miniaturebilleder blev flyttet.";
 $pgv_lang["media_folder_corrupt"]	= "Folderen med mediefiler er ødelagt.";
-$pgv_lang["media_file_not_deleted"]	= "Mediefil kunne ikke slettes.";
 $pgv_lang["gedcom_deleted"]		= "GEDCOM-filen [#GED#] er nu slettet.";
 $pgv_lang["gedadmin"]				= "GEDCOM administrator";
 $pgv_lang["full_name"]				= "Fulde navn";

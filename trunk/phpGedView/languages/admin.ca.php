@@ -3,7 +3,7 @@
  * Catalan language file for PhpGedView
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2019  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2020  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -54,14 +54,11 @@ $pgv_lang["log_message"]			= "Missatge de registre";
 $pgv_lang["searchtype"]				= "Tipus de cerca";
 $pgv_lang["query"]					= "Pregunta";
 $pgv_lang["user"]					= "Usuari amb accés";
-$pgv_lang["thumbnail_deleted"]		= "Eliminat correctament el fitxer miniatura";
-$pgv_lang["thumbnail_not_deleted"]	= "No s'ha pogut eliminar el fitxer miniatura";
 $pgv_lang["step2"]					= "Pas 2 de 4:";
 $pgv_lang["refresh"]				= "Refresca";
-$pgv_lang["move_file_success"]		= "S'han canviat correctament els fitxers multimèdia i les miniatures.";
+$pgv_lang["move_file_success"]		= "S'han canviat els fitxers multimèdia i les miniatures.";
 $pgv_lang["media_folder_corrupt"]	= "S'ha malmès la carpeta de multimèdia.";
-$pgv_lang["media_file_not_deleted"]	= "El fitxer multimèdia no pot eliminar-se.";
-$pgv_lang["gedcom_deleted"] 		= "S'ha eliminat correctament el fitxer GEDCOM [#GED#].";
+$pgv_lang["gedcom_deleted"] 		= "S'ha eliminat el fitxer GEDCOM [#GED#].";
 $pgv_lang["gedadmin"]				= "Administrador GEDCOM";
 $pgv_lang["full_name"]				= "Nom complet";
 $pgv_lang["error_header"]			= "No hi ha el fitxer GEDCOM, <b>#GEDCOM#</b> al lloc especificat.";

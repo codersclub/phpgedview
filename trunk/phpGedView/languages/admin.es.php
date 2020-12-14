@@ -3,7 +3,7 @@
  * Spanish language file for PhpGedView
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2019  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2020  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -144,13 +144,10 @@ $pgv_lang["editors"]				= "Modificadores";
 $pgv_lang["gedcom_admins"]			= "Administradores del GEDCOM";
 $pgv_lang["site_admins"]			= "Administradores del sitio";
 $pgv_lang["nobody"]					= "Nadie";
-$pgv_lang["thumbnail_deleted"]		= "Archivo de miniatura borrado con éxito.";
-$pgv_lang["thumbnail_not_deleted"]	= "No se pudo borrar el archivo de miniatura.";
 $pgv_lang["step2"]					= "Paso 2 de 4:";
 $pgv_lang["refresh"]				= "Refrescar";
 $pgv_lang["move_file_success"]		= "Archivos principal y miniatura movidos con éxito.";
 $pgv_lang["media_folder_corrupt"]	= "La carpeta de archivos audiovisuales está corrupta.";
-$pgv_lang["media_file_not_deleted"]	= "No se pudo borrar el archivo audiovisual.";
 $pgv_lang["gedcom_deleted"] 		= "GEDCOM [#GED#] eliminado correctamente.";
 $pgv_lang["gedadmin"]				= "Administrador del GEDCOM";
 $pgv_lang["full_name"]				= "Nombre completo";

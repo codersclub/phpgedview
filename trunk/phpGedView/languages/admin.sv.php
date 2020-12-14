@@ -3,7 +3,7 @@
  * Swedish language file for PhpGedView
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2019  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2020  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -35,13 +35,10 @@ $pgv_lang["label_timedban_servers"]	= "Tidsbegränsad åtkomstavslag";
 $pgv_lang["enter_banexpiry"]		= "Ange utgångsdatum och tidpunkt för tidsbegränsad åtkomstavslag så här:<br />2012.12.31@23:59";
 $pgv_lang["enter_comment"]	= "Skriva in en kommentar här.";
 $pgv_lang["user"]					= "Inloggade användare";
-$pgv_lang["thumbnail_deleted"]		= "Miniatyrbild raderades.";
-$pgv_lang["thumbnail_not_deleted"]	= "Miniatyrbild kunde inte raderas.";
 $pgv_lang["step2"]				= "Steg 2 av 4:";
 $pgv_lang["refresh"]				= "Ladda om";
 $pgv_lang["move_file_success"]		= "Media- och miniatyrfiler flyttades korrekt.";
 $pgv_lang["media_folder_corrupt"]	= "Mediamappen är skadad.";
-$pgv_lang["media_file_not_deleted"]	= "Mediafil kunde inte raderas.";
 $pgv_lang["gedcom_deleted"]		= "Radering av GEDCOM [#GED#] lyckades.";
 $pgv_lang["gedadmin"]				= "GEDCOM-administratör";
 $pgv_lang["full_name"]			= "Fullständigt namn";

@@ -666,17 +666,15 @@ function thumbnail_file($filename, $generateThumb = true, $overwrite = false) {
 		if (!empty($thumbnail)) return $thumbnail;
 	}
 
-	if (!$generateThumb && file_exists($thumbDir . $thumbName)) {
+	if (!$generateThumb && file_exists($thumbDir . $thumbName)) 
 		return $thumbDir . $thumbName;
-	}
 
 	if (!$overwrite && media_exists($thumbDir . $thumbName))
 		return $thumbDir . $thumbName;
 
-	if ($AUTO_GENERATE_THUMBS && $generateThumb) {
-		if (generate_thumbnail($mainDir . $thumbName, $thumbDir . $thumbName)) {
-			return $thumbDir . $thumbName;
-		}
+	if ($generateThumb) {
+		$result = generate_thumbnail($mainDir . $thumbName, $thumbDir . $thumbName, false);		// Generate the thumbnail, but do it quietly
+		if ($result == 0) return $thumbDir . $thumbName;		// Success!
 	}
 
 	// Thumbnail doesn't exist and could not be generated:
@@ -810,19 +808,20 @@ function check_media_depth($filename, $truncate = "FRONT", $noise = "VERBOSE") {
 	$n = $nStart;
 	while ($n < $nEnd) {
 		$folderName .= $folderList[$n];
-		if (!is_dir(filename_decode($MEDIA_DIRECTORY . $folderName))) {
-			if (!mkdir(filename_decode($MEDIA_DIRECTORY . $folderName))) {
+		$fullName = $MEDIA_DIRECTORY . $folderName;
+		if (!@is_dir(filename_decode($fullName))) {
+			if (!@mkdir(filename_decode($fullName))) {
 				if ($noise == "VERBOSE") {
-					print "<div class=\"error\">" . $pgv_lang["folder_no_create"] . $MEDIA_DIRECTORY . $folderName . "</div>";
+					echo '<div class="error">', $pgv_lang["folder_no_create"], " : {$fullName}</div>";
 				}
 			} else {
 				if ($noise == "VERBOSE") {
-					print $pgv_lang["folder_created"] . ": " . $MEDIA_DIRECTORY . $folderName . "/<br />";
+					echo $pgv_lang["folder_created"], " : {$fullName}<br />";
 				}
-				$fp = @ fopen(filename_decode($MEDIA_DIRECTORY . $folderName . "/index.php"), "w+");
+				$fp = @ fopen(filename_decode($fullName . "/index.php"), "w+");
 				if (!$fp) {
 					if ($noise == "VERBOSE") {
-						print "<div class=\"error\">" . $pgv_lang["security_no_create"] . $MEDIA_DIRECTORY . $folderName . "</div>";
+						echo '<div class="error">', $pgv_lang["security_no_create"], " : {$fullName}</div>";
 					}
 				} else {
 					fwrite($fp, "<?php\r\n");
@@ -833,20 +832,22 @@ function check_media_depth($filename, $truncate = "FRONT", $noise = "VERBOSE") {
 				}
 			}
 		}
-		if (is_dir(filename_decode($MEDIA_DIRECTORY . "thumbs"))) {
-			if (!is_dir(filename_decode($MEDIA_DIRECTORY . "thumbs/" . $folderName))) {
-				if (!mkdir(filename_decode($MEDIA_DIRECTORY . "thumbs/" . $folderName))) {
+		$fullName = $MEDIA_DIRECTORY . "thumbs";
+		if (@is_dir(filename_decode($fullName))) {
+			$fullName = $MEDIA_DIRECTORY . "thumbs/" . $folderName;
+			if (!@is_dir(filename_decode($fullName))) {
+				if (!@mkdir(filename_decode($fullName))) {
 					if ($noise == "VERBOSE") {
-						print "<div class=\"error\">" . $pgv_lang["folder_no_create"] . $MEDIA_DIRECTORY . "thumbs/" . $folderName . "</div>";
+						echo '<div class="error">', $pgv_lang["folder_no_create"], " : {$fullName}</div>";
 					}
 				} else {
 					if ($noise == "VERBOSE") {
-						print $pgv_lang["folder_created"] . ": " . $MEDIA_DIRECTORY . "thumbs/" . $folderName . "/<br />";
+						echo $pgv_lang["folder_created"], " : {$fullName}<br />";
 					}
-					$fp = @ fopen(filename_decode($MEDIA_DIRECTORY . "thumbs/" . $folderName . "/index.php"), "w+");
+					$fp = @ fopen(filename_decode($fullName . "/index.php"), "w+");
 					if (!$fp) {
 						if ($noise == "VERBOSE") {
-							print "<div class=\"error\">" . $pgv_lang["security_no_create"] . $MEDIA_DIRECTORY . "thumbs/" . $folderName . "</div>";
+							echo '<div class="error">', $pgv_lang["security_no_create"], " : {$fullName}</div>";
 						}
 					} else {
 						fwrite($fp, "<?php\r\n");
@@ -944,6 +945,7 @@ function process_uploadMedia_form() {
 			@mkdirs($destThumbFolder);
 
 			$error = "";
+			$allOK = true;		// Empty $error is not always an indication of success
 
 			// Determine file name on server
 			$fileName = trim(trim(safe_POST('filename'.$i, PGV_REGEX_NOSCRIPT)), '/');
@@ -972,6 +974,7 @@ function process_uploadMedia_form() {
 				if (!move_uploaded_file($_FILES["mediafile".$i]["tmp_name"], filename_decode($destFolder.$mediaFile))) {
 					// the file cannot be copied
 					$error .= $pgv_lang["upload_error"]."<br />".file_upload_error_text($_FILES["mediafile".$i]["error"])."<br />";
+					$allOK = false;
 				} else {
 					@chmod(filename_decode($destFolder.$mediaFile), PGV_PERM_FILE);
 					AddToLog("Media file {$folderName}{$mediaFile} uploaded");
@@ -982,51 +985,40 @@ function process_uploadMedia_form() {
 				if (!move_uploaded_file($_FILES["thumbnail".$i]["tmp_name"], filename_decode($destThumbFolder.$mediaFile))) {
 					// the file cannot be copied
 					$error .= $pgv_lang["upload_error"]."<br />".file_upload_error_text($_FILES["thumbnail".$i]["error"])."<br />";
+					$allOK = false;
 				} else {
 					@chmod(filename_decode($destThumbFolder.$mediaFile), PGV_PERM_FILE);
 					AddToLog("Media file {$thumbFolderName}{$mediaFile} uploaded");
 				}
 			}
-			if ($error=="" && empty($_FILES["mediafile".$i]["name"]) && !empty($_FILES["thumbnail".$i]["name"])) {
+			if ($allOK && empty($_FILES["mediafile".$i]["name"]) && !empty($_FILES["thumbnail".$i]["name"])) {
 				// Copy user-supplied thumbnail file into the main destination directory
 				if (!copy(filename_decode($destThumbFolder.$mediaFile), filename_decode($destFolder.$mediaFile))) {
 					// the file cannot be copied
 					$error .= $pgv_lang["upload_error"]."<br />".file_upload_error_text($_FILES["thumbnail".$i]["error"])."<br />";
+					$allOK = false;
 				} else {
 					@chmod(filename_decode($folderName.$mediaFile), PGV_PERM_FILE);
 					AddToLog("Media file {$folderName}{$mediaFile} copied from {$thumbFolderName}{$mediaFile}");
 				}
 			}
-			if ($error=="" && !empty($_FILES["mediafile".$i]["name"]) && empty($_FILES["thumbnail".$i]["name"])) {
+			if ($allOK && !empty($_FILES["mediafile".$i]["name"]) && empty($_FILES["thumbnail".$i]["name"])) {
 				if (safe_POST('genthumb'.$i, 'yes', 'no') == 'yes') {
 					// Generate thumbnail from main image
-					$parts = pathinfo_utf($mediaFile);
-					if (!empty($parts["extension"])) {
-						$ext = strtolower($parts["extension"]);
-						if (isImageTypeSupported($ext)) {
-							$thumbnail = $thumbFolderName.$mediaFile;
-							$okThumb = generate_thumbnail($folderName.$mediaFile, $thumbnail, "OVERWRITE");
-							if (!$okThumb) {
-								$error .= print_text("thumbgen_error", 0, 1);
-							} else {
-								print_text("thumb_genned");
-								print "<br />";
-								AddToLog("Media thumbnail {$thumbnail} generated");
-							}
-						}
-					}
+					$filename = $folderName.$mediaFile;
+					$thumbnail = $thumbFolderName.$mediaFile;
+					$result = generate_thumbnail($filename, $thumbnail, true);		// Generate thumbnail & print suitable success / fail message
+					if ($result != 0) $allOK = false;		// Thumbnail generation failed
 				}
 			}
-			// Let's see if there are any errors generated and print it
-			if (!empty($error)) echo '<span class="error">', $error, "</span><br />\n";
-			// No errors found then tell the user all is successful
-			else {
-				print $pgv_lang["upload_successful"]."<br /><br />";
-				$imgsize = findImageSize($folderName.$mediaFile);
-				$imgwidth = $imgsize[0]+40;
-				$imgheight = $imgsize[1]+150;
-				print "<a href=\"#\" onclick=\"return openImage('".encode_url($folderName.$mediaFile)."', $imgwidth, $imgheight);\">".$mediaFile."</a>";
-				print"<br /><br />";
+			// If there are any errors, print them now
+			if (!empty($error)) {
+				echo '<span class="error">', $error, "</span><br />\n";
+				$allOK = false;
+			// No errors found: tell the user all is successful
+			} else if ($allOK) {
+				$filename = str_replace($MEDIA_DIRECTORY, '', $folderName.$mediaFile);
+				echo $pgv_lang["upload_successful"], " : <b>{$filename}</b><br />";
 			}
 		}
 	}
@@ -1150,7 +1142,7 @@ function show_mediaUpload_form($URL='media.php') {
 
 	// Print the Submit button for uploading the media
 	echo '<tr><td class="topbottombar" colspan="2">';
-		echo '<input type="submit" value="', $pgv_lang["upload"], '" tabindex="', $tab++, '" />';
+	echo '<input type="submit" value="', $pgv_lang["upload"], '" tabindex="', $tab++, '" />';
 	echo '</td></tr>';
 
 	echo '</table></form>';
@@ -1872,335 +1864,160 @@ function hasMemoryForImage($serverFilename, $debug_verboseLogging=false) {
 * function to generate a thumbnail image
 * @param string $filename
 * @param string $thumbnail
+* @param bool $verbose    Should this function announce success or failure?
+* @return integer	0: Success
+*					1: Feature disabled
+*					2: Thumbnail directory is not writable
+*					3: Unsupported image type
+*					4: Cannot create thumbnail subdirectory
+*					5: Input image does not exist
+*					6: Input image size cannot be determined
+*					7: Not enough free memory
+*					8: Input image is defective
 */
-function generate_thumbnail($filename, $thumbnail) {
+function generate_thumbnail($filename, $thumbnail, $verbose=false) {
 	global $MEDIA_DIRECTORY, $THUMBNAIL_WIDTH, $AUTO_GENERATE_THUMBS, $USE_MEDIA_FIREWALL, $MEDIA_FIREWALL_THUMBS;
+	global $imageFilename, $imageThumbnail, $imageType;		// Make these visible to the print_text function
 
-	if (!$AUTO_GENERATE_THUMBS) return false;
-	if (!is_writable($MEDIA_DIRECTORY."thumbs")) return false;
-
-	// Can we generate thumbnails for this file type?
-	$parts = pathinfo_utf($filename);
-	if (isset($parts["extension"])) $ext = strtolower($parts["extension"]);
-	else $ext = "";
-	$type = isImageTypeSupported($ext);
-	if (!$type) return false;
-
-	if (!isFileExternal($filename)) {
-		// internal
-		if ($USE_MEDIA_FIREWALL) {
-			// Look for the original file in either possible location
+	while (true) {
+		$errorCode = 0;				// 0: success
+		if (!$AUTO_GENERATE_THUMBS) {
+			$errorCode = 1;			// 1: auto generation of thumbnails is disabled
+			break;
+		}		
+		if (!is_writable($MEDIA_DIRECTORY."thumbs")) {
+			$errorCode = 2;			// 2: Thumbnail directory is not writable
+			break;
+		}
+	
+		// Can we generate thumbnails for this image type?
+		$parts = pathinfo_utf($filename);
+		if (isset($parts["extension"])) $ext = strtolower($parts["extension"]);
+		else $ext = "";
+		$type = isImageTypeSupported($ext);
+		if (!$type) {
+			$imageType = $ext;		// Make this visible to the print_text function
+			if ($ext=='') $imageType = 'unknown';
+			$errorCode = 3;			// 3: Unsupported image type
+			break;
+		}
+	
+		if (!isFileExternal($filename)) {
+			// internal
+			if ($USE_MEDIA_FIREWALL) {
+				// Look for the original file in either possible location
+				if (!file_exists(filename_decode($filename))) 
+					$filename = get_media_firewall_path($filename);
+				if ($MEDIA_FIREWALL_THUMBS) {
+					// Look for the thumbnail in either possible location (so we can overwrite it)
+					if (!file_exists(filename_decode($thumbnail))) 
+						$thumbnail = get_media_firewall_path($thumbnail);
+				}
+				// Ensure the directory exists
+				if (!is_dir(dirname($thumbnail))) {
+					if (!mkdirs(dirname($thumbnail))) {
+						$errorCode = 4;		// 4: Cannot create thumbnail directory
+						break;
+					}
+				}
+			}
 			if (!file_exists(filename_decode($filename))) {
-				$filename = get_media_firewall_path($filename);
+				$errorCode = 5;			// 5: Input image does not exist
+				break;
 			}
-			if ($MEDIA_FIREWALL_THUMBS) {
-				// Look for the thumbnail in either possible location (so we can overwrite it)
-				if (!file_exists(filename_decode($thumbnail))) {
-					$thumbnail = get_media_firewall_path($thumbnail);
-				}
+			$imgsize = getimagesize(filename_decode($filename));
+			if (!$imgsize) {
+				$errorCode = 6;			// 6: Input image size is not known
+				break;
 			}
-			// Ensure the directory exists
-			if (!is_dir(dirname($thumbnail))) {
-				if (!mkdirs(dirname($thumbnail))) {
-					return false;
-				}
+	
+			//-- check if file is small enough to be its own thumbnail
+			if (($imgsize[0]<150)&&($imgsize[1]<150)) {
+				@copy($filename, $thumbnail);
+				$errorCode = 0;			// 0: Success, we're done
+				break;
 			}
-		}
-		if (!file_exists(filename_decode($filename))) return false;  // Can't thumbnail a non-existent image
-		$imgsize = getimagesize(filename_decode($filename));
-		if (!$imgsize) return false;  // Can't thumbnail an image of unknown size
-
-		//-- check if file is small enough to be its own thumbnail
-		if (($imgsize[0]<150)&&($imgsize[1]<150)) {
-			@copy($filename, $thumbnail);
-			return true;
-		}
-	} else {
-		// external
-		if ($fp = @fopen(filename_decode($filename), "rb")) {
-			if ($fp===false) return false;
+		} else {
+			// external
+			$fp = @fopen(filename_decode($filename), "rb");
+			if ($fp===false) {
+				$errorCode = 5;			// 5: Input image does not exist or cannot be read
+				break;
+			}
 			$conts = "";
 			while(!feof($fp)) {
 				$conts .= fread($fp, 4098);
 			}
 			fclose($fp);
 			$fp = fopen(filename_decode($thumbnail), "wb");
-			if (!fwrite($fp, $conts)) return false;
+			if (!fwrite($fp, $conts)) {
+				$errorCode = 2;			// 2: Thumbnail directory is not writable
+				break;
+			}
 			fclose($fp);
 			if (!isFileExternal($filename)) $imgsize = getimagesize(filename_decode($filename));
 			else $imgsize = getimagesize(filename_decode($thumbnail));
-			if ($imgsize===false) return false;
-			if (($imgsize[0]<150)&&($imgsize[1]<150)) return true;
+			if ($imgsize===false) {
+				$errorCode = 6;			// 6: Image size is not known
+				break;
+			}
+			if (($imgsize[0]<150)&&($imgsize[1]<150)) {
+				$errorCode = 0;			// 0: Success, we're done
+				break;
+			}
+			$filename = $thumbnail;		// This is correct: the external file was copied into the thumbnail directory
 		}
-		else return false;
+		
+		// At this point, the errorCode is zero, but we aren't done yet
+	
+		// make sure we have enough memory to process this file
+		if (!hasMemoryForImage(filename_decode($filename))) {
+			$errorCode = 7;				// 7: Not enough memory
+			break;
+		}
+	
+		$widthImg = $imgsize[0];
+		$heightImg = $imgsize[1];
+		$widthThumb = $THUMBNAIL_WIDTH;
+		$heightThumb = round($heightImg * ($widthThumb/$widthImg));		// Make sure the image's aspect ratio is preserved
+	
+		$imCreateFunc = 'imagecreatefrom'.$type;
+		$imSendFunc = 'image'.$type;
+	
+		// load the image into memory
+		$img = @$imCreateFunc(filename_decode($filename));
+		if (!$img) {
+			$errorCode = 8;				// 8: Input image is defective
+			break;
+		}
+		// create a blank thumbnail image in memory
+		$thumb = imagecreatetruecolor($widthThumb, $heightThumb);
+		// resample the original image into the thumbnail
+		imagecopyresampled($thumb, $img, 0, 0, 0, 0, $widthThumb, $heightThumb, $widthImg, $heightImg);
+		// save the thumbnail to a file
+		$imSendFunc($thumb, filename_decode($thumbnail));
+		// free up memory
+		imagedestroy($img);
+		imagedestroy($thumb);
+		$errorCode = 0;					// 0: Success, we're done
+		break;
 	}
-
-	// make sure we have enough memory to process this file
-	if (!hasMemoryForImage(filename_decode($filename))) return false;
-
-	$widthImg = $imgsize[0];
-	$heightImg = $imgsize[1];
-	$widthThumb = $THUMBNAIL_WIDTH;
-	$heightThumb = round($heightImg * ($widthThumb/$widthImg));		// Make sure the image's aspect ratio is preserved
-
-	$imCreateFunc = 'imagecreatefrom'.$type;
-	$imSendFunc = 'image'.$type;
-
-	// load the image into memory
-	$img = @$imCreateFunc(filename_decode($filename));
-	if (!$img) return false;
-	// create a blank thumbnail image in memory
-	$thumb = imagecreatetruecolor($widthThumb, $heightThumb);
-	// resample the original image into the thumbnail
-	imagecopyresampled($thumb, $img, 0, 0, 0, 0, $widthThumb, $heightThumb, $widthImg, $heightImg);
-	// save the thumbnail to a file
-	$imSendFunc($thumb, filename_decode($thumbnail));
-	// free up memory
-	imagedestroy($img);
-	imagedestroy($thumb);
-	return true;
+	// We're done: exit with or without messages
+	$imageFilename = str_replace($MEDIA_DIRECTORY.'/', '', $filename);
+	if (empty($thumbnail)) $imageThumbnail = $imageFilename;
+	else $imageThumbnail = str_replace($MEDIA_DIRECTORY.'thumbs/', '', $thumbnail);
+	if ($errorCode == 0) {
+		if ($verbose) {
+			print_text('thumb_create_ok0a');		// Tell the world that we were successful
+			AddToLog(print_text('thumb_create_ok0b', 0, 1));  // Add to log too, but without the fancy formatting
+		}
+		return 0;		// return code zero: we were successful
+	}
+	if ($verbose) {
+		$message = print_text('thumb_create_fail0a', 0, 1) . print_text('thumb_create_fail'.$errorCode, 0, 1);
+		echo '<span class="error">', $message, '</span><br />';		// Tell the world that we failed
+		AddToLog(print_text('thumb_create_fail0b', 0, 1).$errorCode);		// Add to log too, but without the fancy formatting
+	}
+	return $errorCode;		// return code not zero: we failed; code gives the reason
 }
-// PCE add condition
-if (!function_exists('imagecreatefrombmp')) {		// From PHP 7.2 on, we no longer need to build our own version of this function
-	//PCE Proceed to declare function
-function imagecreatefrombmp($filename) {
-	# Author:     DHKold
-	# Date:     The 15th of June 2005
-	# Version:    2.0B
-	# Purpose:    To create an image from a BMP file.
-	# Param in:   BMP file to open.
-	# Param out:  Return a resource like the other ImageCreateFrom functions
-	# Reference:  http://us3.php.net/manual/en/function.imagecreate.php#53879
-	# Notes:
-	#
-	# Major re-write by G. Kroll (canajun2eh)
-	#
-
-	//Ouverture du fichier en mode binaire
-	$f1 = fopen($filename,"rb");
-	if (!$f1) return FALSE;
-	$fileContents = stream_get_contents($f1);	// Read the entire file into memory
-	fclose($f1);		// We're done with this input file
-
-	//1 : Chargement des entêtes FICHIER
-	$FILE = unpack("A2file_type/Vfile_size/Vreserved/Vbitmap_offset", substr($fileContents,0,14));
-	if ($FILE['file_type'] != 'BM') return FALSE;
-
-	//2 : Chargement des entêtes BMP
-	$BMP = unpack('Vheader_size/Vwidth/Vheight/vplanes/vbits_per_pixel'.
-				'/Vcompression/Vsize_bitmap/Vhoriz_resolution'.
-				'/Vvert_resolution/Vcolors_used/Vcolors_important', substr($fileContents,14,40));
-
-	$bitsPerPixel = $BMP['bits_per_pixel'];
-	$colors = 1 << $bitsPerPixel;
-	$width = $BMP['width'];
-	$height = $BMP['height'];
-
-	if ($height < 0) {
-		// If the height is negative, the image is recorded from top to bottom instead of the normal
-		// bottom to top -- we have to invert it at the end.
-		$height = 0 - $height;
-		$invertedImage = true;
-	} else $invertedImage = false;
-
-	//3 : Chargement des couleurs de la palette
-	if ($bitsPerPixel <= 8) {
-		// The Palette is present and used only for 1, 4, and 8 bits per pixel
-		$PALETTE = unpack('V'.$colors, substr($fileContents,54,$colors*4));
-	}
-	if ($bitsPerPixel == 16) {
-		// For 16 bits per pixel, the Palette region is a set of 3 colour masks
-		$PALETTE = unpack('V3', substr($fileContents,40,12));
-		// There are two types of colour mask, the 565 type where green gets 6 bits while red and blue
-		// each get 5 bits, and the RGB555 type where red, green, and blue each get 5 bits.  In both
-		// of these, the missing low-order bits of each colour should be zero.
-		//
-		//          --------------- RGB565 ----------------      --------------- RGB555 ----------------
-		// red		1111 1000 0000 0000 0000 0000 0000 0000  or  1111 1000 0000 0000 0000 0000 0000 0000
-		// green	0000 0111 1110 0000 0000 0000 0000 0000  or  0000 0111 1100 0000 0000 0000 0000 0000
-		// blue		0000 0000 0001 1111 0000 0000 0000 0000  or  0000 0000 0011 1110 0000 0000 0000 0000
-		//
-		$RGB565 = ($PALETTE[2] == 0x07E00000);		// We're dealing with the RGB565 set of colour masks
-	}
-
-	//4 : Création de l'image
-	$IMG = substr($fileContents,$FILE['bitmap_offset']);
-	unset($FILE, $BMP, $fileContents);		// Free up some memory; we're done with the raw file contents
-	$VIDE = chr(0);
-
-	$res = imagecreatetruecolor($width,$height);
-
-	$inputPosition = 0;			// Position in input BMP
-	$lineNumber = $height-1;	// Scan line number
-
-	// The switch($bitsPerPixel) statement was moved outside the inner while($pixelNumber < $width) loop
-	// for speed reasons; this way, it's executed only once per image instead of once per pixel.
-	// This makes the code more verbose but also LOT faster.
-
-	switch ($bitsPerPixel) {
-	case 24:
-		while ($lineNumber >= 0) {
-			$pixelNumber=0;
-			while ($pixelNumber < $width) {
-				$COLOR = unpack("V",substr($IMG,$inputPosition,3).$VIDE);
-				imagesetpixel($res,$pixelNumber,$lineNumber,$COLOR[1]);
-				$pixelNumber ++;
-				$inputPosition += 3;	// 3 bytes per pixel
-			}
-			$lineNumber --;
-			$inputPosition = ($inputPosition + 3) & 0xFFFFFFFC;	// The next scan line must start on a double-word boundary
-		}
-		break;
-
-	case 16:
-		if ($RGB565) {
-			// In the RGB565 encoding, red gets 5 bits, green gets 6, and blue gets 5 (in that order)
-			$redShift = 8; $redMask = 0xF8;			// left 5 bits correspond to red
-			$greenShift = 3; $greenMask = 0xFC;		// next 6 bits correspond to green
-			$blueShift = 3; $blueMask = 0xF8;		// last 5 bits correspond to blue
-		} else {
-			// In the RGB555 encoding, red, green, and blue each get 5 bits (in that order), with 1 bit left over
-			$redShift = 8; $redMask = 0xF8;			// left 5 bits correspond to red
-			$greenShift = 3; $greenMask = 0xF8;		// next 5 bits correspond to green
-			$blueShift = 2; $blueMask = 0xF8;		// next 5 bits correspond to blue
-		}
-		while ($lineNumber >= 0) {
-			$pixelNumber=0;
-			while ($pixelNumber < $width) {
-				$COLOR = unpack("v",substr($IMG,$inputPosition,2));		// 16 bits, in little endian format
-/*
-				if ($RGB565) {
-					// In the RGB565 encoding, red gets 5 bits, green gets 6, and blue gets 5 (in that order)
-					$red =   ($COLOR[1] >> 8) & 0xF8;		// left 5 bits correspond to red
-					$green = ($COLOR[1] >> 3) & 0xFC;		// next 6 bits correspond to green
-					$blue =  ($COLOR[1] << 3) & 0xF8;		// last 5 bits correspond to blue
-				} else {
-					// In the RGB555 encoding, red, green, and blue each get 5 bits (in that order), with 1 bit left over
-					$red =   ($COLOR[1] >> 8) & 0xF8;		// left 5 bits correspond to red
-					$green = ($COLOR[1] >> 3) & 0xF8;		// next 5 bits correspond to green
-					$blue =  ($COLOR[1] << 2) & 0xF8;		// next 5 bits correspond to blue
-				}
-*/
-				// Separate the three colours, according to RGB565 or RGB555 encoding
-				$red =   ($COLOR[1] >> $redShift) & $redMask;			// left 5 bits correspond to red
-				$green = ($COLOR[1] >> $greenShift) & $greenMask;		// next 6 or 5 bits correspond to green
-				$blue =  ($COLOR[1] << $blueShift) & $blueMask;			// last or next 5 bits correspond to blue
-				imagesetpixel($res,$pixelNumber,$lineNumber,strval($red) . strval($green) . strval($blue));
-				$pixelNumber ++;
-				$inputPosition += 2;	// 2 bytes per pixel
-			}
-			$lineNumber --;
-			$inputPosition = ($inputPosition + 3) & 0xFFFFFFFC;	// The next scan line must start on a double-word boundary
-		}
-		break;
-
-	case 8:
-		while ($lineNumber >= 0) {
-			$pixelNumber=0;
-			while ($pixelNumber < $width) {
-				$COLOR = unpack("n",$VIDE.substr($IMG,$inputPosition,1));
-				$COLOR[1] = $PALETTE[$COLOR[1]+1];
-				imagesetpixel($res,$pixelNumber,$lineNumber,$COLOR[1]);
-				$pixelNumber ++;
-				$inputPosition ++;	// 1 byte per pixel
-			}
-			$lineNumber --;
-			$inputPosition = ($inputPosition + 3) & 0xFFFFFFFC;	// The next scan line must start on a double-word boundary
-		}
-		break;
-
-	case 4:
-		while ($lineNumber >= 0) {
-			$pixelNumber=0;
-			while ($pixelNumber < $width) {
-				$COLOR = unpack("n",$VIDE.substr($IMG,floor($inputPosition),1));
-				$nibbleNumber = ($inputPosition*2)%2;
-				if ($nibbleNumber == 0) {
-					$COLOR[1] = $COLOR[1] >> 4;
-				} else {
-					$COLOR[1] = $COLOR[1] & 0x0F;
-				}
-				$COLOR[1] = $PALETTE[$COLOR[1]+1];
-				imagesetpixel($res,$pixelNumber,$lineNumber,$COLOR[1]);
-				$pixelNumber ++;
-				$inputPosition += 0.5;	// 2 pixels per byte
-			}
-			$lineNumber --;
-			$inputPosition = ($inputPosition + 3) & 0xFFFFFFFC;	// The next scan line must start on a double-word boundary
-		}
-		break;
-
-	case 1:
-		while ($lineNumber >= 0) {
-			$pixelNumber=0;
-			while ($pixelNumber < $width) {
-				$COLOR = unpack("n",$VIDE.substr($IMG,floor($inputPosition),1));
-				$bitNumber = ($inputPosition*8)%8;
-				$COLOR[1] = ($COLOR[1] >> (7-$bitNumber)) & 0x1;
-				$COLOR[1] = $PALETTE[$COLOR[1]+1];
-				imagesetpixel($res,$pixelNumber,$lineNumber,$COLOR[1]);
-				$pixelNumber ++;
-				$inputPosition += 0.125;	// 8 pixels per byte
-			}
-			$lineNumber --;
-			$inputPosition = ($inputPosition + 3) & 0xFFFFFFFC;	// The next scan line must start on a double-word boundary
-		}
-		break;
-
-	default:
-		return false;
-	}
-
-	if ($invertedImage) return imagerotate($res, 180, 0);
-	return $res;
-}
-}  // PCE added end condition
-/*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-**-*-*-*-*-*-*-*-*-*-*-*-*-*-
-  BMP SUPPORT (WRITING)
-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-**-*-*-*-*-*-*-*-*-*-*-*-*-*/
-// PCE add condition
-if (!function_exists('imagebmp')) {		// From PHP 7.2 on, we no longer need to build our own version of this function
-	//PCE Proceed to declare function
-
-function imagebmp(&$gd_img, $savePath) {
-	# Author:     James Heinrich
-	# Purpose:    Save file as type bmp
-	# Param in:   The image canvas (passed as ref)
-	# Param out:
-	# Reference:
-	# Notes:    This code was stripped out of two external files
-	#       	(phpthumb.bmp.php,phpthumb.functions.php), modified slightly,
-	#       	and added below to avoid dependencies.
-	#
-	#			This code handles ONLY 24 bit colours.
-	#
-
-	$imageX = ImageSX($gd_img);
-	$imageY = ImageSY($gd_img);
-
-	$BMP = '';
-	for ($y = ($imageY - 1); $y >= 0; $y--) {
-		$thisline = '';
-		for ($x = 0; $x < $imageX; $x++) {
-			$argb = @ImageColorsForIndex($gd_img, @ImageColorAt($gd_img, $x, $y));
-			$thisline .= chr($argb['blue']).chr($argb['green']).chr($argb['red']);
-		}
-		while (strlen($thisline) % 4) {
-			$thisline .= "\x00";
-		}
-		$BMP .= $thisline;
-	}
-
-	$bmpSize = strlen($BMP) + 14 + 40;
-	// BITMAPFILEHEADER [14 bytes] - http://msdn.microsoft.com/library/en-us/gdi/bitmaps_62uq.asp
-	$BITMAPFILEHEADER = pack('A2VvvV', 'BM', $bmpSize, 0, 0, 54);
-
-	// BITMAPINFOHEADER - [40 bytes] http://msdn.microsoft.com/library/en-us/gdi/bitmaps_1rw2.asp
-	$BITMAPINFOHEADER = pack('VVVvvVVVVVV', 40, $imageX, $imageY, 1, 24, 0, 0, 2835, 2835, 0, 0);
-
-	file_put_contents($savePath, $BITMAPFILEHEADER.$BITMAPINFOHEADER.$BMP);
-
-	return;
-}
-} // PCE end condition
 ?>

@@ -3,7 +3,7 @@
  * Popup window that will allow a user to search for a media
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2018  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2020  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,14 +25,6 @@
  * @version $Id$
  */
 
- /* TODO:
- *	Add check for missing index.php files when creating a directory
- *	Add an option to generate thumbnails for all files on the page
- *	Add filter for correct media like php, gif etc.
- *  Check for URL instead of physical file
- *	Check array buld up use ID_GEDCOM for aray key
- */
-
  /* Standard variable convention media.php
  *	$filename = Filename of the media item
  *	$thumbnail = Filename of the thumbnail of the media item
@@ -49,7 +41,9 @@ require_once PGV_ROOT.'includes/functions/functions_print_facts.php';
 require_once PGV_ROOT.'includes/functions/functions_edit.php';
 require_once PGV_ROOT.'includes/functions/functions_import.php';
 require_once PGV_ROOT.'includes/functions/functions_mediadb.php';
-
+if (!function_exists('imagecreatefrombmp')) {			// If the GD library does not support the BMP image type
+	require_once PGV_ROOT.'includes/functions/functions_mediabmp.php';		// use our home-grown support
+}
 /**
  * This functions checks if an existing directory is physically writeable
  * The standard PHP function only checks for the R/O attribute and doesn't
@@ -381,43 +375,55 @@ if (check_media_structure()) {
 			}
 			closedir($handle);
 		}
-
-		// Media Firewall Media directory check
-		if (@is_dir(filename_decode($directory_fw))) {
-			$handle = opendir(filename_decode($directory_fw));
-			$files_fw = array();
-			while (false !== ($file = readdir($handle))) {
-				if (!in_array($file, $BADMEDIA)) $files_fw[] = $file;
+	
+		if ($USE_MEDIA_FIREWALL) {
+			// Media Firewall Media directory check
+			if (@is_dir(filename_decode($directory_fw))) {
+				$handle = opendir(filename_decode($directory_fw));
+				$files_fw = array();
+				while (false !== ($file = readdir($handle))) {
+					if (!in_array($file, $BADMEDIA)) $files_fw[] = $file;
+				}
 			}
-		}
-
-		// Media Firewall Thumbs directory check
-		if (@is_dir(filename_decode($thumbdir_fw))) {
-			$handle = opendir(filename_decode($thumbdir_fw));
-			$thumbfiles_fw = array();
-			while (false !== ($file = readdir($handle))) {
-				if (!in_array($file, $BADMEDIA)) $thumbfiles_fw[] = $file;
+	
+			// Media Firewall Thumbs directory check
+			if (@is_dir(filename_decode($thumbdir_fw))) {
+				$handle = opendir(filename_decode($thumbdir_fw));
+				$thumbfiles_fw = array();
+				while (false !== ($file = readdir($handle))) {
+					if (!in_array($file, $BADMEDIA)) $thumbfiles_fw[] = $file;
+				}
+				closedir($handle);
 			}
-			closedir($handle);
 		}
 
 		if (!isset($error)) {
 			if (count($files) > 0 ) {
-				print "<div class=\"error\">".$directory." -- ".$pgv_lang["directory_not_empty"]."</div>";
-				AddToLog($directory." -- ".$pgv_lang["directory_not_empty"]);
+				$whichDir = substr(str_replace($MEDIA_DIRECTORY, '', $directory), 0, -1);		// Make this visible to the print_text function
+				$failMsg = print_text("directory_not_empty", 0, 1);
+				echo '<div class="error">', $failMsg, '</div>';		// Tell the user of the problem
+				$failMsg = print_text("directory_not_mt", 0, 1);
+				AddToLog($failMsg);			// Log the message too, but without the fancy formatting
 				$clean = false;
 			}
 			if (count($thumbfiles) > 0) {
-				print "<div class=\"error\">".$thumbdir." -- ".$pgv_lang["directory_not_empty"]."</div>";
-				AddToLog($thumbdir." -- ".$pgv_lang["directory_not_empty"]);
+				$whichDir = substr(str_replace($MEDIA_DIRECTORY, '', $thumbdir), 0, -1);		// Make this visible to the print_text function
+				$failMsg = print_text("directory_not_empty", 0, 1);
+				echo '<div class="error">', $failMsg, '</div>';		// Tell the user of the problem
+				$failMsg = print_text("directory_not_mt", 0, 1);
+				AddToLog($failMsg);			// Log the message too, but without the fancy formatting
 				$clean = false;
 			}
 			if (count($files_fw) > 0 ) {
-				print "<div class=\"error\">".$directory_fw." -- ".$pgv_lang["directory_not_empty"]."</div>";
-				AddToLog($directory_fw." -- ".$pgv_lang["directory_not_empty"]);
+				$whichDir = $directory_fw;		// Make this visible to the print_text function
+				$failMsg = print_text("directory_not_empty", 0, 1);
+				echo '<div class="error">', $failMsg, '</div>';		// Tell the user of the problem
+				$failMsg = print_text("directory_not_mt", 0, 1);
+				AddToLog($failMsg);			// Log the message too, but without the fancy formatting
 				$clean = false;
 			}
 			if (count($thumbfiles_fw) > 0) {
+				$whichDir = $thumbdir_fw;		// Make this visible to the print_text function
 				print "<div class=\"error\">".$thumbdir_fw." -- ".$pgv_lang["directory_not_empty"]."</div>";
 				AddToLog($thumbdir_fw." -- ".$pgv_lang["directory_not_empty"]);
 				$clean = false;
@@ -427,6 +433,7 @@ if (check_media_structure()) {
 
 		// Only start deleting if all directories are empty
 		if ($clean) {
+			global $whichDir;
 			$resdir = true;
 			$resthumb = true;
 			$resdir_fw = true;
@@ -435,35 +442,39 @@ if (check_media_structure()) {
 			if (@is_dir(filename_decode($directory))) $resdir = @rmdir(filename_decode(substr($directory, 0, -1)));
 			if (file_exists(filename_decode($thumbdir."index.php"))) @unlink(filename_decode($thumbdir."index.php"));
 			if (@is_dir(filename_decode($thumbdir))) $resthumb = @rmdir(filename_decode(substr($thumbdir, 0, -1)));
-			if (file_exists(filename_decode($directory_fw."index.php"))) @unlink(filename_decode($directory_fw."index.php"));
-			if (@is_dir(filename_decode($directory_fw))) $resdir_fw = @rmdir(filename_decode(substr($directory_fw, 0, -1)));
-			if (file_exists(filename_decode($thumbdir_fw."index.php"))) @unlink(filename_decode($thumbdir_fw."index.php"));
-			if (@is_dir(filename_decode($thumbdir_fw))) $resthumb_fw = @rmdir(filename_decode(substr($thumbdir_fw, 0, -1)));
+			if ($USE_MEDIA_FIREWALL) {
+				if (file_exists(filename_decode($directory_fw."index.php"))) @unlink(filename_decode($directory_fw."index.php"));
+				if (@is_dir(filename_decode($directory_fw))) $resdir_fw = @rmdir(filename_decode(substr($directory_fw, 0, -1)));
+				if (file_exists(filename_decode($thumbdir_fw."index.php"))) @unlink(filename_decode($thumbdir_fw."index.php"));
+				if (@is_dir(filename_decode($thumbdir_fw))) $resthumb_fw = @rmdir(filename_decode(substr($thumbdir_fw, 0, -1)));
+			}
+			$whichDir = substr(str_replace($MEDIA_DIRECTORY, '', $directory), 0, -1);		// Make this visible to the print_text function
 			if ($resdir && $resthumb && $resdir_fw && $resthumb_fw) {
-				print $pgv_lang["delete_dir_success"];
-				AddToLog($directory." -- ".$pgv_lang["delete_dir_success"]);
+				$successMsg = print_text("delete_dir_success", 0, 1);
+				echo $successMsg;
+				AddToLog(str_replace(array('<b>','</b>'), '', $successMsg));		// Log this message, but without the fancy formatting
 			} else {
-				if (!$resdir) {
-					print "<div class=\"error\">".$pgv_lang["media_not_deleted"]."</div>";
-					AddToLog($directory." -- ".$pgv_lang["media_not_deleted"]);
-				} else if (!$resdir_fw) {
-					print "<div class=\"error\">".$pgv_lang["media_not_deleted"]."</div>";
-					AddToLog($directory_fw." -- ".$pgv_lang["media_not_deleted"]);
+				if ($resdir && $resdir_fw) {
+					$successMsg = print_text("media_deleted", 0, 1);
+					echo $successMsg, '<br />';
+					AddToLog(str_replace(array('<b>','</b>'), '', $successMsg));	// Log this message, but without the fancy formatting
 				} else {
-					print $pgv_lang["media_deleted"];
-					AddToLog($directory." -- ".$pgv_lang["media_deleted"]);
+					$failMsg = print_text("media_not_deleted", 0, 1);
+					echo '<div class="error">', $failMsg, '</div>';
+					$failMsg = print_text("media_cant_delete", 0, 1);
+					AddToLog($failMsg);
 				}
-				if (!$resthumb) {
-					print "<div class=\"error\">".$pgv_lang["thumbs_not_deleted"]."</div>";
-					AddToLog($thumbdir." -- ".$pgv_lang["thumbs_not_deleted"]);
-				} else if (!$resthumb_fw) {
-					print "<div class=\"error\">".$pgv_lang["thumbs_not_deleted"]."</div>";
-					AddToLog($thumbdir_fw." -- ".$pgv_lang["thumbs_not_deleted"]);
+				$whichDir = substr(str_replace($MEDIA_DIRECTORY, '', $thumbdir), 0, -1);		// Make this visible to the print_text function
+				if ($resthumb && $resthumb_fw) {
+					$successMsg = print_text("media_deleted", 0, 1);
+					echo $successMsg, '<br />';
+					AddToLog(str_replace(array('<b>','</b>'), '', $successMsg));	// Log this message, but without the fancy formatting
 				} else {
-					print $pgv_lang["thumbs_deleted"];
-					AddToLog($thumbdir." -- ".$pgv_lang["thumbs_deleted"]);
+					$failMsg = print_text("media_not_deleted", 0, 1);
+					echo '<div class="error">', $failMsg, '</div>';
+					$failMsg = print_text("media_cant_delete", 0, 1);
+					AddToLog($failMsg);
 				}
-
 			}
 		}
 
@@ -493,34 +504,14 @@ if (check_media_structure()) {
 					// why doesn't this use thumbnail_file??
 					$thumbnail = str_replace("$MEDIA_DIRECTORY", $MEDIA_DIRECTORY."thumbs/", check_media_depth($media["FILE"], "NOTRUNC"));
 					if (!$media["THUMBEXISTS"]) {
-						if (generate_thumbnail($media["FILE"], $thumbnail)) {
-							print_text("thumb_genned");
-							AddToChangeLog(print_text("thumb_genned", 0, 1));
-						}
-						else {
-							print "<span class=\"error\">";
-							print_text("thumbgen_error");
-							print "</span>";
-							AddToChangeLog(print_text("thumbgen_error", 0, 1));
-						}
-						print "<br />";
+						generate_thumbnail($media["FILE"], $thumbnail, true);		// Generate thumbnail & print suitable success / fail message
 					}
 				}
 			}
-		}
-		else if ($all != 'yes') {
+		} else {
 			if (!($MEDIA_EXTERNAL && isFileExternal($filename))) {
 				$thumbnail = str_replace("$MEDIA_DIRECTORY", $MEDIA_DIRECTORY."thumbs/", check_media_depth($filename, "NOTRUNC"));
-				if (generate_thumbnail($filename, $thumbnail)) {
-					print_text("thumb_genned");
-					AddToChangeLog(print_text("thumb_genned", 0, 1));
-				}
-				else {
-					print "<span class=\"error\">";
-					print_text("thumbgen_error");
-					print "</span>";
-					AddToChangeLog(print_text("thumbgen_error", 0, 1));
-				}
+				generate_thumbnail($media["FILE"], $thumbnail, true);		// Generate thumbnail & print suitable success / fail message
 			}
 		}
 		$action = "filter";
@@ -663,39 +654,51 @@ if (check_media_structure()) {
 
 		$finalResult = true;
 		if ($allowDelete) {
+			global $whichFile;
+			$whichFile = str_replace($MEDIA_DIRECTORY, '', $filename);		// Make this visible to the print_text function
 			if (!$onegedcom) {
-				print "<span class=\"error\">".$pgv_lang["multiple_gedcoms"]."<br /><br /><b>".$pgv_lang["media_file_not_deleted"]."</b></span><br />";
+				$failMsg = print_text("media_file_not_deleted", 0, 1);
+				echo '<span class="error">', $pgv_lang["multiple_gedcoms"], '<br />', $failMsg, '</span><br />';
 				$finalResult = false;
 			}
 			if (isFileExternal($filename)) {
-				print "<span class=\"error\">".$pgv_lang["external_file"]."<br /><br /><b>".$pgv_lang["media_file_not_deleted"]."</b></span><br />";
+				$failMsg = print_text("media_file_not_deleted", 0, 1);
+				echo '<span class="error">', $pgv_lang["external_file"], '<br />', $failMsg, '</span><br />';
 				$finalResult = false;
 			}
 			if ($finalResult) {
 				// Check if file exists. If so, delete it
 				$server_filename = get_server_filename($filename);
+				$whichFile = str_replace($MEDIA_DIRECTORY, '', $filename);		// Make this visible to the print_text function
 				if (file_exists($server_filename) && $allowDelete) {
 					if (@unlink($server_filename)) {
-						print $pgv_lang["media_file_deleted"]."<br />";
-						AddToChangeLog($server_filename." -- ".$pgv_lang["media_file_deleted"]);
+						$successMsg = print_text("media_file_deleted", 0, 1);
+						echo $successMsg, '<br />';
+						AddToLog(str_replace(array('<b>','</b>'), '', $successMsg));		// Log this message, but without the fancy formatting
 					} else {
 						$finalResult = false;
-						print "<span class=\"error\">".$pgv_lang["media_file_not_deleted"]."</span><br />";
-						AddToChangeLog($server_filename." -- ".$pgv_lang["media_file_not_deleted"]);
+						$failMsg = print_text("media_file_not_deleted", 0, 1);
+						echo '<span class="error">', $failMsg, '</span><br />';
+						$failMsg = print_text("media_file_cant_delete", 0, 1);
+						AddToLog($failMsg);			// Log this message, but without the fancy formatting
 					}
 				}
 
 				// Check if thumbnail exists. If so, delete it.
-				$thumbnail = str_replace("$MEDIA_DIRECTORY", $MEDIA_DIRECTORY."thumbs/", $filename);
+				$thumbnail = str_replace($MEDIA_DIRECTORY, $MEDIA_DIRECTORY.'thumbs/', $filename);
 				$server_thumbnail = get_server_filename($thumbnail);
 				if (file_exists($server_thumbnail) && $allowDelete) {
+					$whichFile = 'thumbs/'.$whichFile;		// Make this visible to the print_text function
 					if (@unlink($server_thumbnail)) {
-						print $pgv_lang["thumbnail_deleted"]."<br />";
-						AddToChangeLog($server_thumbnail." -- ".$pgv_lang["thumbnail_deleted"]);
+						$successMsg = print_text("media_thumb_deleted", 0, 1);
+						echo $successMsg, '<br />';
+						AddToLog(str_replace(array('<b>','</b>'), '', $successMsg));		// Log this message, but without the fancy formatting
 					} else {
 						$finalResult = false;
-						print "<span class=\"error\">".$pgv_lang["thumbnail_not_deleted"]."</span><br />";
-						AddToChangeLog($server_thumbnail." -- ".$pgv_lang["thumbnail_not_deleted"]);
+						$failMsg = print_text("media_thumb_not_deleted", 0, 1);
+						echo '<span class="error">', $failMsg, '</span><br />';
+						$failMsg = print_text("media_thumb_cant_delete", 0, 1);
+						AddToLog($failMsg);			// Log this message, but without the fancy formatting
 					}
 				}
 			}
@@ -760,7 +763,7 @@ if (check_media_structure()) {
 					}
 			}
 		}
-		if ($finalResult) print $pgv_lang["update_successful"];
+//		if ($finalResult) print $pgv_lang["update_successful"];
 		$action = "filter";
 		print "</td></tr></table>";
 	}

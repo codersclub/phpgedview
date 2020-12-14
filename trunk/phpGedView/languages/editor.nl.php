@@ -3,7 +3,7 @@
  * Dutch texts
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2011  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2020  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -47,9 +47,6 @@ $pgv_lang["append"]						= "Gegevens toevoegen";
 $pgv_lang["review_changes"]				= "Beoordeel GEDCOM-wijzigingen";
 $pgv_lang["remove_object"]				= "Verwijder object";
 $pgv_lang["remove_links"]				= "Verwijder koppelingen";
-$pgv_lang["media_not_deleted"]			= "Multimediamap niet verwijderd";
-$pgv_lang["thumbs_not_deleted"]			= "Map voor miniweergaves niet verwijderd";
-$pgv_lang["thumbs_deleted"]				= "Map miniweergaves succesvol verwijderd";
 $pgv_lang["show_thumbnail"]				= "Toon miniweergaves";
 $pgv_lang["link_media"]					= "Koppel multimedia";
 $pgv_lang["to_person"]					= "aan een persoon";
@@ -92,10 +89,22 @@ $pgv_lang["main_media_fail0"]			= "Mediabestand <b>#GLOBALS[oldMediaFolder]##GLO
 $pgv_lang["main_media_fail1"]			= "Mediabestand <b>#GLOBALS[oldMediaName]#</b> kan nier worden hernoemd naar <b>#GLOBALS[newMediaName]#</b>.";
 $pgv_lang["main_media_fail2"]			= "Mediabestand <b>#GLOBALS[oldMediaName]#</b> kan niet worden verplaatst van <b>#GLOBALS[oldMediaFolder]#</b> naar <b>#GLOBALS[newMediaFolder]#</b>.";
 $pgv_lang["main_media_fail3"]			= "Mediabestand kan niet worden verplaatst en hernoemd van <b>#GLOBALS[oldMediaFolder]##GLOBALS[oldMediaName]#</b> naar <b>#GLOBALS[newMediaFolder]##GLOBALS[newMediaName]#</b>.";
-$pgv_lang["resn_disabled"]				= "Opmerking: U moet de 'Gebruik GEDCOM (RESN) Privacy beperking' aanzetten, om deze instelling effectief te maken.";
+$pgv_lang["resn_disabled"]				= "Opmerking: U moet de &laquo;#pgv_lang[PRIVACY_BY_RESN]#&raquo; aanzetten, om deze instelling effectief te maken.";
 $pgv_lang["thumb_media_ok1"]			= "Miniatuurweergave <b>#GLOBALS[oldMediaName]#</b> hernoemd naar <b>#GLOBALS[newMediaName]#</b>.";
 $pgv_lang["thumb_media_ok2"]			= "Miniatuurweergave <b>#GLOBALS[oldMediaName]#</b> verplaatst van <b>#GLOBALS[oldThumbFolder]#</b> naar <b>#GLOBALS[newThumbFolder]#</b>.";
 $pgv_lang["thumb_media_ok3"]			= "Miniatuurweergave verplaatst en hernoemd van <b>#GLOBALS[oldThumbFolder]##GLOBALS[oldMediaName]#</b> naar <b>#GLOBALS[newThumbFolder]##GLOBALS[newMediaName]#</b>.|";
+$pgv_lang["thumb_create_ok0a"]			= "Miniatuurweergave <b>#GLOBALS[imageThumbnail]#</b> automatisch gemaakt.<br />";
+$pgv_lang["thumb_create_ok0b"]			= "Miniatuurweergave #GLOBALS[imageThumbnail]# automatisch gemaakt.";
+$pgv_lang["thumb_create_fail0a"]		= "Miniatuurweergave <span style=\"font-size:larger\">#GLOBALS[imageThumbnail]#</span> kan niet automatisch worden gemaakt : ";
+$pgv_lang["thumb_create_fail0b"]		= "Miniatuurweergave #GLOBALS[imageThumbnail]# kan niet automatisch worden gemaakt. Foutcode : ";
+$pgv_lang["thumb_create_fail1"]			= "Deze functie is uitgeschakeld in de GEDCOM-configuratie.";
+$pgv_lang["thumb_create_fail2"]			= "De bestemmingsmap is niet beschrijfbaar.";
+$pgv_lang["thumb_create_fail3"]			= "Deze functie ondersteunt het afbeeldingstype <span style=\"font-size:larger\">#GLOBALS[imageType]#</span> niet.";
+$pgv_lang["thumb_create_fail4"]			= "De bestemmingsmap kan niet worden gemaakt.";
+$pgv_lang["thumb_create_fail5"]			= "Het invoerbeeld <span style=\"font-size:larger\">#GLOBALS[imageFilename]#</span> bestaat niet of kan niet worden gelezen.";
+$pgv_lang["thumb_create_fail6"]			= "De grootte van het invoerbeeld <span style=\"font-size:larger\">#GLOBALS[imageFilename]#</span> kan niet worden bepaald.";
+$pgv_lang["thumb_create_fail7"]			= "Er is niet genoeg vrij geheugen.<br />Verklein de grootte van de invoerafbeelding of pas de geheugentoewijzing aan in de Siteconfiguratie, Stap 4, Geavanceerde instellingen.";
+$pgv_lang["thumb_create_fail8"]			= "Het invoerbeeld <span style=\"font-size:larger\">#GLOBALS[imageFilename]#</span> is defect.";
 $pgv_lang["thumb_media_fail0"]			= "Miniatuurweergave <b>#GLOBALS[oldThumbFolder]##GLOBALS[oldMediaName]#</b> bestaat niet.";
 $pgv_lang["thumb_media_fail1"]			= "Miniatuurweergave <b>#GLOBALS[oldMediaName]#</b> kan niet worden hernoemd naar <b>#GLOBALS[newMediaName]#</b>.";
 $pgv_lang["thumb_media_fail2"]			= "Miniatuurweergave <b>#GLOBALS[oldMediaName]#</b> kan niet worden verplaatst van <b>#GLOBALS[oldThumbFolder]#</b> naar <b>#GLOBALS[newThumbFolder]#</b>.|";
@@ -157,10 +166,11 @@ $pgv_lang["current_person"]         	= "Zelfde als huidige";
 $pgv_lang["date"]						= "Datum";
 $pgv_lang["deathdate_search"]			= "Overlijdensdatum: ";
 $pgv_lang["deathplace_search"]			= "Plaats van overlijden: ";
-$pgv_lang["delete_dir_success"]			= "Mappen voor multimedia en miniweergaves succesvol verwijderd";
+$pgv_lang["delete_dir_success"]			= "Mappen voor multimedia en miniweergaves <b>#GLOBALS[whichDir]#</b> verwijderd.";
 $pgv_lang["delete_file"]				= "Verwijder bestand";
 $pgv_lang["delete_repo"]				= "Verwijder bewaarplaats";
-$pgv_lang["directory_not_empty"]		= "Map is niet leeg";
+$pgv_lang["directory_not_empty"]		= "Map <span style=\"font-size:larger\">#GLOBALS[whichDir]#</span> is niet leeg.";
+$pgv_lang["directory_not_mt"]			= "Map #GLOBALS[whichDir]# is niet leeg.";
 $pgv_lang["directory_not_exist"]		= "Map bestaat niet";
 $pgv_lang["error_remote"]           	= "U heeft een gekoppelde site geselecteerd.";
 $pgv_lang["error_same"]             	= "U heeft dezelfde site geselecteerd.";
@@ -203,14 +213,21 @@ $pgv_lang["link_success"]				= "Koppeling toegevoegd";
 $pgv_lang["link_to_existing_media"]		= "Verbind met bestaand mediabestand";
 $pgv_lang["max_media_depth"]			= "U kunt niet meer dan #MEDIA_DIRECTORY_LEVELS# niveaus diep in de mappen gaan";
 $pgv_lang["max_upload_size"]			= "Maximale uploadgrootte: ";
-$pgv_lang["media_deleted"]				= "Multimediamap succesvol verwijderd";
-$pgv_lang["media_exists"]				= "Multimediabestand bestaat al.";
+$pgv_lang["media_deleted"]				= "Multimediamap <b>#GLOBALS[whichDir]#</b> verwijderd.";
+$pgv_lang["media_not_deleted"]			= "Multimediamap <b>#GLOBALS[whichDir]#</b> niet verwijderd.";
+$pgv_lang["media_cant_delete"]			= "Multimediamap #GLOBALS[whichDir]# niet verwijderd.";
+$pgv_lang["media_exists"]				= "Multimediabestand <span style=\"font-size:larger\">#GLOBALS[whichFile]#</span> bestaat al.";
 $pgv_lang["media_file"]					= "Mediabestand";
-$pgv_lang["media_file_deleted"]			= "Mediabestand verwijderd.";
+$pgv_lang["media_file_deleted"]			= "Mediabestand <b>#GLOBALS[whichFile]#</b> verwijderd.";
+$pgv_lang["media_file_not_deleted"]		= "Mediabestand <span style=\"font-size:larger\">#GLOBALS[whichFile]#</span> kan niet worden verwijderd.";
+$pgv_lang["media_file_cant_delete"]		= "Mediabestand #GLOBALS[whichFile]# kan niet worden verwijderd.";
 $pgv_lang["media_file_moved"]			= "Media bestand niet verplaatst.";
 $pgv_lang["media_file_not_moved"]		= "Mediabestand kan niet worden verplaatst.";
 $pgv_lang["media_file_not_renamed"]		= "Mediabestand kan niet worden verplaatst of hernoemd.";
-$pgv_lang["media_thumb_exists"]			= "Miniweergave bestaat al.";
+$pgv_lang["media_thumb_exists"]			= "Miniweergave <span style=\"font-size:larger\">#GLOBALS[whichFile]#</span> bestaat al.";
+$pgv_lang["media_thumb_deleted"]		= "Miniweergave <b>#GLOBALS[whichFile]#</b> verwijderd.";
+$pgv_lang["media_thumb_not_deleted"]	= "Miniweergave <span style=\"font-size:larger\">#GLOBALS[whichFile]#</span> kan niet worden verwijderd.";
+$pgv_lang["media_thumb_cant_delete"]	= "Miniweergave #GLOBALS[whichFile]# kan niet worden verwijderd.";
 $pgv_lang["multiple_gedcoms"]			= "Deze file is gekoppeld aan een andere genealogische database op deze server. De file kan niet worden verwijderd, verplaatsts of hernoemd totdat deze koppelingen zijn verwijderd.";
 $pgv_lang["must_provide"]				= "Invoeren:";
 $pgv_lang["name_search"]				= "Naam: ";
@@ -219,7 +236,7 @@ $pgv_lang["new_shared_note_created"] 	= "Nieuwe Gedeelde Notitie aangemaakt.";
 $pgv_lang["shared_note_updated"] 		= "Gedeelde Notitie bijgewerkt.";
 $pgv_lang["new_source_created"]			= "Bron succesvol aangemaakt.";
 $pgv_lang["no_changes"]					= "Er zijn op dit moment geen wijzigingen ter beoordeling.";
-$pgv_lang["no_known_servers"]			= "Geen bekende servers<br/>Geen resultaten gevonden";
+$pgv_lang["no_known_servers"]			= "Geen bekende servers. Geen resultaten gevonden";
 $pgv_lang["no_temple"]					= "Geen Temple - Living Ordinance";
 $pgv_lang["no_upload"]					= "Het uploaden van multimediabestanden is niet toegestaan omdat gebruik van multimedia is uitgeschakeld, of omdat u in de multimediamap geen schrijfrechten heeft.";
 $pgv_lang["paste_id_into_field"]		= "Plak dit bron-ID in de invoervelden voor verwijzing naar deze bron ";
@@ -227,8 +244,6 @@ $pgv_lang["paste_rid_into_field"]		= "Plak het ID van de bewaarplaats in uw invo
 $pgv_lang["record_marked_deleted"]		= "Dit record wordt verwijderd na goedkeuring door de beheerder.";
 $pgv_lang["replace_with"]				= "Vervang door";
 $pgv_lang["show_changes"]				= "Deze kaart is gewijzigd. Klik hier om de wijzigingen te tonen.";
-$pgv_lang["thumb_genned"]				= "Miniweergave is automatisch gegenereerd.";
-$pgv_lang["thumbgen_error"]				= "Kan miniweergave niet genereren voor ";
 $pgv_lang["thumbnail"]					= "Miniweergave";
 $pgv_lang["title_remote_link"]      	= "Koppeling naar andere site toevoegen";
 $pgv_lang["undo"]						= "Maak ongedaan";

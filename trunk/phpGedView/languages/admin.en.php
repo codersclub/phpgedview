@@ -3,7 +3,7 @@
  * English language file for PhpGedView
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2019  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2020  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -85,8 +85,8 @@ $pgv_lang["config_not_saved"] = "*Your settings will not<br />be saved until ste
 $pgv_lang["download_config"] = "Download config.php";
 $pgv_lang["site_unavailable"] = "Site is currently unavailable";
 $pgv_lang["to_manage_users"] = "To manage users, use the <a href=\"useradmin.php\">User Administration</a> page.";
-$pgv_lang["db_tables_created"] = "Database Tables created successfully";
-$pgv_lang["config_saved"] = "Configuration saved successfully";
+$pgv_lang["db_tables_created"] = "Database Tables created";
+$pgv_lang["config_saved"] = "Configuration saved";
 $pgv_lang["checking_errors"]		= "Checking for errors...";
 $pgv_lang["checking_php_version"]		= "Checking required PHP version:";
 $pgv_lang["failed"]		= "Failed";
@@ -156,14 +156,11 @@ $pgv_lang["editors"]				= "Editors";
 $pgv_lang["gedcom_admins"]			= "GEDCOM Administrators";
 $pgv_lang["site_admins"]			= "Site Administrators";
 $pgv_lang["nobody"]					= "Nobody";
-$pgv_lang["thumbnail_deleted"]		= "Thumbnail file successfully deleted.";
-$pgv_lang["thumbnail_not_deleted"]	= "Thumbnail file could not be deleted.";
 $pgv_lang["step2"]					= "Step 2 of 4:";
 $pgv_lang["refresh"]				= "Refresh";
-$pgv_lang["move_file_success"]		= "Media and thumbnail files successfully moved.";
+$pgv_lang["move_file_success"]		= "Media and thumbnail files moved.";
 $pgv_lang["media_folder_corrupt"]	= "The media folder is corrupted.";
-$pgv_lang["media_file_not_deleted"]	= "Media file could not be deleted.";
-$pgv_lang["gedcom_deleted"] 		= "GEDCOM [#GED#] successfully deleted.";
+$pgv_lang["gedcom_deleted"] 		= "GEDCOM [#GED#] deleted.";
 $pgv_lang["gedadmin"]				= "GEDCOM administrator";
 $pgv_lang["full_name"]				= "Full Name";
 $pgv_lang["error_header"]			= "The GEDCOM file, <b>#GEDCOM#</b>, does not exist at the specified location.";
@@ -206,19 +203,19 @@ $pgv_lang["no_update_CHANs"]		= "Do not update the CHAN (Last Change) records";
 $pgv_lang["no_CHANs_update"]		= "No CHAN (Last Change) records were updated";
 
 $pgv_lang["files_in_backup"]		= "Files included in this backup";
-$pgv_lang["created_remotelinks"]	= "Successfully created <i>Remotelinks</i> table.";
+$pgv_lang["created_remotelinks"]	= "Created <i>Remotelinks</i> table.";
 $pgv_lang["created_remotelinks_fail"] 	= "Unable to create <i>Remotelinks</i> table.";
-$pgv_lang["created_indis"]			= "Successfully created <i>Individuals</i> table.";
+$pgv_lang["created_indis"]			= "Created <i>Individuals</i> table.";
 $pgv_lang["created_indis_fail"] 	= "Unable to create <i>Individuals</i> table.";
-$pgv_lang["created_fams"]			= "Successfully created <i>Families</i> table.";
+$pgv_lang["created_fams"]			= "Created <i>Families</i> table.";
 $pgv_lang["created_fams_fail"]		= "Unable to create <i>Families</i> table.";
-$pgv_lang["created_sources"]		= "Successfully created <i>Sources</i> table.";
+$pgv_lang["created_sources"]		= "Created <i>Sources</i> table.";
 $pgv_lang["created_sources_fail"]	= "Unable to create <i>Sources</i> table.";
-$pgv_lang["created_other"]			= "Successfully created <i>Other</i> table.";
+$pgv_lang["created_other"]			= "Created <i>Other</i> table.";
 $pgv_lang["created_other_fail"] 	= "Unable to create <i>Other</i> table.";
-$pgv_lang["created_places"] 		= "Successfully created <i>Places</i> table.";
+$pgv_lang["created_places"] 		= "Created <i>Places</i> table.";
 $pgv_lang["created_places_fail"]	= "Unable to create <i>Places</i> table.";
-$pgv_lang["created_placelinks"] 	= "Successfully created <i>Place links</i> table.";
+$pgv_lang["created_placelinks"] 	= "Created <i>Place links</i> table.";
 $pgv_lang["created_placelinks_fail"]	= "Unable to create <i>Place links</i> table.";
 $pgv_lang["created_media_fail"]	= "Unable to create <i>Media</i> table.";
 $pgv_lang["created_media_mapping_fail"]	= "Unable to create <i>Media mappings</i> table.";
@@ -411,7 +408,7 @@ $pgv_lang["USE_REGISTRATION_MODULE"]			= "Allow visitors to request account regi
 $pgv_lang["user_auto_accept"]					= "Automatically accept changes made by this user";
 $pgv_lang["user_contact_method"]				= "Preferred Contact Method";
 $pgv_lang["user_create_error"]					= "Unable to add user.  Please try again.";
-$pgv_lang["user_created"]						= "User created successfully.";
+$pgv_lang["user_created"]						= "User created.";
 $pgv_lang["user_default_tab"]					= "Default Tab to show on Individual Information page";
 $pgv_lang["user_path_length"]					= "Max relationship privacy path length";
 $pgv_lang["user_relationship_priv"]				= "Limit access to related people";

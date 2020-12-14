@@ -3,7 +3,7 @@
  * Italian texts
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2016  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2020  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -141,13 +141,10 @@ $pgv_lang["editors"]				= "Redattori";
 $pgv_lang["gedcom_admins"]			= "Amministratori GEDCOM";
 $pgv_lang["site_admins"]			= "Amministratori del Sito";
 $pgv_lang["nobody"]					= "Nessuno";
-$pgv_lang["thumbnail_deleted"]		= "Anteprima file eliminati con successo.";
-$pgv_lang["thumbnail_not_deleted"]	= "Il file delle anteprime non può essere cancellato.";
 $pgv_lang["step2"]					= "Passo 2 di 4:";
 $pgv_lang["refresh"]				= "Aggiorna";
 $pgv_lang["move_file_success"]		= "Media e anteprima file trasferito con successo.";
 $pgv_lang["media_folder_corrupt"]	= "La cartella Media è corrotta.";
-$pgv_lang["media_file_not_deleted"]	= "Il file multimediale non può essere cancellato.";
 $pgv_lang["gedcom_deleted"] 		= "File GEDCOM [#GED#] cancellato con successo.";
 $pgv_lang["gedadmin"]				= "amministratore GEDCOM";
 $pgv_lang["full_name"]				= "Nome completo";

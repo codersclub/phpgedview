@@ -1,9 +1,9 @@
 <?php
 /**
- * English texts
+ * Swedish texts
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2011  PGV Development Team
+ * Copyright (C) 2002 to 2020  PGV Development Team
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -37,9 +37,6 @@ $pgv_lang["append"]				= "Lägg till post";
 $pgv_lang["review_changes"]		= "Granska ändringar i GEDCOM-fil";
 $pgv_lang["remove_object"]			= "Ta bort objekt";
 $pgv_lang["remove_links"]			= "Ta bort länk";
-$pgv_lang["media_not_deleted"]		= "Mediamappen togs inte bort.";
-$pgv_lang["thumbs_not_deleted"]		= "Miniatyrbildsmappen togs inte bort.";
-$pgv_lang["thumbs_deleted"]			= "Miniatyrbildsmappen togs bort.";
 $pgv_lang["show_thumbnail"]		= "Visa miniatyrbilder";
 $pgv_lang["link_media"]			= "Länka media";
 $pgv_lang["to_person"]			= "Till person";
@@ -70,10 +67,22 @@ $pgv_lang["main_media_fail0"]			= "Huvudmediafilen <b>#GLOBALS[oldMediaFolder]##
 $pgv_lang["main_media_fail1"]			= "huvudmediafilen <b>#GLOBALS[oldMediaName]#</b> kunde inte döpas om till <b>#GLOBALS[newMediaName]#</b>.";
 $pgv_lang["main_media_fail2"]			= "Huvudmediafilen <b>#GLOBALS[oldMediaName]#</b> kunde inte flyttas ifrån <b>#GLOBALS[oldMediaFolder]#</b> till <b>#GLOBALS[newMediaFolder]#.";
 $pgv_lang["main_media_fail3"]			= "Huvudmediafilen kunde inte flyttas och döpas om ifrån <b>#GLOBALS[oldMediaFolder]##GLOBALS[oldMediaName]#</b> till <b>#GLOBALS[newMediaFolder]##GLOBALS[newMediaName]#</b>.";
-$pgv_lang["resn_disabled"]				= "Obs: Du måste aktivera \'Används GEDCOM(RESN) integritetsrestriktioner\' för att denna inställning ska ha någon effekt. ";
+$pgv_lang["resn_disabled"]				= "Obs: Du måste aktivera &laquo;#pgv_lang[PRIVACY_BY_RESN]#&raquo; för att denna inställning ska ha någon effekt. ";
 $pgv_lang["thumb_media_ok1"]			= "Miniatyrbildsfilen b>#GLOBALS[oldMediaName]#</b> döptes om till <b>#GLOBALS[newMediaName]#</b>.";
 $pgv_lang["thumb_media_ok2"]			= "Miniatyrbildsfilen <b>#GLOBALS[oldMediaName]#</b> flyttades ifrån <b>#GLOBALS[oldThumbFolder]#</b> till <b>#GLOBALS[newThumbFolder]#</b>.";
 $pgv_lang["thumb_media_ok3"]			= "Miniatyrbildsfilen flyttades och döptes om ifrån <b>#GLOBALS[oldThumbFolder]##GLOBALS[oldMediaName]#</b> till <b>#GLOBALS[newThumbFolder]##GLOBALS[newMediaName]#</b>.";
+$pgv_lang["thumb_create_ok0a"]			= "Miniatyrbild <b>#GLOBALS[imageThumbnail]#</b> skapas automatiskt.<br />";
+$pgv_lang["thumb_create_ok0b"]			= "Miniatyrbild #GLOBALS[imageThumbnail]# skapas automatiskt.";
+$pgv_lang["thumb_create_fail0a"]		= "Miniatyrbild <span style=\"font-size:larger\">#GLOBALS[imageThumbnail]#</span> kunde inte skapas automatiskt : ";
+$pgv_lang["thumb_create_fail0b"]		= "Miniatyrbild #GLOBALS[imageThumbnail]# kunde inte skapas automatiskt. Felkod : ";
+$pgv_lang["thumb_create_fail1"]			= "Den här funktionen är inaktiverad i GEDCOM konfigurationen.";
+$pgv_lang["thumb_create_fail2"]			= "Destinationskatalogen är inte skrivbar.";
+$pgv_lang["thumb_create_fail3"]			= "Den här funktionen stöder inte bildtypen <span style=\"font-size:larger\">#GLOBALS[imageType]#</span>.";
+$pgv_lang["thumb_create_fail4"]			= "Destinationskatalogen kan inte skapas.";
+$pgv_lang["thumb_create_fail5"]			= "Ingångsbilden <span style=\"font-size:larger\">#GLOBALS[imageFilename]#</span> finns inte eller kan inte läsas.";
+$pgv_lang["thumb_create_fail6"]			= "Storleken på den inmatade bilden <span style=\"font-size:larger\">#GLOBALS[imageFilename]#</span> kan inte bestämmas.";
+$pgv_lang["thumb_create_fail7"]			= "Det finns inte tillräckligt med ledigt minne.<br />Minska storleken på den inmatade bilden eller justera minnestilldelningen i Webbplatskonfiguration, Steg 4, Avancerade inställningar.";
+$pgv_lang["thumb_create_fail8"]			= "Ingångsbilden ABC är defekt.";
 $pgv_lang["thumb_media_fail0"]			= "Miniatyrsbildsfilen <b>#GLOBALS[oldThumbFolder]##GLOBALS[oldMediaName]#</b> finns inte.";
 $pgv_lang["thumb_media_fail1"]			= "Miniatyrbildsfilen <b>#GLOBALS[oldMediaName]#</b> kunde inte döpas om till <b>#GLOBALS[newMediaName]#</b>.";
 $pgv_lang["thumb_media_fail2"]			= "Miniatyrbildfilen <b>#GLOBALS[oldMediaName]#</b> kunde inte flyttas ifrån <b>#GLOBALS[oldThumbFolder]#</b> till <b>#GLOBALS[newThumbFolder]#</b>.";
@@ -128,10 +137,11 @@ $pgv_lang["current_person"]         = "Samma som nuvarande";
 $pgv_lang["date"]				= "Datum";
 $pgv_lang["deathdate_search"]		= "Dödsdatum: ";
 $pgv_lang["deathplace_search"]		= "Dödsort: ";
-$pgv_lang["delete_dir_success"]		= "Media och miniatyrbildsmappen togs bort.";
+$pgv_lang["delete_dir_success"]		= "Media- och miniatyrkatalogerna <b>#GLOBALS[whichDir]#</b> har tagits bort.";
 $pgv_lang["delete_file"]			= "Radera fil";
 $pgv_lang["delete_repo"]			= "Radera arkiv";
-$pgv_lang["directory_not_empty"]	= "Mappen är inte tom.";
+$pgv_lang["directory_not_empty"]	= "Mappen <span style=\"font-size:larger\">#GLOBALS[whichDir]#</span är inte tom.";
+$pgv_lang["directory_not_mt"]		= "Mappen #GLOBALS[whichDir]# är inte tom.";
 $pgv_lang["directory_not_exist"]	= "Mappen existerar inte.";
 $pgv_lang["error_remote"]           = "Du har valt en sajt från en annan plats.";
 $pgv_lang["error_same"]             = "Du har valt samma sajt.";
@@ -170,21 +180,29 @@ $pgv_lang["link_success"]			= "Lyckades lägga till länk";
 $pgv_lang["link_to_existing_media"]		= "Länka till en existerande mediaartikel";
 $pgv_lang["max_media_depth"]		= "Du kan endast flytta #MEDIA_DIRECTORY_LEVELS#-mappar djupt";
 $pgv_lang["max_upload_size"]	= "Max uppladdningsstorlek: ";
-$pgv_lang["media_deleted"]			= "Mediamappen borttagen.";
-$pgv_lang["media_exists"]			= "Mediafil existerar redan.";
+$pgv_lang["media_deleted"]			= "Mappen <b>#GLOBALS[whichDir]#</b> borttagen.";
+$pgv_lang["media_not_deleted"]		= "Mappen <span style=\"font-size:larger\">#GLOBALS[whichDir]#</span> har inte tagits bort.";
+$pgv_lang["media_cant_delete"]		= "Mappen #GLOBALS[whichDir]# har inte tagits bort.";
+$pgv_lang["media_exists"]			= "Mediafil <span style=\"font-size:larger\">#GLOBALS[whichFile]#</span> existerar redan.";
 $pgv_lang["media_file"]			= "Mediafiler";
-$pgv_lang["media_file_deleted"]		= "Mediafiler raderades.";
+$pgv_lang["media_file_deleted"]		= "Mediafiler <b>#GLOBALS[whichFile]#</b> raderades.";
+$pgv_lang["media_file_not_deleted"]	= "Mediefilen <span style=\"font-size:larger\">#GLOBALS[whichFile]#</span> kunde inte raderas.";
+$pgv_lang["media_file_cant_delete"]	= "Mediefilen #GLOBALS[whichFile]# kunde inte raderas.";
 $pgv_lang["media_file_moved"]			= "Mediafiler borttagna.";
 $pgv_lang["media_file_not_moved"]	= "Mediafil kunde inte flyttas.";
 $pgv_lang["media_file_not_renamed"]	= "Mediafil kunde inte flyttas eller döpas om.";
 $pgv_lang["media_thumb_exists"]		= "Media-miniatyr existerar redan.";
+$pgv_lang["media_thumb_exists"]		= "Miniatyrbild <span style=\"font-size:larger\">#GLOBALS[whichFile]#</span> finns redan.";
+$pgv_lang["media_thumb_deleted"]	= "Miniatyrbild <b>#GLOBALS[whichFile]#</b> raderad.";
+$pgv_lang["media_thumb_not_deleted"]	= "Miniatyrbild <span style=\"font-size:larger\">#GLOBALS[whichFile]#</span> kunde inte raderas.";
+$pgv_lang["media_thumb_cant_delete"]	= "Miniatyrbild #GLOBALS[whichFile]# kunde inte raderas..";
 $pgv_lang["multiple_gedcoms"]		= "Denna fil är länkad till en databas på denna server. Den kan inte raderas flyttas eller döpas om förrän dessa länkar är borttagna.";
 $pgv_lang["must_provide"]		= "Du måste tillhandahålla";
 $pgv_lang["name_search"]			= "Namn: ";
 $pgv_lang["new_repo_created"]		= "Nytt arkiv skapat";
 $pgv_lang["new_source_created"]	= "Ny källa skapades korrekt.";
 $pgv_lang["no_changes"]			= "Det finns för närvarande inga ändringar som behöver granskas.";
-$pgv_lang["no_known_servers"]		= "Inga kända servrar.<br />Inget resultat kommer att hittas.";
+$pgv_lang["no_known_servers"]		= "Inga kända servrar. Inget resultat kommer att hittas.";
 $pgv_lang["no_temple"]			= "Inget tempel - Living Ordinance";
 $pgv_lang["no_upload"]			= "Uppladdning av media filer är inte tillåten eftersom multimediaartiklar är avstängt eller så är mediamappen inte skrivbar.";
 $pgv_lang["paste_id_into_field"]= "Klistra in följande källid in i ditt redigeringsfält för att referera till denna källa  ";
@@ -193,8 +211,6 @@ $pgv_lang["photo_replace"] 		= "Vill du byta ut ett äldre foto med detta?";
 $pgv_lang["record_marked_deleted"]		= "Denna post har markerats för radering efter godkännande av administratören.";
 $pgv_lang["replace_with"]			= "Ersätt med";
 $pgv_lang["show_changes"]		= "Denna post har uppdaterats. Klicka här för att se ändringarna.";
-$pgv_lang["thumb_genned"]		= "Miniatyrbilder #thumbnail# genererades automatiskt.";
-$pgv_lang["thumbgen_error"]		= "Miniatyrbilden #thumbnail# kunde inte genereras automatiskt. ";
 $pgv_lang["thumbnail"]			= "Miniatyrbild att ladda upp";
 $pgv_lang["title_remote_link"]      = "Lägg till länk från annan plats";
 $pgv_lang["undo"]				= "Ångra";

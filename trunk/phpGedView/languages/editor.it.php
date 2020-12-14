@@ -3,7 +3,7 @@
  * Italian texts
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2011  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2020  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -76,15 +76,12 @@ $pgv_lang["max_upload_size"]  = "Grandezza Massima Caricamento: ";
 $pgv_lang["media_file"]			= "File multimediale";
 $pgv_lang["must_provide"]		= "Devi fornire un ";
 $pgv_lang["show_changes"]		= "Il campo è stato aggiornato. Clicca qui per mostrare le modifiche.";
-$pgv_lang["thumb_genned"]			= "Anteprime generate automaticamente.";
 $pgv_lang["undo"]			= "Annulla";
 $pgv_lang["undo_successful"]		= "Annullao con successo";
 $pgv_lang["update_successful"]		= "Caricato con successo";
 $pgv_lang["upload_error"]			= "C'è stato un errore caricando il file GEDCOM";
 $pgv_lang["upload_media"]		= "Carica file multimediale";
 $pgv_lang["view_change_diff"]		= "Guarda le differenze";
-
-
 $pgv_lang["add_marriage"]			= "Aggiungi dettagli matrimonio";
 $pgv_lang["edit_concurrency_change"] = "L\'ultima modifica a questo record è stata effettuata da <i>#CHANGEUSER#</i> in data #CHANGEDATE#";
 $pgv_lang["edit_concurrency_msg2"]	= "Il record con ID #PID# è stato modificato da un altro utente da quando hai avuto l\'ultimo accesso.";
@@ -102,9 +99,6 @@ $pgv_lang["admin_override"]			= "Opzioni di Amministrazione";
 $pgv_lang["no_update_CHAN"]			= "Non aggiornare il record CHAN (Ultima modifica)";
 $pgv_lang["source_events"]			= "Associa eventi a questa fonte";
 $pgv_lang["advanced_name_fields"]	= "Ulteriori nomi (nomignolo, nome da sposati ecc.)";
-$pgv_lang["media_not_deleted"]		= "Cartella multimedia non rimossa.";
-$pgv_lang["thumbs_not_deleted"]		= "Cartella anteprime non rimossa.";
-$pgv_lang["thumbs_deleted"]			= "Cartella anteprime rimossa con successo.";
 $pgv_lang["link_media"]				= "Collega multimedia";
 $pgv_lang["to_person"]				= "a persona";
 $pgv_lang["to_family"]				= "a famiglia";
@@ -133,14 +127,14 @@ $pgv_lang["add_linkid_advice"]			= "Inserisci o cerca l\'ID della persona, famig
 $pgv_lang["use_browse_advice"]			= "Utilizza il pulsante &laquo;Browse&raquo; per cercare il file nel tuo computer.";
 $pgv_lang["add_media_other_folder"]		= "Altra cartella ... per favore, scrivi";
 $pgv_lang["add_media_file"]				= "File multimediale esistente sul server";
-$pgv_lang["main_media_ok1"]				= "File multimediale principale <b>#GLOBALS[oldMediaName]#</b> rinominato con successo in <b>#GLOBALS[newMediaName]#</b>.";
-$pgv_lang["main_media_ok2"]				= "File multimediale principale <b>#GLOBALS[oldMediaName]#</b> spostato con successo da <b>#GLOBALS[oldMediaFolder]#</b> a <b>#GLOBALS[newMediaFolder]#</b>.";
-$pgv_lang["main_media_ok3"]				= "File multimediale principale spostato e rinominato con successo da <b>#GLOBALS[oldMediaFolder]##GLOBALS[oldMediaName]#</b> a <b>#GLOBALS[newMediaFolder]##GLOBALS[newMediaName]#</b>.";
+$pgv_lang["main_media_ok1"]				= "File multimediale principale <b>#GLOBALS[oldMediaName]#</b> rinominato in <b>#GLOBALS[newMediaName]#</b>.";
+$pgv_lang["main_media_ok2"]				= "File multimediale principale <b>#GLOBALS[oldMediaName]#</b> spostato da <b>#GLOBALS[oldMediaFolder]#</b> a <b>#GLOBALS[newMediaFolder]#</b>.";
+$pgv_lang["main_media_ok3"]				= "File multimediale principale spostato e rinominato da <b>#GLOBALS[oldMediaFolder]##GLOBALS[oldMediaName]#</b> a <b>#GLOBALS[newMediaFolder]##GLOBALS[newMediaName]#</b>.";
 $pgv_lang["main_media_fail0"]			= "Il file multimediale principale <b>#GLOBALS[oldMediaFolder]##GLOBALS[oldMediaName]#</b> non esiste.";
 $pgv_lang["main_media_fail1"]			= "Il file multimediale principale <b>#GLOBALS[oldMediaName]#</b> non può essere rinominato in <b>#GLOBALS[newMediaName]#</b>.";
 $pgv_lang["main_media_fail2"]			= "Il file multimediale principale <b>#GLOBALS[oldMediaName]#</b> non può essere spostato da <b>#GLOBALS[oldMediaFolder]#</b> a <b>#GLOBALS[newMediaFolder]#</b>.";
 $pgv_lang["main_media_fail3"]			= "Il file multimediale principale non può essere spostato e rinominato da <b>#GLOBALS[oldMediaFolder]##GLOBALS[oldMediaName]#</b> a <b>#GLOBALS[newMediaFolder]##GLOBALS[newMediaName]#</b>.";
-$pgv_lang["resn_disabled"]				= "Nota: Devi abilitare la funzione  'Utilizza la restrizione GEDCOM (RESN)' perché questa impostazione abbia effetto.";
+$pgv_lang["resn_disabled"]				= "Nota: Devi abilitare la funzione &laquo;#pgv_lang[PRIVACY_BY_RESN]#&raquo; perché questa impostazione abbia effetto.";
 $pgv_lang["label_diff_server"]      = "Nuovo sito remoto";
 $pgv_lang["label_location"]         = "Localizzazione del sito";
 $pgv_lang["label_password_id2"]		= "Password:";
@@ -181,9 +175,21 @@ $pgv_lang["basic_search_discription"] = "Ricerca base sito";
 $pgv_lang["change_family_instr"]	= "Utilizza questa pagina per modificare o rimuovere i membri della famiglia.<br /><br />Per ciascun membro della famiglia puoi utilizzare il link Modifica per scegliere una persona differente a svolgere quel ruolo nella famiglia.<br /><br />Quando avrai finito con le modifiche de imembri della famiglia, clicca sul pulsante Salva per salvarle<br />";
 $pgv_lang["change_family_members"]	= "Modifica i membri della famiglia";
 $pgv_lang["create_repository"]		= "Crea deposito";
-$pgv_lang["thumb_media_ok1"]			= "File di anteprima <b>#GLOBALS[oldMediaName]#</b> rinominato con successo in <b>#GLOBALS[newMediaName]#</b>.";
-$pgv_lang["thumb_media_ok2"]			= "File di anteprima <b>#GLOBALS[oldMediaName]#</b> spostato con successo da <b>#GLOBALS[oldThumbFolder]#</b> a <b>#GLOBALS[newThumbFolder]#</b>.";
-$pgv_lang["thumb_media_ok3"]			= "File di anteprima spostato e rinominato con successo da <b>#GLOBALS[oldThumbFolder]##GLOBALS[oldMediaName]#</b> a <b>#GLOBALS[newThumbFolder]##GLOBALS[newMediaName]#</b>.";
+$pgv_lang["thumb_media_ok1"]			= "File di anteprima <b>#GLOBALS[oldMediaName]#</b> rinominato in <b>#GLOBALS[newMediaName]#</b>.";
+$pgv_lang["thumb_media_ok2"]			= "File di anteprima <b>#GLOBALS[oldMediaName]#</b> spostato da <b>#GLOBALS[oldThumbFolder]#</b> a <b>#GLOBALS[newThumbFolder]#</b>.";
+$pgv_lang["thumb_media_ok3"]			= "File di anteprima spostato e rinominato da <b>#GLOBALS[oldThumbFolder]##GLOBALS[oldMediaName]#</b> a <b>#GLOBALS[newThumbFolder]##GLOBALS[newMediaName]#</b>.";
+$pgv_lang["thumb_create_ok0a"]			= "Miniatura <b>#GLOBALS[imageThumbnail]#</b> creata automaticamente.<br />";
+$pgv_lang["thumb_create_ok0b"]			= "Miniatura #GLOBALS[imageThumbnail]# creata automaticamente.";
+$pgv_lang["thumb_create_fail0a"]		= "La miniatura <span style=\"font-size:larger\">#GLOBALS[imageThumbnail]#</span> non può essere creata automaticamente : ";
+$pgv_lang["thumb_create_fail0b"]		= "La miniatura #GLOBALS[imageThumbnail]# non può essere creata automaticamente. Codice di errore : ";
+$pgv_lang["thumb_create_fail1"]			= "Questa funzione è disabilitata nella configurazione GEDCOM.";
+$pgv_lang["thumb_create_fail2"]			= "La cartella di destinazione non è scrivibile.";
+$pgv_lang["thumb_create_fail3"]			= "Questa funzione non supporta il tipo di immagine <span style=\"font-size:larger\">#GLOBALS[imageType]#</span>.";
+$pgv_lang["thumb_create_fail4"]			= "La cartella di destinazione non può essere creata.";
+$pgv_lang["thumb_create_fail5"]			= "L'immagine in ingresso <span style=\"font-size:larger\">#GLOBALS[imageFilename]#</span> non esiste o non può essere letta.";
+$pgv_lang["thumb_create_fail6"]			= "La dimensione dell'immagine in ingresso <span style=\"font-size:larger\">#GLOBALS[imageFilename]#</span> non può essere determinata.";
+$pgv_lang["thumb_create_fail7"]			= "Non c'è abbastanza memoria libera.<br />Ridurre la dimensione dell'immagine in ingresso o regolare l'allocazione della memoria in Configurazione sito, Passaggio 4, Impostazioni avanzate.";
+$pgv_lang["thumb_create_fail8"]			= "L'immagine in ingresso XYZ è difettosa.";
 $pgv_lang["thumb_media_fail0"]			= "Il file di anteprima <b>#GLOBALS[oldThumbFolder]##GLOBALS[oldMediaName]#</b> non esiste.";
 $pgv_lang["thumb_media_fail1"]			= "Il file di anteprima <b>#GLOBALS[oldMediaName]#</b> non può essere rinominato in <b>#GLOBALS[newMediaName]#</b>.";
 $pgv_lang["thumb_media_fail2"]			= "Il file di anteprima <b>#GLOBALS[oldMediaName]#</b> non può essere spostato da <b>#GLOBALS[oldThumbFolder]#</b> a <b>#GLOBALS[newThumbFolder]#</b>.";
@@ -193,9 +199,10 @@ $pgv_lang["create_shared_note_assisted"]	= "Crea una nuova nota condivisa, utili
 $pgv_lang["shared_note_assisted"] = "Nota condivisa, utilizzando l'assistente";
 $pgv_lang["add_new_event_assisted"] = "Crea un nuovo Evento, utilizzando l'assistente";
 $pgv_lang["current_person"]         = "Come attuale";
-$pgv_lang["delete_dir_success"]		= "Cartelle dei file multimediali e delle anteprime spostate con successo.";
+$pgv_lang["delete_dir_success"]		= "Cartelle dei file multimediali e delle anteprime <b>#GLOBALS[whichDir]#</b> spostate.";
 $pgv_lang["delete_repo"]			= "Elimina deposito";
-$pgv_lang["directory_not_empty"]	= "La cartella non è vuota.";
+$pgv_lang["directory_not_empty"]	= "La cartella <span style=\"font-size:larger\">#GLOBALS[whichDir]#</span> non è vuota.";
+$pgv_lang["directory_not_mt"]		= "La cartella #GLOBALS[whichDir]# non è vuota.";
 $pgv_lang["directory_not_exist"]	= "La cartella non esiste.";
 $pgv_lang["external_file"]			= "Questo oggetto multimediale non esiste su questo server e non può essere eliminato, spostato o rinominato.";
 $pgv_lang["file_no_temp_dir"]		= "Cartella temporanea PHP non trovata.";
@@ -222,20 +229,27 @@ $pgv_lang["link_as_husband"]		= "Collega questa persona a una famiglia esistente
 $pgv_lang["link_success"]			= "Collegamento aggiunto con successo";
 $pgv_lang["link_to_existing_media"]	= "Collega a un oggetto multimediale esistente";
 $pgv_lang["max_media_depth"]		= "Puoi inserire più di #GLOBALS[MEDIA_DIRECTORY_LEVELS]# nomi di sottocartelle";
-$pgv_lang["media_deleted"]			= "Cartella di oggetti multimediali rimossa con successo.";
-$pgv_lang["media_exists"]			= "Il file multimediale esiste già.";
-$pgv_lang["media_file_deleted"]		= "File multimediale eliminato con successo.";
+$pgv_lang["media_deleted"]			= "Cartella <b>#GLOBALS[whichDir]#</b> rimossa.";
+$pgv_lang["media_not_deleted"]		= "Cartella <span style=\"font-size:larger\">#GLOBALS[whichDir]#</span> rimossa.";
+$pgv_lang["media_cant_delete"]		= "Cartella #GLOBALS[whichDir]# non rimossa.";
+$pgv_lang["media_exists"]			= "Il file multimediale <span style=\"font-size:larger\">#GLOBALS[whichFile]#</span> esiste già.";
+$pgv_lang["media_file_deleted"]		= "Il file multimediale <b>#GLOBALS[whichFile]#</b> eliminato.";
+$pgv_lang["media_file_not_deleted"]	= "Impossibile eliminare il file multimediale <span style=\"font-size:larger\">#GLOBALS[whichFile]#</span>.";
+$pgv_lang["media_file_cant_delete"]	= "Impossibile eliminare il file multimediale #GLOBALS[whichFile]#";
 $pgv_lang["media_file_moved"]		= "File multimediale spostato.";
 $pgv_lang["media_file_not_moved"]	= "Il file multimediale non può essere spostato.";
 $pgv_lang["media_file_not_renamed"]	= "Il file multimediale non può essere spostato o rinominato.";
-$pgv_lang["media_thumb_exists"]		= "Anteprima multimediale già esistente.";
+$pgv_lang["media_thumb_exists"]		= "Anteprima <span style=\"font-size:larger\">#GLOBALS[whichFile]#</span> già esistente.";
+$pgv_lang["media_thumb_deleted"]	= "Miniatura <b>#GLOBALS[whichFile]#</b> eliminata.";
+$pgv_lang["media_thumb_not_deleted"]	= "Impossibile eliminare la miniatura <span style=\"font-size:larger\">#GLOBALS[whichFile]#</span>.";
+$pgv_lang["media_thumb_cant_delete"]	= "Impossibile eliminare la miniatura #GLOBALS[whichFile]#.";
 $pgv_lang["multiple_gedcoms"]		= "Questo file è collegato a un altro database genealogico su questo server. Non può essere eliminato, spostato o rinominato prima che questi collegamenti non siano stati rimossi.";
 $pgv_lang["new_repo_created"]		= "Creato nuovo deposito";
 $pgv_lang["new_shared_note_created"] 	= "Nuova nota condivisa creata con successo.";
 $pgv_lang["shared_note_updated"] 	= "Nota condivisa aggiornata con successo.";
 $pgv_lang["new_source_created"] 	= "Nuova fonte creata con successo.";
 $pgv_lang["no_changes"] 			= "Non ci sono, al momento, modifiche da revisionare.";
-$pgv_lang["no_known_servers"]		= "Nessun server conosciuto<br />Nessun risultato verrà trovato";
+$pgv_lang["no_known_servers"]		= "Nessun server conosciuto. Nessun risultato verrà trovato";
 $pgv_lang["no_temple"]				= "Nessun Tempio - ";
 $pgv_lang["new_source_created"] 	= "Nuova fonte creata con successo.";
 $pgv_lang["no_changes"] 			= "";
@@ -243,9 +257,8 @@ $pgv_lang["no_upload"]				= "Il caricamento di file multimediali non è permesso
 $pgv_lang["paste_id_into_field"]	= "Incolla il seguente ID nei campi di modifica per far riferimento a file appena creato ";
 $pgv_lang["paste_rid_into_field"]	= "Incolla il seguente ID di deposito nei tuoi campi di modifica per far riferimento a questo deposito";
 $pgv_lang["record_marked_deleted"]		= "Questo record è stato marcato per essere eliminato su approvazione dell'amministratore.";
-$pgv_lang["thumbgen_error"]			= "Anteprima #thumbnail# non può essere generata automaticamente.";
 $pgv_lang["thumbnail"]				= "Anteprima da caricare";
 $pgv_lang["copy_error"]				= "Il file #GLOBALS[whichFile2]# non può essere copiato da #GLOBALS[whichFile1]#";
 $pgv_lang["upload_media_help"]		= "~#pgv_lang[upload_media]#~<br /><br />Seleziona i file da caricare nel server dal tuo computer. Tutti i file saranno caricati nella cartella <b>#MEDIA_DIRECTORY#</b> o in una delle sue sottocartelle.<br /><br />I nomi cartella che specificherai saranno aggiunti a #MEDIA_DIRECTORY#. Per esempio, #MEDIA_DIRECTORY#miafamiglia. Se la cartella anteprima non esiste, viene creata automaticamente.";
-$pgv_lang["upload_successful"]		= "Caricato con successo.";
+$pgv_lang["upload_successful"]		= "Caricato con successo";
 ?>
