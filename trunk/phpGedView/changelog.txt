@@ -9,6 +9,7 @@
 =====================================================================
 
 Version 4.3.1
+ - Changed: Minor changes to several help_text.xx.php files and to lang.en.php (canajun2eh) 
  - Changed: BMP support removed from functions_mediadb into its own script functions_mediabmp (canajun2eh)
  - Changed: Produce meaningful error messages when thumbnail generation fails (canajun2eh)
  - Changed: Default option for database collation changed to "yes" (new installations only)  (canajun2eh)
