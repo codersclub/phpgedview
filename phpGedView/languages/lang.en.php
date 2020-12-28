@@ -1006,7 +1006,7 @@ $pgv_lang["n_x_granddaughter_from_daughter"] = "%3\$d x great granddaughter";
 $pgv_lang["sosa_uncle_2"] 				= "uncle";            // father's brother
 $pgv_lang["sosa_uncle_3"] 				= "uncle";            // mother's brother
 // 2nd generation
-$pgv_lang["sosa_uncle_4"] 				= "great uncle";      // fathers's father's brother
+$pgv_lang["sosa_uncle_4"] 				= "great uncle";      // father's father's brother
 $pgv_lang["sosa_uncle_5"] 				= "great uncle";      // father's mother's brother
 $pgv_lang["sosa_uncle_6"] 				= "great uncle";      // mother's father's brother
 $pgv_lang["sosa_uncle_7"] 				= "great uncle";      // mother's mother's brother
@@ -1025,7 +1025,7 @@ $pgv_lang["n_x_maternal_uncle"]	    = "%2\$d x great uncle";
 $pgv_lang["sosa_aunt_2"] 				= "aunt";            // father's sister
 $pgv_lang["sosa_aunt_3"] 				= "aunt";            // mother's sister
 // 2nd generation
-$pgv_lang["sosa_aunt_4"] 				= "great aunt";      // fathers's father's sister
+$pgv_lang["sosa_aunt_4"] 				= "great aunt";      // father's father's sister
 $pgv_lang["sosa_aunt_5"] 				= "great aunt";      // father's mother's sister
 $pgv_lang["sosa_aunt_6"] 				= "great aunt";      // mother's father's sister
 $pgv_lang["sosa_aunt_7"] 				= "great aunt";      // mother's mother's sister
@@ -1044,7 +1044,7 @@ $pgv_lang["n_x_maternal_aunt"]	    = "%2\$d x great aunt";
 $pgv_lang["sosa_uncle_bm_2"] 				= "uncle";            // father's brother
 $pgv_lang["sosa_uncle_bm_3"] 				= "uncle";            // mother's brother
 // 2nd generation
-$pgv_lang["sosa_uncle_bm_4"] 				= "great uncle";      // fathers's father's brother
+$pgv_lang["sosa_uncle_bm_4"] 				= "great uncle";      // father's father's brother
 $pgv_lang["sosa_uncle_bm_5"] 				= "great uncle";      // father's mother's brother
 $pgv_lang["sosa_uncle_bm_6"] 				= "great uncle";      // mother's father's brother
 $pgv_lang["sosa_uncle_bm_7"] 				= "great uncle";      // mother's mother's brother
@@ -1063,7 +1063,7 @@ $pgv_lang["n_x_maternal_uncle_bm"]	    = "%2\$d x great uncle";
 $pgv_lang["sosa_aunt_bm_2"] 				= "aunt";            // father's sister
 $pgv_lang["sosa_aunt_bm_3"] 				= "aunt";            // mother's sister
 // 2nd generation
-$pgv_lang["sosa_aunt_bm_4"] 				= "great aunt";      // fathers's father's sister
+$pgv_lang["sosa_aunt_bm_4"] 				= "great aunt";      // father's father's sister
 $pgv_lang["sosa_aunt_bm_5"] 				= "great aunt";      // father's mother's sister
 $pgv_lang["sosa_aunt_bm_6"] 				= "great aunt";      // mother's father's sister
 $pgv_lang["sosa_aunt_bm_7"] 				= "great aunt";      // mother's mother's sister
