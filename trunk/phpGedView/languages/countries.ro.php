@@ -3,7 +3,7 @@
  * Romanian texts
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2018  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2020  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -174,7 +174,7 @@ $countries["LTU"]="Lituania";
 $countries["LUX"]="Luxemburg";
 $countries["LVA"]="Letonia";
 $countries["MAC"]="Macau";
-$countries["MAF"]="Saint-Martin;
+$countries["MAF"]="Saint-Martin";
 $countries["MAR"]="Maroc";
 $countries["MCO"]="Monaco";
 $countries["MDA"]="Moldova";
