@@ -9,7 +9,8 @@
 =====================================================================
 
 Version 4.3.1
- - Changed: Fix syntax error in countries.ro.php (imsza)
+ - Deleted: Research Assistant module: FormBuilder contents and directory (canajun2eh)
+ - Fixed: Fix syntax error in countries.ro.php (imsza)
  - Changed: Minor changes to several help_text.xx.php files and to lang.en.php (canajun2eh) 
  - Changed: BMP support removed from functions_mediadb into its own script functions_mediabmp (canajun2eh)
  - Changed: Produce meaningful error messages when thumbnail generation fails (canajun2eh)
