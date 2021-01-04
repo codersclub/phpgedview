@@ -9,6 +9,10 @@
 =====================================================================
 
 Version 4.3.1
+ - Fixed: Indi page Media and Album tabs do not reflect original sequence of media objects in the GEDCOM, OK after re-sequencing (canajun2eh)
+ - Fixed: Indi page Album tab media re-sequencing does not work, OK on Media tab (canajun2eh)
+ - Fixed: Ancestry chart fails in PHP 7.4 when there is a one-parent family, OK in PHP 7.3 and earlier (canajun2eh)
+ - Fixed: Add Media Item fails in PHP 7.4, OK in PHP 7.3 and earlier (canajun2eh)
  - Fixed: Incorrect use of left and right angle brackets in some German texts (canajun2eh)
  - Deleted: Delete unsupported (by anyone) modules cms_interface, FCKeditor, gallery2, punbb, sitemap  (canajun2eh)
  - Deleted: Research Assistant module: FormBuilder contents and directory (canajun2eh)

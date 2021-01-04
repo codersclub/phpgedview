@@ -5,7 +5,7 @@
  * Various printing functions used to print fact records
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2018  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2021  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -1275,44 +1275,22 @@ function print_main_media($pid, $level=1, $related=false, $noedit=false) {
 
 	//-- find all of the related ids
 	if ($related) {
-		$ct = preg_match_all("/1 FAMS @(.*)@/", $gedrec, $match, PREG_SET_ORDER);
-		for($i=0; $i<$ct; $i++) {
+		$count = preg_match_all("/1 FAMS @(.*)@/", $gedrec, $match, PREG_SET_ORDER);
+		for($i=0; $i<$count; $i++) {
 			$ids[] = trim($match[$i][1]);
 		}
 	}
 
-	//LBox -- if  exists, get a list of the sorted current objects in the indi gedcom record  -  (1 _PGV_OBJS @xxx@ .... etc) ----------
-	$sort_current_objes = array();
-	if ($level>0) $sort_regexp = "/".$level." _PGV_OBJS @(.*)@/";
-	else $sort_regexp = "/_PGV_OBJS @(.*)@/";
-	$sort_ct = preg_match_all($sort_regexp, $gedrec, $sort_match, PREG_SET_ORDER);
-	for($i=0; $i<$sort_ct; $i++) {
-		if (!isset($sort_current_objes[$sort_match[$i][1]])) $sort_current_objes[$sort_match[$i][1]] = 1;
-		else $sort_current_objes[$sort_match[$i][1]]++;
-		$sort_obje_links[$sort_match[$i][1]][] = $sort_match[$i][0];
-	}
-	// -----------------------------------------------------------------------------------------------
-
-	// create ORDER BY list from Gedcom sorted records list  ---------------------------
-	$orderbylist = 'ORDER BY '; // initialize
-	foreach ($sort_match as $id) {
-		$orderbylist .= "m_media='$id[1]' DESC, ";
-	}
-	$orderbylist = rtrim($orderbylist, ', ');
-	// -----------------------------------------------------------------------------------------------
-
-	//-- get a list of the current objects in the record
-	$current_objes = array();
-	if ($level>0) $regexp = "/".$level." OBJE @(.*)@/";
-	else $regexp = "/OBJE @(.*)@/";
-	$ct = preg_match_all($regexp, $gedrec, $match, PREG_SET_ORDER);
-	for($i=0; $i<$ct; $i++) {
-		if (!isset($current_objes[$match[$i][1]])) $current_objes[$match[$i][1]] = 1;
-		else $current_objes[$match[$i][1]]++;
-		$obje_links[$match[$i][1]][] = $match[$i][0];
-	}
+	// ---------------------------------------------------------------------------------------------------------------------------------------------------
+	
+	$result = getSequencedMediaList($gedrec, $level);		// Look for _PGV_OBJS @xxx@ or OBJE @xxx@ lines in the current record
+	$count = $result['count'];
+	$current_objes = $result['medialist'];
+	$obje_links = $result['links'];
+	$orderby = $result['orderby'];
 
 	$media_found = false;
+
 	$sqlmm = "SELECT ";
 	$sqlmm .= "m_media, m_ext, m_file, m_titl, m_gedfile, m_gedrec, mm_gid, mm_gedrec FROM {$TBLPREFIX}media, {$TBLPREFIX}media_mapping where ";
 	$sqlmm .= "mm_gid IN (";
@@ -1332,13 +1310,7 @@ function print_main_media($pid, $level=1, $related=false, $noedit=false) {
 		$vars[]="{$level} OBJE%";
 	}
 
-	// LBox --- media sort -------------------------------------
-	if ($sort_ct>0) {
-		$sqlmm .= $orderbylist;
-	}else{
-		$sqlmm .= " ORDER BY mm_gid DESC ";
-	}
-	// ---------------------------------------------------------------
+	$sqlmm .= $orderby;
 
 	$rows=PGV_DB::prepare($sqlmm)->execute($vars)->fetchAll(PDO::FETCH_ASSOC);
 
@@ -1414,8 +1386,8 @@ function print_main_media($pid, $level=1, $related=false, $noedit=false) {
 		while($value>0) {
 			$objSubrec = array_pop($obje_links[$media_id]);
 			//-- check if we need to get the object from a remote location
-			$ct = preg_match("/(.*):(.*)/", $media_id, $match);
-			if ($ct>0) {
+			$count = preg_match("/(.*):(.*)/", $media_id, $match);
+			if ($count>0) {
 				require_once PGV_ROOT.'includes/classes/class_serviceclient.php';
 				$client = ServiceClient::getInstance($match[1]);
 				if (!is_null($client)) {
@@ -1430,7 +1402,7 @@ function print_main_media($pid, $level=1, $related=false, $noedit=false) {
 					if ($et>0) $ext = substr(trim($ematch[1]), 1);
 					$row['m_ext'] = $ext;
 					$row['mm_gid'] = $pid;
-						$row['mm_gedrec'] = get_sub_record($objSubrec{0}, $objSubrec, $gedrec);
+					$row['mm_gedrec'] = get_sub_record($objSubrec[0], $objSubrec, $gedrec);
 					$res = print_main_media_row('normal', $row, $pid);
 					$media_found = $media_found || $res;
 				}
@@ -1448,7 +1420,7 @@ function print_main_media($pid, $level=1, $related=false, $noedit=false) {
 				if ($et>0) $ext = substr(trim($ematch[1]), 1);
 				$row['m_ext'] = $ext;
 				$row['mm_gid'] = $pid;
-				$row['mm_gedrec'] = get_sub_record($objSubrec{0}, $objSubrec, $gedrec);
+				$row['mm_gedrec'] = get_sub_record($objSubrec[0], $objSubrec, $gedrec);
 				$res = print_main_media_row('new', $row, $pid);
 				$media_found = $media_found || $res;
 			}
@@ -1458,7 +1430,6 @@ function print_main_media($pid, $level=1, $related=false, $noedit=false) {
 	if ($media_found) return true;
 	else return false;
 }
-
 /**
  * print a media row in a table
  * @param string $rtype whether this is a 'new', 'old', or 'normal' media row... this is used to determine if the rows should be printed with an outline color
@@ -1484,7 +1455,7 @@ function print_main_media_row($rtype, $rowm, $pid) {
 
 	$linenum = 0;
 	echo "\n\t\t<tr><td class=\"descriptionbox $styleadd center width20\"><img class=\"icon\" src=\"", $PGV_IMAGE_DIR, "/", $PGV_IMAGES["media"]["small"], "\" alt=\"\" /><br />", $factarray["OBJE"];
-	if ($rowm['mm_gid']==$pid && PGV_USER_CAN_EDIT && (!FactEditRestricted($rowm['m_media'], $rowm['m_gedrec'])) && ($styleadd!="change_old") && ($view!="preview")) {
+	if (PGV_USER_CAN_EDIT && (!FactEditRestricted($rowm['m_media'], $rowm['m_gedrec'])) && ($styleadd!="change_old") && ($view!="preview")) {
 		$menu = new Menu($pgv_lang["edit"], "#", "right", "down");
 		$menu->addOnclick("return window.open('addmedia.php?action=editmedia&pid={$rowm['m_media']}&linktoid={$rowm['mm_gid']}', '_blank', 'top=50, left=50, width=600, height=500, resizable=1, scrollbars=1');");
 		$menu->addClass("", "", "submenu");

@@ -3,7 +3,7 @@
  * Reorder media Items using drag and drop
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2009  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2021  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -75,43 +75,19 @@ require_once PGV_ROOT.'includes/functions/functions_print_facts.php';
 	//-- find all of the related ids
 	$ids = array($pid);
 	if ($related) {
-		$ct = preg_match_all("/1 FAMS @(.*)@/", $gedrec, $match, PREG_SET_ORDER);
-		for($i=0; $i<$ct; $i++) {
+		$count = preg_match_all("/1 FAMS @(.*)@/", $gedrec, $match, PREG_SET_ORDER);
+		for($i=0; $i<$count; $i++) {
 			$ids[] = trim($match[$i][1]);
 		}
 	}
+	
+	$result = getSequencedMediaList($gedrec, $level);		// Look for _PGV_OBJS @xxx@ or OBJE @xxx@ lines in the current record
+	$count = $result['count'];
+	$current_objes = $result['medialist'];
+	$obje_links = $result['links'];
+	$orderby = $result['orderby'];	
 
-	//-- If  they exist, get a list of the sorted current objects in the indi gedcom record  -  (1 _PGV_OBJS @xxx@ .... etc) ----------
-	$sort_current_objes = array();
-	if ($level>0) $sort_regexp = "/".$level." _PGV_OBJS @(.*)@/";
-	else $sort_regexp = "/_PGV_OBJS @(.*)@/";
-	$sort_ct = preg_match_all($sort_regexp, $gedrec, $sort_match, PREG_SET_ORDER);
-	for ($i=0; $i<$sort_ct; $i++) {
-		if (!isset($sort_current_objes[$sort_match[$i][1]])) $sort_current_objes[$sort_match[$i][1]] = 1;
-		else $sort_current_objes[$sort_match[$i][1]]++;
-		$sort_obje_links[$sort_match[$i][1]][] = $sort_match[$i][0];
-	}
 	// -----------------------------------------------------------------------------------------------
-
-	// create ORDER BY list from Gedcom sorted records list  ---------------------------
-	$orderbylist = 'ORDER BY '; // initialize
-	foreach ($sort_match as $media_id) {
-		$orderbylist .= "m_media='$media_id[1]' DESC, ";
-	}
-	$orderbylist = rtrim($orderbylist, ', ');
-	//  print_r($orderbylist);
-	// -----------------------------------------------------------------------------------------------
-
-	//-- get a list of the current objects in the record
-	$current_objes = array();
-	if ($level>0) $regexp = "/".$level." OBJE @(.*)@/";
-	else $regexp = "/OBJE @(.*)@/";
-	$ct = preg_match_all($regexp, $gedrec, $match, PREG_SET_ORDER);
-	for ($i=0; $i<$ct; $i++) {
-		if (!isset($current_objes[$match[$i][1]])) $current_objes[$match[$i][1]] = 1;
-		else $current_objes[$match[$i][1]]++;
-		$obje_links[$match[$i][1]][] = $match[$i][0];
-	}
 
 	$media_found = false;
 
@@ -134,58 +110,53 @@ require_once PGV_ROOT.'includes/functions/functions_print_facts.php';
 		$vars[]="{$level} OBJE%";
 	}
 
-
-	if ($sort_ct>0) {
-		$sqlmm .= $orderbylist;
-	} else {
-		$sqlmm .= " ORDER BY mm_gid DESC ";
-	}
+	$sqlmm .= $orderby;
 
 	$rows=PGV_DB::prepare($sqlmm)->execute($vars)->fetchAll(PDO::FETCH_ASSOC);
 
 	$foundObjs = array();
 
-			foreach ($rows as $rowm) {
-
-				if (isset($foundObjs[$rowm['m_media']])) {
-					if (isset($current_objes[$rowm['m_media']])) $current_objes[$rowm['m_media']]--;
-					continue;
-				}
-
-				// NOTE: Determine the size of the mediafile
-				$imgwidth = 300+40;
-				$imgheight = 300+150;
-				if (preg_match("'://'", $rowm["m_file"])) {
-					if (in_array($rowm["m_ext"], $MEDIATYPE)) {
-						$imgwidth = 400+40;
-						$imgheight = 500+150;
-					} else {
-						$imgwidth = 800+40;
-						$imgheight = 400+150;
-					}
-				}
-				else if (file_exists(filename_decode(check_media_depth($rowm["m_file"], "NOTRUNC")))) {
-					$imgsize = findImageSize(check_media_depth($rowm["m_file"], "NOTRUNC"));
-					$imgwidth = $imgsize[0]+40;
-					$imgheight = $imgsize[1]+150;
-				}
-				$rows = array();
-
-				$rows['normal'] = $rowm;
-				if (isset($current_objes[$rowm['m_media']])) $current_objes[$rowm['m_media']]--;
-				foreach($rows as $rtype => $rowm) {
-					// if  (FactViewRestricted($rowm['m_media'], $rowm['m_gedrec']) == "true")
-					$res = media_reorder_row($rtype, $rowm, $pid);
-					$media_found = $media_found || $res;
-					$foundObjs[$rowm['m_media']] = true;
-
-					print "\n\n";
-				$j++;
-				}
+	foreach ($rows as $rowm) {
+	
+		if (isset($foundObjs[$rowm['m_media']])) {
+			if (isset($current_objes[$rowm['m_media']])) $current_objes[$rowm['m_media']]--;
+			continue;
+		}
+	
+		// NOTE: Determine the size of the mediafile
+		$imgwidth = 300+40;
+		$imgheight = 300+150;
+		if (preg_match("'://'", $rowm["m_file"])) {
+			if (in_array($rowm["m_ext"], $MEDIATYPE)) {
+				$imgwidth = 400+40;
+				$imgheight = 500+150;
+			} else {
+				$imgwidth = 800+40;
+				$imgheight = 400+150;
 			}
-
-			?>
-			</ul>
+		}
+		else if (file_exists(filename_decode(check_media_depth($rowm["m_file"], "NOTRUNC")))) {
+			$imgsize = findImageSize(check_media_depth($rowm["m_file"], "NOTRUNC"));
+			$imgwidth = $imgsize[0]+40;
+			$imgheight = $imgsize[1]+150;
+		}
+		$rows = array();
+	
+		$rows['normal'] = $rowm;
+		if (isset($current_objes[$rowm['m_media']])) $current_objes[$rowm['m_media']]--;
+		foreach($rows as $rtype => $rowm) {
+			// if  (FactViewRestricted($rowm['m_media'], $rowm['m_gedrec']) == "true")
+			$res = media_reorder_row($rtype, $rowm, $pid);
+			$media_found = $media_found || $res;
+			$foundObjs[$rowm['m_media']] = true;
+	
+			print "\n\n";
+		$j++;
+		}
+	}
+	
+	?>
+	</ul>
 <?php
 
 print "\n";

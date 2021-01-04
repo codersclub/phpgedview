@@ -5,7 +5,7 @@
  * Display media Items using Lightbox 4.1
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2007 to 2008  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2007 to 2021  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -58,7 +58,7 @@ if (!file_exists($lbHelpFile)) $lbHelpFile = "modules/lightbox/languages/help_te
 		win01.focus()
 	}
 
-	function reorder_media() {
+	function album_reorder() {
 	var win02 = window.open(
 	"edit_interface.php?action=reorder_media&pid=<?php print $pid; ?>", "win02", "resizable=1, menubar=0, scrollbars=1, top=20, HEIGHT=840, WIDTH=450 ");
 	if (window.focus) {win02.focus();}
@@ -189,7 +189,7 @@ require_once PGV_ROOT.'includes/media_reorder_count.php';
 		if (PGV_USER_CAN_EDIT && $tot_med_ct>1) {
 			if ($LB_AL_HEAD_LINKS == "both") {
 				print "<td class=\"width15 center wrap\" valign=\"top\">";
-				print "<a href=\"".encode_url(PGV_SCRIPT_NAME."?pid={$pid}&tab={$tabno}&reorder=1")."\">" ;
+	            print "<a href=\"javascript: album_reorder()\">";
 				print "<img src=\"modules/lightbox/images/images.gif\" class=\"icon\" title=\"{$pgv_lang['reorder_media']}\" alt=\"{$pgv_lang['reorder_media']}\" /><br />" ;
 				print "" . $pgv_lang["reorder_media"] . "&nbsp;";
 				print '</a>';
@@ -199,7 +199,7 @@ require_once PGV_ROOT.'includes/media_reorder_count.php';
 				print "\n";
 			}else if ($LB_AL_HEAD_LINKS == "text") {
 				print "<td class=\"width15 center wrap\" valign=\"top\">";
-				print "<a href=\"".encode_url(PGV_SCRIPT_NAME."?pid={$pid}&tab={$tabno}&reorder=1")."\">" ;
+	            print "<a href=\"javascript: album_reorder()\">";
 				print "" . $pgv_lang["reorder_media"] . "&nbsp;";
 				print '</a>';
 				print "</td>";
@@ -207,7 +207,7 @@ require_once PGV_ROOT.'includes/media_reorder_count.php';
 				print "\n";
 			}else if ($LB_AL_HEAD_LINKS == "icon") {
 				print "&nbsp;&nbsp;&nbsp;";
-				print "<a href=\"".encode_url(PGV_SCRIPT_NAME."?pid={$pid}&tab={$tabno}&reorder=1")."\">" ;
+	            print "<a href=\"javascript: album_reorder()\">";
 				print "<img src=\"modules/lightbox/images/images.gif\" class=\"icon\" title=\"{$pgv_lang['reorder_media']}\" alt=\"{$pgv_lang['reorder_media']}\" />" ;
 				print '</a>';
 				//print "<td width=\"5%\">&nbsp;</td>";
@@ -219,7 +219,7 @@ require_once PGV_ROOT.'includes/media_reorder_count.php';
 		if (PGV_USER_CAN_EDIT && $tot_med_ct>1) {
 			if ($LB_AL_HEAD_LINKS == "both") {
 				print "<td class=\"width15 center wrap\" valign=\"top\">";
-				print "<a href=\"javascript: reorder_media()\">" ;
+				print "<a href=\"javascript: album_reorder()\">" ;
 				print "<img src=\"modules/lightbox/images/images.gif\" class=\"icon\" title=\"{$pgv_lang['reorder_media_window']}\" alt=\"{$pgv_lang['reorder_media_window']}\" /><br />" ;
 				//print "" . $pgv_lang["reorder_media_window"] . "&nbsp;";
 				print "" . $pgv_lang["reorder_media_window"] . "&nbsp;";
@@ -229,7 +229,7 @@ require_once PGV_ROOT.'includes/media_reorder_count.php';
 				print "\n";
 			}else if ($LB_AL_HEAD_LINKS == "text") {
 				print "<td class=\"width15 center wrap\" valign=\"top\">";
-				print "<a href=\"javascript: reorder_media()\">" ;
+				print "<a href=\"javascript: album_reorder()\">" ;
 				// print "" . $pgv_lang["reorder_media_window"] . "&nbsp;";
 				print "" . $pgv_lang["reorder_media"] . "&nbsp;";
 				print '</a>';
@@ -238,7 +238,7 @@ require_once PGV_ROOT.'includes/media_reorder_count.php';
 				print "\n";
 			}else if ($LB_AL_HEAD_LINKS == "icon") {
 				print "&nbsp;&nbsp;&nbsp;&nbsp;";
-				print "<a href=\"javascript: reorder_media()\">" ;
+				print "<a href=\"javascript: album_reorder()\">" ;
 				print "<img src=\"modules/lightbox/images/images.gif\" class=\"icon\" title=\"{$pgv_lang['reorder_media_window']}\" alt=\"{$pgv_lang['reorder_media_window']}\" /><br />" ;
 				print '</a>';
 				//print "<td width=\"5%\">&nbsp;</td>";

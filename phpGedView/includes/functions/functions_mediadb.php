@@ -4,7 +4,7 @@
 * Various functions used by the media DB interface
 *
 * phpGedView: Genealogy Viewer
-* Copyright (C) 2002 to 2020 PGV Development Team.  All rights reserved.
+* Copyright (C) 2002 to 2021 PGV Development Team.  All rights reserved.
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -551,6 +551,66 @@ function get_medialist($currentdirOnly = false, $directory = "", $linkOnly = fal
 	}
 
 	return $medialist;
+}
+### !!! Here
+/**
+* Get the list of Media items to be displayed in the Media and Album tabs of the Indi page
+*
+* The resulting list is all of the media objects in the current GEDCOM record, sequenced either in
+* the order in which 1 _PGV_OBJS @xxx@ lines appear in the GEDCOM record or in the order in which the 1 OBJE
+* records appear.  The 1 _PGV_OBJS @xxx@ sequence takes precedence.
+*
+* @param string $gedrec					The input GEDCOM record
+* @param integer $level					The level at which to look for OBJE lines.  Zero means "all levels".
+* @return array $result['count']		The number of elements in the 'medialist' and 'links' output arrays
+*               $result['medialist']	The list of media object numbers and their number of occurrences, in the desired sequence
+*               $result['links']		A complete list of the _PGV_OBJS or OBJE lines in the GEDCOM record
+*               $result['orderby']		The ORDER BY list derived from the sequenced media list (used in the SQL to retrieve stuff from the database)
+*/
+function getSequencedMediaList($gedrec, $level=0) {
+	
+	$result = array();
+
+	$medialist = array();
+	$links = array();
+	
+	//-- get the optional list of sorted objects in the indi gedcom record  -  (1 _PGV_OBJS @xxx@ .... etc)
+	if ($level>0) $regexp = "/".$level." _PGV_OBJS @(.*)@/";
+	else $regexp = "/_PGV_OBJS @(.*)@/";
+	$count = preg_match_all($regexp, $gedrec, $match, PREG_SET_ORDER);
+	for ($i=0; $i<$count; $i++) {
+		if (!isset($medialist[$match[$i][1]])) $medialist[$match[$i][1]] = 1;
+		else $medialist[$match[$i][1]]++;		// count the number of occurrences of this reference
+		$links[$match[$i][1]][] = $match[$i][0];
+	}
+
+	if (empty($medialist)) {		// If we didn't find any 1 _PGV_OBJS @xxx@ lines, ....
+		//-- get the list of objects in the record  -  (1 OBJE @xxx@ .... etc)
+		if ($level>0) $regexp = "/".$level." OBJE @(.*)@/";
+		else $regexp = "/OBJE @(.*)@/";
+		$count = preg_match_all($regexp, $gedrec, $match, PREG_SET_ORDER);
+		for ($i=0; $i<$count; $i++) {
+			if (!isset($medialist[$match[$i][1]])) $medialist[$match[$i][1]] = 1;
+			else $medialist[$match[$i][1]]++;		// count the number of occurrences of this reference
+			$links[$match[$i][1]][] = $match[$i][0];
+		}
+	}
+
+	$result['count'] = $count;
+	$result['medialist'] = $medialist;
+	$result['links'] = $links;
+	
+	// create ORDER BY list from Gedcom sorted records list  ---------------------------
+	$orderBy = 'ORDER BY '; // initialize
+	foreach ($match as $id) {
+		$orderBy .= "m_media='$id[1]' DESC, ";
+	}
+	$orderBy = rtrim($orderBy, ', ');
+	
+	if ($count>0) $result['orderby'] = $orderBy;
+	else $result['orderby'] = " ORDER BY mm_gid DESC "; 
+	
+	return $result;
 }
 /**
 * Determine whether the current Media item matches the filter criteria

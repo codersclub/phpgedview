@@ -3,7 +3,7 @@
 * Various functions used by the Edit interface
 *
 * phpGedView: Genealogy Viewer
-* Copyright (C) 2002 to 2020  PGV Development Team.  All rights reserved.
+* Copyright (C) 2002 to 2021  PGV Development Team.  All rights reserved.
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -320,9 +320,9 @@ function remove_subrecord($oldrecord, $tag, $gid='', $num=0) {
 	for($i=0; $i<count($gedlines); $i++) {
 		if (preg_match("/".$matchstr."/", $gedlines[$i])>0) {
 			if ($num==-1 || $n==$num) {
-				$glevel = $gedlines[$i]{0};
+				$glevel = $gedlines[$i][0];
 				$i++;
-				while((isset($gedlines[$i]))&&(strlen($gedlines[$i])<4 || $gedlines[$i]{0}>$glevel)) $i++;
+				while((isset($gedlines[$i]))&&(strlen($gedlines[$i])<4 || $gedlines[$i][0]>$glevel)) $i++;
 				$i--;
 			}
 			else $n++;
@@ -353,7 +353,7 @@ function remove_subline($oldrecord, $linenum) {
 		$i++;
 		if ($i<count($gedlines)) {
 			//-- don't put empty lines in the record
-			while((isset($gedlines[$i]))&&(strlen($gedlines[$i])<4 || $gedlines[$i]{0}>$glevel)) $i++;
+			while((isset($gedlines[$i]))&&(strlen($gedlines[$i])<4 || $gedlines[$i][0]>$glevel)) $i++;
 			while($i<count($gedlines)) {
 				if (trim($gedlines[$i])!='') $newrec .= $gedlines[$i]."\n";
 				$i++;
@@ -1068,6 +1068,8 @@ function add_simple_tag($tag, $upperlevel='', $label='', $readOnly='', $noClose=
 	global $QUICK_REQUIRED_FACTS, $QUICK_REQUIRED_FAMFACTS, $PREFER_LEVEL2_SOURCES;
 	global $action, $event_add;
 	global $CensDate;
+	
+	if (!isset($tags)) $tags = array('invalid');		// this isn't always set when this function is called
 
 if (substr($tag, 0, strpos($tag, "CENS"))) {
 	$event_add="census_add";
@@ -1568,7 +1570,7 @@ if (substr($tag, 0, strpos($tag, "CENS"))) {
 		else if (($cols>20 || $fact=="NPFX") && $readOnly=='') print_specialchar_link($element_id, false);
 	}
 	// MARRiage TYPE : hide text field and show a selection list
-	if ($fact=="TYPE" and $tags[0]=="MARR") {
+	if ($fact=="TYPE" and $tags[0]=="MARR") { 
 		echo "<script type='text/javascript'>";
 		echo "document.getElementById('", $element_id, "').style.display='none'";
 		echo "</script>";
