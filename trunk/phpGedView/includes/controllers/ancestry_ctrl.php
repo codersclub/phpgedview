@@ -3,7 +3,7 @@
  * Controller for the Ancestry Page
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2019	PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2021	PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -72,7 +72,7 @@ class AncestryControllerRoot extends BaseController {
 	 * Initialization function
 	 */
 	function init() {
-		global $USE_RIN, $MAX_ALIVE_AGE, $GEDCOM, $bwidth, $bheight, $pbwidth, $pbheight, $GEDCOM_DEFAULT_TAB, $pgv_lang, $PEDIGREE_FULL_DETAILS, $MAX_DESCENDANCY_GENERATIONS;
+		global $bwidth, $bheight, $pbwidth, $pbheight, $pgv_lang, $PEDIGREE_FULL_DETAILS;
 		global $DEFAULT_PEDIGREE_GENERATIONS, $PEDIGREE_GENERATIONS, $MAX_PEDIGREE_GENERATIONS, $OLD_PGENS, $box_width, $Dbwidth, $Dbheight;
 		global $show_full;
 
@@ -206,8 +206,8 @@ class AncestryControllerRoot extends BaseController {
 			// display parents recursively
 			print "\r\n<ul style=\"list-style: none; display: block;\" id=\"sosa_$sosa\">";
 			$boxPosn += $columnWidth;		// -- Spacing between adjacent columns (style 1)
-			$this->print_child_ascendancy($parents["HUSB"], $sosa*2, $depth-1);
-			$this->print_child_ascendancy($parents["WIFE"], $sosa*2+1, $depth-1);
+			if (isset($parents["HUSB")) $this->print_child_ascendancy($parents["HUSB"], $sosa*2, $depth-1);
+			if (isset($parents["WIFE")) $this->print_child_ascendancy($parents["WIFE"], $sosa*2+1, $depth-1);
 			$boxPosn -= $columnWidth;		// -- Spacing between adjacent columns (style 1)
 			print "</ul>\r\n";
 		}

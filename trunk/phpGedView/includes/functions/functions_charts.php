@@ -3,7 +3,7 @@
  * Functions used for charts
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2019  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2021  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -174,8 +174,9 @@ function print_family_parents($famid, $sosa = 0, $label="", $parid="", $gparid="
 				break;
 			}
 		}
-		if ($hparents or ($sosa != 0 and $SHOW_EMPTY_BOXES)) {
+		if ($hparents!==false or ($sosa != 0 and $SHOW_EMPTY_BOXES)) {
 			// husband's father
+			if (!isset($hparents['HUSB'])) $hparents['HUSB'] = '';		// Make SURE this is properly defined
 			print "\n\t<table style=\"width: " . ($pbwidth) . "px; height: " . $pbheight . "px;\" border=\"0\"><tr>";
 			if ($sosa > 0) print_sosa_number($sosa * 4, $hparents['HUSB'], 'down');
 			else if (!empty($gparid) and $hparents['HUSB']==$gparid) print_sosa_number(trim(substr($label,0,-3),".").".", '', 'up');
@@ -191,8 +192,9 @@ function print_family_parents($famid, $sosa = 0, $label="", $parid="", $gparid="
 		print_url_arrow($upfamid, ($sosa==0 ? "?famid=$upfamid&amp;show_full=$show_full" : "#$upfamid"), "$upfamid", 1);
 		print "</td>\n";
 	}
-	if ($hparents or ($sosa != 0 and $SHOW_EMPTY_BOXES)) {
+	if ($hparents!==false or ($sosa != 0 and $SHOW_EMPTY_BOXES)) {
 		// husband's mother
+		if (!isset($hparents['WIFE'])) $hparents['WIFE'] = '';		// Make SURE this is properly defined
 		print "</tr><tr><td><img src=\"".$PGV_IMAGE_DIR."/".$PGV_IMAGES["hline"]["other"]."\" alt=\"\" /></td><td>";
 		print "\n\t<table style=\"width: " . ($pbwidth) . "px; height: " . $pbheight . "px;\" border=\"0\"><tr>";
 		if ($sosa > 0) print_sosa_number(($sosa * 4 + 1), $hparents['WIFE'], 'down');
@@ -252,8 +254,9 @@ function print_family_parents($famid, $sosa = 0, $label="", $parid="", $gparid="
 				break;
 			}
 		}
-		if ($hparents or ($sosa != 0 and $SHOW_EMPTY_BOXES)) {
+		if ($hparents!==false or ($sosa != 0 and $SHOW_EMPTY_BOXES)) {
 			// wife's father
+			if (!isset($hparents['HUSB'])) $hparents['HUSB'] = '';		// Make SURE this is properly defined
 			print "\n\t<table style=\"width: " . ($pbwidth) . "px; height: " . $pbheight . "px;\"><tr>";
 			if ($sosa > 0) print_sosa_number($sosa * 4 + 2, $hparents['HUSB'], 'down');
 			else if (!empty($gparid) and $hparents['HUSB']==$gparid) print_sosa_number(trim(substr($label,0,-3),".").".");
@@ -269,8 +272,9 @@ function print_family_parents($famid, $sosa = 0, $label="", $parid="", $gparid="
 		print_url_arrow($upfamid, ($sosa==0 ? "?famid=$upfamid&amp;show_full=$show_full" : "#$upfamid"), "$upfamid", 1);
 		print "</td>\n";
 	}
-	if ($hparents or ($sosa != 0 and $SHOW_EMPTY_BOXES)) {
+	if ($hparents!==false or ($sosa != 0 and $SHOW_EMPTY_BOXES)) {
 		// wife's mother
+		if (!isset($hparents['WIFE'])) $hparents['WIFE'] = '';		// Make SURE this is properly defined
 		print "</tr><tr><td><img src=\"".$PGV_IMAGE_DIR."/".$PGV_IMAGES["hline"]["other"]."\" alt=\"\" /></td><td>";
 		print "\n\t<table style=\"width: " . ($pbwidth) . "px; height: " . $pbheight . "px;\"><tr>";
 		if ($sosa > 0) print_sosa_number(($sosa * 4 + 3), $hparents['WIFE'], 'down');

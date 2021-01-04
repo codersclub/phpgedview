@@ -5,7 +5,7 @@
  * Display media Items using Lightbox
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2007 to 2009  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2007 to 2021  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -65,45 +65,20 @@ function lightbox_print_media($pid, $level=1, $related=false, $kind=1, $noedit=f
 
 	//-- find all of the related ids
 	if ($related) {
-		$ct = preg_match_all("/1 FAMS @(.*)@/", $gedrec, $match, PREG_SET_ORDER);
-		for ($i=0; $i<$ct; $i++) {
+		$count = preg_match_all("/1 FAMS @(.*)@/", $gedrec, $match, PREG_SET_ORDER);
+		for ($i=0; $i<$count; $i++) {
 			$ids[] = trim($match[$i][1]);
 		}
 	}
 
-	//LBox -- if  exists, get a list of the sorted current objects in the indi gedcom record  -  (1 _PGV_OBJS @xxx@ .... etc) ----------
-	$sort_current_objes = array();
-	if ($level>0) $sort_regexp = "/".$level." _PGV_OBJS @(.*)@/";
-	else $sort_regexp = "/_PGV_OBJS @(.*)@/";
-	$sort_ct = preg_match_all($sort_regexp, $gedrec, $sort_match, PREG_SET_ORDER);
-	for ($i=0; $i<$sort_ct; $i++) {
-		if (!isset($sort_current_objes[$sort_match[$i][1]])) $sort_current_objes[$sort_match[$i][1]] = 1;
-		else $sort_current_objes[$sort_match[$i][1]]++;
-		$sort_obje_links[$sort_match[$i][1]][] = $sort_match[$i][0];
-	}
-
-	// create ORDER BY list from Gedcom sorted records list  ---------------------------
-	$orderbylist = 'ORDER BY '; // initialize
-	foreach ($sort_match as $id) {
-		$orderbylist .= "m_media='$id[1]' DESC, ";
-	}
-	$orderbylist = rtrim($orderbylist, ', ');
 	// ---------------------------------------------------------------------------------------------------------------------------------------------------
-
-	//-- get a list of the current objects in the record
-	$current_objes = array();
-	if ($level>0) $regexp = "/".$level." OBJE @(.*)@/";
-	else $regexp = "/OBJE @(.*)@/";
-	$ct = preg_match_all($regexp, $gedrec, $match, PREG_SET_ORDER);
-	for ($i=0; $i<$ct; $i++) {
-		if (!isset($current_objes[$match[$i][1]])) {
-			$current_objes[$match[$i][1]] = 1;
-		} else {
-			$current_objes[$match[$i][1]]++;
-		}
-		$obje_links[$match[$i][1]][] = $match[$i][0];
-	}
-
+	
+	$result = getSequencedMediaList($gedrec, $level);		// Look for _PGV_OBJS @xxx@ or OBJE @xxx@ lines in the current record
+	$count = $result['count'];
+	$current_objes = $result['medialist'];
+	$obje_links = $result['links'];
+	$orderby = $result['orderby'];
+	
 	$media_found = false;
 
 	// Get the related media items
@@ -167,15 +142,12 @@ function lightbox_print_media($pid, $level=1, $related=false, $kind=1, $noedit=f
 		break;
 	}
 
-	if ($sort_ct>0) {
-		$sqlmm .= $orderbylist;
-	} else {
-		$sqlmm .= " ORDER BY mm_gid DESC ";
-	}
+	$sqlmm .= $orderby;
 
 	$rows=PGV_DB::prepare($sqlmm)->execute($vars)->fetchAll(PDO::FETCH_ASSOC);
 	$foundObjs = array();
 	$numm = count($rows);
+
 
 	// Begin to Layout the Album Media Rows
 	if ($numm>0 || $kind==5) {
@@ -287,7 +259,7 @@ function lightbox_print_media($pid, $level=1, $related=false, $kind=1, $noedit=f
 		$numindiobjs = count($rows);
 
 		// Compare Items count in Database versus Item count in GEDCOM
-		if ($kind==5 && $ct!=$numindiobjs) {
+		if ($kind==5 && $count!=$numindiobjs) {
 			// If any items are left in $current_objes list for this individual, put them into $kind 5 ("Not in DB") row
 			echo "\n\n";
 			echo "<table cellpadding=\"0\" border=\"0\" width=\"100%\" class=\"facts_table\"><tr>", "\n";
@@ -302,8 +274,8 @@ function lightbox_print_media($pid, $level=1, $related=false, $kind=1, $noedit=f
 				while ($value>0) {
 					$objSubrec = array_pop($obje_links[$media_id]);
 					//-- check if we need to get the object from a remote location
-					$ct = preg_match("/(.*):(.*)/", $media_id, $match);
-					if ($ct>0) {
+					$count = preg_match("/(.*):(.*)/", $media_id, $match);
+					if ($count>0) {
 						require_once PGV_ROOT.'includes/classes/class_serviceclient.php';
 						$client = ServiceClient::getInstance($match[1]);
 						if (!is_null($client)) {
@@ -320,7 +292,7 @@ function lightbox_print_media($pid, $level=1, $related=false, $kind=1, $noedit=f
 							if ($et>0) $ext = substr(trim($ematch[1]), 1);
 							$row['m_ext'] = $ext;
 							$row['mm_gid'] = $pid;
-							$row['mm_gedrec'] = get_sub_record($objSubrec{0}, $objSubrec, $gedrec);
+							$row['mm_gedrec'] = get_sub_record($objSubrec[0], $objSubrec, $gedrec);
 							if ($newrec && isset($rowm['m_file'])) {
 								// -----
 							} else {
@@ -354,7 +326,7 @@ function lightbox_print_media($pid, $level=1, $related=false, $kind=1, $noedit=f
 						}
 						$row['m_ext'] = $ext;
 						$row['mm_gid'] = $pid;
-						$row['mm_gedrec'] = get_sub_record($objSubrec{0}, $objSubrec, $gedrec);
+						$row['mm_gedrec'] = get_sub_record($objSubrec[0], $objSubrec, $gedrec);
 						if ($newrec && isset($rowm['m_file'])) {
 							// -----
 						} else {
@@ -374,9 +346,9 @@ function lightbox_print_media($pid, $level=1, $related=false, $kind=1, $noedit=f
 		}
 		
 		// No "Extra" Media Items ============================
-		if ($kind==5 && $ct==$numindiobjs) {
+		if ($kind==5 && $count==$numindiobjs) {
 		// "Extra" Media Item in GEDCOM but NOT in DB ========
-		} else if ($kind==5 && $ct!=$numindiobjs) {
+		} else if ($kind==5 && $count!=$numindiobjs) {
 			echo "</ul>";
 			echo "</div>";
 			echo "<div class=\"clearlist\">";
