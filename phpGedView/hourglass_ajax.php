@@ -5,7 +5,7 @@
  * Set the root person using the $pid variable
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2007  John Finlay and Others
+ * Copyright (C) 2002 to 2021  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -43,7 +43,7 @@ $controller->init();
 
 // -- print html header information
 if (isset($_REQUEST['type']) && $_REQUEST['type']=='desc')
-	$controller->print_descendency($controller->pid, 1, false);
+	$controller->print_descendancy($controller->pid, 1, false);
 else
 	$controller->print_person_pedigree($controller->pid, 0);
 ?>

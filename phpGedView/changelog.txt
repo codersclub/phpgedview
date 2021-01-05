@@ -9,6 +9,7 @@
 =====================================================================
 
 Version 4.3.1
+ - Fixed: Calls to undefined method $controller->print_descendency (canajun2eh) 
  - Changed: Update the tcpdf package to version 6.3.5 (canajun2eh)
  - Fixed: Indi page Media and Album tabs do not reflect original sequence of media objects in the GEDCOM, OK after re-sequencing (canajun2eh)
  - Fixed: Indi page Album tab media re-sequencing does not work, OK on Media tab (canajun2eh)
