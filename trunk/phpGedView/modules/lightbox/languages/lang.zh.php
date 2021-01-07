@@ -1,11 +1,11 @@
 <?php
 /**
- * Chinese language file for Lightbox Album module
+ * Chinese (Traditional) texts for Lightbox Album module
  *
  * Display media Items using Lightbox
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2008  PGV Development Team. All rights reserved.
+ * Copyright (C) 2002 to 2021  PGV Development Team. All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by

@@ -5,7 +5,7 @@
  * Display media Items using Lightbox
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2007  PHPGedView Development Team
+ * Copyright (C) 2002 to 2021  PHPGedView Development Team
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -26,43 +26,34 @@
  * @version $Id$
  * @author Brian Holland
  */
+ 
+// This script is loaded by individual.php when the Media tab is enabled in the Lightbox configuration
 
-if (!defined('PGV_PHPGEDVIEW')) {
-	header('HTTP/1.0 403 Forbidden');
+if (!defined("PGV_PHPGEDVIEW")) {
+	header("HTTP/1.0 403 Forbidden");
 	exit;
 }
 
-?>
-	<dd id="door1"><a href="javascript:;" onclick="tabswitch(1); return false;" ><?php echo $pgv_lang["personal_facts"]?></a></dd>
-	<dd id="door2"><a href="javascript:;" onclick="tabswitch(2); return false;" ><?php echo $pgv_lang["notes"]?></a></dd>
-	<dd id="door3"><a href="javascript:;" onclick="tabswitch(3); return false;" ><?php echo $pgv_lang["ssourcess"]?></a></dd>
+echo "<dd id='door1'><a href='javascript:;' onclick='tabswitch(1); return false;' >", $pgv_lang["personal_facts"], "</a></dd>";
+echo "<dd id='door2'><a href='javascript:;' onclick='tabswitch(2); return false;' >", $pgv_lang["notes"], "</a></dd>";
+echo "<dd id='door3'><a href='javascript:;' onclick='tabswitch(3); return false;' >", $pgv_lang["ssourcess"], "</a></dd>";
 
-<?php
-	if ($MULTI_MEDIA){
-		if (!file_exists("modules/googlemap/defaultconfig.php")) {  ?>
-			<?php if (file_exists("modules/lightbox/album.php") ) {?>
-				<dd id="door4"><a href="javascript:;" onclick="tabswitch(4); return false;" ><?php print $pgv_lang["media"] ?></a></dd>
-				<dd id="door8"><a href="javascript:;" onclick="tabswitch(8); return false;" ><?php print $pgv_lang["lightbox"] ?></a></dd>
-			<?php }
-		}elseif (file_exists("modules/googlemap/defaultconfig.php")) {  ?>
-			<?php if (file_exists("modules/lightbox/album.php") ) {?>
-				<dd id="door4"><a href="javascript:;" onclick="tabswitch(4); return false;" ><?php print $pgv_lang["media"] ?></a></dd>
-				<dd id="door9"><a href="javascript:;" onclick="tabswitch(9); return false;" ><?php print $pgv_lang["lightbox"] ?></a></dd>
-			<?php }
-		}
+if ($MULTI_MEDIA && file_exists("modules/lightbox/album.php")) {
+	if (file_exists("modules/googlemap/defaultconfig.php")) {
+		echo "<dd id='door4'><a href='javascript:;' onclick='tabswitch(4); return false;' >", $pgv_lang["media"], "</a></dd>";
+		echo "<dd id='door9'><a href='javascript:;' onclick='tabswitch(9); return false;' >", $pgv_lang["lightbox"], "</a></dd>";
+	} else {
+		echo "<dd id='door4'><a href='javascript:;' onclick='tabswitch(4); return false;' >", $pgv_lang["media"], "</a></dd>";
+		echo "<dd id='door8'><a href='javascript:;' onclick='tabswitch(8); return false;' >", $pgv_lang["lightbox"], "</a></dd>";
 	}
- ?>
+}
 
-	<dd id="door5"><a href="javascript:;" onclick="tabswitch(5); return false;" ><?php print $pgv_lang["relatives"]?></a></dd>
-	<dd id="door6"><a href="javascript:;" onclick="tabswitch(6); return false;" ><?php print $pgv_lang["tree"]?></a></dd>
-	<dd id="door7"><a href="javascript:;" onclick="tabswitch(7); return false;" ><?php print $pgv_lang["research_assistant"]?></a></dd>
-	<?php if (file_exists("modules/googlemap/defaultconfig.php")) { ?>
-		<dd id="door8"><a href="javascript:;" onclick="tabswitch(8); if (loadedTabs[8]) {ResizeMap(); ResizeMap();} return false;" ><?php print $pgv_lang["googlemap"]?></a></dd>
-	<?php } ?>
-<!--	<dd id="door10"><a href="javascript:;" onclick="tabswitch(10); return false;" ><?php print "Spare Tab" ?></a></dd> -->
+echo "<dd id='door5'><a href='javascript:;' onclick='tabswitch(5); return false;' >", $pgv_lang["relatives"], "</a></dd>";
+echo "<dd id='door6'><a href='javascript:;' onclick='tabswitch(6); return false;' >", $pgv_lang["tree"], "</a></dd>";
+echo "<dd id='door7'><a href='javascript:;' onclick='tabswitch(7); return false;' >", $pgv_lang["research_assistant"], "</a></dd>";
+if (file_exists("modules/googlemap/defaultconfig.php")) {
+	echo "<dd id='door8'><a href='javascript:;' onclick='tabswitch(8); if (loadedTabs[8]) {ResizeMap(); ResizeMap();} return false;' >", $pgv_lang["googlemap"], "</a></dd>";
+}
 	
-	<dd id="door0"><a href="javascript:;" onclick="tabswitch(0); if (loadedTabs[8]) {ResizeMap(); ResizeMap();} return false;" ><?php print $pgv_lang["all"]?></a></dd> 
-  
-
-
-
+echo "<dd id='door0'><a href='javascript:;' onclick='tabswitch(0); if (loadedTabs[8]) {ResizeMap(); ResizeMap();} return false;' >", $pgv_lang["all"], "</a></dd>"; 
+?>

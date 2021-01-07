@@ -3,7 +3,7 @@
  * English Language Configure Help file for PHPGedView
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2007  PGV Development Team
+ * Copyright (C) 2002 to 2021  PGV Development Team
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -40,21 +40,19 @@ print_text("config_help");
 print '</span><br /><br /><span class="helptext">';
 if ($help == "help_contents_help") {
 		if (PGV_USER_IS_ADMIN) {
-		$help = "admin_help_contents_help";
-		print_text("admin_help_contents_head_help");
-	}
-	else print_text("help_contents_head_help");
+			$help = "admin_help_contents_help";
+			print_text("admin_help_contents_head_help");
+		} else print_text("help_contents_head_help");
 	print_help_index($help);
-}
-else {
+} else {
 	if ($help == "help_uploadgedcom.php") $help = "help_addgedcom.php";
-print_text($help);
+	print_text($help);
 }
 print "</span><br /><br />";
-print "<a href=\"help_text.php?help=help_contents_help\"><b>";
+print "<a href='help_text.php?help=help_contents_help'><b>";
 print_text("help_contents");
 print "</b></a><br />";
-print "<a href=\"javascript:;\" onclick=\"window.close();\"><b>";
+print "<a href='javascript:;' onclick='window.close();'><b>";
 print_text("close_window");
 print "</b></a>";
 print_simple_footer();
