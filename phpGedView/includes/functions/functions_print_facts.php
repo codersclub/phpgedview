@@ -34,6 +34,7 @@ if (!defined('PGV_PHPGEDVIEW')) {
 define('PGV_FUNCTIONS_PRINT_FACTS_PHP', '');
 
 require_once PGV_ROOT.'includes/classes/class_person.php';
+if ($MULTI_MEDIA) require_once PGV_ROOT.'includes/functions/functions_media_reorder.php';
 
 /**
  * Turn URLs in text into HTML links.  Insert breaks into long URLs
@@ -1633,20 +1634,4 @@ function print_main_media_row($rtype, $rowm, $pid) {
 	echo "</td></tr>";
 	return true;
 }
-
-// -----------------------------------------------------------------------------
-//  Extra print_facts_functions for lightbox and reorder media
-// -----------------------------------------------------------------------------
-
-if (PGV_USE_LIGHTBOX) {
-	require_once PGV_ROOT.'modules/lightbox/functions/lightbox_print_media.php';
-	require_once PGV_ROOT.'modules/lightbox/functions/lightbox_print_media_row.php';
-}
-
-require_once PGV_ROOT.'includes/functions/functions_media_reorder.php';
-
-// -----------------------------------------------------------------------------
-//  End extra print_facts_functions for lightbox and reorder media
-// -----------------------------------------------------------------------------
-
 ?>

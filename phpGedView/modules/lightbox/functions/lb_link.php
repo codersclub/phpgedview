@@ -5,7 +5,7 @@
  * Display media Items using Lightbox
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2007  PHPGedView Development Team
+ * Copyright (C) 2002 to 2021  PHPGedView Development Team
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -27,6 +27,8 @@
  * @author Brian Holland
  */
 
+// This file is copied into the middle of the code in medialist.php
+ 
 if (!defined('PGV_PHPGEDVIEW')) {
 	header('HTTP/1.0 403 Forbidden');
 	exit;
@@ -35,15 +37,12 @@ if (!defined('PGV_PHPGEDVIEW')) {
 	// Set Link
 	/**
 	 * Generate link flyout menu
-	 *
-	 * @param string $mediaid
 	 */
-//	function print_link_menu2($mediaid) {
-        $mediaid=$media["XREF"];
+        $mediaid = $media["XREF"];
 		global $pgv_lang, $TEXT_DIRECTION;
 
 		$classSuffix = "";
-		if ($TEXT_DIRECTION=="rtl") $classSuffix = "_rtl";
+		if ($TEXT_DIRECTION == "rtl") $classSuffix = "_rtl";
 
 		// main link displayed on page
 		$menu = new Menu();
@@ -84,12 +83,4 @@ if (!defined('PGV_PHPGEDVIEW')) {
 	}
 </script>
 <?php
-
-//	}
-
-	// Only set link on media that is in the DB
-//	if ($media["XREF"] != "") {
-//		print_link_menu($media2["XREF"]);
-//	}
-
 ?>

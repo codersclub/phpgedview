@@ -5,7 +5,7 @@
  * Display media Items using Lightbox 4.1
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2007 to 2009  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2007 to 2021  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -43,11 +43,9 @@ function lightbox_print_media_row($rtype, $rowm, $pid) {
 	global $PGV_IMAGE_DIR, $PGV_IMAGES, $view, $MEDIA_DIRECTORY, $TEXT_DIRECTION;
 	global $SHOW_ID_NUMBERS, $GEDCOM, $factarray, $pgv_lang, $THUMBNAIL_WIDTH, $USE_MEDIA_VIEWER;
 	global $SEARCH_SPIDER;
-	global $t, $n, $item, $items, $p, $edit, $SERVER_URL, $reorder, $LB_AL_THUMB_LINKS, $note;
+	global $t, $n, $item, $items, $p, $SERVER_URL, $LB_AL_THUMB_LINKS, $note;
 	global $LB_URL_WIDTH, $LB_URL_HEIGHT, $order1, $sort_i, $notes, $q, $LB_TT_BALLOON, $theme_name ;
 	global $SERVER_URL;
-
-	$reorder=safe_get('reorder', '1', '0');
 
 	$mainMedia = check_media_depth($rowm["m_file"], "NOTRUNC");
 	// If media file is missing from "media" directory, but is referenced in Gedcom
@@ -86,13 +84,8 @@ function lightbox_print_media_row($rtype, $rowm, $pid) {
 			return false;
 		} else {
 			// Media is NOT linked to private person
-			// If reorder media has been clicked
-			if (isset($reorder) && $reorder==1) {
-				print "<li class=\"facts_value\" style=\"border:0px;\" id=\"li_" . $rowm['m_media'] . "\" >";
-
-			// Else If reorder media has NOT been clicked
 			// Highlight Album Thumbnails - Changed=new (blue), Changed=old (red), Changed=no (none)
-			} else if ($rtype=='new'){
+			if ($rtype=='new'){
 				print "<li class=\"li_new\">" . "\n";
 			} else if ($rtype=='old'){
 				print "<li class=\"li_old\">" . "\n";
@@ -280,19 +273,10 @@ function lightbox_print_media_row($rtype, $rowm, $pid) {
 				print "<img src=\"modules/lightbox/images/transp80px.gif\" height=\"100px\" alt=\"\"></img>";
 				print "</td>". "\n";
 
-				// Check for Notes associated media item
-				if ($reorder) {
-					// If reorder media has been clicked
-					print "<td width=\"90% align=\"center\"><b><font size=\"2\" style=\"cursor:move;margin-bottom:2px;\">" . $rowm['m_media'] . "</font></b></td>";
-					print "</tr>";
-				}
 				$item++;
 
 				print "<td colspan=\"3\" valign=\"middle\" align=\"center\" >". "\n";
-				// If not reordering, enable Lightbox or popup and show thumbnail tooltip ----------
-				if (!$reorder) {
-					echo '<a href="', $mediaInfo['url'], '">';
-				}
+				echo '<a href="', $mediaInfo['url'], '">';
 			}
 
 			// Now finally print the thumbnail ----------------------------------
@@ -311,16 +295,13 @@ function lightbox_print_media_row($rtype, $rowm, $pid) {
 			print "</td></tr>" . "\n";
 
 			//View Edit Menu ----------------------------------
-			if (!$reorder) {
-				// If not reordering media print View or View-Edit Menu
-				print "<tr>";
-				print "<td width=\"5px\"></td>";
-				print "<td valign=\"bottom\" align=\"center\" nowrap=\"nowrap\">";
-					$menu->printMenu();
-				print "</td>";
-				print "<td width=\"5px\"></td>";
-				print "</tr>" . "\n";
-			}
+			print "<tr>";
+			print "<td width=\"5px\"></td>";
+			print "<td valign=\"bottom\" align=\"center\" nowrap=\"nowrap\">";
+				$menu->printMenu();
+			print "</td>";
+			print "<td width=\"5px\"></td>";
+			print "</tr>" . "\n";
 
 			// print "</table>" . "\n";
 		}
@@ -329,17 +310,14 @@ function lightbox_print_media_row($rtype, $rowm, $pid) {
 
 
 	// If media file is missing but details are in Gedcom then add the menu as well
-	//if (!media_exists($rowm['m_file'])) {
-	if (!media_exists($mainMedia)) {
-		if (!media_exists($rowm['m_file'])) {
-			print "<tr>";
-			print "<td ></td>";
-			print "<td valign=\"bottom\" align=\"center\" nowrap=\"nowrap\">";
-				$menu->printMenu();
-			print "</td>";
-			print "<td ></td>";
-			print "</tr>" . "\n";
-		}
+	if (!media_exists($mainMedia) && !media_exists($rowm['m_file'])) {
+		print "<tr>";
+		print "<td ></td>";
+		print "<td valign=\"bottom\" align=\"center\" nowrap=\"nowrap\">";
+			$menu->printMenu();
+		print "</td>";
+		print "<td ></td>";
+		print "</tr>" . "\n";
 	}
 
 	//close off the table
