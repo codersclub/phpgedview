@@ -4,7 +4,7 @@
  * to a person selected from the search results.
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2005  John Finlay and Others
+ * Copyright (C) 2002 to 2021  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -47,7 +47,7 @@ if(isset($pid) && isset($server) && isset($indiName))
 ?>
 
 <br/>
-<center><font size="4"><?php echo $indiName ?></font><center><br/>
+<center><font size="4"><?php echo $indiName ?></font></center><br/>
 <table align="center">
 	<tr>
 		<td>

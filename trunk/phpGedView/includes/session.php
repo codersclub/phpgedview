@@ -3,7 +3,7 @@
  * Startup and session logic
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2020  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2021  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -175,7 +175,8 @@ if (version_compare(PHP_VERSION, '6.0.0', '<')) {
 	if (function_exists('get_magic_quotes_gpc') && get_magic_quotes_gpc() ||
 		ini_get('magic_quotes_sybase') && strtolower(ini_get('magic_quotes_sybase'))!='off') {
 		$in = array(&$_GET, &$_POST, &$_REQUEST, &$_COOKIE);
-		while (list($k,$v) = each($in)) {
+//		while (list($k,$v) = each($in)) {
+		foreach($in as $k => $v) {
 			foreach ($v as $key => $val) {
 				if (!is_array($val)) {
 					$in[$k][$key] = stripslashes($val);

@@ -4,7 +4,7 @@
 * Import specific functions
 *
 * phpGedView: Genealogy Viewer
-* Copyright (C) 2002 to 2018  PGV Development Team.  All rights reserved.
+* Copyright (C) 2002 to 2021  PGV Development Team.  All rights reserved.
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -1169,7 +1169,7 @@ function update_media($gid, $ged_id, $gedrec, $update = false) {
 			// NOTE: Match lines that resemble n OBJE @0000@
 			// NOTE: Renumber the old ID to a new ID and save the old ID
 			// NOTE: in case there are more references to it
-			$level = $line{0};
+			$level = $line[0];
 			//-- putting this code back since $objlevel, $objrec, etc vars will be
 			//-- reset in sections after this
 			if ($objlevel>0 && ($level<=$objlevel)) {

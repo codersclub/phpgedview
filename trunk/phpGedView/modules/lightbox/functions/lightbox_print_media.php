@@ -28,6 +28,8 @@
  *
  */
 
+//	This file is loaded by includes/functions/functions_print_facts.php
+
 if (!defined('PGV_PHPGEDVIEW')) {
 	header('HTTP/1.0 403 Forbidden');
 	exit;
@@ -36,12 +38,13 @@ if (!defined('PGV_PHPGEDVIEW')) {
 /**
  * -----------------------------------------------------------------------------
  * Print the links to multi-media objects
- * @param string $pid			The the xref id of the object to find media records related to
- * @param int $level			The level of media object to find
- * @param boolean $related		Whether or not to grab media from related records
+ * @param string $pid        The the xref id of the object to find media records related to
+ * @param int $level        The level of media object to find
+ * @param boolean $related        Whether or not to grab media from related records
  */
 function lightbox_print_media($pid, $level=1, $related=false, $kind=1, $noedit=false) {
 
+	$edit="1";
 	$n=1;
 	$fn=1;
 
@@ -51,12 +54,11 @@ function lightbox_print_media($pid, $level=1, $related=false, $kind=1, $noedit=f
 	global $WORD_WRAPPED_NOTES, $MEDIA_DIRECTORY, $PGV_IMAGE_DIR, $PGV_IMAGES, $TEXT_DIRECTION;
 
 	global $is_media, $cntm1, $cntm2, $cntm3, $cntm4, $t, $mgedrec;
-	global $res, $typ2b, $tabno, $n, $item, $items, $p, $note, $rowm, $note_text;
+	global $res, $typ2b, $edit, $tabno, $n, $item, $items, $p, $note, $rowm, $note_text, $reorder;
 	global $action, $order, $order2, $rownum, $rownum1, $rownum2, $rownum3, $rownum4, $media_data, $sort_i;
 	
 	global $GEDCOM_ID_PREFIX;
-
-	$ged_id = get_id_from_gedcom($GEDCOM);
+	$ged_id=get_id_from_gedcom($GEDCOM);
 
 	if (!showFact("OBJE", $pid)) return false;
 	if (!isset($pgv_changes[$pid."_".$GEDCOM])) $gedrec = find_gedcom_record($pid, $ged_id);
@@ -85,10 +87,10 @@ function lightbox_print_media($pid, $level=1, $related=false, $kind=1, $noedit=f
 	$sqlmm = "SELECT DISTINCT ";
 	$sqlmm .= "m_media, m_ext, m_file, m_titl, m_gedfile, m_gedrec, mm_gid, mm_gedrec FROM ".$TBLPREFIX."media, ".$TBLPREFIX."media_mapping where ";
 	$sqlmm .= "mm_gid IN (";
-	$vars = array();
+	$vars=array();
 	foreach ($ids as $id) {
 		$sqlmm .= "?, ";
-		$vars[] = $id;
+		$vars[]=$id;
 	}
 	$sqlmm = rtrim($sqlmm, ', ');
 	$sqlmm .= ") AND mm_gedfile=? AND mm_media=m_media AND mm_gedfile=m_gedfile ";
@@ -96,64 +98,64 @@ function lightbox_print_media($pid, $level=1, $related=false, $kind=1, $noedit=f
 	//-- for family and source page only show level 1 obje references
 	if ($level>0) {
 		$sqlmm .= "AND mm_gedrec ".PGV_DB::$LIKE." ?";
-		$vars[] = "$level OBJE%";
+		$vars[]="$level OBJE%";
 	}
 
 	// Set type of media from call in album
 	switch ($kind) {
 	case 1:
-		$tt = $pgv_lang["ROW_TYPE__photo"];
-		$sqlmm .= "AND (m_gedrec ".PGV_DB::$LIKE." ? OR m_gedrec ".PGV_DB::$LIKE." ? OR m_gedrec ".PGV_DB::$LIKE." ? OR m_gedrec ".PGV_DB::$LIKE." ?)";
-		$vars[] = '%TYPE photo%';
-		$vars[] = '%TYPE map%';
-		$vars[] = '%TYPE painting%';
-		$vars[] = '%TYPE tombstone%';
+		$tt=$pgv_lang["ROW_TYPE__photo"];
+		$sqlmm.="AND (m_gedrec ".PGV_DB::$LIKE." ? OR m_gedrec ".PGV_DB::$LIKE." ? OR m_gedrec ".PGV_DB::$LIKE." ? OR m_gedrec ".PGV_DB::$LIKE." ?)";
+		$vars[]='%TYPE photo%';
+		$vars[]='%TYPE map%';
+		$vars[]='%TYPE painting%';
+		$vars[]='%TYPE tombstone%';
 		break;
 	case 2:
-		$tt = $pgv_lang["ROW_TYPE__document"];
-		$sqlmm .= "AND (m_gedrec ".PGV_DB::$LIKE." ? OR m_gedrec ".PGV_DB::$LIKE." ? OR m_gedrec ".PGV_DB::$LIKE." ? OR m_gedrec ".PGV_DB::$LIKE." ? OR m_gedrec ".PGV_DB::$LIKE." ? OR m_gedrec ".PGV_DB::$LIKE." ?)";
-		$vars[] = '%TYPE card%';
-		$vars[] = '%TYPE certificate%';
-		$vars[] = '%TYPE document%';
-		$vars[] = '%TYPE magazine%';
-		$vars[] = '%TYPE manuscript%';
-		$vars[] = '%TYPE newspaper%';
+		$tt=$pgv_lang["ROW_TYPE__document"];
+		$sqlmm.="AND (m_gedrec ".PGV_DB::$LIKE." ? OR m_gedrec ".PGV_DB::$LIKE." ? OR m_gedrec ".PGV_DB::$LIKE." ? OR m_gedrec ".PGV_DB::$LIKE." ? OR m_gedrec ".PGV_DB::$LIKE." ? OR m_gedrec ".PGV_DB::$LIKE." ?)";
+		$vars[]='%TYPE card%';
+		$vars[]='%TYPE certificate%';
+		$vars[]='%TYPE document%';
+		$vars[]='%TYPE magazine%';
+		$vars[]='%TYPE manuscript%';
+		$vars[]='%TYPE newspaper%';
 		break;
 	case 3:
-		$tt = $pgv_lang["ROW_TYPE__census"];
-		$sqlmm .= "AND (m_gedrec ".PGV_DB::$LIKE." ? OR m_gedrec ".PGV_DB::$LIKE." ? OR m_gedrec ".PGV_DB::$LIKE." ?)";
-		$vars[] = '%TYPE electronic%';
-		$vars[] = '%TYPE fiche%';
-		$vars[] = '%TYPE film%';
+		$tt=$pgv_lang["ROW_TYPE__census"];
+		$sqlmm.="AND (m_gedrec ".PGV_DB::$LIKE." ? OR m_gedrec ".PGV_DB::$LIKE." ? OR m_gedrec ".PGV_DB::$LIKE." ?)";
+		$vars[]='%TYPE electronic%';
+		$vars[]='%TYPE fiche%';
+		$vars[]='%TYPE film%';
 		break;
 	case 4:
-		$tt = $pgv_lang["ROW_TYPE__other"];
-		$sqlmm .= "AND (m_gedrec NOT ".PGV_DB::$LIKE." ? OR m_gedrec ".PGV_DB::$LIKE." ? OR m_gedrec ".PGV_DB::$LIKE." ? OR m_gedrec ".PGV_DB::$LIKE." ? OR m_gedrec ".PGV_DB::$LIKE." ? OR m_gedrec ".PGV_DB::$LIKE." ?)";
-		$vars[] = '%TYPE %';
-		$vars[] = '%TYPE coat%';
-		$vars[] = '%TYPE book%';
-		$vars[] = '%TYPE audio%';
-		$vars[] = '%TYPE video%';
-		$vars[] = '%TYPE other%';
+		$tt=$pgv_lang["ROW_TYPE__other"];
+		$sqlmm.="AND (m_gedrec NOT ".PGV_DB::$LIKE." ? OR m_gedrec ".PGV_DB::$LIKE." ? OR m_gedrec ".PGV_DB::$LIKE." ? OR m_gedrec ".PGV_DB::$LIKE." ? OR m_gedrec ".PGV_DB::$LIKE." ? OR m_gedrec ".PGV_DB::$LIKE." ?)";
+		$vars[]='%TYPE %';
+		$vars[]='%TYPE coat%';
+		$vars[]='%TYPE book%';
+		$vars[]='%TYPE audio%';
+		$vars[]='%TYPE video%';
+		$vars[]='%TYPE other%';
 		break;
 	case 5:
 	default:
-		$tt = $pgv_lang["ROW_TYPE__notinDB"];
+		$tt      = $pgv_lang["ROW_TYPE__notinDB"];
 		break;
 	}
 
 	$sqlmm .= $orderby;
 
-	$rows = PGV_DB::prepare($sqlmm)->execute($vars)->fetchAll(PDO::FETCH_ASSOC);
+	$rows=PGV_DB::prepare($sqlmm)->execute($vars)->fetchAll(PDO::FETCH_ASSOC);
 	$foundObjs = array();
 	$numm = count($rows);
 
 
 	// Begin to Layout the Album Media Rows
-	if ($numm>0 || $kind == 5) {
-		if ($kind != 5) {
+	if ($numm>0 || $kind==5) {
+		if ($kind!=5) {
 			echo "\n\n";
-			echo "<table cellpadding='0' border='0' width='100%' class='facts_table'><tr>", "\n";
+			echo "<table cellpadding=\"0\" border=\"0\" width=\"100%\" class=\"facts_table\"><tr>", "\n";
 
 			echo '<td width="100" align="center" class="descriptionbox" style="vertical-align:middle;">';
 			echo "<b>{$tt}</b>";
@@ -161,14 +163,28 @@ function lightbox_print_media($pid, $level=1, $related=false, $kind=1, $noedit=f
 
 			echo '<td class="facts_value" >';
 			echo '<table class="facts_table" width="100%" cellpadding="0"><tr><td >' . "\n";
-			echo "<div id='thumbcontainer", $kind, "'>" . "\n";
-			echo "<ul class='section' id='thumblist_", $kind, "'>" . "\n\n";
+			echo "<div id=\"thumbcontainer", $kind, "\">" . "\n";
+			echo "<ul class=\"section\" id=\"thumblist_", $kind, "\">" . "\n\n";
 		}
+
+		// Album Reorder include =============================
+		// Following used for Album media sort ------------------
+		$reorder=safe_get('reorder', '1', '0');
+		if ($reorder==1) {
+			if ($kind==1) $rownum1=$numm;
+			if ($kind==2) $rownum2=$numm;
+			if ($kind==3) $rownum3=$numm;
+			if ($kind==4) $rownum4=$numm;
+			if ($kind==5) include 'modules/lightbox/functions/lb_horiz_sort.php';
+		}
+		// ==================================================
 
 		// Start pulling media items into thumbcontainer div ==============================
 		foreach ($rows as $rowm) {
 			if (isset($foundObjs[$rowm['m_media']])) {
-				if (isset($current_objes[$rowm['m_media']])) $current_objes[$rowm['m_media']] --;
+				if (isset($current_objes[$rowm['m_media']])) {
+					$current_objes[$rowm['m_media']]--;
+				}
 				continue;
 			}
 			// NOTE: Determine the size of the mediafile
@@ -187,12 +203,12 @@ function lightbox_print_media($pid, $level=1, $related=false, $kind=1, $noedit=f
 				$imgwidth = $imgsize[0]+40;
 				$imgheight = $imgsize[1]+150;
 			}
-			$rows = array();
+			$rows=array();
 
 
 			//-- if there is a change to this media item then get the
 			//-- updated media item and show it
-			if (isset($pgv_changes[$rowm["m_media"]."_".$GEDCOM][0]["gid"]) && $kind != 5  ) {
+			if (isset($pgv_changes[$rowm["m_media"]."_".$GEDCOM][0]["gid"]) && $kind!=5  ) {
 				$newrec = find_updated_record($rowm["m_media"], $ged_id);
 				$row = array();
 				$row['m_media'] = $rowm["m_media"];
@@ -209,16 +225,18 @@ function lightbox_print_media($pid, $level=1, $related=false, $kind=1, $noedit=f
 				$rows['new'] = $row;
 				$rows['old'] = $rowm;
 			} else {
-				if (!isset($current_objes[$rowm['m_media']]) && ($rowm['mm_gid'] == $pid)) {
+				if (!isset($current_objes[$rowm['m_media']]) && ($rowm['mm_gid']==$pid)) {
 					$rows['old'] = $rowm;
 				} else {
 					$rows['normal'] = $rowm;
-					if (isset($current_objes[$rowm['m_media']])) $current_objes[$rowm['m_media']] --;
+					if (isset($current_objes[$rowm['m_media']])) {
+						$current_objes[$rowm['m_media']]--;
+					}
 				}
 			}
 
 			foreach ($rows as $rtype => $rowm) {
-				if ($kind != 5) {
+				if ($kind!=5) {
 					$res = lightbox_print_media_row($rtype, $rowm, $pid);
 				}
 				$media_found = $media_found || $res;
@@ -237,29 +255,29 @@ function lightbox_print_media($pid, $level=1, $related=false, $kind=1, $noedit=f
 		$indiobjs .= "m_media, m_ext, m_file, m_titl, m_gedfile, m_gedrec, mm_gid, mm_gedrec FROM {$TBLPREFIX}media, {$TBLPREFIX}media_mapping where ";
 		$indiobjs .= "mm_gid=? ";
 		$indiobjs .= "AND mm_gedfile=? AND mm_media=m_media AND mm_gedfile=m_gedfile ";
-		$vars2 = array($pid, PGV_GED_ID);
-		$rows = PGV_DB::prepare($indiobjs)->execute($vars2)->fetchAll(PDO::FETCH_ASSOC);
+		$vars2=array($pid, PGV_GED_ID);
+		$rows=PGV_DB::prepare($indiobjs)->execute($vars2)->fetchAll(PDO::FETCH_ASSOC);
 		$foundObjs = array();
 		$numindiobjs = count($rows);
 
 		// Compare Items count in Database versus Item count in GEDCOM
-		if ($kind == 5 && $count != $numindiobjs) {
+		if ($kind==5 && $count!=$numindiobjs) {
 			// If any items are left in $current_objes list for this individual, put them into $kind 5 ("Not in DB") row
 			echo "\n\n";
-			echo "<table cellpadding='0' border='0' width='100%' class='facts_table'><tr>", "\n";
+			echo "<table cellpadding=\"0\" border=\"0\" width=\"100%\" class=\"facts_table\"><tr>", "\n";
 			echo '<td width="100" align="center" class="descriptionbox" style="vertical-align:middle;">';
 			echo "<b>{$tt}</b>";
 			echo '</td>';
 			echo '<td class="facts_value" >';
 			echo '<table class="facts_table" width="100%" cellpadding="0"><tr><td >' . "\n";
-			echo "<div id='thumbcontainer", $kind, "'>" . "\n";
-			echo "<ul class='section' id='thumblist_", $kind, "'>" . "\n\n";
-			foreach ($current_objes as $media_id => $value) {
-				while ($value > 0) {
+			echo "<div id=\"thumbcontainer", $kind, "\">" . "\n";
+			echo "<ul class=\"section\" id=\"thumblist_", $kind, "\">" . "\n\n";
+			foreach ($current_objes as $media_id=>$value) {
+				while ($value>0) {
 					$objSubrec = array_pop($obje_links[$media_id]);
 					//-- check if we need to get the object from a remote location
 					$count = preg_match("/(.*):(.*)/", $media_id, $match);
-					if ($count > 0) {
+					if ($count>0) {
 						require_once PGV_ROOT.'includes/classes/class_serviceclient.php';
 						$client = ServiceClient::getInstance($match[1]);
 						if (!is_null($client)) {
@@ -267,7 +285,9 @@ function lightbox_print_media($pid, $level=1, $related=false, $kind=1, $noedit=f
 							$row['m_media'] = $media_id;
 							$row['m_file'] = get_gedcom_value("FILE", 1, $newrec);
 							$row['m_titl'] = get_gedcom_value("TITL", 1, $newrec);
-							if (empty($row['m_titl'])) $row['m_titl'] = get_gedcom_value("FILE:TITL", 1, $newrec);
+							if (empty($row['m_titl'])) {
+								$row['m_titl'] = get_gedcom_value("FILE:TITL", 1, $newrec);
+							}
 							$row['m_gedrec'] = $newrec;
 							$et = preg_match("/(\.\w+)$/", $row['m_file'], $ematch);
 							$ext = "";
@@ -278,9 +298,9 @@ function lightbox_print_media($pid, $level=1, $related=false, $kind=1, $noedit=f
 							if ($newrec && isset($rowm['m_file'])) {
 								// -----
 							} else {
-								echo "<li class='li_new' >";
-								echo "<center><table class='pic' border='0' ></center>";
-								echo "<tr><td align='center' colspan='4'>";
+								echo "<li class=\"li_new\" >";
+								echo "<center><table class=\"pic\" border=\"0\" ></center>";
+								echo "<tr><td align=\"center\" colspan=\"4\">";
 								echo $row['m_media'];
 								echo "</td></tr>";
 								
@@ -291,24 +311,30 @@ function lightbox_print_media($pid, $level=1, $related=false, $kind=1, $noedit=f
 					} else {
 						$row = array();
 						$newrec = find_updated_record($media_id, $ged_id);
-						if (empty($newrec)) $newrec = find_media_record($media_id, $ged_id);
+						if (empty($newrec)) {
+							$newrec = find_media_record($media_id, $ged_id);
+						}
 						$row['m_media'] = $media_id;
 						$row['m_file'] = get_gedcom_value("FILE", 1, $newrec);
 						$row['m_titl'] = get_gedcom_value("TITL", 1, $newrec);
-						if (empty($row['m_titl'])) $row['m_titl'] = get_gedcom_value("FILE:TITL", 1, $newrec);
+						if (empty($row['m_titl'])) {
+							$row['m_titl'] = get_gedcom_value("FILE:TITL", 1, $newrec);
+						}
 						$row['m_gedrec'] = $newrec;
 						$et = preg_match("/(\.\w+)$/", $row['m_file'], $ematch);
 						$ext = "";
-						if ($et>0) $ext = substr(trim($ematch[1]), 1);
+						if ($et>0) { 
+							$ext = substr(trim($ematch[1]), 1);
+						}
 						$row['m_ext'] = $ext;
 						$row['mm_gid'] = $pid;
 						$row['mm_gedrec'] = get_sub_record($objSubrec[0], $objSubrec, $gedrec);
 						if ($newrec && isset($rowm['m_file'])) {
 							// -----
 						} else {
-							echo "<li class='li_new' >";
-							echo "<center><table class='pic' border='0' ></center>";
-							echo "<tr><td align='center' colspan='4'>";
+							echo "<li class=\"li_new\" >";
+							echo "<center><table class=\"pic\" border=\"0\" ></center>";
+							echo "<tr><td align=\"center\" colspan=\"4\">";
 							echo $row['m_media'];
 							echo "</td></tr>";
 							
@@ -316,34 +342,38 @@ function lightbox_print_media($pid, $level=1, $related=false, $kind=1, $noedit=f
 							$media_found = $media_found || $res;
 						}
 					}
-					$value --;
+					$value--;
 				}
 			}
 		}
 		
 		// No "Extra" Media Items ============================
-		if ($kind == 5 && $count == $numindiobjs) {
+		if ($kind==5 && $count==$numindiobjs) {
 		// "Extra" Media Item in GEDCOM but NOT in DB ========
-		} else if ($kind == 5 && $count != $numindiobjs) {
+		} else if ($kind==5 && $count!=$numindiobjs) {
 			echo "</ul>";
 			echo "</div>";
-			echo "<div class='clearlist'>";
+			echo "<div class=\"clearlist\">";
 			echo "</div>";
-			echo "</td></tr></table>\n";
-			echo "</td>\n";
+			echo '</td></tr></table>' . "\n";
+			echo '</td>'. "\n";
 			echo '</tr>';
-			echo "</table>\n\n";
+			echo '</table>' . "\n\n";
 		// Media Item in GEDCOM & in DB ======================
 		} else {
 			echo "</ul>";
 			echo "</div>";
-			echo "<div class='clearlist'>";
+			echo "<div class=\"clearlist\">";
 			echo "</div>";
-			echo "</td></tr></table>\n";
-			if ($kind == 3 && $numm > 0) echo "<font size='1'>", $pgv_lang["census_text"], "</font>";
-			echo "</td>\n";
+			echo '</td></tr></table>' . "\n";
+			if ($kind==3 && $numm > 0) {
+				echo "<font size='1'>";
+				echo $pgv_lang["census_text"];
+				echo "</font>";
+			}
+			echo '</td>'. "\n";
 			echo '</tr>';
-			echo "</table>\n\n";
+			echo '</table>' . "\n\n";
 		}
 		
 	}

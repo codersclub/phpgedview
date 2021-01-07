@@ -6,7 +6,7 @@
  * routines and sorting functions.
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2019  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2021  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -1175,7 +1175,7 @@ function bidi_text($text) {
 		if (in_array(ord($letter),$RTLOrd)) {
 			if (!empty($temp)) {
 				//-- just in case the $temp is a Hebrew char push it onto the stack
-				if (in_array(ord($temp{0}),$RTLOrd));
+				if (in_array(ord($temp[0]),$RTLOrd));
 				//-- if the $temp starts with a char in the special_chars array then remove the space and push it onto the stack seperately
 				else if (in_array($temp{strlen($temp)-1}, $special_chars)) {
 					$char = substr($temp, strlen($temp)-1);
@@ -1209,10 +1209,10 @@ function bidi_text($text) {
 				if (($l==PGV_UTF8_LRM)||($l==PGV_UTF8_RLM)) {
 					if (!empty($temp)) {
 						$last = array_pop($parts);
-						if ($temp{0}==")") $last = '(' . $last;
-						else if ($temp{0}=="(") $last = ')' . $last;
-						else if ($temp{0}=="]") $last = '[' . $last;
-						else if ($temp{0}=="[") $last = ']' . $last;
+						if ($temp[0]==")") $last = '(' . $last;
+						else if ($temp[0]=="(") $last = ')' . $last;
+						else if ($temp[0]=="]") $last = '[' . $last;
+						else if ($temp[0]=="[") $last = ']' . $last;
 						array_push($parts, $last);
 						$temp = "";
 					}
@@ -1222,7 +1222,7 @@ function bidi_text($text) {
 		else $temp .= $letter;
 	}
 	if (!empty($temp)) {
-		if (in_array(ord($temp{0}),$RTLOrd)) array_push($parts, $temp);
+		if (in_array(ord($temp[0]),$RTLOrd)) array_push($parts, $temp);
 		else array_push($parts, $temp);
 	}
 
@@ -1238,10 +1238,11 @@ function bidi_text($text) {
 		}
 		$temp = trim($parts[$i]);
 		if (!empty($temp)) {
-			if ($temp{0}=="(" && $temp{strlen($temp)-1}!=")") $parts[$i] = $bef.substr($temp, 1).")".$aft;
-			if ($temp{0}=="[" && $temp{strlen($temp)-1}!="]") $parts[$i] = $bef.substr($temp, 1)."]".$aft;
-			if ($temp{0}!="(" && $temp{strlen($temp)-1}==")") $parts[$i] = $bef."(".substr($temp, 0, strlen($temp)-1).$aft;
-			if ($temp{0}!="[" && $temp{strlen($temp)-1}=="]") $parts[$i] = $bef."[".substr($temp, 0, strlen($temp)-1).$aft;
+			$temp2 = strlen($temp)-1;
+			if ($temp[0]=="(" && $temp[$temp2]!=")") $parts[$i] = $bef.substr($temp, 1).")".$aft;
+			if ($temp[0]=="[" && $temp[$temp2]!="]") $parts[$i] = $bef.substr($temp, 1)."]".$aft;
+			if ($temp[0]!="(" && $temp[$temp2]==")") $parts[$i] = $bef."(".substr($temp, 0, $temp2).$aft;
+			if ($temp[0]!="[" && $temp[$temp2]=="]") $parts[$i] = $bef."[".substr($temp, 0, $temp2).$aft;
 		}
 	}
 	//print_r($parts);
