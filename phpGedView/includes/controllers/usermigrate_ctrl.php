@@ -5,7 +5,7 @@
  * authenticate.php and xxxxxx.dat files (MySQL mode).
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2017 PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2021 PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -186,14 +186,14 @@ class UserMigrateControllerRoot extends BaseController {
 					// backup media files
 					$dir = dir($MEDIA_DIRECTORY);
 					while(false !== ($entry = $dir->read())) {
-						if ($entry{0} != ".") {
+						if ($entry[0] != ".") {
 							if ($entry != "thumbs") $this->flist[] = $MEDIA_DIRECTORY.$entry;
 						}
 					}
 					if ($USE_MEDIA_FIREWALL) {
 						$dir = dir($MEDIA_FIREWALL_ROOTDIR.$MEDIA_DIRECTORY);
 						while(false !== ($entry = $dir->read())) {
-							if ($entry{0} != ".") {
+							if ($entry[0] != ".") {
 								if ($entry != "thumbs" && $entry != "watermark") $this->flist[] = $MEDIA_FIREWALL_ROOTDIR.$MEDIA_DIRECTORY.$entry;
 							}
 						}

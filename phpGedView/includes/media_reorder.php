@@ -25,6 +25,8 @@
  * @author Brian Holland
  */
 
+//	This file is loaded by edit_interface.php
+
 if (!defined('PGV_PHPGEDVIEW')) {
 	header('HTTP/1.0 403 Forbidden');
 	exit;

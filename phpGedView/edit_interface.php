@@ -3,7 +3,7 @@
 * PopUp Window to provide editing features.
 *
 * phpGedView: Genealogy Viewer
-* Copyright (C) 2002 to 2020  PGV Development Team.  All rights reserved.
+* Copyright (C) 2002 to 2021  PGV Development Team.  All rights reserved.
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -1435,7 +1435,7 @@ case 'update':
 				$fields = explode(' ', $gedlines[$linenum]);
 				$glevel = $fields[0];
 				$i++;
-				while (($i<count($gedlines))&&($gedlines[$i]{0}>$glevel)) $i++;
+				while (($i<count($gedlines))&&($gedlines[$i][0]>$glevel)) $i++;
 			}
 
 			if (!isset($glevels)) $glevels = array();
@@ -1501,7 +1501,7 @@ case 'update':
 					$fields = explode(' ', $gedlines[$editline]);
 					$glevel = $fields[0];
 					$i++;
-					while (($i<count($gedlines))&&($gedlines[$i]{0}>$glevel)) $i++;
+					while (($i<count($gedlines))&&($gedlines[$i][0]>$glevel)) $i++;
 				}
 
 				if (!isset($glevels)) $glevels = array();
@@ -2058,11 +2058,11 @@ if (isset($_REQUEST['action'])) $action = $_REQUEST['action'];
 				if ((preg_match("/^\d ".PGV_REGEX_TAG." @$pid@/", $line)==0)&&(!$skipline)) $newrec .= $line."\n";
 				else {
 					if (!$skipline) {
-						$glevel = $line{0};
+						$glevel = $line[0];
 						$skipline = true;
 					}
 					else {
-						if ($line{0}<=$glevel) {
+						if ($line[0]<=$glevel) {
 							$skipline = false;
 							$newrec .= $line."\n";
 						}
@@ -2091,7 +2091,7 @@ case 'editname':
 	$glevel = $fields[0];
 	$i = $linenum+1;
 	$namerec = $gedlines[$linenum];
-	while (($i<count($gedlines))&&($gedlines[$i]{0}>$glevel)) {
+	while (($i<count($gedlines))&&($gedlines[$i][0]>$glevel)) {
 		$namerec.="\n".$gedlines[$i];
 		$i++;
 	}
@@ -2115,7 +2115,7 @@ case 'copy':
 		$glevel = $fields[0];
 		$i = $linenum+1;
 		$factrec = $gedlines[$linenum];
-		while (($i<count($gedlines))&&($gedlines[$i]{0}>$glevel)) {
+		while (($i<count($gedlines))&&($gedlines[$i][0]>$glevel)) {
 			$factrec.="\n".$gedlines[$i];
 			$i++;
 		}
@@ -2234,7 +2234,8 @@ case 'al_reorder_media_update': // Update sort using Album Page
 
 	function SwapArray($Array){
 		$Values = array();
-		while (list($Key, $Val) = each($Array))
+//		while (list($Key, $Val) = each($Array))
+		foreach ($array as $Key => $Val) 
 			$Values[$Val] = $Key;
 		return $Values;
 	}

@@ -3,7 +3,7 @@
 * Base class for all gedcom records
 *
 * phpGedView: Genealogy Viewer
-* Copyright (C) 2002 to 2018 PGV Development Team.  All rights reserved.
+* Copyright (C) 2002 to 2021 PGV Development Team.  All rights reserved.
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -471,10 +471,12 @@ class GedcomRecord {
 						}
 					}
 				} else {
-					$this->_addName($this->getType(), $this->getFallBackName(), null);
+//					$this->_addName($this->getType(), $this->getFallBackName(), null);
+					$this->_addName($this->getType(), $this->getFallBackName(), '');	// third param is supposed to be a string. null is NOT a string
 				}
 			} else {
-				$this->_addName($this->getType(), $pgv_lang['private'], null);
+//				$this->_addName($this->getType(), $pgv_lang['private'], null);
+				$this->_addName($this->getType(), $pgv_lang['private'], '');	// third param is supposed to be a string. null is NOT a string
 			}
 		}
 		return $this->_getAllNames;
@@ -840,7 +842,7 @@ class GedcomRecord {
 			if (empty($line)) {
 				$line=' ';
 			}
-			if ($i==$lct||$line{0}==1) {
+			if ($i==$lct||$line[0]==1) {
 				if ($i>1){
 					$event = new Event($factrec, $linenum);
 					$fact = $event->getTag();

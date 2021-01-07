@@ -3,7 +3,7 @@
  * Search in help files
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2012  PGV Development Team.  All rights reerved.
+ * Copyright (C) 2002 to 2021  PGV Development Team.  All rights reerved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -147,7 +147,7 @@ if ((!empty($searchtext)) && strlen($searchtext)>1)  {
 	foreach ($pgv_lang as $text => $value) {
 		if ($searchintext == "all") {
 			$helpvarnames[] = $text;
-		} elseif ((substr($text, -5) == "_help" && $value{0}!="_") || (substr($text, -4) == ".php")) {
+		} elseif ((substr($text, -5) == "_help" && $value[0]!="_") || (substr($text, -4) == ".php")) {
 			$helpvarnames[] = $text;
 		}
 	}

@@ -8,7 +8,7 @@
 * When $action is 'delete' the gedcom record with $xref is removed from the file.
 *
 * phpGedView: Genealogy Viewer
-* Copyright (C) 2002 to 2020  PGV Development Team.  All rights reserved.
+* Copyright (C) 2002 to 2021  PGV Development Team.  All rights reserved.
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -156,7 +156,7 @@ case 'get':
 								$lines = explode("\n", $head_date);
 								$head_date = "";
 								foreach($lines as $line) {
-									$num = $line{0};
+									$num = $line[0];
 									$head_date.=($num+1).substr($line, 1)."\n";
 								}
 								$chan = "1 CHAN\n".$head_date;

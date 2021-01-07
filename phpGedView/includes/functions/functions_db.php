@@ -6,7 +6,7 @@
 * to use an SQL database as its datastore.
 *
 * phpGedView: Genealogy Viewer
-* Copyright (C) 2002 to 2016  PGV Development Team.  All rights reserved.
+* Copyright (C) 2002 to 2021  PGV Development Team.  All rights reserved.
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -1964,7 +1964,7 @@ function delete_fact($linenum, $pid, $gedrec) {
 				$i++;
 				if ($i<$ctlines) {
 					// Remove the fact
-					while ((isset($gedlines[$i]))&&($gedlines[$i]{0}>$glevel)) {
+					while ((isset($gedlines[$i]))&&($gedlines[$i][0]>$glevel)) {
 						$i++;
 					}
 					// Add the remaining lines

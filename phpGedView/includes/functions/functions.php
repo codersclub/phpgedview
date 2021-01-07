@@ -6,7 +6,7 @@
  * routines and sorting functions.
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2020  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2021  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -726,7 +726,7 @@ function get_gedcom_value($tag, $level, $gedrec, $truncate='0', $convert=true) {
 	$tags = explode(':', $tag);
 	$origlevel = $level;
 	if ($level==0) {
-		$level = 1 + (int)$gedrec{0};	// non-numeric level of incoming record should be treated as zero
+		$level = 1 + (int)$gedrec[0];	// non-numeric level of incoming record should be treated as zero
 										// (see PHP manual topic "String conversion to numbers")
 	}
 
@@ -2736,7 +2736,7 @@ function get_theme_names() {
 	$themes = array();
 	$d = dir("themes");
 	while (false !== ($entry = $d->read())) {
-		if ($entry{0}!="." && $entry!="CVS" && !stristr($entry, "svn") && is_dir(PGV_ROOT.'themes/'.$entry) && file_exists(PGV_ROOT.'themes/'.$entry.'/theme.php')) {
+		if ($entry[0]!="." && $entry!="CVS" && !stristr($entry, "svn") && is_dir(PGV_ROOT.'themes/'.$entry) && file_exists(PGV_ROOT.'themes/'.$entry.'/theme.php')) {
 			$themefile = implode("", file(PGV_ROOT.'themes/'.$entry.'/theme.php'));
 			$tt = preg_match("/theme_name\s*=\s*\"(.*)\";/", $themefile, $match);
 			if ($tt>0)
@@ -2849,7 +2849,7 @@ function get_report_list($force=false) {
 	//-- find all of the reports in the reports directory
 	$d = dir("reports");
 	while (false !== ($entry = $d->read())) {
-		if (($entry{0}!=".") && ($entry!="CVS") && (preg_match('/\.xml$/i', $entry)>0)) {
+		if (($entry[0]!=".") && ($entry!="CVS") && (preg_match('/\.xml$/i', $entry)>0)) {
 			if (!isset($files[$entry]["file"]))
 				$files[$entry]["file"] = "reports/".$entry;
 		}
@@ -3215,7 +3215,7 @@ function get_new_xref($type='INDI', $ged_id=PGV_GED_ID, $use_cache=false) {
 		$prefix = $REPO_ID_PREFIX;
 		break;
 	default:
-		$prefix = $type{0};
+		$prefix = $type[0];
 		break;
 	}
 
