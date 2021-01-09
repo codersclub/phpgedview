@@ -472,11 +472,11 @@ class GedcomRecord {
 					}
 				} else {
 //					$this->_addName($this->getType(), $this->getFallBackName(), null);
-					$this->_addName($this->getType(), $this->getFallBackName(), '');	// third param is supposed to be a string. null is NOT a string
+					$this->_addName($this->getType(), $this->getFallBackName(), ' ');	// third param is supposed to be a string. null is NOT a string
 				}
 			} else {
 //				$this->_addName($this->getType(), $pgv_lang['private'], null);
-				$this->_addName($this->getType(), $pgv_lang['private'], '');	// third param is supposed to be a string. null is NOT a string
+				$this->_addName($this->getType(), $pgv_lang['private'], ' ');	// third param is supposed to be a string. null is NOT a string
 			}
 		}
 		return $this->_getAllNames;
