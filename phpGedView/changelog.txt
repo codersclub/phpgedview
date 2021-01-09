@@ -9,6 +9,7 @@
 =====================================================================
 
 Version 4.3.1
+ - Fixed: Uninitialized string offset error in class_person.php caused by one-parent family (canajun2eh) 
  - Fixed: Typo in ancestry_ctrl.php  (canajun2eh)
  - Fixed: Several instances of the each() function -- deprecated, should be using foreach()  (canajun2eh)
  - Fixed: Many instances of {0} used as reference to first char of strings.  Should be using [0] (canajun2eh, imsza)
