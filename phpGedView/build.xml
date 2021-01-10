@@ -11,20 +11,12 @@
 	<property name="modules-all.dir" value="${dist.dir}/PGV-Modules-All-${pgv.version}" />
 
 	<property name="module-batch-update.dir" value="${dist.dir}/PGV-Module-batch-update-${pgv.version}" />
-	<property name="module-cms-interface.dir" value="${dist.dir}/PGV-Module-cms-interface-${pgv.version}" />
-	<property name="module-fckeditor.dir" value="${dist.dir}/PGV-Module-fckeditor-${pgv.version}" />
-	<property name="module-gallery2.dir" value="${dist.dir}/PGV-Module-gallery2-${pgv.version}" />
 	<property name="module-gedfact-assistant.dir" value="${dist.dir}/PGV-Module-gedfact-assistant-${pgv.version}" />
 	<property name="module-googlemap.dir" value="${dist.dir}/PGV-Module-googlemap-${pgv.version}" />
 	<property name="module-jwplayer.dir" value="${dist.dir}/PGV-Module-jwplayer-${pgv.version}" />
 	<property name="module-lightbox.dir" value="${dist.dir}/PGV-Module-lightbox-${pgv.version}" />
-	<property name="module-punbb.dir" value="${dist.dir}/PGV-Module-punbb-${pgv.version}" />
 	<property name="module-research-assistant.dir" value="${dist.dir}/PGV-Module-research-assistant-${pgv.version}" />
-	<property name="module-sitemap.dir" value="${dist.dir}/PGV-Module-sitemap-${pgv.version}" />
 	<property name="module-slideshow.dir" value="${dist.dir}/PGV-Module-slideshow-${pgv.version}" />
-
-	<property name="demo.base.dir" value="${dist.dir}/DemoBase" />
-	<property name="demo.dir" value="${dist.dir}/PGV-Demo-${pgv.version}" />
 
 	<fileset id="basic.langs" dir="./languages">
 		<include name="*.de.*" />
@@ -40,13 +32,14 @@
 
 	<fileset id="not.basic.langs" dir="./languages">
 		<exclude name="*.de.*" />
-		<exclude name="*.en.php" />
+		<exclude name="*.en.*" />
 		<exclude name="*.fr.*" />
 		<exclude name="*.he.*" />
 		<exclude name="*.nl.*" />
 		<exclude name="*.no.*" />
 		<exclude name="*.sv.*" />
 		<exclude name=".htaccess" />
+		<exclude name="*.txt" />
 	</fileset>
 
 	<fileset id="basic.themes" dir="./themes">
@@ -79,16 +72,8 @@
 		<delete file="${themes.dir}.zip" failonerror="false" />
 		<delete dir ="${modules-all.dir}" failonerror="false" />
 		<delete file="${modules-all.dir}.zip" failonerror="false" />
-		<delete dir ="${demo.dir}" failonerror="false" />
-		<delete file="${demo.dir}.zip" failonerror="false" />
 		<delete dir ="${module-batch-update.dir}" failonerror="false" />
 		<delete file="${module-batch-update.dir}.zip" failonerror="false" />
-		<delete dir ="${module-cms-interface.dir}" failonerror="false" />
-		<delete file="${module-cms-interface.dir}.zip" failonerror="false" />
-		<delete dir ="${module-fckeditor.dir}" failonerror="false" />
-		<delete file="${module-fckeditor.dir}.zip" failonerror="false" />
-		<delete dir ="${module-gallery2.dir}" failonerror="false" />
-		<delete file="${module-gallery2.dir}.zip" failonerror="false" />
 		<delete dir ="${module-gedfact-assistant.dir}" failonerror="false" />
 		<delete file="${module-gedfact-assistant.dir}.zip" failonerror="false" />
 		<delete dir ="${module-googlemap.dir}" failonerror="false" />
@@ -97,12 +82,8 @@
 		<delete file="${module-jwplayer.dir}.zip" failonerror="false" />
 		<delete dir ="${module-lightbox.dir}" failonerror="false" />
 		<delete file="${module-lightbox.dir}.zip" failonerror="false" />
-		<delete dir ="${module-punbb.dir}" failonerror="false" />
-		<delete file="${module-punbb.dir}.zip" failonerror="false" />
 		<delete dir ="${module-research-assistant.dir}" failonerror="false" />
 		<delete file="${module-research-assistant.dir}.zip" failonerror="false" />
-		<delete dir ="${module-sitemap.dir}" failonerror="false" />
-		<delete file="${module-sitemap.dir}.zip" failonerror="false" />
 		<delete dir ="${module-slideshow.dir}" failonerror="false" />
 		<delete file="${module-slideshow.dir}.zip" failonerror="false" />
 	</target>
@@ -202,30 +183,6 @@
 		</copy>
 	</target>
 
-	<target name="package-module-cms-interface">
-		<copy todir="${module-cms-interface.dir}">
-			<fileset dir="./modules/">
-				<include name="cms_interface*/**" />
-			</fileset>
-		</copy>
-	</target>
-
-	<target name="package-module-fckeditor">
-		<copy todir="${module-fckeditor.dir}">
-			<fileset dir="./modules/">
-				<include name="FCKeditor*/**" />
-			</fileset>
-		</copy>
-	</target>
-
-	<target name="package-module-gallery2">
-		<copy todir="${module-gallery2.dir}">
-			<fileset dir="./modules/">
-				<include name="gallery2*/**" />
-			</fileset>
-		</copy>
-	</target>
-
 	<target name="package-module-gedfact-assistant">
 		<copy todir="${module-gedfact-assistant.dir}">
 			<fileset dir="./modules/">
@@ -258,26 +215,10 @@
 		</copy>
 	</target>
 
-	<target name="package-module-punbb">
-		<copy todir="${module-punbb.dir}">
-			<fileset dir="./modules/">
-				<include name="punbb*/**" />
-			</fileset>
-		</copy>
-	</target>
-
 	<target name="package-module-research-assistant">
 		<copy todir="${module-research-assistant.dir}">
 			<fileset dir="./modules/">
 				<include name="research_assistant*/**" />
-			</fileset>
-		</copy>
-	</target>
-
-	<target name="package-module-sitemap">
-		<copy todir="${module-sitemap.dir}">
-			<fileset dir="./modules/">
-				<include name="sitemap*/**" />
 			</fileset>
 		</copy>
 	</target>
@@ -299,29 +240,8 @@
 		</copy>
 	</target>
 
-	<target name="package-demo" depends="package-basic">
-		<!-- demo -->
-		<copy todir="${demo.dir}">
-			<fileset dir="${demo.base.dir}">
-				<include name="**/**" />
-			</fileset>
-		</copy>
-		<copy todir="${demo.dir}/democd/sites">
-			<fileset dir="${basic.dir}">
-				<include name="**/**" />
-			</fileset>
-		</copy>
-		<copy todir="${demo.dir}/democd/sites/modules">
-			<fileset dir="${modules-all.dir}/lightbox">
-				<include name="**/**" />
-			</fileset>
-		</copy>
-		<move file="${demo.dir}/democd/sites/config.dist"
-			tofile="${demo.dir}/democd/sites/config.php" />
-	</target>
-
 	<target name="package"
-		depends="package-all, package-basic, package-lang, package-themes, package-modules-all, package-places, package-demo, package-module-cms-interface, package-module-batch-update, package-module-fckeditor, package-module-gallery2, package-module-gedfact-assistant, package-module-googlemap, package-module-jwplayer, package-module-lightbox, package-module-punbb, package-module-research-assistant, package-module-sitemap, package-module-slideshow">
+		depends="package-all, package-basic, package-lang, package-themes, package-modules-all, package-places, package-module-batch-update, package-module-gedfact-assistant, package-module-googlemap, package-module-jwplayer, package-module-lightbox, package-module-research-assistant, package-module-slideshow">
 		<!--  default target which does everything -->
 	</target>
 
@@ -332,18 +252,12 @@
 		<zip destfile="${places.dir}.zip" basedir="${places.dir}" update="true" />
 		<zip destfile="${themes.dir}.zip" basedir="${themes.dir}" update="true" />
 		<zip destfile="${modules-all.dir}.zip" basedir="${modules-all.dir}" update="true" />
-		<zip destfile="${demo.dir}.zip" basedir="${demo.dir}" update="true" />
 		<zip destfile="${module-batch-update.dir}.zip" basedir="${module-batch-update.dir}" update="true" />
-		<zip destfile="${module-cms-interface.dir}.zip" basedir="${module-cms-interface.dir}" update="true" />
-		<zip destfile="${module-fckeditor.dir}.zip" basedir="${module-fckeditor.dir}" update="true" />
-		<zip destfile="${module-gallery2.dir}.zip" basedir="${module-gallery2.dir}" update="true" />
 		<zip destfile="${module-gedfact-assistant.dir}.zip" basedir="${module-gedfact-assistant.dir}" update="true" />
 		<zip destfile="${module-googlemap.dir}.zip" basedir="${module-googlemap.dir}" update="true" />
 		<zip destfile="${module-jwplayer.dir}.zip" basedir="${module-jwplayer.dir}" update="true" />
 		<zip destfile="${module-lightbox.dir}.zip" basedir="${module-lightbox.dir}" update="true" />
-		<zip destfile="${module-punbb.dir}.zip" basedir="${module-punbb.dir}" update="true" />
 		<zip destfile="${module-research-assistant.dir}.zip" basedir="${module-research-assistant.dir}" update="true" />
-		<zip destfile="${module-sitemap.dir}.zip" basedir="${module-sitemap.dir}" update="true" />
 		<zip destfile="${module-slideshow.dir}.zip" basedir="${module-slideshow.dir}" update="true" />
 
 	</target>

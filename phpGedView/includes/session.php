@@ -30,14 +30,68 @@ if (!defined('PGV_SCRIPT_NAME')) {
 	exit;
 }
 
+/*
+ *	Read the optional changelog.txt file to get identifying information
+ *		This has to be done here, since none of the functions have been loaded
+ *
+ *		Note:  	For clarity, this routine should be using binary constants like 0b111 , 0b10, etc.
+ *				Unfortunately, binary constants are only supported from PHP 5.4 onwards.
+ *				We need to preserve compatibility with PHP 5.3
+ */
+$version = '4.3.1';			// The changelog.txt file can override the version number
+$release = 'SVN';			// The changelog.txt file can override the release type
+$revision = '';				// The changelog.txt file can override the revision number
+
+// Look at the changelog.txt file to find overriding information, but accept only the first occurrence of each
+$handle = @fopen('changelog.txt', 'r');
+if ($handle !== FALSE) {
+	// The changelog.txt file exists:  look for the information we need
+	$status = 0x0;
+	while (!feof($handle)) {
+		if (($status & 0x7) == 0x7) break;		// We have what we need
+		$textLine = fgets($handle);
+		if (($status & 0x1) == 0x0) {
+			$found = preg_match('~^Version (.*)~', $textLine, $match);		// Look for the first Version xxx line
+			if ($found) {
+				$version = trim($match[1]);
+				$status |= 0x1;		// 001 bit set: Version found
+				continue;
+			}
+		}
+		if (($status & 0x2) == 0x0) {
+			$found = preg_match('~^Release: (.*)~', $textLine, $match);		// Look for the first Release: xxx line
+			if ($found) {
+				$release = trim($match[1]);
+				$status |= 0x2;		// 010 bit set: Release found
+				continue;
+			}
+		}
+		if (($status & 0x4) == 0x0) {
+			$found = preg_match('~.*\$Id$textLine, $match);		// Look for the first (only) $Id line
+			if ($found) {
+				$revision = $match[1];
+				$status |= 0x4;		// 100 bit set: SVN number found
+				continue;		// this one is redundant, but leave it in for consistency with the above code 
+			}
+		}
+	}
+	fclose($handle);
+}
+
+// ------------------ The real PhpGedView begins here ------------
+
 // Identify ourself
 define('PGV_PHPGEDVIEW',      'PhpGedView');
-define('PGV_VERSION',         '4.3.1');
-define('PGV_VERSION_RELEASE', ''); // 'svn', 'beta', 'rc1', '', etc.
-define('PGV_VERSION_TEXT',    trim(PGV_VERSION.' '.PGV_VERSION_RELEASE));
+define('PGV_VERSION',         $version);
+define('PGV_VERSION_RELEASE', $release); 	// 'svn', 'beta', 'rc1', '', etc.
+define('PGV_SVN_REVISION',    $revision);
+define('PGV_VERSION_TEXT',    trim(PGV_VERSION.' '.PGV_VERSION_RELEASE.' '.PGV_SVN_REVISION));
 define('PGV_PHPGEDVIEW_URL',  'http://www.phpgedview.net');
 define('PGV_PHPGEDVIEW_WIKI', 'http://wiki.phpgedview.net');
 define('PGV_TRANSLATORS_URL', 'https://sourceforge.net/projects/phpgedview/forums/forum/294245');
+
+// Get rid of these, in case they're used elsewhere for a different purpose
+unset($version, $release, $revision, $handle, $status, $textLine, $found, $match);
 
 // Enable debugging output?
 define('PGV_DEBUG',      false);

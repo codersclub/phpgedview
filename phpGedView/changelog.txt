@@ -1,14 +1,20 @@
 =====================================================================
 	Change Log
-	phpGedView
+	PhpGedView
 
 	This and other information can be found online at
 	http://www.phpgedview.net
 
 	# $Id$
+	
+The following line defines the type of release; information in addition to the SVN number above and the Version number below.
+Release: SVN
+
+The session.php script uses this information to populate the constants : PGV_VERSION , PGV_VERSION_RELEASE , PGV_SVN_REVISION
 =====================================================================
 
 Version 4.3.1
+ - Changed: Display SVN revision number on Admin page -- comes from information in the changelog.txt file (canajun2eh)
  - Fixed: Uninitialized string offset error in class_person.php caused by one-parent family (canajun2eh) 
  - Fixed: Typo in ancestry_ctrl.php  (canajun2eh)
  - Fixed: Several instances of the each() function -- deprecated, should be using foreach()  (canajun2eh)
