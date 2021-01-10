@@ -67,7 +67,7 @@ if ($handle !== FALSE) {
 			}
 		}
 		if (($status & 0x4) == 0x0) {
-			$found = preg_match('~.*\$Id$textLine, $match);		// Look for the first (only) $Id line
+			$found = preg_match('~.*Id: session\.php (\d\d\d\d)~', $textLine, $match);		// Look for the first (only) $Id line
 			if ($found) {
 				$revision = $match[1];
 				$status |= 0x4;		// 100 bit set: SVN number found
