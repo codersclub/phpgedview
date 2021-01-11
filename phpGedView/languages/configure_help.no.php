@@ -3,7 +3,7 @@
  * Norwegian texts
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2019  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2021  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -267,17 +267,17 @@ $pgv_lang["EXPAND_NOTES_help"] = "~#pgv_lang[EXPAND_NOTES]#~<br /><br />Dette va
 $pgv_lang["SHOW_LEVEL2_NOTES"]      = "Vis alle merknader og kildereferanser på fanene for Merknader og Kilder";
 $pgv_lang["SHOW_LEVEL2_NOTES_help"] = "~#pgv_lang[SHOW_LEVEL2_NOTES]#~<br /><br />Dette valget kontrollerer om hvorvidt noter og kildereferanser som er knyttet til fakta skal vises på fanene for noter og faktapå personsiden.<br /><br />Normalt viser noter- og kildefanene bare noter og kilder som er knyttet direkte til personens post.  Disse kalles <i>nivå 1</i> noter- og kildereferanser.<br /><br />Valget <b>#pgv_lang[yes]#</b> vil få disse fanene til også å vise noter og kildereferanser som er en del av heldelser og fakta knyttet til persones post i databasen.  Dette er <i>nivå 2</i>-noter og kilder fordi de ulike faktaene er nivå 1.";
 $pgv_lang["HIDE_LIVE_PEOPLE"] 			= "Aktivere <b>personvern</b>";
-$pgv_lang["HIDE_LIVE_PEOPLE_help"] 		= "Denne funksjon gir PhpGedView beskjed om å skjule personlige opplysninger til nålevende personer.  Nålevende personer defineres som de, som ikke har en begivenhet registreret lengre tilbake enn for ".(isset($MAX_ALIVE_AGE)?$MAX_ALIVE_AGE:"120")." år siden, og som ikke har noen barn, som ble født for mer enn ".(isset($MAX_ALIVE_AGE)?($MAX_ALIVE_AGE-20):"100")." år siden.";
+$pgv_lang["HIDE_LIVE_PEOPLE_help"] 		= "Denne funksjon gir PhpGedView beskjed om å skjule personlige opplysninger til nålevende personer.  Nålevende personer defineres som de, som ikke har en begivenhet registreret lengre tilbake enn for #GLOBALS[MAX_ALIVE_AGE]# år siden, og som ikke har noen barn, som ble født for mer enn #GLOBALS[MAX_ALIVE_AGE]# år siden.";
 $pgv_lang["REQUIRE_AUTHENTICATION"] 	= "Krev at besøkende<br /><b>MÅ</b> logge inn";
 $pgv_lang["REQUIRE_AUTHENTICATION_help"]	= "Ved å angi denne valget, tvinges alle besøkende til å logges inn før de kan se data på siden.";
-$pgv_lang["WELCOME_TEXT_AUTH_MODE"]		= "Velkomsttekst<br />på siden for å logge inn hvis <br />\"Krev at besøkende <br /><b>MÅ</b> logge inn\" = Ja";
-$pgv_lang["WELCOME_TEXT_AUTH_MODE_help"]	= "Her kan du velge en tekst som vil vises på siden der du logger deg inn dersom du krever at <b>alle</b> besøkende må ha en brukerkonto. Sjekk hvilken av de forhåndsdefinerte tekstene som passer best for deg.<br /><br />- Du kan også velge å lage din egen selvkomponerte velkomstekst, men husk at denne ikke vil bli oversatt til besøkende med andre språk.<br /><br /><b>Du kan velge mellom disse tekstene:</b><br /><br /><li>#pgv_lang[WELCOME_TEXT_AUTH_MODE_OPT1]#:<br /><br />#pgv_lang[welcome_text_auth_mode_1]#<br /><br /><li>#pgv_lang[WELCOME_TEXT_AUTH_MODE_OPT2]#:<br /><br />#pgv_lang[welcome_text_auth_mode_2]#<br /><br /><li>#pgv_lang[WELCOME_TEXT_AUTH_MODE_OPT3]#:<br /><br />#pgv_lang[welcome_text_auth_mode_3]#";
+$pgv_lang["WELCOME_TEXT_AUTH_MODE"]		= "Velkomsttekst på siden for å logge inn";
+$pgv_lang["WELCOME_TEXT_AUTH_MODE_help"]	= "Her kan du velge en tekst som vil vises på siden der du logger deg inn dersom du krever at <b>alle</b> besøkende må ha en brukerkonto. Sjekk hvilken av de forhåndsdefinerte tekstene som passer best for deg.<br /><br />- Du kan også velge å lage din egen selvkomponerte velkomstekst, men husk at denne ikke vil bli oversatt til besøkende med andre språk.<br /><br />Du kan velge mellom disse tekstene:<ul><li><b>#pgv_lang[WELCOME_TEXT_AUTH_MODE_OPT1]#:</b><div class=\"list_value_wrap\">#pgv_lang[welcome_text_auth_mode_1]#</div><br /></li><li><b>#pgv_lang[WELCOME_TEXT_AUTH_MODE_OPT2]#:</b><div class=\"list_value_wrap\">#pgv_lang[welcome_text_auth_mode_2]#</div><br /></li><li><b>#pgv_lang[WELCOME_TEXT_AUTH_MODE_OPT3]#:</b><div class=\"list_value_wrap\">#pgv_lang[welcome_text_auth_mode_3]#</div></li></ul>";
 $pgv_lang["WELCOME_TEXT_AUTH_MODE_OPT0"]	= "Ingen forhåndsdefinert tekst";
 $pgv_lang["WELCOME_TEXT_AUTH_MODE_OPT1"]	= "Forhåndsdefinert tekst som sier at ALLE besøkende kan søke om en brukerkonto";
 $pgv_lang["WELCOME_TEXT_AUTH_MODE_OPT2"]	= "Forhåndsdefinert tekst som sier at ADMIN vil vurdere en eventuell søknad om brukerkonto";
 $pgv_lang["WELCOME_TEXT_AUTH_MODE_OPT3"]	= "Forhåndsdefinert tekst som sier at BARE familiemedlemmer kan søke om en brukerkonto";
 $pgv_lang["WELCOME_TEXT_AUTH_MODE_OPT4"]	= "Egenkomponert velkomsttekst skrevet i feltet under";
-$pgv_lang["WELCOME_TEXT_AUTH_MODE_CUST"]	= "Egenkomponert velkomsttekst dersom <br />\"Krev at besøkende <br /><b>MÅ</b> logge inn\" = Ja";
+$pgv_lang["WELCOME_TEXT_AUTH_MODE_CUST"]	= "Egenkomponert velkomsttekst dersom";
 $pgv_lang["WELCOME_TEXT_AUTH_MODE_CUST_help"]	= "Dersom du har valgt å bruke en egendefinert velkomsttekst i valgfeltet over, kan du skrive inn teksten her.<br />Teksten vil <b>ikke</b> bli oversatt for besøkende med annet språk, men vil bli vist nøyaktig som du har skrevet den.<br />Dersom du ønsker det, kan du bruke HTML-koder i teksten - Husk avslutningskoder!<br /><br /><b>PS!</b> Du kan bruke en forhåndsdefinert start på teksten din som vil bli oversatt til språket som den besøkende bruker. Velg \"Ja\" i feltet over for å bruke \"Standard start for ...\".";
 $pgv_lang["WELCOME_TEXT_AUTH_MODE_CUST_HEAD"]	= "Standard start for egenkomponert tekst";
 $pgv_lang["WELCOME_TEXT_AUTH_MODE_CUST_HEAD_help"]	= "Du kan velge å vise en (flerspråklig) standardtekst som start for den egenkomponerte velkomstteksten din.<br /><br />Dersom du velger \"Ja\", vil teksten start med følgende setninger:<br /><br />#pgv_lang[welcome_text_cust_head]#";

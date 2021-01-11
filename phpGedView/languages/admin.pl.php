@@ -3,7 +3,7 @@
  * Polish texts
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2016  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2021  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -243,7 +243,7 @@ $pgv_lang["del_unveru"]				= "Uzytkownik nie potwierdzil zgloszenia w ciagu 7 dn
 $pgv_lang["do_not_change"]			= "Nie zmieniaj";
 $pgv_lang["download_gedcom"]		= "Pobierz plik GEDCOM";
 $pgv_lang["download_here"]			= "Kliknij tutaj aby pobrac plik.";
-$pgv_lang["download_note"]			= "Uwaga: Przetworzenie duzych plików baz danych przed pobraniem moze zajac duzo czasu. Jesli polaczenie wygasnie zanim pobieranie zostanie zakonczone, mozesz nie zakonczyc pobierania poprawnie.<br /><br />Aby upewnic sie, ze pobieranie zakonczylo sie pomyslnie, sprawdz czy ostatnia linia pliku GEDCOM to <b>0&nbsp;TRLR</b>. W przypadku pliku w formacie XML ostatnia linia powinno byc <b>&lt;/database&gt;</b>. Pliki te sa plikami tekstowymi; mozesz uzy?? dowolnego edytora tekstu do przejrzenia pliku, ale <u>nie</u> zapisuj pobranego pliku GEDCOM po tym, jak go przejrzysz.<br /><br />Przewaznie pobieranie pliku GEDCOM powinno zajac tyle samo czasu, co jego importowanie.";
+$pgv_lang["download_note"]			= "Uwaga: Przetworzenie duzych plików baz danych przed pobraniem moze zajac duzo czasu. Jesli polaczenie wygasnie zanim pobieranie zostanie zakonczone, mozesz nie zakonczyc pobierania poprawnie.<br /><br />Aby upewnic sie, ze pobieranie zakonczylo sie pomyslnie, sprawdz czy ostatnia linia pliku GEDCOM to <b>0&nbsp;TRLR</b>. W przypadku pliku w formacie XML ostatnia linia powinno byc <b>&lt;/database&gt;</b>. Pliki te sa plikami tekstowymi; możesz użyć dowolnego odpowiedniego edytora tekstu, ale <u>nie</u> zapisuj pobranego pliku GEDCOM po tym, jak go przejrzysz.<br /><br />Przewaznie pobieranie pliku GEDCOM powinno zajac tyle samo czasu, co jego importowanie.";
 $pgv_lang["editaccount"]			= "Zezwól uzytkownikowi na edycje konta";
 $pgv_lang["empty_dataset"]			= "Czy chcesz usunac stare dane i nadpisac je nowymi?";
 $pgv_lang["empty_lines_detected"]	= "Wykryto puste linie w pliku GEDCOM. Podczas porzadkowania zostana one usuniete.";
