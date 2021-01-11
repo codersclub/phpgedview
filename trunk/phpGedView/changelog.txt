@@ -14,6 +14,7 @@ The session.php script uses this information to populate the constants : PGV_VER
 =====================================================================
 
 Version 4.3.1
+ - Fixed: Some language files erroneously contain "??" (canajun2eh)
  - Fixed: Error in session.php (canajun2eh
  - Changed: Display SVN revision number on Admin page -- comes from information in the changelog.txt file (canajun2eh)
  - Fixed: Uninitialized string offset error in class_person.php caused by one-parent family (canajun2eh) 
