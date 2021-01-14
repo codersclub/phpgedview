@@ -5,7 +5,7 @@
 * Various printing functions used by all scripts and included by the functions.php file.
 *
 * phpGedView: Genealogy Viewer
-* Copyright (C) 2002 to 2020  PGV Development Team.  All rights reserved.
+* Copyright (C) 2002 to 2021  PGV Development Team.  All rights reserved.
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -1522,8 +1522,13 @@ function print_text($help, $level=0, $noprint=0){
 		}
 	}
 	// ------ Replace paired ~  by tag_start and tag_end (those vars contain CSS classes)
+	if (!function_exists('tempFunc_print_text')) {			// Make SURE we define this only once
+		function tempFunc_print_text($match) {
+			return '<span class="helpstart">'.UTF8_strtoupper($match[1]).'</span>';
+		}
+	}
 	$sentence = preg_replace_callback('/~([^<>]{1,})~/',
-	                                  function($match) { return '<span class="helpstart">'.UTF8_strtoupper($match[1]).'</span>'; },
+	                                  'tempFunc_print_text',
 	                                  $sentence);
 	if ($noprint>0) return $sentence;
 	if ($level>0) return $sentence;
@@ -1960,6 +1965,7 @@ function print_asso_rela_record($pid, $factrec, $linebr=false, $type='INDI') {
 					$famrec = find_family_record($pid, PGV_GED_ID);
 					if ($famrec) {
 						$parents = find_parents_in_record($famrec);
+						if (!$parents) $parents = array('HUSB'=>'', 'WIFE'=>'');		// Make SURE these are properly set
 						$pid1 = $parents["HUSB"];
 						if ($pid1 && $pid1!=$pid2) echo " - <a href=\"", encode_url("relationship.php?show_full={$PEDIGREE_FULL_DETAILS}&pid1={$pid1}&pid2={$pid2}&pretty=2&followspouse=1&ged=".PGV_GED_ID), "\">[" , $pgv_lang["relationship_chart"] , "<img src=\"$PGV_IMAGE_DIR/" , $PGV_IMAGES["sex"]["small"] , "\" title=\"" , $pgv_lang["husband"] , "\" alt=\"" , $pgv_lang["husband"] , "\" class=\"gender_image\" />]</a>";
 						$pid1 = $parents["WIFE"];

@@ -3,7 +3,7 @@
 * Class file for a person
 *
 * phpGedView: Genealogy Viewer
-* Copyright (C) 2002 to 2017  PGV Development Team.  All rights reserved.
+* Copyright (C) 2002 to 2021  PGV Development Team.  All rights reserved.
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -1416,8 +1416,10 @@ class Person extends GedcomRecord {
 						$famrec = find_family_record($associate->getXref(), $this->ged_id);
 						if ($famrec) {
 							$parents = find_parents_in_record($famrec);
-							if ($parents['HUSB']) $factrec .= "\n2 ASSO @".$parents['HUSB'].'@'; //\n3 RELA ".$factarray[$fact];
-							if ($parents['WIFE']) $factrec .= "\n2 ASSO @".$parents['WIFE'].'@'; //\n3 RELA ".$factarray[$fact];
+							if ($parents) {
+								if ($parents['HUSB']) $factrec .= "\n2 ASSO @".$parents['HUSB'].'@'; //\n3 RELA ".$factarray[$fact];
+								if ($parents['WIFE']) $factrec .= "\n2 ASSO @".$parents['WIFE'].'@'; //\n3 RELA ".$factarray[$fact];
+							}
 						}
 					} elseif ($fact=='BIRT') {
 						$sex = $associate->getSex();

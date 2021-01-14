@@ -3,7 +3,7 @@
 * PopUp Window to provide users with a simple quick update form.
 *
 * phpGedView: Genealogy Viewer
-* Copyright (C) 2002 to 2020  PGV Development Team.  All rights reserved.
+* Copyright (C) 2002 to 2021  PGV Development Team.  All rights reserved.
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -1016,6 +1016,9 @@ if ($action=="update") {
 		}
 
 		$parents = find_parents_in_record($famrec);
+		if (!$parents) {
+			$parents = array('HUSB'=>'', 'WIFE'=>'');		// Make SURE these are properly set
+		}
 		if (!empty($FATHER[$i]) && $parents['HUSB']!=$FATHER[$i]) {
 			if (strstr($famrec, "1 HUSB")!==false) $famrec = preg_replace("/1 HUSB @.*@/", "1 HUSB @$FATHER[$i]@", $famrec);
 			else $famrec .= "\n1 HUSB @$FATHER[$i]@";
@@ -2617,7 +2620,7 @@ for($j=1; $j<=count($cfams); $j++) {
 	if($parents) {
 		if($pid!=$parents["HUSB"]) $spid=$parents["HUSB"];
 		else $spid=$parents["WIFE"];
-	}
+	} else $parents = array('HUSB'=>'', 'WIFE'=>'');		// Make SURE these are properly set
 
 // NOTE: Father
 ?>

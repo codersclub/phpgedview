@@ -5,7 +5,7 @@
 * See http://www.phpgedview.net/privacy.php for more information on privacy in PhpGedView
 *
 * phpGedView: Genealogy Viewer
-* Copyright (C) 2002 to 2011 PGV Development Team.  All rights reserved.
+* Copyright (C) 2002 to 2021 PGV Development Team.  All rights reserved.
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -598,6 +598,7 @@ function displayDetailsById($pid, $type = "INDI", $sitemap = false) {
 	if ($type=="FAM") {
 		//-- check if we can display both parents
 		$parents = find_parents($pid);
+		if (!$parents) $parents = array('HUSB'=>'', 'WIFE'=>'');		// Make SURE these are properly set
 		$display = displayDetailsById($parents["HUSB"]) && displayDetailsById($parents["WIFE"]);
 		$privacy_cache[$pkey] = $display;
 		return $display;
@@ -959,6 +960,7 @@ function FactEditRestricted($pid, $factrec) {
 			if (gedcom_record_type($pid, PGV_GED_ID)=='FAM') {
 				$famrec = find_family_record($pid, PGV_GED_ID);
 				$parents = find_parents_in_record($famrec);
+				if (!$parents) $parents = array('HUSB'=>'', 'WIFE'=>'');		// Make SURE these are properly set
 				if ($myindi == $parents["HUSB"] || $myindi == $parents["WIFE"]) {
 					return false;
 				}
@@ -1007,6 +1009,7 @@ function FactViewRestricted($pid, $factrec) {
 			if (gedcom_record_type($pid, $pgv_GED_ID)=='FAM') {
 				$famrec = find_family_record($pid, $pgv_GED_ID);
 				$parents = find_parents_in_record($famrec);
+				if (!$parents) $parents = array('HUSB'=>'', 'WIFE'=>'');		// Make SURE these are properly set
 				if ($myindi == $parents['WIFE'] || $myindi == $parents['HUSB']) {
 					return false;
 				}

@@ -448,6 +448,7 @@ function print_indi_form($nextaction, $famid, $linenum='', $namerec='', $famtag=
 		else
 			$famrec=find_family_record($famid, PGV_GED_ID);
 		$parents=find_parents_in_record($famrec);
+		if (!$parents) $parents = array('HUSB'=>'', 'WIFE'=>'');		// Make SURE these are properly set
 		$father_name=get_gedcom_value('NAME', 0, find_person_record($parents['HUSB'], PGV_GED_ID));
 		$mother_name=get_gedcom_value('NAME', 0, find_person_record($parents['WIFE'], PGV_GED_ID));
 		// We'll need the spouse/child's name to set the spouse/parent's surname

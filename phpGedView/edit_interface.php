@@ -217,6 +217,7 @@ function checkFactEdit($gedrec) {
 			}
 			if ($type=='FAM') {
 				$parents = find_parents_in_record($gedrec);
+				if (!$parents) return false;		// Not found
 				if (PGV_USER_GEDCOM_ID == $parents["HUSB"] || PGV_USER_GEDCOM_ID == $parents["WIFE"]) {
 					return true;
 				}

@@ -135,6 +135,7 @@ function print_family_parents($famid, $sosa = 0, $label="", $parid="", $gparid="
 	if (PGV_USER_CAN_EDIT && isset($pgv_changes[$famid . "_" . $GEDCOM])) {
 		$newrec = find_updated_record($famid, $ged_id);
 		$newparents = find_parents_in_record($newrec);
+		if (!$newparents) $newparents = array('HUSB'=>'', 'WIFE'=>'');		// Make SURE these are properly set
 	}
 
 	/**
@@ -174,7 +175,7 @@ function print_family_parents($famid, $sosa = 0, $label="", $parid="", $gparid="
 				break;
 			}
 		}
-		if ($hparents!==false or ($sosa != 0 and $SHOW_EMPTY_BOXES)) {
+		if ($hparents or ($sosa != 0 and $SHOW_EMPTY_BOXES)) {
 			// husband's father
 			if (!isset($hparents['HUSB'])) $hparents['HUSB'] = '';		// Make SURE this is properly defined
 			print "\n\t<table style=\"width: " . ($pbwidth) . "px; height: " . $pbheight . "px;\" border=\"0\"><tr>";
@@ -192,7 +193,7 @@ function print_family_parents($famid, $sosa = 0, $label="", $parid="", $gparid="
 		print_url_arrow($upfamid, ($sosa==0 ? "?famid=$upfamid&amp;show_full=$show_full" : "#$upfamid"), "$upfamid", 1);
 		print "</td>\n";
 	}
-	if ($hparents!==false or ($sosa != 0 and $SHOW_EMPTY_BOXES)) {
+	if ($hparents or ($sosa != 0 and $SHOW_EMPTY_BOXES)) {
 		// husband's mother
 		if (!isset($hparents['WIFE'])) $hparents['WIFE'] = '';		// Make SURE this is properly defined
 		print "</tr><tr><td><img src=\"".$PGV_IMAGE_DIR."/".$PGV_IMAGES["hline"]["other"]."\" alt=\"\" /></td><td>";
@@ -254,7 +255,7 @@ function print_family_parents($famid, $sosa = 0, $label="", $parid="", $gparid="
 				break;
 			}
 		}
-		if ($hparents!==false or ($sosa != 0 and $SHOW_EMPTY_BOXES)) {
+		if ($hparents or ($sosa != 0 and $SHOW_EMPTY_BOXES)) {
 			// wife's father
 			if (!isset($hparents['HUSB'])) $hparents['HUSB'] = '';		// Make SURE this is properly defined
 			print "\n\t<table style=\"width: " . ($pbwidth) . "px; height: " . $pbheight . "px;\"><tr>";
@@ -272,7 +273,7 @@ function print_family_parents($famid, $sosa = 0, $label="", $parid="", $gparid="
 		print_url_arrow($upfamid, ($sosa==0 ? "?famid=$upfamid&amp;show_full=$show_full" : "#$upfamid"), "$upfamid", 1);
 		print "</td>\n";
 	}
-	if ($hparents!==false or ($sosa != 0 and $SHOW_EMPTY_BOXES)) {
+	if ($hparents or ($sosa != 0 and $SHOW_EMPTY_BOXES)) {
 		// wife's mother
 		if (!isset($hparents['WIFE'])) $hparents['WIFE'] = '';		// Make SURE this is properly defined
 		print "</tr><tr><td><img src=\"".$PGV_IMAGE_DIR."/".$PGV_IMAGES["hline"]["other"]."\" alt=\"\" /></td><td>";

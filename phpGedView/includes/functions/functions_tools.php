@@ -3,7 +3,7 @@
  * Functions used Tools to cleanup and manipulate Gedcoms before they are imported
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2015  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2021  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -273,21 +273,20 @@ function need_date_cleanup() {
 
 }
 
-function changemonth($monval)
-{
-		if($monval=="01") return "JAN";
-		elseif($monval=="02") return "FEB";
-		elseif($monval=="03") return "MAR";
-		elseif($monval=="04") return "APR";
-		elseif($monval=="05") return "MAY";
-		elseif($monval=="06") return "JUN";
-		elseif($monval=="07") return "JUL";
-		elseif($monval=="08") return "AUG";
-		elseif($monval=="09") return "SEP";
-		elseif($monval=="10") return "OCT";
-		elseif($monval=="11") return "NOV";
-		elseif($monval=="12") return "DEC";
-		return $monval;
+function changemonth($monval) {
+	if($monval=="01") return "JAN";
+	elseif($monval=="02") return "FEB";
+	elseif($monval=="03") return "MAR";
+	elseif($monval=="04") return "APR";
+	elseif($monval=="05") return "MAY";
+	elseif($monval=="06") return "JUN";
+	elseif($monval=="07") return "JUL";
+	elseif($monval=="08") return "AUG";
+	elseif($monval=="09") return "SEP";
+	elseif($monval=="10") return "OCT";
+	elseif($monval=="11") return "NOV";
+	elseif($monval=="12") return "DEC";
+	return $monval;
 }
 
 /**
@@ -295,62 +294,67 @@ function changemonth($monval)
  * @return boolean	returns true if cleanup was successful
  * @see need_date_cleanup()
  */
-function date_cleanup($dayfirst=1)
-{
+function date_cleanup($dayfirst=1) {
 	global $fcontents;
-	// Run all fixes twice, as there can be two dates in each DATE record
+	if (!function_exists('tempFunc1_date_cleanup')) {		// Make SURE we define these only once
+		function tempFunc1_date_cleanup($match) { 
+			return "2 DATE $match[1]$match[4] ".changemonth($match[3])." $match[2]";
+		}
+		function tempFunc2_date_cleanup($match) { 
+			return "2 DATE $match[3] $match[2] $match[1]";
+		}
+		function tempFunc3_date_cleanup($match) { 
+			return "2 DATE $match[1]$match[2] ".changemonth($match[3])." $match[4]";
+		}
+		function tempFunc4_date_cleanup($match) { 
+			return "2 DATE $match[1]$match[3] ".changemonth($match[2])." $match[4]";
+		}
+	}
+	
+	// Run all fixes twice: there can be two dates in each DATE record
 
 	// Convert ISO style dates "20001231"
-	$fcontents=preg_replace_callback('/2 DATE (.*)(\d{4})(\d{2})(\d{2})/', 
-	                                 function ($match) {return "2 DATE $match[1]$match[4] ".changemonth($match[3])." $match[2]"; }, 
-	                                 $fcontents);
-	$fcontents=preg_replace_callback('/2 DATE (.*)(\d{4})(\d{2})(\d{2})/', 
-	                                 function ($match) {return "2 DATE $match[1]$match[4] ".changemonth($match[3])." $match[2]"; }, 
-	                                 $fcontents);
+	$pattern = '/2 DATE (.*)(\d{4})(\d{2})(\d{2})/';
+	$callback = 'tempFunc1_date_cleanup';
+	$fcontents = preg_replace_callback($pattern, $callback, $fcontents);
+	$fcontents = preg_replace_callback($pattern, $callback, $fcontents);
+
 	// Convert ISO style dates "2000-12-31"
-	$fcontents=preg_replace_callback('/2 DATE (.*)(\d\d\d\d)\W(0?[1-9]|1[0-2])\W(\d\d)/', 
-	                                 function ($match) {return "2 DATE $match[1]$match[4] ".changemonth($match[3])." $match[2]"; }, 
-	                                 $fcontents);
-	$fcontents=preg_replace_callback('/2 DATE (.*)(\d\d\d\d)\W(0?[1-9]|1[0-2])\W(\d\d)/', 
-	                                 function ($match) {return "2 DATE $match[1]$match[4] ".changemonth($match[3])." $match[2]"; }, 
-	                                 $fcontents);
+	$pattern = '/2 DATE (.*)(\d\d\d\d)\W(0?[1-9]|1[0-2])\W(\d\d)/';
+	$callback = 'tempFunc1_date_cleanup';
+	$fcontents = preg_replace_callback($pattern, $callback, $fcontents);
+	$fcontents = preg_replace_callback($pattern, $callback, $fcontents);
+
 	// Convert dates of the form "2000 DEC 31"
-	$fcontents=preg_replace_callback('/2 DATE (\d{4})\W(\w+)\W(\d\d?)/',
-	                                  function($match) {return "2 DATE $match[3] $match[2] $match[1]"; },
-	                                  $fcontents);
-	$fcontents=preg_replace_callback('/2 DATE (\d{4})\W(\w+)\W(\d\d?)/',
-	                                  function($match) {return "2 DATE $match[3] $match[2] $match[1]"; },
-	                                  $fcontents);
+	$pattern = '/2 DATE (\d{4})\W(\w+)\W(\d\d?)/';
+	$callback = 'tempFunc2_date_cleanup';
+	$fcontents = preg_replace_callback($pattern, $callback, $fcontents);
+	$fcontents = preg_replace_callback($pattern, $callback, $fcontents);
+
 	// Convert US style dates "FEB 14, 2000" or "February 5, 2000"
-	$fcontents=preg_replace('/2 DATE (.*)((JAN|FEB|MAR|APR|MAY|JUN|JUL|AUG|SEP|OCT|NOV|DEC)[A-Z]*) (\d{1,2}), (\d{4})/i', "2 DATE $1$4 $3 $5", $fcontents);
-	$fcontents=preg_replace('/2 DATE (.*)((JAN|FEB|MAR|APR|MAY|JUN|JUL|AUG|SEP|OCT|NOV|DEC)[A-Z]*) (\d{1,2}), (\d{4})/i', "2 DATE $1$4 $3 $5", $fcontents);
+	$fcontents = preg_replace('/2 DATE (.*)((JAN|FEB|MAR|APR|MAY|JUN|JUL|AUG|SEP|OCT|NOV|DEC)[A-Z]*) (\d{1,2}), (\d{4})/i', "2 DATE $1$4 $3 $5", $fcontents);
+	$fcontents = preg_replace('/2 DATE (.*)((JAN|FEB|MAR|APR|MAY|JUN|JUL|AUG|SEP|OCT|NOV|DEC)[A-Z]*) (\d{1,2}), (\d{4})/i', "2 DATE $1$4 $3 $5", $fcontents);
 
 	// Convert non-space delimiters "12-DEC-2000" or "01/02/2000"
 	// Without the "ungreedy" qualifier, this regex won't match the first of a pair of dates and
 	// with it, it won't match the second.  Not sure why.
-	$fcontents=preg_replace('/2 DATE (.*?)(\d\d?)\W(\w+)\W(\d\d\d\d)/', "2 DATE $1$2 $3 $4", $fcontents);
-	$fcontents=preg_replace('/2 DATE (.*)(\d\d?)\W(\w+)\W(\d\d\d\d)/', "2 DATE $1$2 $3 $4", $fcontents);
+	$fcontents = preg_replace('/2 DATE (.*?)(\d\d?)\W(\w+)\W(\d\d\d\d)/', "2 DATE $1$2 $3 $4", $fcontents);
+	$fcontents = preg_replace('/2 DATE (.*)(\d\d?)\W(\w+)\W(\d\d\d\d)/', "2 DATE $1$2 $3 $4", $fcontents);
 
 	if ($dayfirst==1) {
 		// Interpret numeric dates as DD MM YYYY
-		$fcontents=preg_replace_callback('/2 DATE (.*)(\d\d?) (0?[1-9]|1[0-2]) (\d\d\d\d)/',
-		                                 function ($match) {return "2 DATE $match[1]$match[2] ".changemonth($match[3])." $match[4]"; }, 
-		                                 $fcontents);
-		$fcontents=preg_replace_callback('/2 DATE (.*)(\d\d?) (0?[1-9]|1[0-2]) (\d\d\d\d)/',
-		                                 function ($match) {return "2 DATE $match[1]$match[2] ".changemonth($match[3])." $match[4]"; }, 
-		                                 $fcontents);
+		$pattern = '/2 DATE (.*)(\d\d?) (0?[1-9]|1[0-2]) (\d\d\d\d)/';
+		$callback = 'tempFunc3_date_cleanup';
 	} else if ($dayfirst==2) {
 		// Interpret numeric dates as MM DD YYYY
-		$fcontents=preg_replace_callback('/2 DATE (.*)(0?[1-9]|1[0-2]) (\d\d?) (\d\d\d\d)/', 
-		                                 function ($match) {return "2 DATE $match[1]$match[3] ".changemonth($match[2])." $match[4]"; }, 
-		                                 $fcontents);
-		$fcontents=preg_replace_callback('/2 DATE (.*)(0?[1-9]|1[0-2]) (\d\d?) (\d\d\d\d)/', 
-		                                 function ($match) {return "2 DATE $match[1]$match[3] ".changemonth($match[2])." $match[4]"; }, 
-		                                 $fcontents);
+		$pattern = '/2 DATE (.*)(0?[1-9]|1[0-2]) (\d\d?) (\d\d\d\d)/';
+		$callback = 'tempFunc4_date_cleanup';
 	}
+	$fcontents = preg_replace_callback($pattern, $callback, $fcontents);
+	$fcontents = preg_replace_callback($pattern, $callback, $fcontents);
 
 	// Convert "BET 1 AND 11 JUN 1900" to "BET 1 JUN 1900 AND 11 JUN 1900"
-	$fcontents=preg_replace("/^(\d DATE) (BET|FROM) (\d\d?) (AND|TO) (\d\d?) (\w\w\w \d\d\d\d)/m", '$1 $2 $3 $6 $4 $5 $6', $fcontents);
+	$fcontents = preg_replace("/^(\d DATE) (BET|FROM) (\d\d?) (AND|TO) (\d\d?) (\w\w\w \d\d\d\d)/m", '$1 $2 $3 $6 $4 $5 $6', $fcontents);
 	return true;
 }
 

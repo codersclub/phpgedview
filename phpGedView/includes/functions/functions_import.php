@@ -1035,8 +1035,14 @@ function insert_media($objrec, $objlevel, $update, $gid, $ged_id, $count) {
 		//-- restructure the record to be a linked record
 		$objrec = str_replace(" OBJE", " @" . $m_media . "@ OBJE", $objrec);
 		//-- renumber the lines
+		if (!function_exists('tempFunc_insert_media')) {			// Make SURE we define this only once
+			function tempFunc_insert_media($match) {
+				global $tempGlobal; 
+				return $match[1]-$tempGlobal.' ';
+			}
+		}
 		$objrec = preg_replace_callback('/^(\d+) /m',
-		                                function ($match) { global $tempGlobal; return $match[1]-$tempGlobal.' '; },
+		                                'tempFunc_insert_media',
 		                                $objrec);
 
 		//-- check if another picture with the same file and title was previously imported
@@ -1070,6 +1076,7 @@ function insert_media($objrec, $objlevel, $update, $gid, $ged_id, $count) {
 * @todo Decide whether or not to update the original gedcom file
 * @return string an updated record
 */
+
 function update_media($gid, $ged_id, $gedrec, $update = false) {
 	global $TBLPREFIX, $media_count, $found_ids, $zero_level_media, $fpnewged, $MAX_IDS, $keepmedia;
 

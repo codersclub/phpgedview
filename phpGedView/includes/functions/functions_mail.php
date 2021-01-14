@@ -3,7 +3,7 @@
  * Mail specific functions
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2020  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2021  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -291,9 +291,14 @@ function hex4email ($string,$charset) {
 
 
 function RFC2047Encode($string, $charset) {
+	if (!function_exists('tempFunc_RFC2047Encode')) {		// Make SURE we define this only once
+		function tempFunc_RFC2047Encode($match) {
+			return '='.sprintf('%02X', ord($match[1]));
+		}
+	}
 	if (preg_match('/[^a-z ]/i', $string)) {
 		$string = preg_replace_callback('/([^a-z ])/i',
-		                                function ($match) { return '='.sprintf('%02X', ord($match[1])); },
+		                                'tempFunc_RFC2047Encode',
 		                                $string);
 		$string = str_replace(' ', '_', $string);
 		return "=?$charset?Q?$string?=";

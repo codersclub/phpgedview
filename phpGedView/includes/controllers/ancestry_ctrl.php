@@ -206,8 +206,10 @@ class AncestryControllerRoot extends BaseController {
 			// display parents recursively
 			print "\r\n<ul style=\"list-style: none; display: block;\" id=\"sosa_$sosa\">";
 			$boxPosn += $columnWidth;		// -- Spacing between adjacent columns (style 1)
-			if (isset($parents["HUSB"])) $this->print_child_ascendancy($parents["HUSB"], $sosa*2, $depth-1);
-			if (isset($parents["WIFE"])) $this->print_child_ascendancy($parents["WIFE"], $sosa*2+1, $depth-1);
+			if ($parents) {
+				$this->print_child_ascendancy($parents["HUSB"], $sosa*2, $depth-1);
+				$this->print_child_ascendancy($parents["WIFE"], $sosa*2+1, $depth-1);
+			}
 			$boxPosn -= $columnWidth;		// -- Spacing between adjacent columns (style 1)
 			print "</ul>\r\n";
 		}

@@ -3,7 +3,7 @@
  * User Account Edit Interface.
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2017  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2021  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -76,7 +76,7 @@ if ($form_action=='update') {
 		$i=1;
 		$pass=true;
 		while (strlen($form_username) > $i) {
-			if (stristr($alphabet, $form_username{$i})===false) {
+			if (stristr($alphabet, $form_username[$i])===false) {
 				$pass=false;
 				break;
 			}
