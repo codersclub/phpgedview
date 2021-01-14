@@ -346,12 +346,11 @@ function update_site_config($newconfig, $return = false) {
 	if (strtoupper(substr($tempConfigText, 0, 5)) == '<?PHP') {
 		$tempConfigText = substr($tempConfigText, 5);	// Get rid of PHP open tag
 	}
+	$tempConfigText = str_replace("\n?>", "\n", $tempConfigText);	// Get rid of PHP close tag
 	$tempConfigText = trim($tempConfigText);	// Get rid of leading and trailing white spaces
-	if (substr($tempConfigText, -2) == '?>') {
-		$tempConfigText = substr($tempConfigText, 0, -2);	// Get rid of PHP close tag
-	}
-	$tempConfigText = str_ireplace('include', '// include', $tempConfigText);
-	$tempConfigText = str_ireplace('require', '// require', $tempConfigText);	// Make sure we don't escape from the config file
+	
+	// Make sure we don't escape from the config file
+	$tempConfigText = preg_replace("~\n(include|require)~i", "\n// $1", $tempConfigText);
 
 	$res = @eval($tempConfigText);
 	if ($res===false) {
@@ -661,6 +660,7 @@ function get_all_subrecords($gedrec, $ignore="", $families=true, $ApplyPriv=true
 			$famid = $fmatch[$f][1];
 			$famrec = find_family_record($fmatch[$f][1], $ged_id);
 			$parents = find_parents_in_record($famrec);
+			if (!$parents) $parents = array('HUSB'=>'', 'WIFE'=>'');	// Make SURE these are properly set
 			if ($id==$parents["HUSB"]) {
 				$spid = $parents["WIFE"];
 			} else {
@@ -815,9 +815,6 @@ function get_gedcom_value($tag, $level, $gedrec, $truncate='0', $convert=true) {
 			if ($truncate > 0) {
 				if (UTF8_strlen($value)>$truncate) {
 					$value = preg_replace("/\(.+\)/", "", $value);
-					//if (UTF8_strlen($value)>$truncate) {
-					//	$value = preg_replace_callback("/([a-zśź]+)/ui", create_function('$matches', 'return UTF8_substr($matches[1], 0, 3);'), $value);
-					//}
 				}
 			}
 		} else

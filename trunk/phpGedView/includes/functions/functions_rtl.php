@@ -1135,9 +1135,15 @@ function unhtmlentities($string)  {
 	$trans_tbl=array_flip(get_html_translation_table (HTML_ENTITIES));
 	$trans_tbl['&lrm;']=PGV_UTF8_LRM;
 	$trans_tbl['&rlm;']=PGV_UTF8_RLM;
+	if (!function_exists('tempFunc_unhtmlentities')) {		// Make SURE we define this only once
+		function tempFunc_unhtmlentities($match) { 
+			return chr($match[1]); 
+		}
+	}
+	$tempText = strtr($string, $trans_tbl);
 	return preg_replace_callback('/&#(\d+);/',
-	                             function ($match) { return chr($match[1]); },
-	                             strtr($string, $trans_tbl));
+	                             'tempFunc_unhtmlentities',
+	                             $tempText);
 }
 
 /**
@@ -1169,7 +1175,7 @@ function bidi_text($text) {
 	$state = 0;
 	$p = 0;
 	for($i=0; $i<strlen($text); $i++) {
-		$letter = $text{$i};
+		$letter = $text[$i];
 		//print $letter.ord($letter).",";
 		//-- handle Hebrew chars
 		if (in_array(ord($letter),$RTLOrd)) {
@@ -1177,7 +1183,7 @@ function bidi_text($text) {
 				//-- just in case the $temp is a Hebrew char push it onto the stack
 				if (in_array(ord($temp[0]),$RTLOrd));
 				//-- if the $temp starts with a char in the special_chars array then remove the space and push it onto the stack seperately
-				else if (in_array($temp{strlen($temp)-1}, $special_chars)) {
+				else if (in_array($temp[strlen($temp)-1], $special_chars)) {
 					$char = substr($temp, strlen($temp)-1);
 					$temp = substr($temp, 0, strlen($temp)-1);
 					if ($char=="[") $char = "]";
@@ -1188,10 +1194,10 @@ function bidi_text($text) {
 				//-- otherwise push it onto the begining of the stack
 				else array_unshift($parts, $temp);
 			}
-			$temp = $letter . $text{$i+1};
+			$temp = $letter . $text[$i+1];
 			$i++;
 			if ($i < strlen($text)-1) {
-				$l = $text{$i+1};
+				$l = $text[$i+1];
 				if (in_array($l, $special_chars)) {
 					if ($l=="]") $l = "[";
 					else if ($l==")") $l = "(";
@@ -1204,7 +1210,7 @@ function bidi_text($text) {
 		}
 		else if (ord($letter)==226) {
 			if ($i < strlen($text)-2) {
-				$l = $letter.$text{$i+1}.$text{$i+2};
+				$l = $letter.$text[$i+1].$text[$i+2];
 				$i += 2;
 				if (($l==PGV_UTF8_LRM)||($l==PGV_UTF8_RLM)) {
 					if (!empty($temp)) {

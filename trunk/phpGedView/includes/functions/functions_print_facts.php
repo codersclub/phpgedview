@@ -49,12 +49,16 @@ function expand_urls($text) {
 	// This matches far too much while a "precise" regex is several pages long.
 	// This is a compromise.
 	$URL_REGEX='((https?|ftp):)(//([^\s/?#<>]*))?([^\s?#<>]*)(\?([^\s#<>]*))?(#[^\s?#<>]+)?';
+	if (!function_exists('tempFunc_expand_urls')) {		// Make SURE we define this only once
+		function tempFunc_expand_urls($match) {     	// Insert soft hyphens into the replaced string
+			return '<a href="'.$match[0].'" target="_blank">'.preg_replace('/\b/', '&shy;', $match[0]).'</a>';
+		}
+	}
+	$tempText = preg_replace('/<(?!br)/i', '&lt;', $text); // no html except br
 
 	return preg_replace_callback('/'.addcslashes("(?!>)$URL_REGEX(?!</a>)", '/').'/i',
-                                 // Insert soft hyphens into the replaced string
-                                 function ($m) {return '<a href="'.$m[0].'" target="blank">'.preg_replace('/\b/', '&shy;', $m[0]).'</a>'; },
-                                 preg_replace('/<(?!br)/i', '&lt;', $text) // no html except br
-	);
+                                 'tempFunc_expand_urls',
+                                 $tempText);
 }
 
 /**

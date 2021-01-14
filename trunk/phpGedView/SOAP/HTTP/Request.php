@@ -916,9 +916,14 @@ class HTTP_Request
                   (!empty($this->_postData) || !empty($this->_postFiles))) {
 
             // "normal" POST request
+			if (!function_exists('tempFunc__buildRequest')) {		// Make SURE we define this only once
+				function tempFunc__buildRequest($arg) { 
+					return $arg[0] . \'=\' . $arg[1]; 
+				}
+			}
             if (!isset($boundary)) {
                 $postdata = implode('&', array_map(
-                    create_function('$a', 'return $a[0] . \'=\' . $a[1];'),
+                    tempFunc__buildRequest($a),
                     $this->_flattenArray('', $this->_postData)
                 ));
 

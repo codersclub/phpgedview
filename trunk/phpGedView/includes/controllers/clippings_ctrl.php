@@ -3,7 +3,7 @@
 * Controller for the Clippings Page
 *
 * phpGedView: Genealogy Viewer
-* Copyright (C) 2002 to 2017  PGV Development Team.  All rights reserved.
+* Copyright (C) 2002 to 2021  PGV Development Team.  All rights reserved.
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -548,6 +548,7 @@ class ClippingsControllerRoot extends BaseController {
 			} else
 			if ($clipping['type'] == "fam") {
 				$parents = find_parents($clipping['id']);
+				if (!$parents) $parents = array('HUSB'=>'', 'WIFE'=>'');		// Make SURE these are properly set
 				if ((displayDetailsById($parents['HUSB']) || showLivingNameById($parents['HUSB'])) && (displayDetailsById($parents['WIFE']) || showLivingNameById($parents['WIFE']))) {
 					$cart[] = $clipping;
 					$this->addCount++;

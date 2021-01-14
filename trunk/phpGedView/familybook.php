@@ -5,7 +5,7 @@
  * Set the root person using the $pid variable
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2019  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2021  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -148,6 +148,7 @@ function print_descendancy($pid, $count) {
 			$famrec = find_family_record($famid, PGV_GED_ID);
 			if (!empty($famrec)) {
 				$parents = find_parents_in_record($famrec);
+				if (!$parents) $parents = array('HUSB'=>'', 'WIFE'=>'');	// Make SURE these are properly set
 				$marrec = get_sub_record(1, "1 MARR", $famrec);
 				if (!empty($marrec)) {
 					print "<br />";
@@ -191,7 +192,7 @@ function print_descendancy($pid, $count) {
 					$famrec = find_family_record(trim($famids[$f]), PGV_GED_ID);
 					if ($famrec) {
 						$parents = find_parents($famids[$f]);
-						if($parents) {
+						if ($parents) {
 							if($pid!=$parents["HUSB"]) $spid=$parents["HUSB"];
 							else $spid=$parents["WIFE"];
 							$spouse=Person::getInstance($spid);
@@ -226,7 +227,7 @@ function print_descendancy($pid, $count) {
 					$famrec = find_family_record($cfamids[$f], PGV_GED_ID);
 					if ($famrec) {
 						$parents = find_parents($cfamids[$f]);
-						if($parents) {
+						if ($parents) {
 							print "<span class=\"name1\"><br />".$pgv_lang["parents"]."<br /></span>";
 							if (!empty($parents["HUSB"])) {
 								$spid = $parents["HUSB"];
@@ -312,6 +313,7 @@ function print_person_pedigree($pid, $count) {
 	foreach($famids as $indexval => $famid) {
 		print "<table cellspacing=\"0\" cellpadding=\"0\" border=\"0\" style=\"empty-cells: show;\">\n";
 		$parents = find_parents($famid);
+		if (!$parents) $parents = array('HUSB'=>'', 'WIFE'=>'');		// Make SURE these are properly set
 		$height="100%";
 		print "<tr>";
 		if ($count<$generations-1) {

@@ -3,7 +3,7 @@
  * Controller for the Hourglass Page
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2019  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2021  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -164,6 +164,7 @@ class HourglassControllerRoot extends BaseController {
 		foreach($families as $famid => $family) {
 			print "<table cellspacing=\"0\" cellpadding=\"0\" border=\"0\" style=\"empty-cells: show;\">\n";
 			$parents = find_parents($famid);
+			if (!$parents) $parents = array('HUSB'=>'', 'WIFE'=>'');	// Make SURE these are properly set
 			$height="100%";
 			print "<tr>";
 			print "<td valign=\"bottom\"><img name=\"pvline\" src=\"".$PGV_IMAGE_DIR."/".$PGV_IMAGES["vline"]["other"]."\" width=\"3\" height=\"$lh\" alt=\"\" /></td>";

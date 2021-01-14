@@ -433,13 +433,19 @@ class GedcomRecord {
 	// Convert a name record into sortable and listable versions.  This default
 	// should be OK for simple record types.  INDI records will need to redefine it.
 	protected function _addName($type, $value, $gedrec) {
+		if (!function_exists('tempFunc__addName')) {		// Make SURE we define this only once
+			function tempFunc__addName($match) { 
+				return substr("000000000$match[1]", -10); 
+			}
+		}
+		$sort = preg_replace_callback('/([0-9]+)/',
+			                          'tempFunc__addName', 
+			                          $value);
 		$this->_getAllNames[]=array(
 			'type'=>$type,
 			'full'=>$value,
 			'list'=>$value,
-			'sort'=>preg_replace_callback('/([0-9]+)/',
-			                              function ($match) { return substr("000000000$match[1]", -10); },
-			                              $value)
+			'sort'=>$sort
 		);
 	}
 

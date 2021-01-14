@@ -67,7 +67,7 @@ if ($handle !== FALSE) {
 			}
 		}
 		if (($status & 0x4) == 0x0) {
-			$found = preg_match('~.*Id: session\.php (\d\d\d\d)~', $textLine, $match);		// Look for the first (only) $Id line
+			$found = preg_match('~.*Id: changelog\.txt (\d\d\d\d)~', $textLine, $match);		// Look for the first (only) $Id line
 			if ($found) {
 				$revision = $match[1];
 				$status |= 0x4;		// 100 bit set: SVN number found
@@ -414,7 +414,7 @@ if (!empty($_SERVER['HTTP_USER_AGENT'])) {
 require PGV_ROOT.'includes/session_spider.php';
 
 // Start the php session
-session_set_cookie_params(date('D M j H:i:s T Y', time()+$PGV_SESSION_TIME), PGV_SCRIPT_PATH);
+// session_set_cookie_params($PGV_SESSION_TIME, PGV_SCRIPT_PATH);
 
 if ($PGV_SESSION_TIME>0) {
 	session_cache_expire($PGV_SESSION_TIME/60);

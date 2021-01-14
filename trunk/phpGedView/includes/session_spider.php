@@ -3,7 +3,7 @@
  * Startup and session logic for handling Bots and Spiders
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2008 to 2019  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2008 to 2021  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -50,22 +50,22 @@ function gen_spider_session_name($bot_name, $bot_language) {
 		$bot_limit = 27;
 	}
 	for($x=0; $x < $bot_limit; $x++) {
-		if(preg_match('/^[a-zA-Z0-9]+$/', $bot_name{$x})) {
-			$outname{$x+2} = strtoupper($bot_name{$x});
-		} elseif ($bot_name{$x} == '.') {
-			$outname{$x+2} = 'd';
-		} elseif ($bot_name{$x} == ':') {
-			$outname{$x+2} = 'c';
-		} elseif ($bot_name{$x} == '/') {
-			$outname{$x+2} = 'f';
-		} elseif ($bot_name{$x} == ' ') {
-			$outname{$x+2} = 's';
-		} elseif ($bot_name{$x} == '-') {
-			$outname{$x+2} = 't';
-		} elseif ($bot_name{$x} == '_') {
-			$outname{$x+2} = 'u';
+		if(preg_match('/^[a-zA-Z0-9]+$/', $bot_name[$x])) {
+			$outname[$x+2] = strtoupper($bot_name[$x]);
+		} elseif ($bot_name[$x] == '.') {
+			$outname[$x+2] = 'd';
+		} elseif ($bot_name[$x] == ':') {
+			$outname[$x+2] = 'c';
+		} elseif ($bot_name[$x] == '/') {
+			$outname[$x+2] = 'f';
+		} elseif ($bot_name[$x] == ' ') {
+			$outname[$x+2] = 's';
+		} elseif ($bot_name[$x] == '-') {
+			$outname[$x+2] = 't';
+		} elseif ($bot_name[$x] == '_') {
+			$outname[$x+2] = 'u';
 		} else {
-			$outname{$x+2} = 'o';
+			$outname[$x+2] = 'o';
 		}
 	}
 	return($outname);
@@ -492,55 +492,55 @@ if(!$real) {
 	$valid_char = false;
 	$bot_limit = strlen($bot_name);
 	for($x=0; $x < $bot_limit; $x++) {
-		if(preg_match('/^[a-zA-Z]+$/', $bot_name{$x})) {
-			$spider_name{$y} = $bot_name{$x};
+		if(preg_match('/^[a-zA-Z]+$/', $bot_name[$x])) {
+			$spider_name[$y] = $bot_name[$x];
 			$valid_char = true;
 			$y++;
 			if ($y > 70) break;
 		}
-		else if ($bot_name{$x} == ' ')	{
+		else if ($bot_name[$x] == ' ')	{
 			if($valid_char) {
-				$spider_name{$y} = ' ';
+				$spider_name[$y] = ' ';
 				$valid_char = false;
 				$y++;
 				if ($y > 70) break;
 			}
 		}
-		else if ($bot_name{$x} == '.')	{
+		else if ($bot_name[$x] == '.')	{
 			if($valid_char) {
-				$spider_name{$y} = '.';
+				$spider_name[$y] = '.';
 				$valid_char = true;
 				$y++;
 				if ($y > 70) break;
 			}
 		}
-		else if ($bot_name{$x} == ':')	{
-			$spider_name{$y} = ':';
+		else if ($bot_name[$x] == ':')	{
+			$spider_name[$y] = ':';
 			$valid_char = true;
 			$y++;
 			if ($y > 70) break;
 		}
-		else if ($bot_name{$x} == '/')	{
-			$spider_name{$y} = '/';
+		else if ($bot_name[$x] == '/')	{
+			$spider_name[$y] = '/';
 			$valid_char = true;
 			$y++;
 			if ($y > 70) break;
 		}
-		else if ($bot_name{$x} == '-')	{
-			$spider_name{$y} = '-';
+		else if ($bot_name[$x] == '-')	{
+			$spider_name[$y] = '-';
 			$valid_char = true;
 			$y++;
 			if ($y > 70) break;
 		}
-		else if ($bot_name{$x} == '_')	{
-			$spider_name{$y} = '_';
+		else if ($bot_name[$x] == '_')	{
+			$spider_name[$y] = '_';
 			$valid_char = true;
 			$y++;
 			if ($y > 70) break;
 		}
 		else { // Compress consecutive invalids down to one space char.
 			if($valid_char) {
-				$spider_name{$y} = ' ';
+				$spider_name[$y] = ' ';
 				$valid_char = false;
 				$y++;
 				if ($y > 70) break;

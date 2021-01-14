@@ -3,7 +3,7 @@
 * Various functions used to generate the PhpGedView RSS feed.
 *
 * phpGedView: Genealogy Viewer
-* Copyright (C) 2002 to 2017 PGV Development Team.  All rights reserved.
+* Copyright (C) 2002 to 2021 PGV Development Team.  All rights reserved.
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -374,6 +374,7 @@ function getRecentChanges() {
 					case 'FAM':
 						if ($filter=="living") {
 							$parents = find_parents_in_record($gedrec);
+							if (!$parents) $parents = array('HUSB'=>'', 'WIFE'=>'');		// Make SURE these are properly set
 							$husb=Person::getInstance($parents['HUSB']);
 							$wife=Person::getInstance($parents['HUSB']);
 							if ($husb->isDead()) {

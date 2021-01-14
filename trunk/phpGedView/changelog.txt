@@ -14,8 +14,14 @@ The session.php script uses this information to populate the constants : PGV_VER
 =====================================================================
 
 Version 4.3.1
+ - Fixed: Error while saving the site configuration file (canajun2eh)
+ - Fixed: session.php does not find the SVN revision number in changelog.txt (canajuneh)
+ - Fixed: Many instances of {$something} used as character offsets (canajun2eh, imsza)
+ - Fixed: Functions find_parents() and find_parents_in_record() return FALSE when both parents missing (canajun2eh)
+ - Fixed: An instance of the create_function() function -- deprecated in PHP 7.2, removed in PHP 8 (canajun2eh)
+ - Fixed: Anonymous functions in preg_replace_callback cause errors (canajun2eh)
  - Fixed: Some language files erroneously contain "??" (canajun2eh)
- - Fixed: Error in session.php (canajun2eh
+ - Fixed: Error in session.php (canajun2eh)
  - Changed: Display SVN revision number on Admin page -- comes from information in the changelog.txt file (canajun2eh)
  - Fixed: Uninitialized string offset error in class_person.php caused by one-parent family (canajun2eh) 
  - Fixed: Typo in ancestry_ctrl.php  (canajun2eh)
