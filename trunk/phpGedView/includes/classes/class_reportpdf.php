@@ -5,7 +5,7 @@
  * used by the SAX parser to generate PDF reports from the XML report file.
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2019  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2021  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -33,13 +33,10 @@ if (!defined('PGV_PHPGEDVIEW')) {
 	exit;
 }
 
-/**
-* @todo add info
-*/
 define('PGV_CLASS_REPORTPDF_PHP', '');
 
 require_once PGV_ROOT."includes/classes/class_reportbase.php";
-require_once PGV_ROOT."includes/tcpdf/tcpdf.php";		// new version
+require_once PGV_ROOT."includes/tcpdf/tcpdf.php";
 
 /**
 * Main PGV Report Class for PDF
@@ -172,7 +169,7 @@ class PGVReportBasePDF extends PGVReportBase {
 	* @param int $stretch Stretch carachter mode
 	* @param string $bocolor Border color
 	* @param string $tcolor Text color
-	* @param bolean $reseth
+	* @param boolean $reseth
 	* @return PGVRCellPDF
 	*/
 	function createCell($width, $height, $border, $align, $bgcolor, $style, $ln, $top, $left, $fill, $stretch, $bocolor, $tcolor, $reseth) {
@@ -193,7 +190,7 @@ class PGVReportBasePDF extends PGVReportBase {
 	* @param string $style
 	* @param boolean $fill
 	* @param boolean $padding
-	* @param boolaen $reseth
+	* @param boolean $reseth
 	* @return PGVRTextBoxPDF
 	*/
 	function createTextBox($width, $height, $border, $bgcolor, $newline, $left, $top, $pagecheck, $style, $fill, $padding, $reseth) {
@@ -273,48 +270,48 @@ class PGVReportBasePDF extends PGVReportBase {
 class PGVRPDF extends TCPDF {
 	/**
 	* Array of elements in the header
-	* @var array
+	* @var array $headerElements
 	*/
 	public $headerElements = array();
 	/**
 	* Array of elements in the page header
-	* @var array
+	* @var array $pageHeaderElements
 	*/
 	public $pageHeaderElements = array();
 	/**
 	* Array of elements in the footer
-	* @var array
+	* @var array $footerElements
 	*/
 	public $footerElements = array();
 	/**
 	* Array of elements in the body
-	* @var array
+	* @var array $bodyElements
 	*/
 	public $bodyElements = array();
 	/**
 	* Array of elements in the footer notes
-	* @var array
+	* @var array $printedfootnotes
 	*/
 	public $printedfootnotes = array();
 	/**
 	* Currently used style name
-	* @var string
+	* @var string $currentStyle
 	*/
-	public $currentStyle;
+	public $currentStyle = '';
 	/**
 	* The last cell height
-	* @var int
+	* @var int $lastCellHeight
 	*/
 	public $lastCellHeight = 0;
 	/**
 	* The largest font size within a PGVRTextBox
 	* to calculate the height
-	* @var int
+	* @var int $largestFontHeight
 	*/
 	public $largestFontHeight = 0;
 	/**
 	* The last pictures page number
-	* @var int
+	* @var int $lastpicpage
 	*/
 	public $lastpicpage = 0;
 
@@ -554,7 +551,7 @@ class PGVRPDF extends TCPDF {
 	* Checks the Footnote and numbers them
 	*
 	* @param object &$footnote
-	* @return boolen false if not numbered befor | object if already numbered
+	* @return boolean false if not numbered befor | object if already numbered
 	*/
 	function checkFootnote(&$footnote) {
 		$ct = count($this->printedfootnotes);
@@ -594,7 +591,7 @@ class PGVRPDF extends TCPDF {
 
 	/**
 	* Add a page if needed -PGVRPDF
-	* @param $height Cell height. Default value: 0
+	* @param int $height Cell height. Default value: 0
 	* @return boolean true in case of page break, false otherwise
 	*/
 	function checkPageBreakPDF($height) {
@@ -727,6 +724,7 @@ class PGVRCellPDF extends PGVRCell {
 		if (!empty($tempText)) {
 			$cHT = $pdf->getNumLines($tempText, $this->width);
 			$cHT = $cHT * $pdf->getCellHeightRatio() * $pdf->getCurrentStyleHeight();
+			$cHT = ceil($cHT);
 			$cM = $pdf->getMargins();
 			// Add padding
 			if (!is_array($cM['cell'])) {
@@ -766,7 +764,6 @@ class PGVRCellPDF extends PGVRCell {
 *
 * @package PhpGedView
 * @subpackage Reports
-* @todo add info
 */
 class PGVRHtmlPDF extends PGVRHtml {
 
@@ -808,7 +805,6 @@ class PGVRHtmlPDF extends PGVRHtml {
 *
 * @package PhpGedView
 * @subpackage Reports
-* @todo add info
 */
 class PGVRTextBoxPDF extends PGVRTextBox {
 	/**
@@ -968,12 +964,15 @@ class PGVRTextBoxPDF extends PGVRTextBox {
 		$w = 0;
 		// Temp Height
 		$cHT = 0;
-		//-- $lw is an array
-		// 0 => last line width
-		// 1 => 1 if text was wrapped, 0 if text did not wrap
-		// 2 => number of LF
+		/*
+		* Text Info or Image Width
+		*	0 => Last line width
+		*	1 => 1 if text was wrapped, 0 if text did not wrap
+		*	2 => number of LF
+		* @var array $lw Array if Text or an Integer if Image
+		*/
 		$lw = array();
-		// Element counter
+		// @var object $cE Element counter
 		$cE = count($this->elements);
 		//-- calculate the text box height + width
 		for($i = 0; $i < $cE; $i++) {
@@ -982,18 +981,21 @@ class PGVRTextBoxPDF extends PGVRTextBox {
 				if ($ew == $cWT) {
 					$w = 0;
 				}
-				$lw = $this->elements[$i]->getWidth($pdf);	// !!!!!
-				// Text is already gets the # LF
-				$cHT += $lw[2];
-				if ($lw[1] == 1) {
-					$w = $lw[0];
-				} elseif ($lw[1] == 2) {
-					$w = 0;
-				} else {
-					$w += $lw[0];
-				}
-				if ($w > $cWT) {
-					$w = $lw[0];
+				$lw = $this->elements[$i]->getWidth($pdf);
+				// Check if Array - An Integer with the Image Width, if not Text Array -> PHP 7.4 Error
+				if (is_array($lw)) {
+					// Text is already gets the # LF
+					$cHT += $lw[2];
+					if ($lw[1] == 1) {
+						$w = $lw[0];
+					} elseif ($lw[1] == 2) {
+						$w = 0;
+					} else {
+						$w += $lw[0];
+					}
+					if ($w > $cW) {
+						$w = $lw[0];
+					}
 				}
 //	Footnote is at the bottom of the page. No need to calculate it's height or wrap the text!
 //	We are changing the margins anyway!
@@ -1014,7 +1016,7 @@ class PGVRTextBoxPDF extends PGVRTextBox {
 				// This is text elements. Number of LF but at least one line
 				$cHT = ($cHT + 1) * $pdf->getCellHeightRatio();
 				// Calculate the cell height with the largest font size used within this Box
-				$cHT = $cHT * $pdf->largestFontHeight;
+				$cHT = ceil($cHT) * $pdf->largestFontHeight;
 				// Add cell padding
 				if ($this->padding) {
 					if (!is_array($cM['cell'])) {
@@ -1148,7 +1150,6 @@ class PGVRTextBoxPDF extends PGVRTextBox {
 *
 * @package PhpGedView
 * @subpackage Reports
-* @todo add info
 */
 class PGVRTextPDF extends PGVRText {
 	/**
@@ -1305,7 +1306,6 @@ class PGVRTextPDF extends PGVRText {
 *
 * @package PhpGedView
 * @subpackage Reports
-* @todo add info
 */
 class PGVRFootnotePDF extends PGVRFootnote {
 
@@ -1335,7 +1335,7 @@ class PGVRFootnotePDF extends PGVRFootnote {
 			$pdf->setCurrentStyle($this->styleName);
 		}
 		$tempText = str_replace(array("#PAGENUM#", "#PAGETOT#"), array($pdf->getAliasNumPage(), $pdf->getAliasNbPages()), $this->text);
-		$tempText = str_replace(array('«', '»'), array('<u>', '</u>'), $tempText);		// underline �title� part of Source item
+		$tempText = str_replace(array('«', '»'), array('<u>', '</u>'), $tempText);		// underline �title� part of Source item
 		// Set the link to this y/page position
 //		$pdf->SetLink($this->addlink, -1, -1);
 		// Print first the source number
@@ -1557,7 +1557,6 @@ class PGVRImagePDF extends PGVRImage {
 *
 * @package PhpGedView
 * @subpackage Reports
-* @todo add info
 */
 class PGVRLinePDF extends PGVRLine {
 	/**
@@ -1588,20 +1587,21 @@ class PGVRLinePDF extends PGVRLine {
 }
 
 /*
- * Function stripControlCodes
- *
- *		This function strips UTF8 control codes from text before sending it to tcpdf
- *
- *		The following UTF8 control codes need to be removed when the currently active font does not support them:
- *			PGV_UTF8_LRM  \xE2\x80\x8E  U+200E  (Left to Right mark:  zero-width character with LTR directionality)
- *			PGV_UTF8_RLM  \xE2\x80\x8F  U+200F  (Right to Left mark:  zero-width character with RTL directionality)
- *			PGV_UTF8_LRO  \xE2\x80\xAD  U+202D  (Left to Right override: force everything following to LTR mode)
- *			PGV_UTF8_RLO  \xE2\x80\xAE  U+202E  (Right to Left override: force everything following to RTL mode)
- *			PGV_UTF8_LRE  \xE2\x80\xAA  U+202A  (Left to Right embedding: treat everything following as LTR text)
- *			PGV_UTF8_RLE  \xE2\x80\xAB  U+202B  (Right to Left embedding: treat everything following as RTL text)
- *			PGV_UTF8_PDF  \xE2\x80\xAC  U+202C  (Pop directional formatting: restore state prior to last LRO, RLO, LRE, RLE)
- *		See /includes/session.php
- */
+* Function stripControlCodes
+*
+*		This function strips UTF8 control codes from text before sending it to tcpdf
+*
+*		The following UTF8 control codes need to be removed when the currently active font does not support them:
+*			PGV_UTF8_LRM  \xE2\x80\x8E  U+200E  (Left to Right mark:  zero-width character with LTR directionality)
+*			PGV_UTF8_RLM  \xE2\x80\x8F  U+200F  (Right to Left mark:  zero-width character with RTL directionality)
+*			PGV_UTF8_LRO  \xE2\x80\xAD  U+202D  (Left to Right override: force everything following to LTR mode)
+*			PGV_UTF8_RLO  \xE2\x80\xAE  U+202E  (Right to Left override: force everything following to RTL mode)
+*			PGV_UTF8_LRE  \xE2\x80\xAA  U+202A  (Left to Right embedding: treat everything following as LTR text)
+*			PGV_UTF8_RLE  \xE2\x80\xAB  U+202B  (Right to Left embedding: treat everything following as RTL text)
+*			PGV_UTF8_PDF  \xE2\x80\xAC  U+202C  (Pop directional formatting: restore state prior to last LRO, RLO, LRE, RLE)
+*		See /includes/session.php
+* @param string $text
+*/
 function stripControlCodes($text) {
 	global $currentFont;
 	// List of fonts that support UTF8 control codes.  Any fonts not in this list don't support those control codes.
