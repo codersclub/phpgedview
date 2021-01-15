@@ -5,7 +5,7 @@
  * used by the SAX parser to generate HTML reports from the XML report file.
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2019  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2021  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -44,12 +44,12 @@ require_once PGV_ROOT."includes/classes/class_reportbase.php";
 class PGVReportBaseHTML extends PGVReportBase {
 	/**
 	* Cell padding
-	* @var int
+	* @var int $cPadding
 	*/
 	public $cPadding = 2;
 	/**
 	* Cell height ratio
-	* @var float
+	* @var float $cellHeightRatio
 	*/
 	public $cellHeightRatio = 1.3;
 	/**
@@ -59,41 +59,41 @@ class PGVReportBaseHTML extends PGVReportBase {
 	public $X = 0;
 	/**
 	* Current vertical position
-	* @var int
+	* @var int $Y
 	*/
 	public $Y = 0;
 	/**
 	* Currently used style name
-	* @var string
+	* @var string $currentStyle
 	*/
 	public $currentStyle = '';
 	/**
 	* Page number counter
-	* @var int
+	* @var int $pageN
 	*/
 	public $pageN = 1;
 	/**
 	* Store the page width without left and right margins
 	* In HTML, we don't need this
-	* @var int
+	* @var int $noMarginWidth
 	*/
 	public $noMarginWidth = 0;
 	/**
 	* Last cell height
-	* @var int
+	* @var int $lastCellHeight
 	*/
 	public $lastCellHeight = 0;
 	/**
 	* LTR or RTL alignement
 	* "left" on LTR, "right" on RTL
 	* Used in <div >
-	* @var string
+	* @var string $alignRTL
 	*/
 	public $alignRTL = 'left';
 	/**
 	* LTR or RTL entity
 	*
-	* @var string
+	* @var string $entityRTL
 	*/
 	public $entityRTL = '&lrm;';
 	/**
@@ -106,7 +106,7 @@ class PGVReportBaseHTML extends PGVReportBase {
 	/**
 	* Keep track of the highest Y position
 	* Used with Header div / Body div / Footer div / "addpage" / The bottom of the last image etc.
-	* @var float
+	* @var float $maxY
 	*/
 	public $maxY = 0;
 
@@ -373,7 +373,7 @@ class PGVReportBaseHTML extends PGVReportBase {
 	/**
 	* Checks the Footnote and numbers them - PGVReportBaseHTML
 	* @param object &$footnote
-	* @return boolen false if not numbered before | object if already numbered
+	* @return boolean False if not numbered before | object if already numbered
 	*/
 	function checkFootnote(&$footnote) {
 		$ct = count($this->printedfootnotes);
@@ -804,7 +804,6 @@ class PGVRCellHTML extends PGVRCell {
 *
 * @package PhpGedView
 * @subpackage Reports
-* @todo add info
 */
 class PGVRHtmlHTML extends PGVRHtml {
 
@@ -995,12 +994,15 @@ class PGVRTextBoxHTML extends PGVRTextBox {
 		// Footnote height (in points)
 		$fH = 0;
 		$w = 0;
-		//-- $lw is an array
-		// 0 => last line width
-		// 1 => 1 if text was wrapped, 0 if text did not wrap
-		// 2 => number of LF
+		/*
+		* Text Info or Image Width
+		*	0 => Last line width
+		*	1 => 1 if text was wrapped, 0 if text did not wrap
+		*	2 => number of LF
+		* @var array $lw Array if Text or an Integer if Image
+		*/
 		$lw = array();
-		// Element counter
+		// @var object $cE Element counter
 		$cE = count($this->elements);
 		for($i = 0; $i < $cE; $i++) {
 			if (is_object($this->elements[$i])) {
@@ -1008,17 +1010,20 @@ class PGVRTextBoxHTML extends PGVRTextBox {
 				if ($ew == $cW)
 					$w = 0;
 				$lw = $this->elements[$i]->getWidth($html);
-				// Text is already gets the # LF
-				$cHT += $lw[2];
-				if ($lw[1] == 1) {
-					$w = $lw[0];
-				} elseif ($lw[1] == 2) {
-					$w = 0;
-				} else {
-					$w += $lw[0];
-				}
-				if ($w > $cW) {
-					$w = $lw[0];
+				// Check if Array - An Integer with the Image Width if not Text Array -> PHP 7.4 Error
+				if (is_array($lw)) {
+					// Text is already gets the # LF
+					$cHT += $lw[2];
+					if ($lw[1] == 1) {
+						$w = $lw[0];
+					} elseif ($lw[1] == 2) {
+						$w = 0;
+					} else {
+						$w += $lw[0];
+					}
+					if ($w > $cW) {
+						$w = $lw[0];
+					}
 				}
 				// For anything else but text (images), get the height
 				$eH += $this->elements[$i]->getHeight($html);
@@ -1125,7 +1130,6 @@ class PGVRTextBoxHTML extends PGVRTextBox {
 *
 * @package PhpGedView
 * @subpackage Reports
-* @todo add info
 */
 class PGVRTextHTML extends PGVRText {
 
@@ -1286,7 +1290,6 @@ class PGVRTextHTML extends PGVRText {
 *
 * @package PhpGedView
 * @subpackage Reports
-* @todo add info
 */
 class PGVRFootnoteHTML extends PGVRFootnote {
 
@@ -1318,7 +1321,7 @@ class PGVRFootnoteHTML extends PGVRFootnote {
 		}
 
 		$temptext = str_replace("#PAGENUM#", $html->PageNo(), $this->text);
-		$temptext = str_replace(array('«', '»'), array('<u>', '</u>'), $temptext);		// underline �title� part of Source item
+		$temptext = str_replace(array('«', '»'), array('<u>', '</u>'), $temptext);		// underline �title� part of Source item
 		echo "\n<div><a name=\"footnote", $this->num, "\"></a>";
 		$html->write($this->num. ". ". $temptext);
 		echo "</div>";
@@ -1330,8 +1333,8 @@ class PGVRFootnoteHTML extends PGVRFootnote {
 	* Calculates the Footnotes height
 	*
 	* @param PGVReportBaseHTML &$html
-	* @param $cellWidth The width of the cell to use it for text wraping
-	* @return Footnote height in points
+	* @param int $cellWidth The width of the cell to use it for text wraping
+	* @return int Footnote height in points
 	*/
 	function getFootnoteHeight(&$html, $cellWidth=0) {
 		if ($html->getCurrentStyle() != $this->styleName) {
@@ -1440,7 +1443,6 @@ class PGVRFootnoteHTML extends PGVRFootnote {
 *
 * @package PhpGedView
 * @subpackage Reports
-* @todo add info
 */
 class PGVRPageHeaderHTML extends PGVRPageHeader {
 	function __construct() {
@@ -1460,7 +1462,6 @@ class PGVRPageHeaderHTML extends PGVRPageHeader {
 *
 * @package PhpGedView
 * @subpackage Reports
-* @todo add info
 */
 class PGVRImageHTML extends PGVRImage {
 
@@ -1537,7 +1538,6 @@ class PGVRImageHTML extends PGVRImage {
 *
 * @package PhpGedView
 * @subpackage Reports
-* @todo add info
 */
 class PGVRLineHTML extends PGVRLine {
 	/**

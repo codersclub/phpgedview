@@ -14,6 +14,8 @@ The session.php script uses this information to populate the constants : PGV_VER
 =====================================================================
 
 Version 4.3.1
+ - Changed: Implement improved documentation in report generator (imsza)
+ - Changed: Install a version of TCPDF that is compatible with PHP 7.4, and delete irrelevant fonts (imsza)
  - Fixed: Error while saving the site configuration file (canajun2eh)
  - Fixed: session.php does not find the SVN revision number in changelog.txt (canajuneh)
  - Fixed: Many instances of {$something} used as character offsets (canajun2eh, imsza)
