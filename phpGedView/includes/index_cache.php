@@ -3,7 +3,7 @@
  * Index caching functions
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2009 PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2021 PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -117,42 +117,11 @@ function saveCachedBlock($block, $index, $content) {
 	return true;
 }
 
-/*
- * Re-worked copy of a similar function in dir_editor.php
- *
- * This function, called recursively, deletes all subdirectories and files in those subdirectories
- *
- * Note:  This function should really be in one of the other "includes/functions/..." scripts.
- */
-function removeDir($dir) {
-	if (!is_writable($dir)) {
-		if (!@chmod($dir, PGV_PERM_EXE)) return FALSE;
-	}
-
-	$d = dir($dir);
-	while (FALSE !== ($entry = $d->read())) {
-		if ($entry == '.' || $entry == '..') continue;
-		$entry = $dir . '/' . $entry;
-		if (is_dir($entry)) {
-			if (!removeDir($entry)) return FALSE;
-			continue;
-		}
-		if (!@unlink($entry)) {
-			$d->close();
-			return FALSE;
-		}
-	}
-
-	$d->close();
-	rmdir($dir);
-	return TRUE;
-}
-
 /**
  * clears the cache files
  */
 function clearCache() {
-	global $PGV_BLOCKS, $INDEX_DIRECTORY, $lang_short_cut, $LANGUAGE, $GEDCOM;
+	global $INDEX_DIRECTORY;
 
 	removeDir("{$INDEX_DIRECTORY}/cache");
 }
