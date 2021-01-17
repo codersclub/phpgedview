@@ -127,8 +127,11 @@ function pgvMail($to, $from, $subject, $message, $bulkMail=false, $fromFullName=
 	}
 	// if SMTP mail is set active AND we have SMTP settings available, use the PHPMailer classes
 	if ($PGV_SMTP_ACTIVE  && ( $PGV_SMTP_HOST && $PGV_SMTP_PORT ) ) {
-		require_once PGV_ROOT.'includes/PHPMailer/PHPMailerAutoload.php';
-		$mail_object = new PHPMailer();
+		require_once PGV_ROOT.'includes/PHPMailer/src/Exception.php';
+		require_once PGV_ROOT.'includes/PHPMailer/src/PHPMailer.php';
+		require_once PGV_ROOT.'includes/PHPMailer/src/SMTP.php';
+		require_once PGV_ROOT.'includes/PHPMailer/src/POP3.php';
+		$mail_object = new \PHPMailer\PHPMailer\PHPMailer();
 		$mail_object->isSMTP();					// Tell PHPMailer to use SMTP
 		$mail_object->SMTPDebug = 0;			// 0:off; 1:client messages; 2:client and server messages
 		$mail_object->setLanguage('en','');		// PHPMailer errors are in English only

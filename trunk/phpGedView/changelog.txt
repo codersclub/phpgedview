@@ -14,6 +14,9 @@ The session.php script uses this information to populate the constants : PGV_VER
 =====================================================================
 
 Version 4.3.1
+ - Fixed: Error while trying to delete a non-existent directory -- PHP 8  (canajun2eh)
+ - Fixed: Minor error in file lang.sv.php (imsza)
+ - Changed: Update PHPMailer to version 6.2.0 (canajun2eh)
  - Changed: Implement improved documentation in report generator (imsza)
  - Changed: Install a version of TCPDF that is compatible with PHP 7.4, and delete irrelevant fonts (imsza)
  - Fixed: Error while saving the site configuration file (canajun2eh)

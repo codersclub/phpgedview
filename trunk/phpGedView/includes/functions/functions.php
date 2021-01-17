@@ -519,7 +519,6 @@ function pgv_error_handler($errno, $errstr, $errfile, $errline) {
 }
 
 // ************************************************* START OF GEDCOM FUNCTIONS ********************************* //
-
 /**
  * Get first tag in GEDCOM sub-record
  *
@@ -1965,7 +1964,7 @@ function gedcomsort($a, $b) {
 	return stringsort($aname, $bname);
 }
 
-// ************************************************* START OF MISCELLANIOUS FUNCTIONS ********************************* //
+// ************************************************* START OF MISCELLANEOUS FUNCTIONS ********************************* //
 /**
  * Get relationship between two individuals in the gedcom
  *
@@ -4012,6 +4011,38 @@ function normalizeIPv6($inputIP) {
 	$compressedIPv6Address .= substr($IPv6Address, $endConsecutiveZeros);
 
 	return $compressedIPv6Address;
+}
+
+/**
+ * This function, called recursively, deletes all subdirectories and files in those subdirectories
+ */
+function removeDir($dir) {
+	if (!is_dir($dir)) {
+		if (!is_file($dir)) return FALSE;		// Neither a directory nor a file -- probably doesn't exist at all
+		unlink($dir);		// It's a file: just get rid of it
+		return TRUE;
+	}
+	if (!is_writable($dir)) {
+		if (!@chmod($dir, PGV_PERM_EXE)) return FALSE;
+	}
+
+	$d = dir($dir);
+	while (FALSE !== ($entry = $d->read())) {
+		if ($entry == '.' || $entry == '..') continue;
+		$entry = $dir . '/' . $entry;
+		if (is_dir($entry)) {
+			if (!removeDir($entry)) return FALSE;
+			continue;
+		}
+		if (!@unlink($entry)) {
+			$d->close();
+			return FALSE;
+		}
+	}
+
+	$d->close();
+	rmdir($dir);
+	return TRUE;
 }
 
 // optional extra file

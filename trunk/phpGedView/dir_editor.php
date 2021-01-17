@@ -34,36 +34,6 @@ if (!PGV_USER_IS_ADMIN) {
 	exit;
 }
 
-function full_rmdir($dir) {
-	if (!is_writable($dir)) {
-		if (!@chmod($dir, PGV_PERM_EXE)) {
-			return FALSE;
-		}
-	}
-
-	$d = dir($dir);
-	while (FALSE !== ($entry = $d->read())) {
-		if ($entry == '.' || $entry == '..') {
-			continue;
-		}
-		$entry = $dir . '/' . $entry;
-		if (is_dir($entry)) {
-			if (!full_rmdir($entry)) {
-				return FALSE;
-			}
-			continue;
-		}
-		if (!@unlink($entry)) {
-			$d->close();
-			return FALSE;
-		}
-	}
-
-	$d->close();
-	rmdir($dir);
-	return TRUE;
-}
-
 // Vars
 $ajaxdeleted = false;
 $elements = Array();
@@ -91,7 +61,7 @@ if(isset($_REQUEST["to_delete"])) {
 	echo "<span class=\"error\">", $pgv_lang["deleted_files"], "</span><br/>";
 	foreach($_REQUEST["to_delete"] as $k=>$v) {
 		if (is_dir($INDEX_DIRECTORY.$v)) {
-			full_rmdir($INDEX_DIRECTORY.$v);
+			removeDir($INDEX_DIRECTORY.$v);
 		} elseif (file_exists($INDEX_DIRECTORY.$v)) {
 			unlink($INDEX_DIRECTORY.$v);
 		}
