@@ -39,23 +39,20 @@ require_once PGV_ROOT.'includes/classes/class_treenav.php';
 
 $PGV_BLOCKS["print_charts_block"]["name"]		= $pgv_lang["charts_block"];
 $PGV_BLOCKS["print_charts_block"]["descr"]		= "charts_block_descr";
+$PGV_BLOCKS["print_charts_block"]["type"]    	= "both";	// Allow on both the Welcome and the MyGedView pages
 $PGV_BLOCKS["print_charts_block"]["canconfig"]	= true;
+$PGV_BLOCKS["print_charts_block"]["hidesearch"]	= true;	// should this block be hidden from search engines
 $PGV_BLOCKS["print_charts_block"]["config"]		= array(
-	"cache"=>1,
+	'cache'=>1,
 	"pid"=>'',
 	"type"=>'pedigree',
 	"details"=>'no'
 	);
 
-function print_charts_block($block = true, $config="", $side, $index) {
+function print_charts_block($limitHeight, $config, $side, $index) {
 	global $PGV_BLOCKS, $pgv_lang, $ctype, $PGV_IMAGE_DIR, $PGV_IMAGES, $PEDIGREE_ROOT_ID, $PEDIGREE_FULL_DETAILS;
-	global $SEARCH_SPIDER;
 	global $show_full, $bwidth, $bheight;
 
-	if ($SEARCH_SPIDER) return;		// Don't show this block to search engines
-
-	if (empty($config)) $config = $PGV_BLOCKS["print_charts_block"]["config"];
-	if (empty($config['details'])) $config['details'] = 'no';
 	if (empty($config["pid"])) {
 		if (!PGV_USER_ID) {
 			$config["pid"] = $PEDIGREE_ROOT_ID;
@@ -180,9 +177,15 @@ function print_charts_block($block = true, $config="", $side, $index) {
 
 function print_charts_block_config($config) {
 	global $pgv_lang, $ctype, $PGV_BLOCKS, $TEXT_DIRECTION, $PEDIGREE_ROOT_ID, $ENABLE_AUTOCOMPLETE;
-	if (empty($config)) $config = $PGV_BLOCKS["print_charts_block"]["config"];
-	if (empty($config["rootId"])) $config["rootId"] = $PEDIGREE_ROOT_ID;
-	if (empty($config['details'])) $config['details'] = 'no';
+
+	if (empty($config)) $config = $PGV_BLOCKS["print_charts_block"]["config"];	// This shouldn't happen: we already checked for that
+
+	if (!isset($config['cache'])) $config['cache'] = $PGV_BLOCKS["print_charts_block"]["config"]['type'];
+	if (!isset($config['pid'])) $config['pid'] = $PGV_BLOCKS["print_charts_block"]["config"]['pid'];
+	if (!isset($config['type'])) $config['type'] = $PGV_BLOCKS["print_charts_block"]["config"]['type'];
+	if (!isset($config['details'])) $config['details'] = $PGV_BLOCKS["print_charts_block"]["config"]['details'];
+
+	$config['cache'] = (int) $config['cache'];
 
 	if ($ENABLE_AUTOCOMPLETE) require PGV_ROOT.'js/autocomplete.js.htm';
 ?>
@@ -227,7 +230,7 @@ function print_charts_block_config($config) {
 			print_help_link("cache_life_help", "qm");
 			print $pgv_lang["cache_life"];
 		print "</td><td class=\"optionbox\">";
-			print "<input type=\"text\" name=\"cache\" size=\"2\" value=\"".$config["cache"]."\" />";
+			print "<input type='number' name='cache' size='2' value='{$config['cache']}' min='-1' max='30' />";
 		print "</td></tr>";
 	}
 }

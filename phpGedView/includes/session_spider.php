@@ -407,7 +407,6 @@ $searchEngineAllowed = array(
 	'indilist.php',
 	'family.php',
 	'famlist.php',
-	'source.php',
 	'index.php'
 );
 
@@ -585,7 +584,7 @@ try {
 if ($SEARCH_SPIDER) {
 	if (!in_array(PGV_SCRIPT_NAME, $searchEngineAllowed)) {
 		header("HTTP/1.0 403 Forbidden");
-		print "Sorry, this page is not available for search engine bots.";
+		print "Sorry, this page is not available to search engines.";
 		exit;
 	}
 }
@@ -601,7 +600,6 @@ if(!empty($SEARCH_SPIDER)) {
 	$outstr = str_replace(' - ', ' ', $outstr);            // Don't allow ' - ' because that is the log separator
 	$logSpider = true;
 	foreach ($known_spiders as $spider) {
-//		if (strpos($ua, $spider) !== false) {
 		if (strpos($outstr, $spider) !== false) {
 			$logSpider = false;
 			break;

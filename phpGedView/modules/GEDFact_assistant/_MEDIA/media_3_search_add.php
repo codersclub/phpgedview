@@ -5,7 +5,7 @@
  * Media Link information about an individual
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2007 to 2008  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2007 to 2021  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -1021,16 +1021,21 @@ if (!defined('PGV_PHPGEDVIEW')) {
 <?php
 // ==================================================================
 require_once PGV_ROOT.'includes/functions/functions_charts.php';
+
 /**
- * print the information for an individual chart box
- *
- * find and print a given individuals information for a pedigree chart
- * @param string $pid	the Gedcom Xref ID of the   to print
- * @param int $style	the style to print the box in, 1 for smaller boxes, 2 for larger boxes
- * @param boolean $show_famlink	set to true to show the icons for the popup links and the zoomboxes
- * @param int $count	on some charts it is important to keep a count of how many boxes were printed
- */
-function print_pedigree_person_nav2($pid, $style=1, $show_famlink=true, $count=0, $personcount="1", $currpid, $censyear) {
+* print the information for an individual chart box
+*
+* find and print a given individuals information for a pedigree chart
+* @param string $pid the Gedcom Xref ID of the   to print
+* @param int $style=1	Default. The style to print the box in, 1 for smaller boxes, 2 for larger boxes
+* @param boolean $show_famlink=true	Default. Set to true to show the icons for the popup links and the zoomboxes
+* @param int $count=0	Default. On some charts it is important to keep a count of how many boxes were printed
+* @param string $personcount="1"	Default
+* @param $currpid
+* @param $censyear
+*
+*/
+function print_pedigree_person_nav2($pid, $style, $show_famlink, $count, $personcount, $currpid, $censyear) {
 	global $HIDE_LIVE_PEOPLE, $SHOW_LIVING_NAMES, $PRIV_PUBLIC, $factarray, $ZOOM_BOXES, $LINK_ICONS, $view, $GEDCOM;
 	global $pgv_lang, $MULTI_MEDIA, $SHOW_HIGHLIGHT_IMAGES, $bwidth, $bheight, $PEDIGREE_FULL_DETAILS, $SHOW_ID_NUMBERS, $SHOW_PEDIGREE_PLACES;
 	global $CONTACT_EMAIL, $CONTACT_METHOD, $TEXT_DIRECTION, $DEFAULT_PEDIGREE_GENERATIONS, $OLD_PGENS, $talloffset, $PEDIGREE_LAYOUT, $MEDIA_DIRECTORY;
@@ -1041,6 +1046,11 @@ function print_pedigree_person_nav2($pid, $style=1, $show_famlink=true, $count=0
 	
 	global $spouselinks, $parentlinks, $step_parentlinks, $persons, $person_step, $person_parent, $tabno, $theme_name, $spousetag;
 	global $natdad, $natmom, $censyear, $censdate;
+
+	isset($style) ?: $style=1;
+	isset($show_famlink) ?: $show_famlink=true;
+	isset($count) ?: $count=0;
+	isset($personcount) ?: $personcount="1";
 
 	if ($style != 2) $style=1;
 	if (empty($show_full)) $show_full = 0;

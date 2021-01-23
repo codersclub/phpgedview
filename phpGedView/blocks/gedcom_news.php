@@ -5,7 +5,7 @@
  * This block allows administrators to enter news items for the active gedcom
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2009  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2021  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -35,8 +35,9 @@ define('PGV_GEDCOM_NEWS_PHP', '');
 
 $PGV_BLOCKS['print_gedcom_news']['name']		= $pgv_lang['gedcom_news_block'];
 $PGV_BLOCKS['print_gedcom_news']['descr']		= 'gedcom_news_descr';
-$PGV_BLOCKS['print_gedcom_news']['type']		= 'gedcom';
+$PGV_BLOCKS['print_gedcom_news']['type']		= 'gedcom';		// Show only on the Welcome page
 $PGV_BLOCKS['print_gedcom_news']['canconfig']	= true;
+$PGV_BLOCKS['print_gedcom_news']['hidesearch']	= false;	// should this block be hidden from search engines
 $PGV_BLOCKS['print_gedcom_news']['config']		= array(
 	'cache'=>7,
 	'limit' => 'nolimit',
@@ -48,16 +49,11 @@ $PGV_BLOCKS['print_gedcom_news']['config']		= array(
  *
  * @todo Add an allowed HTML translation
  */
-function print_gedcom_news($block = true, $config='', $side, $index)
+function print_gedcom_news($limitHeight, $config, $side, $index)
 {
 	global $pgv_lang, $PGV_IMAGE_DIR, $PGV_IMAGES, $TEXT_DIRECTION, $ctype, $PGV_BLOCKS;
 
-	if(empty($config)) {
-		$config = $PGV_BLOCKS['print_gedcom_news']['config'];
-	}
-	if ($config['flag'] == 0) {
-		$config['limit'] = 'nolimit';
-	}
+	if ($config['flag'] == 0) $config['limit'] = 'nolimit';
 	if (isset($_REQUEST['gedcom_news_archive'])) {
 		$config['limit'] = 'nolimit';
 		$config['flag'] = 0;
@@ -172,20 +168,15 @@ function print_gedcom_news($block = true, $config='', $side, $index)
 	}
 
 	global $THEME_DIR;
-	if ($block) {
+	if ($limitHeight) {
 		require $THEME_DIR.'templates/block_small_temp.php';
 	} else {
 		require $THEME_DIR.'templates/block_main_temp.php';
 	}
 }
 
-function print_gedcom_news_config($config)
-{
+function print_gedcom_news_config($config) {
 	global $pgv_lang, $ctype, $PGV_BLOCKS;
-	if (empty ($config)) $config = $PGV_BLOCKS["print_gedcom_news"]["config"];
-	if (!isset ($config["limit"])) $config["limit"] = "nolimit";
-	if (!isset ($config["flag"])) $config["flag"] = 0;
-	if (!isset($config["cache"])) $config["cache"] = $PGV_BLOCKS["print_gedcom_news"]["config"]["cache"];
 
 	// Limit Type
 	print '<tr><td class="descriptionbox wrap width33">';
@@ -204,10 +195,7 @@ function print_gedcom_news_config($config)
 	print '<tr><td class="descriptionbox wrap width33">';
 	print_help_link("gedcom_news_flag_help", "qm");
 	print $pgv_lang['gedcom_news_flag'].'</td>';
-	$output = '<td class="optionbox"><input type="text" name="flag" size="4" maxlength="4" value="'
-	.$config['flag']
-	.'" /></td></tr>';
-	print $output;
+	print "<td class='optionbox'><input type='number' name='flag' size='4' maxlength='4' value='{$config['flag']}' min='0' max='9999' /></td></tr>";
 
 	// Cache file life
 	if ($ctype=="gedcom") {
@@ -215,7 +203,7 @@ function print_gedcom_news_config($config)
 		print_help_link("cache_life_help", "qm");
 		print $pgv_lang["cache_life"];
 		print "</td><td class=\"optionbox\">";
-		print "<input type=\"text\" name=\"cache\" size=\"2\" value=\"".$config["cache"]."\" />";
+		print "<input type='number' name='cache' size='2' value='{$config['cache']}' min='-1' max='30' />";
 		print "</td></tr>";
 	}
 }

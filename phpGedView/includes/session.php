@@ -497,6 +497,8 @@ if (empty($PHPGEDVIEW_EMAIL)) {
 require PGV_ROOT.'includes/functions/functions_print.php';
 require PGV_ROOT.'includes/functions/functions_rtl.php';
 
+if ($SEARCH_SPIDER) $MULTI_MEDIA = false;		// NEVER let search engines anywhere near multi-media
+
 if ($MULTI_MEDIA) {
 	require PGV_ROOT.'includes/functions/functions_mediadb.php';
 	if (!function_exists('imagecreatefrombmp')) {			// If the GD library does not support the BMP image type

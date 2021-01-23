@@ -5,7 +5,7 @@
  * This block will show the top 10 given names that occur most frequently in the active gedcom
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2008  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2008 to 2021  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -36,9 +36,9 @@ define('PGV_TOP10_GIVNNAMES_PHP', '');
 
 $PGV_BLOCKS["print_block_givn_top10"]["name"]		= $pgv_lang["block_givn_top10"];
 $PGV_BLOCKS["print_block_givn_top10"]["descr"]		= "block_givn_top10_descr";
-$PGV_BLOCKS["print_block_givn_top10"]["type"]		= "both";
-$PGV_BLOCKS["print_block_givn_top10"]["infoStyle"]	= "style2";
+$PGV_BLOCKS["print_block_givn_top10"]["type"]    	= "both";	// Allow on both the Welcome and the MyGedView pages
 $PGV_BLOCKS["print_block_givn_top10"]["canconfig"]	= true;
+$PGV_BLOCKS["print_block_givn_top10"]["hidesearch"]	= false;	// should this block be hidden from search engines
 $PGV_BLOCKS["print_block_givn_top10"]["config"]		= array(
 	"cache"=>7,
 	"num"=>10,
@@ -49,14 +49,11 @@ $PGV_BLOCKS["print_block_givn_top10"]["config"]		= array(
 /**
  * Print First Names Block
  */
-function print_block_givn_top10($block=true, $config="", $side, $index) {
+function print_block_givn_top10($limitHeight, $config, $side, $index) {
 	global $pgv_lang, $TEXT_DIRECTION, $PGV_BLOCKS, $ctype, $PGV_IMAGES, $PGV_IMAGE_DIR;
 
-	if (empty($config)) $config = $PGV_BLOCKS["print_block_givn_top10"]["config"];
-	if (isset($config["infoStyle"])) $infoStyle = $config["infoStyle"];  // "style1" or "style2"
-	else $infoStyle = "style2";
-	if (isset($config["showUnknown"])) $showUnknown = $config["showUnknown"];  // "yes" or "no"
-	else $showUnknown = "yes";
+	$infoStyle = $config["infoStyle"];			// "style1" or "style2"
+	$showUnknown = $config["showUnknown"];		// "yes" or "no"
 
 	$stats=new Stats(PGV_GEDCOM);
 
@@ -113,7 +110,7 @@ function print_block_givn_top10($block=true, $config="", $side, $index) {
 	$content .=  "</div>";
 
 	global $THEME_DIR;
-	if ($block) {
+	if ($limitHeight) {
 		require $THEME_DIR.'templates/block_small_temp.php';
 	} else {
 		require $THEME_DIR.'templates/block_main_temp.php';
@@ -122,14 +119,10 @@ function print_block_givn_top10($block=true, $config="", $side, $index) {
 
 function print_block_givn_top10_config($config) {
 	global $pgv_lang, $ctype, $PGV_BLOCKS, $TEXT_DIRECTION;
-	if (empty($config)) $config = $PGV_BLOCKS["print_block_givn_top10"]["config"];
-	if (!isset($config["cache"])) $config["cache"] = $PGV_BLOCKS["print_block_givn_top10"]["config"]["cache"];
-	if (!isset($config["infoStyle"])) $config["infoStyle"] = "style2";
-	if (!isset($config["showUnknown"])) $config["showUnknown"] = "yes";
 
 	print "<tr><td class=\"descriptionbox wrap width33\">".$pgv_lang["num_to_show"]."</td>";?>
 	<td class="optionbox">
-		<input type="text" name="num" size="2" value="<?php print $config["num"]; ?>" />
+		<input type="number" name="num" size="2" value="<?php print $config["num"]; ?>" min="1" max="30" />
 	</td></tr>
 
 	<tr><td class="descriptionbox wrap width33">
@@ -162,7 +155,7 @@ function print_block_givn_top10_config($config) {
 			print_help_link("cache_life_help", "qm");
 			print $pgv_lang["cache_life"];
 		print "</td><td class=\"optionbox\">";
-			print "<input type=\"text\" name=\"cache\" size=\"2\" value=\"".$config["cache"]."\" />";
+		print "<input type='number' name='cache' size='2' value='{$config['cache']}' min='-1' max='30' />";
 		print "</td></tr>";
 	}
 }

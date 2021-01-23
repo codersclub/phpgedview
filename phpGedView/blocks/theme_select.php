@@ -5,7 +5,7 @@
  * This block will print a form that allows the visitor to change the theme
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2018  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2021  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -35,29 +35,31 @@ define('PGV_THEME_SELECT_PHP', '');
 
 $PGV_BLOCKS["print_block_theme_select"]["name"]			= $pgv_lang["theme_select_block"];
 $PGV_BLOCKS["print_block_theme_select"]["descr"]		= "theme_select_descr";
-$PGV_BLOCKS["print_block_theme_select"]["type"]			= "gedcom";
+$PGV_BLOCKS["print_block_theme_select"]["type"]			= "gedcom";		// Show only on Welcome page
 $PGV_BLOCKS["print_block_theme_select"]["canconfig"]	= false;
+$PGV_BLOCKS["print_block_theme_select"]["hidesearch"]	= true;		// should this block be hidden from search engines
 $PGV_BLOCKS["print_block_theme_select"]["config"]		= array("cache"=>-1);
 
-function print_block_theme_select($style=0, $config="", $side, $index) {
+function print_block_theme_select($limitHeight, $config, $side, $index) {
 	global $pgv_lang;
 	global $ALLOW_THEME_DROPDOWN, $ALLOW_USER_THEMES, $THEME_DIR, $pgv_lang, $themeformcount;
-	global $SEARCH_SPIDER;
 
-	if ($SEARCH_SPIDER) return;		// Don't show this block to search engines
-
-	$id="theme_select";
+	$id = "theme_select";
 	$title = $pgv_lang["change_theme"];
 	$title .= print_help_link("change_theme", "qm","",false,true);
 
-	$theme_menu=MenuBar::getThemeMenu();
-	$content='<div class="center theme_form"><br />'.$theme_menu->getMenuAsDropdown().'<br /<br /></div>';
+	$theme_menu = MenuBar::getThemeMenu();
+	$content = '<div class="center theme_form"><br />'.$theme_menu->getMenuAsDropdown().'<br /<br /></div>';
 
 	global $THEME_DIR;
-	if ($style) {
+	if ($limitHeight) {
 		require $THEME_DIR.'templates/block_small_temp.php';
 	} else {
 		require $THEME_DIR.'templates/block_main_temp.php';
 	}
+}
+
+function print_block_theme_select_config($config) {
+	// Nothing to do here -- should never be called
 }
 ?>

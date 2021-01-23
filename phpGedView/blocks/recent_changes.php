@@ -5,7 +5,7 @@
  * This block will print a list of recent changes
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2018  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2021  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -33,10 +33,12 @@ if (!defined('PGV_PHPGEDVIEW')) {
 
 define('PGV_RECENT_CHANGES_PHP', '');
 
-$PGV_BLOCKS["print_recent_changes"]["name"]     = $pgv_lang["recent_changes_block"];
-$PGV_BLOCKS["print_recent_changes"]["descr"]    = "recent_changes_descr";
-$PGV_BLOCKS["print_recent_changes"]["canconfig"]= true;
-$PGV_BLOCKS["print_recent_changes"]["config"]   = array(
+$PGV_BLOCKS["print_recent_changes"]["name"]			= $pgv_lang["recent_changes_block"];
+$PGV_BLOCKS["print_recent_changes"]["descr"]		= "recent_changes_descr";
+$PGV_BLOCKS["print_recent_changes"]["type"]    		= "both";	// Allow on both the Welcome and the MyGedView pages
+$PGV_BLOCKS["print_recent_changes"]["canconfig"]	= true;
+$PGV_BLOCKS["print_recent_changes"]["hidesearch"]	= true;		// should this block be hidden from search engines
+$PGV_BLOCKS["print_recent_changes"]["config"]		= array(
 	"cache"=>1,
 	"days"=>30,
 	"hide_empty"=>"no"
@@ -44,23 +46,19 @@ $PGV_BLOCKS["print_recent_changes"]["config"]   = array(
 
 //-- Recent Changes block
 //-- this block prints a list of changes that have occurred recently in your gedcom
-function print_recent_changes($block=true, $config="", $side, $index) {
+function print_recent_changes($limitHeight, $config, $side, $index) {
 	global $pgv_lang, $ctype;
-	global $PGV_IMAGE_DIR, $PGV_IMAGES, $PGV_BLOCKS, $SEARCH_SPIDER;
+	global $PGV_IMAGE_DIR, $PGV_IMAGES, $PGV_BLOCKS;
 
-	if ($SEARCH_SPIDER) return;		// Don't show this block to search engines
+	$limitHeight = true;  // Always restrict this block's height
 
-	$block = true;  // Always restrict this block's height
-
-	if (empty($config)) $config = $PGV_BLOCKS["print_recent_changes"]["config"];
-	if ($config["days"]<1) $config["days"] = 30;
-	if (isset($config["hide_empty"])) $HideEmpty = $config["hide_empty"];
-	else $HideEmpty = "no";
+	if ($config["days"]<1) $config["days"] = $PGV_BLOCKS["print_recent_changes"]["config"]["days"];
+	$hideEmpty = $config["hide_empty"];
 
 	$found_facts=get_recent_changes(client_jd()-$config['days']);
 
 // Start output
-	if (count($found_facts)==0 and $HideEmpty=="yes") return false;
+	if (count($found_facts)==0 and $hideEmpty=="yes") return false;
 // Print block header
 	$id="recent_changes";
 	$title = print_help_link("recent_changes_help", "qm","",false,true);
@@ -92,7 +90,7 @@ function print_recent_changes($block=true, $config="", $side, $index) {
 	}
 
 	global $THEME_DIR;
-	if ($block) {
+	if ($limitHeight) {
 		require $THEME_DIR.'templates/block_small_temp.php';
 	} else {
 		require $THEME_DIR.'templates/block_main_temp.php';
@@ -101,12 +99,12 @@ function print_recent_changes($block=true, $config="", $side, $index) {
 
 function print_recent_changes_config($config) {
 	global $pgv_lang, $ctype, $PGV_BLOCKS;
-	if (empty($config)) $config = $PGV_BLOCKS["print_recent_changes"]["config"];
-	if (!isset($config["cache"])) $config["cache"] = $PGV_BLOCKS["print_recent_changes"]["config"]["cache"];
+
+	if ($config["days"]<1) $config["days"] = $PGV_BLOCKS["print_recent_changes"]["config"]["days"];
 
 	print "<tr><td class=\"descriptionbox wrap width33\">".$pgv_lang["days_to_show"]."</td>";?>
 	<td class="optionbox">
-		<input type="text" name="days" size="2" value="<?php print $config["days"]; ?>" />
+		<input type="number" name="days" size="2" value="<?php print $config["days"]; ?>" min="1" max="30" />
 	</td></tr>
 
 	<?php
@@ -128,7 +126,7 @@ function print_recent_changes_config($config) {
 		print_help_link("cache_life_help", "qm");
 		print $pgv_lang["cache_life"];
 		print "</td><td class=\"optionbox\">";
-		print "<input type=\"text\" name=\"cache\" size=\"2\" value=\"".$config["cache"]."\" />";
+		print "<input type='number' name='cache' size='2' value='{$config['cache']}' min='-1' max='30' />";
 		print "</td></tr>";
 	}
 }

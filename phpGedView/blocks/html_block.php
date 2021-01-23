@@ -5,7 +5,7 @@
  * This block will print simple HTML text entered by an admin
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2009  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2021  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -35,16 +35,17 @@ define('PGV_HTML_BLOCK_PHP', '');
 
 $PGV_BLOCKS["print_html_block"]["name"]			= $pgv_lang["html_block_name"];
 $PGV_BLOCKS["print_html_block"]["descr"]		= "html_block_descr";
-$PGV_BLOCKS["print_html_block"]["canconfig"]= true;
+$PGV_BLOCKS["print_html_block"]["type"]    		= "both";	// Allow on both the Welcome and the MyGedView pages
+$PGV_BLOCKS["print_html_block"]["canconfig"]	= true;
+$PGV_BLOCKS["print_html_block"]["hidesearch"]	= false;	// should this block be hidden from search engines
 $PGV_BLOCKS["print_html_block"]["config"]		= array(
 	"cache"=>1,
 	"html"=>$pgv_lang["html_block_sample_part1"]." <img src=\"".$PGV_IMAGE_DIR."/".$PGV_IMAGES["admin"]["small"]."\" alt=\"".$pgv_lang["config_block"]."\" /> ".$pgv_lang["html_block_sample_part2"]
 );
 
-function print_html_block($block=true, $config="", $side, $index) {
+function print_html_block($limitHeight, $config, $side, $index) {
 	global $pgv_lang, $PGV_IMAGE_DIR, $TEXT_DIRECTION, $PGV_IMAGES, $HTML_BLOCK_COUNT, $PGV_BLOCKS, $ctype;
 
-	if (empty($config)) $config = $PGV_BLOCKS["print_html_block"]["config"];
 	if (!isset($HTML_BLOCK_COUNT)) $HTML_BLOCK_COUNT = 0;
 	$HTML_BLOCK_COUNT++;
 
@@ -79,7 +80,7 @@ function print_html_block($block=true, $config="", $side, $index) {
 	}
 
 	global $THEME_DIR;
-	if ($block) {
+	if ($limitHeight) {
 		require $THEME_DIR.'templates/block_small_temp.php';
 	} else {
 		require $THEME_DIR.'templates/block_main_temp.php';
@@ -88,27 +89,11 @@ function print_html_block($block=true, $config="", $side, $index) {
 
 function print_html_block_config($config) {
 	global $pgv_lang, $ctype, $PGV_BLOCKS, $TEXT_DIRECTION, $LANGUAGE, $language_settings;
-	$useFCK = file_exists(PGV_ROOT.'modules/FCKeditor/fckeditor.php');
-	if($useFCK){
-		require PGV_ROOT.'modules/FCKeditor/fckeditor.php';
-	}
-	if (empty($config)) $config = $PGV_BLOCKS["print_html_block"]["config"];
-	if (empty($config["cache"])) $config["cache"] = $PGV_BLOCKS["print_html_block"]["config"]["cache"];
+
 	?>
 	<tr>
 	<td class="optionbox" colspan="2"><?php
-	if ($useFCK) { // use FCKeditor module
-		$oFCKeditor = new FCKeditor('html') ;
-		$oFCKeditor->BasePath =  './modules/FCKeditor/';
-		$oFCKeditor->Value = $config["html"];
-		$oFCKeditor->Width = 700;
-		$oFCKeditor->Height = 250;
-		$oFCKeditor->Config['AutoDetectLanguage'] = false ;
-		$oFCKeditor->Config['DefaultLanguage'] = $language_settings[$LANGUAGE]["lang_short_cut"];
-		$oFCKeditor->Create() ;
-	} else { //use standard textarea
-		print "<textarea name=\"html\" rows=\"10\" cols=\"80\">" . str_replace("<", "&lt;", $config["html"]) ."</textarea>";
-	}
+	print "<textarea name=\"html\" rows=\"10\" cols=\"80\">" . str_replace("<", "&lt;", $config["html"]) ."</textarea>";
 	?></td>
 	</tr>
 	<?php
@@ -118,7 +103,7 @@ function print_html_block_config($config) {
 		print_help_link("cache_life_help", "qm");
 		print $pgv_lang["cache_life"];
 		print "</td><td class=\"optionbox\">";
-		print "<input type=\"text\" name=\"cache\" size=\"2\" value=\"".$config["cache"]."\" />";
+		print "<input type='number' name='cache' size='2' value='{$config['cache']}' min='-1' max='30' />";
 		print "</td></tr>";
 	}
 }

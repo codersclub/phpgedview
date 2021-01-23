@@ -5,7 +5,7 @@
  * This block will randomly choose media items and show them in a block
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2019  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2021  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -37,7 +37,9 @@ define('PGV_RANDOM_MEDIA_PHP', '');
 if ($MULTI_MEDIA) {
 	$PGV_BLOCKS['print_random_media']['name']		= $pgv_lang['random_media_block'];
 	$PGV_BLOCKS['print_random_media']['descr']		= 'random_media_descr';
+	$PGV_BLOCKS['print_random_media']['type']    	= 'both';	// Allow on both the Welcome and the MyGedView pages
 	$PGV_BLOCKS['print_random_media']['canconfig']	= true;
+	$PGV_BLOCKS['print_random_media']['hidesearch']	= true;		// should this block be hidden from search engines
 	$PGV_BLOCKS['print_random_media']['config']		= array(
 		'cache'   =>0,
 		'filter'  =>'all',
@@ -79,7 +81,7 @@ if ($MULTI_MEDIA) {
 	require_once PGV_ROOT.'includes/functions/functions_print_facts.php';
 
 	//-- function to display a random picture from the gedcom
-	function print_random_media($block = true, $config="", $side, $index) {
+	function print_random_media($limitHeight, $config, $side, $index) {
 		global $pgv_lang, $foundlist, $MULTI_MEDIA, $TEXT_DIRECTION, $PGV_IMAGE_DIR, $PGV_IMAGES;
 		global $MEDIA_EXTERNAL, $MEDIA_DIRECTORY, $SHOW_SOURCES;
 		global $MEDIATYPE, $THUMBNAIL_WIDTH, $USE_MEDIA_VIEWER;
@@ -88,11 +90,7 @@ if ($MULTI_MEDIA) {
 
 		if (!$MULTI_MEDIA) return;
 
-		if (empty($config)) $config = $PGV_BLOCKS["print_random_media"]["config"];
-		if (isset($config["filter"])) $filter = $config["filter"];  // indi, event, or all
-		else $filter = "all";
-		if (!isset($config['controls'])) $config['controls'] ="yes";
-		if (!isset($config['start'])) $config['start'] ="no";
+		$filter = $config["filter"];  // indi, event, or all
 
 		$medialist = array();
 		$foundlist = array();
@@ -121,7 +119,7 @@ if ($MULTI_MEDIA) {
 
 				$isExternal = isFileExternal($medialist[$value]["FILE"]);
 
-				if ($block && !$isExternal) $disp &= ($medialist[$value]["THUMBEXISTS"]>0);
+				if ($limitHeight && !$isExternal) $disp &= ($medialist[$value]["THUMBEXISTS"]>0);
 				if (PGV_DEBUG && !$disp && !$error) {$error = true; print "<span class=\"error\">".$medialist[$value]["XREF"]." thumbnail file could not be found</span><br />";}
 
 				// Filter according to format and type  (Default: unless configured otherwise, don't filter)
@@ -191,7 +189,7 @@ if ($MULTI_MEDIA) {
 				$title .= $pgv_lang["random_picture"];
 				$content = "<div id=\"random_picture_container$index\">";
 				if ($config['controls']=='yes') {
-					if ($config['start']=='yes' || (isset($_COOKIE['rmblockplay'])&&$_COOKIE['rmblockplay']=='true')) $image = "stop";
+					if ($config['start']=='yes') $image = "stop";
 					else $image = "rarrow";
 					$linkNextImage = "<a href=\"javascript: ".$pgv_lang["next_image"]."\" onclick=\"return ajaxBlock('random_picture$index', 'print_random_media', '$side', $index, '$ctype', true);\"><img src=\"{$PGV_IMAGE_DIR}/{$PGV_IMAGES['rdarrow']['other']}\" border=\"0\" alt=\"{$pgv_lang['next_image']}\" title=\"{$pgv_lang['next_image']}\" /></a>";
 
@@ -215,9 +213,9 @@ if ($MULTI_MEDIA) {
 							}
 							else {
 								play = true;
-								playSlideShow();
 								imgid = document.getElementById("play_stop");
 								imgid.src = \''.$PGV_IMAGE_DIR."/".$PGV_IMAGES["stop"]['other'].'\';
+								playSlideShow();
 							}
 						}
 
@@ -247,7 +245,7 @@ if ($MULTI_MEDIA) {
 			$imgheight = $imgsize[1]+150;
 				$content .= "<table id=\"random_picture_box\" width=\"100%\"><tr><td valign=\"top\"";
 
-				if ($block) $content .= " align=\"center\" class=\"details1\"";
+				if ($limitHeight) $content .= " align=\"center\" class=\"details1\"";
 				else $content .= " class=\"details2\"";
 			$mediaid = $medialist[$value]["XREF"];
 
@@ -290,7 +288,7 @@ function openPic(filename, width, height) {
 				$mediaTitle = PrintReady($medialist[$value]["TITL"]);
 			}
 			else $mediaTitle = basename($medialist[$value]["FILE"]);
-			if ($block) {
+			if ($limitHeight) {
 				$content .= "<img src=\"".$medialist[$value]["THUMB"]."\" border=\"0\" class=\"thumbnail\"";
 				if ($isExternal) $content .= " width=\"".$THUMBNAIL_WIDTH."\"";
 			} else {
@@ -300,7 +298,7 @@ function openPic(filename, width, height) {
 			}
 			$content .= " alt=\"{$mediaTitle}\" title=\"{$mediaTitle}\" />";
 			$content .= "</a>";
-			if ($block) $content .= "<br />";
+			if ($limitHeight) $content .= "<br />";
 			else $content .= "</td><td class=\"details2\">";
 			$content .= "<a href=\"mediaviewer.php?mid=".$mediaid."\">";
 			$content .= "<b>". $mediaTitle ."</b>";
@@ -323,14 +321,6 @@ function openPic(filename, width, height) {
 
 	function print_random_media_config($config) {
 		global $pgv_lang, $factarray, $PGV_BLOCKS, $TEXT_DIRECTION;
-
-		$defaultConfig = $PGV_BLOCKS['print_random_media']['config'];
-		if (empty($config)) $config = $defaultConfig;
-
-		// Add options missing from old block configurations
-		foreach ($defaultConfig as $option => $setting) {
-			if (!isset($config[$option])) $config[$option] = $setting;
-		}
 
 		print "<tr><td class=\"descriptionbox wrap width33\">";
 			print_help_link("random_media_persons_or_all_help", "qm");
@@ -392,7 +382,6 @@ function openPic(filename, width, height) {
 				name="filter_wav"
 				<?php if ($config['filter_wav']=="yes") print " checked=\"checked\""; ?> />&nbsp;&nbsp;wav&nbsp;&nbsp;</td>
 					<td class="width33">&nbsp;</td>
-					<td class="width33">&nbsp;</td>
 				</tr>
 			</table>
 			<br />
@@ -448,7 +437,7 @@ function openPic(filename, width, height) {
 		<option value="no"
 		<?php if ($config["start"]=="no") print " selected=\"selected\""; ?>><?php print $pgv_lang["no"]; ?></option>
 	</select>
-	<input type="hidden" name="cache" value="0" />
+	<input type="hidden" name="cache" value="<?php print $config['cache']; ?>" />
 	</td></tr>
 
 		<?php

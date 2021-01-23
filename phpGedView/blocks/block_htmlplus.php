@@ -5,7 +5,7 @@
  * This block will print advanced HTML text with keyword support entered by an admin
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2009  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2021  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -39,7 +39,9 @@ require_once PGV_ROOT.'includes/classes/class_stats.php';
 
 $PGV_BLOCKS['print_htmlplus_block']['name']			= $pgv_lang['htmlplus_block_name'];
 $PGV_BLOCKS['print_htmlplus_block']['descr']		= 'htmlplus_block_descr';
+$PGV_BLOCKS['print_htmlplus_block']['type']    		= 'both';	// Allow on both the Welcome and the MyGedView pages
 $PGV_BLOCKS['print_htmlplus_block']['canconfig']	= true;
+$PGV_BLOCKS['print_htmlplus_block']['hidesearch']	= false;	// should this block be hidden from search engines
 $PGV_BLOCKS['print_htmlplus_block']['config']		= array(
 	'cache'=>0,
 	'title'=>'',
@@ -49,12 +51,11 @@ $PGV_BLOCKS['print_htmlplus_block']['config']		= array(
 	'ui'=>0
 );
 
-function print_htmlplus_block($block=true, $config='', $side, $index) {
+function print_htmlplus_block($limitHeight, $config, $side, $index) {
 	global $ctype, $factarray, $GEDCOM, $HTML_BLOCK_COUNT, $PGV_BLOCKS, $PGV_IMAGE_DIR, $PGV_IMAGES, $pgv_lang, $TEXT_DIRECTION, $MULTI_MEDIA, $SHOW_ID_NUMBERS;
-	// config sanity check
-	if (empty($config)){$config = $PGV_BLOCKS['print_htmlplus_block']['config'];}else{foreach($PGV_BLOCKS['print_htmlplus_block']['config'] as $k=>$v){if (!isset($config[$k])){$config[$k] = $v;}}}
 
-	if (!isset($HTML_BLOCK_COUNT)){$HTML_BLOCK_COUNT = 0;}$HTML_BLOCK_COUNT++;
+	if (!isset($HTML_BLOCK_COUNT)) $HTML_BLOCK_COUNT = 0;
+	$HTML_BLOCK_COUNT++;
 
 	/*
 	 * Select GEDCOM
@@ -172,30 +173,24 @@ function print_htmlplus_block($block=true, $config='', $side, $index) {
 	}
 
 	global $THEME_DIR;
-	if ($block) {
+	if ($limitHeight) {
 		require $THEME_DIR.'templates/block_small_temp.php';
 	} else {
 		require $THEME_DIR.'templates/block_main_temp.php';
 	}
 }
 
-function print_htmlplus_block_config($config)
-{
+function print_htmlplus_block_config($config) {
 	global $pgv_lang, $factarray, $ctype, $PGV_BLOCKS, $TEXT_DIRECTION, $LANGUAGE, $language_settings, $GEDCOM;
-	$useFCK = file_exists(PGV_ROOT.'modules/FCKeditor/fckeditor.php');
+
 	$templates = array();
 	$d = dir('blocks/');
-	while(false !== ($entry = $d->read()))
-	{
-		if(strstr($entry, 'block_htmlplus_'))
-		{
+	while(false !== ($entry = $d->read())) {
+		if(strstr($entry, 'block_htmlplus_')) {
 			$tpl = file("blocks/{$entry}");
 			$info = array_shift($tpl);
 			$bits = explode('|', $info);
-			if(count($bits) != 2)
-			{
-				$bits = array($entry, '');
-			}
+			if(count($bits) != 2) $bits = array($entry, '');
 			$templates[] = array(
 				'filename'		=>$entry,
 				'title'			=>(isset($pgv_lang[$bits[0]]))?$pgv_lang[$bits[0]]:$bits[0],
@@ -205,9 +200,6 @@ function print_htmlplus_block_config($config)
 		}
 	}
 	$d->close();
-
-	// config sanity check
-	if(empty($config)){$config = $PGV_BLOCKS['print_htmlplus_block']['config'];}else{foreach($PGV_BLOCKS['print_htmlplus_block']['config'] as $k=>$v){if (!isset($config[$k])){$config[$k] = $v;}}}
 
 	// title
 	$config['title'] = htmlentities($config['title'], ENT_COMPAT, 'UTF-8');
@@ -223,24 +215,7 @@ function print_htmlplus_block_config($config)
 		."{$pgv_lang['htmlplus_block_templates']}</td>\n"
 		."\t\t<td class=\"optionbox\">\n"
 	;
-	if($useFCK)
-	{
-		print "\t\t\t<script language=\"JavaScript\" type=\"text/javascript\">\n"
-			."\t\t\t<!--\n"
-			."\t\t\t\tfunction loadTemplate(html)\n"
-			."\t\t\t\t{\n"
-			."\t\t\t\t\tvar oEditor = FCKeditorAPI.GetInstance('html');\n"
-			."\t\t\t\t\toEditor.SetHTML(html);\n"
-			."\t\t\t\t}\n"
-			."\t\t\t-->\n"
-			."\t\t\t</script>\n"
-			."\t\t\t<select name=\"template\" onchange=\"loadTemplate(document.block.template.options[document.block.template.selectedIndex].value);\">\n"
-		;
-	}
-	else
-	{
-		print "\t\t\t<select name=\"template\" onchange=\"document.block.html.value=document.block.template.options[document.block.template.selectedIndex].value;\">\n";
-	}
+	print "\t\t\t<select name=\"template\" onchange=\"document.block.html.value=document.block.template.options[document.block.template.selectedIndex].value;\">\n";
 	print "\t\t\t\t<option value=\"\">{$pgv_lang['htmlplus_block_custom']}</option>\n";
 	foreach($templates as $tpl)
 	{
@@ -281,24 +256,7 @@ function print_htmlplus_block_config($config)
 		."\t\t</td>\n"
 		."\t\t<td class=\"optionbox\">\n\t\t\t"
 	;
-	if($useFCK)
-	{
-		// use FCKeditor module
-		require_once PGV_ROOT.'modules/FCKeditor/fckeditor.php';
-		$oFCKeditor = new FCKeditor('html') ;
-		$oFCKeditor->BasePath = './modules/FCKeditor/';
-		$oFCKeditor->Value = $config['html'];
-		$oFCKeditor->Width = 700;
-		$oFCKeditor->Height = 250;
-		$oFCKeditor->Config['AutoDetectLanguage'] = false ;
-		$oFCKeditor->Config['DefaultLanguage'] = $language_settings[$LANGUAGE]['lang_short_cut'];
-		$oFCKeditor->Create() ;
-	}
-	else
-	{
-		//use standard textarea
-		print "<textarea name=\"html\" rows=\"10\" cols=\"80\">".str_replace("<", "&lt;", $config['html'])."</textarea>";
-	}
+	print "<textarea name=\"html\" rows=\"10\" cols=\"80\">".str_replace("<", "&lt;", $config['html'])."</textarea>";
 
 	print "\n\t\t</td>\n\t</tr>\n";
 
@@ -321,13 +279,12 @@ function print_htmlplus_block_config($config)
 	;
 
 	// Cache file life
-	if($ctype == 'gedcom')
-	{
+	if($ctype == 'gedcom') {
 		print "\t<tr>\n\t\t<td class=\"descriptionbox wrap width33\">"
 			.print_help_link('cache_life_help', 'qm', '', false, true)
 			."{$pgv_lang['cache_life']}</td>\n"
 			."\t\t<td class=\"optionbox\">"
-			."<input type=\"text\" name=\"cache\" size=\"2\" value=\"{$config['cache']}\" /></td>\n"
+			."<input type='number' name='cache' size='2' value='{$config['cache']}' min='-1' max='30' />"
 			."\t</tr>\n"
 		;
 	}

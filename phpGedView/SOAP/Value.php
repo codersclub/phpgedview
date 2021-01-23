@@ -146,9 +146,7 @@ class SOAP_Header extends SOAP_Value
      * @param integer $mustunderstand  Zero or one.
      * @param mixed $attributes        Attributes.
      */
-    function __construct($name = '', $type, $value, $mustunderstand = 0,
-                         $attributes = array())
-    {
+    function __construct($name, $type, $value, $mustunderstand, $attributes) {
         if (!is_array($attributes)) {
             $actor = $attributes;
             $attributes = array();
@@ -184,10 +182,14 @@ class SOAP_Attachment extends SOAP_Value
      * @param string $filename  The attachment's file name. Ignored if $file
      *                          is provide.
      * @param string $file      The attachment data.
+	 * @deprecated PHP 9
+	 * function __construct($name = '', $type = 'application/octet-stream', $filename, $file = null)
      */
-    function __construct($name = '', $type = 'application/octet-stream',
-                             $filename, $file = null)
+    function __construct($name, $type, $filename, $file)
     {
+		isset($name) ?: $name="";
+		isset($type) ?: $type="application/octet-stream";
+		isset($file) ?: $file=null;
         parent::SOAP_Value($name, null, null);
 
         if (!isset($GLOBALS['SOAP_options']['Mime'])) {

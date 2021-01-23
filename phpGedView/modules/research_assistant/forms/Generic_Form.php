@@ -3,7 +3,7 @@
  * phpGedView Research Assistant Tool - Generic_Form
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2009  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2021  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -41,18 +41,19 @@ require_once PGV_ROOT.'includes/functions/functions_edit.php';
  */
 class Generic_Form extends ra_form {
     /**
-	 * Contains all the information that we want to print out in the header.
-     *
-	 * How-To: This function is used to pint out specific things at the top of a custom input form. You
-	 * must provide this or your form will not work. It must also contain a user specified action, alignment,
-	 * and heading to appear properly. Anything inside the form must be assigned to the $out variable, and
-     *
-     * @param mixed $action The action you want the form to perform
-     * @param string $tableAlign The alignment of the table, default is center
-     * @param mixed $heading Heading at the top of the table
-     * @return mixed
-     */
-    function header($action, $tableAlign = "center", $heading) {
+	* Contains all the information that we want to print out in the header.
+    *
+	* How-To: This function is used to pint out specific things at the top of a custom input form. You
+	* must provide this or your form will not work. It must also contain a user specified action, alignment,
+	* and heading to appear properly. Anything inside the form must be assigned to the $out variable, and
+    *
+    * @param mixed $action The action you want the form to perform
+    * @param string $tableAlign="center" Default. The alignment of the table
+    * @param mixed $heading Heading at the top of the table
+    * @return mixed
+	*
+    */
+    function header($action, $tableAlign, $heading) {
         // Split action and use it for hidden inputs
         $action = parse_url($action);
         global $params;

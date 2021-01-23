@@ -5,7 +5,7 @@
  * This block will show the cookie policy disclaimer required by the EU Cookie Law
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2016 to 2020  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2016 to 2021  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -38,17 +38,14 @@ $PGV_BLOCKS["print_block_cookie_policy"]["name"]		= $pgv_lang["block_cookiepolic
 $PGV_BLOCKS["print_block_cookie_policy"]["descr"]		= "block_cookiepolicy_descr";
 $PGV_BLOCKS["print_block_cookie_policy"]["type"]		= "gedcom";		// Show this block only on Welcome page
 $PGV_BLOCKS["print_block_cookie_policy"]["canconfig"]	= true;
+$PGV_BLOCKS["print_block_cookie_policy"]["hidesearch"]	= false;	// should this block be hidden from search engines
 $PGV_BLOCKS["print_block_cookie_policy"]["config"]		= array(
-	"cache"=>-1,
+	'cache'=>-1,
 	"cookiepolicy_link"=>"",
 	);
 
-function print_block_cookie_policy($block=true, $config="", $side, $index) {
+function print_block_cookie_policy($limitHeight, $config, $side, $index) {
 	global $pgv_lang, $PGV_BLOCKS, $ctype, $PGV_IMAGES, $PGV_IMAGE_DIR;
-
-	if (empty($config)) {
-		$config=$PGV_BLOCKS["print_block_cookie_policy"]["config"];
-	}
 
 	$id = 'cookie_policy';
 	$title = print_help_link("index_cookiepolicy_help", "qm","",false,true);
@@ -77,7 +74,7 @@ function print_block_cookie_policy($block=true, $config="", $side, $index) {
 	$content .= '<br /><br /><span style="font-size:larger">' . contact_links() . '</span>';		// Include the contact links in this block
 
 	global $THEME_DIR;
-	if ($block) {
+	if ($limitHeight) {
 		require $THEME_DIR.'templates/block_small_temp.php';
 	} else {
 		require $THEME_DIR.'templates/block_main_temp.php';
@@ -86,8 +83,7 @@ function print_block_cookie_policy($block=true, $config="", $side, $index) {
 
 function print_block_cookie_policy_config($config) {
 	global $pgv_lang, $ctype, $PGV_BLOCKS;
-	if (empty($config)) $config = $PGV_BLOCKS["print_block_cookie_policy"]["config"];
-	if (!isset($config["cache"])) $config["cache"] = $PGV_BLOCKS["print_block_cookie_policy"]["config"]["cache"];
+
 ?>
 	<tr>
 		<td class="descriptionbox wrap width33">
@@ -109,7 +105,7 @@ function print_block_cookie_policy_config($config) {
 			print_help_link("cache_life_help", "qm");
 			print $pgv_lang["cache_life"];
 		print "</td><td class=\"optionbox\">";
-			print "<input type=\"text\" name=\"cache\" size=\"2\" value=\"".$config["cache"]."\" />";
+			print "<input type='number' name='cache' size='2' value='{$config['cache']}' min='-1' max='30' />";
 		print "</td></tr>";
 	}
 }

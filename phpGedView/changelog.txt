@@ -6,7 +6,7 @@
 	http://www.phpgedview.net
 
 	# $Id$
-	
+
 The following line defines the type of release; information in addition to the SVN number above and the Version number below.
 Release: SVN
 
@@ -14,7 +14,14 @@ The session.php script uses this information to populate the constants : PGV_VER
 =====================================================================
 
 Version 4.3.1
- - Fixed: Error while trying to delete a non-existent directory -- PHP 8  (canajun2eh)
+ - Changed: Search engines should not access any multi-media or source information (canajun2eh)
+ - Fixed: Blocks are sometimes shown to search engines when they shouldn't be (canajun2eh)
+ - Fixed: Block system does not work properly when a real user with ID 'defaultuser' is created (canajun2eh)
+ - Fixed: Correct the way blocks are handled (PHP 8 compatibility) (canajun2eh)
+ - Fixed: Some function definitions incorrectly define default parameters (PHP 8 compatibility) (imsza, canajun2eh)
+ - Fixed: Incorrect handling of negative years in calendar.php (imsza, canajun2eh)
+ - Fixed: Incorrect use of count() function in Research Assistant module (PHP 8 compatibility)  (imsza)
+ - Fixed: Error while trying to delete a non-existent directory (PHP 8 compatibility)  (canajun2eh)
  - Fixed: Minor error in file lang.sv.php (imsza)
  - Changed: Update PHPMailer to version 6.2.0 (canajun2eh)
  - Changed: Implement improved documentation in report generator (imsza)
@@ -28,13 +35,13 @@ Version 4.3.1
  - Fixed: Some language files erroneously contain "??" (canajun2eh)
  - Fixed: Error in session.php (canajun2eh)
  - Changed: Display SVN revision number on Admin page -- comes from information in the changelog.txt file (canajun2eh)
- - Fixed: Uninitialized string offset error in class_person.php caused by one-parent family (canajun2eh) 
+ - Fixed: Uninitialized string offset error in class_person.php caused by one-parent family (canajun2eh)
  - Fixed: Typo in ancestry_ctrl.php  (canajun2eh)
  - Fixed: Several instances of the each() function -- deprecated, should be using foreach()  (canajun2eh)
  - Fixed: Many instances of {0} used as reference to first char of strings.  Should be using [0] (canajun2eh, imsza)
  - Fixed: SOAP uses "=& new" construct where it should be using "= new" (canajun2eh, imsza)
  - Fixed: Clean up & remove dead code in Lightbox module (canajun2eh)
- - Fixed: Calls to undefined method $controller->print_descendency (canajun2eh) 
+ - Fixed: Calls to undefined method $controller->print_descendency (canajun2eh)
  - Changed: Update the tcpdf package to version 6.3.5 (canajun2eh)
  - Fixed: Indi page Media and Album tabs do not reflect original sequence of media objects in the GEDCOM, OK after re-sequencing (canajun2eh)
  - Fixed: Indi page Album tab media re-sequencing does not work, OK on Media tab (canajun2eh)
@@ -44,7 +51,7 @@ Version 4.3.1
  - Deleted: Delete unsupported (by anyone) modules cms_interface, FCKeditor, gallery2, punbb, sitemap  (canajun2eh)
  - Deleted: Research Assistant module: FormBuilder contents and directory (canajun2eh)
  - Fixed: Fix syntax error in countries.ro.php (imsza)
- - Changed: Minor changes to several help_text.xx.php files and to lang.en.php (canajun2eh) 
+ - Changed: Minor changes to several help_text.xx.php files and to lang.en.php (canajun2eh)
  - Changed: BMP support removed from functions_mediadb into its own script functions_mediabmp (canajun2eh)
  - Changed: Produce meaningful error messages when thumbnail generation fails (canajun2eh)
  - Changed: Default option for database collation changed to "yes" (new installations only)  (canajun2eh)

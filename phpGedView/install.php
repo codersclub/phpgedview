@@ -3,7 +3,7 @@
  * Installation and Configuration
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2008 to 2018  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2008 to 2021  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -486,8 +486,9 @@ $errormsg = "";
 					$success = printAdminUserForm();
 					break;
 				case 8:
+					global $PGV_BLOCKS;
 					require_once PGV_ROOT.'blocks/getting_started.php';
-					getting_started_block(false,"",0,0);
+					getting_started_block(false, $PGV_BLOCKS['getting_started_block']['config']);	// $side and $index don't matter here
 					$success = false;		// this will hide the "next" button
 					break;
 				default:	// case 1

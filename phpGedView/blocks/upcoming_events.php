@@ -5,7 +5,7 @@
  * This block will print a list of upcoming events
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2017  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2021  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -37,9 +37,9 @@ require_once PGV_ROOT.'includes/functions/functions_print_lists.php';
 
 $PGV_BLOCKS["print_upcoming_events"]["name"]		= $pgv_lang["upcoming_events_block"];
 $PGV_BLOCKS["print_upcoming_events"]["descr"]		= "upcoming_events_descr";
-$PGV_BLOCKS["print_upcoming_events"]["infoStyle"]	= "style2";
-$PGV_BLOCKS["print_upcoming_events"]["sortStyle"]	= "alpha";
+$PGV_BLOCKS["print_upcoming_events"]["type"]    	= "both";	// Allow on both the Welcome and the MyGedView pages
 $PGV_BLOCKS["print_upcoming_events"]["canconfig"]	= true;
+$PGV_BLOCKS["print_upcoming_events"]["hidesearch"]	= false;	// should this block be hidden from search engines
 $PGV_BLOCKS["print_upcoming_events"]["config"]		= array(
 	"cache"=>1,
 	"days"=>30,
@@ -52,33 +52,24 @@ $PGV_BLOCKS["print_upcoming_events"]["config"]		= array(
 
 //-- upcoming events block
 //-- this block prints a list of upcoming events of people in your gedcom
-function print_upcoming_events($block=true, $config="", $side, $index) {
+function print_upcoming_events($limitHeight, $config, $side, $index) {
 	global $pgv_lang, $SHOW_ID_NUMBERS, $ctype, $TEXT_DIRECTION;
 	global $PGV_IMAGE_DIR, $PGV_IMAGES, $PGV_BLOCKS, $THEME_DIR;
 	global $DAYS_TO_SHOW_LIMIT;
 
-	$block = true;      // Always restrict this block's height
+	$limitHeight = true;      // Always restrict this block's height
 
-	if (empty($config)) $config = $PGV_BLOCKS["print_upcoming_events"]["config"];
-	if (!isset($DAYS_TO_SHOW_LIMIT)) $DAYS_TO_SHOW_LIMIT = 30;
-	if (isset($config["days"])) $daysprint = $config["days"];
-	else $daysprint = 30;
-	if (isset($config["filter"])) $filter = $config["filter"];  // "living" or "all"
-	else $filter = "all";
-	if (isset($config["onlyBDM"])) $onlyBDM = $config["onlyBDM"];  // "yes" or "no"
-	else $onlyBDM = "no";
-	if (isset($config["infoStyle"])) $infoStyle = $config["infoStyle"];  // "style1" or "style2"
-	else $infoStyle = "style2";
-	if (isset($config["sortStyle"])) $sortStyle = $config["sortStyle"];  // "alpha" or "anniv"
-	else $sortStyle = "alpha";
-	if (isset($config["allowDownload"])) $allowDownload = $config["allowDownload"];	// "yes" or "no"
-	else $allowDownload = "yes";
+	if (!isset($DAYS_TO_SHOW_LIMIT)) $DAYS_TO_SHOW_LIMIT = $PGV_BLOCKS["print_upcoming_events"]["config"]["days"];
+	$DAYS_TO_SHOW_LIMIT = (int) $DAYS_TO_SHOW_LIMIT;
 
-	// Don't permit calendar download if not logged in
-	if (!PGV_USER_ID) {
-		$allowDownload = "no";
-	}
+	$daysprint = (int) $config["days"];
+	$filter = $config["filter"];				// "living" or "all"
+	$onlyBDM = $config["onlyBDM"];				// "yes" or "no"
+	$infoStyle = $config["infoStyle"];			// "style1" or "style2"
+	$sortStyle = $config["sortStyle"];			// "alpha" or "anniv"
+	$allowDownload = $config["allowDownload"];	// "yes" or "no"
 
+	if (!PGV_USER_ID) $allowDownload = "no";	// Don't permit calendar download if not logged in
 
 	if ($daysprint < 1) $daysprint = 1;
 	if ($daysprint > $DAYS_TO_SHOW_LIMIT) $daysprint = $DAYS_TO_SHOW_LIMIT;  // valid: 1 to limit
@@ -115,7 +106,7 @@ function print_upcoming_events($block=true, $config="", $side, $index) {
 		break;
 	}
 
-	if ($block) {
+	if ($limitHeight) {
 		require $THEME_DIR.'templates/block_small_temp.php';
 	} else {
 		require $THEME_DIR.'templates/block_main_temp.php';
@@ -124,14 +115,16 @@ function print_upcoming_events($block=true, $config="", $side, $index) {
 
 function print_upcoming_events_config($config) {
 	global $pgv_lang, $PGV_BLOCKS, $DAYS_TO_SHOW_LIMIT;
-	if (empty($config)) $config = $PGV_BLOCKS["print_upcoming_events"]["config"];
-	if (!isset($DAYS_TO_SHOW_LIMIT)) $DAYS_TO_SHOW_LIMIT = 30;
-	if (!isset($config["days"])) $config["days"] = 30;
-	if (!isset($config["filter"])) $config["filter"] = "all";
-	if (!isset($config["onlyBDM"])) $config["onlyBDM"] = "no";
-	if (!isset($config["infoStyle"])) $config["infoStyle"] = "style2";
-	if (!isset($config["sortStyle"])) $config["sortStyle"] = "alpha";
-	if (!isset($config["allowDownload"])) $config["allowDownload"] = "yes";
+
+	if (empty($config)) $config = $PGV_BLOCKS["print_upcoming_events"]["config"];	// This shouldn't happen: we already checked for that
+
+	// Any options that are missing from the configuration (shouldn't happen) take their cue from the defaults for this block
+	foreach ($PGV_BLOCKS["print_upcoming_events"]["config"] as $option => $setting) {
+		if (!isset($config[$option])) $config[$option] = $setting;
+	}
+
+	$config["cache"] = (int) $config["cache"];
+	$config["days"] = (int) $config["days"];
 
 	if ($config["days"] < 1) $config["days"] = 1;
 	if ($config["days"] > $DAYS_TO_SHOW_LIMIT) $config["days"] = $DAYS_TO_SHOW_LIMIT;  // valid: 1 to limit
@@ -143,7 +136,7 @@ function print_upcoming_events_config($config) {
 	print $pgv_lang["days_to_show"];
 	?>
 	</td><td class="optionbox">
-		<input type="text" name="days" size="2" value="<?php print $config["days"]; ?>" />
+		<input type="number" name="days" size="2" value="<?php print $config["days"]; ?>" min="1" max="<?php print $DAYS_TO_SHOW_LIMIT; ?>" />
 	</td></tr>
 
 	<tr><td class="descriptionbox wrap width33">
@@ -203,7 +196,7 @@ function print_upcoming_events_config($config) {
 			<option value="yes"<?php if ($config["allowDownload"]=="yes") print " selected=\"selected\"";?>><?php print $pgv_lang["yes"]; ?></option>
 			<option value="no"<?php if ($config["allowDownload"]=="no") print " selected=\"selected\"";?>><?php print $pgv_lang["no"]; ?></option>
 		</select>
-		<input type="hidden" name="cache" value="1" />
+		<input type="hidden" name="cache" value="<?php print $config["cache"]; ?>" />
 	</td></tr>
 	<?php
 }

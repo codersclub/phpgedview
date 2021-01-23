@@ -5,7 +5,7 @@
  * This block prints a form that will allow a user to login
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2020  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2021  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -37,6 +37,7 @@ $PGV_BLOCKS["print_login_block"]["name"]		= $pgv_lang["login_block"];
 $PGV_BLOCKS["print_login_block"]["descr"]		= "login_descr";
 $PGV_BLOCKS["print_login_block"]["type"]		= "both";		// On Portal page, this becomes a Logout block
 $PGV_BLOCKS["print_login_block"]["canconfig"]	= false;
+$PGV_BLOCKS["print_login_block"]["hidesearch"]	= true;		// should this block be hidden from search engines
 $PGV_BLOCKS["print_login_block"]["config"]		= array("cache"=>0);
 
 /**
@@ -44,11 +45,9 @@ $PGV_BLOCKS["print_login_block"]["config"]		= array("cache"=>0);
  *
  * Prints a block allowing the user to login to the site directly from the portal
  */
-function print_login_block($block = true, $config="", $side, $index) {
-	global $pgv_lang, $QUERY_STRING, $USE_REGISTRATION_MODULE, $LOGIN_URL, $SEARCH_SPIDER;
+function print_login_block($limitHeight, $config, $side, $index) {
+	global $pgv_lang, $QUERY_STRING, $USE_REGISTRATION_MODULE, $LOGIN_URL;
 	global $WEBMASTER_EMAIL, $SUPPORT_METHOD, $TEXT_DIRECTION;
-
-	if ($SEARCH_SPIDER) return;		// Don't show this block to search engines
 
 	if (PGV_USER_ID) {
 		$id="logout_block";
@@ -155,10 +154,14 @@ function print_login_block($block = true, $config="", $side, $index) {
 	}
 
 	global $THEME_DIR;
-	if ($block) {
+	if ($limitHeight) {
 		require $THEME_DIR.'templates/block_small_temp.php';
 	} else {
 		require $THEME_DIR.'templates/block_main_temp.php';
 	}
+}
+
+function print_login_block_config($config) {
+	// Nothing to do here -- should never be called
 }
 ?>

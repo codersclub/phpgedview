@@ -5,7 +5,7 @@
  * This block allows users to have their own blog
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2016  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2021  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -33,17 +33,18 @@ if (!defined('PGV_PHPGEDVIEW')) {
 
 define('PGV_USER_BLOG_PHP', '');
 
-$PGV_BLOCKS["print_user_news"]["name"]		= $pgv_lang["user_news_block"];
-$PGV_BLOCKS["print_user_news"]["descr"]		= "user_news_descr";
-$PGV_BLOCKS["print_user_news"]["type"]		= "user";
-$PGV_BLOCKS["print_user_news"]["canconfig"]	= false;
-$PGV_BLOCKS["print_user_news"]["config"]	= array("cache"=>0);
+$PGV_BLOCKS["print_user_news"]["name"]			= $pgv_lang["user_news_block"];
+$PGV_BLOCKS["print_user_news"]["descr"]			= "user_news_descr";
+$PGV_BLOCKS["print_user_news"]["type"]			= "user";	// Show only on the MyGedView page
+$PGV_BLOCKS["print_user_news"]["canconfig"]		= false;
+$PGV_BLOCKS["print_user_news"]["hidesearch"]	= true;		// should this block be hidden from search engines
+$PGV_BLOCKS["print_user_news"]["config"]		= array("cache"=>0);
 
 /**
  * Prints a user news/journal
  *
  */
-function print_user_news($block=true, $config="", $side, $index) {
+function print_user_news($limitHeight, $config, $side, $index) {
 	global $pgv_lang, $PGV_IMAGE_DIR, $PGV_IMAGES, $TEXT_DIRECTION, $ctype;
 
 	$usernews = getUserNews(PGV_USER_ID);
@@ -95,10 +96,14 @@ function print_user_news($block=true, $config="", $side, $index) {
 	}
 
 	global $THEME_DIR;
-	if ($block) {
+	if ($limitHeight) {
 		require $THEME_DIR.'templates/block_small_temp.php';
 	} else {
 		require $THEME_DIR.'templates/block_main_temp.php';
 	}
+}
+
+function print_user_news_config($config) {
+	// Nothing to do here -- should never be called
 }
 ?>

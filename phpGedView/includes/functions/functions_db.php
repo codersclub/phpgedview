@@ -138,7 +138,7 @@ function db_collation_alternatives($letter) {
 		}
 	}
 
-	// Non UTF8 aware databases need to be told that "e-ecute" is the same as "e"....
+	// Non UTF8 aware databases need to be told that "eacute" is the same as "e"....
 	if (!$DB_UTF8_COLLATION) {
 		foreach (str_split($UCDiacritStrip) as $n=>$char) {
 			if ($char==$letter) {
@@ -541,22 +541,24 @@ function get_indilist_indis($surn='', $salpha='', $galpha='', $marnm=false, $fam
 	return $list;
 }
 
-////////////////////////////////////////////////////////////////////////////////
-// Get a list of families for famlist.php
-// $surn - if set, only fetch people with this surname
-// $salpha - if set, only fetch surnames starting with this letter
-// $galpha - if set, only fetch given names starting with this letter
-// $marnm - if set, include married names
-// $ged_id - if set, only fetch individuals from this gedcom
-//
-// All parameters must be in upper case.  We search against a database column
-// that contains uppercase values. This will allow non utf8-aware database
-// to match diacritics.
-//
-// To search for unknown names, use $surn="@N.N.", $salpha="@" or $galpha="@"
-// To search for names with no surnames, use $salpha=","
-////////////////////////////////////////////////////////////////////////////////
-function get_famlist_fams($surn='', $salpha='', $galpha='', $marnm, $ged_id=null) {
+/**
+* Get a list of families for famlist.php
+*
+* All parameters must be in upper case.  We search against a database column
+* that contains uppercase values. This will allow non utf8-aware database
+* to match diacritics.
+*
+* To search for unknown names, use $surn="@N.N.", $salpha="@" or $galpha="@"
+* To search for names with no surnames, use $salpha=","
+*
+* @param string $surn="" - if set, only fetch people with this surname
+* @param string $salpha="" - if set, only fetch surnames starting with this letter
+* @param string $galpha="" - if set, only fetch given names starting with this letter
+* @param $marnm - if set, include married names
+* @param $ged_id=null - if set, only fetch individuals from this gedcom
+*
+*/
+function get_famlist_fams($surn, $salpha, $galpha, $marnm, $ged_id) {
 	global $TBLPREFIX;
 
 	$list=array();

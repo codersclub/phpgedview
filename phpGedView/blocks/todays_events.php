@@ -5,7 +5,7 @@
  * This block will print a list of today's events
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2017  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2021  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -35,12 +35,12 @@ define('PGV_TODAYS_EVENTS_PHP', '');
 
 require_once PGV_ROOT.'includes/functions/functions_print_lists.php';
 
-$PGV_BLOCKS["print_todays_events"]["name"]		= $pgv_lang["todays_events_block"];
-$PGV_BLOCKS["print_todays_events"]["descr"]		= "todays_events_descr";
-$PGV_BLOCKS["print_todays_events"]["infoStyle"]	= "style2";
-$PGV_BLOCKS["print_todays_events"]["sortStyle"]	= "alpha";
-$PGV_BLOCKS["print_todays_events"]["canconfig"]	= true;
-$PGV_BLOCKS["print_todays_events"]["config"]	= array(
+$PGV_BLOCKS["print_todays_events"]["name"]			= $pgv_lang["todays_events_block"];
+$PGV_BLOCKS["print_todays_events"]["descr"]			= "todays_events_descr";
+$PGV_BLOCKS["print_todays_events"]["type"]    		= "both";	// Allow on both the Welcome and the MyGedView pages
+$PGV_BLOCKS["print_todays_events"]["canconfig"]		= true;
+$PGV_BLOCKS["print_todays_events"]["hidesearch"]	= false;	// should this block be hidden from search engines
+$PGV_BLOCKS["print_todays_events"]["config"]		= array(
 	"cache"=>1,
 	"filter"=>"all",
 	"onlyBDM"=>"no",
@@ -51,25 +51,18 @@ $PGV_BLOCKS["print_todays_events"]["config"]	= array(
 
 //-- today's events block
 //-- this block prints a list of today's upcoming events of living people in your gedcom
-function print_todays_events($block=true, $config="", $side, $index) {
+function print_todays_events($limitHeight, $config, $side, $index) {
 	global $pgv_lang, $SHOW_ID_NUMBERS, $ctype, $TEXT_DIRECTION;
 	global $PGV_IMAGE_DIR, $PGV_IMAGES, $PGV_BLOCKS, $THEME_DIR;
 
-	$block = true;		// Always restrict this block's height
+	$limitHeight = true;		// Always restrict this block's height
+	$todayjd = client_jd();
 
-	$todayjd=client_jd();
-
-	if (empty($config)) $config = $PGV_BLOCKS["print_todays_events"]["config"];
-	if (isset($config["filter"])) $filter = $config["filter"];  // "living" or "all"
-	else $filter = "all";
-	if (isset($config["onlyBDM"])) $onlyBDM = $config["onlyBDM"];  // "yes" or "no"
-	else $onlyBDM = "no";
-	if (isset($config["infoStyle"])) $infoStyle = $config["infoStyle"];  // "style1" or "style2"
-	else $infoStyle = "style2";
-	if (isset($config["sortStyle"])) $sortStyle = $config["sortStyle"];  // "alpha" or "anniv"
-	else $sortStyle = "alpha";
-	if (isset($config["allowDownload"])) $allowDownload = $config["allowDownload"];	// "yes" or "no"
-	else $allowDownload = "yes";
+	$filter = $config["filter"];					// "living" or "all"
+	$onlyBDM = $config["onlyBDM"];					// "yes" or "no"
+	$infoStyle = $config["infoStyle"];				// "style1" or "style2"
+	$sortStyle = $config["sortStyle"];				// "alpha" or "anniv"
+	$allowDownload = $config["allowDownload"];		// "yes" or "no"
 
 	// Don't permit calendar download if not logged in
 	if (!PGV_USER_ID) $allowDownload = "no";
@@ -104,7 +97,7 @@ function print_todays_events($block=true, $config="", $side, $index) {
 		break;
 	}
 
-	if ($block) {
+	if ($limitHeight) {
 		require $THEME_DIR.'templates/block_small_temp.php';
 	} else {
 		require $THEME_DIR.'templates/block_main_temp.php';
@@ -113,12 +106,6 @@ function print_todays_events($block=true, $config="", $side, $index) {
 
 function print_todays_events_config($config) {
 	global $pgv_lang, $PGV_BLOCKS;
-	if (empty($config)) $config = $PGV_BLOCKS["print_todays_events"]["config"];
-	if (!isset($config["filter"])) $config["filter"] = "all";
-	if (!isset($config["onlyBDM"])) $config["onlyBDM"] = "no";
-	if (!isset($config["infoStyle"])) $config["infoStyle"] = "style2";
-	if (!isset($config["sortStyle"])) $config["sortStyle"] = "alpha";
-	if (!isset($config["allowDownload"])) $config["allowDownload"] = "yes";
 
 	?>
 	<tr><td class="descriptionbox wrap width33">
@@ -178,7 +165,7 @@ function print_todays_events_config($config) {
 			<option value="yes"<?php if ($config["allowDownload"]=="yes") print " selected=\"selected\"";?>><?php print $pgv_lang["yes"]; ?></option>
 			<option value="no"<?php if ($config["allowDownload"]=="no") print " selected=\"selected\"";?>><?php print $pgv_lang["no"]; ?></option>
 		</select>
-		<input type="hidden" name="cache" value="1" />
+		<input type="hidden" name="cache" value="<?php print $config["cache"]; ?>" />
 	</td></tr>
   <?php
 }

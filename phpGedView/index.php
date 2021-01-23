@@ -4,7 +4,7 @@
  * to keep bookmarks, see a list of upcoming events, etc.
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2018  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2021  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -55,54 +55,70 @@ $news_id = safe_GET("news_id");
 /**
  * Block definition array
  *
- * The following block definition array defines the
- * blocks that can be used to customize the portals
- * their names and the function to call them
- * "name" is the name of the block in the lists
- * "descr" is the name of a $pgv_lang variable to describe this block
- * - eg: "whatever" here means that $pgv_lang["whatever"] describes this block
- * "type" the options are "user" or "gedcom" or undefined
- * - The type determines which lists the block is available in.
- * - Leaving the type undefined allows it to be on both the user and gedcom portal
- * @global $PGV_BLOCKS
+ * Each entry in this array consists of the following:
+ *
+ * $PGV_BLOCKS["function"]["name"]			displayable name of the block (text)
+ * $PGV_BLOCKS["function"]["descr"]			name of the $pgv_lang variable where this block's description can be found
+ * $PGV_BLOCKS["function"]["type"]			block type
+ *											"gedcom":	Show only on main Welcome page
+ *											"user":		Show only on user's MyGedView page
+ *											"both":		Show on main Welcome page and on user's MyGedView page
+ *											"neither":	Show on neither the Welcome page nor the MyGedView page (used only by getting_started block)
+ * $PGV_BLOCKS["function"]["canconfig"]		can this block's default configuration be changed?
+ * $PGV_BLOCKS["function"]["hidesearch"]	should this block be hidden from search engines?
+ * $PGV_BLOCKS["function"]["config"]		array of this block's default configuration options
+ *
+ * "function", above, is the name of the function that produces the block's contents.  It is also the name of the
+ * function that is used to configure the block.  This latter function name is derived from the "function" by
+ * appending "_config".
+ *
+ * For instance, if "function" is "print_charts_block", the function for printing the main contents of the Charts block
+ * is function print_charts_block() and the function for configuring that block is function print_charts_block_config().
+ *
+ * Note:  The "function" mentioned here is not actually used to manipulate the various blocks.  Instead, that task is done
+ * by a different list of blocks described below.
  */
 
 /**
- * Load List of Blocks in blocks directory (unchanged)
+ * Find all the blocks in the /blocks directory and populate the $PGV_BLOCKS array.  This also defines the two functions
+ * that are used to produce the block's contents and to set the block's working configuration.
+ *
+ * Note: This exact code also appears in index_edit.php.  Do NOT put this code into a function.
  */
+
 $PGV_BLOCKS = array();
 $d = dir("blocks");
-while (false !== ($entry = $d->read())) {
-	if (($entry!=".") && ($entry!="..") && ($entry!="CVS") && (preg_match("/\.php$/", $entry)>0)) {
+while (FALSE !== ($entry = $d->read())) {
+	if (preg_match('~\.php$~i', $entry)) {
 		require_once PGV_ROOT.'blocks/'.$entry;
 	}
 }
 $d->close();
 /**
- * End loading list of Blocks in blocks directory
+ * End loading list of Blocks in the main /blocks directory
  *
- * Load List of Blocks in modules/XX/blocks directories
+ * As above, for each /modules/XX/blocks directory
  */
 if (file_exists(PGV_ROOT.'modules')) {
-	$dir=dir(PGV_ROOT.'modules');
-	while (false !== ($entry = $dir->read())) {
-		if (!strstr($entry,".") && ($entry!="..") && ($entry!="CVS")&& !strstr($entry, "svn")) {
-			$path = PGV_ROOT.'modules/' . $entry.'/blocks';
+	$dir = dir(PGV_ROOT.'modules');
+	while (FALSE !== ($entry = $dir->read())) {
+		if ((strstr($entry, ".") === FALSE) && ($entry!="CVS") && (stristr($entry, "svn") === FALSE)) {		// Look for plain names only
+			$path = "{PGV_ROOT}modules/{$entry}/blocks";
 			if (is_readable($path)) {
-				$d=dir($path);
-				while (false !== ($entry = $d->read())) {
-					if (($entry!=".") && ($entry!="..") && ($entry!="CVS")&& !strstr($entry, "svn")&&(preg_match("/\.php$/", $entry)>0)) {
-						$p=$path.'/'.$entry;
-						require_once $p;
+				$d = dir($path);
+				while (FALSE !== ($entry = $d->read())) {
+					if (preg_match('~\.php$~i', $entry)) {
+						require_once $path.'/'.$entry;
 					}
 				}
+				$d->close();
 			}
 		}
 	}
 }
 /**
- * End loading list of Blocks in modules/XX/blocks directories
-*/
+ * End loading list of Blocks in all /modules/XX/blocks directories
+ */
 
 $time = client_time();
 
@@ -193,52 +209,59 @@ if (PGV_USER_ID) {
 	}
 }
 
-//-- get the blocks list
+/*-- get the blocks list
+ * The blocks list consists of two arrays of block names and their current configurations.
+ *
+ * The two arrays define which blocks should be printed on the left (index: "main") or the
+ * right (index: "right") of the Welcome and the Portal pages.
+ *
+ * Within each list, the order of the entries defines the order in which the blocks should
+ * appear on the left or the right side of the page.  Any given block can appear more than 
+ * once, and it can also appear on both sides of the page. 
+ */
 if ($ctype=="user") {
 	$ublocks = getBlocks(PGV_USER_NAME);
 	if ((count($ublocks["main"])==0) && (count($ublocks["right"])==0)) {
-		$ublocks["main"][] = array("print_todays_events", "");
-		$ublocks["main"][] = array("print_user_messages", "");
-		$ublocks["main"][] = array("print_user_favorites", "");
+		$ublocks["main"] = array();
+		$ublocks["main"][] = array("print_todays_events", $PGV_BLOCKS["print_todays_events"]["config"]);
+		$ublocks["main"][] = array("print_user_messages", $PGV_BLOCKS["print_user_messages"]["config"]);
+		$ublocks["main"][] = array("print_user_favorites", $PGV_BLOCKS["print_user_favorites"]["config"]);
 
-		$ublocks["right"][] = array("print_welcome_block", "");
-		$ublocks["right"][] = array("print_random_media", "");
-		$ublocks["right"][] = array("print_upcoming_events", "");
-		$ublocks["right"][] = array("print_logged_in_users", "");
+		$ublocks["right"] = array();
+		$ublocks["right"][] = array("print_welcome_block", $PGV_BLOCKS["print_welcome_block"]["config"]);
+		$ublocks["right"][] = array("print_random_media", $PGV_BLOCKS["print_random_media"]["config"]);
+		$ublocks["right"][] = array("print_upcoming_events", $PGV_BLOCKS["print_upcoming_events"]["config"]);
+		$ublocks["right"][] = array("print_logged_in_users", $PGV_BLOCKS["print_logged_in_users"]["config"]);
 	}
 }
 else {
 	$ublocks = getBlocks($GEDCOM);
 	if ((count($ublocks["main"])==0) && (count($ublocks["right"])==0)) {
-		$ublocks["main"][] = array("print_block_cookie_policy", "");
-		$ublocks["main"][] = array("print_gedcom_stats", "");
-		$ublocks["main"][] = array("print_gedcom_news", "");
-		$ublocks["main"][] = array("print_gedcom_favorites", "");
-		$ublocks["main"][] = array("review_changes_block", "");
+		$ublocks["main"] = array();
+		$ublocks["main"][] = array("print_block_cookie_policy", $PGV_BLOCKS["print_block_cookie_policy"]["config"]);
+		$ublocks["main"][] = array("print_gedcom_stats", $PGV_BLOCKS["print_gedcom_stats"]["config"]);
+		$ublocks["main"][] = array("print_gedcom_news", $PGV_BLOCKS["print_welcome_block"]["config"]);
+		$ublocks["main"][] = array("print_gedcom_favorites", $PGV_BLOCKS["print_gedcom_news"]["config"]);
+		$ublocks["main"][] = array("review_changes_block", $PGV_BLOCKS["review_changes_block"]["config"]);
 
-		$ublocks["right"][] = array("print_gedcom_block", "");
-		$ublocks["right"][] = array("print_random_media", "");
-		$ublocks["right"][] = array("print_todays_events", "");
-		$ublocks["right"][] = array("print_logged_in_users", "");
+		$ublocks["right"] = array();
+		$ublocks["right"][] = array("print_gedcom_block", $PGV_BLOCKS["print_gedcom_block"]["config"]);
+		$ublocks["right"][] = array("print_random_media", $PGV_BLOCKS["print_random_media"]["config"]);
+		$ublocks["right"][] = array("print_todays_events", $PGV_BLOCKS["print_todays_events"]["config"]);
+		$ublocks["right"][] = array("print_logged_in_users", $PGV_BLOCKS["print_logged_in_users"]["config"]);
 	}
 }
 
 //-- Set some behaviour controls that depend on which blocks are selected
-$welcome_block_present = false;
-$gedcom_block_present = false;
-$top10_block_present = false;
-$login_block_present = false;
-foreach($ublocks["right"] as $block) {
-	if ($block[0]=="print_welcome_block") $welcome_block_present = true;
-	if ($block[0]=="print_gedcom_block") $gedcom_block_present = true;
-	if ($block[0]=="print_block_name_top10") $top10_block_present = true;
-	if ($block[0]=="print_login_block") $login_block_present = true;
-}
+$welcome_block_present = false;		// If this block is present, don't show "configure" link at bottom of Welcome page
+$gedcom_block_present = false;		// If this block is present, don't show "configure" link at bottom of MyGedView page
 foreach($ublocks["main"] as $block) {
 	if ($block[0]=="print_welcome_block") $welcome_block_present = true;
 	if ($block[0]=="print_gedcom_block") $gedcom_block_present = true;
-	if ($block[0]=="print_block_name_top10") $top10_block_present = true;
-	if ($block[0]=="print_login_block") $login_block_present = true;
+}
+foreach($ublocks["right"] as $block) {
+	if ($block[0]=="print_welcome_block") $welcome_block_present = true;
+	if ($block[0]=="print_gedcom_block") $gedcom_block_present = true;
 }
 
 //-- clear the GEDCOM cache files
@@ -273,17 +296,21 @@ if ($action=="ajax") {
 		if (isset($ublocks[$side][$_REQUEST['bindex']])) {
 			$blockval = $ublocks[$side][$_REQUEST['bindex']];
 			if ($blockval[0]==$block && array_key_exists($blockval[0], $PGV_BLOCKS)) {
-				if ($side=="main") {
-					$param1 = "false";
-				} else {
-					$param1 = "true";
-				}
-				if (array_key_exists($blockval[0], $PGV_BLOCKS) && !loadCachedBlock($blockval, $side.$_REQUEST['bindex'])) {
-					ob_start();
-					eval($blockval[0]."($param1, \$blockval[1], \"$side\", ".$_REQUEST['bindex'].");");
-					$content = ob_get_contents();
-					saveCachedBlock($blockval, $side.$_REQUEST['bindex'], $content);
-					ob_end_flush();
+				if ($side=="main") $limitHeight = "false";
+				else $limitHeight = "true";
+				if (array_key_exists($blockval[0], $PGV_BLOCKS)) {
+					if (!($SEARCH_SPIDER && $PGV_BLOCKS[$blockval[0]]['hidesearch'])) {
+						// We're not dealing with a search engine, or block can be shown to search engines
+						if (!loadCachedBlock($blockval, $side.$_REQUEST['bindex'])) {	// Try to load this block from cache
+							// This block was not found in the cache
+							$blockval[1] = validateConfig($blockval[0], $blockval[1]);		// Make SURE that this block's configuration is OK
+							ob_start();
+							eval($blockval[0]."($limitHeight, \$blockval[1], \"$side\", ".$_REQUEST['bindex'].");");
+							$content = ob_get_contents();
+							saveCachedBlock($blockval, $side.$_REQUEST['bindex'], $content);
+							ob_end_flush();
+						}
+					}
 				}
 				if (PGV_DEBUG) {
 					echo execution_stats();
@@ -299,12 +326,20 @@ if ($action=="ajax") {
 	//-- not sure which block to call so call the first one we find
 	foreach($ublocks["main"] as $bindex=>$blockval) {
 		if ($blockval[0]==$block && array_key_exists($blockval[0], $PGV_BLOCKS)) {
-			eval($blockval[0]."(false, \$blockval[1], \"main\", $bindex);");
+			if (!($SEARCH_SPIDER && $PGV_BLOCKS[$blockval[0]]['hidesearch'])) {
+				// We're not dealing with a search engine, or block can be shown to search engines
+				$blockval[1] = validateConfig($blockval[0], $blockval[1]);		// Make SURE that this block's configuration is OK
+				eval($blockval[0]."(false, \$blockval[1], \"main\", $bindex);");
+			}
 		}
 	}
 	foreach($ublocks["right"] as $bindex=>$blockval) {
 		if ($blockval[0]==$block && array_key_exists($blockval[0], $PGV_BLOCKS)) {
-			eval($blockval[0]."(true, \$blockval[1], \"right\", $bindex);");
+			if (!($SEARCH_SPIDER && $PGV_BLOCKS[$blockval[0]]['hidesearch'])) {
+				// We're not dealing with a search engine, or block can be shown to search engines
+				$blockval[1] = validateConfig($blockval[0], $blockval[1]);		// Make SURE that this block's configuration is OK
+				eval($blockval[0]."(true, \$blockval[1], \"right\", $bindex);");
+			}
 		}
 	}
 	exit;
@@ -379,33 +414,35 @@ if ($ctype=="user") {
 	print "<br /><br /></div>";
 }
 if (count($ublocks["main"])!=0) {
-	if (count($ublocks["right"])!=0) {
-		print "<div id=\"index_main_blocks\">";
-	} else {
-		print "<div id=\"index_full_blocks\">";
-	}
+	if (count($ublocks["right"])!=0) print "<div id=\"index_main_blocks\">";
+	else print "<div id=\"index_full_blocks\">";
 	echo '<script src="js/jquery/jquery.min.js" type="text/javascript"></script>';
 	echo '<script type="text/javascript">jQuery.noConflict();</script>';
 	foreach($ublocks["main"] as $bindex=>$block) {
-		if (PGV_DEBUG) {
-			echo execution_stats();
-		}
-		if (array_key_exists($block[0], $PGV_BLOCKS) && !loadCachedBlock($block, "main".$bindex)) {
-			$url="index.php?action=ajax&block={$block[0]}&side=main&bindex={$bindex}&ctype={$ctype}";
-			if ($SEARCH_SPIDER || PGV_DEBUG) {
-				// Search spiders get the blocks directly
-				ob_start();
-				eval($block[0]."(false, \$block[1], \"main\", $bindex);");
-				$content = ob_get_contents();
-				$temp = $SEARCH_SPIDER;
-				$SEARCH_SPIDER = false;
-				saveCachedBlock($block, "main".$bindex, $content);
-				$SEARCH_SPIDER = $temp;
-				ob_end_flush();
-			} else {
-				// Interactive users get the blocks via ajax
-				echo '<div id="block_main_', $bindex, '"><img src="images/loading.gif" alt="', htmlspecialchars($pgv_lang["loading"]),  '"/></div>';
-				echo PGV_JS_START, "jQuery('#block_main_{$bindex}').load('{$url}');", PGV_JS_END;
+		if (PGV_DEBUG) echo execution_stats();
+		if (array_key_exists($block[0], $PGV_BLOCKS)) {
+			if (!($SEARCH_SPIDER && $PGV_BLOCKS[$block[0]]['hidesearch'])) {
+				// We're not dealing with a search engine, or block can be shown to search engines
+				if (!loadCachedBlock($block, "main".$bindex)) {		// Try to load this block from cache
+					// This block was not found in the cache
+					$url="index.php?action=ajax&block={$block[0]}&side=main&bindex={$bindex}&ctype={$ctype}";
+					if ($SEARCH_SPIDER || PGV_DEBUG) {
+						// Search spiders get the blocks directly
+						$block[1] = validateConfig($block[0], $block[1]);		// Make SURE that this block's configuration is OK
+						ob_start();
+						eval($block[0]."(false, \$block[1], \"main\", $bindex);");
+						$content = ob_get_contents();
+						$temp = $SEARCH_SPIDER;
+						$SEARCH_SPIDER = false;
+						saveCachedBlock($block, "main".$bindex, $content);
+						$SEARCH_SPIDER = $temp;
+						ob_end_flush();
+					} else {
+						// Interactive users get the blocks via ajax
+						echo '<div id="block_main_', $bindex, '"><img src="images/loading.gif" alt="', htmlspecialchars($pgv_lang["loading"]),  '"/></div>';
+						echo PGV_JS_START, "jQuery('#block_main_{$bindex}').load('{$url}');", PGV_JS_END;
+					}
+				}
 			}
 		}
 	}
@@ -415,28 +452,30 @@ if (count($ublocks["main"])!=0) {
 
 //-- start of blocks section
 if (count($ublocks["right"])!=0) {
-	if (count($ublocks["main"])!=0) {
-		print "<div id=\"index_small_blocks\">";
-	} else {
-		print "<div id=\"index_full_blocks\">";
-	}
+	if (count($ublocks["main"])!=0) print "<div id=\"index_small_blocks\">";
+	else print "<div id=\"index_full_blocks\">";
 	foreach($ublocks["right"] as $bindex=>$block) {
-		if (PGV_DEBUG) {
-			echo execution_stats();
-		}
-		if (array_key_exists($block[0], $PGV_BLOCKS) && !loadCachedBlock($block, "right".$bindex)) {
-			$url="index.php?action=ajax&block={$block[0]}&side=right&bindex={$bindex}&ctype={$ctype}";
-			if ($SEARCH_SPIDER || PGV_DEBUG) {
-				// Search spiders get the blocks directly
-				ob_start();
-				eval($block[0]."(true, \$block[1], \"right\", $bindex);");
-				$content = ob_get_contents();
-				saveCachedBlock($block, "right".$bindex, $content);
-				ob_end_flush();
-			} else {
-				// Interactive users get the blocks via ajax
-				echo '<div id="block_right_', $bindex, '"><img src="images/loading.gif" alt="', htmlspecialchars($pgv_lang["loading"]),  '"/></div>';
-				echo PGV_JS_START, "jQuery('#block_right_{$bindex}').load('{$url}');", PGV_JS_END;
+		if (PGV_DEBUG) echo execution_stats();
+		if (array_key_exists($block[0], $PGV_BLOCKS)) {
+			if (!($SEARCH_SPIDER && $PGV_BLOCKS[$block[0]]['hidesearch'])) {
+				// We're not dealing with a search engine, or block can be shown to search engines
+				if (!loadCachedBlock($block, "right".$bindex)) {	// Try to load this block from cache
+					// This block was not found in the cache
+					$url="index.php?action=ajax&block={$block[0]}&side=right&bindex={$bindex}&ctype={$ctype}";
+					if ($SEARCH_SPIDER || PGV_DEBUG) {
+						// Search spiders get the blocks directly
+						$block[1] = validateConfig($block[0], $block[1]);		// Make SURE that this block's configuration is OK
+						ob_start();
+						eval($block[0]."(true, \$block[1], \"right\", $bindex);");
+						$content = ob_get_contents();
+						saveCachedBlock($block, "right".$bindex, $content);
+						ob_end_flush();
+					} else {
+						// Interactive users get the blocks via ajax
+						echo '<div id="block_right_', $bindex, '"><img src="images/loading.gif" alt="', htmlspecialchars($pgv_lang["loading"]),  '"/></div>';
+						echo PGV_JS_START, "jQuery('#block_right_{$bindex}').load('{$url}');", PGV_JS_END;
+					}
+				}
 			}
 		}
 	}
@@ -446,13 +485,13 @@ if (count($ublocks["right"])!=0) {
 
 print "</td></tr></table><br />";		// Close off that table
 
-if ($ctype=="user" && !$welcome_block_present) {
+if ($ctype=="user" && !$welcome_block_present && !$SEARCH_SPIDER) {
 	print "<div align=\"center\" style=\"width: 99%;\">";
 	print_help_link("mygedview_customize_help", "qm");
 	print "<a href=\"javascript:;\" onclick=\"window.open('index_edit.php?name=".PGV_USER_NAME."&ctype=user', '_blank', 'top=50,left=10,width=600,height=500,scrollbars=1,resizable=1');\">".$pgv_lang["customize_page"]."</a>";
 	print "</div>";
 }
-if ($ctype=="gedcom" && !$gedcom_block_present) {
+if ($ctype=="gedcom" && !$gedcom_block_present && !$SEARCH_SPIDER) {
 	if (PGV_USER_IS_ADMIN) {
 		print "<div align=\"center\" style=\"width: 99%;\">";
 		print "<a href=\"javascript:;\" onclick=\"window.open('".encode_url("index_edit.php?name={$GEDCOM}&ctype=gedcom", false)."', '_blank', 'top=50,left=10,width=600,height=500,scrollbars=1,resizable=1');\">".$pgv_lang["customize_gedcom_page"]."</a>";

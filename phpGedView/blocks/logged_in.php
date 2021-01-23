@@ -5,7 +5,7 @@
  * This block will print a list of the users who are currently logged in
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2018  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2021  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -35,7 +35,9 @@ define('PGV_LOGGED_IN_PHP', '');
 
 $PGV_BLOCKS["print_logged_in_users"]["name"]		= $pgv_lang["logged_in_users_block"];
 $PGV_BLOCKS["print_logged_in_users"]["descr"]		= "logged_in_users_descr";
+$PGV_BLOCKS["print_logged_in_users"]["type"]    	= "both";	// Allow on both the Welcome and the MyGedView pages
 $PGV_BLOCKS["print_logged_in_users"]["canconfig"]	= false;
+$PGV_BLOCKS["print_logged_in_users"]["hidesearch"]	= true;	// should this block be hidden from search engines
 $PGV_BLOCKS["print_logged_in_users"]["config"]		= array("cache"=>0);
 
 /**
@@ -48,12 +50,10 @@ $PGV_BLOCKS["print_logged_in_users"]["config"]		= array("cache"=>0);
  *
  * prints a list of other users who are logged in
  */
-function print_logged_in_users($block = true, $config = "", $side, $index) {
-	global $pgv_lang, $PGV_SESSION_TIME, $TEXT_DIRECTION, $SEARCH_SPIDER;
+function print_logged_in_users($limitHeight, $config, $side, $index) {
+	global $pgv_lang, $PGV_SESSION_TIME, $TEXT_DIRECTION;
 
-	if ($SEARCH_SPIDER) return;		// Don't show this block to search engines
-
-	$block = true; // Always restrict this block's height
+	$limitHeight = true; // Always restrict this block's height
 
 	// Log out inactive users
 	foreach (get_idle_users(time()-$PGV_SESSION_TIME) as $user_id=>$user_name) {
@@ -109,10 +109,14 @@ function print_logged_in_users($block = true, $config = "", $side, $index) {
 	$content .= "</table>";
 
 	global $THEME_DIR;
-	if ($block) {
+	if ($limitHeight) {
 		require $THEME_DIR.'templates/block_small_temp.php';
 	} else {
 		require $THEME_DIR.'templates/block_main_temp.php';
 	}
+}
+
+function print_logged_in_users_config($config) {
+	// Nothing to do here -- should never be called
 }
 ?>
