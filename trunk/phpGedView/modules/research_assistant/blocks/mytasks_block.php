@@ -1,30 +1,30 @@
 <?php
 /**
-* My Tasks Block
-*
-* This block will print a users tasks
-*
-* phpGedView: Genealogy Viewer
-* Copyright (C) 2002 to 2009  PGV Development Team.  All rights reserved.
-*
-* This program is free software; you can redistribute it and/or modify
-* it under the terms of the GNU General Public License as published by
-* the Free Software Foundation; either version 2 of the License, or
-* (at your option) any later version.
-*
-* This program is distributed in the hope that it will be useful,
-* but WITHOUT ANY WARRANTY; without even the implied warranty of
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-* GNU General Public License for more details.
-*
-* You should have received a copy of the GNU General Public License
-* along with this program; if not, write to the Free Software
-* Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-*
-* @version $Id$
-* @package PhpGedView
-* @subpackage Blocks
-*/
+ * My Tasks Block
+ *
+ * This block will print a users tasks
+ *
+ * phpGedView: Genealogy Viewer
+ * Copyright (C) 2002 to 2021  PGV Development Team.  All rights reserved.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ *
+ * @version $Id$
+ * @package PhpGedView
+ * @subpackage Blocks
+ */
 
 if (!defined('PGV_PHPGEDVIEW')) {
 	header('HTTP/1.0 403 Forbidden');
@@ -37,25 +37,24 @@ if ($SHOW_RESEARCH_ASSISTANT>=PGV_USER_ACCESS_LEVEL) {
 
 	if (file_exists(PGV_ROOT.'modules/research_assistant/research_assistant.php')) require_once PGV_ROOT.'modules/research_assistant/research_assistant.php';
 
-	$PGV_BLOCKS["print_mytasks"]["name"] = $pgv_lang["mytasks_block"];
-	$PGV_BLOCKS["print_mytasks"]["descr"] = "mytasks_block_descr";
-	$PGV_BLOCKS["print_mytasks"]["canconfig"] = true;
-	$PGV_BLOCKS["print_mytasks"]['config'] = array(
+	$PGV_BLOCKS["print_mytasks"]["name"]		= $pgv_lang["mytasks_block"];
+	$PGV_BLOCKS["print_mytasks"]["descr"]		= "mytasks_block_descr";
+	$PGV_BLOCKS["print_mytasks"]["type"]    	= "both";	// Allow on both the Welcome and the MyGedView pages
+	$PGV_BLOCKS["print_mytasks"]["canconfig"]	= true;
+	$PGV_BLOCKS["print_mytasks"]["hidesearch"]	= true;		// should this block be hidden from search engines
+	$PGV_BLOCKS["print_mytasks"]['config']		= array(
 		"cache"=>0,
 		"unassigned"=>"no",
-		"completed" => "no"
+		"completed"=>"no"
 		);
 
 	//-- print user messages
-	function print_mytasks($block=true, $config="", $side, $index) {
+	function print_mytasks($limitHeight, $config, $side, $index) {
 		global $pgv_lang, $PGV_IMAGE_DIR, $TEXT_DIRECTION, $TIME_FORMAT, $PGV_STORE_MESSAGES, $PGV_IMAGES;
 		global $TBLPREFIX, $PGV_BLOCKS, $ctype, $GEDCOM;
 
-		if (empty($config)) $config = $PGV_BLOCKS["print_mytasks"]["config"];
-		if (isset($config["unassigned"])) $unassigned = $config["unassigned"];  // "yes" or "no"
-		else $filter = "no";
-		if (isset($config["completed"])) $completed = $config["completed"];  // "yes" or "no"
-		else $completed = "no";
+		$unassigned = $config["unassigned"];	// "yes" or "no"
+		$completed = $config["completed"];		// "yes" or "no"
 
 		$mod = new ra_functions();
 		$mod->init();
@@ -66,7 +65,7 @@ if ($SHOW_RESEARCH_ASSISTANT>=PGV_USER_ACCESS_LEVEL) {
 			PGV_DB::prepare("SELECT * FROM {$TBLPREFIX}tasks WHERE t_username=? AND t_enddate IS NULL")
 			->execute(array(PGV_USER_NAME))
 			->fetchAll();
-		
+
 		$i = 1;
 		foreach ($rows as $row) {
 			$tasktitle = '<a href="module.php?mod=research_assistant&amp;action=viewtask&amp;taskid='.$row->t_id.'">'.$row->t_title.'</a>';
@@ -85,7 +84,7 @@ if ($SHOW_RESEARCH_ASSISTANT>=PGV_USER_ACCESS_LEVEL) {
 				PGV_DB::prepare("SELECT * FROM {$TBLPREFIX}tasks WHERE t_username=? AND t_enddate IS NOT NULL")
 				->execute(array(PGV_USER_NAME))
 				->fetchAll();
-			
+
 			if (count($rows)>0) {
 				$i = 1;
 				$out .= "<b><p style='text-align: center;'>".$pgv_lang["completed"]."</p></b><br/><table class='list_table center'><tr><th></th><th class='descriptionbox'>".$pgv_lang["Task_Name"]."</th><th class='descriptionbox'>".$pgv_lang["Start_Date"]."</th><th class='descriptionbox'>".$pgv_lang["edit"]."</th></tr>";
@@ -158,29 +157,26 @@ if ($SHOW_RESEARCH_ASSISTANT>=PGV_USER_ACCESS_LEVEL) {
 
 	function print_mytasks_config($config) {
 		global $pgv_lang, $PGV_BLOCKS, $TEXT_DIRECTION;
-		if (empty($config)) $config = $PGV_BLOCKS["print_mytasks"]["config"];
-		if (!isset($config["unassigned"])) $config["unassigned"] = "no";
-		if (!isset($config["completed"])) $config["completed"] = "no";
 
-		print "<tr><td class=\"descriptionbox wrap width33\">".$pgv_lang["mytask_show_tasks"]."</td>";?>
+		print "<tr><td class=\"descriptionbox wrap width33\">".$pgv_lang["mytask_show_tasks"]."</td>"; ?>
 		<td class="optionbox">
 	    <select name="unassigned">
-	     <option value="no"<?php if ($config["unassigned"]=="no") print " selected=\"selected\"";?>><?php print $pgv_lang["no"]; ?></option>
-	     <option value="yes"<?php if ($config["unassigned"]=="yes") print " selected=\"selected\"";?>><?php print $pgv_lang["yes"]; ?></option>
+	     <option value="no"<?php if ($config["unassigned"]=="no") print " selected=\"selected\""; ?>><?php print $pgv_lang["no"]; ?></option>
+	     <option value="yes"<?php if ($config["unassigned"]=="yes") print " selected=\"selected\""; ?>><?php print $pgv_lang["yes"]; ?></option>
 	   </select>
 	   </td></tr>
 
 	   <?php
-	   print "<tr><td class=\"descriptionbox wrap width33\">".$pgv_lang["mytask_show_completed"]."</td>";?>
+	   print "<tr><td class=\"descriptionbox wrap width33\">".$pgv_lang["mytask_show_completed"]."</td>"; ?>
 	   <td class="optionbox">
 	   <select name="completed">
-	     <option value="no"<?php if ($config["completed"]=="no") print " selected=\"selected\"";?>><?php print $pgv_lang["no"]; ?></option>
-	     <option value="yes"<?php if ($config["completed"]=="yes") print " selected=\"selected\"";?>><?php print $pgv_lang["yes"]; ?></option>
+	     <option value="no"<?php if ($config["completed"]=="no") print " selected=\"selected\""; ?>><?php print $pgv_lang["no"]; ?></option>
+	     <option value="yes"<?php if ($config["completed"]=="yes") print " selected=\"selected\""; ?>><?php print $pgv_lang["yes"]; ?></option>
 	   </select>
 	   </td></tr>
 	  <?php
-		// Cache file life is not configurable by user:  we'll use "no cache" until we figure out what's right
-		print "<input type=\"hidden\" name=\"cache\" value=\"0\" />";
+		// Cache file life is not configurable by user:  we'll use this block's default until we figure out what's right
+		print "<input type='hidden' name='cache' value='{$config["cache"]}' />";
 	}
 }
 

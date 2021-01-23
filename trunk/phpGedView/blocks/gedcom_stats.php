@@ -5,7 +5,7 @@
  * This block prints statistical information for the currently active gedcom
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2018  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2021  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -37,10 +37,12 @@ define('PGV_GEDCOM_STATS_PHP', '');
 require_once PGV_ROOT.'includes/functions/functions_print_lists.php';
 require_once PGV_ROOT.'includes/classes/class_stats.php';
 
-$PGV_BLOCKS['print_gedcom_stats']['name']     =$pgv_lang['gedcom_stats_block'];
-$PGV_BLOCKS['print_gedcom_stats']['descr']    ='gedcom_stats_descr';
-$PGV_BLOCKS['print_gedcom_stats']['canconfig']=true;
-$PGV_BLOCKS['print_gedcom_stats']['config']   =array(
+$PGV_BLOCKS['print_gedcom_stats']['name']		= $pgv_lang['gedcom_stats_block'];
+$PGV_BLOCKS['print_gedcom_stats']['descr']		= 'gedcom_stats_descr';
+$PGV_BLOCKS['print_gedcom_stats']['type']    	= 'both';	// Allow on both the Welcome and the MyGedView pages
+$PGV_BLOCKS['print_gedcom_stats']['canconfig']	= true;
+$PGV_BLOCKS['print_gedcom_stats']['hidesearch']	= false;	// should this block be hidden from search engines
+$PGV_BLOCKS['print_gedcom_stats']['config']		= array(
 	'cache'               =>1,
 	'show_common_surnames'=>'yes',
 	'stat_indi'           =>'yes',
@@ -64,17 +66,10 @@ $PGV_BLOCKS['print_gedcom_stats']['config']   =array(
 
 //-- function to print the gedcom statistics block
 
-function print_gedcom_stats($block=true, $config='', $side, $index) {
+function print_gedcom_stats($limitHeight, $config, $side, $index) {
 	global $PGV_BLOCKS, $pgv_lang, $ALLOW_CHANGE_GEDCOM, $ctype, $COMMON_NAMES_THRESHOLD, $PGV_IMAGE_DIR, $PGV_IMAGES, $MULTI_MEDIA;
 	global $SEARCH_SPIDER;
 	global $top10_block_present;
-
-	if (empty($config)) $config = $PGV_BLOCKS['print_gedcom_stats']['config'];
-	if (!isset($config['stat_indi'])) $config = $PGV_BLOCKS['print_gedcom_stats']['config'];
-	if (!isset($config['stat_first_death'])) $config['stat_first_death'] = $PGV_BLOCKS['print_gedcom_stats']['config']['stat_first_death'];
-	if (!isset($config['stat_last_death'])) $config['stat_last_death'] = $PGV_BLOCKS['print_gedcom_stats']['config']['stat_last_death'];
-	if (!isset($config['stat_media'])) $config['stat_media'] = $PGV_BLOCKS['print_gedcom_stats']['config']['stat_media'];
-	if (!isset($config['stat_link'])) $config['stat_link'] = $PGV_BLOCKS['print_gedcom_stats']['config']['stat_link'];
 
 	$id = 'gedcom_stats';
 	$title = print_help_link('index_stats_help', 'qm', '', false, true);
@@ -153,26 +148,26 @@ function print_gedcom_stats($block=true, $config='', $side, $index) {
 </td>
 </tr>';
 	}
-	if (!$block) {
+	if (!$limitHeight) {
 		$content .= '</table></td><td><br /></td><td valign="top"><table cellspacing="1" cellpadding="1" border="0">';
 	}
 	if ($config['stat_first_birth']=='yes') {
 		$content .= '<tr><td class="facts_label">'. $pgv_lang['stat_earliest_birth'].'</td><td class="facts_value"><div dir="rtl">'.$stats->firstBirthYear().'</div></td>';
-		if (!$block) {
+		if (!$limitHeight) {
 			$content .= '<td class="facts_value">'.$stats->firstBirth().'</td>';
 		}
 		$content .= '</tr>';
 	}
 	if ($config['stat_last_birth']=='yes') {
 		$content .= '<tr><td class="facts_label">'. $pgv_lang['stat_latest_birth'].'</td><td class="facts_value"><div dir="rtl">'.$stats->lastBirthYear().'</div></td>';
-		if (!$block){
+		if (!$limitHeight){
 			$content .= '<td class="facts_value">'.$stats->lastBirth().'</td>';
 		}
 		$content .= '</tr>';
 	}
 	if ($config['stat_first_death']=='yes') {
 		$content .= '<tr><td class="facts_label">'. $pgv_lang['stat_earliest_death'].'</td><td class="facts_value"><div dir="rtl">'.$stats->firstDeathYear().'</div></td>';
-		if (!$block){
+		if (!$limitHeight){
 			$content .= '<td class="facts_value">'.$stats->firstDeath().'</td>';
 		}
 		$content .= '</tr>';
@@ -180,37 +175,37 @@ function print_gedcom_stats($block=true, $config='', $side, $index) {
 	if ($config['stat_last_death']=='yes') {
 		$content .= '<tr><td class="facts_label">'. $pgv_lang['stat_latest_death'] .'</td><td class="facts_value"><div dir="rtl">'.$stats->lastDeathYear().'</div>
 </td>';
-		if (!$block){
+		if (!$limitHeight){
 			$content .= '<td class="facts_value">'.$stats->lastDeath().'</td>';
 		}
 		$content .='</tr>';
 	}
 	if ($config['stat_long_life']=='yes') {
 		$content .= '<tr><td class="facts_label">'. $pgv_lang['stat_longest_life'].'</td><td class="facts_value"><div dir="rtl">'.$stats->LongestLifeAge().'</div></td>';
-		if (!$block){
+		if (!$limitHeight){
 			$content .= '<td class="facts_value">'.$stats->LongestLife().'</td>';
 		}
 		$content .= '</tr>';
 	}
 	if ($config['stat_avg_life']=='yes') {
 		$content .= '<tr><td class="facts_label">'. $pgv_lang['stat_avg_age_at_death'].'</td><td class="facts_value"><div dir="rtl">'.$stats->averageLifespan().'</div></td>';
-		if (!$block) {
+		if (!$limitHeight) {
 			$content .= '<td class="facts_value">'.$pgv_lang['stat_males'].':&nbsp;'.$stats->averageLifespanMale();
 			$content .= '&nbsp;&nbsp;&nbsp;'.$pgv_lang['stat_females'].':&nbsp;'.$stats->averageLifespanFemale().'</td>';
 		}
 		$content .= '</tr>';
 	}
 
-	if ($config['stat_most_chil']=='yes' && !$block) {
+	if ($config['stat_most_chil']=='yes' && !$limitHeight) {
 		$content .= '<tr><td class="facts_label">'. $pgv_lang['stat_most_children'].'</td><td class="facts_value"><div dir="rtl">'.$stats->largestFamilySize().'</div></td>';
-		if (!$block) {
+		if (!$limitHeight) {
 			$content .= '<td class="facts_value">'.$stats->largestFamily().'</td>';
 		}
 		$content .= '</tr>';
 	}
 	if ($config['stat_avg_chil']=='yes') {
 		$content .= '<tr><td class="facts_label">'. $pgv_lang['stat_average_children'].'</td><td class="facts_value"><div dir="rtl">'.$stats->averageChildren().'</div></td>';
-		if (!$block) {
+		if (!$limitHeight) {
 			$content .= '<td class="facts_value">&nbsp;</td>';
 		}
 		$content .= '</tr>';
@@ -240,7 +235,7 @@ function print_gedcom_stats($block=true, $config='', $side, $index) {
 	}
 
 	global $THEME_DIR;
-	if ($block) {
+	if ($limitHeight) {
 		require $THEME_DIR.'templates/block_small_temp.php';
 	} else {
 		require $THEME_DIR.'templates/block_main_temp.php';
@@ -249,15 +244,9 @@ function print_gedcom_stats($block=true, $config='', $side, $index) {
 
 function print_gedcom_stats_config($config) {
 	global $pgv_lang, $ctype, $PGV_BLOCKS, $TEXT_DIRECTION;
-	if (empty($config)) $config = $PGV_BLOCKS['print_gedcom_stats']['config'];
-	if (!isset($config['stat_indi'])) $config = $PGV_BLOCKS['print_gedcom_stats']['config'];
-	if (!isset($config['stat_first_death'])) $config['stat_first_death'] = $PGV_BLOCKS['print_gedcom_stats']['config']['stat_first_death'];
-	if (!isset($config['stat_last_death'])) $config['stat_last_death'] = $PGV_BLOCKS['print_gedcom_stats']['config']['stat_last_death'];
-	if (!isset($config['stat_media'])) $config['stat_media'] = $PGV_BLOCKS['print_gedcom_stats']['config']['stat_media'];
-	if (!isset($config['stat_link'])) $config['stat_link'] = $PGV_BLOCKS['print_gedcom_stats']['config']['stat_link'];
-	if (!isset($config['cache'])) $config['cache'] = $PGV_BLOCKS['print_gedcom_stats']['config']['cache'];
 
-	?><tr><td class="descriptionbox wrap width33"> <?php echo $pgv_lang['gedcom_stats_show_surnames']; ?></td>
+	?>
+<tr><td class="descriptionbox wrap width33"> <?php echo $pgv_lang['gedcom_stats_show_surnames']; ?></td>
 <td class="optionbox"><select name="show_common_surnames">
 <option value="yes"
 <?php if ($config['show_common_surnames']=='yes') echo ' selected="selected"'; ?>><?php echo $pgv_lang['yes']; ?></option>
@@ -353,7 +342,7 @@ function print_gedcom_stats_config($config) {
 		print_help_link('cache_life_help', 'qm');
 		echo $pgv_lang['cache_life'];
 		echo '</td><td class="optionbox">';
-		echo '<input type="text" name="cache" size="2" value="', $config['cache'], '" />';
+		echo "<input type='number' name='cache' size='2' value='{$config['cache']}' min='-1' max='30' />";
 		echo '</td></tr>';
 	}
 }

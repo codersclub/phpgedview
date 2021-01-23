@@ -4,7 +4,7 @@
  * phpGedView Research Assistant Tool - RecordSearch.
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2008  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2021  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -98,14 +98,6 @@ require_once PGV_ROOT.'includes/classes/class_person.php';
 			$myfamlist[] = $family;
 		}
 
-		//various counts
-		$total = count($indilist);
-		$nnCount = 0;
-		$tempCount = 0;
-		$tempInd = 0;
-		$malesCount = 0;
-		$femalesCount = 0;
-
 		foreach ($myindilist as $pid=>$indi) {
 			if ($indi) {
 				//assign surname, gender, birthplace and occupation for the individual
@@ -196,9 +188,11 @@ require_once PGV_ROOT.'includes/classes/class_person.php';
 							$parents = find_parents_in_record($record);
 							//if the Husband in the record is the same person as we are looking for
 							// then set $id to the Wife's PID
-							if ($parents['HUSB']==$pid) $id = $parents['WIFE'];
-							//Otherwise set $id to the husbands ID
-							else $id = $parents['HUSB'];
+							if($parents!==false) {
+								if ($parents['HUSB']==$pid) $id = $parents['WIFE'];
+								//Otherwise set $id to the husbands ID
+								else $id = $parents['HUSB'];
+							}
 							//if we didn't find an ID set the record to nothing
 							if (empty($id)) {
 								$record = '';

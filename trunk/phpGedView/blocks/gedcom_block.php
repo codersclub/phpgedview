@@ -5,7 +5,7 @@
  * This block prints basic information about the active gedcom
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2009  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2021  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -35,12 +35,13 @@ define('PGV_GEDCOM_BLOCK_PHP', '');
 
 $PGV_BLOCKS["print_gedcom_block"]["name"]		= $pgv_lang["gedcom_block"];
 $PGV_BLOCKS["print_gedcom_block"]["descr"]		= "gedcom_descr";
-$PGV_BLOCKS["print_gedcom_block"]["type"]		= "gedcom";
+$PGV_BLOCKS["print_gedcom_block"]["type"]		= "gedcom";		// Show only on the Welcome page
 $PGV_BLOCKS["print_gedcom_block"]["canconfig"]	= false;
-$PGV_BLOCKS["print_gedcom_block"]["config"]		= array("cache"=>0);
+$PGV_BLOCKS["print_gedcom_block"]["hidesearch"]	= false;	// should this block be hidden from search engines
+$PGV_BLOCKS["print_gedcom_block"]["config"]		= array('cache'=>0);
 
 //-- function to print the gedcom block
-function print_gedcom_block($block = true, $config="", $side, $index) {
+function print_gedcom_block($limitHeight, $config, $side, $index) {
 	global $hitCount, $pgv_lang, $SHOW_COUNTER;
 
 	$id = "gedcom_welcome";
@@ -57,5 +58,9 @@ function print_gedcom_block($block = true, $config="", $side, $index) {
 
 	global $THEME_DIR;
 	require $THEME_DIR.'templates/block_main_temp.php';
+}
+
+function print_gedcom_block_config($config) {
+	// Nothing to do here -- should never be called
 }
 ?>

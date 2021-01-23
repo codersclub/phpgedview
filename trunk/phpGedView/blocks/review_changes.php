@@ -5,7 +5,7 @@
  * This block prints the changes that still need to be reviewed and accepted by an administrator
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2018  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2021  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -36,7 +36,9 @@ define('PGV_REVIEW_CHANGES_PHP', '');
 
 $PGV_BLOCKS["review_changes_block"]["name"]			= $pgv_lang["review_changes_block"];
 $PGV_BLOCKS["review_changes_block"]["descr"]		= "review_changes_descr";
-$PGV_BLOCKS["review_changes_block"]["canconfig"]	= false;
+$PGV_BLOCKS["review_changes_block"]["type"]    		= "both";	// Allow on both the Welcome and the MyGedView pages
+$PGV_BLOCKS["review_changes_block"]["canconfig"]	= true;
+$PGV_BLOCKS["review_changes_block"]["hidesearch"]	= true;	// should this block be hidden from search engines
 $PGV_BLOCKS["review_changes_block"]["config"]		= array(
 	"cache"=>0,
 	"days"=>1,
@@ -48,14 +50,10 @@ $PGV_BLOCKS["review_changes_block"]["config"]		= array(
  *
  * Prints a block allowing the user review all changes pending approval
  */
-function review_changes_block($block = true, $config="", $side, $index) {
+function review_changes_block($limitHeight, $config, $side, $index) {
 	global $pgv_lang, $ctype, $QUERY_STRING, $factarray, $PGV_IMAGE_DIR, $PGV_IMAGES;
 	global $pgv_changes, $TEXT_DIRECTION, $SHOW_SOURCES, $PGV_BLOCKS;
-	global $PHPGEDVIEW_EMAIL, $SEARCH_SPIDER;
-
-	if ($SEARCH_SPIDER) return;		// Don't show this block to search engines
-
-	if (empty($config)) $config = $PGV_BLOCKS["review_changes_block"]["config"];
+	global $PHPGEDVIEW_EMAIL;
 
 	if ($pgv_changes) {
 		//-- if the time difference from the last email is greater than 24 hours then send out another email
@@ -125,7 +123,7 @@ function review_changes_block($block = true, $config="", $side, $index) {
 						case 'FAM':
 						case 'SOUR':
 						case 'OBJE':
-							$content.=$block ? '<br />' : ' ';
+							$content.=$limitHeight ? '<br />' : ' ';
 							$content.='<a href="'.encode_url($record->getLinkUrl().'&show_changes=yes').'">'.$pgv_lang['view_change_diff'].'</a>';
 							break;
 						}
@@ -135,7 +133,7 @@ function review_changes_block($block = true, $config="", $side, $index) {
 			}
 
 			global $THEME_DIR;
-			if ($block) {
+			if ($limitHeight) {
 				require $THEME_DIR.'templates/block_small_temp.php';
 			} else {
 				require $THEME_DIR.'templates/block_main_temp.php';
@@ -146,7 +144,7 @@ function review_changes_block($block = true, $config="", $side, $index) {
 
 function review_changes_block_config($config) {
 	global $pgv_lang, $PGV_BLOCKS;
-	if (empty($config)) $config = $PGV_BLOCKS["review_changes_block"]["config"];
+
 	print $pgv_lang["review_changes_email"];
 	print "&nbsp;<select name='sendmail'>";
 	print "<option value='yes'";
@@ -156,18 +154,18 @@ function review_changes_block_config($config) {
 	if ($config["sendmail"]=="no") print " selected='selected'";
 	print ">".$pgv_lang["no"]."</option>";
 	print "</select><br /><br />";
-	print $pgv_lang["review_changes_email_freq"]."&nbsp;<input type='text' name='days' value='".$config["days"]."' size='2' />";
+	print "{$pgv_lang["review_changes_email_freq"]}&nbsp;<input type='number' name='days' value='{$config["days"]}' size='2' min='1' max='30' />";
 	// Cache file life
 	if ($ctype=="gedcom") {
 		print "<tr><td class=\"descriptionbox wrap width33\">";
 		print_help_link("cache_life_help", "qm");
 		print $pgv_lang["cache_life"];
 		print "</td><td class=\"optionbox\">";
-		print "<input type=\"text\" name=\"cache\" size=\"2\" value=\"".$config["cache"]."\" />";
+		print "<input type='number' name='cache' size='2' value='{$config['cache']}' min='-1' max='30' />";
 		print "</td></tr>";
 	}
 	// Cache file life is not configurable by user:  anything other than "no cache" doesn't make sense
-	print "<input type=\"hidden\" name=\"cache\" value=\"0\" />";
+	print "<input type='hidden' name='cache' value='{$config['cache']}' />";
 }
 
 ?>

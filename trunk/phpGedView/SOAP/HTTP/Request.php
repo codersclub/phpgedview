@@ -385,7 +385,7 @@ class HTTP_Request
     */
     function setURL($url)
     {
-        $this->_url = &new Net_URL($url, $this->_useBrackets);
+        $this->_url = new Net_URL($url, $this->_useBrackets);
 
         if (!empty($this->_url->user) || !empty($this->_url->pass)) {
             $this->setBasicAuth($this->_url->user, $this->_url->pass);
@@ -716,7 +716,7 @@ class HTTP_Request
             $this->_notify('sentRequest');
 
             // Read the response
-            $this->_response = &new HTTP_Response($this->_sock, $this->_listeners);
+            $this->_response = new HTTP_Response($this->_sock, $this->_listeners);
             $err = $this->_response->process(
                 $this->_saveBody && $saveBody,
                 HTTP_REQUEST_METHOD_HEAD != $this->_method
@@ -761,7 +761,7 @@ class HTTP_Request
 
             // Absolute URL
             if (preg_match('/^https?:\/\//i', $redirect)) {
-                $this->_url = &new Net_URL($redirect);
+                $this->_url = new Net_URL($redirect);
                 $this->addHeader('Host', $this->_generateHostHeader());
             // Absolute path
             } elseif ($redirect[0] == '/') {
@@ -918,7 +918,7 @@ class HTTP_Request
             // "normal" POST request
 			if (!function_exists('tempFunc__buildRequest')) {		// Make SURE we define this only once
 				function tempFunc__buildRequest($arg) { 
-					return $arg[0] . \'=\' . $arg[1]; 
+					return "{$arg[0]}={$arg[1]}";
 				}
 			}
             if (!isset($boundary)) {

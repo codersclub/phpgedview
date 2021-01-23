@@ -2,10 +2,10 @@
 /**
  * Yahrzeit Block
  *
- * This block will print a list of upcoming yahrzeit (hebrew death anniversaries)
+ * This block will print a list of upcoming yahrzeiten (hebrew death anniversaries)
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2008 to 2018  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2008 to 2021  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -34,10 +34,12 @@ if (!defined('PGV_PHPGEDVIEW')) {
 
 define('PGV_YAHRZEIT_PHP', '');
 
-$PGV_BLOCKS['print_yahrzeit']['name']     =$pgv_lang['yahrzeit_block'];
-$PGV_BLOCKS['print_yahrzeit']['descr']    ='yahrzeit_descr';
-$PGV_BLOCKS['print_yahrzeit']['canconfig']=true;
-$PGV_BLOCKS['print_yahrzeit']['config']   =array(
+$PGV_BLOCKS['print_yahrzeit']['name']     	= $pgv_lang['yahrzeit_block'];
+$PGV_BLOCKS['print_yahrzeit']['descr']    	= 'yahrzeit_descr';
+$PGV_BLOCKS['print_yahrzeit']['type']    	= 'both';	// Allow on both the Welcome and the MyGedView pages
+$PGV_BLOCKS['print_yahrzeit']['canconfig']	= true;
+$PGV_BLOCKS['print_yahrzeit']['hidesearch']	= false;	// should this block be hidden from search engines
+$PGV_BLOCKS['print_yahrzeit']['config']   	= array(
 	'cache'        =>1,
 	'days'         =>30,
 	'infoStyle'    =>'style2',
@@ -45,26 +47,20 @@ $PGV_BLOCKS['print_yahrzeit']['config']   =array(
 );
 
 // this block prints a list of upcoming yahrzeit events of people in your gedcom
-function print_yahrzeit($block=true, $config='', $side, $index) {
+function print_yahrzeit($limitHeight, $config, $side, $index) {
 	global $pgv_lang, $factarray, $ctype, $TEXT_DIRECTION;
 	global $lang_short_cut, $LANGUAGE;
 	global $PGV_IMAGE_DIR, $PGV_IMAGES, $PGV_BLOCKS;
 	global $DAYS_TO_SHOW_LIMIT, $SERVER_URL;
 
-	$block=true; // Always restrict this block's height
+	$limitHeight = true; // Always restrict this block's height
 
-	if (empty($config))
-		$config=$PGV_BLOCKS['print_yahrzeit']['config'];
+	if (empty($DAYS_TO_SHOW_LIMIT)) $DAYS_TO_SHOW_LIMIT = $PGV_BLOCKS['print_yahrzeit']['config']['days'];		// Should never happen -- see GEDCOM config
+	if ($config['days']<1                  ) $config['days'] = 1;
+	if ($config['days']>$DAYS_TO_SHOW_LIMIT) $config['days'] = $DAYS_TO_SHOW_LIMIT;
 
-	if (empty($config['infoStyle'    ])) $config['infoStyle'    ]='style2';
-	if (empty($config['allowDownload'])) $config['allowDownload']='no';
-	if (empty($config['days'         ])) $config['days'         ]=$DAYS_TO_SHOW_LIMIT;
-
-	if ($config['days']<1                  ) $config['days']=1;
-	if ($config['days']>$DAYS_TO_SHOW_LIMIT) $config['days']=$DAYS_TO_SHOW_LIMIT;
-
-	$startjd=server_jd();
-	$endjd  =$startjd+max(min($config['days'], 1), $DAYS_TO_SHOW_LIMIT)-1;
+	$startjd = server_jd();
+	$endjd   = $startjd+max(min($config['days'], 1), $DAYS_TO_SHOW_LIMIT)-1;
 
 	if (!PGV_USER_ID) $allowDownload = false;
 	else $allowDownload = ($config['allowDownload']=='yes');
@@ -258,7 +254,7 @@ function print_yahrzeit($block=true, $config='', $side, $index) {
 	}
 
 	global $THEME_DIR;
-	if ($block) {
+	if ($limitHeight) {
 		require $THEME_DIR.'templates/block_small_temp.php';
 	} else {
 		require $THEME_DIR.'templates/block_main_temp.php';
@@ -268,20 +264,15 @@ function print_yahrzeit($block=true, $config='', $side, $index) {
 function print_yahrzeit_config($config) {
 	global $pgv_lang, $PGV_BLOCKS, $DAYS_TO_SHOW_LIMIT;
 
-	if (empty($config)) $config=$PGV_BLOCKS["print_yahrzeit"]["config"];
-
-	if (empty($config['infoStyle'    ])) $config['infoStyle'    ]='style2';
-	if (empty($config['allowDownload'])) $config['allowDownload']='no';
-	if (empty($config['days'         ])) $config['days'         ]=$DAYS_TO_SHOW_LIMIT;
-
-	if ($config['days']<1                  ) $config['days']=1;
-	if ($config['days']>$DAYS_TO_SHOW_LIMIT) $config['days']=$DAYS_TO_SHOW_LIMIT;
+	if (empty($DAYS_TO_SHOW_LIMIT)) $DAYS_TO_SHOW_LIMIT = $PGV_BLOCKS['print_yahrzeit']['config']['days'];		// Should never happen -- see GEDCOM config
+	if ($config['days']<1                  ) $config['days'] = 1;
+	if ($config['days']>$DAYS_TO_SHOW_LIMIT) $config['days'] = $DAYS_TO_SHOW_LIMIT;
 
 	print '<tr><td class="descriptionbox wrap width33">';
 	print_help_link('days_to_show_help', 'qm');
 	print $pgv_lang['days_to_show'];
 	print '</td><td class="optionbox">';
-	print '<input type="text" name="days" size="2" value="'.$config['days'].'" />';
+	print "<input type='number' name='days' size='2' value='{$config['days']}' min='1' max='{$PGV_BLOCKS['print_yahrzeit']['config']['days']}' />";
 	print '</td></tr>';
 
 	print '<tr><td class="descriptionbox wrap width33">';
@@ -311,7 +302,7 @@ function print_yahrzeit_config($config) {
 	print '</select>';
 
 	// Cache file life is not configurable by user:  anything other than 1 day doesn't make sense
-	print '<input type="hidden" name="cache" value="1" />';
+	print "<input type='hidden' name='cache' value='{$config['cache']}' />";
 
 	print '</td></tr>';
 }

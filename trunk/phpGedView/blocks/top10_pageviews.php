@@ -5,7 +5,7 @@
  * This block will show the top 10 records from the Gedcom that have been viewed the most
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2009  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2021  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -33,27 +33,22 @@ if (!defined('PGV_PHPGEDVIEW')) {
 
 define('PGV_TOP10_PAGEVIEWS_PHP', '');
 
-$PGV_BLOCKS["top10_pageviews"]["name"]		= $pgv_lang["top10_pageviews"];
-$PGV_BLOCKS["top10_pageviews"]["descr"]		= "top10_pageviews_descr";
-$PGV_BLOCKS["top10_pageviews"]["canconfig"]	= true;
-$PGV_BLOCKS["top10_pageviews"]["config"]	= array(
+$PGV_BLOCKS["top10_pageviews"]["name"]			= $pgv_lang["top10_pageviews"];
+$PGV_BLOCKS["top10_pageviews"]["descr"]			= "top10_pageviews_descr";
+$PGV_BLOCKS["top10_pageviews"]["type"]    		= "both";	// Allow on both the Welcome and the MyGedView pages
+$PGV_BLOCKS["top10_pageviews"]["canconfig"]		= true;
+$PGV_BLOCKS["top10_pageviews"]["hidesearch"]	= false;	// should this block be hidden from search engines
+$PGV_BLOCKS["top10_pageviews"]["config"]		= array(
 	"cache"=>1,
 	"num"=>10,
 	"count_placement"=>"left"
 	);
 
-function top10_pageviews($block=true, $config="", $side, $index) {
+function top10_pageviews($limitHeight, $config, $side, $index) {
 	global $TBLPREFIX, $pgv_lang, $INDEX_DIRECTORY, $PGV_BLOCKS, $ctype, $PGV_IMAGES, $PGV_IMAGE_DIR, $SHOW_COUNTER, $SHOW_SOURCES, $TEXT_DIRECTION;
 
-	if (empty($config)) {
-		$config = $PGV_BLOCKS["top10_pageviews"]["config"];
-	}
-
-	if (isset($config["count_placement"])) {
-		$CountSide = $config["count_placement"];
-	} else {
-		$CountSide = "left";
-	}
+	$countSide = $config["count_placement"];
+	$num = (int) $config["num"];
 
 	$id = "top10hits";
 	$title = print_help_link("index_top10_pageviews_help", "qm", "", false, true);
@@ -83,12 +78,12 @@ function top10_pageviews($block=true, $config="", $side, $index) {
 			" FROM {$TBLPREFIX}hit_counter".
 			" WHERE gedcom_id=? AND page_name IN ('individual.php','family.php','source.php','repo.php','note.php','mediaviewer.php')".
 			" ORDER BY page_count DESC",
-			$config['num']
+			$num
 		)->execute(array(PGV_GED_ID))->FetchAssoc();
 
 
 		if ($top10) {
-			if ($block) {
+			if ($limitHeight) {
 				$content .= "<table width=\"90%\">";
 			} else {
 				$content .= "<table>";
@@ -97,11 +92,11 @@ function top10_pageviews($block=true, $config="", $side, $index) {
 				$record=GedcomRecord::getInstance($id);
 				if ($record && $record->canDisplayDetails()) {
 					$content .= '<tr valign="top">';
-					if ($CountSide=='left') {
+					if ($countSide=='left') {
 						$content .= '<td dir="ltr" align="right">['.$count.']</td>';
 					}
 					$content .= '<td class="name2" ><a href="'.encode_url($record->getLinkUrl()).'">'.PrintReady($record->getFullName()).'</a></td>';
-					if ($CountSide=='right') {
+					if ($countSide=='right') {
 						$content .= '<td dir="ltr" align="right">['.$count.']</td>';
 					}
 					$content .= '</tr>';
@@ -114,7 +109,7 @@ function top10_pageviews($block=true, $config="", $side, $index) {
 	}
 
 	global $THEME_DIR;
-	if ($block) {
+	if ($limitHeight) {
 		require $THEME_DIR.'templates/block_small_temp.php';
 	} else {
 		require $THEME_DIR.'templates/block_main_temp.php';
@@ -123,15 +118,13 @@ function top10_pageviews($block=true, $config="", $side, $index) {
 
 function top10_pageviews_config($config) {
 	global $pgv_lang, $ctype, $PGV_BLOCKS;
-	if (empty($config)) $config = $PGV_BLOCKS["top10_pageviews"]["config"];
-	if (!isset($config["cache"])) $config["cache"] = $PGV_BLOCKS["top10_pageviews"]["config"]["cache"];
 
 	// Number of items to show
 	print "<tr><td class=\"descriptionbox wrap width33\">";
 	// print_help_link("num_to_show_help", "qm");
 	print $pgv_lang["num_to_show"];
 	print "</td><td class=\"optionbox\">";
-	print "<input type=\"text\" name=\"num\" size=\"2\" value=\"".$config["num"]."\" />";
+	print "<input type='number' name='num' size='2' value='{$config["num"]}' min='1' max='30' />";
 	print "</td></tr>";
 
 	// Count position
@@ -155,7 +148,7 @@ function top10_pageviews_config($config) {
 		print_help_link("cache_life_help", "qm");
 		print $pgv_lang["cache_life"];
 		print "</td><td class=\"optionbox\">";
-		print "<input type=\"text\" name=\"cache\" size=\"2\" value=\"".$config["cache"]."\" />";
+		print "<input type='number' name='cache' size='2' value='{$config['cache']}' min='-1' max='30' />";
 		print "</td></tr>";
 	}
 }

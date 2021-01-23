@@ -15,7 +15,7 @@
  * Visitors
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2008  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2008 to 2021  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -47,12 +47,13 @@ define('PGV_GETTING_STARTED_BLOCK_PHP', '');
 
 $PGV_BLOCKS["getting_started_block"]["name"]		= $pgv_lang["install_step_8"];
 $PGV_BLOCKS["getting_started_block"]["descr"]		= "gedcom_descr";
-$PGV_BLOCKS["getting_started_block"]["type"]		= "none";
+$PGV_BLOCKS["getting_started_block"]["type"]		= "neither";	// Don't show on either the Welcome or the MyGedView page
 $PGV_BLOCKS["getting_started_block"]["canconfig"]	= false;
-$PGV_BLOCKS["getting_started_block"]["config"]		= array("cache"=>5);
+$PGV_BLOCKS["getting_started_block"]["hidesearch"]	= true;		// should this block be hidden from search engines
+$PGV_BLOCKS["getting_started_block"]["config"]		= array('cache'=>5);
 
 //-- function to print the gedcom block
-function getting_started_block($block = true, $config="", $side, $index) {
+function getting_started_block($limitHeight, $config) {		// $side and $index don't matter here
 	global $pgv_lang, $SHOW_COUNTER;
 
 	$id = "getting_started";
@@ -60,7 +61,7 @@ function getting_started_block($block = true, $config="", $side, $index) {
 	$content = $pgv_lang['get_started_instructions'];
 	$content .= '<ul>';
 	$content .= '<li style="padding: 5px;"><a class="imenu" href="editconfig_gedcom.php?source=upload_form">'.$pgv_lang['upload_a_gedcom'].'</a></li>';
-	// -- not read yet, need to design a new page for it
+	// -- not ready yet, need to design a new page for it
 	// $content .= '<li style="padding: 5px;"><a class="imenu" href="#">'.$pgv_lang['start_entering'].'</a></li>';
 	$content .= '<li style="padding: 5px;"><a class="imenu" href="editconfig_gedcom.php?source=add_form">'.$pgv_lang['add_gedcom_from_path'].'</a></li>';
 	$content .= '<li style="padding: 5px;"><a class="imenu" href="editgedcoms.php">'.$pgv_lang['manage_gedcoms'].'</a></li>';
@@ -69,10 +70,14 @@ function getting_started_block($block = true, $config="", $side, $index) {
 	$content .= '</ul>';
 
 	global $THEME_DIR;
-	if ($block) {
+	if ($limitHeight) {
 		require $THEME_DIR.'/templates/block_small_temp.php';
 	} else {
 		require $THEME_DIR.'/templates/block_main_temp.php';
 	}
+}
+
+function getting_started_block_config($config) {
+	// Nothing to do here -- this should never be called
 }
 ?>

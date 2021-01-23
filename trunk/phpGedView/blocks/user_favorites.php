@@ -5,7 +5,7 @@
  * This block will print a users favorites
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2017  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2021  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -37,12 +37,13 @@ require_once PGV_ROOT.'includes/functions/functions_print_lists.php';
 
 $PGV_BLOCKS["print_user_favorites"]["name"]			= $pgv_lang["user_favorites_block"];
 $PGV_BLOCKS["print_user_favorites"]["descr"]		= "user_favorites_descr";
-$PGV_BLOCKS["print_user_favorites"]["type"]			= "user";
+$PGV_BLOCKS["print_user_favorites"]["type"]			= "user";	// Show only on the MyGedView page
 $PGV_BLOCKS["print_user_favorites"]["canconfig"]	= false;
+$PGV_BLOCKS["print_user_favorites"]["hidesearch"]	= true;		// should this block be hidden from search engines
 $PGV_BLOCKS["print_user_favorites"]["config"]		= array("cache"=>0);
 
 //-- print user favorites
-function print_user_favorites($block=true, $config="", $side, $index) {
+function print_user_favorites($limitHeight, $config, $side, $index) {
 	global $pgv_lang, $PGV_IMAGE_DIR, $PGV_IMAGES, $GEDCOM, $TEXT_DIRECTION, $INDEX_DIRECTORY, $MEDIA_DIRECTORY, $MULTI_MEDIA, $MEDIA_DIRECTORY_LEVELS, $ctype;
 	global $show_full, $PEDIGREE_FULL_DETAILS, $BROWSERTYPE, $ENABLE_AUTOCOMPLETE;
 
@@ -84,7 +85,7 @@ function print_user_favorites($block=true, $config="", $side, $index) {
 		</script>';
 	} else $content = '';
 
-	if ($block) {
+	if ($limitHeight) {
 		$style = 2;		// 1 means "regular box", 2 means "wide box"
 		$tableWidth = ($BROWSERTYPE=="msie") ? "95%" : "99%";	// IE needs to have room for vertical scroll bar inside the box
 		$cellSpacing = "1px";
@@ -175,7 +176,7 @@ function print_user_favorites($block=true, $config="", $side, $index) {
 	$content .= "<br />".$pgv_lang["add_fav_or_enter_url"];
 	$content .= "<table><tr><td>".$pgv_lang["url"]."</td><td><input type=\"text\" name=\"url\" size=\"40\" value=\"\" /></td></tr>";
 	$content .= "<tr><td>".$pgv_lang["title"]."</td><td><input type=\"text\" name=\"favtitle\" size=\"40\" value=\"\" /></td></tr></table>";
-	if ($block) $content .= "\n</td></tr><tr><td><br />";
+	if ($limitHeight) $content .= "\n</td></tr><tr><td><br />";
 	else $content .= "\n</td><td>";
 	$content .= $pgv_lang["add_fav_enter_note"];
 	$content .= "<br /><textarea name=\"favnote\" rows=\"6\" cols=\"50\"></textarea>";
@@ -184,7 +185,7 @@ function print_user_favorites($block=true, $config="", $side, $index) {
 	$content .= "</form></div>";
 
 	global $THEME_DIR;
-	if ($block) {
+	if ($limitHeight) {
 		require $THEME_DIR.'templates/block_small_temp.php';
 	} else {
 		require $THEME_DIR.'templates/block_main_temp.php';
@@ -193,5 +194,9 @@ function print_user_favorites($block=true, $config="", $side, $index) {
 	unset($show_full);
 	if (isset($saveShowFull)) $show_full = $saveShowFull;
 	$PEDIGREE_FULL_DETAILS = $savePedigreeFullDetails;
+}
+
+function print_user_favorites_config($config) {
+	// Nothing to do here -- should never be called
 }
 ?>

@@ -5,7 +5,7 @@
  * This is the RSS block
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2009  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2021  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -35,15 +35,16 @@ define('PGV_RSS_BLOCK_PHP', '');
 
 $PGV_BLOCKS["print_RSS_block"]["name"]			= $pgv_lang["rss_feeds"];
 $PGV_BLOCKS["print_RSS_block"]["descr"]			= "rss_descr";
-$PGV_BLOCKS["print_RSS_block"]["type"]			= "gedcom";
+$PGV_BLOCKS["print_RSS_block"]["type"]			= "gedcom";		// Show only on Welcome pahe
 $PGV_BLOCKS["print_RSS_block"]["canconfig"]		= false;
+$PGV_BLOCKS["print_RSS_block"]["hidesearch"]	= true;		// should this block be hidden from search engines
 $PGV_BLOCKS["print_RSS_block"]["config"]		= array("cache"=>0);
 /**
  * Print RSS Block
  *
  * Prints a block allowing the user to login to the site directly from the portal
  */
-function print_RSS_block($block = true, $config="", $side, $index) {
+function print_RSS_block($limitHeight, $config, $side, $index) {
 	global $LANGUAGE, $pgv_lang;
 
 	$id="rss_block";
@@ -77,10 +78,14 @@ function print_RSS_block($block = true, $config="", $side, $index) {
 	$content .= "</div>";
 
 	global $THEME_DIR;
-	if ($block) {
+	if ($limitHeight) {
 		require $THEME_DIR.'templates/block_small_temp.php';
 	} else {
 		require $THEME_DIR.'templates/block_main_temp.php';
 	}
+}
+
+function print_RSS_block_config($config) {
+	// Nothing to do here -- should never be called
 }
 ?>

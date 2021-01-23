@@ -5,7 +5,7 @@
  * This block will print a users messages
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2009  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2021  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -35,14 +35,15 @@ define('PGV_USER_MESSAGES_PHP', '');
 
 require_once PGV_ROOT.'includes/functions/functions_print_facts.php';
 
-$PGV_BLOCKS["print_user_messages"]["name"]		= $pgv_lang["user_messages_block"];
-$PGV_BLOCKS["print_user_messages"]["descr"]		= "user_messages_descr";
-$PGV_BLOCKS["print_user_messages"]["type"]		= "user";
-$PGV_BLOCKS["print_user_messages"]["canconfig"]	= false;
-$PGV_BLOCKS["print_user_messages"]["config"]	= array("cache"=>0);
+$PGV_BLOCKS["print_user_messages"]["name"]			= $pgv_lang["user_messages_block"];
+$PGV_BLOCKS["print_user_messages"]["descr"]			= "user_messages_descr";
+$PGV_BLOCKS["print_user_messages"]["type"]			= "user";	// Show only on the MyGedView page
+$PGV_BLOCKS["print_user_messages"]["canconfig"]		= false;
+$PGV_BLOCKS["print_user_messages"]["hidesearch"]	= true;		// should this block be hidden from search engines
+$PGV_BLOCKS["print_user_messages"]["config"]		= array("cache"=>0);
 
 //-- print user messages
-function print_user_messages($block=true, $config="", $side, $index) {
+function print_user_messages($limitHeight, $config, $side, $index) {
 	global $pgv_lang, $PGV_IMAGE_DIR, $TEXT_DIRECTION, $PGV_STORE_MESSAGES, $PGV_IMAGES;
 
 	$usermessages = getUserMessages(PGV_USER_NAME);
@@ -153,10 +154,14 @@ function print_user_messages($block=true, $config="", $side, $index) {
 	$content .= "</form>";
 
 	global $THEME_DIR;
-	if ($block) {
+	if ($limitHeight) {
 		require $THEME_DIR.'templates/block_small_temp.php';
 	} else {
 		require $THEME_DIR.'templates/block_main_temp.php';
 	}
+}
+
+function print_user_messages_config($config) {
+	// Nothing to do here -- should never be called
 }
 ?>

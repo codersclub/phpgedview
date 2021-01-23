@@ -44,16 +44,16 @@ class No_Form extends ra_form {
     /**
 	 * Contains all the information that we want to print out in the header.
      *
-	 * How-To: This function is used to pint out specific things at the top of a custom input form. You
+	 * How-To: This function is used to print out specific things at the top of a custom input form. You
 	 * must provide this or your form will not work. It must also contain a user specified action, alignment,
 	 * and heading to appear properly. Anything inside the form must be assigned to the $out variable, and
      *
      * @param mixed $action The action you want the form to perform
-     * @param string $tableAlign The alignment of the table, default is center
+     * @param string $tableAlign="center" Default. The alignment of the table
      * @param mixed $heading Heading at the top of the table
      * @return mixed
      */
-    function header($action, $tableAlign = "center", $heading) {
+    function header($action, $tableAlign, $heading) {
         // Split action and use it for hidden inputs
         $action = parse_url($action);
         global $params;

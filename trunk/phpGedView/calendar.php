@@ -5,7 +5,7 @@
  * Displays events on a daily, monthly, or yearly calendar.
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2010  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2021  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -67,8 +67,11 @@ if (preg_match('/^(\d+)-(\d+)$/', $year, $match)) {
 		$ged_date=new GedcomDate("FROM {$cal} {$y1} TO {$cal} {$y2}");
 		$action='year';
 	} else {
-		if ($year<0)
-			$year=(-$year)."B.C."; // need BC to parse date
+		if (substr($year, 0, 1) == '-') {		// Negative means "B.C."
+			$year = substr($year, 1);			// Get rid of that leading '-'
+			$year = trim(str_replace('B.C.', '', $year));		// Get rid of any "B.C." that might already be in there
+			$year .= ' B.C.';		// Ok, now it should be formatted properly
+		}
 		$ged_date=new GedcomDate("{$cal} {$day} {$month} {$year}");
 		$year=$ged_date->date1->y; // need negative year for year entry field.
 	}

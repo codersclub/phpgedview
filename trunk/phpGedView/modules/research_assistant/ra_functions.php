@@ -4,7 +4,7 @@
  * phpGedView Research Assistant Tool - Functions File.
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2011  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2021  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -993,13 +993,13 @@ class ra_functions {
 		$indilist = get_indilist_indis();
 
 		//various counts
-		$total = count($indilist);
+/*		is_array($indilist) ? $total=count($indilist) : $total=0;// Why does it count when it's never used ?
 		$nnCount = 0;
 		$tempCount = 0;
 		$tempInd = 0;
 		$malesCount = 0;
 		$femalesCount = 0;
-
+*/
 		foreach ($indilist as $indi) {
 			//assign surname, gender, birthplace and occupation for the individual
 			$gender = $indi->getSex();

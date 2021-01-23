@@ -5,7 +5,7 @@
  * This block will print a list of things to do, based on _TODO records
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2008 to 2017  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2008 to 2021  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -36,10 +36,12 @@ define('PGV_TODO_PHP', '');
 
 require_once PGV_ROOT.'includes/functions/functions_print_lists.php';
 
-$PGV_BLOCKS['print_todo']['name']     =$pgv_lang['todo_block'];
-$PGV_BLOCKS['print_todo']['descr']    ='todo_descr';
-$PGV_BLOCKS['print_todo']['canconfig']=true;
-$PGV_BLOCKS['print_todo']['config']   =array(
+$PGV_BLOCKS['print_todo']['name']		= $pgv_lang['todo_block'];
+$PGV_BLOCKS['print_todo']['descr']		= 'todo_descr';
+$PGV_BLOCKS['print_todo']['type']    	= 'both';	// Allow on both the Welcome and the MyGedView pages
+$PGV_BLOCKS['print_todo']['canconfig']	= true;
+$PGV_BLOCKS['print_todo']['hidesearch']	= true;		// should this block be hidden from search engines
+$PGV_BLOCKS['print_todo']['config']		= array(
 	'cache'          =>0,
 	'show_unassigned'=>'yes', // show unassigned items
 	'show_other'     =>'no',  // show items assigned to other users
@@ -47,17 +49,10 @@ $PGV_BLOCKS['print_todo']['config']   =array(
 );
 
 // this block prints a list of _TODO events in your gedcom
-function print_todo($block=true, $config='', $side, $index) {
+function print_todo($limitHeight, $config, $side, $index) {
 	global $pgv_lang, $factarray, $ctype, $PGV_IMAGE_DIR, $PGV_IMAGES, $PGV_BLOCKS;
-	global $SEARCH_SPIDER;
 
-	if ($SEARCH_SPIDER) return;		// Don't show this block to search engines
-
-	$block=true; // Always restrict this block's height
-
-	if (empty($config)) {
-		$config=$PGV_BLOCKS['print_todo']['config'];
-	}
+	$limitHeight = true; // Always restrict this block's height
 
 	$id='todo';
 	$title = print_help_link('todo_help', 'qm','',false,true);
@@ -117,7 +112,7 @@ function print_todo($block=true, $config='', $side, $index) {
 	}
 
 	global $THEME_DIR;
-	if ($block) {
+	if ($limitHeight) {
 		require $THEME_DIR.'templates/block_small_temp.php';
 	} else {
 		require $THEME_DIR.'templates/block_main_temp.php';
@@ -126,10 +121,6 @@ function print_todo($block=true, $config='', $side, $index) {
 
 function print_todo_config($config) {
 	global $pgv_lang, $PGV_BLOCKS, $DAYS_TO_SHOW_LIMIT;
-
-	if (empty($config)) {
-		$config=$PGV_BLOCKS['print_todo']['config'];
-	}
 
 	print '<tr><td class="descriptionbox wrap width33">';
 	print_help_link('todo_show_other_help', 'qm');
@@ -171,6 +162,6 @@ function print_todo_config($config) {
 	print '</select></td></tr>';
 
 	// Cache file life is not configurable by user
-	print '<input type="hidden" name="cache" value="0" />';
+	print "<input type='hidden' name='cache' value='{$config['cache']}' />";
 }
 ?>

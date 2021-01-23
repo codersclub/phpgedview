@@ -309,8 +309,7 @@ class SOAP_DISCO_Server extends SOAP_Base_Object {
         $this->wsdl = $wsdl;
     }
 
-    function _arrayToNode($node_name = '', $array)
-    {
+    function _arrayToNode($node_name, $array) {
         $return = '';
         if (is_array($array)) {
             // we have a node if there's key 'attr'

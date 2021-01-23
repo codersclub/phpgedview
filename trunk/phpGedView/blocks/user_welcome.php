@@ -5,7 +5,7 @@
  * This block will print basic information and links for the user.
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2009  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2021  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -33,14 +33,15 @@ if (!defined('PGV_PHPGEDVIEW')) {
 
 define('PGV_USER_WELCOME_PHP', '');
 
-$PGV_BLOCKS["print_welcome_block"]["name"]		= $pgv_lang["welcome_block"];
-$PGV_BLOCKS["print_welcome_block"]["descr"]		= "welcome_descr";
-$PGV_BLOCKS["print_welcome_block"]["type"]		= "user";
-$PGV_BLOCKS["print_welcome_block"]["canconfig"]	= false;
-$PGV_BLOCKS["print_welcome_block"]["config"]	= array("cache"=>0);
+$PGV_BLOCKS["print_welcome_block"]["name"]			= $pgv_lang["welcome_block"];
+$PGV_BLOCKS["print_welcome_block"]["descr"]			= "welcome_descr";
+$PGV_BLOCKS["print_welcome_block"]["type"]			= "user";	// Show only on the MyGedView page
+$PGV_BLOCKS["print_welcome_block"]["canconfig"]		= false;
+$PGV_BLOCKS["print_welcome_block"]["hidesearch"]	= true;		// should this block be hidden from search engines
+$PGV_BLOCKS["print_welcome_block"]["config"]		= array("cache"=>0);
 
 //-- function to print the welcome block
-function print_welcome_block($block=true, $config="", $side, $index) {
+function print_welcome_block($limitHeight, $config, $side, $index) {
 	global $pgv_lang, $PGV_IMAGE_DIR, $PGV_IMAGES;
 
 	$id="user_welcome";
@@ -63,10 +64,14 @@ function print_welcome_block($block=true, $config="", $side, $index) {
 	$content .= "</tr></table>";
 
 	global $THEME_DIR;
-	if ($block) {
+	if ($limitHeight) {
 		require $THEME_DIR.'templates/block_small_temp.php';
 	} else {
 		require $THEME_DIR.'templates/block_main_temp.php';
 	}
+}
+
+function print_welcome_block_config($config) {
+	// Nothing to do here -- should never be called
 }
 ?>

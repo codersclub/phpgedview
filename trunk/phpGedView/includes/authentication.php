@@ -10,7 +10,7 @@
  * Other possible options are to use LDAP for authentication.
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2017  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2021  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -166,7 +166,7 @@ function userIsAdmin($user_id=PGV_USER_ID) {
  */
 function userGedcomAdmin($user_id=PGV_USER_ID, $ged_id=PGV_GED_ID) {
 	if ($user_id) {
-		return get_user_gedcom_setting($user_id, $ged_id, 'canedit')=='admin' || userIsAdmin($user_id, $ged_id);
+		return get_user_gedcom_setting($user_id, $ged_id, 'canedit')=='admin' || userIsAdmin($user_id);
 	} else {
 		return false;
 	}
@@ -669,12 +669,21 @@ function getUserFavorites($username) {
  *
  * retrieve the block configuration for the given user
  * if no blocks have been set yet, and the username is a valid user (not a gedcom) then try and load
- * the defaultuser blocks.
+ * the $!default!!User!$ blocks.  (We hope we will NEVER see a real user with this ID.)
  * @param string $username	the username or gedcom name for the blocks
  * @return array	an array of the blocks.  The two main indexes in the array are "main" and "right"
+ *
+ * The blocks list consists of two arrays of block names and their current configurations.
+ *
+ * The two arrays define which blocks should be printed on the left (index: "main") or the
+ * right (index: "right") of the Welcome and the Portal pages.
+ *
+ * Within each list, the order of the entries defines the order in which the blocks should
+ * appear on the left or the right side of the page.  Any given block can appear more than 
+ * once, and it can also appear on both sides of the page. 
  */
 function getBlocks($username) {
-	global $TBLPREFIX;
+	global $TBLPREFIX, $PGV_BLOCKS;
 
 	$blocks = array();
 	$blocks["main"] = array();
@@ -687,28 +696,36 @@ function getBlocks($username) {
 
 	if ($rows) {
 		foreach ($rows as $row) {
+			if (empty($row->b_config)) $config = $PGV_BLOCKS[$row->b_name]["config"];	// Missing config? Use the block's defaults
+			else {
+				$config = unserialize($row->b_config);
+				if (empty($config)) $config = $PGV_BLOCKS[$row->b_name]["config"];		// Missing config? Use the block's defaults
+			}
 			if (!isset($row->b_config))
 				$row->b_config="";
 			if ($row->b_location=="main")
-				$blocks["main"][$row->b_order] = array("id"=>$row->b_id, $row->b_name, @unserialize($row->b_config));
+				$blocks["main"][$row->b_order] = array("id"=>$row->b_id, $row->b_name, $config);
 			if ($row->b_location=="right")
-				$blocks["right"][$row->b_order] = array("id"=>$row->b_id, $row->b_name, @unserialize($row->b_config));
+				$blocks["right"][$row->b_order] = array("id"=>$row->b_id, $row->b_name, $config);
 		}
 	} else {
 		if (get_user_id($username)) {
 			//-- if no blocks found, check for a default block setting
-			//$rows=
+			$rows=
 				PGV_DB::prepare("SELECT * FROM {$TBLPREFIX}blocks WHERE b_username=? ORDER BY b_location, b_order")
-				->execute(array('defaultuser'))
+				->execute(array('$!default!!User!$'))
 				->fetchAll();
 
 			foreach ($rows as $row) {
-				if (!isset($row->b_config))
-					$row->b_config="";
+				if (empty($row->b_config)) $config = $PGV_BLOCKS[$row->b_name]["config"];	// Missing config? Use the block's defaults
+				else {
+					$config = unserialize($row->b_config);
+					if (empty($config)) $config = $PGV_BLOCKS[$row->b_name]["config"];		// Missing config? Use the block's defaults
+				}
 				if ($row->b_location=="main")
-					$blocks["main"][$row->b_order] = array("id"=>$row->b_id, $row->b_name, @unserialize($row->b_config));
+					$blocks["main"][$row->b_order] = array("id"=>$row->b_id, $row->b_name, $config);
 				if ($row->b_location=="right")
-					$blocks["right"][$row->b_order] = array("id"=>$row->b_id, $row->b_name, @unserialize($row->b_config));
+					$blocks["right"][$row->b_order] = array("id"=>$row->b_id, $row->b_name, $config);
 			}
 		}
 	}
@@ -722,35 +739,72 @@ function getBlocks($username) {
  * the $setdefault parameter tells the program to also store these blocks as the blocks used by default
  * @param String $username the username or gedcom name to update the blocks for
  * @param array $ublocks the new blocks to set for the user or gedcom
- * @param boolean $setdefault	if true tells the program to also set these blocks as the blocks for the defaultuser
+ * @param boolean $setdefault	if true tells the program to also set these blocks as the blocks for the $!default!!User!$
  */
 function setBlocks($username, $ublocks, $setdefault=false) {
-	global $TBLPREFIX;
+	global $PGV_BLOCKS, $TBLPREFIX;
 
 	PGV_DB::prepare("DELETE FROM {$TBLPREFIX}blocks WHERE b_username=? AND b_name!=?")
 		->execute(array($username, 'faq'));
 
 	if ($setdefault) {
 		PGV_DB::prepare("DELETE FROM {$TBLPREFIX}blocks WHERE b_username=?")
-			->execute(array('defaultuser'));
+			->execute(array('$!default!!User!$'));
 	}
 
 	$statement=PGV_DB::prepare("INSERT INTO {$TBLPREFIX}blocks (b_id, b_username, b_location, b_order, b_name, b_config) VALUES (?, ?, ?, ?, ?, ?)");
 
 	foreach($ublocks["main"] as $order=>$block) {
-		$statement->execute(array(get_next_id("blocks", "b_id"), $username, 'main', $order, $block[0], serialize($block[1])));
+		$blockName = $block[0];
+		$blockConfig = $block[1];
+		if (empty($blockConfig)) $blockConfig = $PGV_BLOCKS[$blockName]['config'];		// Missing config? Use the block's defaults
+
+		$statement->execute(array(get_next_id("blocks", "b_id"), $username, 'main', $order, $blockName, serialize($blockConfig)));
 
 		if ($setdefault) {
-			$statement->execute(array(get_next_id("blocks", "b_id"), 'defaultuser', 'main', $order, $block[0], serialize($block[1])));
+			$statement->execute(array(get_next_id("blocks", "b_id"), '$!default!!User!$', 'main', $order, $blockName, serialize($blockConfig)));
 		}
 	}
 	foreach($ublocks["right"] as $order=>$block) {
-		$statement->execute(array(get_next_id("blocks", "b_id"), $username, 'right', $order, $block[0], serialize($block[1])));
+		$blockName = $block[0];
+		$blockConfig = $block[1];
+		if (empty($blockConfig)) $blockConfig = $PGV_BLOCKS[$blockName]['config'];		// Missing config? Use the block's defaults
+
+		$statement->execute(array(get_next_id("blocks", "b_id"), $username, 'right', $order, $blockName, serialize($blockConfig)));
 
 		if ($setdefault) {
-			$statement->execute(array(get_next_id("blocks", "b_id"), 'defaultuser', 'right', $order, $block[0], serialize($block[1])));
+			$statement->execute(array(get_next_id("blocks", "b_id"), '$!default!!User!$', 'right', $order, $blockName, serialize($blockConfig)));
 		}
 	}
+}
+
+/**
+ * Validate and correct any block's configuration
+ *
+ * This function checks: (a) that the current configuration is not empty
+ *                       (b) that each option in this block's default configuration is represented in the current configuration
+ * If anything fails, the block's default configuration is used
+ *
+ * @param string $name block name
+ * @param array $config current configuration
+ * @return array $config
+ */
+function validateConfig($name, $config) {
+	global $PGV_BLOCKS;
+
+	if (empty($config)) $config = $PGV_BLOCKS[$name]['config'];		// Missing configuration: use this block's defaults
+	// Any options that are missing from the configuration (shouldn't happen) take their cue from the defaults for this block
+	foreach ($PGV_BLOCKS[$name]['config'] as $option => $setting) {
+		if (!isset($config[$option])) $config[$option] = $setting;
+	}
+	// Make SURE that options that should be integers actually ARE integers.  
+	// Assume that the same option name isn't used for different purposes in different blocks
+	if (isset($config['cache'])) $config['cache'] = (int) $config['cache'];
+	if (isset($config['days'])) $config['days'] = (int) $config['days'];
+	if (isset($config['num'])) $config['num'] = (int) $config['num'];
+	if (isset($config['flag'])) $config['flag'] = (int) $config['flag'];
+
+	return $config;
 }
 
 /**
