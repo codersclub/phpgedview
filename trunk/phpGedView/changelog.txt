@@ -14,6 +14,7 @@ The session.php script uses this information to populate the constants : PGV_VER
 =====================================================================
 
 Version 4.3.1
+ - Fixed: IPv6 addresses are reported as "unknown" (canajun2eh)
  - Changed: Search engines should not access any multi-media or source information (canajun2eh)
  - Fixed: Blocks are sometimes shown to search engines when they shouldn't be (canajun2eh)
  - Fixed: Block system does not work properly when a real user with ID 'defaultuser' is created (canajun2eh)

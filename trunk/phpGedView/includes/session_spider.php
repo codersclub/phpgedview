@@ -137,14 +137,17 @@ while (true) {
 
 $ipAddrList = str_replace(' ', '', $ipAddrList);	// Get rid of embedded blanks
 $ip = preg_replace('~,.*~', '', $ipAddrList);		// Trim everything after the first comma, leaving just the first IPv4 or IPv6 address
-
 $ip = str_replace(array('"', "'"), '', $ip);		// Get rid of quotation marks used in some addresses
-if (substr($ip,0,1) == '[') {
-	$ip = preg_replace('~\]:.*~', ']', $ip);		// Get rid of IPv6 port number that follows closing square bracket
-	$ip = str_replace(array('[', ']'), '', $ip);	// Get rid of square brackets enclosing IPv6 address
+
+if (substr_count($ip, ':') > 1) {
+	// More than 1 colon indicates an IPv6 address
+	if (substr($ip,0,1) == '[') {
+		$ip = preg_replace('~\]:.*~', ']', $ip);		// Get rid of IPv6 port number that can follow closing square bracket
+		$ip = str_replace(array('[', ']'), '', $ip);	// Get rid of optional square brackets enclosing IPv6 address
+	}
 	$ip = normalizeIPv6($ip);						// Make sure this IPv6 address has a consistent format
 } else {
-	$ip = preg_replace('~:.*~', '', $ip);			// Get rid of IPv4 port number that follows last digit of address
+	$ip = preg_replace('~:.*~', '', $ip);			// Get rid of IPv4 port number that can follow last digit of address
 }
 
 unset($HTTP_VARS, $params, $ipAddrList);			// We don't need these any more
