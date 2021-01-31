@@ -14,6 +14,7 @@ The session.php script uses this information to populate the constants : PGV_VER
 =====================================================================
 
 Version 4.3.1
+ - Fixed: Error-suppressing @ in front of functions mis-used in changelog.php (PHP 8 compatibility) (imsza)
  - Fixed: IPv6 addresses are reported as "unknown" (canajun2eh)
  - Changed: Search engines should not access any multi-media or source information (canajun2eh)
  - Fixed: Blocks are sometimes shown to search engines when they shouldn't be (canajun2eh)
@@ -28,7 +29,7 @@ Version 4.3.1
  - Changed: Implement improved documentation in report generator (imsza)
  - Changed: Install a version of TCPDF that is compatible with PHP 7.4, and delete irrelevant fonts (imsza)
  - Fixed: Error while saving the site configuration file (canajun2eh)
- - Fixed: session.php does not find the SVN revision number in changelog.txt (canajuneh)
+ - Fixed: session.php does not find the SVN revision number in changelog.txt (canajun2eh)
  - Fixed: Many instances of {$something} used as character offsets (canajun2eh, imsza)
  - Fixed: Functions find_parents() and find_parents_in_record() return FALSE when both parents missing (canajun2eh)
  - Fixed: An instance of the create_function() function -- deprecated in PHP 7.2, removed in PHP 8 (canajun2eh)
@@ -131,7 +132,7 @@ Version 4.3.1
  - Added: Save IP address as a session variable (canajun2eh)
  - Changed: Don't let search engines see changes or request Print Preview mode (canajun2eh)
  - Changed: Don't let search engines request "All Tabs" or "Previous Tab" on Personal Details page (canajun2eh)
- - Changed: Don't let search engines see various blocks, including Login and Logged-in Users (canajuneh)
+ - Changed: Don't let search engines see various blocks, including Login and Logged-in Users (canajun2eh)
  - Changed: Don't show Search Menu to search engines (canajun2eh)
  - Changed: Don't show Theme Change or Language Change menus to search engines (canajun2eh)
  - Changed: Don't show "Printer-friendly version" link, execution stats, and pending changes link to search engines (canajun2eh)
@@ -199,9 +200,9 @@ Version 4.3.0
  - Fixed: Mail send reported success even when sending actually failed (canajun2eh)
  - Fixed: Current SMTP port number does not display properly when reconfiguring (canajun2eh)
  - Fixed: Bulk messages to all users or inactive users not working (canajun2eh)
- - Fixed: PHP7 complaining about arithmetic involving strings passed to class_gedcomrecord by class_note (Canajun2eh)
+ - Fixed: PHP7 complaining about arithmetic involving strings passed to class_gedcomrecord by class_note (canajun2eh)
  - Fixed: Undefined variable queryString in rss.php (canajun2eh)
- - Fixed: PHP7 complaining about arithmetic involving strings (Canajun2eh)
+ - Fixed: PHP7 complaining about arithmetic involving strings (canajun2eh)
  - Fixed: PHP7 errors caused by incorrect usage of microtime() function (Philippe Conde)
  - Updated: More improvements to Googlemap module (Leonhard Zachl)
  - Fixed: Several errors in Googlemap module (tbabczynski)
