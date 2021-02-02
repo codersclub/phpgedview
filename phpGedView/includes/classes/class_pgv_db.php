@@ -7,7 +7,7 @@
  *
  * phpGedView: Genealogy Viewer
  * Copyright (C) 2009 Greg Roach (fisharebest)
- * Copyright (C) 2010 to 2017  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2010 to 2021  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -105,302 +105,306 @@ class PGV_DB {
 			trigger_error("PDO/{$DBTYPE} is not installed.", E_USER_ERROR);
 		}
 		// Create the underlying PDO object
-		switch ($DBTYPE) {
-		case 'mysql':
-			self::$pdo=new PDO(
-				"mysql:host={$DBHOST};dbname={$DBNAME};port={$DBPORT}", $DBUSER, $DBPASS,
-				array(
-					PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION,
-					PDO::ATTR_DEFAULT_FETCH_MODE=>PDO::FETCH_OBJ,
-					PDO::ATTR_CASE=>PDO::CASE_LOWER,
-					PDO::ATTR_AUTOCOMMIT=>true
-				)
-			);
-			self::$AUTO_ID_TYPE ='INTEGER UNSIGNED AUTO_INCREMENT PRIMARY KEY';
-			self::$ID_TYPE      ='INTEGER UNSIGNED';
-			self::$INT1_TYPE    ='TINYINT';
-			self::$INT2_TYPE    ='SMALLINT';
-			self::$INT3_TYPE    ='MEDIUMINT';
-			self::$INT4_TYPE    ='INT';
-			self::$INT8_TYPE    ='BIGINT';
-			self::$CHAR_TYPE    ='CHAR';
-			self::$VARCHAR_TYPE ='VARCHAR';
-			self::$UNSIGNED     ='UNSIGNED';
-			self::$LIKE         ='LIKE';
-			self::$RANDOM       ='RAND()';
-			self::$TEXT_TYPE    ='TEXT';
-			self::$LONGTEXT_TYPE='LONGTEXT';
-			self::$DB_ENGINE    ='ENGINE=MyISAM'; /* this should be made configurable, similar to the UTF-8 option */
-			if ($DB_UTF8_COLLATION) {
-				self::$pdo->exec("SET NAMES 'utf8', SQL_BIG_SELECTS=1");
-				self::$UTF8_TABLE   ='CHARACTER SET utf8 COLLATE utf8_unicode_ci';
-			} else {
+		try {
+			switch ($DBTYPE) {
+			case 'mysql':
+				self::$pdo=new PDO(
+					"mysql:host={$DBHOST};dbname={$DBNAME};port={$DBPORT}", $DBUSER, $DBPASS,
+					array(
+						PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION,
+						PDO::ATTR_DEFAULT_FETCH_MODE=>PDO::FETCH_OBJ,
+						PDO::ATTR_CASE=>PDO::CASE_LOWER,
+						PDO::ATTR_AUTOCOMMIT=>true
+					)
+				);
+				self::$AUTO_ID_TYPE ='INTEGER UNSIGNED AUTO_INCREMENT PRIMARY KEY';
+				self::$ID_TYPE      ='INTEGER UNSIGNED';
+				self::$INT1_TYPE    ='TINYINT';
+				self::$INT2_TYPE    ='SMALLINT';
+				self::$INT3_TYPE    ='MEDIUMINT';
+				self::$INT4_TYPE    ='INT';
+				self::$INT8_TYPE    ='BIGINT';
+				self::$CHAR_TYPE    ='CHAR';
+				self::$VARCHAR_TYPE ='VARCHAR';
+				self::$UNSIGNED     ='UNSIGNED';
+				self::$LIKE         ='LIKE';
+				self::$RANDOM       ='RAND()';
+				self::$TEXT_TYPE    ='TEXT';
+				self::$LONGTEXT_TYPE='LONGTEXT';
+				self::$DB_ENGINE    ='ENGINE=MyISAM'; /* this should be made configurable, similar to the UTF-8 option */
+				if ($DB_UTF8_COLLATION) {
+					self::$pdo->exec("SET NAMES 'utf8', SQL_BIG_SELECTS=1");
+					self::$UTF8_TABLE   ='CHARACTER SET utf8 COLLATE utf8_unicode_ci';
+				} else {
+					self::$UTF8_TABLE   ='';
+				}
+				break;
+			case 'pgsql':
+				self::$pdo=new PDO(
+					"pgsql:host={$DBHOST};dbname={$DBNAME};port={$DBPORT}", $DBUSER, $DBPASS,
+					array(
+						PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION,
+						PDO::ATTR_DEFAULT_FETCH_MODE=>PDO::FETCH_OBJ,
+						PDO::ATTR_CASE=>PDO::CASE_LOWER
+					)
+				);
+				self::$AUTO_ID_TYPE ='SERIAL PRIMARY KEY';
+				self::$ID_TYPE      ='INTEGER';
+				self::$INT1_TYPE    ='SMALLINT';
+				self::$INT2_TYPE    ='SMALLINT';
+				self::$INT3_TYPE    ='INTEGER';
+				self::$INT4_TYPE    ='INTEGER';
+				self::$INT8_TYPE    ='BIGINT';
+				self::$CHAR_TYPE    ='VARCHAR'; // PG doesn't automatically TRIM(TRAILING ' ' FROM <col>) when selecting
+				self::$VARCHAR_TYPE ='VARCHAR';
+				self::$UNSIGNED     ='';
+				self::$LIKE         ='ILIKE';
+				self::$RANDOM       ='RANDOM()';
+				self::$TEXT_TYPE    ='TEXT';
+				self::$LONGTEXT_TYPE='TEXT';
+				self::$DB_ENGINE    =''; 		// pgsql CREATE TABLE does not support the 'ENGINE=' clause
 				self::$UTF8_TABLE   ='';
-			}
-			break;
-		case 'pgsql':
-			self::$pdo=new PDO(
-				"pgsql:host={$DBHOST};dbname={$DBNAME};port={$DBPORT}", $DBUSER, $DBPASS,
-				array(
-					PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION,
-					PDO::ATTR_DEFAULT_FETCH_MODE=>PDO::FETCH_OBJ,
-					PDO::ATTR_CASE=>PDO::CASE_LOWER
-				)
-			);
-			self::$AUTO_ID_TYPE ='SERIAL PRIMARY KEY';
-			self::$ID_TYPE      ='INTEGER';
-			self::$INT1_TYPE    ='SMALLINT';
-			self::$INT2_TYPE    ='SMALLINT';
-			self::$INT3_TYPE    ='INTEGER';
-			self::$INT4_TYPE    ='INTEGER';
-			self::$INT8_TYPE    ='BIGINT';
-			self::$CHAR_TYPE    ='VARCHAR'; // PG doesn't automatically TRIM(TRAILING ' ' FROM <col>) when selecting
-			self::$VARCHAR_TYPE ='VARCHAR';
-			self::$UNSIGNED     ='';
-			self::$LIKE         ='ILIKE';
-			self::$RANDOM       ='RANDOM()';
-			self::$TEXT_TYPE    ='TEXT';
-			self::$LONGTEXT_TYPE='TEXT';
-			self::$DB_ENGINE    =''; 		// pgsql CREATE TABLE does not support the 'ENGINE=' clause
-			self::$UTF8_TABLE   ='';
-			if ($DB_UTF8_COLLATION) {
-				self::$pdo->exec("SET NAMES 'UTF8'");
-			}
-			break;
-		case 'mssql':
-			self::$pdo=new PDO(
-				"mssql:host={$DBHOST};dbname={$DBNAME}".($DBPORT ? ",{$DBPORT}" : ''), $DBUSER, $DBPASS,
-				array(
-					PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION,
-					PDO::ATTR_DEFAULT_FETCH_MODE=>PDO::FETCH_OBJ,
-					PDO::ATTR_CASE=>PDO::CASE_LOWER,
-					PDO::ATTR_AUTOCOMMIT=>true
-				)
-			);
-			self::$AUTO_ID_TYPE ='INTEGER IDENTITY';
-			self::$ID_TYPE      ='INTEGER';
-			self::$INT1_TYPE    ='INTEGER';
-			self::$INT2_TYPE    ='INTEGER';
-			self::$INT3_TYPE    ='INTEGER';
-			self::$INT4_TYPE    ='INTEGER';
-			self::$INT8_TYPE    ='INTEGER';
-			self::$CHAR_TYPE    ='VARCHAR';
-			self::$VARCHAR_TYPE ='VARCHAR';
-			self::$UNSIGNED     ='';
-			self::$LIKE         ='LIKE';
-			self::$RANDOM       ='NEWID';
-			self::$TEXT_TYPE    ='TEXT';
-			self::$LONGTEXT_TYPE='TEXT';
-			self::$DB_ENGINE    =''; 		// mssql CREATE TABLE does not support the 'ENGINE=' clause
-			self::$UTF8_TABLE   ='';
-			break;
-		case 'sqlite':
-			try {
+				if ($DB_UTF8_COLLATION) {
+					self::$pdo->exec("SET NAMES 'UTF8'");
+				}
+				break;
+			case 'mssql':
 				self::$pdo=new PDO(
-					"sqlite:{$DBNAME}", null, null,
+					"mssql:host={$DBHOST};dbname={$DBNAME}".($DBPORT ? ",{$DBPORT}" : ''), $DBUSER, $DBPASS,
 					array(
 						PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION,
 						PDO::ATTR_DEFAULT_FETCH_MODE=>PDO::FETCH_OBJ,
-						PDO::ATTR_CASE=>PDO::CASE_LOWER
+						PDO::ATTR_CASE=>PDO::CASE_LOWER,
+						PDO::ATTR_AUTOCOMMIT=>true
 					)
 				);
-				// Check if we can connect to the database
-				// If not, we may have a sqlite2 database from PhpGedView 4.2.1 or earlier
-				PGV_DB::exec("pragma table_info(sqlite_master)");
-
-				PGV_DB::exec('PRAGMA encoding="UTF-8"');
-			} catch (PDOException $ex) {
-				// Couldn't connect using sqlite3 - try sqlite2
+				self::$AUTO_ID_TYPE ='INTEGER IDENTITY';
+				self::$ID_TYPE      ='INTEGER';
+				self::$INT1_TYPE    ='INTEGER';
+				self::$INT2_TYPE    ='INTEGER';
+				self::$INT3_TYPE    ='INTEGER';
+				self::$INT4_TYPE    ='INTEGER';
+				self::$INT8_TYPE    ='INTEGER';
+				self::$CHAR_TYPE    ='VARCHAR';
+				self::$VARCHAR_TYPE ='VARCHAR';
+				self::$UNSIGNED     ='';
+				self::$LIKE         ='LIKE';
+				self::$RANDOM       ='NEWID';
+				self::$TEXT_TYPE    ='TEXT';
+				self::$LONGTEXT_TYPE='TEXT';
+				self::$DB_ENGINE    =''; 		// mssql CREATE TABLE does not support the 'ENGINE=' clause
+				self::$UTF8_TABLE   ='';
+				break;
+			case 'sqlite':
+				try {
+					self::$pdo=new PDO(
+						"sqlite:{$DBNAME}", null, null,
+						array(
+							PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION,
+							PDO::ATTR_DEFAULT_FETCH_MODE=>PDO::FETCH_OBJ,
+							PDO::ATTR_CASE=>PDO::CASE_LOWER
+						)
+					);
+					// Check if we can connect to the database
+					// If not, we may have a sqlite2 database from PhpGedView 4.2.1 or earlier
+					PGV_DB::exec("pragma table_info(sqlite_master)");
+	
+					PGV_DB::exec('PRAGMA encoding="UTF-8"');
+				} catch (PDOException $ex) {
+					// Couldn't connect using sqlite3 - try sqlite2
+					self::$pdo=new PDO(
+						"sqlite2:{$DBNAME}", null, null,
+						array(
+							PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION,
+							PDO::ATTR_DEFAULT_FETCH_MODE=>PDO::FETCH_OBJ,
+							PDO::ATTR_CASE=>PDO::CASE_LOWER
+						)
+					);
+				}
+				self::$AUTO_ID_TYPE ='INTEGER PRIMARY KEY AUTOINCREMENT';
+				self::$ID_TYPE      ='INTEGER';
+				self::$INT1_TYPE    ='INTEGER';
+				self::$INT2_TYPE    ='INTEGER';
+				self::$INT3_TYPE    ='INTEGER';
+				self::$INT4_TYPE    ='INTEGER';
+				self::$INT8_TYPE    ='INTEGER';
+				self::$CHAR_TYPE    ='VARCHAR';
+				self::$VARCHAR_TYPE ='VARCHAR';
+				self::$UNSIGNED     ='';
+				self::$LIKE         ='LIKE';
+				self::$RANDOM       ='RANDOM()';
+				self::$TEXT_TYPE    ='TEXT';
+				self::$LONGTEXT_TYPE='TEXT';
+				self::$DB_ENGINE    =''; 		// sqlite CREATE TABLE does not support the 'ENGINE=' clause
+				self::$UTF8_TABLE   ='';
+				break;
+			case 'firebird': // This DSN has not been tested!
 				self::$pdo=new PDO(
-					"sqlite2:{$DBNAME}", null, null,
+					"firebird:host={$DBHOST};dbname={$DBNAME};charset=UTF-8", $DBUSER, $DBPASS,
 					array(
 						PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION,
 						PDO::ATTR_DEFAULT_FETCH_MODE=>PDO::FETCH_OBJ,
-						PDO::ATTR_CASE=>PDO::CASE_LOWER
+						PDO::ATTR_CASE=>PDO::CASE_LOWER,
+						PDO::ATTR_AUTOCOMMIT=>true
 					)
 				);
+				self::$AUTO_ID_TYPE ='INTEGER'; // No autoincrement columns available
+				self::$ID_TYPE      ='INTEGER';
+				self::$INT1_TYPE    ='INTEGER';
+				self::$INT2_TYPE    ='INTEGER';
+				self::$INT3_TYPE    ='INTEGER';
+				self::$INT4_TYPE    ='INTEGER';
+				self::$INT8_TYPE    ='INTEGER';
+				self::$CHAR_TYPE    ='VARCHAR';
+				self::$VARCHAR_TYPE ='VARCHAR';
+				self::$UNSIGNED     ='';
+				self::$LIKE         ='LIKE';
+				self::$RANDOM       ='RANDOM()';
+				self::$TEXT_TYPE    ='VARCHAR(32767)';
+				self::$LONGTEXT_TYPE='BLOB SUB_TYPE TEXT';
+				self::$DB_ENGINE    =''; /* this should be made configurable, similar to the UTF-8 option */
+				self::$UTF8_TABLE   ='';
+				break;
+			case 'ibm': // This DSN has not been tested!
+				self::$pdo=new PDO(
+					"ibm:DRIVER={IBM DB2 ODBC DRIVER};DATABASE={$DBNAME};HOSTNAME={$DBHOST};PORT={$DBPORT};PROTOCOL=TCPIP", $DBUSER, $DBPASS,
+					array(
+						PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION,
+						PDO::ATTR_DEFAULT_FETCH_MODE=>PDO::FETCH_OBJ,
+						PDO::ATTR_CASE=>PDO::CASE_LOWER,
+						PDO::ATTR_AUTOCOMMIT=>true
+					)
+				);
+				self::$AUTO_ID_TYPE ='INTEGER AUTOINCREMENT'; // These values are guesses
+				self::$ID_TYPE      ='INTEGER';
+				self::$INT1_TYPE    ='INTEGER';
+				self::$INT2_TYPE    ='INTEGER';
+				self::$INT3_TYPE    ='INTEGER';
+				self::$INT4_TYPE    ='INTEGER';
+				self::$INT8_TYPE    ='INTEGER';
+				self::$CHAR_TYPE    ='VARCHAR';
+				self::$VARCHAR_TYPE ='VARCHAR';
+				self::$UNSIGNED     ='';
+				self::$LIKE         ='LIKE';
+				self::$RANDOM       ='RANDOM()';
+				self::$TEXT_TYPE    ='TEXT';
+				self::$LONGTEXT_TYPE='TEXT';
+				self::$DB_ENGINE    =''; /* this should be made configurable, similar to the UTF-8 option */
+				self::$UTF8_TABLE   ='';
+				break;
+			case 'informix': // This DSN has not been tested!
+				self::$pdo=new PDO(
+					"informix:host={$DBHOST};service={$DBPORT};database={$DBNAME}", $DBUSER, $DBPASS,
+					array(
+						PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION,
+						PDO::ATTR_DEFAULT_FETCH_MODE=>PDO::FETCH_OBJ,
+						PDO::ATTR_CASE=>PDO::CASE_LOWER,
+						PDO::ATTR_AUTOCOMMIT=>true
+					)
+				);
+				self::$AUTO_ID_TYPE ='INTEGER AUTOINCREMENT'; // These values are guesses
+				self::$ID_TYPE      ='INTEGER';
+				self::$INT1_TYPE    ='INTEGER';
+				self::$INT2_TYPE    ='INTEGER';
+				self::$INT3_TYPE    ='INTEGER';
+				self::$INT4_TYPE    ='INTEGER';
+				self::$INT8_TYPE    ='INTEGER';
+				self::$CHAR_TYPE    ='VARCHAR';
+				self::$VARCHAR_TYPE ='VARCHAR';
+				self::$UNSIGNED     ='';
+				self::$LIKE         ='LIKE';
+				self::$RANDOM       ='RANDOM()';
+				self::$TEXT_TYPE    ='TEXT';
+				self::$LONGTEXT_TYPE='TEXT';
+				self::$DB_ENGINE    =''; /* this should be made configurable, similar to the UTF-8 option */
+				self::$UTF8_TABLE   ='';
+				break;
+			case 'oci': // This DSN has not been tested!
+				self::$pdo=new PDO(
+					"oci:dbname=//{$DBHOST}:{$DBPORT}/{$DBNAME}", $DBUSER, $DBPASS,
+					array(
+						PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION,
+						PDO::ATTR_DEFAULT_FETCH_MODE=>PDO::FETCH_OBJ,
+						PDO::ATTR_CASE=>PDO::CASE_LOWER,
+						PDO::ATTR_AUTOCOMMIT=>true
+					)
+				);
+				self::$AUTO_ID_TYPE ='INTEGER'; // No autoincrement columns available
+				self::$ID_TYPE      ='INTEGER';
+				self::$INT1_TYPE    ='INTEGER';
+				self::$INT2_TYPE    ='INTEGER';
+				self::$INT3_TYPE    ='INTEGER';
+				self::$INT4_TYPE    ='INTEGER';
+				self::$INT8_TYPE    ='INTEGER';
+				self::$CHAR_TYPE    ='VARCHAR';
+				self::$VARCHAR_TYPE ='VARCHAR';
+				self::$UNSIGNED     ='';
+				self::$LIKE         ='LIKE';
+				self::$RANDOM       ='RANDOM()';
+				self::$TEXT_TYPE    ='TEXT';
+				self::$LONGTEXT_TYPE='TEXT';
+				self::$DB_ENGINE    =''; /* this should be made configurable, similar to the UTF-8 option */
+				self::$UTF8_TABLE   ='';
+				break;
+			case 'odbc': // This DSN has not been tested!
+				self::$pdo=new PDO(
+					"odbc:$DBNAME", $DBUSER, $DBPASS,
+					array(
+						PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION,
+						PDO::ATTR_DEFAULT_FETCH_MODE=>PDO::FETCH_OBJ,
+						PDO::ATTR_CASE=>PDO::CASE_LOWER,
+						PDO::ATTR_AUTOCOMMIT=>true
+					)
+				);
+				self::$AUTO_ID_TYPE ='INTEGER AUTOINCREMENT'; // These values are guesses
+				self::$ID_TYPE      ='INTEGER';
+				self::$INT1_TYPE    ='INTEGER';
+				self::$INT2_TYPE    ='INTEGER';
+				self::$INT3_TYPE    ='INTEGER';
+				self::$INT4_TYPE    ='INTEGER';
+				self::$INT8_TYPE    ='INTEGER';
+				self::$CHAR_TYPE    ='VARCHAR';
+				self::$VARCHAR_TYPE ='VARCHAR';
+				self::$UNSIGNED     ='';
+				self::$LIKE         ='LIKE';
+				self::$RANDOM       ='RANDOM()';
+				self::$TEXT_TYPE    ='TEXT';
+				self::$LONGTEXT_TYPE='TEXT';
+				self::$DB_ENGINE    =''; /* this should be made configurable, similar to the UTF-8 option */
+				self::$UTF8_TABLE   ='';
+				break;
+			case '4D': // This DSN has not been tested!
+				self::$pdo=new PDO(
+					"4D:host={$DBHOST};port={$DBPORT};dbname={$DBNAME};charset=UTF-8", $DBUSER, $DBPASS,
+					array(
+						PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION,
+						PDO::ATTR_DEFAULT_FETCH_MODE=>PDO::FETCH_OBJ,
+						PDO::ATTR_CASE=>PDO::CASE_LOWER,
+						PDO::ATTR_AUTOCOMMIT=>true
+					)
+				);
+				self::$AUTO_ID_TYPE ='INTEGER AUTOINCREMENT'; // These values are guesses
+				self::$ID_TYPE      ='INTEGER';
+				self::$INT1_TYPE    ='INTEGER';
+				self::$INT2_TYPE    ='INTEGER';
+				self::$INT3_TYPE    ='INTEGER';
+				self::$INT4_TYPE    ='INTEGER';
+				self::$INT8_TYPE    ='INTEGER';
+				self::$CHAR_TYPE    ='VARCHAR';
+				self::$VARCHAR_TYPE ='VARCHAR';
+				self::$UNSIGNED     ='';
+				self::$LIKE         ='LIKE';
+				self::$RANDOM       ='RANDOM()';
+				self::$TEXT_TYPE    ='TEXT';
+				self::$LONGTEXT_TYPE='TEXT';
+				self::$UTF8_TABLE   =''; /* this should be made configurable, similar to the UTF-8 option */
+				self::$DB_ENGINE     ='';
+				break;
 			}
-			self::$AUTO_ID_TYPE ='INTEGER PRIMARY KEY AUTOINCREMENT';
-			self::$ID_TYPE      ='INTEGER';
-			self::$INT1_TYPE    ='INTEGER';
-			self::$INT2_TYPE    ='INTEGER';
-			self::$INT3_TYPE    ='INTEGER';
-			self::$INT4_TYPE    ='INTEGER';
-			self::$INT8_TYPE    ='INTEGER';
-			self::$CHAR_TYPE    ='VARCHAR';
-			self::$VARCHAR_TYPE ='VARCHAR';
-			self::$UNSIGNED     ='';
-			self::$LIKE         ='LIKE';
-			self::$RANDOM       ='RANDOM()';
-			self::$TEXT_TYPE    ='TEXT';
-			self::$LONGTEXT_TYPE='TEXT';
-			self::$DB_ENGINE    =''; 		// sqlite CREATE TABLE does not support the 'ENGINE=' clause
-			self::$UTF8_TABLE   ='';
-			break;
-		case 'firebird': // This DSN has not been tested!
-			self::$pdo=new PDO(
-				"firebird:host={$DBHOST};dbname={$DBNAME};charset=UTF-8", $DBUSER, $DBPASS,
-				array(
-					PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION,
-					PDO::ATTR_DEFAULT_FETCH_MODE=>PDO::FETCH_OBJ,
-					PDO::ATTR_CASE=>PDO::CASE_LOWER,
-					PDO::ATTR_AUTOCOMMIT=>true
-				)
-			);
-			self::$AUTO_ID_TYPE ='INTEGER'; // No autoincrement columns available
-			self::$ID_TYPE      ='INTEGER';
-			self::$INT1_TYPE    ='INTEGER';
-			self::$INT2_TYPE    ='INTEGER';
-			self::$INT3_TYPE    ='INTEGER';
-			self::$INT4_TYPE    ='INTEGER';
-			self::$INT8_TYPE    ='INTEGER';
-			self::$CHAR_TYPE    ='VARCHAR';
-			self::$VARCHAR_TYPE ='VARCHAR';
-			self::$UNSIGNED     ='';
-			self::$LIKE         ='LIKE';
-			self::$RANDOM       ='RANDOM()';
-			self::$TEXT_TYPE    ='VARCHAR(32767)';
-			self::$LONGTEXT_TYPE='BLOB SUB_TYPE TEXT';
-			self::$DB_ENGINE    =''; /* this should be made configurable, similar to the UTF-8 option */
-			self::$UTF8_TABLE   ='';
-			break;
-		case 'ibm': // This DSN has not been tested!
-			self::$pdo=new PDO(
-				"ibm:DRIVER={IBM DB2 ODBC DRIVER};DATABASE={$DBNAME};HOSTNAME={$DBHOST};PORT={$DBPORT};PROTOCOL=TCPIP", $DBUSER, $DBPASS,
-				array(
-					PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION,
-					PDO::ATTR_DEFAULT_FETCH_MODE=>PDO::FETCH_OBJ,
-					PDO::ATTR_CASE=>PDO::CASE_LOWER,
-					PDO::ATTR_AUTOCOMMIT=>true
-				)
-			);
-			self::$AUTO_ID_TYPE ='INTEGER AUTOINCREMENT'; // These values are guesses
-			self::$ID_TYPE      ='INTEGER';
-			self::$INT1_TYPE    ='INTEGER';
-			self::$INT2_TYPE    ='INTEGER';
-			self::$INT3_TYPE    ='INTEGER';
-			self::$INT4_TYPE    ='INTEGER';
-			self::$INT8_TYPE    ='INTEGER';
-			self::$CHAR_TYPE    ='VARCHAR';
-			self::$VARCHAR_TYPE ='VARCHAR';
-			self::$UNSIGNED     ='';
-			self::$LIKE         ='LIKE';
-			self::$RANDOM       ='RANDOM()';
-			self::$TEXT_TYPE    ='TEXT';
-			self::$LONGTEXT_TYPE='TEXT';
-			self::$DB_ENGINE    =''; /* this should be made configurable, similar to the UTF-8 option */
-			self::$UTF8_TABLE   ='';
-			break;
-		case 'informix': // This DSN has not been tested!
-			self::$pdo=new PDO(
-				"informix:host={$DBHOST};service={$DBPORT};database={$DBNAME}", $DBUSER, $DBPASS,
-				array(
-					PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION,
-					PDO::ATTR_DEFAULT_FETCH_MODE=>PDO::FETCH_OBJ,
-					PDO::ATTR_CASE=>PDO::CASE_LOWER,
-					PDO::ATTR_AUTOCOMMIT=>true
-				)
-			);
-			self::$AUTO_ID_TYPE ='INTEGER AUTOINCREMENT'; // These values are guesses
-			self::$ID_TYPE      ='INTEGER';
-			self::$INT1_TYPE    ='INTEGER';
-			self::$INT2_TYPE    ='INTEGER';
-			self::$INT3_TYPE    ='INTEGER';
-			self::$INT4_TYPE    ='INTEGER';
-			self::$INT8_TYPE    ='INTEGER';
-			self::$CHAR_TYPE    ='VARCHAR';
-			self::$VARCHAR_TYPE ='VARCHAR';
-			self::$UNSIGNED     ='';
-			self::$LIKE         ='LIKE';
-			self::$RANDOM       ='RANDOM()';
-			self::$TEXT_TYPE    ='TEXT';
-			self::$LONGTEXT_TYPE='TEXT';
-			self::$DB_ENGINE    =''; /* this should be made configurable, similar to the UTF-8 option */
-			self::$UTF8_TABLE   ='';
-			break;
-		case 'oci': // This DSN has not been tested!
-			self::$pdo=new PDO(
-				"oci:dbname=//{$DBHOST}}:{$DBPORT}/{$DBNAME}", $DBUSER, $DBPASS,
-				array(
-					PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION,
-					PDO::ATTR_DEFAULT_FETCH_MODE=>PDO::FETCH_OBJ,
-					PDO::ATTR_CASE=>PDO::CASE_LOWER,
-					PDO::ATTR_AUTOCOMMIT=>true
-				)
-			);
-			self::$AUTO_ID_TYPE ='INTEGER'; // No autoincrement columns available
-			self::$ID_TYPE      ='INTEGER';
-			self::$INT1_TYPE    ='INTEGER';
-			self::$INT2_TYPE    ='INTEGER';
-			self::$INT3_TYPE    ='INTEGER';
-			self::$INT4_TYPE    ='INTEGER';
-			self::$INT8_TYPE    ='INTEGER';
-			self::$CHAR_TYPE    ='VARCHAR';
-			self::$VARCHAR_TYPE ='VARCHAR';
-			self::$UNSIGNED     ='';
-			self::$LIKE         ='LIKE';
-			self::$RANDOM       ='RANDOM()';
-			self::$TEXT_TYPE    ='TEXT';
-			self::$LONGTEXT_TYPE='TEXT';
-			self::$DB_ENGINE    =''; /* this should be made configurable, similar to the UTF-8 option */
-			self::$UTF8_TABLE   ='';
-			break;
-		case 'odbc': // This DSN has not been tested!
-			self::$pdo=new PDO(
-				"odbc:$DBNAME", $DBUSER, $DBPASS,
-				array(
-					PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION,
-					PDO::ATTR_DEFAULT_FETCH_MODE=>PDO::FETCH_OBJ,
-					PDO::ATTR_CASE=>PDO::CASE_LOWER,
-					PDO::ATTR_AUTOCOMMIT=>true
-				)
-			);
-			self::$AUTO_ID_TYPE ='INTEGER AUTOINCREMENT'; // These values are guesses
-			self::$ID_TYPE      ='INTEGER';
-			self::$INT1_TYPE    ='INTEGER';
-			self::$INT2_TYPE    ='INTEGER';
-			self::$INT3_TYPE    ='INTEGER';
-			self::$INT4_TYPE    ='INTEGER';
-			self::$INT8_TYPE    ='INTEGER';
-			self::$CHAR_TYPE    ='VARCHAR';
-			self::$VARCHAR_TYPE ='VARCHAR';
-			self::$UNSIGNED     ='';
-			self::$LIKE         ='LIKE';
-			self::$RANDOM       ='RANDOM()';
-			self::$TEXT_TYPE    ='TEXT';
-			self::$LONGTEXT_TYPE='TEXT';
-			self::$DB_ENGINE    =''; /* this should be made configurable, similar to the UTF-8 option */
-			self::$UTF8_TABLE   ='';
-			break;
-		case '4D': // This DSN has not been tested!
-			self::$pdo=new PDO(
-				"4D:host={$DBHOST};port={$DBPORT};dbname={$DBNAME};charset=UTF-8", $DBUSER, $DBPASS,
-				array(
-					PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION,
-					PDO::ATTR_DEFAULT_FETCH_MODE=>PDO::FETCH_OBJ,
-					PDO::ATTR_CASE=>PDO::CASE_LOWER,
-					PDO::ATTR_AUTOCOMMIT=>true
-				)
-			);
-			self::$AUTO_ID_TYPE ='INTEGER AUTOINCREMENT'; // These values are guesses
-			self::$ID_TYPE      ='INTEGER';
-			self::$INT1_TYPE    ='INTEGER';
-			self::$INT2_TYPE    ='INTEGER';
-			self::$INT3_TYPE    ='INTEGER';
-			self::$INT4_TYPE    ='INTEGER';
-			self::$INT8_TYPE    ='INTEGER';
-			self::$CHAR_TYPE    ='VARCHAR';
-			self::$VARCHAR_TYPE ='VARCHAR';
-			self::$UNSIGNED     ='';
-			self::$LIKE         ='LIKE';
-			self::$RANDOM       ='RANDOM()';
-			self::$TEXT_TYPE    ='TEXT';
-			self::$LONGTEXT_TYPE='TEXT';
-			self::$UTF8_TABLE   =''; /* this should be made configurable, similar to the UTF-8 option */
-			self::$DB_ENGINE     ='';
-			break;
+		} catch (PDOException $e) {
+			trigger_error('DB connection error in PGV_DB::createInstance(): ' . $e->getMessage(), E_USER_ERROR);
+			return;
 		}
-
 		// Assign the singleton
 		self::$instance=new self;
 	}
