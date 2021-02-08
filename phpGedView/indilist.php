@@ -110,7 +110,7 @@ if ($show_all=='yes') {
 	case '':
 		break;
 	case '@':
-		$legend.=', '.$pgv_lang['NN'];
+		$legend.=', '.$pgv_lang['PN'];
 		break;
 	default:
 		$legend.=', '.$falpha;
@@ -239,7 +239,7 @@ if ($showList) {
 				foreach ($givn_initials as $givn_initial) {
 					switch ($givn_initial) {
 					case '@':
-						$html=$pgv_lang['NN'];
+						$html=$pgv_lang['PN'];
 						break;
 					default:
 						$html=$givn_initial;
