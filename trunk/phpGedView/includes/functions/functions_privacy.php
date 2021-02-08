@@ -279,8 +279,7 @@ if (!function_exists("displayDetailsById")) {
 * @return boolean
 */
 function checkPrivacyByYear($pid) {
-	global $MAX_ALIVE_AGE;
-	global $GEDCOM;
+	global $MAX_ALIVE_AGE, $GEDCOM;
 	$ged_id=get_id_from_gedcom($GEDCOM);
 
 	$cyear = date("Y");
@@ -345,10 +344,9 @@ function displayDetailsById($pid, $type = "INDI", $sitemap = false) {
 	global $PRIV_PUBLIC, $PRIV_USER, $PRIV_NONE, $PRIV_HIDE, $USE_RELATIONSHIP_PRIVACY, $CHECK_MARRIAGE_RELATIONS, $MAX_RELATION_PATH_LENGTH;
 	global $global_facts, $person_privacy, $user_privacy, $HIDE_LIVE_PEOPLE, $GEDCOM, $SHOW_DEAD_PEOPLE, $MAX_ALIVE_AGE, $PRIVACY_BY_YEAR;
 	global $PRIVACY_CHECKS, $PRIVACY_BY_RESN, $SHOW_SOURCES, $SHOW_LIVING_NAMES, $INDEX_DIRECTORY;
-	global $GEDCOM;
 	$ged_id=get_id_from_gedcom($GEDCOM);
 
-	if ($_SESSION["pgv_user"]==PGV_USER_ID) {
+	if (isset($_SESSION["pgv_user"]) && $_SESSION["pgv_user"]==PGV_USER_ID) {
 		// Normal operation
 		$pgv_GEDCOM            = PGV_GEDCOM;
 		$pgv_GED_ID            = PGV_GED_ID;
@@ -359,19 +357,28 @@ function displayDetailsById($pid, $type = "INDI", $sitemap = false) {
 		$pgv_USER_ACCESS_LEVEL = PGV_USER_ACCESS_LEVEL;
 		$pgv_USER_GEDCOM_ID    = PGV_USER_GEDCOM_ID;
 	} else {
-		// We're in the middle of a Download -- get overriding information from cache
-		$pgv_GEDCOM            = $_SESSION["pgv_GEDCOM"];
-		$pgv_GED_ID            = $_SESSION["pgv_GED_ID"];
-		$pgv_USER_ID           = $_SESSION["pgv_USER_ID"];
-		$pgv_USER_NAME         = $_SESSION["pgv_USER_NAME"];
-		$pgv_USER_GEDCOM_ADMIN = $_SESSION["pgv_USER_GEDCOM_ADMIN"];
-		$pgv_USER_CAN_ACCESS   = $_SESSION["pgv_USER_CAN_ACCESS"];
-		$pgv_USER_ACCESS_LEVEL = $_SESSION["pgv_USER_ACCESS_LEVEL"];
-		$pgv_USER_GEDCOM_ID    = $_SESSION["pgv_USER_GEDCOM_ID"];
+		// We're in the middle of a Download
+		$pgv_GEDCOM            = null;
+		$pgv_GED_ID            = null;
+		$pgv_USER_ID           = null;
+		$pgv_USER_NAME         = null;
+		$pgv_USER_GEDCOM_ADMIN = null;
+		$pgv_USER_CAN_ACCESS   = null;
+		$pgv_USER_ACCESS_LEVEL = null;
+		$pgv_USER_GEDCOM_ID    = null;
+		// Now that we have set everything to the proper values when the corresponding $_SESSION variable 
+		// is missing, let's check the cache (in the $_SESSION array) for over-rides.
+		if (isset($_SESSION["pgv_GEDCOM"]))				$pgv_GEDCOM				= $_SESSION["pgv_GEDCOM"];
+		if (isset($_SESSION["pgv_GED_ID"]))				$pgv_GED_ID				= $_SESSION["pgv_GED_ID"];
+		if (isset($_SESSION["pgv_USER_ID"]))			$pgv_USER_ID			= $_SESSION["pgv_USER_ID"];
+		if (isset($_SESSION["pgv_USER_NAME"]))			$pgv_USER_NAME			= $_SESSION["pgv_USER_NAME"];
+		if (isset($_SESSION["pgv_USER_GEDCOM_ID"]))		$pgv_USER_GEDCOM_ID		= $_SESSION["pgv_USER_GEDCOM_ID"];
+		if (isset($_SESSION["pgv_USER_CAN_ACCESS"]))	$pgv_USER_CAN_ACCESS	= $_SESSION["pgv_USER_CAN_ACCESS"];
+		if (isset($_SESSION["pgv_USER_GEDCOM_ADMIN"]))	$pgv_USER_GEDCOM_ADMIN	= $_SESSION["pgv_USER_GEDCOM_ADMIN"];
+		if (isset($_SESSION["pgv_USER_ACCESS_LEVEL"]))	$pgv_USER_ACCESS_LEVEL	= $_SESSION["pgv_USER_ACCESS_LEVEL"];
 	}
 
 	static $privacy_cache = array();
-
 	if (!$HIDE_LIVE_PEOPLE) return true;
 	if (empty($pid)) return true;
 
@@ -520,7 +527,7 @@ function displayDetailsById($pid, $type = "INDI", $sitemap = false) {
 				}
 			}
 		}
-	} //-- end the user specif privacy settings
+	} //-- end the user specific privacy settings
 
 	//-- check the person privacy array for an exception
 	if (isset($person_privacy[$pid])) {
@@ -675,17 +682,20 @@ if (!function_exists("showLivingNameById")) {
 * @return boolean return true to show the person's name, return false to keep it private
 */
 function showLivingNameById($pid) {
-	global $GEDCOM;
-	global $SHOW_LIVING_NAMES, $person_privacy, $user_privacy;
+	global $GEDCOM, $SHOW_LIVING_NAMES, $person_privacy, $user_privacy;
 
-	if ($_SESSION["pgv_user"]==PGV_USER_ID) {
+	if (isset($_SESSION["pgv_user"]) && $_SESSION["pgv_user"]==PGV_USER_ID) {
 		// Normal operation
 		$pgv_USER_NAME			= PGV_USER_NAME;
 		$pgv_USER_ACCESS_LEVEL	= PGV_USER_ACCESS_LEVEL;
 	} else {
-		// We're in the middle of a Download -- get overriding information from cache
-		$pgv_USER_NAME			= $_SESSION["pgv_USER_NAME"];
-		$pgv_USER_ACCESS_LEVEL	= $_SESSION["pgv_USER_ACCESS_LEVEL"];
+		// We're in the middle of a Download
+		$pgv_USER_NAME			= null;
+		$pgv_USER_ACCESS_LEVEL	= null;
+		// Now that we have set everything to the proper values when the corresponding $_SESSION variable 
+		// is missing, let's check the cache (in the $_SESSION array) for over-rides.
+		if (isset($_SESSION["pgv_USER_NAME"]))			$pgv_USER_NAME			= $_SESSION["pgv_USER_NAME"];
+		if (isset($_SESSION["pgv_USER_ACCESS_LEVEL"]))	$pgv_USER_ACCESS_LEVEL	= $_SESSION["pgv_USER_ACCESS_LEVEL"];
 	}
 
 	if (displayDetailsById($pid)) return true;
@@ -725,15 +735,17 @@ if (!function_exists("showFact")) {
 * @return boolean return true to show the fact, return false to keep it private
 */
 function showFact($fact, $pid, $type='INDI') {
-	global $GEDCOM;
-	global $global_facts, $person_facts, $SHOW_SOURCES;
+	global $GEDCOM, $global_facts, $person_facts, $SHOW_SOURCES;
 
-	if ($_SESSION["pgv_user"]==PGV_USER_ID) {
+	if (isset($_SESSION["pgv_user"]) && $_SESSION["pgv_user"]==PGV_USER_ID) {
 		// Normal operation
 		$pgv_USER_ACCESS_LEVEL	= PGV_USER_ACCESS_LEVEL;
 	} else {
-		// We're in the middle of a Download -- get overriding information from cache
-		$pgv_USER_ACCESS_LEVEL	= $_SESSION["pgv_USER_ACCESS_LEVEL"];
+		// We're in the middle of a Download
+		$pgv_USER_ACCESS_LEVEL	= null;
+		// Now that we have set everything to the proper values when the corresponding $_SESSION variable 
+		// is missing, let's check the cache (in the $_SESSION array) for over-rides.
+		if (isset($_SESSION["pgv_USER_ACCESS_LEVEL"]))	$pgv_USER_ACCESS_LEVEL	= $_SESSION["pgv_USER_ACCESS_LEVEL"];
 	}
 
 	//-- first check the global facts array
@@ -776,15 +788,17 @@ if (!function_exists("showFactDetails")) {
 * @return boolean return true to show the fact details, return false to keep it private
 */
 function showFactDetails($fact, $pid) {
-	global $GEDCOM;
-	global $global_facts, $person_facts;
+	global $GEDCOM, $global_facts, $person_facts;
 
-	if ($_SESSION["pgv_user"]==PGV_USER_ID) {
+	if (isset($_SESSION["pgv_user"]) && $_SESSION["pgv_user"]==PGV_USER_ID) {
 		// Normal operation
 		$pgv_USER_ACCESS_LEVEL	= PGV_USER_ACCESS_LEVEL;
 	} else {
-		// We're in the middle of a Download -- get overriding information from cache
-		$pgv_USER_ACCESS_LEVEL	= $_SESSION["pgv_USER_ACCESS_LEVEL"];
+		// We're in the middle of a Download
+		$pgv_USER_ACCESS_LEVEL	= null;;
+		// Now that we have set everything to the proper values when the corresponding $_SESSION variable 
+		// is missing, let's check the cache (in the $_SESSION array) for over-rides.
+		if (isset($_SESSION["pgv_USER_ACCESS_LEVEL"]))	$pgv_USER_ACCESS_LEVEL	= $_SESSION["pgv_USER_ACCESS_LEVEL"];
 	}
 
 	//-- first check the global facts array
@@ -980,16 +994,21 @@ function FactEditRestricted($pid, $factrec) {
 * @return int Allowed or not allowed
 */
 function FactViewRestricted($pid, $factrec) {
-	if ($_SESSION['pgv_user']==PGV_USER_ID) {
+	if (isset($_SESSION['pgv_user']) && $_SESSION['pgv_user']==PGV_USER_ID) {
 		// Normal operation
 		$pgv_GED_ID				= PGV_GED_ID;
 		$pgv_USER_GEDCOM_ADMIN	= PGV_USER_GEDCOM_ADMIN;
 		$pgv_USER_GEDCOM_ID		= PGV_USER_GEDCOM_ID;
 	} else {
-		// We're in the middle of a Download -- get overriding information from cache
-		$pgv_GED_ID           =$_SESSION['pgv_GED_ID'];
-		$pgv_USER_GEDCOM_ADMIN=$_SESSION['pgv_USER_GEDCOM_ADMIN'];
-		$pgv_USER_GEDCOM_ID   =$_SESSION['pgv_USER_GEDCOM_ID'];
+		// We're in the middle of a Download
+		$pgv_GED_ID				= null;
+		$pgv_USER_GEDCOM_ADMIN	= null;
+		$pgv_USER_GEDCOM_ID		= null;
+		// Now that we have set everything to the proper values when the corresponding $_SESSION variable 
+		// is missing, let's check the cache (in the $_SESSION array) for over-rides.
+		if (isset($_SESSION["pgv_GED_ID"]))				$pgv_GED_ID				= $_SESSION["pgv_GED_ID"];
+		if (isset($_SESSION["pgv_USER_GEDCOM_ID"]))		$pgv_USER_GEDCOM_ID		= $_SESSION["pgv_USER_GEDCOM_ID"];
+		if (isset($_SESSION["pgv_USER_GEDCOM_ADMIN"]))	$pgv_USER_GEDCOM_ADMIN	= $_SESSION["pgv_USER_GEDCOM_ADMIN"];
 	}
 
 	if ($pgv_USER_GEDCOM_ADMIN) {

@@ -3,7 +3,7 @@
  * English texts
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2020  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2021  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -457,24 +457,24 @@ $pgv_lang["status"] 				= "Status";
 $pgv_lang["source"] 				= "Source";
 $pgv_lang["text"]					= "Source Text:";
 $pgv_lang["note"]					= "Note";
-$pgv_lang["NN"] 			= "(unknown)";
-$pgv_lang["PN"] 			= "(unknown)";
+$pgv_lang["NN"] 			= "(Family name unknown)";		// Family name
+$pgv_lang["PN"] 			= "(Given name unknown)";		// Given name
 $pgv_lang["NNhebrew"] 		= "(לא-ידוע)";
 $pgv_lang["PNhebrew"] 		= "(לא-ידוע)";
 $pgv_lang["NNarabic"] 		= "(غير معروف)";
 $pgv_lang["PNarabic"] 		= "(غير معروف)";
-$pgv_lang["NNgreek"] 		= "(άγνωστος/η)";
-$pgv_lang["PNgreek"] 		= "(άγνωστος/η)";
-$pgv_lang["NNrussian"] 		= "(неопределено)";
-$pgv_lang["PNrussian"] 		= "(неопределено)";
+$pgv_lang["NNgreek"] 		= "(άγνωστο όνομα οικογένειας)";
+$pgv_lang["PNgreek"] 		= "(άγνωστο όνομα)";
+$pgv_lang["NNrussian"] 		= "(фамилия неизвестна)";
+$pgv_lang["PNrussian"] 		= "(имя неизвестно)";
 $pgv_lang["NNchinese"] 		= "(未知)";
 $pgv_lang["PNchinese"] 		= "(未知)";
 $pgv_lang["NNvietnamese"] 	= "(vô danh)";
 $pgv_lang["PNvietnamese"] 	= "(không biết tuổi)";
-$pgv_lang["NNthai"] 		= "(unknown)";
-$pgv_lang["PNthai"] 		= "(unknown)";
-$pgv_lang["NNother"] 		= "(unknown)";
-$pgv_lang["PNother"] 		= "(unknown)";
+$pgv_lang["NNthai"] 		= "(ไม่ทราบชื่อสกุล)";
+$pgv_lang["PNthai"] 		= "(ไม่ทราบชื่อ)";
+$pgv_lang["NNother"] 		= "(Family name unknown)";
+$pgv_lang["PNother"] 		= "(Given name unknown)";
 $pgv_lang["unrecognized_code"]		= "Unrecognized GEDCOM Code";
 $pgv_lang["unrecognized_code_msg"]	= "This is an error, and we would like to fix it. Please report this error to";
 $pgv_lang["indi_info"]				= "Individual Information";
@@ -1425,12 +1425,13 @@ $pgv_lang["block_givn_top10"]			= "Top 10 Given Names";
 $pgv_lang["block_givn_top10_descr"]		= "This block shows a table of the 10 most frequently occurring given names in the database.  The actual number of given names shown in this block is configurable.";
 
 $pgv_lang["gedcom_news_block"]		= "GEDCOM News";
-$pgv_lang["gedcom_news_descr"]		= "The GEDCOM News block shows the visitor news releases or articles posted by an admin user.<br /><br />The News block is a good place to announce a significant database update, a family reunion, or the birth of a child.";
+$pgv_lang["gedcom_news_descr"]		= "The GEDCOM News block shows the visitor news releases or articles published by an admin user.<br /><br />The News block is a good place to announce a significant database update, a family reunion, or the birth of a child.";
 $pgv_lang["gedcom_news_limit"]		= "Limit display by:";
 $pgv_lang["gedcom_news_limit_nolimit"]	= "No limit";
 $pgv_lang["gedcom_news_limit_date"]		= "Age of item";
 $pgv_lang["gedcom_news_limit_count"]	= "Number of items";
 $pgv_lang["gedcom_news_flag"]		= "Limit:";
+$pgv_lang["gedcom_news_published"]	= "Published : ";
 $pgv_lang["gedcom_news_archive"] 	= "View archive";
 $pgv_lang["user_news_block"]		= "User Journal";
 $pgv_lang["user_news_descr"]		= "The User Journal block lets the user keep notes or a journal online.";

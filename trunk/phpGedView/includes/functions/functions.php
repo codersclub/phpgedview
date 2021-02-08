@@ -4015,34 +4015,42 @@ function normalizeIPv6($inputIP) {
 
 /**
  * This function, called recursively, deletes all subdirectories and files in those subdirectories
+ *
+ * @param string $dir file or folder name to be deleted
+ * @return boolean true|false True when file or folder was found and deleted successfully
+ * @package PhpGedView
  */
 function removeDir($dir) {
-	if (!is_dir($dir)) {
-		if (!is_file($dir)) return FALSE;		// Neither a directory nor a file -- probably doesn't exist at all
-		unlink($dir);		// It's a file: just get rid of it
-		return TRUE;
-	}
-	if (!is_writable($dir)) {
-		if (!@chmod($dir, PGV_PERM_EXE)) return FALSE;
-	}
 
+	if (!is_file($dir) && !is_dir($dir)) return false;		// Neither a file nor a directory: what is it??
+
+	if (is_file($dir)) {
+		// It's a file: just delete it
+		chmod($dir, 0755);
+		clearstatcache();
+		$success = @unlink($dir);
+		clearstatcache();
+		return $success;
+	} 
+	
+	// Not a file: it must be a directory.
+	// We have to empty it before attempting to delete it
 	$d = dir($dir);
-	while (FALSE !== ($entry = $d->read())) {
+	$success = true;		// Pre-load "success" in case the directory is empty to begin with
+	while (false !== ($entry = $d->read())) {
+		// Examine each item in the directory's table of contents
 		if ($entry == '.' || $entry == '..') continue;
 		$entry = $dir . '/' . $entry;
-		if (is_dir($entry)) {
-			if (!removeDir($entry)) return FALSE;
-			continue;
-		}
-		if (!@unlink($entry)) {
-			$d->close();
-			return FALSE;
-		}
+		$success = removeDir($entry);		// Call this function recursively
+		if (!$success) break;		// This function couldn't remove the directory for some reason
 	}
-
 	$d->close();
-	rmdir($dir);
-	return TRUE;
+	if (!$success) return false;
+	// The current directory should now be empty
+	clearstatcache();
+	$success = @rmdir($dir);
+	clearstatcache();
+	return $success;
 }
 
 // optional extra file

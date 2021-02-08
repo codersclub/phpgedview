@@ -112,8 +112,8 @@ function print_gedcom_news($limitHeight, $config, $side, $index)
 				$newsTitle = str_replace("$match[0]", $pgv_lang[$match[1]], $newsTitle);
 			}
 		}
-		$content .= "<span class=\"news_title\">".PrintReady($newsTitle)."</span><br />\n";
-		$content .= "<span class=\"news_date\">".format_timestamp($news['date'])."</span><br /><br />\n";
+		$content .= '<span class="news_title">'.PrintReady($newsTitle).'</span><br />';
+		$content .= '<span class="news_date">'.$pgv_lang["gedcom_news_published"].format_timestamp($news['date']).'</span><br /><br />';
 
 		// Look for $pgv_lang, $factarray, and $GLOBALS substitutions in the News text
 		$newsText = print_text($news['text'], 0, 2);

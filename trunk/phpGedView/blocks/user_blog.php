@@ -67,8 +67,8 @@ function print_user_news($limitHeight, $config, $side, $index) {
 				$news["title"] = str_replace($match[0], $pgv_lang[$match[1]], $news["title"]);
 			}
 		}
-		$content .= "<span class=\"news_title\">".PrintReady($news["title"])."</span><br />";
-		$content .= "<span class=\"news_date\">".format_timestamp($news["date"])."</span><br /><br />";
+		$content .= '<span class="news_title">'.PrintReady($news["title"]).'</span><br />';
+		$content .= '<span class="news_date">'.$pgv_lang["gedcom_news_published"].format_timestamp($news["date"]).'</span><br /><br />';
 		if (preg_match("/#(.+)#/", $news["text"], $match)) {
 			if (isset($pgv_lang[$match[1]])) {
 				$news["text"] = str_replace($match[0], $pgv_lang[$match[1]], $news["text"]);

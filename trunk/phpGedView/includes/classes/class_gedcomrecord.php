@@ -560,10 +560,12 @@ class GedcomRecord {
 		$this->_getSecondaryName=null;
 	}
 
+/* Do we really need this function?  PHP 8 doesn't like to see it
 	// Allow native PHP functions such as array_intersect() to work with objects
 	public function __toString() {
 		return $this->xref.'@'.$this->ged_id;
 	}
+*/
 
 	// Static helper function to sort an array of objects by name
 	// Records whose names cannot be displayed are sorted at the end.

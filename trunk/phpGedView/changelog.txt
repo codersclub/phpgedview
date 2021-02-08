@@ -14,7 +14,10 @@ The session.php script uses this information to populate the constants : PGV_VER
 =====================================================================
 
 Version 4.3.1
- - Fixed: class_pgv_db should report database some connection errors in a more meaningful way (tbabczynski)
+ - Fixed: Error when adding a previously unused block to the main Welcome or the MyGedView pages (canajun2eh)
+ - Changed: GEDCOM News and User Blog blocks should add "Published" in front of date of publication (canajun2eh)
+ - Fixed: Various errors on main Welcome page, having to do with cache deletion (PHP 8 compatibility) (imsza, canajun2eh)
+ - Fixed: class_pgv_db should report some database connection errors in a more meaningful way (tbabczynski)
  - Fixed: changelog.php should open links to SourceForge bug tracker in a new window (canajun2eh)
  - Fixed: Error-suppressing @ in front of functions mis-used in changelog.php (PHP 8 compatibility) (imsza)
  - Fixed: IPv6 addresses are reported as "unknown" (canajun2eh)

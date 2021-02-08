@@ -54,7 +54,7 @@ function loadCachedBlock($block, $index) {
 	}
 	if ($cacheLife==0) return false;
 
-	$fname = "{$INDEX_DIRECTORY}/cache/{$theme_name}/{$lang_short_cut[$LANGUAGE]}/{$GEDCOM}/{$index}_{$block[0]}";
+	$fname = "{$INDEX_DIRECTORY}cache/{$theme_name}/{$lang_short_cut[$LANGUAGE]}/{$GEDCOM}/{$index}_{$block[0]}";
 	if (file_exists($fname)) {
 		// Check for expired cache (<0: no expiry), 0: immediate, >0: expires in x days)  Zero already checked
 		if ($cacheLife > 0) {
@@ -97,23 +97,33 @@ function saveCachedBlock($block, $index, $content) {
 		return false;
 	}
 
-	$fname = $INDEX_DIRECTORY."/cache";
-	@mkdir($fname);
+	$fname = "{$INDEX_DIRECTORY}cache/{$theme_name}/{$lang_short_cut[$LANGUAGE]}/{$GEDCOM}";
+	if (!is_dir($fname)) {
+		// Try to create the desired directory structure
+		$success = @mkdir($fname, 0777, true);
+		if (!$success) {
+			// The first attempt failed:  get rid of the cache directory and try again
+			$success = removeDir("{$INDEX_DIRECTORY}cache");
+			if (!$success) return false;			// couldn't get rid of the cache directory: quit
+			$success = mkdir($fname, 0777, true);	// second attempt, after clearing cache completely
+			if (!$success) return false;			// second attempt failed too: quit
+		}
+	}
 
-	$fname .= "/".$theme_name;
-	@mkdir($fname);
+	$fname .= "/{$index}_{$block[0]}";
+	// Try to open the file; create it if it does not exist
+	$fp = @fopen($fname, "w");
+	if (!$fp) {
+		// Could not open the file:  Get rid of it and try a second time
+		$success = removeDir($fname);
+		if (!$success) return false;		// couldn't get rid of the cache file: quit
+		$fp = fopen($fname, "w");
+		if (!$fp) return false;				// second attempt to open the file failed too: quit
+	}
 
-	$fname .= "/".$lang_short_cut[$LANGUAGE];
-	@mkdir($fname);
+	fwrite($fp, $content);			// Write the stuff to the cache file
+	fclose($fp);					// Close the file, we're done
 
-	$fname .= "/".$GEDCOM;
-	@mkdir($fname);
-
-	$fname .= "/".$index."_".$block[0];
-	$fp = @fopen($fname, "wb");
-	if (!$fp) return false;
-	@fwrite($fp, $content);
-	@fclose($fp);
 	return true;
 }
 
@@ -123,6 +133,6 @@ function saveCachedBlock($block, $index, $content) {
 function clearCache() {
 	global $INDEX_DIRECTORY;
 
-	removeDir("{$INDEX_DIRECTORY}/cache");
+	removeDir("{$INDEX_DIRECTORY}cache");
 }
 ?>
