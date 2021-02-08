@@ -312,7 +312,8 @@ if ($action=="update") {
 			if (is_numeric($b)) { //existing block
 				PGV_DB::prepare("UPDATE {$TBLPREFIX}blocks SET b_order=? WHERE b_id=?")->execute(array($indexval, $b));
 			} else { //new block
-				PGV_DB::prepare("INSERT INTO {$TBLPREFIX}blocks (b_id, b_username, b_location, b_order, b_name, b_config) VALUES (?, ?, ?, ?, ?, ?)")->execute(array(get_next_id("blocks", "b_id"), $name, $column, $indexval, $b, serialize($ublocks[$column][$b][1])));
+				$config = serialize($PGV_BLOCKS[$b]["config"]);		// This is a new block:  use its default configuration
+				PGV_DB::prepare("INSERT INTO {$TBLPREFIX}blocks (b_id, b_username, b_location, b_order, b_name, b_config) VALUES (?, ?, ?, ?, ?, ?)")->execute(array(get_next_id("blocks", "b_id"), $name, $column, $indexval, $b, $config));
 			}
 		}
 	}
