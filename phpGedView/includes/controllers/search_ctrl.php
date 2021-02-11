@@ -4,7 +4,7 @@
  * Controller for the Search Page
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2017	PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2021	PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -402,7 +402,7 @@ class SearchControllerRoot extends BaseController {
 					search_fams($query_terms, array_keys($this->sgeds), 'AND', $this->tagfilter=='on'),
 					search_fams_names($query_terms, array_keys($this->sgeds), 'AND')
 				);
-				$this->myfamlist=array_unique($this->myfamlist);
+//				$this->myfamlist=array_unique($this->myfamlist);
 			} else {
 				$this->myfamlist=array();
 			}

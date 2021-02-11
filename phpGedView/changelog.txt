@@ -14,6 +14,7 @@ The session.php script uses this information to populate the constants : PGV_VER
 =====================================================================
 
 Version 4.3.1
+ - Fix: Search for families fails (PHP 7.4 compatibility) (canajun2eh)
  - Fix: Given name sublist in indilist and famlist incorrectly indicate "Family name unknown" (canajun2eh)
  - Fixed: Error when adding a previously unused block to the main Welcome or the MyGedView pages (canajun2eh)
  - Changed: GEDCOM News and User Blog blocks should add "Published" in front of date of publication (canajun2eh)
