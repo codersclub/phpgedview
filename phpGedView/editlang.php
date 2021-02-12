@@ -3,7 +3,7 @@
  * Display a diff between two language files to help in translating.
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2018  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2021  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -36,12 +36,15 @@ loadLangFile('pgv_confighelp');
 
 require PGV_ROOT.'includes/functions/functions_editlang.php';
 
-$action                =safe_GET('action');
-$file_type             =safe_GET('file_type');
-$language1             =safe_GET('language1', array_keys($language_settings), 'english');
-$language2             =safe_GET('language2', array_keys($language_settings), $LANGUAGE);
-$hide_translated       =safe_GET_bool('hide_translated');
-$execute               =safe_GET_bool('execute');
+$action				= safe_GET('action');
+$file_type			= safe_GET('file_type');
+$language1			= safe_GET('language1', array_keys($language_settings), 'english');
+$language2			= safe_GET('language2', array_keys($language_settings), $LANGUAGE);
+$hide_translated	= safe_GET_bool('hide_translated');
+$exportHelp			= safe_GET_bool('exportHelp');
+$exportConfig		= safe_GET_bool('exportConfig');
+$exportLang			= safe_GET_bool('exportLang');
+$execute			= safe_GET_bool('execute');
 
 $lang_shortcut = $language_settings[$language2]["lang_short_cut"];
 
@@ -412,9 +415,19 @@ case "export" :
 	echo "</td>";
 
 	echo "<td class=\"facts_value\">";
-	echo "<input type=\"checkbox\" name=\"configure_help\" value=\"true\" checked=\"checked\"/>configure_help<br/>";
-	echo "<input type=\"checkbox\" name=\"help_text\" value=\"true\"/>help_text<br/>";
-	echo "<input type=\"checkbox\" name=\"lang\" value=\"true\"/>lang<br/>";
+
+	echo "<input type='checkbox' name='exportConfig' value='true'"; 
+	if ($exportConfig) echo " checked='checked'";
+	echo " />configure_help<br/>";
+	
+	echo "<input type='checkbox' name='exportHelp' value='true'";
+	if ($exportHelp) echo " checked='checked'";
+	echo " />help_text<br/>";
+	
+	echo "<input type='checkbox' name='exportLang' value='true'";
+	if ($exportLang) echo " checked='checked'";
+	echo " />lang<br/>";
+	
 	echo "</td>";
 
 	echo "<td class=\"facts_value\" style=\"text-align: center; \">";
@@ -444,13 +457,13 @@ case "export" :
 		set_time_limit(300);
 
 		$language_array = array();
-		if (isset($configure_help)) {
+		if ($exportConfig) {
 			$language_array = array_merge($language_array, read_export_file_into_array($confighelpfile[$language2], "pgv_lang["));
 		}
-		if (isset($help_text)) {
+		if ($exportHelp) {
 			$language_array = array_merge($language_array, read_export_file_into_array($helptextfile[$language2], "pgv_lang["));
 		}
-		if (isset($lang)) {
+		if ($exportLang) {
 			$language_array = array_merge($language_array, read_export_file_into_array($pgv_language[$language2], "pgv_lang["));
 		}
 		$new_language_array = array();
@@ -509,7 +522,7 @@ case "export" :
 		echo $pgv_lang["export_ok"];
 		echo "</strong><br />";
 		echo $pgv_lang["export_filename"];
-		echo " <a href=\"", $FileName, "\">", $FileName, "</a>";
+		echo " <a href='", $FileName, "' target='_blank'><b>", $FileName, "</b></a>";
 	}
 	break;
 case "compare" :
