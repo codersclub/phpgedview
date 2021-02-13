@@ -14,6 +14,9 @@ The session.php script uses this information to populate the constants : PGV_VER
 =====================================================================
 
 Version 4.3.1
+ - Fixed: Printable version of language files (in Translator Tools) should not be in the /languages directory (canajun2eh)
+ - Changed: Improve usability of printable version of language files (in Translator Tools) (canajun2eh)
+ - Changed: More choices in Export languages file selection (in Translator Tools) (canajun2eh)
  - Fixed: Export languages file selection (in Translator Tools) does not work (canajun2eh)
  - Fixed: Search for families fails (PHP 7.4 compatibility) (canajun2eh)
  - Fixed: Given name sublist in indilist and famlist incorrectly indicate "Family name unknown" (canajun2eh)

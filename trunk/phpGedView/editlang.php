@@ -36,15 +36,29 @@ loadLangFile('pgv_confighelp');
 
 require PGV_ROOT.'includes/functions/functions_editlang.php';
 
+// Define the list of language files that can be Exported to a printable file
+$exportList = array(
+	'exportHelp'		=> 'help_text',
+	'exportLang'		=> 'lang',
+	'exportFacts'		=> 'facts',
+	'exportConfig'		=> 'configure_help',
+	'exportAdmin'		=> 'admin',
+	'exportEditor'		=> 'editor',
+	'exportCountries'	=> 'countries',
+	'exportExtra'		=> 'extra'
+);
+
 $action				= safe_GET('action');
 $file_type			= safe_GET('file_type');
 $language1			= safe_GET('language1', array_keys($language_settings), 'english');
 $language2			= safe_GET('language2', array_keys($language_settings), $LANGUAGE);
 $hide_translated	= safe_GET_bool('hide_translated');
-$exportHelp			= safe_GET_bool('exportHelp');
-$exportConfig		= safe_GET_bool('exportConfig');
-$exportLang			= safe_GET_bool('exportLang');
 $execute			= safe_GET_bool('execute');
+
+// Determine which Exportable language files have been selected
+foreach ($exportList as $key => $file) {
+	$$key = safe_GET_bool($key);
+}
 
 $lang_shortcut = $language_settings[$language2]["lang_short_cut"];
 
@@ -416,113 +430,95 @@ case "export" :
 
 	echo "<td class=\"facts_value\">";
 
-	echo "<input type='checkbox' name='exportConfig' value='true'"; 
-	if ($exportConfig) echo " checked='checked'";
-	echo " />configure_help<br/>";
-	
-	echo "<input type='checkbox' name='exportHelp' value='true'";
-	if ($exportHelp) echo " checked='checked'";
-	echo " />help_text<br/>";
-	
-	echo "<input type='checkbox' name='exportLang' value='true'";
-	if ($exportLang) echo " checked='checked'";
-	echo " />lang<br/>";
-	
+	// Build the list of check boxes
+	foreach ($exportList as $key => $file) {
+		echo "<input type='checkbox' name='{$key}' value='true'"; 
+		if ($$key) echo " checked='checked'";
+		echo " />&nbsp;&nbsp;<b>{$file}</b><br/>";
+	}
+
 	echo "</td>";
 
-	echo "<td class=\"facts_value\" style=\"text-align: center; \">";
-	echo "<input type=\"submit\" value=\"", $pgv_lang["export"], "\" />";
+	echo "<td class='facts_value' style='text-align: center; '>";
+	echo "<input type='submit' value='{$pgv_lang['export']}' />";
 	echo "</td></tr>";
-	echo  "<tr><td class=\"facts_value center\" colspan=\"4\"><a href=\"editlang.php\"><b>";
-	echo $pgv_lang["lang_back"];
-	echo "</b></a></td></tr>";
-	echo "</table></form>";
-	if ($execute) {
-		$FileName = $pgv_language[$language2].".html";
-		$fp = @fopen($FileName, "w");
+	echo "<tr><td class='facts_value center' colspan='4'><a href='editlang.php'><b>{$pgv_lang["lang_back"]}</b></a>";
+	if (!$execute) {
+		echo "</td></tr></table></form>";
+	} else {
+		// Don't finish the table just yet
+		// If we have any files selected, export them individually.
+		foreach ($exportList as $key => $file) {
+			if (!$$key) continue;		// This one was not selected: skip to the next one in the list
+			
+			$outputFile = "./index/{$file}.{$lang_short_cut[$language2]}.html";
+			$inputFile = "./languages/{$file}.{$lang_short_cut[$language2]}.php";
 
-		fwrite($fp, "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">");
-		fwrite($fp, "<html xmlns=\"http://www.w3.org/1999/xhtml\">");
-		fwrite($fp, "<head><title>PGV ".$language2."</title>");
-		fwrite($fp, "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\" />");
-		fwrite($fp, "<style type=\"text/css\">");
-		fwrite($fp, ".helpstart {font-family: Arial, sans-serif;color: Blue;font-size: 14px;font-weight : bold;text-decoration : none;}");
-		fwrite($fp, ".helptext {font-family: Arial, sans-serif;color: black;font-size: 12px;}");
-		fwrite($fp, ".helpstart0 {font-family: Arial, sans-serif;font-size: 16px;font-weight: bold;}");
-		fwrite($fp, ".helpstart1 {font-family: Arial, sans-serif;font-size: 14px;font-weight: bold;}");
-		fwrite($fp, ".helpstart2 {font-family: Arial, sans-serif;font-size: 12px;font-weight: bold;}");
-		fwrite($fp, "</style>");
-		fwrite($fp, "</head><body>");
-
-		set_time_limit(300);
-
-		$language_array = array();
-		if ($exportConfig) {
-			$language_array = array_merge($language_array, read_export_file_into_array($confighelpfile[$language2], "pgv_lang["));
-		}
-		if ($exportHelp) {
-			$language_array = array_merge($language_array, read_export_file_into_array($helptextfile[$language2], "pgv_lang["));
-		}
-		if ($exportLang) {
-			$language_array = array_merge($language_array, read_export_file_into_array($pgv_language[$language2], "pgv_lang["));
-		}
-		$new_language_array = array();
-		$new_language_array_counter = 0;
-
-		for ($z = 0, $zmax = sizeof($language_array); $z < $zmax; $z++) {
-			if (isset($language_array[$z][0])) {
-				$language_array[$z][0] = substr($language_array[$z][0], strpos($language_array[$z][0], "\"") + 1);
-				$language_array[$z][0] = substr($language_array[$z][0], 0, strpos($language_array[$z][0], "\""));
-				$new_language_array[$new_language_array_counter] = $language_array[$z];
-				$new_language_array_counter++;
+			set_time_limit(300);
+			
+			if (!file_exists($inputFile)) {
+				echo "<br /><br /><b>{$inputFile}&nbsp;&nbsp;{$pgv_lang['does_not_exist']}</b><br />";
+				continue;		// Don't bother if the input file is missing
 			}
-		}
 
-		fwrite($fp, "<ol>");
+			$textArray = array();
+			// Get each language variable in the current file
+			//		$textArray[nn][0]: input line number
+			//		$textArray[nn][1]: variable name, e.g., $pgv_lang["abc"]
+			//		$textArray[nn][2]: variable's value
+			//		
+			$textArray = read_export_file_into_array($inputFile, array('pgv_lang[', 'factarray[', 'factAbbrev[', 'countries[', 'altCountryNames['));
+			if (empty($textArray)) continue;		// Don't bother if the input file is missing or couldn't be read			
+			
+			$fp = @fopen($outputFile, "w");
+			if (!$fp) continue;				// Don't bother if the output file couldn't be opened
 
-		for ($z = 0, $zmax = sizeof($new_language_array); $z < $zmax; $z++) {
-			for ($x = 0, $xmax = sizeof($language_array); $x < $xmax; $x++) {
-				$dDummy = $new_language_array[$z][0];
-				$dDummy = substr($dDummy, 0, strpos($dDummy, "_help"));
+			fwrite($fp, "<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>");
+			fwrite($fp, "<html xmlns='http://www.w3.org/1999/xhtml'>");
+			fwrite($fp, "<head><title>PGV {$language2}</title>");
+			fwrite($fp, "<meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />");
+			fwrite($fp, "<style type='text/css'>");
+			fwrite($fp, ".helpstart {font-family: Arial, sans-serif;color: Blue;font-size: 14px;font-weight : bold;text-decoration : none;}");
+			fwrite($fp, ".helptext {font-family: Arial, sans-serif;color: black;font-size: 12px;}");
+			fwrite($fp, ".helpstart0 {font-family: Arial, sans-serif;font-size: 16px;font-weight: bold;}");
+			fwrite($fp, ".helpstart1 {font-family: Arial, sans-serif;font-size: 14px;font-weight: bold;}");
+			fwrite($fp, ".helpstart2 {font-family: Arial, sans-serif;font-size: 12px;font-weight: bold;}");
+			fwrite($fp, "</style>");
+			fwrite($fp, "</head><body>");
+			
+			fwrite($fp, "<center><h2>{$inputFile}</h2></center><br /><br />");		// Can't use class='center' here -- no CSS
+        	
+			$new_language_array = array();
+			$new_language_array_counter = 0;
 
-				if (isset($language_array[$x][0])) {
-					if (strpos($language_array[$x][0], "\"".$dDummy."\"") > 0) {
-						if ($new_language_array[$z][0] != "config_help" and $new_language_array[$z][0] != "welcome_help") {
-							$new_language_array[$z][0] = $language_array[$x][1];
-						}
-						break;
-					}
-				}
+			fwrite($fp, "<ul>");		// bulleted list looks better than numbered list, and is less confusing
+
+			// Temporarily switch languages to match the language selected for Export
+			//   so that function print_text will substitute text in the correct language
+			$savedLanguage = $LANGUAGE;
+			if ($savedLanguage != $language2) {		// Only necessary when languages differ
+				$LANGUAGE = $language2;
+				loadLangFile("pgv_lang, pgv_admin, pgv_editor, pgv_facts, pgv_help, pgv_confighelp");
 			}
-		}
-
-		// Temporarily switch languages to match the language selected for Export,
-		//   so that function print_text will substitute text in the correct language
-		$savedLanguage = $LANGUAGE;
-		$LANGUAGE = $language2;
-		loadLangFile("pgv_lang, pgv_admin, pgv_editor, pgv_facts, pgv_help, pgv_confighelp");
-		$LANGUAGE = $savedLanguage;
-
-		for ($z = 0, $zmax = sizeof($new_language_array); $z < $zmax; $z++) {
-			if ($new_language_array[$z][0] != "config_help" and $new_language_array[$z][0] != "welcome_help") {
-				fwrite($fp, "<li>");
-				fwrite($fp, print_text($new_language_array[$z][1], 0, 2)."<br /><br /></li>");
+        	
+			foreach ($textArray as $textItem) {
+				fwrite($fp, "<li>{$textItem[0]}:&nbsp;&nbsp;{$textItem[1]}<br />");
+				fwrite($fp, print_text($textItem[2], 0, 2)."</li><br /><br />");
 			}
+        	
+			// Restore language to original setting -- we're done
+			if ($savedLanguage != $language2) {		// Only necessary when languages differ
+				$LANGUAGE = $savedLanguage;
+				loadLangFile("pgv_lang, pgv_admin, pgv_editor, pgv_facts, pgv_help, pgv_confighelp");
+			}
+        	
+			fwrite($fp, "</ul>");
+			fwrite($fp, "</body></html>");
+			fclose($fp);
+			echo "<br /><br /><b>{$pgv_lang['export_ok']}</b><br />";
+			echo "{$pgv_lang['export_filename']}&nbsp;&nbsp;<a href='{$outputFile}' target='_blank'><b>{$outputFile}</b></a>";
 		}
-
-		// Restore language to original setting -- we're done
-		if ($language2!=$LANGUAGE) {      // Only necessary when languages differ
-			loadLangFile("pgv_lang, pgv_admin, pgv_editor, pgv_facts, pgv_help, pgv_confighelp");
-		}
-
-		fwrite($fp, "</ol>");
-		fwrite($fp, "</body></html>");
-		fclose($fp);
-		echo "<br /><strong>";
-		echo $pgv_lang["export_ok"];
-		echo "</strong><br />";
-		echo $pgv_lang["export_filename"];
-		echo " <a href='", $FileName, "' target='_blank'><b>", $FileName, "</b></a>";
+		echo "</td></tr></table></form>";
 	}
 	break;
 case "compare" :
@@ -620,19 +616,25 @@ case "compare" :
 			if (file_exists($whichFile[$language1]) || file_exists($whichFile[$language2])) {
 				$list = array();
 				if (file_exists($whichFile[$language1])) {
+					// Get each language variable in the current file
+					//		$list[nn][0]: input line number
+					//		$list[nn][1]: variable name, e.g., $pgv_lang["abc"]
+					//		$list[nn][2]: variable's value
+					//		
 					$list = read_export_file_into_array($whichFile[$language1], $whichVars);
 				}
 				$list1 = array();
 				foreach ($list as $key=>$item) {
-					$list1[$item[0]] = $item[1];
+					$list1[$item[1]] = $item[2];
 				}
 				$list = array();
 				if (file_exists($whichFile[$language2])) {
+					// As above
 					$list = read_export_file_into_array($whichFile[$language2], $whichVars);
 				}
 				$list2 = array();
 				foreach ($list as $key=>$item) {
-					$list2[$item[0]] = $item[1];
+					$list2[$item[1]] = $item[2];
 				}
 				unset($list);
 
