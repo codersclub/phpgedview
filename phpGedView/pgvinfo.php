@@ -5,7 +5,7 @@
  * Provides links for administrators to get to other administrative areas of the site
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2020  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2021  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -87,50 +87,30 @@ if ($action=="confighelp") {
 	require PGV_ROOT.'includes/functions/functions_editlang.php';
 	$helpindex = "config_help_help";
 	print_header($pgv_lang["config_help"]);
-	echo "<h2 class=\"center\">", UTF8_strtoupper($pgv_lang["config_help"]), "</h2><br />";
-	$language_array = array();
-	$language_array = read_export_file_into_array($confighelpfile[$LANGUAGE], "pgv_lang[");
-	$new_language_array = array();
-	$new_language_array_counter = 0;
+	echo "<h2 class='center'>", UTF8_strtoupper($pgv_lang["config_help"]), "</h2><br />";
+	$configText = array();
+	// Get each language variable in the current file
+	//		$configText[nn][0]: input line number
+	//		$configText[nn][1]: variable name, e.g., $pgv_lang["abc"]
+	//		$configText[nn][2]: variable's value
+	//		
+	$configText = read_export_file_into_array($confighelpfile[$LANGUAGE], "pgv_lang[");
 
-	for ($z = 0, $zmax = sizeof($language_array); $z < $zmax; $z++) {
-		if (isset($language_array[$z][0])) {
-			if (strpos($language_array[$z][0], "_help\"") > 0) {
-				$language_array[$z][0] = substr($language_array[$z][0], strpos($language_array[$z][0], "\"") + 1);
-				$language_array[$z][0] = substr($language_array[$z][0], 0, strpos($language_array[$z][0], "\""));
-				$new_language_array[$new_language_array_counter] = $language_array[$z];
-				$new_language_array_counter++;
-			}
-		}
+	echo "<ul>";		// Bulleted list looks better
+	
+	foreach ($configText as $item) {
+		// Pick out only those variables whose names end in "_help"
+		$varName = trim(str_replace("'", '"', $item[1]));		// Make sure we're not dealing with names such as $pgv_lang['foo']
+		if ($varName == '$pgv_lang["config_help"]' || $varName == '$pgv_lang["welcome_help"]') continue;
+
+		// Neither config_help nor welcome_help
+		if (substr($varName, -7) != '_help"]') continue;
+
+		// This is a true $pgv_lang["xxx_help"] : Print the text
+		echo '<li>';
+		echo print_text($item[2], 0, 2), "</li><br /><br />\r\n";
 	}
-
-	echo "<ol>";
-
-	for ($z = 0, $zmax = sizeof($new_language_array); $z < $zmax; $z++) {
-		for ($x = 0, $xmax = sizeof($language_array); $x < $xmax; $x++) {
-			$dDummy = $new_language_array[$z][0];
-			$dDummy = substr($dDummy, 0, strpos($dDummy, "_help"));
-
-			if (isset($language_array[$x][0])) {
-				if (strpos($language_array[$x][0], "\"" . $dDummy . "\"") > 0) {
-					if ($new_language_array[$z][0] != "config_help") {
-						if ($new_language_array[$z][0] != "welcome_help") {
-							$new_language_array[$z][0] = $language_array[$x][1];
-						}
-					}
-					break;
-				}
-			}
-		}
-	}
-
-	for ($z = 0, $zmax = sizeof($new_language_array); $z < $zmax; $z++) {
-		if ($new_language_array[$z][0] != "config_help" and $new_language_array[$z][0] != "welcome_help") {
-			echo '<li>';
-			echo print_text($new_language_array[$z][1], 0, 2), "<br /><br /></li>\r\n";
-		}
-	}
-	echo '</ol>';
+	echo '</ul>';
 }
 
 print_footer();

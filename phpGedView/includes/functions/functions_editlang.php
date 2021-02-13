@@ -3,7 +3,7 @@
  * Various functions used by the language editor of PhpGedView
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2009  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2021  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -286,26 +286,35 @@ function write_array_into_file($dFileName01, $writeArray, $add_new_message_at_li
 }
 
 //-----------------------------------------------------------------
-function read_export_file_into_array($dFileName, $string_needle) {
+function read_export_file_into_array($fileName, $needleArray) {
+	// Get each language variable in the current file
+	//		$InfoArray[nn][0]: input line number
+	//		$InfoArray[nn][1]: variable name, e.g., $pgv_lang["abc"]
+	//		$InfoArray[nn][2]: variable's value
+	//		
 
-	if (!is_array($string_needle)) $array_needle = array($string_needle);
-	else $array_needle = $string_needle;
+	if (!is_array($needleArray)) $needleArray = array($needleArray);		// Make sure the needle is an array
 
-	$Filename = $dFileName;
+	if (!is_file($fileName)) {
+		print "Error: {$fileName} not found or not a file";
+		exit;
+	}
 
-	$LineCounter = 0;
-	$InfoArray = array();
-	$dFound = ($fp = @fopen($Filename, "r"));
+	$fp = @fopen($fileName, "r");
 
-	if (!$dFound)  {
-		print "Error file not found";
+	if ($fp === false)  {
+		print "Error: {$fileName} could not be read";
 		exit;
 	} else {
+		$lineNumber = 0;
+		$InfoArray = array();
+	
 		$inComment = false;		// Indicates whether we're skipping from "/*" to "*/"
 		$slashStar = "/*";
 		$starSlash = "*/";
 		while (!feof($fp)) {
 			$line = fgets($fp, (6 * 1024));
+			$lineNumber ++;
 
 			if (!$inComment) {
 				if (substr($line, 0, 2) == $slashStar) {
@@ -322,7 +331,7 @@ function read_export_file_into_array($dFileName, $string_needle) {
 
 			$foundNeedle = false;
 			$line = trim($line);
-			foreach ($array_needle as $needle) {
+			foreach ($needleArray as $needle) {
 				if (!$foundNeedle && $x = strpos($line, $needle)) {
 					if ($x == 1) {
 						$keyLen = strpos($line, "]") + 1;
@@ -331,11 +340,13 @@ function read_export_file_into_array($dFileName, $string_needle) {
 						if ($ct==0) $ct = preg_match("/=\s*'(.*)';/", $line, $match, PREG_OFFSET_CAPTURE, $keyLen);
 						if ($ct>0) $content = $match[1][0];
 						else $content = "";
-						$InfoArray[$LineCounter][0] = $key;				// keystring
-						$InfoArray[$LineCounter][1] = $content;			// message of keystring
+						$item = array();
+						$item[0] = $lineNumber;			// input line number
+						$item[1] = $key;				// keystring
+						$item[2] = $content;			// message of keystring
+						$InfoArray[] = $item;
 						$foundNeedle = true;
 					}
-					$LineCounter++;
 				}
 			}
 		}
