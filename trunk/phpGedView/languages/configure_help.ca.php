@@ -3,7 +3,7 @@
  * Catalan texts
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2019  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2021  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -243,7 +243,7 @@ $pgv_lang["gedcom_title"]			= "#pgv_lang[ged_title]#";
 $pgv_lang["gedcom_title_help"]			= "~#pgv_lang[gedcom_title]#~<br /><br />Entreu un títol descriptiu a mostrar quan els usuaris estiguin triant entre les bases de dades GEDCOM del vostre lloc.";
 $pgv_lang["LOGFILE_CREATE"]				= "Arxiva els fitxers de registre";
 $pgv_lang["LOGFILE_CREATE_help"]			= "~#pgv_lang[LOGFILE_CREATE]#~<br /><br />Periodicitat amb que el programa arxiva els fitxers de registre.";
-$pgv_lang["PGV_MEMORY_LIMIT_help"]	= "~#pgv_lang[PGV_MEMORY_LIMIT]#~<br /><br />La quantitat màxima de memòria que pot ésser consumida pels scripts del PhpGedView. Per defecte és 32 Mb. Alguns amfitrions desactiven aquesta opció de la seva configuració de PHP.";
+$pgv_lang["PGV_MEMORY_LIMIT_help"]	= "~#pgv_lang[PGV_MEMORY_LIMIT]#~<br /><br />La quantitat màxima de memòria que pot ésser consumida pels scripts del PhpGedView. Per defecte és 64 Mb. Alguns amfitrions desactiven aquesta opció de la seva configuració de PHP.";
 $pgv_lang["PGV_STORE_MESSAGES_help"]	= "~#pgv_lang[PGV_STORE_MESSAGES]#~<br /><br />Especifica si els missatges enviats mitjançant el PhpGedView han d'emmagatzemar-se a la base de dades. Posant-ho a <b>Si</b> els usuaris poden recuperar llurs missatges quan accedeixin al PhpGedView. Posant-ho a <b>No</b> els missatges solament s'envien per correu electrònic.";
 $pgv_lang["ALLOW_THEME_DROPDOWN"]		= "Mostra la persiana per seleccionar i canviar la presentació";
 $pgv_lang["ALLOW_THEME_DROPDOWN_help"]	= "~#pgv_lang[ALLOW_THEME_DROPDOWN]#~<br /><br />Dóna als usuaris l'opció de seleccionar des d'un menú la presentació preferida.<br /><br />No n'hi ha prou amb activar aquest paràmetre. Per a que els usuaris puguin canviar-se efectivament la presentació cal activar també l'opció <b>#pgv_lang[ALLOW_USER_THEMES]#</b>.";

@@ -3,7 +3,7 @@
  * Slovak Language file for PhpGedView.
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2019  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2021  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -261,7 +261,7 @@ $pgv_lang["gedcom_title"]		= "#pgv_lang[ged_title]#";
 $pgv_lang["gedcom_title_help"]		= "Vložte nadpis popisujúci obsah tohoto GEDCOMu, ktorý sa zobrazí návštevníkom pri výbere GEDCOMu k prezeraniu.";
 $pgv_lang["LOGFILE_CREATE"]		= "Archivovať Log súbory";
 $pgv_lang["LOGFILE_CREATE_help"]	= "Ako dlouho by mal program archivovať log súbory.";
-$pgv_lang["PGV_MEMORY_LIMIT_help"]	= "Maximálna veľkosť pamäte, ktorú môžu zaplniť skripty PhpGedView.  Implicitná hodnota je 32MB. Mnoho hostingov túto voľbu vypíná vo svojom nastavení PHP, takže zmena tejto hodnoty nemusí v skutočnosti ovplyvniť nastavenie veľkosti pamäte.";
+$pgv_lang["PGV_MEMORY_LIMIT_help"]	= "Maximálna veľkosť pamäte, ktorú môžu zaplniť skripty PhpGedView.  Implicitná hodnota je 64 MB. Mnoho hostingov túto voľbu vypíná vo svojom nastavení PHP, takže zmena tejto hodnoty nemusí v skutočnosti ovplyvniť nastavenie veľkosti pamäte.";
 $pgv_lang["PGV_STORE_MESSAGES_help"]	= "Určuje, či môžu byť správy poslané cez PhpGedView ukladané do databázy. Ak je nastavené 'Ano', potom budú môcť uživatelia dostávať správy, keď sa prihlásia do PhpGedView. Ak je nastavené 'Nie', potom sa budú správy odosielať iba e-mailom.";
 $pgv_lang["ALLOW_THEME_DROPDOWN"]	= "Zobraziť rolovacie menu pre zmenu motívu";
 $pgv_lang["ALLOW_THEME_DROPDOWN_help"]	= "Umožňuje uživateľovi zvoliť si vlastný motív z rolovacieho menu (ak je zabudované v aktuálnom motíve. Premenná <b>#pgv_lang[ALLOW_USER_THEMES]#</b> musí byť tiež nastavená na \"Ano\".";

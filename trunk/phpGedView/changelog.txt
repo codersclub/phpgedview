@@ -14,6 +14,8 @@ The session.php script uses this information to populate the constants : PGV_VER
 =====================================================================
 
 Version 4.3.1
+ - Changed: Remove untranslated text from some language files (canajun2eh)
+ - Changed: Default memory limit for new installations should be 64 Mb (canajun2eh)
  - Fixed: Printable version of language files (in Translator Tools) should not be in the /languages directory (canajun2eh)
  - Changed: Improve usability of printable version of language files (in Translator Tools) (canajun2eh)
  - Changed: More choices in Export languages file selection (in Translator Tools) (canajun2eh)
