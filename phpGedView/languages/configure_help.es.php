@@ -3,7 +3,7 @@
  * Spanish language file for PhpGedView
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2019  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2021  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -390,7 +390,7 @@ $pgv_lang["gedcom_title"]			= "#pgv_lang[ged_title]#";
 $pgv_lang["gedcom_title_help"]		= "~#pgv_lang[gedcom_title]#~<br /><br />Introduzca un título descriptivo a mostrar a los usuarios al intentar elegir entre los distintos GEDCOM de su sitio.";
 $pgv_lang["LOGFILE_CREATE"]		= "Directorio para archivos Log:";
 $pgv_lang["LOGFILE_CREATE_help"]	= "~#pgv_lang[LOGFILE_CREATE]#~<br /><br />Frecuencia con la que deben archivarse los archivos de registro de actividades.";
-$pgv_lang["PGV_MEMORY_LIMIT_help"]	= "~#pgv_lang[PGV_MEMORY_LIMIT]#~<br /><br />La cantidad máxima de memoria utilizable por las funciones de PhpGedView. Por omisión es 32Mb. Muchos servidores deshabilitan esta opción en su configuración PHP; de tal forma que un cambio en este valor puede no afectar el ajuste de memoria máxima actual.";
+$pgv_lang["PGV_MEMORY_LIMIT_help"]	= "~#pgv_lang[PGV_MEMORY_LIMIT]#~<br /><br />La cantidad máxima de memoria utilizable por las funciones de PhpGedView. Por omisión es 64 Mb. Muchos servidores deshabilitan esta opción en su configuración PHP; de tal forma que un cambio en este valor puede no afectar el ajuste de memoria máxima actual.";
 $pgv_lang["PGV_STORE_MESSAGES_help"]	= "~#pgv_lang[PGV_STORE_MESSAGES]#~<br /><br />Especifica si los mensajes enviados mediante PhpGedView se pueden almacenar en la base de datos.  Si se fija a <b>Sí</b> los usuarios podrán recuperar sus mensajes cuando se identifiquen a PhpGedView.  Si se fija a <b>No</b>, los mensajes sólo se enviarán por correo electrónico.";
 $pgv_lang["ALLOW_THEME_DROPDOWN"]		= "Mostrar el selector desplegables de temas para cambiar el tema";
 $pgv_lang["ALLOW_THEME_DROPDOWN_help"]	= "~#pgv_lang[ALLOW_THEME_DROPDOWN]#~<br /><br />Permite al usuario seleccionar su propio tema mediante un menú.<br /><br />Aunque esté fijada está opción, el tema actual puede que no proporcione el menú correspondiente.  Para que funcione, es necesario que se fije también la opción <b>#pgv_lang[ALLOW_USER_THEMES]#</b>.";

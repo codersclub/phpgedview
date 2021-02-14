@@ -3,7 +3,7 @@
  * Polish texts
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2019  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2021  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -262,7 +262,7 @@ $pgv_lang["gedcom_title"]			= "#pgv_lang[ged_title]#";
 $pgv_lang["gedcom_title_help"]		= "~#pgv_lang[gedcom_title]#~<br /><br />Wprowadź opisowy tytuł, który ułatwi użytkownikom rozpoznanie go wśród innych plików GEDCOM na twojej stronie.";
 $pgv_lang["LOGFILE_CREATE"]		= "Archiwizuj pliki loga";
 $pgv_lang["LOGFILE_CREATE_help"]	= "~#pgv_lang[LOGFILE_CREATE]#~<br /><br />Jak często program powinien archiwizować pliki loga.<br /><br />Ustawia parametr \$LOGFILE_CREATE w pliku <i>config.php</i>.";
-$pgv_lang["PGV_MEMORY_LIMIT_help"]	= "~#pgv_lang[PGV_MEMORY_LIMIT]#~<br /><br />Maksymalna wielkość pamięci, którą mogą zająć skrypty PhpGedView. Domyślna wartość to 32 MB. Wiele hostów wyłącza tę opcję w swojej konfiguracji PHP; zmienienie tej wartości może nie mieć wpływu bieżącego ustawienia maksymalnej pamięci.<br /><br />Ustawia parametr \$PGV_MEMORY_LIMIT w pliku <i>config.php</i>.";
+$pgv_lang["PGV_MEMORY_LIMIT_help"]	= "~#pgv_lang[PGV_MEMORY_LIMIT]#~<br /><br />Maksymalna wielkość pamięci, którą mogą zająć skrypty PhpGedView. Domyślna wartość to 64 MB. Wiele hostów wyłącza tę opcję w swojej konfiguracji PHP; zmienienie tej wartości może nie mieć wpływu bieżącego ustawienia maksymalnej pamięci.<br /><br />Ustawia parametr \$PGV_MEMORY_LIMIT w pliku <i>config.php</i>.";
 $pgv_lang["PGV_STORE_MESSAGES_help"]	= "~#pgv_lang[PGV_STORE_MESSAGES]#~<br /><br />Określa, czy wiadomości przesłane przez PhpGedView mają być przechowywane w bazie danych. Wybranie <b>Tak</b> spowoduje, że użytkownicy będą mogli przeglądać swoje wiadomości po zalogowaniu do PhpGedView. Wybranie <b>Nie</b> spowoduje, że wiadomości będą jedynie wysyłane emailem.<br /><br />Ustawia parametr \$PGV_STORE_MESSAGES w pliku <i>config.php</i>.";
 $pgv_lang["ALLOW_THEME_DROPDOWN"]		= "Pokaż listę wyboru motywów";
 $pgv_lang["ALLOW_THEME_DROPDOWN_help"]	= "~#pgv_lang[ALLOW_THEME_DROPDOWN]#~<br /><br />Umożliwia użytkownikom wybór motywu z listy.<br /><br />Nawet, kiedy ta opcja jest włączona, bieżący motyw może nie wyświetlić tej listy. Aby to ustawienie odniosło skutek, musi być jednocześnie włączona opcja <b>#pgv_lang[ALLOW_USER_THEMES]#</b>.<br /><br />Ustawia parametr \$ALLOW_THEME_DROPDOWN w pliku <i><u>xxx</u>.GED_conf.php</i>.";

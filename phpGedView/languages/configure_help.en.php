@@ -3,7 +3,7 @@
  * English Language file for PhpGedView.
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2019  PGV Development Team. All rights reserved.
+ * Copyright (C) 2002 to 2021  PGV Development Team. All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -403,7 +403,7 @@ $pgv_lang["gedcom_title"]			= "#pgv_lang[ged_title]#";
 $pgv_lang["gedcom_title_help"]		= "~#pgv_lang[gedcom_title]#~<br /><br />Enter a descriptive title to be displayed when users are choosing among GEDCOM datasets at your site.";
 $pgv_lang["LOGFILE_CREATE"]		= "Archive log files";
 $pgv_lang["LOGFILE_CREATE_help"]	= "~#pgv_lang[LOGFILE_CREATE]#~<br /><br />How often should the program archive log files.";
-$pgv_lang["PGV_MEMORY_LIMIT_help"]	= "~#pgv_lang[PGV_MEMORY_LIMIT]#~<br /><br />The maximum amount of memory that can be consumed by PhpGedView scripts.  The default is 32 Mb.  Many hosts disable this option in their PHP configuration; changing this value may not actually affect the current maximum memory setting.";
+$pgv_lang["PGV_MEMORY_LIMIT_help"]	= "~#pgv_lang[PGV_MEMORY_LIMIT]#~<br /><br />The maximum amount of memory that can be consumed by PhpGedView scripts.  The default is 64 Mb.  Many hosts disable this option in their PHP configuration; changing this value may not actually affect the current maximum memory setting.";
 $pgv_lang["PGV_STORE_MESSAGES_help"]	= "~#pgv_lang[PGV_STORE_MESSAGES]#~<br /><br />Specifies whether messages sent through PhpGedView can be stored in the database.  If set to <b>Yes</b> users will be able to retrieve their messages when they login to PhpGedView.  If set to <b>No</b> messages will only be emailed.";
 $pgv_lang["ALLOW_THEME_DROPDOWN"]		= "Display theme dropdown selector for theme changes";
 $pgv_lang["ALLOW_THEME_DROPDOWN_help"]	= "~#pgv_lang[ALLOW_THEME_DROPDOWN]#~<br /><br />Gives users the option of selecting their own theme from a menu.<br /><br />Even with this option set, the theme currently in effect may not provide for such a menu.  To be effective, this option requires the <b>#pgv_lang[ALLOW_USER_THEMES]#</b> option to be set as well.";

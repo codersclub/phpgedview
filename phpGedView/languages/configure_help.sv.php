@@ -3,7 +3,7 @@
  * Swedish Language file for PhpGedView.
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2019  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2021  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -287,7 +287,7 @@ $pgv_lang["RSS_FORMAT_help"]		= "~#pgv_lang[RSS_FORMAT]#~<br /><br />Formatet f�
 $pgv_lang["SECURITY_CHECK_GEDCOM_DOWNLOADABLE"] = "Kontrollera om det finns en nerladdningsbar GEDCOM-fil";
 $pgv_lang["SECURITY_CHECK_GEDCOM_DOWNLOADABLE_help"] = "~#pgv_lang[SECURITY_CHECK_GEDCOM_DOWNLOADABLE]#~<br /><br />Av säkerhetsorsaker bör inte GEDCOM-filen finnas på ett ställe där den är direkt nerladdningsbar, och därigenom undvika alla integritetskontroller. Denna kontroll kan orsaka prestandaproblem på vissa servrar.<br /><br />Om du vet att GEDCOM-filen inte finns i en mapp som är direktåtkomlig från internet, då kan du avaktivera denna kontroll.";
 $pgv_lang["gedcom_download_secure"]	= "#GEDCOM# kan inte laddas ner.";
-$pgv_lang["PGV_MEMORY_LIMIT_help"]		= "~#pgv_lang[PGV_MEMORY_LIMIT]#~<br /><br />Det maximala mängden minne som kan användas av PhpGedViewskripten. Standardinställningen är 32M. Många webhotell stänger av denna inställning i sin php-konfiguration, så ändringen av detta värde har ibland ingen effekt.<br /><br />Denna inställning sätter variabeln \$PGV_MEMORY_LIMIT i filen <i>config.php</i>.";
+$pgv_lang["PGV_MEMORY_LIMIT_help"]		= "~#pgv_lang[PGV_MEMORY_LIMIT]#~<br /><br />Det maximala mängden minne som kan användas av PhpGedViewskripten. Standardinställningen är 64 M. Många webhotell stänger av denna inställning i sin php-konfiguration, så ändringen av detta värde har ibland ingen effekt.<br /><br />Denna inställning sätter variabeln \$PGV_MEMORY_LIMIT i filen <i>config.php</i>.";
 $pgv_lang["gedcom_title_help"]			= "~#pgv_lang[gedcom_title]#~<br /><br />Skriv in en beskrivande titel som kommer att visas när besökare väljer mellan olika GEDCOM-filer på din sajt.";
 $pgv_lang["LOGFILE_CREATE"]				= "Arkivera loggfiler";
 $pgv_lang["LOGFILE_CREATE_help"]		= "~#pgv_lang[LOGFILE_CREATE]#~<br /><br />Hur ofta ska programmet arkivera logfiler.<br /><br />Detta sätter variabeln \$LOGFILE_CREATE i filen <i>config.php</i>.";

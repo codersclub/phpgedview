@@ -3,7 +3,7 @@
  * Dutch Language file for PhpGedView.
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2019  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2021  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -389,7 +389,7 @@ $pgv_lang["gedcom_title"]					= "#pgv_lang[ged_title]#";
 $pgv_lang["gedcom_title_help"]				= "~#pgv_lang[gedcom_title]#~<br /><br />Voer een titel in, welke de inhoud van dit GEDCOM-bestand beschrijft.";
 $pgv_lang["LOGFILE_CREATE"]					= "Archiveer Logbestanden";
 $pgv_lang["LOGFILE_CREATE_help"]			= "~#pgv_lang[LOGFILE_CREATE]#~<br /><br />Geef aan hoe vaak het programma de log bestanden moet archiveren.";
-$pgv_lang["PGV_MEMORY_LIMIT_help"]			= "~#pgv_lang[PGV_MEMORY_LIMIT]#~<br /><br />Het maximum geheugen dat PHP-scripts kunnen gebruiken. De standaardwaarde is 16 Mb. Op veel machines is de optie om deze waarde voor PHP in te stellen uitgeschakeld. Het instellen van deze waarde heeft daarom niet altijd invloed op de werkelijke maximumwaarde.";
+$pgv_lang["PGV_MEMORY_LIMIT_help"]			= "~#pgv_lang[PGV_MEMORY_LIMIT]#~<br /><br />Het maximum geheugen dat PHP-scripts kunnen gebruiken. De standaardwaarde is 64 Mb. Op veel machines is de optie om deze waarde voor PHP in te stellen uitgeschakeld. Het instellen van deze waarde heeft daarom niet altijd invloed op de werkelijke maximumwaarde.";
 $pgv_lang["PGV_STORE_MESSAGES_help"]		= "~#pgv_lang[PGV_STORE_MESSAGES]#~<br /><br />Hiermee wordt aangegeven, of berichten, die door PhpGedView worden verzonden, opgeslagen worden. Bij de waarde \"Ja\" kunnen gebruikers, bij aanmelden, hun ontvangen berichten lezen. Bij de waarde \"Nee\" worden de berichten alleen via externe e-mail verzonden.";
 $pgv_lang["ALLOW_THEME_DROPDOWN"]			= "Toon keuzelijst voor wijziging thema";
 $pgv_lang["ALLOW_THEME_DROPDOWN_help"]		= "~#pgv_lang[ALLOW_THEME_DROPDOWN]#~<br /><br />Deze optie geeft gebruikers de mogelijkheid om hun eigen site-opmaak te kiezen uit een keuzelijst.<br />de optie \"#ALLOW_USER_THEMES#\" moet eveneens ingeschakeld staan.";

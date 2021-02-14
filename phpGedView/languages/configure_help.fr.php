@@ -3,7 +3,7 @@
  * French Language file for PhpGedView.
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2019  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2021  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -311,7 +311,7 @@ $pgv_lang["gedcom_title"]               = "Titre descriptif des données de ce f
 $pgv_lang["gedcom_title_help"]          = "Entrer une courte description de ce fichier GEDCOM pour le présenter aux visiteurs.";
 $pgv_lang["LOGFILE_CREATE"]             = "Archivage des journaux";
 $pgv_lang["LOGFILE_CREATE_help"]        = "Fréquence d'archivage des journaux.";
-$pgv_lang["PGV_MEMORY_LIMIT_help"]      = "Quantité de mémoire allouée au programme. Défaut : 32 Mo. La plupart des serveurs interdisent cette modification.";
+$pgv_lang["PGV_MEMORY_LIMIT_help"]      = "Quantité de mémoire allouée au programme. Défaut : 64 Mo. La plupart des serveurs interdisent cette modification.";
 $pgv_lang["PGV_STORE_MESSAGES_help"]    = "Option de stockage des messages sur le serveur. «Oui» permettra aux utilisateurs de retrouver leurs messages quand ils se reconnectent. «Non» enverra les messages par courriel.";
 $pgv_lang["ALLOW_THEME_DROPDOWN"]       = "Affichage d'une liste de choix pour changer le thème";
 $pgv_lang["ALLOW_THEME_DROPDOWN_help"]  = "Permet aux utilisateurs de choisir leur propre thème à partir d'une liste (si la configuration l'autorise).";
