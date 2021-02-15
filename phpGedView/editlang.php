@@ -502,8 +502,11 @@ case "export" :
 			}
         	
 			foreach ($textArray as $textItem) {
+				$text = print_text($textItem[2], 0, 2);
+				$text = str_replace(array('\$', '\"', "\\'"), array('$', '"', "'"), $text);	// Make sure these are what was intended in the text
+				
 				fwrite($fp, "<li>{$textItem[0]}:&nbsp;&nbsp;{$textItem[1]}<br />");
-				fwrite($fp, print_text($textItem[2], 0, 2)."</li><br /><br />");
+				fwrite($fp, "{$text}</li><br /><br />");
 			}
         	
 			// Restore language to original setting -- we're done
