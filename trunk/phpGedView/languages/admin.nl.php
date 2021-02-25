@@ -3,7 +3,7 @@
  * Dutch language file for PhpGedView
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2020  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2021  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -30,9 +30,22 @@ if (!defined('PGV_PHPGEDVIEW')) {
 	header('HTTP/1.0 403 Forbidden');
 	exit;
 }
+
 $pgv_lang["label_timedban_servers"]	= "Getimede toegangsweigering";
 $pgv_lang["enter_banexpiry"]		= "Voer de verloopdatum en tijd voor toegangsweigering als volgt in:<br />2012.12.31@23:59";
 
+$pgv_lang["analytics_config"]		= "Web Analyses";
+$pgv_lang["google_analytics"]		= "Google Analytics";
+$pgv_lang["USE_GOOGLE_ANALYTICS"]	= "Google Analytics activeren?";
+$pgv_lang["PGV_GOOGLE_ANALYTICS"]	= "Google Analytics accountnummer";
+$pgv_lang["piwik_analytics"]		= "Matomo Analytics";
+$pgv_lang["USE_PIWIK_ANALYTICS"]	= "Matomo Analytics activeren?";
+$pgv_lang["PGV_PIWIK_URL"]			= "URL van Matomo Analytics server";
+$pgv_lang["PGV_PIWIK_SITE"]			= "Sitenummer in Matomo Analytics";
+$pgv_lang["clustrmaps_analytics"]	= "ClustrMaps Analytics";
+$pgv_lang["USE_CLUSTRMAPS_ANALYTICS"] = "ClustrMaps Analytics activeren?";
+$pgv_lang["PGV_CLUSTRMAPS_SITE"] 	= "URL van PhpGedView";
+$pgv_lang["PGV_CLUSTRMAPS_SERVER"] 	= "ClustrMaps servernummer";
 
 $pgv_lang["module_admin"]			= "Module Beheer";
 $pgv_lang["mod_admin_installed"]	= "Geïnstalleerde Modules";
@@ -178,9 +191,9 @@ $pgv_lang["open_nav"]				= "Open Gezins Navigator";
 $pgv_lang["link_exists"]			= "Deze link bestaat al";
 $pgv_lang["id_not_valid"]			= "Geen geldige Persoons-, Gezins- of Bron ID";
 $pgv_lang["add_fam_other_links"]	= "Voeg Gezin en Zoek links toe";
-$pgv_lang["search_add_links"]		= "Zoek naar mensen om aan de Voeg Links Toe lijst.";
+$pgv_lang["search_add_links"]		= "Zoek naar personen om toe te voegen aan de lijst «Links toevoegen».";
 $pgv_lang["enter_name"]				= "Voer een naam in";
-$pgv_lang["add_indi_to_link_list"]	= "Klik op de Naam om persoon toe te voegen aan Links Toevoegen Lijst.";
+$pgv_lang["add_indi_to_link_list"]	= "Klik op Naam om deze persoon toe te voegen aan de lijst «Links toevoegen».";
 $pgv_lang["click_choose_head"]		= " #GLOBALS[tempStringHead]# om een persoon te kiezen als Hoofd van het gezin.";
 $pgv_lang["click_choose_head_text"]	= "Klik om een persoon te kiezen als Hoofd van het gezin.";
 $pgv_lang["head"]						= "Hoofd";
@@ -232,7 +245,7 @@ $pgv_lang["administration"]			= "Beheer";
 $pgv_lang["ALLOW_CHANGE_GEDCOM"]	= "Sta wisselen van GEDCOM-bestand toe";
 $pgv_lang["ALLOW_USER_THEMES"] 		= "Gebruikers toestaan om hun eigen site-opmaak te kiezen";
 $pgv_lang["ansi_encoding_detected"]	= "ANSI bestandscodering geconstateerd. PhpGedView werkt het best met bestanden gecodeerd volgens UTF-8.";
-$pgv_lang["ansi_to_utf8"]			= "Converteer dit GEDCOM-bestand van ANSI (ISO-8859-1) naar UTF-8?";
+$pgv_lang["ansi_to_utf8"]			= "Converteer dit GEDCOM-bestand van ANSI (ISO 8859-1) naar UTF-8?";
 $pgv_lang["apply_privacy"]			= "Privacy-instellingen toepassen?";
 $pgv_lang["back_useradmin"]			= "Terug naar Beheer gebruikers";
 $pgv_lang["bytes_read"]				= "Bytes gelezen:";
@@ -383,7 +396,7 @@ $pgv_lang["sybase"]					= "Sybase";
 $pgv_lang["sync_gedcom"]			= "Gebruikersgegevens met genealogiegegevens synchroniseren";
 $pgv_lang["system_time"]			= "Huidige systeemdatum/tijd: ";
 $pgv_lang["user_time"]					= "Huidige tijd Gebruiker:";
-$pgv_lang["TBLPREFIX"]				= "Voorvoegsel databasetabellen";
+$pgv_lang["TBLPREFIX"]				= "Databasetabelnamen prefix";
 $pgv_lang["themecustomization"]		= "Thema Aanpassing";
 $pgv_lang["time_limit"]				= "Tijdslimiet:";
 $pgv_lang["title_manage_servers"]   = "Beheer sites";

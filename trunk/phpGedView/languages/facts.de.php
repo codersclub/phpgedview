@@ -3,7 +3,7 @@
  * German Language file for PhpGedView.
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2019  PGV Development Team
+ * Copyright (C) 2002 to 2021  PGV Development Team
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -43,7 +43,7 @@ $factarray["AGE"]	= "Alter";
 $factarray["AGNC"]	= "Behörde";
 $factarray["ALIA"]	= "Alias-Name";
 $factarray["ANCE"]	= "Vorfahren";
-$factarray["ANCI"]	= "Ahnenforscher";
+$factarray["ANCI"]	= "Interesse an Vorfahren";
 $factarray["ANUL"]	= "Annullierung";
 $factarray["ASSO"]	= "Beziehung";
 $factarray["AUTH"]	= "Verfasser";
@@ -76,11 +76,11 @@ $factarray["DATA"]	= "Daten";
 $factarray["DATE"]	= "Datum";
 $factarray["DEAT"]	= "Tod";
 $factarray["DESC"]	= "Nachfahren";
-$factarray["DESI"]	= "Nachfahrenforscher";
+$factarray["DESI"]	= "Interesse an Nachfahren";
 $factarray["DEST"]	= "Zielsystem";
 $factarray["DIV"]	= "Scheidung";
 $factarray["DIVF"]	= "Scheidung eingereicht";
-$factarray["DSCR"]	= "körperliche Beschreibung";
+$factarray["DSCR"]	= "Beschreibung";
 $factarray["EDUC"]	= "Ausbildung";
 $factarray["EMIG"]	= "Auswanderung";
 $factarray["ENDL"]	= "HLT Stiftung";
@@ -275,7 +275,7 @@ $factarray["_NAMS"]	= "Namensvetter";
 
 // GEDCOM 5.5.1 related facts
 $factarray["FAX"] = "FAX";
-$factarray["FACT"] = "Ereignis";
+$factarray["FACT"] = "Fakt";
 $factarray["WWW"] = "Internetseite";
 $factarray["MAP"] = "Karte";
 $factarray["LATI"] = "Breitengrad";
@@ -321,7 +321,7 @@ $factarray["_NLIV"]	= "nicht lebend";
 $factarray["_NMAR"]	= "nie verheiratet";
 $factarray["_PRMN"]	= "permanente Nummer";
 $factarray["_WEIG"]	= "Gewicht";
-$factarray["_YART"]	= "Yartzeit";
+$factarray["_YART"]	= "Yahrzeit";
 $factarray["_MARNM"]	= "Ehename";
 $factarray["_MARNM_SURN"] = "Nachname nach der Ehe";
 $factarray["_STAT"] = "Ehestand";

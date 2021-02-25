@@ -3,7 +3,7 @@
  * English Language file for PhpGedView.
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2019 PGV Development Team. All rights reserved.
+ * Copyright (C) 2002 to 2021 PGV Development Team. All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -39,7 +39,7 @@ $factarray["AGE"]	= "Age";
 $factarray["AGNC"]	= "Agency";
 $factarray["ALIA"]	= "Alias";
 $factarray["ANCE"]	= "Ancestors";
-$factarray["ANCI"]	= "Ancestors Interest";
+$factarray["ANCI"]	= "Interest in Ancestors";
 $factarray["ANUL"]	= "Annulment";
 $factarray["ASSO"]	= "Associate";
 $factarray["AUTH"]	= "Author";
@@ -72,7 +72,7 @@ $factarray["DATA"]	= "Data";
 $factarray["DATE"]	= "Date";
 $factarray["DEAT"]	= "Death";
 $factarray["DESC"]	= "Descendants";
-$factarray["DESI"]	= "Descendants Interest";
+$factarray["DESI"]	= "Interest in Descendants";
 $factarray["DEST"]	= "Destination";
 $factarray["DIV"]	= "Divorce";
 $factarray["DIVF"]	= "Divorce filed";

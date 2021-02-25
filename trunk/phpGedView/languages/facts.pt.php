@@ -3,7 +3,7 @@
  * Portugese Language file for PhpGedView.
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2019  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2021  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -30,13 +30,13 @@ if (!defined('PGV_PHPGEDVIEW')) {
 	header('HTTP/1.0 403 Forbidden');
 	exit;
 }
-// -- Define a fact array to map GEDCOM tags with their English values
+// -- Define a fact array to map GEDCOM tags with their Portuguese values
 $factarray["ABBR"]="Abreviação";
 $factarray["ADDR"]="Endereço ";
 $factarray["ADR1"]="Endereço 1";
 $factarray["ADR2"]="Endereço 2";
 $factarray["ADOP"]="Adoção";
-$factarray["AFN"]	= "Ancestral File Number (AFN)";
+$factarray["AFN"]	= "Número do Arquivo Ancestral (AFN)";
 $factarray["AGE"]="Idade";
 $factarray["AGNC"]="Agencia";
 $factarray["ALIA"]="Apelido";
@@ -114,7 +114,7 @@ $factarray["NPFX"]="Prefixo";
 $factarray["NSFX"]="Sufixo";
 $factarray["OBJE"]="Mídia";
 $factarray["OCCU"]="Ocupação";
-$factarray["ORDI"]="Mandato";
+$factarray["ORDI"]="Regulamento";
 $factarray["ORDN"]="Ordenação";
 $factarray["PAGE"]="Detalhes da citação";
 $factarray["PEDI"]="Árvore genealógica";
@@ -148,7 +148,7 @@ $factarray["SUBN"]="Submissão";
 $factarray["SURN"]="Sobrenome";
 $factarray["TEMP"]="Templo";
 $factarray["TEXT"]="Texto";
-$factarray["TIME"]="HH:MM:SS";
+$factarray["TIME"]="Hora";
 $factarray["TITL"]="Titulo";
 $factarray["TYPE"]="Tipo";
 $factarray["WIFE"]="Esposa";

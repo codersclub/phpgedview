@@ -3,7 +3,7 @@
  * German language file for PhpGedView
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2020  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2021  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -194,9 +194,9 @@ $pgv_lang["open_nav"]				= "Familienlotse starten";
 $pgv_lang["link_exists"]			= "Diese Verbindung besteht bereits";
 $pgv_lang["id_not_valid"]			= "Diese Personen-, Familien- oder Qellen ID ist ungültig";
 $pgv_lang["add_fam_other_links"]	= "Weitere zu verbindende Familien suchen";
-$pgv_lang["search_add_links"]		= "Weitere zu verbindende Personen suchen";
+$pgv_lang["search_add_links"]		= "Personen suchen, die zur Liste »Links hinzufügen« hinzugefügt werden sollen.";
 $pgv_lang["enter_name"]				= "Bitte den Namen eingeben";
-$pgv_lang["add_indi_to_link_list"]	= "Namen klicken, um diese Person der Liste neuer Verbindungen hinzuzufügen";
+$pgv_lang["add_indi_to_link_list"]	= "Namen klicken, um diese Person zur Liste »Links hinzufügen« hinzuzufügen.";
 $pgv_lang["click_choose_head"]		= "#GLOBALS[tempStringHead]# klicken um diese Person als Familienhaupt zu wählen.";
 $pgv_lang["click_choose_head_text"]	= "Klicken um diese Person als Familienhaupt zu wählen.";
 $pgv_lang["head"]					= "Familienhaupt";
@@ -504,4 +504,5 @@ $pgv_lang["elapsedMinute2"]	=	"#pgv_lang[global_num1]# Minuten";	// used in Poli
 $pgv_lang["elapsedMinutes"]	=	"#pgv_lang[global_num1]# Minuten";
 
 $pgv_lang["elapsedAgo"]		=	"vor #pgv_lang[global_string1]#";
+
 ?>

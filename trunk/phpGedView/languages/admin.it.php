@@ -3,7 +3,7 @@
  * Italian texts
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2020  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2021  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -31,6 +31,22 @@ if (!defined('PGV_PHPGEDVIEW')) {
 	exit;
 }
 
+$pgv_lang["label_timedban_servers"]	= "Negazione dell'accesso a tempo";
+$pgv_lang["enter_banexpiry"]		= "Inserisci la data di scadenza e l'ora del rifiuto di accesso in questo modo:<br />2012.12.31@23:59";
+
+$pgv_lang["analytics_config"]		= "Analisi Web";
+$pgv_lang["google_analytics"]		= "Google Analytics";
+$pgv_lang["USE_GOOGLE_ANALYTICS"]	= "Attivare Google Analytics?";
+$pgv_lang["PGV_GOOGLE_ANALYTICS"]	= "Numero di account Google Analytics";
+$pgv_lang["piwik_analytics"]		= "Matomo Analytics";
+$pgv_lang["USE_PIWIK_ANALYTICS"]	= "Attivare Matomo Analytics?";
+$pgv_lang["PGV_PIWIK_URL"]			= "URL del server Matomo Analytics";
+$pgv_lang["PGV_PIWIK_SITE"]			= "Numero del sito in Matomo Analytics";
+$pgv_lang["clustrmaps_analytics"]	= "ClustrMaps Analytics";
+$pgv_lang["USE_CLUSTRMAPS_ANALYTICS"] = "Attivare ClustrMaps Analytics?";
+$pgv_lang["PGV_CLUSTRMAPS_SITE"] 	= "URL di PhpGedView";
+$pgv_lang["PGV_CLUSTRMAPS_SERVER"] 	= "Numero del server ClustrMaps";
+
 $pgv_lang["module_admin"] = "Amministrazione Moduli";
 $pgv_lang["mod_admin_installed"] = "Moduli Installati";
 $pgv_lang["mod_admin_tabs"] = "Gestisci Tab";
@@ -43,7 +59,7 @@ $pgv_lang["mod_admin_version"] = "Versione / PGV";
 $pgv_lang["mod_admin_hastab"] = "Tab?";
 $pgv_lang["mod_admin_hasmenu"] = "Menu?";
 $pgv_lang["mod_admin_access_level"] = "Livello di Accesso";
-$pgv_lang["mod_admin_order"] = "Ordine";
+$pgv_lang["mod_admin_order"] = "Sequenza";
 $pgv_lang["mod_admin_config"] = "Impostazioni Modulo";
 $pgv_lang["mod_admin_settings"] = "Impostazioni Configurazione Modulo";
 $pgv_lang["ret_module_admin"] = "Ritorna alla pagina di Amministrazione Moduli";
@@ -175,9 +191,9 @@ $pgv_lang["open_nav"]				= "Apri il navigatore di famiglia";
 $pgv_lang["link_exists"]			= "Questo collegamento esiste già";
 $pgv_lang["id_not_valid"]			= "ID personale, di Famiglia o di Fonte non valido";
 $pgv_lang["add_fam_other_links"]	= "Aggiungi famiglia e cerca collegamenti";
-$pgv_lang["search_add_links"]		= "Cerca persone da aggiungere alla lista Aggiungi Collegamenti";
+$pgv_lang["search_add_links"]		= "Cerca persone da aggiungere alla lista «Aggiungi Collegamenti»";
 $pgv_lang["enter_name"]				= "Inserire un nome";
-$pgv_lang["add_indi_to_link_list"]	= "Fai clic sul nome da aggiungere alla lista Aggiungi Collegamenti";
+$pgv_lang["add_indi_to_link_list"]	= "Fai clic sul nome da aggiungere alla lista «Aggiungi Collegamenti»";
 $pgv_lang["click_choose_head"]		= "Fai clic su #GLOBALS[tempStringHead]# per scegliere una persona come Capo Famiglia.";
 $pgv_lang["click_choose_head_text"]	= "Fai clic per scegliere una persona come Capo Famiglia";
 $pgv_lang["head"]					= "Capo";
@@ -196,7 +212,6 @@ $pgv_lang["created_fams"]			= "La tabella <i>Families</i> è stata creata con su
 $pgv_lang["created_fams_fail"]		= "Impossibile creare la tabella <i>Families</i>.";
 $pgv_lang["created_sources"]		= "La tabella <i>Sources</i> è stata creata con successo.";
 $pgv_lang["created_sources_fail"]	= "Impossibile creare la tabella <i>Sources</i>.";
-$pgv_lang["created_remotelinks"]	= "La tabella <i>Remotelinks</i> è stata creata con successo.";
 $pgv_lang["created_other"]			= "La tabella <i>Other</i> è stata creata con successo.";
 $pgv_lang["created_other_fail"] 	= "Impossibile creare la tabella <i>Other</i>.";
 $pgv_lang["created_places"] 		= "La tabella <i>Places</i> è stata creata con successo.";
@@ -290,8 +305,8 @@ $pgv_lang["ged_import"]			= "Importa file GEDCOM";
 $pgv_lang["ged_export"] 						= "Esporta";
 $pgv_lang["ged_check"] 							= "Controllo";
 $pgv_lang["gedcom_adm_head"]					= "Amministrazione GEDCOM";
-$pgv_lang["gedcom_config_write_error"]			= "ERRORE! <br /> Impossibile scrivere sul file <i>#GLOBALS[whichFile]#</i>. Controllare le autorizzazioni per la corretta scrittura.";
-$pgv_lang["gedcom_downloadable"] 				= "Questo file GEDCOM è scaricabile su Internet! <br /> Consultare la sezione SICUREZZA del file <a href=\"readme.txt\"><b>readme.txt</b></a> per risolvere questo problema";
+$pgv_lang["gedcom_config_write_error"]			= "E R R O R E !!! Impossibile scrivere sul file <i>#GLOBALS[whichFile]#</i>. Controllare le autorizzazioni per la corretta scrittura.";
+$pgv_lang["gedcom_downloadable"] 				= "Questo file GEDCOM è scaricabile su Internet! Consultare la sezione SICUREZZA del file <a href=\"readme.txt\"><b>readme.txt</b></a> per risolvere questo problema";
 $pgv_lang["gedcom_file"]		= "File GEDCOM:";
 $pgv_lang["gedcom_not_imported"]				= "Il file GEDCOM non è stato ancora importato.";
 $pgv_lang["ibase"]								= "InterBase";
@@ -344,7 +359,7 @@ $pgv_lang["never"]								= "Mai";
 $pgv_lang["no_logs"]							= "Nessun log";
 $pgv_lang["no_messaging"]						= "Nessun metodo di contatto";
 $pgv_lang["oci8"]								= "Oracle 7";
-##$pgv_lang["page_views"]							= "&nbsp;&nbsp;page views in&nbsp;&nbsp;";
+$pgv_lang["page_views"]							= "&nbsp;&nbsp;pagine visualizzate&nbsp;&nbsp;";
 $pgv_lang["performing_validation"]				= "Validazione del GEDCOM in corso...";
 $pgv_lang["pgsql"]								= "PostgreSQL";
 $pgv_lang["pgv_config_write_error"] 			= "Errore! Impossibile scrivere il file di configurazione di PhpGedView. Si prega di controllare le autorizzazioni per file e directory e riprovare.";
@@ -381,7 +396,7 @@ $pgv_lang["sybase"]								= "Sybase";
 $pgv_lang["sync_gedcom"]						= "Sincronizzare Impostazioni utente con dati GEDCOM";
 $pgv_lang["system_time"]						= "Ora attuale del server";
 $pgv_lang["user_time"]							= "Ora attuale dell'utente";
-$pgv_lang["TBLPREFIX"]							= "Tabella Prefisso Database";
+$pgv_lang["TBLPREFIX"]							= "Prefisso dei nomi delle tabelle del database";
 $pgv_lang["themecustomization"]					= "Personalizzazione tema";
 $pgv_lang["time_limit"]				= "Tempo limite:";
 $pgv_lang["title_manage_servers"]   			= "Gestione Siti";
@@ -427,6 +442,7 @@ $pgv_lang["welcome_new"]						= "Benvenuto nel tuo nuovo sito web PhpGedView.";
 $pgv_lang["yearly"]								= "Annualmente";
 $pgv_lang["admin_OK_subject"]					= "Approvazione di un account su #SERVER_NAME#";
 $pgv_lang["admin_OK_message"]					= "L'amministratore del sito PhpGedView #SERVER_NAME# ha approvato la tua richiesta di un account.\r\n\r\nÈ ora possibile accedere connettendosi al seguente link: #SERVER_NAME#";
+
 $pgv_lang["batch_update"] = "Effettua aggiornamenti/modifiche sequenziali sul tuo GEDCOM";
 
 // Text for the Gedcom Checker

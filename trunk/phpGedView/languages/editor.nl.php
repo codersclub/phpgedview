@@ -3,7 +3,7 @@
  * Dutch texts
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2020  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2021  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -93,6 +93,10 @@ $pgv_lang["resn_disabled"]				= "Opmerking: U moet de &laquo;#pgv_lang[PRIVACY_B
 $pgv_lang["thumb_media_ok1"]			= "Miniatuurweergave <b>#GLOBALS[oldMediaName]#</b> hernoemd naar <b>#GLOBALS[newMediaName]#</b>.";
 $pgv_lang["thumb_media_ok2"]			= "Miniatuurweergave <b>#GLOBALS[oldMediaName]#</b> verplaatst van <b>#GLOBALS[oldThumbFolder]#</b> naar <b>#GLOBALS[newThumbFolder]#</b>.";
 $pgv_lang["thumb_media_ok3"]			= "Miniatuurweergave verplaatst en hernoemd van <b>#GLOBALS[oldThumbFolder]##GLOBALS[oldMediaName]#</b> naar <b>#GLOBALS[newThumbFolder]##GLOBALS[newMediaName]#</b>.|";
+$pgv_lang["thumb_media_fail0"]			= "Miniatuurweergave <b>#GLOBALS[oldThumbFolder]##GLOBALS[oldMediaName]#</b> bestaat niet.";
+$pgv_lang["thumb_media_fail1"]			= "Miniatuurweergave <b>#GLOBALS[oldMediaName]#</b> kan niet worden hernoemd naar <b>#GLOBALS[newMediaName]#</b>.";
+$pgv_lang["thumb_media_fail2"]			= "Miniatuurweergave <b>#GLOBALS[oldMediaName]#</b> kan niet worden verplaatst van <b>#GLOBALS[oldThumbFolder]#</b> naar <b>#GLOBALS[newThumbFolder]#</b>.|";
+$pgv_lang["thumb_media_fail3"]			= "Miniatuurweergave kan niet worden verplaatst en hernoemd van <b>#GLOBALS[oldThumbFolder]##GLOBALS[oldMediaName]#</b> naar <b>#GLOBALS[newThumbFolder]##GLOBALS[newMediaName]#</b>.";
 $pgv_lang["thumb_create_ok0a"]			= "Miniatuurweergave <b>#GLOBALS[imageThumbnail]#</b> automatisch gemaakt.<br />";
 $pgv_lang["thumb_create_ok0b"]			= "Miniatuurweergave #GLOBALS[imageThumbnail]# automatisch gemaakt.";
 $pgv_lang["thumb_create_fail0a"]		= "Miniatuurweergave <span style=\"font-size:larger\">#GLOBALS[imageThumbnail]#</span> kan niet automatisch worden gemaakt : ";
@@ -105,10 +109,6 @@ $pgv_lang["thumb_create_fail5"]			= "Het invoerbeeld <span style=\"font-size:lar
 $pgv_lang["thumb_create_fail6"]			= "De grootte van het invoerbeeld <span style=\"font-size:larger\">#GLOBALS[imageFilename]#</span> kan niet worden bepaald.";
 $pgv_lang["thumb_create_fail7"]			= "Er is niet genoeg vrij geheugen.<br />Verklein de grootte van de invoerafbeelding of pas de geheugentoewijzing aan in de Siteconfiguratie, Stap 4, Geavanceerde instellingen.";
 $pgv_lang["thumb_create_fail8"]			= "Het invoerbeeld <span style=\"font-size:larger\">#GLOBALS[imageFilename]#</span> is defect.";
-$pgv_lang["thumb_media_fail0"]			= "Miniatuurweergave <b>#GLOBALS[oldThumbFolder]##GLOBALS[oldMediaName]#</b> bestaat niet.";
-$pgv_lang["thumb_media_fail1"]			= "Miniatuurweergave <b>#GLOBALS[oldMediaName]#</b> kan niet worden hernoemd naar <b>#GLOBALS[newMediaName]#</b>.";
-$pgv_lang["thumb_media_fail2"]			= "Miniatuurweergave <b>#GLOBALS[oldMediaName]#</b> kan niet worden verplaatst van <b>#GLOBALS[oldThumbFolder]#</b> naar <b>#GLOBALS[newThumbFolder]#</b>.|";
-$pgv_lang["thumb_media_fail3"]			= "Miniatuurweergave kan niet worden verplaatst en hernoemd van <b>#GLOBALS[oldThumbFolder]##GLOBALS[oldMediaName]#</b> naar <b>#GLOBALS[newThumbFolder]##GLOBALS[newMediaName]#</b>.";
 $pgv_lang["add_asso"]					= "Nieuwe relatie toevoegen";
 $pgv_lang["edit_sex"]					= "Wijzig geslacht";
 $pgv_lang["add_obje"]					= "Multimedia-object toevoegen";

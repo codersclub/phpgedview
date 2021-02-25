@@ -3,7 +3,7 @@
  * Portugese Language file for PhpGedView.
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2020  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2021  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -31,7 +31,10 @@ if (!defined('PGV_PHPGEDVIEW')) {
 	exit;
 }
 
-$pgv_lang["analytics_config"]       = "Web Analytics";
+$pgv_lang["label_timedban_servers"]	= "Negação de acesso cronometrado";
+$pgv_lang["enter_banexpiry"]		= "Insira a data de expiração e a hora de negação de acesso assim:<br />2012.12.31@23:59";
+
+$pgv_lang["analytics_config"]		= "Web Analytics";
 $pgv_lang["google_analytics"]       = "Google Analytics";
 $pgv_lang["USE_GOOGLE_ANALYTICS"]   = "Ativar Google Analytics?";
 $pgv_lang["PGV_GOOGLE_ANALYTICS"]   = "Número da conta Google Analytics";
@@ -242,7 +245,7 @@ $pgv_lang["administration"]="Administração";
 $pgv_lang["ALLOW_CHANGE_GEDCOM"]="Permitir trocar de GEDCOM";
 $pgv_lang["ALLOW_USER_THEMES"]="Membros podem selecionar o tema de sua preferência";
 $pgv_lang["ansi_encoding_detected"]="Detectado ficheiro com configuração ANSI.  PhpGedView trabalha melhor com Ficheiros configurados em UTF-8.";
-$pgv_lang["ansi_to_utf8"]="Converter esse ficheiro GEDCOM do formato ANSI (ISO-8859-1) para UTF-8?";
+$pgv_lang["ansi_to_utf8"]="Converter esse ficheiro GEDCOM do formato ANSI (ISO 8859-1) para UTF-8?";
 $pgv_lang["apply_privacy"]="Aplicar medidas de privacidade?";
 $pgv_lang["back_useradmin"]				= "Retornar para administração de membros";
 $pgv_lang["bytes_read"]="Bytes Lidos";
@@ -393,7 +396,7 @@ $pgv_lang["sybase"]="Sybase";
 $pgv_lang["sync_gedcom"]="Sincronizar os dados do Membro com os dados do Banco de Dados (GEDCOM)";
 $pgv_lang["system_time"]						= "Hora do Servidor:";
 $pgv_lang["user_time"]							= "Hora atual do membro:";
-$pgv_lang["TBLPREFIX"]="Prefixo das Tabelas do Banco de Dados";
+$pgv_lang["TBLPREFIX"]="Prefixo de nomes de tabela de banco de dados";
 $pgv_lang["themecustomization"]					= "Personalização do tema";
 $pgv_lang["time_limit"]="Limite de Tempo:";
 $pgv_lang["title_manage_servers"]="Gerenciar Sites";

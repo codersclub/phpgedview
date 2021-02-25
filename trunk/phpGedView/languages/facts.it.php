@@ -3,7 +3,7 @@
  * Italian Language file
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2019  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2021  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -34,16 +34,16 @@ $factarray["ADDR"] = "Indirizzo";
 $factarray["ADR1"] = "Indirizzo 1";
 $factarray["ADR2"] = "Indirizzo 2";
 $factarray["ADOP"] = "Adozione";
-$factarray["AFN"] = "Ancestral File Number (AFN)";
+$factarray["AFN"] = "Numero file ancestrale (AFN)";
 $factarray["AGE"] = "Età";
 $factarray["AGNC"] = "Istituzione";
 $factarray["ALIA"] = "Alias";
 $factarray["ANCE"] = "Antenati";
-$factarray["ANCI"] = "Interesse Antenati";
+$factarray["ANCI"] = "Interesse per i antenati";
 $factarray["ANUL"] = "Annullamento";
 $factarray["ASSO"] = "Associati";
 $factarray["AUTH"] = "Autore";
-$factarray["BAPL"] = "Battesimo Mormone";
+$factarray["BAPL"] = "Battesimo SUG";
 $factarray["BAPM"] = "Battesimo";
 $factarray["BARM"] = "Bar Mitzvah";
 $factarray["BASM"] = "Bas Mitzvah";
@@ -54,7 +54,7 @@ $factarray["BURI"] = "Sepoltura";
 $factarray["CALN"] = "Numero";
 $factarray["CAST"] = "Casta / Stato Sociale";
 $factarray["CAUS"] = "Causa della morte";
-$factarray["CAUS"] = "Causa della morte";
+$factarray["CEME"]  = "Cimitero";
 $factarray["CENS"] = "Censimento";
 $factarray["CHAN"] = "Ultima modifica";
 $factarray["CHAR"] = "Set di caratteri";
@@ -62,8 +62,8 @@ $factarray["CHIL"] = "Bambino";
 $factarray["CHR"] = "Cresima";
 $factarray["CHRA"] = "Cresima da Adulto";
 $factarray["CITY"] = "Città";
-$factarray["CONF"] = "Comunione";
-$factarray["CONL"] = "Comunione Mormone";
+$factarray["CONF"] = "Confermazione";
+$factarray["CONL"] = "Confermazione SUG";
 $factarray["COPR"] = "Copyright";
 $factarray["CORP"] = "Compagnia / Società";
 $factarray["CREM"] = "Cremazione";
@@ -72,14 +72,14 @@ $factarray["DATA"] = "Dati";
 $factarray["DATE"]	= "Data";
 $factarray["DEAT"] = "Morte";
 $factarray["DESC"] = "Discendenti";
-$factarray["DESI"] = "Interesse Discendenti";
+$factarray["DESI"] = "Interesse per i discendenti";
 $factarray["DEST"] = "Destinazione";
 $factarray["DIV"] = "Divorzio";
-$factarray["DIVF"] = "Dossier Divorzio";
+$factarray["DIVF"] = "Divorzio presentato";
 $factarray["DSCR"] = "Descrizione";
 $factarray["EDUC"] = "Educazione";
 $factarray["EMIG"] = "Emigrazione";
-$factarray["ENDL"] = "Costituzione Mormone di dote";
+$factarray["ENDL"] = "Dote SUG";
 $factarray["ENGA"] = "Fidanzamento";
 $factarray["EVEN"] = "Evento";
 $factarray["FAM"] = "Famiglia";
@@ -100,6 +100,7 @@ $factarray["MARC"] = "Contratto di matrimonio";
 $factarray["MARL"] = "Licenza di matrimonio";
 $factarray["MARR"] = "Matrimonio";
 $factarray["MARS"] = "Accordo pre-matrimoniale";
+$factarray["MEDI"]	= "Tipo media";
 $factarray["NAME"] = "Nome";
 $factarray["NATI"] = "Nazionalità";
 $factarray["NATU"] = "Naturalizzazione";
@@ -111,7 +112,6 @@ $factarray["NPFX"] = "Prefisso";
 $factarray["NSFX"] = "Suffisso";
 $factarray["OBJE"] = "Oggetto multimediale";
 $factarray["OCCU"] = "Occupazione";
-$factarray["ORDI"] = "Cerimonia";
 $factarray["ORDI"]	= "Ordinanza";
 $factarray["ORDN"] = "Ordinazione";
 $factarray["PAGE"] = "Dettagli";
@@ -134,8 +134,8 @@ $factarray["RFN"] = "Numero di archivio del registor";
 $factarray["RIN"] = "Numero ID";
 $factarray["ROLE"] = "Ruolo";
 $factarray["SEX"] = "Sesso";
-$factarray["SLGC"] = "Suggellatura del Bambino (Chiesa Mormone)";
-$factarray["SLGS"] = "Suggellatura al Coniuge (Chiesa Mormone)";
+$factarray["SLGC"] = "Suggellatura SUG del Bambino";
+$factarray["SLGS"] = "Suggellatura SUG al Coniuge";
 $factarray["SOUR"] = "Origine";
 $factarray["SPFX"] = "Prefisso del Cognome";
 $factarray["SSN"] = "Numero di Previdenza Sociale";
@@ -161,17 +161,18 @@ $factarray["_DBID"] = "Identificativo Database collegato";
 // These facts are used in specific contexts
 $factarray["STAT:DATE"] = "Data di cambio status";
 $factarray["DATA:DATE"] = "Data di inserimento nella fonte originale";
+
 $factarray["NAME:_HEB"]	= "Nome in ebraico";
-$factarray["PLAC:_HEB"]	= "Località in ebraico";
+$factarray["PLAC:_HEB"]	= "Luogo in ebraico";
 $factarray["TITL:_HEB"]	= "Titolo in ebraico";
 $factarray["NAME:ROMN"]	= "Nome latinizzato";
-$factarray["PLAC:ROMN"]	= "Località latinizzata";
+$factarray["PLAC:ROMN"]	= "Luogo latinizzata";
 $factarray["TITL:ROMN"]	= "Titolo latinizzato";
-$factarray["NAME:FONE"]	= "Fonetica nome";
-$factarray["PLAC:FONE"]	= "Fonetica località";
-$factarray["TITL:FONE"]	= "Fonetica titolo";
+$factarray["NAME:FONE"]	= "Nome fonetico";
+$factarray["PLAC:FONE"]	= "Luogo fonetico";
+$factarray["TITL:FONE"]	= "Titolo fonetico";
 
-$factarray["SHARED_NOTE"]	= "Shared Note";
+$factarray["SHARED_NOTE"]	= "Nota condivisa";
 
 //These facts are compounds for the view probabilities and the advanced search pages
 $factarray["FAMC:HUSB:SURN"] = "Cognome del padre";
@@ -197,23 +198,50 @@ $factarray["FAMS:CENS:DATE"] = "Spouse Census Date";
 $factarray["FAMS:CENS:PLAC"] = "Spouse Census Place";
 $factarray["FAMS:DIV:DATE"] = "Spouse Divorce Date";
 $factarray["FAMS:DIV:PLAC"] = "Spouse Divorce Place";
-
-
-
+$factarray["FAMS:SLGS:DATE"] = "Data di sigillatura SUG degli sposi";
+$factarray["FAMS:SLGS:PLAC"] = "Luogo di sigillatura SUG degli sposi";
+$factarray["FAMS:SLGS:TEMP"] = "Tempio di sigillatura SUG degli sposi";
 
 // These facts are all colon delimited
 $factarray["BIRT:PLAC"] = "Luogo di nascita";
 $factarray["BIRT:DATE"] = "Data di nascita";
+$factarray["BIRT:SOUR"] = "Fonte di nascita";
 $factarray["DEAT:PLAC"] = "Luogo di morte";
 $factarray["DEAT:DATE"] = "Data di morte";
+$factarray["DEAT:SOUR"] = "Fonte di morte";
 $factarray["CHR:PLAC"] = "Luogo di battesimo";
 $factarray["CHR:DATE"] = "Data di battesimo";
-$factarray["BAPM:DATE"] = "Data di battesimo";
+$factarray["CHR:SOUR"] = "Fonte di battesimo";
+$factarray["CONF:PLAC"] = "Luogo di confermazione";
+$factarray["CONF:DATE"] = "Data di confermazione";
+$factarray["CONF:SOUR"] = "Fonte di confermazione";
 $factarray["BAPM:PLAC"] = "Luogo di battesimo";
+$factarray["BAPM:DATE"] = "Data di battesimo";
+$factarray["BAPM:SOUR"] = "Fonte di battesimo";
+$factarray["_BRTM:PLAC"] = "Luogo di Brit Mila";
+$factarray["_BRTM:DATE"] = "Data di Brit Mila";
+$factarray["_BRTM:SOUR"] = "Fonte di Brit Mila";
+$factarray["BARM:PLAC"] = "Luogo di Bar Mitzvah";
+$factarray["BARM:DATE"] = "Data di Bar Mitzvah";
+$factarray["BARM:SOUR"] = "Fonte di Bar Mitzvah";
+$factarray["BASM:PLAC"] = "Luogo di Bas Mitzvah";
+$factarray["BASM:DATE"] = "Data di Bas Mitzvah";
+$factarray["BASM:SOUR"] = "Fonte di Bas Mitzvah";
 $factarray["BURI:PLAC"] = "Luogo di sepoltura";
 $factarray["BURI:DATE"] = "Data di sepoltura";
+$factarray["BURI:SOUR"] = "Fonte di sepoltura";
+$factarray["FCOM:PLAC"] = "Luogo della prima comunione";
+$factarray["FCOM:DATE"] = "Data della prima comunione";
+$factarray["FCOM:SOUR"] = "Fonte della prima comunione";
+$factarray["MARB:PLAC"] = "Luogo di pubblicazioni matrimoniali";
+$factarray["MARB:DATE"] = "Data di pubblicazioni matrimoniali";
+$factarray["MARB:SOUR"] = "Fonte di pubblicazioni matrimoniali";
 $factarray["MARR:PLAC"] = "Luogo di matrimonio";
 $factarray["MARR:DATE"] = "Data di matrimonio";
+$factarray["MARR:SOUR"] = "Fonte di matrimonio";
+$factarray["ENGA:PLAC"] = "Luogo di fidanzamento";
+$factarray["ENGA:DATE"] = "Data di fidanzamento";
+$factarray["ENGA:SOUR"] = "Fonte di fidanzamento";
 
 // These facts are specific to GEDCOM exports from Family Tree Maker
 $factarray["_MDCL"]	= "Medical";
@@ -222,20 +250,20 @@ $factarray["_SEPR"] = "Separato";
 $factarray["_MILT"]	= "Servizio Militare";
 $factarray["_DETS"] = "Morte di un coniuge";
 $factarray["CITN"] = "Cittadinanza";
-$factarray["_FA1"]	= "Evento 1";
-$factarray["_FA2"]	= "Evento 2";
-$factarray["_FA3"]	= "Evento 3";
-$factarray["_FA4"]	= "Evento 4";
-$factarray["_FA5"]	= "Evento 5";
-$factarray["_FA6"]	= "Evento 6";
-$factarray["_FA7"]	= "Evento 7";
-$factarray["_FA8"]	= "Evento 8";
-$factarray["_FA8"]	= "Evento 8";
-$factarray["_FA9"]	= "Evento 9";
-$factarray["_FA10"]	= "Evento 10";
-$factarray["_FA11"]	= "Evento 11";
-$factarray["_FA12"]	= "Evento 12";
-$factarray["_FA13"]	= "Evento 13";
+$factarray["_FA1"]	= "Fatto 1";
+$factarray["_FA2"]	= "Fatto 2";
+$factarray["_FA3"]	= "Fatto 3";
+$factarray["_FA4"]	= "Fatto 4";
+$factarray["_FA5"]	= "Fatto 5";
+$factarray["_FA6"]	= "Fatto 6";
+$factarray["_FA7"]	= "Fatto 7";
+$factarray["_FA8"]	= "Fatto 8";
+$factarray["_FA8"]	= "Fatto 8";
+$factarray["_FA9"]	= "Fatto 9";
+$factarray["_FA10"]	= "Fatto 10";
+$factarray["_FA11"]	= "Fatto 11";
+$factarray["_FA12"]	= "Fatto 12";
+$factarray["_FA13"]	= "Fatto 13";
 $factarray["_MREL"]	= "Correlato alla madre";
 $factarray["_FREL"]	= "Correlato al padre";
 $factarray["_MSTAT"]	= "Inizio stato matrimoniale";
@@ -246,9 +274,9 @@ $factarray["_NAMS"]	= "Omonimo";
 $factarray["FAX"] = "FAX";
 $factarray["FACT"] = "Fatto";
 $factarray["WWW"] = "Web Home Page";
+$factarray["MAP"] = "Mappa";
 $factarray["LATI"] = "Latitudine";
 $factarray["LONG"] = "Longitudine";
-$factarray["MAP"] = "Mappa";
 $factarray["FONE"] = "Fonetico";
 $factarray["ROMN"] = "Latinizzato";
 
@@ -290,7 +318,7 @@ $factarray["_NLIV"] = "Non in vita";
 $factarray["_NMAR"] = "Mai sposato";
 $factarray["_PRMN"]	= "Numero permanente";
 $factarray["_WEIG"] = "Peso";
-
+$factarray["_YART"]	= "Yahrzeit";
 $factarray["_MARNM"] = "Nome coniugale";
 $factarray["_MARNM_SURN"] = "Cognome coniugale";
 $factarray["_STAT"]	= "Stato matrimoniale";
@@ -308,6 +336,7 @@ $factarray["_HNM"] = "Nome ebraico";
 $factarray["_DEAT_SPOU"] = "Morte del coniuge";
 $factarray["_BURI_SPOU"] = "Sepoltura del coniuge";
 $factarray["_CREM_SPOU"] = "Cremazione del coniuge";
+
 $factarray["_BIRT_CHIL"] = "Nascita di un figlio";
 $factarray["_CHR_CHIL"] = "Battesimo di un figlio";
 $factarray["_BAPM_CHIL"] = "Battesimo di un figlio";
@@ -438,13 +467,6 @@ $factarray["_THUM"]	= "Always use main image?";
 $factarray["_PGVU"]	= "Ultima modifica di";
 $factarray["SERV"] = "Server remoto";
 $factarray["_GEDF"] = "File GEDCOM";
-$factarray["CEME"]  = "Cimitero";
-
-$factarray["MEDI"]	= "Tipo media";
-$factarray["_YART"]	= "Yahrzeit";
-$factarray["FAMS:SLGS:DATE"] = "Data di sigillatura SUG degli sposi";
-$factarray["FAMS:SLGS:PLAC"] = "Luogo di sigillatura SUG degli sposi";
-$factarray["FAMS:SLGS:TEMP"] = "Tempio di sigillatura SUG degli sposi";
 
 /*-- Fact abbreviations for use in Chart boxes.
  *		Use these abbreviations in cases where the standard method of using the first

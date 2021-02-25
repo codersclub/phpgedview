@@ -3,7 +3,7 @@
  * Norwegian language file for PhpGedView
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2020  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2021  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -31,10 +31,42 @@ if (!defined('PGV_PHPGEDVIEW')) {
 	header('HTTP/1.0 403 Forbidden');
 	exit;
 }
+
 $pgv_lang["label_timedban_servers"]	= "Tidsbestemt nektelse av tilgang";
 $pgv_lang["enter_banexpiry"]		= "Angi utløpsdato og tidspunkt for nektelse av tilgang som dette:<br />2012.12.31@23:59";
-$pgv_lang["enter_comment"]			= "Du kan skrive inn en kommentar her.";
 
+$pgv_lang["analytics_config"]		= "Webanalyse";
+$pgv_lang["google_analytics"]		= "Google Analytics";
+$pgv_lang["USE_GOOGLE_ANALYTICS"]	= "Aktivere Google Analytics?";
+$pgv_lang["PGV_GOOGLE_ANALYTICS"]	= "Google Analytics kontonummer";
+$pgv_lang["piwik_analytics"]		= "Matomo Analytics";
+$pgv_lang["USE_PIWIK_ANALYTICS"]	= "Aktivere Matomo Analytics?";
+$pgv_lang["PGV_PIWIK_URL"]			= "URL til Matomo Analytics serveren";
+$pgv_lang["PGV_PIWIK_SITE"]			= "Nettstedsnummer i Matomo Analytics";
+$pgv_lang["clustrmaps_analytics"]	= "ClustrMaps Analytics";
+$pgv_lang["USE_CLUSTRMAPS_ANALYTICS"] = "Aktivere ClustrMaps Analytics?";
+$pgv_lang["PGV_CLUSTRMAPS_SITE"] 	= "URL til PhpGedView";
+$pgv_lang["PGV_CLUSTRMAPS_SERVER"] 	= "ClustrMaps servernummer";
+
+$pgv_lang["module_admin"]			= "Moduladministrasjon";
+$pgv_lang["mod_admin_installed"]	= "Installerte moduler";
+$pgv_lang["mod_admin_tabs"]			= "Administrer faner";
+$pgv_lang["mod_admin_menus"]		= "Administrer menyer";
+$pgv_lang["mod_admin_intro"]		= "Nedenfor er listen over alle modulene som er installert i dette tilfellet av PhpGedView. Moduler installeres ved å plassere dem i <i>moduler</i> katalogen. Her kan du angi tilgangsnivået per GEDCOM for hver modul. Hvis en modul inneholder faner for den enkelte siden eller menyer for menylinjen, kan du også stille inn tilgangsnivå og sekvens for hver av dem.";
+$pgv_lang["mod_admin_active"]		= "Aktiv";
+$pgv_lang["mod_admin_name"]			= "Modulnavn";
+$pgv_lang["mod_admin_description"]	= "Beskrivelse";
+$pgv_lang["mod_admin_version"]		= "Versjon / PGV";
+$pgv_lang["mod_admin_hastab"]		= "Tab?";
+$pgv_lang["mod_admin_hasmenu"]		= "Meny?";
+$pgv_lang["mod_admin_access_level"]	= "Tilgangsnivå";
+$pgv_lang["mod_admin_order"]		= "Sekvens";
+$pgv_lang["mod_admin_config"]		= "Modulinnstillinger";
+$pgv_lang["mod_admin_settings"]		= "Modulkonfigurasjonsinnstillinger";
+$pgv_lang["ret_module_admin"]		= "Gå tilbake til siden for moduladministrasjon";
+$pgv_lang["ret_admin"]				= "Gå tilbake til administrasjonssiden";
+
+$pgv_lang["enter_comment"]			= "Du kan skrive inn en kommentar her.";
 $pgv_lang["upload_a_gedcom"] 		= "Last opp en GEDCOM-fil";
 $pgv_lang["start_entering"] 		= "Begynn å legge inn data";
 $pgv_lang["add_gedcom_from_path"] 	= "Legg til en GEDCOM fra en sti";
@@ -143,6 +175,35 @@ $pgv_lang["PRIV_NONE"]					= "Vis kun til administratorer";
 $pgv_lang["PRIV_HIDE"]					= "Skjul selv for administrative brukere";
 $pgv_lang["manage_gedcoms"]			= "Slektsfil(er) og personvern";
 $pgv_lang["keep_media"]				= "Behold medialenker";
+$pgv_lang["current_links"]			= "Lenker";
+$pgv_lang["add_more_links"]			= "Legg til lenker";
+$pgv_lang["enter_pid_or_name"]		= "Skriv inn personidentifikator eller navn";
+$pgv_lang["set_links"]				= "Sett lenker";
+$pgv_lang["add_or_remove_links"]	= "Administrer lenker";
+
+$pgv_lang["keep"]					= "Beholde";
+$pgv_lang["unlink"]					= "Fjern tilknytningen";
+$pgv_lang["nav"]					= "Navigator";
+$pgv_lang["fam_nav"]				= "Familienavigator";
+$pgv_lang["remove"]					= "Ta vekk";
+$pgv_lang["keep_link"]				= "Hold lenken i listen";
+$pgv_lang["remove_link"]			= "Fjern lenke fra listen";
+$pgv_lang["open_nav"]				= "Start familiens navigator";
+$pgv_lang["link_exists"]			= "Denne lenken eksisterer allerede";
+$pgv_lang["id_not_valid"]			= "Ikke en gyldig person-, familie- eller kildeidentifikator";
+$pgv_lang["add_fam_other_links"]	= "Legg til familie- og søkekoblinger";
+$pgv_lang["search_add_links"]		= "Søk etter personer å legge til i «Legg til lenker» listen.";
+$pgv_lang["enter_name"]				= "Skriv inn et navn";
+$pgv_lang["add_indi_to_link_list"]	= "Klikk på Navn for å legge til denne personen i «Legg til lenker» listen.";
+$pgv_lang["click_choose_head"]		= "Klikk #GLOBALS[tempStringHead]# for å velge person som familieleder.";
+$pgv_lang["click_choose_head_text"]	= "Klikk for å velge person som familieleder.";
+$pgv_lang["head"]					= "Familieleder";
+$pgv_lang["id_empty"]				= "When adding a link, the identification field cannot be empty.";
+$pgv_lang["link_deleted"]			= "Link til #GLOBALS[remLinkId]# slettet";
+$pgv_lang["link_added"]				= "Link til #GLOBALS[addLinkId]# lagt til";
+$pgv_lang["no_update_CHANs"]		= "Ikke oppdater CHAN (siste endring) poster";
+$pgv_lang["no_CHANs_update"]		= "Ingen CHAN poster (siste endring) ble oppdatert";
+
 $pgv_lang["files_in_backup"]		= "Filer som er inkludert i dette backup-settet";
 $pgv_lang["created_remotelinks"]	= "Opprettet tabellen <i>Eksterne koblinger</i>.";
 $pgv_lang["created_remotelinks_fail"] 	= "Klarte ikke å opprette tabellen <i>Eksterne koblinger</i>.";
@@ -183,7 +244,6 @@ $pgv_lang["admin_user_warnings"]		= "En eller flere brukerkontoer har advarsler"
 $pgv_lang["admin_verification_waiting"] = "Brukerkonto(er) på vent for godkjenning av admin";
 $pgv_lang["administration"]			= "Administrasjon";
 $pgv_lang["ALLOW_CHANGE_GEDCOM"] 		= "Tillat bytting av slektsbaser";
-$pgv_lang["ALLOW_REMEMBER_ME"]			= "Vis valget <b>Husk meg</b> på siden Logg inn";
 $pgv_lang["ALLOW_USER_THEMES"] 			= "Tillat brukere å velge<br />deres egen stil";
 $pgv_lang["ansi_encoding_detected"]	= "Oppdaget ANSI tekstkoding.  PhpGedView fungerer best med filer som er kodet med UTF-8.";
 $pgv_lang["ansi_to_utf8"]			= "Konvertere fra ANSI til UTF-8 tegnsett?";
@@ -245,7 +305,7 @@ $pgv_lang["ged_download"]				= "Last ned (download)";
 $pgv_lang["ged_import"]			= "Importer";
 $pgv_lang["ged_export"] 						= "Eksport";
 $pgv_lang["ged_check"] 							= "Sjekk";
-$pgv_lang["gedcom_adm_head"]			= "Oppsett for slekts- / GEDCOM-fil";
+$pgv_lang["gedcom_adm_head"]			= "Administrasjon GEDCOM";
 $pgv_lang["gedcom_config_write_error"]			= "F E I L !!!<br />Kunne ikke skrive til filen <i>#GLOBALS[whichFile]#</i>.  Kontroller korrekte skrivetilganger.";
 $pgv_lang["gedcom_downloadable"]	= "<br />Besøkende på nettstedet ditt kan laste ned (download) denne slektsfilen!<br />Les mer om dette i filen <a href=\"".(file_exists('readme-norsk.txt')?"readme-norsk.txt":"readme.txt")."\">readme".(file_exists('readme-norsk.txt')?"-norsk":"").".txt</a> i avsnittet 12. SIKKERHET / PERSONVERN<br />for å finne en løsning på dette.";
 $pgv_lang["gedcom_file"]			= "Slektsfil:";
@@ -296,7 +356,6 @@ $pgv_lang["monthly"]					= "Månedlig";
 $pgv_lang["msql"]						= "Mini SQL";
 $pgv_lang["mssql"]						= "Microsoft SQL Server";
 $pgv_lang["mysql"]						= "MySQL";
-$pgv_lang["mysqli"]						= "MySQL 4.1+ og PHP 5";
 $pgv_lang["never"]						= "Aldri";
 $pgv_lang["no_logs"]					= "Ingen logging";
 $pgv_lang["no_messaging"]				= "Ingen kontaktlink";
@@ -306,7 +365,6 @@ $pgv_lang["performing_validation"]	= "Sjekken er utført...!  Gjør de nødvendi
 $pgv_lang["pgsql"]						= "PostgreSQL";
 $pgv_lang["pgv_config_write_error"]		= "Feil!!! Kan ikke skrive til konfigurasjonsfilen til PhpGedView. Sjekk fil- og katalog-rettigheter og prøv igjen.";
 $pgv_lang["PGV_MEMORY_LIMIT"]			= "Maks Minnegrense";
-$pgv_lang["pgv_registry"]			= "Vis andre nettsteder som bruker PhpGedView";
 $pgv_lang["PGV_SESSION_SAVE_PATH"] 		= "Logg-lagrings-sti";
 $pgv_lang["PGV_SESSION_TIME"] 			= "Logg-inn timeout";
 $pgv_lang["PGV_SIMPLE_MAIL"]			= "Bruk enkel epost-hode i eksterne epost-meldinger";
@@ -317,6 +375,7 @@ $pgv_lang["PGV_SMTP_PORT"] 						= "SMTP Port";
 $pgv_lang["PGV_SMTP_AUTH"] 						= "Brukernavn og passord";
 $pgv_lang["PGV_SMTP_AUTH_USER"] 				= "Brukernavn";
 $pgv_lang["PGV_SMTP_AUTH_PASS"] 				= "Passord";
+$pgv_lang["PGV_SMTP_SSL"]						= "Sikker tilkobling";
 $pgv_lang["PGV_SMTP_FROM_NAME"] 				= "Avsendernavn";
 $pgv_lang["PGV_STORE_MESSAGES"]			= "Tillat at beskjeder<br />blir lagret online";
 $pgv_lang["phpinfo"]				= "PHPInfo";
@@ -328,7 +387,6 @@ $pgv_lang["readme_documentation"]	= "ReadMe-dokumentasjon (Engelsk)";
 $pgv_lang["remove_ip"] 				= "Fjern IP";
 $pgv_lang["REQUIRE_ADMIN_AUTH_REGISTRATION"]	= "Krever at en administrator godkjenner nye brukeroppføringer";
 $pgv_lang["review_readme"] 				= "Du bør lese gjennom tekstfilen <a href=\"readme.txt\" target=\"_blank\">readme.txt</a> før du fortsetter med å konfigurere PhpGedView.";
-$pgv_lang["rootid"]					= "ID til startperson<br />i slektsbasen";
 $pgv_lang["seconds"]							= "&nbsp;&nbsp;sekunder";
 $pgv_lang["select_an_option"]		= "Alternativer:";
 $pgv_lang["SERVER_URL"] 				= "PhpGedView URL";
@@ -339,7 +397,7 @@ $pgv_lang["sybase"]						= "Sybase";
 $pgv_lang["sync_gedcom"]		= "Kopier innstillingene for slektsbasen";
 $pgv_lang["system_time"]				= "Gjeldende systemtid:";
 $pgv_lang["user_time"]							= "Klokke for bruker:";
-$pgv_lang["TBLPREFIX"] 					= "Database Table Prefiks";
+$pgv_lang["TBLPREFIX"] 					= "Prefiks for databasetabellnavn";
 $pgv_lang["themecustomization"]					= "Theme-tilpasninger";
 $pgv_lang["time_limit"]			= "Tidsgrense:";
 $pgv_lang["title_manage_servers"]   = "Oppsett for nettsteder";
@@ -391,6 +449,8 @@ $pgv_lang["batch_update"]="Utfør batch-oppdateringer/endringer i din GEDCOM";
 // Text for the Gedcom Checker
 $pgv_lang["gedcheck"]     = "Gedcomsjekk";          // Module title
 $pgv_lang["gedcheck_text"]= "Denne modulen kontrollerer formatet på en GEDCOM-fil mot <a href=\"http://phpgedview.sourceforge.net/ged551-5.pdf\">5.5.1 GEDCOM spesifikasjon</a>.  Den sjekker også en rekke vanlige feil i dine data.  Merk at det er mange versjoner, utvidelser og variasjoner av spesifikasjonen så du skal ikke være bekymret for andre feil enn de som er flagget som \"Kritiske\".  Forklaring for alle linje-for-linje-feil finnes i spesifikasjonen, så vennligst sjekk der før du ber om hjelp.";
+$pgv_lang["gedcheck_sync"] = "Endringer i databasen synkroniseres ikke med filen #GLOBALS[ged]#. Filinnholdet kan være utdatert. Du kan synkronisere den med databasen nå ved å utføre en <b><a \"#GLOBALS[ged_link]#\">eksport</a></b>.";
+$pgv_lang["gedcheck_nothing"] = "Ingen feil funnet på dette nivået.";
 $pgv_lang["level"]        = "Nivå";                   // Levels of checking
 $pgv_lang["critical"]     = "Kritisk";
 $pgv_lang["error"]        = "Feil";
@@ -422,5 +482,25 @@ $pgv_lang["tradition_icelandic"]	= "Islandsk";
 $pgv_lang["tradition_paternal"]		= "Patronymikon";
 $pgv_lang["tradition_polish"]		= "Polsk";
 $pgv_lang["tradition_none"]			= "Ingen";
+
+// -- The following text is used to build the phrase "i years, j months, k days, l hours, m minutes"
+// -- for use in text such as "xxx ago" or "after xxx" or "in xxx"
+$pgv_lang["elapsedYear1"]	=	"1 år";
+$pgv_lang["elapsedYear2"]	=	"#pgv_lang[global_num1]# år";	// used in Polish for 2,3,4 or 22,23,24 or 32,33,34 etc.
+$pgv_lang["elapsedYears"]	=	"#pgv_lang[global_num1]# år";
+$pgv_lang["elapsedMonth1"]	=	"1 måned";
+$pgv_lang["elapsedMonth2"]	=	"#pgv_lang[global_num1]# måneder";	// used in Polish for 2,3,4 or 22,23,24 or 32,33,34 etc.
+$pgv_lang["elapsedMonths"]	=	"#pgv_lang[global_num1]# måneder";
+$pgv_lang["elapsedDay1"]	=	"1 dag";
+$pgv_lang["elapsedDay2"]	=	"#pgv_lang[global_num1]# dager";		// used in Polish for 2,3,4 or 22,23,24 or 32,33,34 etc.
+$pgv_lang["elapsedDays"]	=	"#pgv_lang[global_num1]# dager";
+$pgv_lang["elapsedHour1"]	=	"1 time";
+$pgv_lang["elapsedHour2"]	=	"#pgv_lang[global_num1]# timer";	// used in Polish for 2,3,4 or 22,23,24 or 32,33,34 etc.
+$pgv_lang["elapsedHours"]	=	"#pgv_lang[global_num1]# timer";
+$pgv_lang["elapsedMinute1"]	=	"1 minutt";
+$pgv_lang["elapsedMinute2"]	=	"#pgv_lang[global_num1]# minutter";	// used in Polish for 2,3,4 or 22,23,24 or 32,33,34 etc.
+$pgv_lang["elapsedMinutes"]	=	"#pgv_lang[global_num1]# minutter";
+
+$pgv_lang["elapsedAgo"]		=	"#pgv_lang[global_string1]# siden";
 
 ?>

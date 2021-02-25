@@ -3,7 +3,7 @@
  * Spanish language file for PhpGedView
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2019  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2021  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -32,18 +32,18 @@ if (!defined('PGV_PHPGEDVIEW')) {
 	exit;
 }
 
-// -- Define a fact array to map GEDCOM tags with their English values
+// -- Define a fact array to map GEDCOM tags with their Spanish values
 $factarray["ABBR"]	= "Abreviatura";
 $factarray["ADDR"]	= "Dirección";
 $factarray["ADR1"]	= "Dirección 1";
 $factarray["ADR2"]	= "Dirección 2";
 $factarray["ADOP"]	= "Adopción";
-$factarray["AFN"]	= "(AFN)";
+$factarray["AFN"]	= "número de expediente ancestral (AFN)";
 $factarray["AGE"]	= "Edad";
 $factarray["AGNC"]	= "Agencia";
 $factarray["ALIA"]	= "Alias";
 $factarray["ANCE"]	= "Antepasados";
-$factarray["ANCI"]	= "Antepasados de interés";
+$factarray["ANCI"]	= "Interés en los antepasados";
 $factarray["ANUL"]	= "Anulación";
 $factarray["ASSO"]	= "Asociados";
 $factarray["AUTH"]	= "Autor";
@@ -56,7 +56,7 @@ $factarray["BLES"]	= "Bendición";
 $factarray["BLOB"]	= "Objeto de Datos Binarios";
 $factarray["BURI"]	= "Entierro";
 $factarray["CALN"]	= "Referencia";
-$factarray["CAST"]	= "Estatus Social";
+$factarray["CAST"]	= "Casta / Estatus Social";
 $factarray["CAUS"]	= "Causa";
 $factarray["CEME"]  = "Cementerio";
 $factarray["CENS"]	= "Censo";
@@ -76,7 +76,7 @@ $factarray["DATA"]	= "Datos";
 $factarray["DATE"]	= "Fecha";
 $factarray["DEAT"]	= "Defunción";
 $factarray["DESC"]	= "Descendientes";
-$factarray["DESI"]	= "Descendientes de Interés";
+$factarray["DESI"]	= "Interés en los descendientes";
 $factarray["DEST"]	= "Destino";
 $factarray["DIV"]	= "Divorcio";
 $factarray["DIVF"]	= "Demanda de divorcio";
@@ -138,8 +138,8 @@ $factarray["RFN"]	= "Número de archivo del registro";
 $factarray["RIN"]	= "Número ID del registro";
 $factarray["ROLE"]	= "Rol";
 $factarray["SEX"]	= "Sexo";
-$factarray["SLGC"]	= "Sellam. SUD hijo";
-$factarray["SLGS"]	= "Sellam. SUD cónyuge";
+$factarray["SLGC"]	= "Sellamiento SUD hijo";
+$factarray["SLGS"]	= "Sellamiento SUD cónyuge";
 $factarray["SOUR"]	= "Fuente";
 $factarray["SPFX"]	= "Prefijo del apellido";
 $factarray["SSN"]	= "Número Seguridad Social";
@@ -254,19 +254,19 @@ $factarray["_MILT"]	= "Servicio Militar";
 $factarray["_SEPR"]	= "Separado";
 $factarray["_DETS"]	= "Defunción de un cónyuge";
 $factarray["CITN"]	= "Ciudadanía";
-$factarray["_FA1"]	= "Acontecimiento 1";
-$factarray["_FA2"]	= "Acontecimiento 2";
-$factarray["_FA3"]	= "Acontecimiento 3";
-$factarray["_FA4"]	= "Acontecimiento 4";
-$factarray["_FA5"]	= "Acontecimiento 5";
-$factarray["_FA6"]	= "Acontecimiento 6";
-$factarray["_FA7"]	= "Acontecimiento 7";
-$factarray["_FA8"]	= "Acontecimiento 8";
-$factarray["_FA9"]	= "Acontecimiento 9";
-$factarray["_FA10"]	= "Acontecimiento 10";
-$factarray["_FA11"]	= "Acontecimiento 11";
-$factarray["_FA12"]	= "Acontecimiento 12";
-$factarray["_FA13"]	= "Acontecimiento 13";
+$factarray["_FA1"]	= "Hecho 1";
+$factarray["_FA2"]	= "Hecho 2";
+$factarray["_FA3"]	= "Hecho 3";
+$factarray["_FA4"]	= "Hecho 4";
+$factarray["_FA5"]	= "Hecho 5";
+$factarray["_FA6"]	= "Hecho 6";
+$factarray["_FA7"]	= "Hecho 7";
+$factarray["_FA8"]	= "Hecho 8";
+$factarray["_FA9"]	= "Hecho 9";
+$factarray["_FA10"]	= "Hecho 10";
+$factarray["_FA11"]	= "Hecho 11";
+$factarray["_FA12"]	= "Hecho 12";
+$factarray["_FA13"]	= "Hecho 13";
 $factarray["_MREL"]	= "Relación con la madre";
 $factarray["_FREL"]	= "Relación con el padre";
 $factarray["_MSTAT"]	= "Comienzo del matrimonio";

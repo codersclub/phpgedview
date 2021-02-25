@@ -3,7 +3,7 @@
  * Norwegian texts
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2099  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2021  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -43,22 +43,22 @@ $factarray["AGE"]  = "Alder";
 $factarray["AGNC"] = "Agentur";
 $factarray["ALIA"] = "Alias";
 $factarray["ANCE"] = "Forfedre";
-$factarray["ANCI"] = "Mangler forfedre...";
+$factarray["ANCI"] = "Interesse for forfedre";
 $factarray["ANUL"] = "Annullert ekteskap";
 $factarray["ASSO"] = "Forbindelser";
 $factarray["AUTH"] = "Forfatter";
-$factarray["BAPL"] = "Døpt Mormoner";
-$factarray["BAPM"] = "Døpt på bekjennelse";
-$factarray["BARM"] = "Bar Mitzvah Jødisk sermoni gutt";
-$factarray["BASM"] = "Bat Mitzvah Jødisk sermoni jente";
+$factarray["BAPL"] = "Døpt SDH";
+$factarray["BAPM"] = "Døpt";
+$factarray["BARM"] = "Bar Mitzvah";
+$factarray["BASM"] = "Bat Mitzvah";
 $factarray["BIRT"] = "Født";
 $factarray["BLES"] = "Velsignet / Navnefest";
 $factarray["BLOB"] = "Binært dataobjekt";
 $factarray["BURI"] = "Gravlagt";
-$factarray["CALN"] = "Arkivnr./ISBN/ISSN";
+$factarray["CALN"] = "Arkivnr.";
 $factarray["CAST"] = "Kaste / Sosial status";
 $factarray["CAUS"] = "Dødsårsak";
-$factarray["CEME"] = "Kirkegård /Gravplass";
+$factarray["CEME"] = "Kirkegård / Gravplass";
 $factarray["CENS"] = "Folketelling";
 $factarray["CHAN"] = "Sist endret";
 $factarray["CHAR"] = "Tegnsett";
@@ -67,7 +67,7 @@ $factarray["CHR"]  = "Barnedåp";
 $factarray["CHRA"] = "Voksendåp";
 $factarray["CITY"] = "Sted/by";
 $factarray["CONF"] = "Konfirmasjon";
-$factarray["CONL"] = "Konfirmert Mormoner";
+$factarray["CONL"] = "Konfirmasjon SDH";
 $factarray["COPR"] = "Opphavsrett / Copyright";
 $factarray["CORP"] = "Bedrifts-/firmanavn";
 $factarray["CREM"] = "Kremasjon";
@@ -76,14 +76,14 @@ $factarray["DATE"] = "Dato";
 $factarray["DATA"] = "Data";
 $factarray["DEAT"] = "Død";
 $factarray["DESC"] = "Etterkommere";
-$factarray["DESI"] = "Mangler etterkommer(e)...";
+$factarray["DESI"] = "Interesse for etterkommere";
 $factarray["DEST"] = "Mål";
 $factarray["DIV"]  = "Skilsmisse";
 $factarray["DIVF"] = "Skilsmissebegjæring";
 $factarray["DSCR"] = "Beskrivelse";
 $factarray["EDUC"] = "Utdannelse";
 $factarray["EMIG"] = "Utvandret";
-$factarray["ENDL"] = "Gave Mormorer";
+$factarray["ENDL"] = "Gave SDH";
 $factarray["ENGA"] = "Forlovet";
 $factarray["EVEN"] = "Hendelse";
 $factarray["FAM"]  = "Familie";
@@ -116,7 +116,7 @@ $factarray["NPFX"] = "Prefiks";
 $factarray["NSFX"] = "Postfiks";
 $factarray["OBJE"] = "Multimedia objekt";
 $factarray["OCCU"] = "Yrke";
-$factarray["ORDI"] = "Rituale Mormoner";
+$factarray["ORDI"] = "Forordning";
 $factarray["ORDN"] = "Ordinert rel. tjeneste";
 $factarray["PAGE"] = "Dokument referanse";
 $factarray["PEDI"] = "Slektsgrein";
@@ -138,17 +138,17 @@ $factarray["RFN"]  = "Ref.nr. (statisk)";
 $factarray["RIN"]  = "Ref.nr. (dynamisk)";
 $factarray["ROLE"] = "Rolle i hendelse";
 $factarray["SEX"]  = "Kjønn";
-$factarray["SLGC"] = "Barn-kobling Mormoner";
-$factarray["SLGS"] = "Ekteskap-kobling Mormoner";
+$factarray["SLGC"] = "Barn-kobling SDH";
+$factarray["SLGS"] = "Ekteskap-kobling SDH";
 $factarray["SOUR"] = "Kilde";
 $factarray["SPFX"] = "Etternavn prefiks";
-$factarray["SSN"]  = "Social Security Number";
+$factarray["SSN"]  = "Personnummer";
 $factarray["STAE"] = "Stat/Region";
 $factarray["STAT"] = "Status";
 $factarray["SUBM"] = "Bidragsgiver/Avsender";
 $factarray["SUBN"] = "Del av datasamling";
 $factarray["SURN"] = "Etternavn";
-$factarray["TEMP"] = "Mormoner kirkekode";
+$factarray["TEMP"] = "Tempel";
 $factarray["TEXT"] = "Kildetekst";
 $factarray["TIME"] = "Klokkeslett";
 $factarray["TITL"] = "Tittel";
@@ -164,6 +164,19 @@ $factarray["_DBID"] = "Linket database ID";
 
 // These facts are used in specific contexts
 $factarray["STAT:DATE"] = "Statusendringsdato";
+$factarray["DATA:DATE"] = "Dato for oppføring i original kilde";
+
+$factarray["NAME:_HEB"]	= "Navn på hebraisk";
+$factarray["PLAC:_HEB"]	= "Sted på hebraisk";
+$factarray["TITL:_HEB"]	= "Tittel på hebraisk";
+$factarray["NAME:ROMN"]	= "Romanisert navn";
+$factarray["PLAC:ROMN"]	= "Romanisert sted";
+$factarray["TITL:ROMN"]	= "Romanisert tittel";
+$factarray["NAME:FONE"]	= "Fonetisk navn";
+$factarray["PLAC:FONE"]	= "Fonetisk sted";
+$factarray["TITL:FONE"]	= "Fonetisk tittel";
+
+$factarray["SHARED_NOTE"]	= "Delt notat";
 
 //These facts are compounds for the view probabilities and the advanced search pages
 $factarray["FAMC:HUSB:SURN"] = "Farens etternavn";
@@ -189,23 +202,50 @@ $factarray["FAMS:CENS:DATE"] = "Ektefellens folketellingsdato";
 $factarray["FAMS:CENS:PLAC"] = "Ektefellens folketellingssted";
 $factarray["FAMS:DIV:DATE"] = "Ektefellens skilsmissedato";
 $factarray["FAMS:DIV:PLAC"] = "Ektefellens skilsmissested";
-$factarray["FAMS:SLGS:DATE"] = "Dato for LDS besegling av ekteskap";
-$factarray["FAMS:SLGS:PLAC"] = "Sted for LDS besegling av ekteskap";
-$factarray["FAMS:SLGS:TEMP"] = "Tempel for LDS besegling av ekteskap";
+$factarray["FAMS:SLGS:DATE"] = "Dato for besegling SDH av ekteskap";
+$factarray["FAMS:SLGS:PLAC"] = "Sted for besegling SDH av ekteskap";
+$factarray["FAMS:SLGS:TEMP"] = "Tempel for besegling SDH av ekteskap";
 
 // These facts are all colon delimited
 $factarray["BIRT:PLAC"] = "Fødested";
 $factarray["BIRT:DATE"] = "Fødselsdato";
+$factarray["BIRT:SOUR"] = "Fødselskilde";
 $factarray["DEAT:PLAC"] = "Dødssted";
 $factarray["DEAT:DATE"] = "Dødsdato";
+$factarray["DEAT:SOUR"] = "Dødskilde";
 $factarray["CHR:PLAC"] = "Dåpssted";
 $factarray["CHR:DATE"] = "Dåpsdato";
+$factarray["CHR:SOUR"] = "Dåpskilde";
+$factarray["CONF:PLAC"] = "Konfirmasjonssted";
+$factarray["CONF:DATE"] = "Konfirmasjonsdato";
+$factarray["CONF:SOUR"] = "Konfirmasjonskilde";
 $factarray["BAPM:PLAC"] = "Dåpssted";
 $factarray["BAPM:DATE"] = "Dåpsdato";
-$factarray["BURI:PLAC"] = "Begravelsens sted";
-$factarray["BURI:DATE"] = "Gravlagt dato";
+$factarray["BAPM:SOUR"] = "Dåpskilde";
+$factarray["_BRTM:PLAC"] = "Brit Mila sted";
+$factarray["_BRTM:DATE"] = "Brit Mila dato";
+$factarray["_BRTM:SOUR"] = "Brit Mila kilde";
+$factarray["BARM:PLAC"] = "Bar Mitzvah sted";
+$factarray["BARM:DATE"] = "Bar Mitzvah dato";
+$factarray["BARM:SOUR"] = "Bar Mitzvah kilde";
+$factarray["BASM:PLAC"] = "Bas Mitzvah sted";
+$factarray["BASM:DATE"] = "Bas Mitzvah dato";
+$factarray["BASM:SOUR"] = "Bas Mitzvah kilde";
+$factarray["BURI:PLAC"] = "Begravelsenssted";
+$factarray["BURI:DATE"] = "Begravelsesdato";
+$factarray["BURI:SOUR"] = "Begravelseskilde";
+$factarray["FCOM:PLAC"] = "Første nattverd-måltid sted";
+$factarray["FCOM:DATE"] = "Første nattverd-måltid dato";
+$factarray["FCOM:SOUR"] = "Første nattverd-måltid kilde";
+$factarray["MARB:PLAC"] = "Lysning til ekteskap sted";
+$factarray["MARB:DATE"] = "Lysning til ekteskap dato";
+$factarray["MARB:SOUR"] = "Lysning til ekteskap kilde";
 $factarray["MARR:PLAC"] = "Vielsessted";
 $factarray["MARR:DATE"] = "Vielsesdato";
+$factarray["MARR:SOUR"] = "Vielseskilde";
+$factarray["ENGA:PLAC"] = "Forlovetssted";
+$factarray["ENGA:DATE"] = "Forlovetsdato";
+$factarray["ENGA:SOUR"] = "Forlovetskilde";
 
 // These facts are specific to GEDCOM exports from Family Tree Maker
 $factarray["_MDCL"] = "Helse";
@@ -264,7 +304,7 @@ $factarray["_ADPF"] = "Adopteret av faren";
 $factarray["_ADPM"] = "Adopteret av moren";
 $factarray["_AKAN"] = "Også kjent som";
 $factarray["_AKA"] 	= "Også kjent som";
-$factarray["_BRTM"] = "Brit mila Jødisk omskjæring";
+$factarray["_BRTM"] = "Brit Mila";
 $factarray["_COML"]	= "Samboerskap";
 $factarray["_EYEC"] = "Øyefarge";
 $factarray["_FNRL"] = "Bisettelse";
@@ -275,13 +315,13 @@ $factarray["_INTE"] = "Urnenedsettelse";
 $factarray["_MARI"] = "Ekteskaps-intensjon";
 $factarray["_MBON"] = "Ekteskapsgaranti";
 $factarray["_MEDC"] = "Helsetilstand";
-$factarray["_MILI"] = "Milit&oelig;rtjeneste";
+$factarray["_MILI"] = "Militærtjeneste";
 $factarray["_NMR"] = "Samboer";
 $factarray["_NLIV"] = "Lever ikke";
 $factarray["_NMAR"] = "Aldri gift";
 $factarray["_PRMN"] = "Permanent nummer";
 $factarray["_WEIG"] = "Vekt";
-$factarray["_YART"] = "Yartzeit Jødisk fødselsdag";
+$factarray["_YART"] = "Yahrzeit";
 $factarray["_MARNM"] = "Navn som gift";
 $factarray["_MARNM_SURN"] = "Etternavn som gift";
 $factarray["_STAT"]	= "Sivilstatus";
@@ -384,6 +424,7 @@ $factarray["_CREM_NEPH"] = "Kremasjon av et søskenbarn";
 $factarray["_DEAT_GPAR"] = "Dødsfall til en av besteforeldrene";
 $factarray["_BURI_GPAR"] = "Begravelse av en av besteforeldrene";
 $factarray["_CREM_GPAR"] = "Kremasjon av en av besteforeldrene";
+
 $factarray["_DEAT_GGPA"] = "Dødsfall til en av oldeforeldrene";
 $factarray["_BURI_GGPA"] = "Begravelse av en av oldeforeldrene";
 $factarray["_CREM_GGPA"] = "Kremasjon av en av oldeforeldrene";

@@ -3,7 +3,7 @@
  * Spanish language file for PhpGedView
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2020  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2021  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -94,6 +94,10 @@ $pgv_lang["resn_disabled"]				= "Nota: Debe activar la función &laquo;#pgv_lang
 $pgv_lang["thumb_media_ok1"]			= "El nombre del archivo de miniatura <b>#GLOBALS[oldMediaName]#</b> se cambió a <b>#GLOBALS[newMediaName]#</b>.";
 $pgv_lang["thumb_media_ok2"]			= "El archivo de miniatura <b>#GLOBALS[oldMediaName]#</b> se movió de <b>#GLOBALS[oldThumbFolder]#</b> a <b>#GLOBALS[newThumbFolder]#</b>.";
 $pgv_lang["thumb_media_ok3"]			= "El archivo de miniatura se movió de <b>#GLOBALS[oldThumbFolder]##GLOBALS[oldMediaName]#</b> a <b>#GLOBALS[newThumbFolder]##GLOBALS[newMediaName]#</b>.";
+$pgv_lang["thumb_media_fail0"]			= "El archivo de miniatura <b>#GLOBALS[oldThumbFolder]##GLOBALS[oldMediaName]#</b> no existe.";
+$pgv_lang["thumb_media_fail1"]			= "No se pudo cambiar el nombre del archivo de miniatura de <b>#GLOBALS[oldMediaName]#</b> a <b>#GLOBALS[newMediaName]#</b>.";
+$pgv_lang["thumb_media_fail2"]			= "No se pudo mover el archivo de miniatura <b>#GLOBALS[oldMediaName]#</b> de <b>#GLOBALS[oldThumbFolder]#</b> a <b>#GLOBALS[newThumbFolder]#</b>.";
+$pgv_lang["thumb_media_fail3"]			= "No se pudo mover el archivo de miniatura de <b>#GLOBALS[oldThumbFolder]##GLOBALS[oldMediaName]#</b> a <b>#GLOBALS[newThumbFolder]##GLOBALS[newMediaName]#</b>.";
 $pgv_lang["thumb_create_ok0a"]			= "Miniatura <b>#GLOBALS[imageThumbnail]#</b> creada automáticamente.<br />";
 $pgv_lang["thumb_create_ok0b"]			= "Miniatura #GLOBALS[imageThumbnail]# creada automáticamente.";
 $pgv_lang["thumb_create_fail0a"]		= "La miniatura <span style=\"font-size:larger\">#GLOBALS[imageThumbnail]#</span> no se pudo crear automáticamente : ";
@@ -106,10 +110,6 @@ $pgv_lang["thumb_create_fail5"]			= "La imagen de entrada <span style=\"font-siz
 $pgv_lang["thumb_create_fail6"]			= "No se puede determinar el tamaño de la imagen de entrada <span style=\"font-size:larger\">#GLOBALS[imageFilename]#</span>.";
 $pgv_lang["thumb_create_fail7"]			= "No hay suficiente memoria libre.<br />Reduzca el tamaño de la imagen de entrada o ajuste la asignación de memoria en Configuración del sitio, Paso 4, Configuración avanzada.";
 $pgv_lang["thumb_create_fail8"]			= "La imagen de entrada <span style=\"font-size:larger\">#GLOBALS[imageFilename]#</span> está defectuosa.";
-$pgv_lang["thumb_media_fail0"]			= "El archivo de miniatura <b>#GLOBALS[oldThumbFolder]##GLOBALS[oldMediaName]#</b> no existe.";
-$pgv_lang["thumb_media_fail1"]			= "No se pudo cambiar el nombre del archivo de miniatura de <b>#GLOBALS[oldMediaName]#</b> a <b>#GLOBALS[newMediaName]#</b>.";
-$pgv_lang["thumb_media_fail2"]			= "No se pudo mover el archivo de miniatura <b>#GLOBALS[oldMediaName]#</b> de <b>#GLOBALS[oldThumbFolder]#</b> a <b>#GLOBALS[newThumbFolder]#</b>.";
-$pgv_lang["thumb_media_fail3"]			= "No se pudo mover el archivo de miniatura de <b>#GLOBALS[oldThumbFolder]##GLOBALS[oldMediaName]#</b> a <b>#GLOBALS[newThumbFolder]##GLOBALS[newMediaName]#</b>.";
 $pgv_lang["add_asso"]				= "Añadir un nuevo asociado";
 $pgv_lang["edit_sex"]				= "Modificar sexo";
 $pgv_lang["add_obje"]				= "Agregar un nuevo objeto multimedia";

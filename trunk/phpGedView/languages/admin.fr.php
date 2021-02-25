@@ -3,7 +3,7 @@
  * French language file for PhpGedView
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2020  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2021  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,17 +23,52 @@
  * @subpackage Languages
  * @version $Id$
  */
+
 if (!defined('PGV_PHPGEDVIEW')) {
 	header('HTTP/1.0 403 Forbidden');
 	exit;
 }
+
 $pgv_lang["label_timedban_servers"]		= "Refus d'accès chronométré";
 $pgv_lang["enter_banexpiry"]			= "Entrez la date et l'heure d'expiration du refus d'accès comme suit :<br />2012.12.31@23:59";
+
+$pgv_lang["analytics_config"]		= "Analyses Internet";
+$pgv_lang["google_analytics"]		= "Google Analytics";
+$pgv_lang["USE_GOOGLE_ANALYTICS"]	= "Activer Google Analytics?";
+$pgv_lang["PGV_GOOGLE_ANALYTICS"]	= "Numéro de compte Google Analytics";
+$pgv_lang["piwik_analytics"]		= "Matomo Analytics";
+$pgv_lang["USE_PIWIK_ANALYTICS"]	= "Activer Matomo Analytics?";
+$pgv_lang["PGV_PIWIK_URL"]			= "URL du serveur Matomo Analytics";
+$pgv_lang["PGV_PIWIK_SITE"]			= "Numéro de site dans Matomo Analytics";
+$pgv_lang["clustrmaps_analytics"]	= "ClustrMaps Analytics";
+$pgv_lang["USE_CLUSTRMAPS_ANALYTICS"] = "Activer ClustrMaps Analytics?";
+$pgv_lang["PGV_CLUSTRMAPS_SITE"] 	= "URL de PhpGedView";
+$pgv_lang["PGV_CLUSTRMAPS_SERVER"] 	= "Numéro de serveur ClustrMaps";
+
+$pgv_lang["module_admin"]			= "Administration des modules";
+$pgv_lang["mod_admin_installed"]	= "Modules installés";
+$pgv_lang["mod_admin_tabs"]			= "Gérer les onglets";
+$pgv_lang["mod_admin_menus"]		= "Gérer les menus";
+$pgv_lang["mod_admin_intro"]		= "Voici la liste de tous les modules installés dans cette instance de PhpGedView. Les modules sont installés en les plaçant dans le répertoire <i>modules</i>. Ici, vous pouvez définir le niveau d'accès par GEDCOM pour chaque module. Si un module comprend des onglets pour la page individuelle ou des menus pour la barre de menus, vous pouvez également définir le niveau d'accès et la séquence de chacun d'eux..";
+$pgv_lang["mod_admin_active"]		= "Actif";
+$pgv_lang["mod_admin_name"]			= "Nom du module";
+$pgv_lang["mod_admin_description"]	= "Description";
+$pgv_lang["mod_admin_version"]		= "Version / PGV";
+$pgv_lang["mod_admin_hastab"]		= "Onglet?";
+$pgv_lang["mod_admin_hasmenu"]		= "Menu?";
+$pgv_lang["mod_admin_access_level"]	= "Niveau d'accès";
+$pgv_lang["mod_admin_order"]		= "Séquence";
+$pgv_lang["mod_admin_config"]		= "Paramètres du module";
+$pgv_lang["mod_admin_settings"]		= "Paramètres de configuration du module";
+$pgv_lang["ret_module_admin"]		= "Revenir à la page d'administration du module";
+$pgv_lang["ret_admin"]				= "Revenir à la page d'administration";
+
 $pgv_lang["enter_comment"]				= "Vous pouvez entrer un commentaire ici.";
 $pgv_lang["upload_a_gedcom"]            = "Charger un fichier GEDCOM";
 $pgv_lang["start_entering"]             = "Commencer la saisie des données";
 $pgv_lang["add_gedcom_from_path"]       = "Ajouter un GEDCOM à partir d'un emplacement de fichier";
 $pgv_lang["get_started_instructions"]   = "Choisir une option ci-dessous pour commencer à utiliser PhpGedView";
+
 $pgv_lang["admin_users_exists"]         = "Liste des comptes administrateurs:";
 $pgv_lang["install_step_1"]             = "Vérifier la configuration du système";
 $pgv_lang["install_step_2"]             = "Connexion à la base de données";
@@ -82,11 +117,12 @@ $pgv_lang["cannot_use_gd"]              = "Vous n'avez pas la bibliothèque GD i
 $pgv_lang["check_sax"]                  = "Vérification de l'existance de la bibliothèque XML SAX:";
 $pgv_lang["cannot_use_sax"]             = "Vous n'avez pas la bibliothèque SAX XML. Vous ne serez pas en mesure de faire des rapports ou d'utiliser d'autres fonctions auxiliaires.";
 $pgv_lang["check_dom"]                  = "Vérification de l'existence de la bibliothèque DOM XML:";
-$pgv_lang["cannot_use_dom"]             = "Vous n'avez pas la bibliothèque DOM XML . Vous ne serez pas en mesure d'exporter du XML.";
+$pgv_lang["cannot_use_dom"]             = "Vous n'avez pas la bibliothèque DOM XML. Vous ne serez pas en mesure d'exporter du XML.";
 $pgv_lang["check_calendar"]             = "Vérification de l'existence de la bibliothèque de Calendrier avancé:";
 $pgv_lang["cannot_use_calendar"]        = "Vous n'avez pas le calendrier avancé. Vous ne serez pas en mesure de faire appel à certaines fonctions du calendrier avancé.";
 $pgv_lang["warnings_passed"]            = "Tous les avertissements possibles ont été vérifiés";
 $pgv_lang["warning_instr"]              = "Si un avertissement apparaît, vous pourrez toujours faire fonctionner PhpGedView, mais quelques fonctionnalités pourront être inopérantes et vous pourrez obtenir des performances médiocres.";
+
 $pgv_lang["associated_files"]           = "Fichiers associés :";
 $pgv_lang["remove_all_files"]           = "Supprimer les fichiers non essentiels";
 $pgv_lang["warn_file_delete"]           = "Ce fichier contient des informations importantes telles que les paramètres de la langue ou les informations en attente de modification. Êtes-vous certain de vouloir supprimer ce fichier ?";
@@ -96,7 +132,7 @@ $pgv_lang["index_dir_cleanup"]          = "Nettoyer le répertoire «index»";
 $pgv_lang["clear_cache_succes"]         = "Fichiers supprimés du cache.";
 $pgv_lang["clear_cache"]                = "Vider le cache";
 $pgv_lang["sanity_err0"]                = "Erreurs :";
-$pgv_lang["sanity_err1"]                = "Ce programme nécessite PHP version 4.3 ou supérieure.";
+$pgv_lang["sanity_err1"]                = "Ce programme nécessite PHP version #PGV_REQUIRED_PHP_VERSION# ou supérieure.";
 $pgv_lang["sanity_err2"]                = "Fichier ou répertoire non trouvé : <i>#GLOBALS[whichFile]#</i>. Vérifier son existence et ses droits d'accès.";
 $pgv_lang["sanity_err3"]                = "Fichier mal téléchargé : <i>#GLOBALS[whichFile]#</i>. Essayer à nouveau.";
 $pgv_lang["sanity_err4"]                = "Fichier corrompu : <i>config.php</i>.";
@@ -115,6 +151,10 @@ $pgv_lang["log_message"]                = "Message de log";
 $pgv_lang["searchtype"]                 = "Type de recherche";
 $pgv_lang["query"]                      = "Requête";
 $pgv_lang["user"]                       = "Utilisateur authentifié";
+$pgv_lang["editors"]					= "Rédacteurs";
+$pgv_lang["gedcom_admins"]				= "Administrateurs GEDCOM";
+$pgv_lang["site_admins"]				= "Administrateurs du site";
+$pgv_lang["nobody"]						= "Personne";
 $pgv_lang["step2"]                      = "Étape 2/4 :";
 $pgv_lang["refresh"]                    = "Rafraîchir";
 $pgv_lang["move_file_success"]          = "Le fichier MultiMédia et la vignette ont été déplacés.";
@@ -130,8 +170,37 @@ $pgv_lang["PRIV_PUBLIC"]                = "Montrer à tout le monde";
 $pgv_lang["PRIV_USER"]                  = "Montrer uniquement aux utilisateurs authentifiés";
 $pgv_lang["PRIV_NONE"]                  = "Montrer uniquement à l'administrateur";
 $pgv_lang["PRIV_HIDE"]                  = "Ne montrer à personne";
-$pgv_lang["manage_gedcoms"]             = "Gérer les fichiers GEDCOM";
+$pgv_lang["manage_gedcoms"]             = "Gérer fichiers GEDCOM";
 $pgv_lang["keep_media"]                 = "Conserver les liens MultiMédia";
+$pgv_lang["current_links"]			= "Liens";
+$pgv_lang["add_more_links"]			= "Ajouter liens";
+$pgv_lang["enter_pid_or_name"]		= "Entrez l'identifiant ou le nom de la personne";
+$pgv_lang["set_links"]				= "Définir liens";
+$pgv_lang["add_or_remove_links"]	= "Gérer liens";
+
+$pgv_lang["keep"]					= "Garder";
+$pgv_lang["unlink"]					= "Dissocier";
+$pgv_lang["nav"]					= "Navigateur";
+$pgv_lang["fam_nav"]				= "Navigateur de famille";
+$pgv_lang["remove"]					= "Supprimer";
+$pgv_lang["keep_link"]				= "Garder le lien dans la liste";
+$pgv_lang["remove_link"]			= "Supprimer le lien de la liste";
+$pgv_lang["open_nav"]				= "Lancer le navigateur de famille";
+$pgv_lang["link_exists"]			= "Ce lien existe déjà";
+$pgv_lang["id_not_valid"]			= "N'est pas un identifiant de personne, de famille ou de source valide";
+$pgv_lang["add_fam_other_links"]	= "Ajouter une famille et rechercher des liens";
+$pgv_lang["search_add_links"]		= "Recherchez des personnes à ajouter à la liste « Ajouter des liens ».";
+$pgv_lang["enter_name"]				= "Enter a name";
+$pgv_lang["add_indi_to_link_list"]	= "Cliquez sur « Nom » pour ajouter cette personne à la liste « Ajouter des liens ».";
+$pgv_lang["click_choose_head"]		= "Cliquez sur #GLOBALS[tempStringHead]# pour choisir la personne comme chef de famille.";
+$pgv_lang["click_choose_head_text"]	= "Cliquez ici pour choisir une personne comme chef de famille.";
+$pgv_lang["head"]					= "Chef";
+$pgv_lang["id_empty"]				= "Lors de l'ajout d'un lien, le champ d'identification ne peut pas être vide.";
+$pgv_lang["link_deleted"]			= "Lien vers #GLOBALS[remLinkId]# supprimé";
+$pgv_lang["link_added"]				= "Lien vers #GLOBALS[addLinkId]# ajouté";
+$pgv_lang["no_update_CHANs"]		= "Ne pas mettre à jour les enregistrements CHAN (dernière modification)";
+$pgv_lang["no_CHANs_update"]		= "Aucun enregistrement CHAN (dernière modification) n'a été mis à jour";
+
 $pgv_lang["files_in_backup"]            = "Liste des fichiers sauvegardés";
 $pgv_lang["created_remotelinks"]        = "Table <i>Remotelinks</i> créée.";
 $pgv_lang["created_remotelinks_fail"]   = "Impossible de créer la table <i>Remotelinks</i>";
@@ -172,7 +241,6 @@ $pgv_lang["admin_user_warnings"]        = "Un ou plusieurs comptes ont un averti
 $pgv_lang["admin_verification_waiting"] = "Comptes en attente de vérification par l'administrateur";
 $pgv_lang["administration"]             = "Administration";
 $pgv_lang["ALLOW_CHANGE_GEDCOM"]        = "Autoriser le choix du fichier GEDCOM";
-$pgv_lang["ALLOW_REMEMBER_ME"]          = "Autoriser l'option «Rester connecté»";
 $pgv_lang["ALLOW_USER_THEMES"]          = "Permettre aux utilisateurs de choisir leur propre thème";
 $pgv_lang["ansi_encoding_detected"]     = "Ce fichier est au format ANSI. PhpGedView recommande le format UTF-8.";
 $pgv_lang["ansi_to_utf8"]               = "Convertir ce fichier GEDCOM format ANSI en format UTF-8 ?";
@@ -222,7 +290,7 @@ $pgv_lang["error_delete_person"]        = "Vous devez choisir l'individu dont vo
 $pgv_lang["error_header_write"]         = "Le fichier GEDCOM #GEDCOM# est en lecture-seule. Vérifier les attributs et droits d'accès.";
 $pgv_lang["error_remove_site"]          = "Le serveur distant ne peut pas être supprimé.";
 $pgv_lang["error_remove_site_linked"]   = "Le serveur distant ne peut pas être supprimé parce que sa liste de connexions n'est pas vide.";
-$pgv_lang["error_remote_duplicate"]     = "Cette base de données distante est déjà dans la liste <i> # GLOBALS [whichFile] # </ i>";
+$pgv_lang["error_remote_duplicate"]     = "Cette base de données distante est déjà dans la liste <i>#GLOBALS[whichFile]#</i>";
 $pgv_lang["error_siteauth_failed"]      = "Échec d'authentification au site distant";
 $pgv_lang["error_url_blank"]            = "S'il vous plaît, ne laissez pas vide l'adresse URL ou le titre du site distant";
 $pgv_lang["error_view_info"]            = "Vous devez sélectionner l'individu dont vous souhaitez visualiser les informations.";
@@ -294,7 +362,6 @@ $pgv_lang["performing_validation"]      = "Validation du fichier GEDCOM";
 $pgv_lang["pgsql"]                      = "PostgreSQL";
 $pgv_lang["pgv_config_write_error"]     = "Impossible d'écrire dans le fichier de configuration PhpGedView. Vérifier les droits d'accès et réessayer.";
 $pgv_lang["PGV_MEMORY_LIMIT"]           = "Limite de mémoire";
-$pgv_lang["pgv_registry"]               = "Voir les autres sites web utilisant PhpGedView";
 $pgv_lang["PGV_SESSION_SAVE_PATH"]      = "Répertoire des sauvegardes de sessions";
 $pgv_lang["PGV_SESSION_TIME"]           = "Limite de durée d'une session";
 $pgv_lang["PGV_SIMPLE_MAIL"]            = "Utiliser un en-tête simple pour les courriels";
@@ -327,7 +394,7 @@ $pgv_lang["sybase"]                     = "Sybase";
 $pgv_lang["sync_gedcom"]                = "Synchroniser avec les données GEDCOM";
 $pgv_lang["system_time"]                = "Heure du serveur";
 $pgv_lang["user_time"]                  = "Heure du navigateur";
-$pgv_lang["TBLPREFIX"]                  = "Préfixe des noms de tables";
+$pgv_lang["TBLPREFIX"]                  = "Préfixe des noms de table de base de données";
 $pgv_lang["themecustomization"]         = "Personnalisation des thèmes";
 $pgv_lang["time_limit"]                 = "Durée max.";
 $pgv_lang["title_manage_servers"]       = "Gestion des sites";
@@ -373,11 +440,15 @@ $pgv_lang["welcome_new"]                = "Bienvenue sur votre site PhpGedView. 
 $pgv_lang["yearly"]                     = "Annuel";
 $pgv_lang["admin_OK_subject"]           = "Approbation (validation) du compte sur #SERVER_NAME#";
 $pgv_lang["admin_OK_message"]           = "L'administrateur du site PhpGedView #SERVER_NAME# a approuvé la création de votre compte utilisateur.\r\n\r\nVous pouvez maintenant vous connecter en utilisant le lien suivant : #SERVER_NAME#";
+
 $pgv_lang["batch_update"]               = "Effectuer des mises à jour/modifications de votre GEDCOM par batch";
+
 // Text for the Gedcom Checker
 $pgv_lang["gedcheck"]                   = "Vérificateur GEDCOM";
 $pgv_lang["gedcheck_text"]              = "Ce module vérifie le format du fichier GEDCOM selon la norme <a href=\"http ://phpgedview.sourceforge.net/ged551-5.pdf\">GEDCOM 5.5.1</a>. L'outil détecte aussi certaines erreurs fréquentes dans les données. Comme il existe de nombreuses variantes de cette norme, seules les erreurs graves sont indispensables à corriger. Merci de bien lire l'explication de chaque erreur dans la norme avant de demander de l'aide.";
-$pgv_lang["level"]                      = "Niveau";				// Niveau";
+$pgv_lang["gedcheck_sync"] = "Les modifications apportées à la base de données ne sont pas synchronisées avec le fichier #GLOBALS[ged]#. Le contenu du fichier peut être obsolète. Vous pouvez maintenant le synchroniser avec la base de données en effectuant une <b><a \"#GLOBALS[ged_link]#\">exportation</a></b>.";
+$pgv_lang["gedcheck_nothing"] = "Aucune erreur trouvée à ce niveau.";
+$pgv_lang["level"]                      = "Niveau";
 $pgv_lang["critical"]                   = "Erreur grave";
 $pgv_lang["error"]                      = "Erreur";
 $pgv_lang["warning"]                    = "Avertissement";
@@ -408,6 +479,7 @@ $pgv_lang["tradition_icelandic"]        = "Façon Islandaise";
 $pgv_lang["tradition_paternal"]         = "Nom du père (défaut)";
 $pgv_lang["tradition_polish"]           = "Polonais";
 $pgv_lang["tradition_none"]             = "Libre";
+
 // -- The following text is used to build the phrase "i years, j months, k days, l hours, m minutes"
 // -- for use in text such as "xxx ago" or "after xxx" or "in xxx"
 $pgv_lang["elapsedYear1"]               =	"1 an";
@@ -425,5 +497,7 @@ $pgv_lang["elapsedHours"]               =	"#pgv_lang[global_num1]# heures";
 $pgv_lang["elapsedMinute1"]             =	"1 minute";
 $pgv_lang["elapsedMinute2"]             =	"#pgv_lang[global_num1]# minutes";	// used in Polish for 2,3,4 or 22,23,24 or 32,33,34 etc.
 $pgv_lang["elapsedMinutes"]             =	"#pgv_lang[global_num1]# minutes";
+
 $pgv_lang["elapsedAgo"]                 =	"il y a #pgv_lang[global_string1]#";
+
 ?>
