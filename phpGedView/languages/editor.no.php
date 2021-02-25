@@ -3,7 +3,7 @@
  * Norwegian texts
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2020  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2021  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -53,6 +53,8 @@ $pgv_lang["link_media"]			= "Kobling av Media";
 $pgv_lang["to_person"]			= "Til person";
 $pgv_lang["to_family"]			= "Til familie";
 $pgv_lang["to_source"]			= "Til kilde";
+$pgv_lang["to_note"]				= "Til delt notat";
+$pgv_lang["to_repository"]			= "Til arkiv";
 $pgv_lang["edit_fam"]				= "Endre familie";
 $pgv_lang["edit_repo"]				= "Rediger oppbevaringssted";
 $pgv_lang["copy"]					= "Kopier";
@@ -70,6 +72,8 @@ $pgv_lang["add_from_clipboard"]		= "Legg til fra klippebordet: ";
 $pgv_lang["record_copied"]			= "Data er kopiert til klippebordet";
 $pgv_lang["add_unlinked_person"]	= "Legg til en person som ikke er knyttet til en familie";
 $pgv_lang["add_unlinked_source"]	= "Legg til en kilde som ikke er knyttet til noen";
+$pgv_lang["add_unlinked_note"]		= "Legg til et ikke-koblet notat";
+$pgv_lang["add_unlinked"]			= "Ikke-koblede poster";
 $pgv_lang["server_file"]				= "Filnavn på server";
 $pgv_lang["server_file_advice"]			= "Ikke bytt for å beholde originalt filnavn.";
 $pgv_lang["server_file_advice2"]		= "Du kan angi en URL, som starter med &laquo;http://&raquo;.";
@@ -90,6 +94,10 @@ $pgv_lang["resn_disabled"]				= "Merk: Du må slå på &laquo;#pgv_lang[PRIVACY_
 $pgv_lang["thumb_media_ok1"]			= "Miniatyrbildefilen <b>#GLOBALS[oldMediaName]#</b> heter nå <b>#GLOBALS[newMediaName]#</b>.";
 $pgv_lang["thumb_media_ok2"]			= "Miniatyrbildefilen <b>#GLOBALS[oldMediaName]#</b> er nå flyttet fra <b>#GLOBALS[oldThumbFolder]#</b> til <b>#GLOBALS[newThumbFolder]#</b>.";
 $pgv_lang["thumb_media_ok3"]			= "Miniatyrbildefilen er flyttet eller gitt nytt navn fra <b>#GLOBALS[oldThumbFolder]##GLOBALS[oldMediaName]#</b> til <b>#GLOBALS[newThumbFolder]##GLOBALS[newMediaName]#</b>.";
+$pgv_lang["thumb_media_fail0"]			= "Miniatyrbildefilen <b>#GLOBALS[oldThumbFolder]##GLOBALS[oldMediaName]#</b> finnes ikke.";
+$pgv_lang["thumb_media_fail1"]			= "Klarte ikke å gi miniatyrbildefilen <b>#GLOBALS[oldMediaName]#</b> det nye navnet <b>#GLOBALS[newMediaName]#</b>.";
+$pgv_lang["thumb_media_fail2"]			= "Klarte ikke å flytte miniatyrbildefilen <b>#GLOBALS[oldMediaName]#</b> fra <b>#GLOBALS[oldThumbFolder]#</b> til <b>#GLOBALS[newThumbFolder]#</b>.";
+$pgv_lang["thumb_media_fail3"]			= "Klarte ikke å flytte eller å gi nytt navn til miniatyrbildefilen fra <b>#GLOBALS[oldThumbFolder]##GLOBALS[oldMediaName]#</b> til <b>#GLOBALS[newThumbFolder]##GLOBALS[newMediaName]#</b>.";
 $pgv_lang["thumb_create_ok0a"]			= "Miniatyrbilde <b>#GLOBALS[imageThumbnail]#</b> opprettet automatisk.<br />";
 $pgv_lang["thumb_create_ok0b"]			= "Miniatyrbilde #GLOBALS[imageThumbnail]# opprettet automatisk.";
 $pgv_lang["thumb_create_fail0a"]		= "Miniatyrbilde <span style=\"font-size:larger\">#GLOBALS[imageThumbnail]#</span> kunne ikke opprettes automatisk : ";
@@ -102,10 +110,6 @@ $pgv_lang["thumb_create_fail5"]			= "Inngangsbildet <span style=\"font-size:larg
 $pgv_lang["thumb_create_fail6"]			= "Størrelsen på inngangsbildet <span style=\"font-size:larger\">#GLOBALS[imageFilename]#</span> kan ikke bestemmes.";
 $pgv_lang["thumb_create_fail7"]			= "Det er ikke nok ledig minne.<br />Reduser størrelsen på inngangsbildet eller juster minnetildelingen i Program-innstillinger, Trinn 4, Avancerte instillinger.";
 $pgv_lang["thumb_create_fail8"]			= "Inngangsbildet <span style=\"font-size:larger\">#GLOBALS[imageFilename]#</span> er defekt.";
-$pgv_lang["thumb_media_fail0"]			= "Miniatyrbildefilen <b>#GLOBALS[oldThumbFolder]##GLOBALS[oldMediaName]#</b> finnes ikke.";
-$pgv_lang["thumb_media_fail1"]			= "Klarte ikke å gi miniatyrbildefilen <b>#GLOBALS[oldMediaName]#</b> det nye navnet <b>#GLOBALS[newMediaName]#</b>.";
-$pgv_lang["thumb_media_fail2"]			= "Klarte ikke å flytte miniatyrbildefilen <b>#GLOBALS[oldMediaName]#</b> fra <b>#GLOBALS[oldThumbFolder]#</b> til <b>#GLOBALS[newThumbFolder]#</b>.";
-$pgv_lang["thumb_media_fail3"]			= "Klarte ikke å flytte eller å gi nytt navn til miniatyrbildefilen fra <b>#GLOBALS[oldThumbFolder]##GLOBALS[oldMediaName]#</b> til <b>#GLOBALS[newThumbFolder]##GLOBALS[newMediaName]#</b>.";
 $pgv_lang["add_asso"]			= "Legg til en ny tilknyttet person";
 $pgv_lang["edit_sex"]			= "Endre kjønn";
 $pgv_lang["add_obje"]			= "Legg til et nytt bilde / media";
@@ -133,6 +137,8 @@ $pgv_lang["add_new_husb"]		= "Legg til en ny ektemann";
 $pgv_lang["add_new_wife"]		= "Legg til en ny hustru";
 $pgv_lang["add_note"]			= "Legg til en ny note";
 $pgv_lang["add_note_lbl"]		= "Legg til note";
+$pgv_lang["add_shared_note"]		= "Legg til en ny delt note";
+$pgv_lang["add_shared_note_lbl"]	= "Legg til delt note";
 $pgv_lang["add_sibling"]		= "Legg til en bror eller søster";
 $pgv_lang["add_son_daughter"]	= "Legg til en sønn eller datter";
 $pgv_lang["add_source"]			= "Legg til en ny kildehenvisning";
@@ -152,6 +158,10 @@ $pgv_lang["changes_occurred"]	= "Følgende endring(er) er gjort for denne person
 $pgv_lang["confirm_remove"]			= "Er du sikker på at du vil fjerne koblingen til familien for denne personen?";
 $pgv_lang["confirm_remove_object"]	= "Er du sikker på at du vil fjerne dette objektet fra slektsbasen?";
 $pgv_lang["create_repository"]		= "Opprett nytt oppbevaringssted";
+$pgv_lang["shared_note_assisted"]	= "Delt note ved hjelp av assistenten";
+$pgv_lang["create_shared_note"]				= "Opprett en ny delt note";
+$pgv_lang["create_shared_note_assisted"]	= "Opprett en ny delt note ved hjelp av assistenten";
+$pgv_lang["add_new_event_assisted"]			= "Opprett en ny hendelse ved hjelp av Assistent";
 $pgv_lang["create_source"]		= "Opprett en ny kilde";
 $pgv_lang["current_person"]         = "Samme som nåværende";
 $pgv_lang["date"]				= "Dato";
@@ -175,7 +185,6 @@ $pgv_lang["file_cant_write"]		= "PHP mislyktes med å skrive til disk";
 $pgv_lang["file_bad_extension"]		= "PHP blokkerte filen med utvidelsen";
 $pgv_lang["file_unkown_err"]		= "Ukjent filopplastingsfeilkode #pgv_lang[global_num1]#. Vennligst rapporter dette som en bug.";
 $pgv_lang["folder"]		 		= "Mappe";
-$pgv_lang["gedcomid"]				= "Bruker ID<br />i slektsbasen";
 $pgv_lang["gedrec_deleted"]		= "Oppføringen i slektsfilen er nå slettet.";
 $pgv_lang["gen_thumb"]			= "Lag miniatyrbilde(r)";
 $pgv_lang["gen_missing_thumbs"]		= "Lag manglende miniatyrbilder";
@@ -224,6 +233,8 @@ $pgv_lang["multiple_gedcoms"]	= "Denne filen har en kobling til en annen slektsb
 $pgv_lang["must_provide"]		= "Du må sørge for et ";
 $pgv_lang["name_search"]			= "Navn: ";
 $pgv_lang["new_repo_created"]		= "Nytt oppbevaringssted er opprettet";
+$pgv_lang["new_shared_note_created"] 	= "Ny delt note opprettet.";
+$pgv_lang["shared_note_updated"] 	= "Delt note oppdatert.";
 $pgv_lang["new_source_created"]	= "Den nye kilden er lagret!";
 $pgv_lang["no_changes"]			= "Det er ikke noen endringer som det er nødvendig å vise på nytt.";
 $pgv_lang["no_known_servers"]		= "Ingen kjente tjenere. Ingen resultater vil vises";
@@ -231,7 +242,6 @@ $pgv_lang["no_temple"]			= "Ingen Tempel-Living tilordning";
 $pgv_lang["no_upload"]			= "Klarte ikke å laste opp (upload) mediafiler fordi multi-media-filer ikke er aktivert eller fordi mediamappen/-katalogen ikke har skriverettighet.";
 $pgv_lang["paste_id_into_field"]= "Legg inn følgende kilde-ID inn i endringsfeltet som en referanse til denne kilden ";
 $pgv_lang["paste_rid_into_field"]	= "Lim inn følgende ID for oppbevaringsstedet til aktuelle koblings-feltet for ulike kilder: ";
-$pgv_lang["photo_replace"] 			= "Ønsker du å erstatte et eldre bilde med dette?";
 $pgv_lang["record_marked_deleted"]		= "Denne oppføringen er merket for sletting og venter på godkjenning av admin.";
 $pgv_lang["replace_with"]			= "Erstatt med";
 $pgv_lang["show_changes"]		= "Denne oppføringen er blitt oppdatert. Klikk her for å se endring(ene).";

@@ -3,7 +3,7 @@
  * French Language file for PhpGedView.
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2020  PGV Development Team. All rights reserved.
+ * Copyright (C) 2002 to 2021  PGV Development Team. All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,10 +23,12 @@
  * @subpackage Languages
  * @version $Id$
  */
+
 if (!defined('PGV_PHPGEDVIEW')) {
 	header('HTTP/1.0 403 Forbidden');
 	exit;
 }
+
 $pgv_lang["add_marriage"]               = "Ajouter un nouveau mariage";
 $pgv_lang["edit_concurrency_change"]    = "Enregistrement modifié en dernier par <i>#CHANGEUSER#</i> le #CHANGEDATE#";
 $pgv_lang["edit_concurrency_msg2"]      = "L'enregistrement #PID# a été modifié par un autre utilisateur depuis votre dernière visite.";
@@ -48,6 +50,8 @@ $pgv_lang["link_media"]                 = "Relier un objet MultiMédia";
 $pgv_lang["to_person"]                  = "à une personne";
 $pgv_lang["to_family"]                  = "à une famille";
 $pgv_lang["to_source"]                  = "à une source";
+$pgv_lang["to_note"]					= "à une note partagée";
+$pgv_lang["to_repository"]				= "à une archive";
 $pgv_lang["edit_fam"]                   = "Modifier la famille";
 $pgv_lang["edit_repo"]                  = "Modifier le dépôt d'archives";
 $pgv_lang["copy"]                       = "Copier";
@@ -63,8 +67,10 @@ $pgv_lang["reorder_media_reset"]        = "Revenir à l'ordonnancement initial";
 $pgv_lang["reorder_media_cancel"]       = "Annuler les modifications";
 $pgv_lang["add_from_clipboard"]         = "Ajouter depuis le presse-papiers : ";
 $pgv_lang["record_copied"]              = "Enregistrement copié dans le presse-papiers";
-$pgv_lang["add_unlinked_person"]        = "Ajouter une personne isolée";
-$pgv_lang["add_unlinked_source"]        = "Ajouter une source isolée";
+$pgv_lang["add_unlinked_person"]        = "Ajouter une personne non liée";
+$pgv_lang["add_unlinked_source"]        = "Ajouter une source non liée";
+$pgv_lang["add_unlinked_note"]			= "Ajouter une note non liée";
+$pgv_lang["add_unlinked"]				= "Enregistrements non liés";
 $pgv_lang["server_file"]                = "Nom du fichier sur le serveur";
 $pgv_lang["server_file_advice"]         = "Ne pas modifier pour conserver le nom d'origine.";
 $pgv_lang["server_file_advice2"]        = "Entrer une URL commencant par «http://».";
@@ -149,7 +155,10 @@ $pgv_lang["changes_occurred"]           = "Les modifications suivantes ont été
 $pgv_lang["confirm_remove"]             = "Confirmez-vous la suppression de cette personne de la famille ?";
 $pgv_lang["confirm_remove_object"]      = "Confirmez-vous la suppression de cet objet ?";
 $pgv_lang["create_repository"]          = "Créer un dépôt d'archives";
+$pgv_lang["shared_note_assisted"]		= "Note partagée à l'aide de l'Assistant";
 $pgv_lang["create_shared_note"]         = "Créer une nouvelle note partagée";
+$pgv_lang["create_shared_note_assisted"]	= "Créer une nouvelle note partagée à l'aide de l'Assistant";
+$pgv_lang["add_new_event_assisted"]		= "Créer un nouvel événement à l'aide de l'Assistant";
 $pgv_lang["create_source"]              = "Créer une nouvelle source";
 $pgv_lang["current_person"]             = "Identique";
 $pgv_lang["date"]                       = "Date";
@@ -202,7 +211,6 @@ $pgv_lang["link_success"]               = "Lien ajouté";
 $pgv_lang["link_to_existing_media"]     = "Relier à un objet MultiMédia existant";
 $pgv_lang["max_media_depth"]            = "Limite de profondeur dans le dossier : #MEDIA_DIRECTORY_LEVELS# ";
 $pgv_lang["max_upload_size"]            = "Taille maxi pour le téléchargement ";
-$pgv_lang["media_deleted"]              = "Répertoire «media» supprimé.";
 $pgv_lang["media_deleted"]				= "Répertoire <b>#GLOBALS[whichDir]#</b> supprimé.";
 $pgv_lang["media_not_deleted"]			= "Répertoire <span style=\"font-size:larger\">#GLOBALS[whichDir]#</span> non supprimé.";
 $pgv_lang["media_cant_delete"]			= "Répertoire #GLOBALS[whichDir]# non supprimé.";
@@ -243,9 +251,10 @@ $pgv_lang["undo_successful"]            = "Annulation réussie";
 $pgv_lang["update_successful"]          = "Mise à jour réussie";
 $pgv_lang["upload"]                     = "Téléchargement";
 $pgv_lang["upload_error"]               = "Erreur lors du chargement de votre fichier GEDCOM sur le serveur.";
-$pgv_lang["copy_error"]                 = "Le fichier # GLOBALS [whichFile2] # ne peut pas être copié à partir de # GLOBALS [whichFile1] #";
+$pgv_lang["copy_error"]                 = "Le fichier #GLOBALS[whichFile2]# ne peut pas être copié à partir de #GLOBALS[whichFile1]#";
 $pgv_lang["upload_media"]               = "Charger des objets MultiMédia";
 $pgv_lang["upload_media_help"]          = "~#pgv_lang[upload_media]#~<br /><br />Choisir un fichier sur votre poste. Il sera copié sur le serveur dans le dossier <b>#MEDIA_DIRECTORY#</b> ou un de ses sous-dossiers.<br /><br />Le nom du dossier sera ajouté à #MEDIA_DIRECTORY#. Par exemple, #MEDIA_DIRECTORY#famille. Si le dossier de vignettes n'existe pas, il sera créé automatiquement.";
 $pgv_lang["upload_successful"]          = "Téléchargement réussi";
 $pgv_lang["view_change_diff"]           = "Voir les différences";
+
 ?>

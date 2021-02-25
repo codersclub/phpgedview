@@ -3,7 +3,7 @@
  * Swedish texts
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2018  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2021  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -73,6 +73,7 @@ $countries["BWI"]="Britiska väst Indien";
 $countries["CAF"]="Centralafrikanska republiken";
 $countries["CAN"]="Kanada";
 $countries["CAP"]="Kap Kolonien?";
+$countries["CAT"]="Katalonien";
 $countries["CCK"]="Kokosöarna";
 $countries["CHE"]="Schweiz";
 $countries["CHI"]="Kanalöarna?";
@@ -141,7 +142,7 @@ $countries["HTI"]="Haiti";
 $countries["HUN"]="Ungern";
 $countries["IDN"]="Indonesien";
 $countries["IND"]="Indien";
-$countries["IOM"]="Ö av man";
+$countries["IMN"]="Ö av man";
 $countries["IOT"]="Brittiska territoriet i Indiska Oceanen";
 $countries["IRL"]="Irland";
 $countries["IRN"]="Iran";

@@ -1,9 +1,9 @@
 <?php
 /**
- * Dutch texts
+ * Dutch Language file for PhpGedView.
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2020  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2021  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -98,6 +98,8 @@ $pgv_lang["SHOW_HIGHLIGHT_IMAGES"]	= "Laat eerste afbeelding in persoonsvak zien
 $pgv_lang["view_img_details"]		= "Toon details v.d. afbeelding";
 $pgv_lang["server_folder"]			= "Mapnaam op server";
 $pgv_lang["medialist_recursive"]	= "List bestanden in subdirectories";
+$pgv_lang["medialist_unlinked"]		= "Alleen niet-gekoppelde media weergeven";
+$pgv_lang["medialist_current_dir"]	= "Huidige submap";
 $pgv_lang["media_options"]			= "Media Opties";
 $pgv_lang["confirm_password"]			= "U moet het wachtwoord twee keer invullen.";
 $pgv_lang["enter_email"]				= "U moet een e-mailadres opgeven.";
@@ -207,7 +209,7 @@ $pgv_lang["friday_1st"]					= "Vrij";
 $pgv_lang["saturday_1st"]			= "Za";
 
 $pgv_lang["jan_1st"]				= "Jan";
-$pgv_lang["feb_1st"]					= "Feb";
+$pgv_lang["feb_1st"]				= "Feb";
 $pgv_lang["mar_1st"]				= "Mrt";
 $pgv_lang["apr_1st"]				= "Apr";
 $pgv_lang["may_1st"]				= "Mei";
@@ -217,7 +219,7 @@ $pgv_lang["aug_1st"]				= "Aug";
 $pgv_lang["sep_1st"]				= "Sep";
 $pgv_lang["oct_1st"]				= "Okt";
 $pgv_lang["nov_1st"]				= "Nov";
-$pgv_lang["dec_1st"]					= "Dec";
+$pgv_lang["dec_1st"]				= "Dec";
 
 $pgv_lang["edit_source"]				= "Bewerk bron";
 $pgv_lang["edit_shared_note"]			= "Wijzig gedeelde notitie";
@@ -294,7 +296,7 @@ $pgv_lang["relatives_report"]		= "Verwanten";
 $pgv_lang["total_unknown"]			= "Totaal onbekend (levend/overleden)";
 $pgv_lang["total_living"]			= "Totaal in leven";
 $pgv_lang["total_dead"]				= "Totaal overleden";
-$pgv_lang["total_not_born"]			= "Totaal nog niet geboren";
+$pgv_lang["total_not_born"]			= "Doodgeboren";
 $pgv_lang["remove_custom_tags"]		= "Verwijder speciale PGV-kenmerken (bijv. _PGVU, _THUM)?";
 $pgv_lang["fams_with_surname"]			= "Gezinnen met achternaam #surname#";
 $pgv_lang["support_contact"]		= "Contactpersoon technische hulp";
@@ -385,7 +387,7 @@ $pgv_lang["password"]				= "Wachtwoord";
 $pgv_lang["confirm"]					= "Geef wachtwoord opnieuw";
 $pgv_lang["login"]					= "Aanmelden";
 $pgv_lang["logout"]					= "Afmelden";
-$pgv_lang["admin"]					= "Beheren";
+$pgv_lang["admin"]					= "Administratie";
 $pgv_lang["logged_in_as"]			= "Aangemeld als";
 $pgv_lang["my_pedigree"]			= "Mijn kwartierstaat";
 $pgv_lang["my_indi"]				= "Mijn persoonsgegevens";
@@ -456,23 +458,23 @@ $pgv_lang["status"]					= "Status";
 $pgv_lang["source"]					= "Bron";
 $pgv_lang["text"]					= "Tekst:";
 $pgv_lang["note"]					= "Notitie";
-$pgv_lang["NN"]						= "Onbekend";
-$pgv_lang["PN"]						= "Voornaam onbekend";
-$pgv_lang["NNhebrew"] 		= "(לא-ידוע)";
-$pgv_lang["PNhebrew"] 		= "(לא-ידוע)";
-$pgv_lang["NNarabic"] 		= "(غير معروف)";
-$pgv_lang["PNarabic"] 		= "(غير معروف)";
-$pgv_lang["NNgreek"] 		= "(άγνωστος/η)";
-$pgv_lang["PNgreek"] 		= "(άγνωστος/η)";
-$pgv_lang["NNrussian"] 		= "(неопределено)";
-$pgv_lang["PNrussian"] 		= "(неопределено)";
-$pgv_lang["NNchinese"] 		= "(未知)";
-$pgv_lang["PNchinese"] 		= "(未知)";
-$pgv_lang["NNvietnamese"] 	= "(vô danh)";
-$pgv_lang["PNvietnamese"] 	= "(không biết tuổi)";
-$pgv_lang["NNthai"] 				= "(Onbekend)";
-$pgv_lang["PNthai"] 				= "(Voornaam onbekend)";
-$pgv_lang["NNother"] 				= "(Onbekend)";
+$pgv_lang["NN"]						= "Naam onbekend";				// Family name
+$pgv_lang["PN"]						= "Voornaam onbekend";		// Given name
+// $pgv_lang["NNhebrew"] 		use value from lang.en.php
+// $pgv_lang["PNhebrew"] 		use value from lang.en.php
+// $pgv_lang["NNarabic"] 		use value from lang.en.php
+// $pgv_lang["PNarabic"] 		use value from lang.en.php
+// $pgv_lang["NNgreek"] 		use value from lang.en.php
+// $pgv_lang["PNgreek"] 		use value from lang.en.php
+// $pgv_lang["NNrussian"] 		use value from lang.en.php
+// $pgv_lang["PNrussian"] 		use value from lang.en.php
+// $pgv_lang["NNchinese"] 		use value from lang.en.php
+// $pgv_lang["PNchinese"] 		use value from lang.en.php
+// $pgv_lang["NNvietnamese"] 	use value from lang.en.php
+// $pgv_lang["PNvietnamese"] 	use value from lang.en.php
+// $pgv_lang["NNthai"] 			use value from lang.en.php
+// $pgv_lang["PNthai"] 			use value from lang.en.php
+$pgv_lang["NNother"] 				= "(Naam onbekend)";
 $pgv_lang["PNother"] 				= "(Voornaam onbekend)";
 $pgv_lang["unrecognized_code"]		= "Onbekende GEDCOM-code";
 $pgv_lang["unrecognized_code_msg"]  = "Er is een fout opgetreden, die we graag willen verhelpen. Meldt deze fout a.u.b. aan";
@@ -486,6 +488,7 @@ $pgv_lang["given_name"]				= "Voornaam:";
 $pgv_lang["surname"]				= "Achternaam:";
 $pgv_lang["suffix"]					= "Toevoeging:";
 $pgv_lang["sex"]					= "Geslacht";
+$pgv_lang["personal_details"]		= "Persoonlijke details";
 $pgv_lang["personal_facts"]			= "Persoonlijke feiten en details";
 $pgv_lang["type"]					= "Soort";
 $pgv_lang["parents"]				= "Ouders:";
@@ -754,14 +757,14 @@ $pgv_lang["all_saints"] 			= "Allerheiligen";
 $pgv_lang["christmas"]  				= "Kerstmis";
 
 // am/pm suffixes for 12 hour clocks
-$pgv_lang["a.m."]       							= "vm";
+$pgv_lang["a.m."]       			= "vm";
 $pgv_lang["p.m."]       			= "nm";
 $pgv_lang["noon"]       			= "mi";
 $pgv_lang["midn"]       			= "na";
 
 //-- MONTH NAMES
 $pgv_lang["jan"]					= "januari";
-$pgv_lang["feb"]						= "februari";
+$pgv_lang["feb"]					= "februari";
 $pgv_lang["mar"]					= "maart";
 $pgv_lang["apr"]					= "april";
 $pgv_lang["may"]					= "mei";
@@ -771,63 +774,63 @@ $pgv_lang["aug"]					= "augustus";
 $pgv_lang["sep"]					= "september";
 $pgv_lang["oct"]					= "oktober";
 $pgv_lang["nov"]					= "november";
-$pgv_lang["dec"]						= "december";
+$pgv_lang["dec"]					= "december";
 
-$pgv_lang["vend"]         = "Vendémiaire";
-$pgv_lang["brum"]         = "Brumaire";
-$pgv_lang["frim"]         = "Frimaire";
-$pgv_lang["nivo"]         = "Nivôse";
-$pgv_lang["pluv"]         = "Pluviôse";
-$pgv_lang["vent"]         = "Ventôse";
-$pgv_lang["germ"]         = "Germinal";
-$pgv_lang["flor"]         = "Floréal";
-$pgv_lang["prai"]         = "Prairial";
-$pgv_lang["mess"]         = "Messidor";
-$pgv_lang["ther"]         = "Thermidor";
-$pgv_lang["fruc"]         = "Fructidor";
-$pgv_lang["comp"]         = "jours complémentaires";
+// $pgv_lang["vend"]			use value from lang.en.php
+// $pgv_lang["brum"]			use value from lang.en.php
+// $pgv_lang["frim"]			use value from lang.en.php
+// $pgv_lang["nivo"]			use value from lang.en.php
+// $pgv_lang["pluv"]			use value from lang.en.php
+// $pgv_lang["vent"]			use value from lang.en.php
+// $pgv_lang["germ"]			use value from lang.en.php
+// $pgv_lang["flor"]			use value from lang.en.php
+// $pgv_lang["prai"]			use value from lang.en.php
+// $pgv_lang["mess"]			use value from lang.en.php
+// $pgv_lang["ther"]			use value from lang.en.php
+// $pgv_lang["fruc"]			use value from lang.en.php
+// $pgv_lang["comp"]			use value from lang.en.php;
 
-$pgv_lang["tsh"]          = "Tishrei";
-$pgv_lang["csh"]          = "Heshvan";
-$pgv_lang["ksl"]          = "Kislev";
-$pgv_lang["tvt"]          = "Tevet";
-$pgv_lang["shv"]          = "Shevat";
-$pgv_lang["adr"]          = "Adar";
-$pgv_lang["adr_leap_year"]= "Adar I";
-$pgv_lang["ads"]          = "Adar II";
-$pgv_lang["nsn"]          = "Nissan";
-$pgv_lang["iyr"]          = "Iyar";
-$pgv_lang["svn"]          = "Sivan";
-$pgv_lang["tmz"]          = "Tamuz";
-$pgv_lang["aav"]          = "Av";
-$pgv_lang["ell"]          = "Elul";
+// $pgv_lang["tsh"]				use value from lang.en.php
+// $pgv_lang["csh"]				use value from lang.en.php
+// $pgv_lang["ksl"]				use value from lang.en.php
+// $pgv_lang["tvt"]				use value from lang.en.php
+// $pgv_lang["shv"]				use value from lang.en.php
+// $pgv_lang["adr"]				use value from lang.en.php
+// $pgv_lang["adr_leap_year"]	use value from lang.en.php
+// $pgv_lang["ads"]				use value from lang.en.php
+// $pgv_lang["nsn"]				use value from lang.en.php
+// $pgv_lang["iyr"]				use value from lang.en.php
+// $pgv_lang["svn"]				use value from lang.en.php
+// $pgv_lang["tmz"]				use value from lang.en.php
+// $pgv_lang["aav"]				use value from lang.en.php
+// $pgv_lang["ell"]				use value from lang.en.php
 
-$pgv_lang["muhar"]        = "Muharram";
-$pgv_lang["safar"]        = "Safar";
-$pgv_lang["rabia"]        = "Rabi' al-awwal";
-$pgv_lang["rabit"]        = "Rabi' al-thani";
-$pgv_lang["jumaa"]        = "Jumada al-awwal";
-$pgv_lang["jumat"]        = "Jumada al-thani";
-$pgv_lang["rajab"]        = "Rajab";
-$pgv_lang["shaab"]        = "Sha'aban";
-$pgv_lang["ramad"]        = "Ramadan";
-$pgv_lang["shaww"]        = "Shawwal";
-$pgv_lang["dhuaq"]        = "Dhu al-Qi'dah";
-$pgv_lang["dhuah"]        = "Dhu al-Hijjah";
+// $pgv_lang["muhar"]			use value from lang.en.php
+// $pgv_lang["safar"]			use value from lang.en.php
+// $pgv_lang["rabia"]			use value from lang.en.php
+// $pgv_lang["rabit"]			use value from lang.en.php
+// $pgv_lang["jumaa"]			use value from lang.en.php
+// $pgv_lang["jumat"]			use value from lang.en.php
+// $pgv_lang["rajab"]			use value from lang.en.php
+// $pgv_lang["shaab"]			use value from lang.en.php
+// $pgv_lang["ramad"]			use value from lang.en.php
+// $pgv_lang["shaww"]			use value from lang.en.php
+// $pgv_lang["dhuaq"]			use value from lang.en.php
+// $pgv_lang["dhuah"]			use value from lang.en.php
 
 $pgv_lang["b.c."]         			= "B.C.";
 
-$pgv_lang["abt"]									= "ongeveer";
+$pgv_lang["abt"]					= "ongeveer";
 $pgv_lang["aft"]					= "na";
 $pgv_lang["and"]					= "en";
 $pgv_lang["bef"]					= "voor";
 $pgv_lang["bet"]					= "tussen";
 $pgv_lang["cal"]					= "berekend";
-$pgv_lang["est"]						= "geschat";
-$pgv_lang["from"]						= "van";
+$pgv_lang["est"]					= "geschat";
+$pgv_lang["from"]					= "van";
 $pgv_lang["int"]					= "afgeleid";
 $pgv_lang["to"]						= "tot";
-$pgv_lang["cir"]						= "circa";
+$pgv_lang["cir"]					= "circa";
 $pgv_lang["apx"]					= "ongeveer";
 
 //-- Admin File Messages
@@ -846,7 +849,7 @@ $pgv_lang["digest_auth"]				= "Digest Authentication"; //not used in code yet
 $pgv_lang["no_auth_needed"]			= "Geen authorisatie";
 $pgv_lang["file_not_exists"]			= "Er bestaat geen bestand met de opgegeven naam.";
 $pgv_lang["research_assistant"]		= "Onderzoeks Helper";
-$pgv_lang["utf8_to_ansi"]			= "Converteer dit GEDCOM-bestand van UTF-8 naar ANSI (ISO-8859-1)?";
+$pgv_lang["utf8_to_ansi"]			= "Converteer dit GEDCOM-bestand van UTF-8 naar ANSI (ISO 8859-1)?";
 $pgv_lang["media_linked"]			= "Dit media object is gekoppeld aan het volgende:";
 $pgv_lang["media_not_linked"]		= "Dit media object is niet gekoppeld aan enig GEDCOM record.";
 $pgv_lang["media_dir_1"]			= "Dit media object staat op een externe server";
@@ -994,15 +997,15 @@ $pgv_lang["bosa_15"] 				= "achterkleindochter";
 //              %3\$d is replaced with the number of generations - 2
 $pgv_lang["n_x_grandson_from_son"]	  = "%3\$d x achterkleinzoon";
 $pgv_lang["n_x_granddaughter_from_son"] 	= "%3\$d x achterkleindochter";
-$pgv_lang["n_x_granddaughter_from_daughter"] = "%3\$d x achterkleindochter";
 $pgv_lang["n_x_grandson_from_daughter"]	  = "%3\$d x achterkleinzoon";
+$pgv_lang["n_x_granddaughter_from_daughter"] = "%3\$d x achterkleindochter";
 
 // the sosa_uncle name is used for uncles - the names below can be extended to any number
 // of generations just by adding more translations.
 // to allow fo language variations we specify different relationships for paternal and maternal
 // aunts and uncles
 // 1st generation
-$pgv_lang["sosa_uncle_2"] 						= "Oom";            // father's brother
+$pgv_lang["sosa_uncle_2"] 			= "Oom";            // father's brother
 $pgv_lang["sosa_uncle_3"] 			= "Oom";            // mother's brother
 // 2nd generation
 $pgv_lang["sosa_uncle_4"] 			= "oud-oom";
@@ -1065,7 +1068,7 @@ $pgv_lang["sosa_aunt_bm_3"] 		= "Tante";            // mother's sister
 $pgv_lang["sosa_aunt_bm_4"] 		= "oud-tante";
 $pgv_lang["sosa_aunt_bm_5"] 		= "oud-tante";
 $pgv_lang["sosa_aunt_bm_6"] 		= "oud-tante";
-$pgv_lang["sosa_aunt_bm_7"] 					= "oud-tante";
+$pgv_lang["sosa_aunt_bm_7"] 		= "oud-tante";
 // for the general case of aunts of the nth degree use the text below
 // in this text %1\$d is replaced with the number of generations
 //              %2\$d is replaced with the number of generations - 1
@@ -1074,115 +1077,115 @@ $pgv_lang["n_x_paternal_aunt_bm"]	= "%2\$d x oud-tante";
 $pgv_lang["n_x_maternal_aunt_bm"]	= "%2\$d x oud-tante";
 
 // if a specific cousin relationship cannot be represented in a language translate as "";
-$pgv_lang["male_cousin_1"]          = "neef";
-$pgv_lang["male_cousin_2"]          = "volle achterneef";
-$pgv_lang["male_cousin_3"]          = "";
-$pgv_lang["male_cousin_4"]          = "";
-$pgv_lang["male_cousin_5"]          = "";
-$pgv_lang["male_cousin_6"]          = "";
-$pgv_lang["male_cousin_7"]          = "";
-$pgv_lang["male_cousin_8"]          = "";
-$pgv_lang["male_cousin_9"]          = "";
-$pgv_lang["male_cousin_10"]         = "";
-$pgv_lang["male_cousin_11"]         = "";
-$pgv_lang["male_cousin_12"]         = "";
-$pgv_lang["male_cousin_13"]         = "";
-$pgv_lang["male_cousin_14"]         = "";
-$pgv_lang["male_cousin_15"]         = "";
-$pgv_lang["male_cousin_16"]         = "";
-$pgv_lang["male_cousin_17"]         = "";
-$pgv_lang["male_cousin_18"]         = "";
-$pgv_lang["male_cousin_19"]         = "";
-$pgv_lang["male_cousin_20"]         = "";
-$pgv_lang["male_cousin_n"]          = "";
-$pgv_lang["female_cousin_1"]            = "nicht";
-$pgv_lang["female_cousin_2"]            = "volle achternicht";
-$pgv_lang["female_cousin_3"]            = "";
-$pgv_lang["female_cousin_4"]            = "";
-$pgv_lang["female_cousin_5"]            = "";
-$pgv_lang["female_cousin_6"]            = "";
-$pgv_lang["female_cousin_7"]            = "";
-$pgv_lang["female_cousin_8"]            = "";
-$pgv_lang["female_cousin_9"]            = "";
-$pgv_lang["female_cousin_10"]           = "";
-$pgv_lang["female_cousin_11"]           = "";
-$pgv_lang["female_cousin_12"]           = "";
-$pgv_lang["female_cousin_13"]           = "";
-$pgv_lang["female_cousin_14"]           = "";
-$pgv_lang["female_cousin_15"]           = "";
-$pgv_lang["female_cousin_16"]           = "";
-$pgv_lang["female_cousin_17"]           = "";
-$pgv_lang["female_cousin_18"]           = "";
-$pgv_lang["female_cousin_19"]           = "";
-$pgv_lang["female_cousin_20"]           = "";
-$pgv_lang["female_cousin_n"]            = "";
+$pgv_lang["male_cousin_1"]			= "neef";
+$pgv_lang["male_cousin_2"]			= "volle achterneef";
+$pgv_lang["male_cousin_3"]			= "";
+$pgv_lang["male_cousin_4"]			= "";
+$pgv_lang["male_cousin_5"]			= "";
+$pgv_lang["male_cousin_6"]			= "";
+$pgv_lang["male_cousin_7"]			= "";
+$pgv_lang["male_cousin_8"]			= "";
+$pgv_lang["male_cousin_9"]			= "";
+$pgv_lang["male_cousin_10"]			= "";
+$pgv_lang["male_cousin_11"]			= "";
+$pgv_lang["male_cousin_12"]			= "";
+$pgv_lang["male_cousin_13"]			= "";
+$pgv_lang["male_cousin_14"]			= "";
+$pgv_lang["male_cousin_15"]			= "";
+$pgv_lang["male_cousin_16"]			= "";
+$pgv_lang["male_cousin_17"]			= "";
+$pgv_lang["male_cousin_18"]			= "";
+$pgv_lang["male_cousin_19"]			= "";
+$pgv_lang["male_cousin_20"]			= "";
+$pgv_lang["male_cousin_n"]			= "";
+$pgv_lang["female_cousin_1"]		= "nicht";
+$pgv_lang["female_cousin_2"]		= "volle achternicht";
+$pgv_lang["female_cousin_3"]		= "";
+$pgv_lang["female_cousin_4"]		= "";
+$pgv_lang["female_cousin_5"]		= "";
+$pgv_lang["female_cousin_6"]		= "";
+$pgv_lang["female_cousin_7"]		= "";
+$pgv_lang["female_cousin_8"]		= "";
+$pgv_lang["female_cousin_9"]		= "";
+$pgv_lang["female_cousin_10"]		= "";
+$pgv_lang["female_cousin_11"]		= "";
+$pgv_lang["female_cousin_12"]		= "";
+$pgv_lang["female_cousin_13"]		= "";
+$pgv_lang["female_cousin_14"]		= "";
+$pgv_lang["female_cousin_15"]		= "";
+$pgv_lang["female_cousin_16"]		= "";
+$pgv_lang["female_cousin_17"]		= "";
+$pgv_lang["female_cousin_18"]		= "";
+$pgv_lang["female_cousin_19"]		= "";
+$pgv_lang["female_cousin_20"]		= "";
+$pgv_lang["female_cousin_n"]		= "";
 
 // Only referenced from english specific functions
-$pgv_lang["removed_ascending_1"]   = " once removed ascending";
-$pgv_lang["removed_ascending_2"]   = " twice removed ascending";
-$pgv_lang["removed_ascending_3"]   = " three times removed ascending";
-$pgv_lang["removed_ascending_4"]   = " four times removed ascending";
-$pgv_lang["removed_ascending_5"]   = " five times removed ascending";
-$pgv_lang["removed_ascending_6"]   = " six times removed ascending";
-$pgv_lang["removed_ascending_7"]   = " seven times removed ascending";
-$pgv_lang["removed_ascending_8"]   = " eight times removed ascending";
-$pgv_lang["removed_ascending_9"]   = " nine times removed ascending";
-$pgv_lang["removed_ascending_10"]  = " ten times removed ascending";
-$pgv_lang["removed_ascending_11"]  = " eleven times removed ascending";
-$pgv_lang["removed_ascending_12"]  = " twelve times removed ascending";
-$pgv_lang["removed_ascending_13"]  = " thirteen times removed ascending";
-$pgv_lang["removed_ascending_14"]  = " fourteen times removed ascending";
-$pgv_lang["removed_ascending_15"]  = " fifteen times removed ascending";
-$pgv_lang["removed_ascending_16"]  = " sixteen times removed ascending";
-$pgv_lang["removed_ascending_17"]  = " seventeen times removed ascending";
-$pgv_lang["removed_ascending_18"]  = " eighteen times removed ascending";
-$pgv_lang["removed_ascending_19"]  = " nineteen times removed ascending";
-$pgv_lang["removed_ascending_20"]  = " twenty times removed ascending";
-$pgv_lang["removed_descending_1"]  = " once removed descending";
-$pgv_lang["removed_descending_2"]  = " twice removed descending";
-$pgv_lang["removed_descending_3"]  = " three times removed descending";
-$pgv_lang["removed_descending_4"]  = " four times removed descending";
-$pgv_lang["removed_descending_5"]  = " five times removed descending";
-$pgv_lang["removed_descending_6"]  = " six times removed descending";
-$pgv_lang["removed_descending_7"]  = " seven times removed descending";
-$pgv_lang["removed_descending_8"]  = " eight times removed descending";
-$pgv_lang["removed_descending_9"]  = " nine times removed descending";
-$pgv_lang["removed_descending_10"] = " ten times removed descending";
-$pgv_lang["removed_descending_11"] = " eleven times removed descending";
-$pgv_lang["removed_descending_12"] = " twelve times removed descending";
-$pgv_lang["removed_descending_13"] = " thirteen times removed descending";
-$pgv_lang["removed_descending_14"] = " fourteen times removed descending";
-$pgv_lang["removed_descending_15"] = " fifteen times removed descending";
-$pgv_lang["removed_descending_16"] = " sixteen times removed descending";
-$pgv_lang["removed_descending_17"] = " seventeen times removed descending";
-$pgv_lang["removed_descending_18"] = " eighteen times removed descending";
-$pgv_lang["removed_descending_19"] = " nineteen times removed descending";
-$pgv_lang["removed_descending_20"] = " twenty times removed descending";
+$pgv_lang["removed_ascending_1"]   = "";
+$pgv_lang["removed_ascending_2"]   = "";
+$pgv_lang["removed_ascending_3"]   = "";
+$pgv_lang["removed_ascending_4"]   = "";
+$pgv_lang["removed_ascending_5"]   = "";
+$pgv_lang["removed_ascending_6"]   = "";
+$pgv_lang["removed_ascending_7"]   = "";
+$pgv_lang["removed_ascending_8"]   = "";
+$pgv_lang["removed_ascending_9"]   = "";
+$pgv_lang["removed_ascending_10"]  = "";
+$pgv_lang["removed_ascending_11"]  = "";
+$pgv_lang["removed_ascending_12"]  = "";
+$pgv_lang["removed_ascending_13"]  = "";
+$pgv_lang["removed_ascending_14"]  = "";
+$pgv_lang["removed_ascending_15"]  = "";
+$pgv_lang["removed_ascending_16"]  = "";
+$pgv_lang["removed_ascending_17"]  = "";
+$pgv_lang["removed_ascending_18"]  = "";
+$pgv_lang["removed_ascending_19"]  = "";
+$pgv_lang["removed_ascending_20"]  = "";
+$pgv_lang["removed_descending_1"]  = "";
+$pgv_lang["removed_descending_2"]  = "";
+$pgv_lang["removed_descending_3"]  = "";
+$pgv_lang["removed_descending_4"]  = "";
+$pgv_lang["removed_descending_5"]  = "";
+$pgv_lang["removed_descending_6"]  = "";
+$pgv_lang["removed_descending_7"]  = "";
+$pgv_lang["removed_descending_8"]  = "";
+$pgv_lang["removed_descending_9"]  = "";
+$pgv_lang["removed_descending_10"] = "";
+$pgv_lang["removed_descending_11"] = "";
+$pgv_lang["removed_descending_12"] = "";
+$pgv_lang["removed_descending_13"] = "";
+$pgv_lang["removed_descending_14"] = "";
+$pgv_lang["removed_descending_15"] = "";
+$pgv_lang["removed_descending_16"] = "";
+$pgv_lang["removed_descending_17"] = "";
+$pgv_lang["removed_descending_18"] = "";
+$pgv_lang["removed_descending_19"] = "";
+$pgv_lang["removed_descending_20"] = "";
 
 //-- GEDCOM edit utility
 $pgv_lang["check_delete"]				= "Weet u zeker dat u dit GEDCOM-feit wilt verwijderen?";
-$pgv_lang["access_denied"]							= "<b>Toegang geweigerd</b><br />U heeft geen toegang tot deze bron.";
-$pgv_lang["changes_exist"]			= "Dit GEDCOM-bestand is gewijzigd.";
+$pgv_lang["access_denied"]				= "<b>Toegang geweigerd</b><br />U heeft geen toegang tot deze bron.";
+$pgv_lang["changes_exist"]				= "Dit GEDCOM-bestand is gewijzigd.";
 $pgv_lang["find_place"]					= "Zoek locatie";
 $pgv_lang["close_window"]				= "Sluit venster";
 $pgv_lang["close_window_without_refresh"]	= "Sluit venster zonder herladen";
-$pgv_lang["place_contains"]			= "Locatie bevat:";
-$pgv_lang["add"]					= "Toevoegen";
+$pgv_lang["place_contains"]				= "Locatie bevat:";
+$pgv_lang["add"]						= "Toevoegen";
 $pgv_lang["custom_event"]				= "Vrij te kiezen gebeurtenis";
 $pgv_lang["delete_person"]				= "Verwijder deze persoon";
 $pgv_lang["confirm_delete_person"]		= "Weet u zeker dat u deze persoon uit het GEDCOM-bestand wilt verwijderen?";
 $pgv_lang["find_media"]					= "Zoek multimedia";
-$pgv_lang["set_link"]				= "Maak koppeling";
+$pgv_lang["set_link"]					= "Maak koppeling";
 $pgv_lang["delete_source"]				= "Verwijder deze bron";
 $pgv_lang["delete_shared_note"]			= "Verwijder deze gedeelde notitie";
 $pgv_lang["confirm_delete_source"]		= "Weet u zeker dat u deze bron uit het GEDCOM-bestand wilt verwijderen?";
-$pgv_lang["confirm_delete_shared_note"]		= "Bent u zeker dat u deze Gedeelde Notitie wilt verwijderen?";
+$pgv_lang["confirm_delete_shared_note"]	= "Bent u zeker dat u deze Gedeelde Notitie wilt verwijderen?";
 $pgv_lang["find_family"]				= "Zoek gezin";
 $pgv_lang["find_fam_list"]				= "Lijst gezinnen zoeken";
 $pgv_lang["edit_name"]					= "Wijzig naam";
 $pgv_lang["delete_name"]				= "Verwijder naam";
-$pgv_lang["select_date"]			= "Selecteer een datum";
-$pgv_lang["user_cannot_edit"]		= "Gebruiker kan deze genealogie niet aanpassen.";
+$pgv_lang["select_date"]				= "Selecteer een datum";
+$pgv_lang["user_cannot_edit"]			= "Gebruiker kan deze genealogie niet aanpassen.";
 $pgv_lang["gedcom_editing_disabled"]	= "De beheerder staat het wijzigen van deze genealogie niet toe.";
 $pgv_lang["privacy_not_granted"]		= "U heeft geen toegang tot";
 $pgv_lang["privacy_prevented_editing"]	= "Volgens de privacy-instellingen heeft u geen rechten om deze gegevens te wijzigen.";
@@ -1194,6 +1197,7 @@ $pgv_lang["on_this_day"]			= "Op deze dag, in het verleden...";
 $pgv_lang["in_this_month"]			= "In deze maand, in het verleden...";
 $pgv_lang["in_this_year"]			= "In dit jaar, in het verleden....";
 $pgv_lang["year_anniversary"]		= "#year_var# jaar geleden";
+$pgv_lang["year_yahrzeit"]			= "#yahrzeit_date#, #yahrzeit# yahrzeit van #event_date#";
 $pgv_lang["today"]					= "Vandaag";
 $pgv_lang["day"]						= "Dag:";
 $pgv_lang["month"]					= "Maand:";
@@ -1212,7 +1216,7 @@ $pgv_lang["viewmonth"]				= "Toon maand";
 $pgv_lang["viewyear"]				= "Toon jaar";
 $pgv_lang["all_people"]				= "Alle personen";
 $pgv_lang["living_only"]			= "Levende personen";
-$pgv_lang["recent_events"]			= "Recent verleden (< 100 jaar)";
+$pgv_lang["recent_events"]			= "Recent verleden (&lt; 100 jaar)";
 $pgv_lang["day_not_set"]				= "Dag niet bekend";
 
 //-- user self registration module
@@ -1376,12 +1380,12 @@ $pgv_lang["upcoming_events_block"]	= "Binnenkort...";
 $pgv_lang["upcoming_events_descr"]	= "Het vak \"Binnenkort....\" toont een lijst met gebeurtenissen, die op deze dag en tot 30 dagen daarna hebben plaatsgevonden. De gebeurtenissen zijn beperkt tot de actieve genealogie. In een gebruikersportaal worden alleen gebeurtenissen van levende personen getoond, in een portaal van de genealogie de gebeurtenissen van alle personen.";
 $pgv_lang["todays_events_block"]	= "Op deze dag, in het verleden....";
 $pgv_lang["todays_events_descr"]	= "Het vak \"Op deze dag, in het verleden....\" toont een lijst met gebeurtenissen, die op deze dag hebben plaatsgevonden. De gebeurtenissen zijn beperkt tot de actieve genealogie. Op de persoonlijke MyGedView pagina worden alleen gebeurtenissen van levende personen getoond, op een Welkomstpagina de gebeurtenissen van alle personen. Als geen gebeurtenissen worden gevonden, wordt het vak niet getoond.";
-$pgv_lang["todo_block"] 			= "&quot;Te Doen&quot; taken";
-$pgv_lang["todo_descr"] 			= "Het Te Doen blok somt alle, uitstaande &quot;Te Doen&quot; taken in het bestand, op.";
+$pgv_lang["todo_block"] 			= "«Te Doen» taken";
+$pgv_lang["todo_descr"] 			= "Het «Te Doen» blok somt alle, uitstaande «Te Doen» taken in het bestand, op.";
 $pgv_lang["todo_show_other"]     	= "Toon taken van andere gebruikers";
 $pgv_lang["todo_show_unassigned"]	= "Toon niet toegewezen taken";
 $pgv_lang["todo_show_future"]    	= "Toon toekomstige taken";
-$pgv_lang["todo_nothing"]        	= "Er zijn geen &quot;Te Doen&quot; taken.";
+$pgv_lang["todo_nothing"]        	= "Er zijn geen «Te Doen» taken.";
 $pgv_lang["yahrzeit_block"]			= "Aankomende Yahrzeiten";
 $pgv_lang["yahrzeit_descr"]			= "Het Aankomende Yahrzeiten blok toont jaarlijkse herdenkingen, van overlijdens data, die in de nabije toekomst plaatsvinden. U kunt de te tonen periode instellen. De beheerder kan instellen hoe ver dit blok in de toekomst kijkt.";
 $pgv_lang["logged_in_users_block"]	= "Aangemelde gebruikers";
@@ -1421,13 +1425,15 @@ $pgv_lang["block_cookiepolicy_link"]	= "Link naar cookie-beleid pagina";
 $pgv_lang["block_givn_top10_title"]	= "Voornamen Top 10";
 $pgv_lang["block_givn_top10"]		= "Voornamen Top 10";
 $pgv_lang["block_givn_top10_descr"]	= "Geeft een lijst met de 10 meest gebruikte voornamen in de database.  Het werkelijk aantal te tonen voornamen in dit blok is instelbaar.";
+
 $pgv_lang["gedcom_news_block"]			= "Genealogie prikbord";
-$pgv_lang["gedcom_news_descr"]			= "Op het Genealogie prikbord kan de gebruiker nieuws en berichten lezen die er door de beheerder op zijn geplaatst. Het prikbord is een goed middel om bijeenkomsten, nieuws met betrekking tot de site of de genealogie, etc. op te publiceren.";
+$pgv_lang["gedcom_news_descr"]			= "Het Genealogie prikbord toont de nieuwsberichten van bezoekers of artikelen die zijn gepubliceerd door een admin-gebruiker.<br /><br />Dit is een goede plek om een belangrijke database-update, een gezinshereniging of de geboorte van een kind aan te kondigen.";
 $pgv_lang["gedcom_news_limit"]			= "Artikelen gelimiteerd door:";
 $pgv_lang["gedcom_news_limit_nolimit"]	= "Geen limiet";
 $pgv_lang["gedcom_news_limit_date"]		= "Ouderdom van artikel";
 $pgv_lang["gedcom_news_limit_count"]	= "Aantal artikelen";
 $pgv_lang["gedcom_news_flag"]			= "Limiet:";
+$pgv_lang["gedcom_news_published"]		= "Uitgebracht : ";
 $pgv_lang["gedcom_news_archive"] 		= "Bekijk archief";
 $pgv_lang["user_news_block"]		= "Gebruikers notitieblok";
 $pgv_lang["user_news_descr"]		= "Op het gebruikers notitieblok kan de gebruiker zelf online aantekeningen en notities maken en bewaren.";
@@ -1652,7 +1658,7 @@ $pgv_lang["rss_logo_descr"]			= "Vervaardigd met PhpGedView";
 $pgv_lang["rss_feeds"]				= "RSS feeds";
 $pgv_lang["no_feed_title"]			= "Feed niet beschikbaar";
 $pgv_lang["no_feed"]				= "Er is geen RSS feed beschikbaar voor de PhpGedView site.";
-$pgv_lang["feed_login"]					= "Indien u bent geregistreerd bij deze PhpGedView site, kunt u zich hier <a href=\"#AUTH_URL#\">aanmelden</a> om beschermde gegevens te kunnen bekijken.";
+$pgv_lang["feed_login"]				= "Indien u bent geregistreerd bij deze PhpGedView site, kunt u zich hier <a href=\"#AUTH_URL#\">aanmelden</a> om beschermde gegevens te kunnen bekijken.";
 $pgv_lang["authenticated_feed"]		= "Geautoriseerde Feed";
 
 //-- ASSOciates RELAtionship
@@ -1762,7 +1768,7 @@ $pgv_lang["statreset"]				= "herstel";
 $pgv_lang["statsubmit"]				= "laat grafiek zien";
 $pgv_lang["stat_largest_families"] 	= "Grootste gezinnen";
 
-$pgv_lang["stat_own_charts"]		= "AANGEPASTE GRAFIEKEN";
+$pgv_lang["stat_own_charts"]		= "Aangepaste Grafieken";
 $pgv_lang["statnliving"]			= "Aantal levenden";
 $pgv_lang["statndead"]				= "Aantal overledenen";
 $pgv_lang["stat_births"]			= "Aantal geboorten";
@@ -1933,7 +1939,7 @@ $pgv_lang["relations_heading"]			= "The image relates to:";
 $pgv_lang["file_size"]					= "Bestands grootte";
 $pgv_lang["img_size"]				= "Afmeting afbeelding";
 $pgv_lang["media_broken"]			= "Dit media bestand is niet correct en kan niet worden voorzien van een watermerk";
-$pgv_lang["unknown_mime"]			= "Media Firewall fout: >Unknown Mimetype< voor bestand:";
+$pgv_lang["unknown_mime"]			= "Media Firewall fout: &gt;Unknown Mimetype&lt; voor bestand:";
 
 //-- Modules
 $pgv_lang["module_error_unknown_action_v2"] = "Unknown action: [action].";

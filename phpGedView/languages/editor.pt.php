@@ -3,7 +3,7 @@
  * Portugese Language file for PhpGedView.
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2020  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2021  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -93,6 +93,10 @@ $pgv_lang["resn_disabled"]				= "Nota: Você deve ativar o recurso &laquo;#pgv_l
 $pgv_lang["thumb_media_ok1"]="Pasta de miniaturas <b>#GLOBALS[oldMediaName]#</b> foi renomeada para <b>#GLOBALS[newMediaName]#</b>.";
 $pgv_lang["thumb_media_ok2"]="Pasta de miniaturas <b>#GLOBALS[oldMediaName]#</b> movida de <b>#GLOBALS[oldThumbFolder]#</b> para <b>#GLOBALS[newThumbFolder]#</b>.";
 $pgv_lang["thumb_media_ok3"]="<b>#GLOBALS[oldThumbFolder]##GLOBALS[oldMediaName]#</b> movido e renomeado para <b>#GLOBALS[newThumbFolder]##GLOBALS[newMediaName]#</b>.";
+$pgv_lang["thumb_media_fail0"]="Pasta de miniaturas <b>#GLOBALS[oldThumbFolder]##GLOBALS[oldMediaName]#</b> não existe.";
+$pgv_lang["thumb_media_fail1"]="Não foi possível renomear <b>#GLOBALS[oldMediaName]#</b> para  <b>#GLOBALS[newMediaName]#</b>.";
+$pgv_lang["thumb_media_fail2"]="Não foi possível mover <b>#GLOBALS[oldMediaName]#</b> de <b>#GLOBALS[oldThumbFolder]#</b> para <b>#GLOBALS[newThumbFolder]#</b>.";
+$pgv_lang["thumb_media_fail3"]="Não foi possível mover e renomear <b>#GLOBALS[oldThumbFolder]##GLOBALS[oldMediaName]#</b> para <b>#GLOBALS[newThumbFolder]##GLOBALS[newMediaName]#</b>.";
 $pgv_lang["thumb_create_ok0a"]			= "Miniatura <b>#GLOBALS[imageThumbnail]#</b> criada automaticamente.<br />";
 $pgv_lang["thumb_create_ok0b"]			= "Miniatura #GLOBALS[imageThumbnail]# criada automaticamente.";
 $pgv_lang["thumb_create_fail0a"]		= "Miniatura <span style=\"font-size:larger\">#GLOBALS[imageThumbnail]#</span> não pôde ser criada automaticamente : ";
@@ -105,10 +109,6 @@ $pgv_lang["thumb_create_fail5"]			= "A imagem de entrada <span style=\"font-size
 $pgv_lang["thumb_create_fail6"]			= "O tamanho da imagem de entrada <span style=\"font-size:larger\">#GLOBALS[imageFilename]#</span> não pode ser determinado.";
 $pgv_lang["thumb_create_fail7"]			= "Não há memória livre suficiente.<br />Reduza o tamanho da imagem de entrada ou ajuste a alocação de memória em Configuração do site, Etapa 4, Configurações avançadas.";
 $pgv_lang["thumb_create_fail8"]			= "A imagem de entrada <span style=\"font-size:larger\">#GLOBALS[imageFilename]#</span> está com defeito.";
-$pgv_lang["thumb_media_fail0"]="Pasta de miniaturas <b>#GLOBALS[oldThumbFolder]##GLOBALS[oldMediaName]#</b> não existe.";
-$pgv_lang["thumb_media_fail1"]="Não foi possível renomear <b>#GLOBALS[oldMediaName]#</b> para  <b>#GLOBALS[newMediaName]#</b>.";
-$pgv_lang["thumb_media_fail2"]="Não foi possível mover <b>#GLOBALS[oldMediaName]#</b> de <b>#GLOBALS[oldThumbFolder]#</b> para <b>#GLOBALS[newThumbFolder]#</b>.";
-$pgv_lang["thumb_media_fail3"]="Não foi possível mover e renomear <b>#GLOBALS[oldThumbFolder]##GLOBALS[oldMediaName]#</b> para <b>#GLOBALS[newThumbFolder]##GLOBALS[newMediaName]#</b>.";
 $pgv_lang["add_asso"]="Nova Testemunha";
 $pgv_lang["edit_sex"]="Alterar Sexo";
 $pgv_lang["add_obje"]="Adicionar Mídia";
@@ -119,7 +119,7 @@ $pgv_lang["label_gedcom_id"]="ID do Banco de Dados";
 $pgv_lang["label_local_id"]="ID da Pessoa";
 $pgv_lang["accept"]="Aceitar";
 $pgv_lang["accept_all"]="Aceitar todas as alterações";
-$pgv_lang["accept_gedcom"]="Para cada alteração informe se aceita ou descarta a mesma.<br />Para aceitar todas de uma vez, clique em \"Aceitar todas as Alterações\" na caixa abaixo.<br />Para saber mais sobre a alteração, <br />clique \"Exibir Diferenças\" e veja as diferenças entre a nova situação e a antiga, <br />ou clique em \"Exibir registro GEDCOM\" para exibir a situação atual no formato GEDCOM.";
+$pgv_lang["accept_gedcom"]="Para cada alteração informe se aceita ou descarta a mesma.<br />Para aceitar todas de uma vez, clique em \"Aceitar todas as Alterações\" na caixa abaixo.<br />Para saber mais sobre a alteração,<br />clique \"Exibir Diferenças\" e veja as diferenças entre a nova situação e a antiga,<br />ou clique em \"Exibir registro GEDCOM\" para exibir a situação atual no formato GEDCOM.";
 $pgv_lang["accept_successful"]="Alterações aceitas com sucesso no banco de dados";
 $pgv_lang["add_child"]="Adicionar filho";
 $pgv_lang["add_child_to_family"]="Adicionar filho a esta família";

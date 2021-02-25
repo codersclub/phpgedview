@@ -3,7 +3,7 @@
  * Catalan texts
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2020  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2021  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -31,6 +31,15 @@ if (!defined('PGV_PHPGEDVIEW')) {
 	exit;
 }
 
+$pgv_lang["add_marriage"]			= "Afegiu detalls del casament";
+$pgv_lang["edit_concurrency_change"] = "El darrer a modificar aquest registre fou <i>#CHANGEUSER#</i> el #CHANGEDATE#";
+$pgv_lang["edit_concurrency_msg2"]	= "El registre amb l'id #PID# fou canviat per un altre usuari d'ençà el darrer cop que vareu accedir-lo.";
+$pgv_lang["edit_concurrency_msg1"]	= "Ha ocorregut un error tot creant el formulari d'edició. Un altre usuari deu haver canviat aquest registre d'ençà que us l'havíeu mirat.";
+$pgv_lang["edit_concurrency_reload"]	= "Feu servir el botó 'enrere' del vostre navegador i actualitzeu la pàgina anterior per estar ben segur que esteu treballant amb el registre més recent";
+$pgv_lang["admin_override"]			= "Opció d'administració";
+$pgv_lang["no_update_CHAN"]			= "No canviïs el registre CHAN (darrer canvi)";
+$pgv_lang["select_events"]			= "Selecciona esdeveniments";
+$pgv_lang["source_events"]			= "Esdeveniments associats amb aquesta font";
 $pgv_lang["advanced_name_fields"]	= "Noms addicionals (noms familiars, diminutius, àlies, motiu, malnom, nom de casada,...)";
 $pgv_lang["accept_changes"] 		= "Reviseu les modificacions.";
 $pgv_lang["replace"]				= "Modifica un registre";
@@ -43,15 +52,27 @@ $pgv_lang["link_media"]				= "Enllaça multimèdia";
 $pgv_lang["to_person"]				= "A una persona";
 $pgv_lang["to_family"]				= "A una família";
 $pgv_lang["to_source"]				= "A una font";
+$pgv_lang["to_note"]				= "A una nota compartida";
+$pgv_lang["to_repository"]			= "A un arxiu";
 $pgv_lang["edit_fam"]				= "Edita família";
+$pgv_lang["edit_repo"]				= "Edita Repositori";
 $pgv_lang["copy"]					= "Copia";
 $pgv_lang["cut"]					= "Talla";
 $pgv_lang["sort_by_birth"]			= "Ordena per dates de naixement";
 $pgv_lang["reorder_children"]		= "Reordeneu la mainada";
+$pgv_lang["reorder_media"]					= "Reodeneu els ítems multimèdia";
+$pgv_lang["reorder_media_title"]			= "Per a redordenar els ítems multimèdia, arrossegueu i allibereu les imatges al nou lloc.";
+$pgv_lang["reorder_media_window"]			= "Reordenació multimèdia (finestra)";
+$pgv_lang["reorder_media_window_title"]		= "Per a reordenar els ítems multimèdia, polseu sobre una fila i arrossegue-la fins al nou lloc.";
+$pgv_lang["reorder_media_save"]				= "Desa els multimèdia ordenats a la base de dades";
+$pgv_lang["reorder_media_reset"]			= "Restableix l'ordre original";
+$pgv_lang["reorder_media_cancel"]			= "Surt i torna";
 $pgv_lang["add_from_clipboard"]		= "Enganxa: ";
 $pgv_lang["record_copied"]			= "Registre enganxat";
 $pgv_lang["add_unlinked_person"]	= "Addició d'una persona desvinculada";
 $pgv_lang["add_unlinked_source"]	= "Addició d'una font desvinculada";
+$pgv_lang["add_unlinked_note"]		= "Addició d'una nota desvinculada";
+$pgv_lang["add_unlinked"]			= "Registres desvinculats";
 $pgv_lang["server_file"]			= "Nom del fitxer al servidor";
 $pgv_lang["server_file_advice"]		= "No ho canvieu per conservar el nom de fitxer original.";
 $pgv_lang["server_file_advice2"]	= "També podeu entrar-hi un URL, començant amb &laquo;http://&raquo;.";
@@ -72,6 +93,10 @@ $pgv_lang["resn_disabled"]			= "Nota: Us cal activar la propietat &laquo;#pgv_la
 $pgv_lang["thumb_media_ok1"]		= "Fitxer de miniatures <b>#GLOBALS[oldMediaName]#</b> reanomenat a <b>#GLOBALS[newMediaName]#</b>.";
 $pgv_lang["thumb_media_ok2"]		= "Fitxer de miniatures <b>#GLOBALS[oldMediaName]#</b> canviat de <b>#GLOBALS[oldThumbFolder]#</b> a <b>#GLOBALS[newThumbFolder]#</b>.";
 $pgv_lang["thumb_media_ok3"]		= "Fitxer de miniatures reanomenat i canviat de <b>#GLOBALS[oldThumbFolder]##GLOBALS[oldMediaName]#</b> a <b>#GLOBALS[newThumbFolder]##GLOBALS[newMediaName]#</b>.";
+$pgv_lang["thumb_media_fail0"]		= "El fitxer de miniatures <b>#GLOBALS[oldThumbFolder]##GLOBALS[oldMediaName]#</b> no hi és.";
+$pgv_lang["thumb_media_fail1"]		= "El fitxer de miniatures <b>#GLOBALS[oldMediaName]#</b> no pot reanomenar-se com <b>#GLOBALS[newMediaName]#</b>.";
+$pgv_lang["thumb_media_fail2"]		= "El fitxer de miniatures <b>#GLOBALS[oldMediaName]#</b> no pot moure's de <b>#GLOBALS[oldThumbFolder]#</b> a <b>#GLOBALS[newThumbFolder]#</b>.";
+$pgv_lang["thumb_media_fail3"]		= "El fitxer de miniatures no pot reanomenar-se i moure's de <b>#GLOBALS[oldThumbFolder]##GLOBALS[oldMediaName]#</b> a <b>#GLOBALS[newThumbFolder]##GLOBALS[newMediaName]#</b>.";
 $pgv_lang["thumb_create_ok0a"]			= "La miniatura <b>#GLOBALS[imageThumbnail]#</b> es crea automàticament.<br />";
 $pgv_lang["thumb_create_ok0b"]			= "La miniatura #GLOBALS[imageThumbnail]# es crea automàticament..";
 $pgv_lang["thumb_create_fail0a"]		= "La miniatura <span style=\"font-size:larger\">#GLOBALS[imageThumbnail]#</span> no s'ha pogut crear automàticament : ";
@@ -84,10 +109,6 @@ $pgv_lang["thumb_create_fail5"]			= "La imatge d’entrada XYZ no existeix o no 
 $pgv_lang["thumb_create_fail6"]			= "No es pot determinar la mida de la imatge d’entrada <span style=\"font-size:larger\">#GLOBALS[imageFilename]#</span>.";
 $pgv_lang["thumb_create_fail7"]			= "No hi ha prou memòria lliure.<br />Reduïu la mida de la imatge d’entrada o ajusteu l’assignació de memòria a la configuració del lloc, pas 4, Configuració avançada.";
 $pgv_lang["thumb_create_fail8"]			= "La imatge d’entrada <span style=\"font-size:larger\">#GLOBALS[imageFilename]#</span> és defectuosa.";
-$pgv_lang["thumb_media_fail0"]		= "El fitxer de miniatures <b>#GLOBALS[oldThumbFolder]##GLOBALS[oldMediaName]#</b> no hi és.";
-$pgv_lang["thumb_media_fail1"]		= "El fitxer de miniatures <b>#GLOBALS[oldMediaName]#</b> no pot reanomenar-se com <b>#GLOBALS[newMediaName]#</b>.";
-$pgv_lang["thumb_media_fail2"]		= "El fitxer de miniatures <b>#GLOBALS[oldMediaName]#</b> no pot moure's de <b>#GLOBALS[oldThumbFolder]#</b> a <b>#GLOBALS[newThumbFolder]#</b>.";
-$pgv_lang["thumb_media_fail3"]		= "El fitxer de miniatures no pot reanomenar-se i moure's de <b>#GLOBALS[oldThumbFolder]##GLOBALS[oldMediaName]#</b> a <b>#GLOBALS[newThumbFolder]##GLOBALS[newMediaName]#</b>.";
 $pgv_lang["add_asso"]				= "Afegeix un nou associat";
 $pgv_lang["edit_sex"]				= "Edita el sexe";
 $pgv_lang["add_obje"]				= "Afegeix un objecte multimèdia";
@@ -105,6 +126,7 @@ $pgv_lang["add_child_to_family"]	= "Afegeix mainada a aquesta família";
 $pgv_lang["add_fact"]				= "Afegeix un esdeveniment";
 $pgv_lang["add_father"] 			= "Afegeix un nou pare";
 $pgv_lang["add_husb"]				= "Afegeix-li un marit";
+$pgv_lang["add_opf_child"]				= "Afegiu un fill/a per crear una família monoparental";
 $pgv_lang["add_husb_to_family"] 	= "Afegeix un marit a aquesta família";
 $pgv_lang["add_media"]				= "Crea un ítem multimèdia nou";
 $pgv_lang["add_media_lbl"]			= "Afegeix un fitxer multimèdia";
@@ -114,6 +136,8 @@ $pgv_lang["add_new_husb"]			= "Crea una nova persona i vincula'l com a espòs";
 $pgv_lang["add_new_wife"]			= "Crea una nova persona i vincula-la com a muller";
 $pgv_lang["add_note"]				= "Afegeix una nova nota";
 $pgv_lang["add_note_lbl"]			= "Afegeix una nota";
+$pgv_lang["add_shared_note"]		= "Afegiu una nova nota compartida";
+$pgv_lang["add_shared_note_lbl"]	= "Afegiu una nota compartida";
 $pgv_lang["add_sibling"]			= "Afegeix un germà o germana";
 $pgv_lang["add_son_daughter"]		= "Afegeix un fill o filla";
 $pgv_lang["add_source"] 			= "Afegeix una nova ressenya de font";
@@ -133,6 +157,10 @@ $pgv_lang["changes_occurred"]		= "S'han fet els següents canvis en aquest regis
 $pgv_lang["confirm_remove"]			= "Segur que voleu eliminar aquesta persona de la família?";
 $pgv_lang["confirm_remove_object"]	= "Segur que voleu eliminar aquest objecte de la base de dades?";
 $pgv_lang["create_repository"]		= "Crea arxiu";
+$pgv_lang["shared_note_assisted"]	= "Nota compartida amb l'Assistent";
+$pgv_lang["create_shared_note"]		= "Creeu una nova nota compartida";
+$pgv_lang["create_shared_note_assisted"]	= "Creeu una nota compartida nova amb l'Assistent";
+$pgv_lang["add_new_event_assisted"]			= "Creeu un esdeveniment nou amb l'Assistent";
 $pgv_lang["create_source"]			= "Crea una nova font";
 $pgv_lang["current_person"]         = "Ell/a mateix/a";
 $pgv_lang["date"]					= "Data";
@@ -151,9 +179,15 @@ $pgv_lang["file_missing"]			= "No s'ha rebut el fitxer. Torneu-lo a carregar.";
 $pgv_lang["file_partial"]			= "Fitxer parcialment carregat. Torneu-hi";
 $pgv_lang["file_success"]			= "S'ha carregat correctament el fitxer";
 $pgv_lang["file_too_big"]			= "El fitxer carregat excedeix el volum permès";
+$pgv_lang["file_no_temp_dir"]		= "Manca el directori PHP temporal";
+$pgv_lang["file_cant_write"]		= "Error PHP en escriure al disc";
+$pgv_lang["file_bad_extension"]		= "PHP bloquejat per extensió d'arxiu";
+$pgv_lang["file_unkown_err"]		= "Error desconegut en la càrrega d'arxius. Codi d'error #pgv_lang[global_num1]#. Si us plau, informeu d'això com un error.";
 $pgv_lang["folder"]		 			= "Carpeta al servidor";
 $pgv_lang["gedrec_deleted"] 		= "Registre GEDCOM eliminat correctament.";
 $pgv_lang["gen_thumb"]				= "Crea miniatura";
+$pgv_lang["gen_missing_thumbs"]		= "Crea les miniatures faltants";
+$pgv_lang["gen_missing_thumbs_lbl"]	= "Manquen miniatures";
 $pgv_lang["gender_search"]			= "Sexe: ";
 $pgv_lang["generate_thumbnail"]		= "Generar miniatura automàticament des de ";
 $pgv_lang["hebrew_givn"]			= "Noms de Pila Hebreus";
@@ -198,6 +232,8 @@ $pgv_lang["multiple_gedcoms"]		= "Aquest fitxer és vinculat a una altra base de
 $pgv_lang["must_provide"]			= "Heu de donar un ";
 $pgv_lang["name_search"]			= "Nom: ";
 $pgv_lang["new_repo_created"]		= "S'ha creat un nou Arxiu";
+$pgv_lang["new_shared_note_created"] 	= "S'ha creat correctament la nova nota compartida.";
+$pgv_lang["shared_note_updated"] 	= "S'ha modificat correctament la nota compartida.";
 $pgv_lang["new_source_created"] 	= "S'ha creat correctament la nova font.";
 $pgv_lang["no_changes"] 			= "Actualment no hi ha canvis per revisar.";
 $pgv_lang["no_known_servers"]		= "Servidors desconeguts. No s'han trobat resultats";
@@ -217,43 +253,10 @@ $pgv_lang["undo_successful"]		= "S'han desfet correctament";
 $pgv_lang["update_successful"]		= "Correctament modificat";
 $pgv_lang["upload"]					= "Carrega";
 $pgv_lang["upload_error"]			= "Ha ocorregut un error tot carregant el fitxer.";
+$pgv_lang["copy_error"]				= "No es pot copiar l'arxiu #Globals [whichFile2]# des de #Globals [whichFile1]#";
 $pgv_lang["upload_media"]			= "Carrega fitxers multimèdia";
 $pgv_lang["upload_media_help"]		= "~#pgv_lang[upload_media]#~<br /><br />Seleccioneu els fitxers del vostre ordinador a carregar al servidor. Tots els fitxers col·locaran al directori <b>#MEDIA_DIRECTORY#</b> o a un dels seus sotsdirectoris.<br /><br />Els noms de carpeta que especifiqueu s'afegiran a #MEDIA_DIRECTORY#. Per exemple, #MEDIA_DIRECTORY#lamevafamilia. Si el directori de miniatures no existeix, es crearà automàticament.";
 $pgv_lang["upload_successful"]		= "Càrrega correcta";
 $pgv_lang["view_change_diff"]		= "Mostra el que s'ha canviat";
-$pgv_lang["add_marriage"]			= "Afegiu detalls del casament";
-$pgv_lang["edit_concurrency_change"] = "El darrer a modificar aquest registre fou <i>#CHANGEUSER#</i> el #CHANGEDATE#";
-$pgv_lang["edit_concurrency_msg2"]	= "El registre amb l'id #PID# fou canviat per un altre usuari d'ençà el darrer cop que vareu accedir-lo.";
-$pgv_lang["edit_concurrency_msg1"]	= "Ha ocorregut un error tot creant el formulari d'edició. Un altre usuari deu haver canviat aquest registre d'ençà que us l'havíeu mirat.";
-$pgv_lang["edit_concurrency_reload"]	= "Feu servir el botó 'enrere' del vostre navegador i actualitzeu la pàgina anterior per estar ben segur que esteu treballant amb el registre més recent";
-$pgv_lang["admin_override"]			= "Opció d'administració";
-$pgv_lang["no_update_CHAN"]			= "No canviïs el registre CHAN (darrer canvi)";
-$pgv_lang["select_events"]			= "Selecciona esdeveniments";
-$pgv_lang["source_events"]			= "Esdeveniments associats amb aquesta font";
-$pgv_lang["edit_repo"]				= "Edita Repositori";
-$pgv_lang["reorder_media"]					= "Reodeneu els ítems multimèdia";
-$pgv_lang["reorder_media_title"]			= "Per a redordenar els ítems multimèdia, arrossegueu i allibereu les imatges al nou lloc.";
-$pgv_lang["reorder_media_window"]			= "Reordenació multimèdia (finestra)";
-$pgv_lang["reorder_media_window_title"]		= "Per a reordenar els ítems multimèdia, polseu sobre una fila i arrossegue-la fins al nou lloc.";
-$pgv_lang["reorder_media_save"]				= "Desa els multimèdia ordenats a la base de dades";
-$pgv_lang["reorder_media_reset"]			= "Restableix l'ordre original";
-$pgv_lang["reorder_media_cancel"]			= "Surt i torna";
-$pgv_lang["file_no_temp_dir"]		= "Manca el directori PHP temporal";
-$pgv_lang["file_cant_write"]		= "Error PHP en escriure al disc";
-$pgv_lang["file_bad_extension"]		= "PHP bloquejat per extensió d'arxiu";
-$pgv_lang["file_unkown_err"]		= "Error desconegut en la càrrega d'arxius. Codi d'error #pgv_lang [global_num1]#. Si us plau, informeu d'això com un error.";
-$pgv_lang["gen_missing_thumbs"]		= "Crea les miniatures faltants";
-$pgv_lang["gen_missing_thumbs_lbl"]	= "Manquen miniatures";
-$pgv_lang["copy_error"]				= "No es pot copiar l'arxiu #Globals [whichFile2]# des de #Globals [whichFile1]#";
-$pgv_lang["add_unlinked_note"]		= "Addició d'una nota desvinculada";
-$pgv_lang["add_unlinked"]			= "Registres desvinculats";
-$pgv_lang["add_opf_child"]				= "Afegiu un fill/a per crear una família monoparental";
-$pgv_lang["add_shared_note"]		= "Afegiu una nova nota compartida";
-$pgv_lang["add_shared_note_lbl"]	= "Afegiu una nota compartida";
-$pgv_lang["create_shared_note"]		= "Creeu una nova nota compartida";
-$pgv_lang["create_shared_note_assisted"]	= "Creeu una nota compartida nova emprant l'assitent";
-$pgv_lang["new_shared_note_created"] 	= "S'ha creat correctament la nova nota compartida.";
-$pgv_lang["shared_note_updated"] 	= "S'ha modificat correctament la nota compartida.";
-$pgv_lang["to_note"]				= "A una nota compartida";
-$pgv_lang["to_repository"]			= "A un arxiu";
+
 ?>

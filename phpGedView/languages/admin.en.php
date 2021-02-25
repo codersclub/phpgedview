@@ -3,7 +3,7 @@
  * English language file for PhpGedView
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2020  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2021  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -30,6 +30,7 @@ if (!defined('PGV_PHPGEDVIEW')) {
 	header('HTTP/1.0 403 Forbidden');
 	exit;
 }
+
 $pgv_lang["label_timedban_servers"]	= "Timed Access Denial";
 $pgv_lang["enter_banexpiry"]		= "Enter expiry date & time of access denial like this:<br />2012.12.31@23:59";
 
@@ -190,9 +191,9 @@ $pgv_lang["open_nav"]				= "Open Family Navigator";
 $pgv_lang["link_exists"]			= "This link already exists";
 $pgv_lang["id_not_valid"]			= "Not a valid Individual, Family or Source ID";
 $pgv_lang["add_fam_other_links"]	= "Add Family, and Search links";
-$pgv_lang["search_add_links"]		= "Search for People to add to Add Links list.";
+$pgv_lang["search_add_links"]		= "Search for People to add to «Add Links» list.";
 $pgv_lang["enter_name"]				= "Enter a name";
-$pgv_lang["add_indi_to_link_list"]	= "Click Name to add person to Add Links List.";
+$pgv_lang["add_indi_to_link_list"]	= "Click Name to add this person to «Add Links» list.";
 $pgv_lang["click_choose_head"]		= "Click #GLOBALS[tempStringHead]# to choose person as Head of family.";
 $pgv_lang["click_choose_head_text"]	= "Click to choose person as Head of family.";
 $pgv_lang["head"]					= "Head";
@@ -395,7 +396,7 @@ $pgv_lang["sybase"]								= "Sybase";
 $pgv_lang["sync_gedcom"]						= "Synchronize User Settings with GEDCOM Data";
 $pgv_lang["system_time"]						= "Current Server Time:";
 $pgv_lang["user_time"]							= "Current User Time:";
-$pgv_lang["TBLPREFIX"]							= "Database Table Prefix";
+$pgv_lang["TBLPREFIX"]							= "Database table names prefix";
 $pgv_lang["themecustomization"]					= "Theme Customization";
 $pgv_lang["time_limit"]							= "Time limit:";
 $pgv_lang["title_manage_servers"]				= "Manage Sites";

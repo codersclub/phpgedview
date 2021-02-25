@@ -3,7 +3,7 @@
  * Spanish language file for PhpGedView
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2020  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2021  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -31,8 +31,22 @@ if (!defined('PGV_PHPGEDVIEW')) {
 	header('HTTP/1.0 403 Forbidden');
 	exit;
 }
+
 $pgv_lang["label_timedban_servers"]	= "Denegación de acceso programado";
 $pgv_lang["enter_banexpiry"]		= "Introduzca la fecha y la hora de vencimiento de la denegación de acceso<br />de esta manera: 2012.12.31@23:59";
+
+$pgv_lang["analytics_config"]		= "Analista de la Red";
+$pgv_lang["google_analytics"]		= "Google Analytics";
+$pgv_lang["USE_GOOGLE_ANALYTICS"]	= "¿Activar Google Analytics?";
+$pgv_lang["PGV_GOOGLE_ANALYTICS"]	= "Número de cuenta en Google Analytics";
+$pgv_lang["piwik_analytics"]		= "Matomo Analytics";
+$pgv_lang["USE_PIWIK_ANALYTICS"]	= "¿Activar Matomo Analytics?";
+$pgv_lang["PGV_PIWIK_URL"]			= "URL del servidor de Matomo Analytics";
+$pgv_lang["PGV_PIWIK_SITE"]			= "Número de sitio en Matomo Analytics";
+$pgv_lang["clustrmaps_analytics"]	= "ClustrMaps Analytics";
+$pgv_lang["USE_CLUSTRMAPS_ANALYTICS"] = "¿Activar ClustrMaps Analytics?";
+$pgv_lang["PGV_CLUSTRMAPS_SITE"] 	= "URL de PhpGedView";
+$pgv_lang["PGV_CLUSTRMAPS_SERVER"] 	= "Número de servidor de ClustrMaps";
 
 $pgv_lang["module_admin"]			= "Administración de módulos";
 $pgv_lang["mod_admin_installed"]	= "Módulos instalados";
@@ -178,9 +192,9 @@ $pgv_lang["open_nav"]				= "Abrir el navegador de familias";
 $pgv_lang["link_exists"]			= "Este vínculo ya existe";
 $pgv_lang["id_not_valid"]			= "No es un ID válido de persona, familia o fuente";
 $pgv_lang["add_fam_other_links"]	= "Agregar vínculos de agregar familia y de buscar";
-$pgv_lang["search_add_links"]		= "Buscar personas a agregar a la lista de Agregar Vínculos.";
+$pgv_lang["search_add_links"]		= "Buscar personas a agregar a la lista «Agregar Vínculos».";
 $pgv_lang["enter_name"]				= "Introduzca un nombre";
-$pgv_lang["add_indi_to_link_list"]	= "Haga clic en el nombre para agregar la persona a la lista de Agregar Vínculos.";
+$pgv_lang["add_indi_to_link_list"]	= "Haga clic en el nombre para agregar la persona a la lista «Agregar Vínculos».";
 $pgv_lang["click_choose_head"]		= "Haga clic en #GLOBALS[tempStringHead]# para escoger la persona como cabeza de familia.";
 $pgv_lang["click_choose_head_text"]	= "Haga clic para escoger la persona como cabeza de familia.";
 $pgv_lang["head"]					= "Cabeza";
@@ -232,7 +246,7 @@ $pgv_lang["administration"] 			= "Administración";
 $pgv_lang["ALLOW_CHANGE_GEDCOM"]		= "Permitir a los visitantes cambiar de GEDCOM";
 $pgv_lang["ALLOW_USER_THEMES"]			= "Permitir a los usuarios seleccionar su propio tema";
 $pgv_lang["ansi_encoding_detected"] 	= "Archivo detectado con codificación ANSI. PhpGedView funciona mejor con archivos codificados en UTF-8.";
-$pgv_lang["ansi_to_utf8"]				= "¿Quiere convertir este GEDCOM desde ANSI (ISO-8859-1) a UTF-8?";
+$pgv_lang["ansi_to_utf8"]				= "¿Quiere convertir este GEDCOM desde ANSI (ISO 8859-1) a UTF-8?";
 $pgv_lang["apply_privacy"]				= "¿Aplicar ajustes de privacidad?";
 $pgv_lang["back_useradmin"]				= "Volver a Administración de usuarios";
 $pgv_lang["bytes_read"] 				= "Octetos leídos:";
@@ -383,7 +397,7 @@ $pgv_lang["sybase"]								= "Sybase";
 $pgv_lang["sync_gedcom"]						= "Sincronizar los ajustes de usuario con los datos GEDCOM";
 $pgv_lang["system_time"]						= "Hora actual del servidor:";
 $pgv_lang["user_time"]							= "Hora actual del usuario:";
-$pgv_lang["TBLPREFIX"]							= "Prefijo de las tablas de la base de datos";
+$pgv_lang["TBLPREFIX"]							= "Prefijo de nombres de tabla de base de datos";
 $pgv_lang["themecustomization"]					= "Personalización del tema";
 $pgv_lang["time_limit"]							= "Límite de tiempo:";
 $pgv_lang["title_manage_servers"]				= "Gestionar sitios";

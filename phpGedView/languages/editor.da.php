@@ -3,7 +3,7 @@
  * Danish texts
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2020  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2021  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -31,6 +31,15 @@ if (!defined('PGV_PHPGEDVIEW')) {
 	exit;
 }
 
+$pgv_lang["add_marriage"]			= "Tilføj ny giftemål";
+$pgv_lang["edit_concurrency_change"] = "Posten blev sidst ændret af <i>#CHANGEUSER#</i> den #CHANGEDATE#";
+$pgv_lang["edit_concurrency_msg2"]	= "Posten med id #PID# er blevet ændret af en anden bruger siden du sidst tilgik den.";
+$pgv_lang["edit_concurrency_msg1"]	= "En fejl opstod ved oprettelse af Redigering form. En anden bruger er måske igang med at lave ændringer.";
+$pgv_lang["edit_concurrency_reload"]	= "Brug venligst din browsers Forige side knap og genindlæs den forrige side for at sikre at du arbejder med den nyeste post.";
+$pgv_lang["admin_override"]			= "Admin indstilling";
+$pgv_lang["no_update_CHAN"]			= "Opdatér ikke CHAN (sidst ændret) posten";
+$pgv_lang["select_events"]			= "Vælg hændelser";
+$pgv_lang["source_events"]			= "Tilknyt hændelser med denne kilde";
 $pgv_lang["advanced_name_fields"]	= "Yderligere navne (kaldenavn, giftenavn, osv.)";
 $pgv_lang["accept_changes"]		= "Godkend / Afvis ændring(er)";
 $pgv_lang["replace"]			= "Erstat post";
@@ -43,6 +52,8 @@ $pgv_lang["link_media"]				= "Tilknyt mediefil";
 $pgv_lang["to_person"]				= "Til person";
 $pgv_lang["to_family"]				= "Til familie";
 $pgv_lang["to_source"]				= "Til kilde";
+$pgv_lang["to_note"]				= "Til delt note";
+$pgv_lang["to_repository"]			= "Til opbevaringssted";
 $pgv_lang["edit_fam"]				= "Ret familie";
 $pgv_lang["edit_repo"]				= "Redigér opbevaringssted";
 $pgv_lang["copy"]					= "Kopier";
@@ -60,6 +71,8 @@ $pgv_lang["add_from_clipboard"]		= "Tilføj fra udklipsholderen";
 $pgv_lang["record_copied"]			= "Posten er kopieret til udklipsholderen";
 $pgv_lang["add_unlinked_person"]	= "Tilføj en person som ikke er knyttet til en familie";
 $pgv_lang["add_unlinked_source"]	= "Tilføj en kilde der ikke er tilknyttet";
+$pgv_lang["add_unlinked_note"]		= "Tilføj en ulænket note";
+$pgv_lang["add_unlinked"]			= "Ulænkede poster";
 $pgv_lang["server_file"]				= "Filnavn på server";
 $pgv_lang["server_file_advice"]			= "Lad være med at ændre for at beholde det originale filnavn.";
 $pgv_lang["server_file_advice2"]		= "Du kan indtaste en URL der starter med &laquo;http://&raquo;.";
@@ -67,6 +80,7 @@ $pgv_lang["server_folder_advice"]		= "Du kan indtaste op til #GLOBALS[MEDIA_DIRE
 $pgv_lang["server_folder_advice2"]		= "Denne indtastning ignoreres hvis du har indtastet en URL i filnavn feltet.";
 $pgv_lang["add_linkid_advice"]			= "Indtast eller søg efter ID på den person, familie eller kilde til hvilken dette medieemne skal tilknyttes.";
 $pgv_lang["use_browse_advice"]			= "Brug &laquo;Gennemse&raquo; knappen til at søge på din lokale computer efter den ønskede fil.";
+$pgv_lang["add_media_other_folder"]		= "Anden mappe... indtast venligst";
 $pgv_lang["add_media_file"]				= "Eksisterende mediefil på server";
 $pgv_lang["main_media_ok1"]				= "Mediefilen <b>#GLOBALS[oldMediaName]#</b> er omdøbt til <b>#GLOBALS[newMediaName]#</b>.";
 $pgv_lang["main_media_ok2"]				= "Mediefilen <b>#GLOBALS[oldMediaName]#</b> er flyttet fra <b>#GLOBALS[oldMediaFolder]#</b> til <b>#GLOBALS[newMediaFolder]#</b>.";
@@ -76,10 +90,13 @@ $pgv_lang["main_media_fail1"]			= "Mediefilen <b>#GLOBALS[oldMediaName]#</b> kun
 $pgv_lang["main_media_fail2"]			= "Mediefilen <b>#GLOBALS[oldMediaName]#</b> kunne ikke flyttes fra <b>#GLOBALS[oldMediaFolder]#</b> til <b>#GLOBALS[newMediaFolder]#</b>.";
 $pgv_lang["main_media_fail3"]			= "Mediefilen kunne ikke flyttes og omdøbes fra <b>#GLOBALS[oldMediaFolder]##GLOBALS[oldMediaName]#</b> til <b>#GLOBALS[newMediaFolder]##GLOBALS[newMediaName]#</b>.";
 $pgv_lang["resn_disabled"]				= "Bemærk: Du skal aktiver &laquo;#pgv_lang[PRIVACY_BY_RESN]#&raquo; funktionen for at denne indstilling kan træde i kraft.";
-$pgv_lang["add_media_other_folder"]		= "Anden mappe... indtast venligst";
 $pgv_lang["thumb_media_ok1"]			= "Miniaturefilen <b>#GLOBALS[oldMediaName]#</b> er omdøbt til <b>#GLOBALS[newMediaName]#</b>.";
 $pgv_lang["thumb_media_ok2"]			= "Miniaturefilen <b>#GLOBALS[oldMediaName]#</b> er flyttet fra <b>#GLOBALS[oldThumbFolder]#</b> til <b>#GLOBALS[newThumbFolder]#</b>.";
 $pgv_lang["thumb_media_ok3"]			= "Miniaturefilen er flyttet og omdøbt fra <b>#GLOBALS[oldThumbFolder]##GLOBALS[oldMediaName]#</b> til <b>#GLOBALS[newThumbFolder]##GLOBALS[newMediaName]#</b>.";
+$pgv_lang["thumb_media_fail0"]			= "Miniaturefilen <b>#GLOBALS[oldThumbFolder]##GLOBALS[oldMediaName]#</b> findes ikke.";
+$pgv_lang["thumb_media_fail1"]			= "Miniaturefilen <b>#GLOBALS[oldMediaName]#</b> kunne ikke omdøbes til <b>#GLOBALS[newMediaName]#</b>.";
+$pgv_lang["thumb_media_fail2"]			= "Miniaturefilen <b>#GLOBALS[oldMediaName]#</b> kunne ikke flyttes fra <b>#GLOBALS[oldThumbFolder]#</b> til <b>#GLOBALS[newThumbFolder]#</b>.";
+$pgv_lang["thumb_media_fail3"]			= "Miniaturefilen kunne ikke flyttes og omdøbes fra <b>#GLOBALS[oldThumbFolder]##GLOBALS[oldMediaName]#</b> til <b>#GLOBALS[newThumbFolder]##GLOBALS[newMediaName]#</b>.";
 $pgv_lang["thumb_create_ok0a"]			= "Miniaturebillede <b>#GLOBALS[imageThumbnail]#</b> oprettet automatisk.<br />";
 $pgv_lang["thumb_create_ok0b"]			= "Miniaturebillede #GLOBALS[imageThumbnail]# oprettet automatisk.";
 $pgv_lang["thumb_create_fail0a"]		= "Miniaturebillede <span style=\"font-size:larger\">#GLOBALS[imageThumbnail]#</span> kunne ikke oprettes automatisk : ";
@@ -92,10 +109,6 @@ $pgv_lang["thumb_create_fail5"]			= "Indgangsbilledet <span style=\"font-size:la
 $pgv_lang["thumb_create_fail6"]			= "Størrelsen på inputbilledet <span style=\"font-size:larger\">#GLOBALS[imageFilename]#</span> kan ikke bestemmes.";
 $pgv_lang["thumb_create_fail7"]			= "Der er ikke nok ledig hukommelse.<br />Reducer størrelsen på inputbilledet, eller juster hukommelsestildelingen i Hjemmesideindstillinger, Trin 4, Avancerede instillinger.";
 $pgv_lang["thumb_create_fail8"]			= "Indgangsbilledet <span style=\"font-size:larger\">#GLOBALS[imageFilename]#</span> er defekt.";
-$pgv_lang["thumb_media_fail0"]			= "Miniaturefilen <b>#GLOBALS[oldThumbFolder]##GLOBALS[oldMediaName]#</b> findes ikke.";
-$pgv_lang["thumb_media_fail1"]			= "Miniaturefilen <b>#GLOBALS[oldMediaName]#</b> kunne ikke omdøbes til <b>#GLOBALS[newMediaName]#</b>.";
-$pgv_lang["thumb_media_fail2"]			= "Miniaturefilen <b>#GLOBALS[oldMediaName]#</b> kunne ikke flyttes fra <b>#GLOBALS[oldThumbFolder]#</b> til <b>#GLOBALS[newThumbFolder]#</b>.";
-$pgv_lang["thumb_media_fail3"]			= "Miniaturefilen kunne ikke flyttes og omdøbes fra <b>#GLOBALS[oldThumbFolder]##GLOBALS[oldMediaName]#</b> til <b>#GLOBALS[newThumbFolder]##GLOBALS[newMediaName]#</b>.";
 $pgv_lang["add_asso"]			= "Tilføj en ny tilknyttet person";
 $pgv_lang["edit_sex"]				= "Ret køn";
 $pgv_lang["add_obje"]			= "Tilføj et nyt billede eller mediefil";
@@ -113,6 +126,7 @@ $pgv_lang["add_child_to_family"]	= "Tilføj et barn til denne familie";
 $pgv_lang["add_fact"]			= "Tilføj nye oplysninger";
 $pgv_lang["add_father"]			= "Tilføj en ny far";
 $pgv_lang["add_husb"]			= "Tilføj ægtemand";
+$pgv_lang["add_opf_child"]				= "Tilføj et barn til en én-forælders-familie";
 $pgv_lang["add_husb_to_family"]	= "Tilføj en ægtemand/far til denne familie";
 $pgv_lang["add_media"]			= "Tilføj nye mediefiler";
 $pgv_lang["add_media_lbl"]		= "Tilføj nye mediefiler";
@@ -122,6 +136,8 @@ $pgv_lang["add_new_husb"]		= "Tilføj en ny ægtemand";
 $pgv_lang["add_new_wife"]		= "Tilføj en ny hustru";
 $pgv_lang["add_note"]			= "Tilføj en ny note";
 $pgv_lang["add_note_lbl"]		= "Tilføj note";
+$pgv_lang["add_shared_note"]		= "Tilføj en ny delt note";
+$pgv_lang["add_shared_note_lbl"]	= "Tilføj delt note";
 $pgv_lang["add_sibling"]		= "Tilføj en bror eller søster";
 $pgv_lang["add_son_daughter"]	= "Tilføj en søn eller datter";
 $pgv_lang["add_source"]			= "Tilføj en ny kildehenvisning";
@@ -141,6 +157,10 @@ $pgv_lang["changes_occurred"]	= "Følgende ændringer er udført for denne perso
 $pgv_lang["confirm_remove"]			= "Er du sikker på at du vil fjerne denne person fra familien?";
 $pgv_lang["confirm_remove_object"]	= "Er du sikker på at du ønsker at fjerne dette objekt fra databasen?";
 $pgv_lang["create_repository"]		= "Opret nyt opbevaringssted";
+$pgv_lang["shared_note_assisted"]	= "Delt note via assistent";
+$pgv_lang["create_shared_note"]				= "Opret en ny delt note";
+$pgv_lang["create_shared_note_assisted"]	= "Opret en ny delt note via assistent";
+$pgv_lang["add_new_event_assisted"]			= "Opret en ny hændelse via assistent";
 $pgv_lang["create_source"]		= "Opret en ny kilde";
 $pgv_lang["current_person"]         = "Samme som den aktuelle";
 $pgv_lang["date"]				= "Dato";
@@ -159,13 +179,15 @@ $pgv_lang["file_missing"]			= "Der blev ikke modtaget nogen fil. Hent filen igen
 $pgv_lang["file_partial"]			= "Filen blev kun uploadet delvist, forsøg igen";
 $pgv_lang["file_success"]			= "Filen er uploadet";
 $pgv_lang["file_too_big"]			= "Den uploadede fil overskrider den tilladte størrelse";
-$pgv_lang["file_unkown_err"]		= "Ukendt filupload fejlkode #pgv_lang[global_num1]#. Rapportér venligst dette som en fejl.";
-$pgv_lang["file_bad_extension"]		= "PHP blokkerede filen på efternavnet";
-$pgv_lang["file_cant_write"]		= "PHP kunne ikke skrive til disken";
 $pgv_lang["file_no_temp_dir"]		= "Manglende midlertidig PHP mappe";
+$pgv_lang["file_cant_write"]		= "PHP kunne ikke skrive til disken";
+$pgv_lang["file_bad_extension"]		= "PHP blokkerede filen på efternavnet";
+$pgv_lang["file_unkown_err"]		= "Ukendt filupload fejlkode #pgv_lang[global_num1]#. Rapportér venligst dette som en fejl.";
 $pgv_lang["folder"]		 			= "Mappe på server";
 $pgv_lang["gedrec_deleted"]		= "GEDCOM-post er nu slettet.";
 $pgv_lang["gen_thumb"]				= "Opret miniaturebilleder";
+$pgv_lang["gen_missing_thumbs"]		= "Opret manglende miniaturer";
+$pgv_lang["gen_missing_thumbs_lbl"]	= "Manglende miniaturer";
 $pgv_lang["gender_search"]			= "Køn: ";
 $pgv_lang["generate_thumbnail"]		= "Opret miniature automatisk fra ";
 $pgv_lang["hebrew_givn"]			= "Hebræiske fornavne";
@@ -210,6 +232,8 @@ $pgv_lang["multiple_gedcoms"]		= "Denne fil er linket til en anden genealogisk d
 $pgv_lang["must_provide"]		= "Du skal sørge for et ";
 $pgv_lang["name_search"]			= "Navn: ";
 $pgv_lang["new_repo_created"]		= "Nyt opbevaringssted er oprettet";
+$pgv_lang["new_shared_note_created"] 	= "Ny delt note er oprettet korrekt.";
+$pgv_lang["shared_note_updated"] 	= "Delt nore er opdateret korrekt.";
 $pgv_lang["new_source_created"]	= "Den nye kilde er oprettet!";
 $pgv_lang["no_changes"]			= "Der er ingen ændringer, der er nødvendige at vise igen.";
 $pgv_lang["no_known_servers"]		= "Ingen kendte servere. Ingen resultater vil blive fundet";
@@ -228,34 +252,11 @@ $pgv_lang["undo_all_confirm"]		= "Er du sikker på, at du vil fortryde alle ænd
 $pgv_lang["undo_successful"]	= "Fortryd udført";
 $pgv_lang["update_successful"]	= "Opdatering er udført";
 $pgv_lang["upload"]					= "Upload";
-$pgv_lang["upload_media_help"]		= "~#pgv_lang[upload_media]#~<br /><br />Vælg filer fra din lokale computer der skal uploades til din server. Alle filer vil blive uploadet til mappen <b>#MEDIA_DIRECTORY#</b> eller til en af dens undermapper.<br /><br />De mappenavne du angiver vil blive tilføjet til #MEDIA_DIRECTORY#. For eksempel, #MEDIA_DIRECTORY#minfamilie. Hvis miniature mappen ikke eksisterer, vil den blive oprettet automatisk.";
 $pgv_lang["upload_error"]			= "Der opstod en FEJL under uploading af din fil.";
+$pgv_lang["copy_error"]				= "Filen #GLOBALS[whichFile2]# kunne ikke kopieres fra #GLOBALS[whichFile1]#";
 $pgv_lang["upload_media"]			= "Upload mediefiler";
+$pgv_lang["upload_media_help"]		= "~#pgv_lang[upload_media]#~<br /><br />Vælg filer fra din lokale computer der skal uploades til din server. Alle filer vil blive uploadet til mappen <b>#MEDIA_DIRECTORY#</b> eller til en af dens undermapper.<br /><br />De mappenavne du angiver vil blive tilføjet til #MEDIA_DIRECTORY#. For eksempel, #MEDIA_DIRECTORY#minfamilie. Hvis miniature mappen ikke eksisterer, vil den blive oprettet automatisk.";
 $pgv_lang["upload_successful"]		= "Upload fuldført";
 $pgv_lang["view_change_diff"]	= "Vis ændring, forskelle";
-$pgv_lang["admin_override"]			= "Admin indstilling";
-$pgv_lang["no_update_CHAN"]			= "Opdatér ikke CHAN (sidst ændret) posten";
-$pgv_lang["select_events"]			= "Vælg hændelser";
-$pgv_lang["edit_concurrency_change"] = "Posten blev sidst ændret af <i>#CHANGEUSER#</i> den #CHANGEDATE#";
-$pgv_lang["edit_concurrency_msg2"]	= "Posten med id #PID# er blevet ændret af en anden bruger siden du sidst tilgik den.";
-$pgv_lang["edit_concurrency_msg1"]	= "En fejl opstod ved oprettelse af Redigering form. En anden bruger er måske igang med at lave ændringer.";
-$pgv_lang["edit_concurrency_reload"]	= "Brug venligst din browsers Forige side knap og genindlæs den forrige side for at sikre at du arbejder med den nyeste post.";
-$pgv_lang["add_marriage"]			= "Tilføj ny giftemål";
-$pgv_lang["source_events"]			= "Tilknyt hændelser med denne kilde";
-$pgv_lang["gen_missing_thumbs_lbl"]	= "Manglende miniaturer";
-$pgv_lang["gen_missing_thumbs"]		= "Opret manglende miniaturer";
-$pgv_lang["copy_error"]				= "Filen #GLOBALS[whichFile2]# kunne ikke kopieres fra #GLOBALS[whichFile1]#";
-$pgv_lang["to_note"]				= "Til delt note";
-$pgv_lang["add_unlinked_note"]		= "Tilføj en ulænket note";
-$pgv_lang["add_unlinked"]			= "Ulænkede poster";
-$pgv_lang["add_opf_child"]				= "Tilføj et barn til en én-forælders-familie";
-$pgv_lang["add_shared_note_lbl"]	= "Tilføj delt note";
-$pgv_lang["shared_note_assisted"]	= "Delt note via assistent";
-$pgv_lang["create_shared_note"]				= "Opret en ny delt note";
-$pgv_lang["create_shared_note_assisted"]	= "Opret en ny delt note via assistent";
-$pgv_lang["add_new_event_assisted"]			= "Opret en ny hændelse via assistent";
-$pgv_lang["new_shared_note_created"] 	= "Ny delt note er oprettet korrekt.";
-$pgv_lang["shared_note_updated"] 	= "Delt nore er opdateret korrekt.";
-$pgv_lang["add_shared_note"]		= "Tilføj en ny delt note";
-$pgv_lang["to_repository"]			= "Til opbevaringssted";
+
 ?>

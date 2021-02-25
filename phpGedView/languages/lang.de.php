@@ -3,7 +3,7 @@
  * German Language file for PhpGedView.
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2020  PGV Development Team.  All rights reerved.
+ * Copyright (C) 2002 to 2021  PGV Development Team.  All rights reerved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -100,6 +100,8 @@ $pgv_lang["SHOW_HIGHLIGHT_IMAGES"]		= "Definierte Fotos in den Personenboxen zei
 $pgv_lang["view_img_details"]			= "Einzelheiten zeigen";
 $pgv_lang["server_folder"]				= "Verzeichnisname auf dem Server";
 $pgv_lang["medialist_recursive"]		= "Medien-Dateien in Unterverzeichnissen aufzählen";
+$pgv_lang["medialist_unlinked"]			= "Nur unverknüpfte Medien zeigen";
+$pgv_lang["medialist_current_dir"]		= "Aktuelles Unterverzeichnis";
 $pgv_lang["media_options"]				= "Medien-Optionen";
 $pgv_lang["confirm_password"]			= "Sie müssen das Kennwort bestätigen.";
 $pgv_lang["enter_email"]				= "Sie müssen eine Mail Adresse angeben.";
@@ -210,11 +212,11 @@ $pgv_lang["saturday_1st"]				= "Sa";
 
 $pgv_lang["jan_1st"]					= "Jan";
 $pgv_lang["feb_1st"]					= "Feb";
-$pgv_lang["mar_1st"]					= "März";
-$pgv_lang["apr_1st"]					= "April";
+$pgv_lang["mar_1st"]					= "Mär";
+$pgv_lang["apr_1st"]					= "Apr";
 $pgv_lang["may_1st"]					= "Mai";
-$pgv_lang["jun_1st"]					= "Juni";
-$pgv_lang["jul_1st"]					= "Juli";
+$pgv_lang["jun_1st"]					= "Jun";
+$pgv_lang["jul_1st"]					= "Jul";
 $pgv_lang["aug_1st"]					= "Aug";
 $pgv_lang["sep_1st"]					= "Sep";
 $pgv_lang["oct_1st"]					= "Okt";
@@ -228,7 +230,7 @@ $pgv_lang["family_of"]					= "Familie von&nbsp;";
 $pgv_lang["descent_steps"]				= "Nachfahren Stufen";
 
 $pgv_lang["cancel"]						= "Abbrechen";
-$pgv_lang["cookie_help"]				= "Diese Seite benutzt Cookies zum Verfolgen ihres login Status. <br /><br />Cookies scheinen in Ihrem Browser nicht erlaubt zu sein. Zum Anmelden bei dieser Seite müssen Sie diese Option einschalten. Zum Einschalten der Cookies können Sie die Dokumentation in Ihrem Browser benutzen.";
+$pgv_lang["cookie_help"]				= "Diese Seite benutzt Cookies zum Verfolgen ihres login Status.<br /><br />Cookies scheinen in Ihrem Browser nicht erlaubt zu sein. Zum Anmelden bei dieser Seite müssen Sie diese Option einschalten. Zum Einschalten der Cookies können Sie die Dokumentation in Ihrem Browser benutzen.";
 //new stuff
 //Individual
 $pgv_lang["indi_is_remote"]				= "Die Informationen dieser Person stammen aus einer fremden Datenbank.";
@@ -387,7 +389,7 @@ $pgv_lang["password"]					= "Kennwort";
 $pgv_lang["confirm"]					= "Kennwort bestätigen";
 $pgv_lang["login"]						= "Login";
 $pgv_lang["logout"]						= "Logout";
-$pgv_lang["admin"]						= "Verwalten";
+$pgv_lang["admin"]						= "Verwaltung";
 $pgv_lang["logged_in_as"]				= "Angemeldet als";
 $pgv_lang["my_pedigree"]				= "Mein Stammbaum";
 $pgv_lang["my_indi"]					= "Mein Datenblatt";
@@ -458,24 +460,24 @@ $pgv_lang["status"]						= "Status";
 $pgv_lang["source"]						= "Quelle";
 $pgv_lang["text"]						= "Auszug:";
 $pgv_lang["note"]						= "Bemerkung";
-$pgv_lang["NN"]				= "(Unbekannt)";
-$pgv_lang["PN"]				= "(Unbekannt)";
-$pgv_lang["NNhebrew"] 		= "(לא-ידוע)";
-$pgv_lang["PNhebrew"] 		= "(לא-ידוע)";
-$pgv_lang["NNarabic"] 		= "(غير معروف)";
-$pgv_lang["PNarabic"] 		= "(غير معروف)";
-$pgv_lang["NNgreek"] 		= "(άγνωστος/η)";
-$pgv_lang["PNgreek"] 		= "(άγνωστος/η)";
-$pgv_lang["NNrussian"] 		= "(неопределено)";
-$pgv_lang["PNrussian"] 		= "(неопределено)";
-$pgv_lang["NNchinese"] 		= "(未知)";
-$pgv_lang["PNchinese"] 		= "(未知)";
-$pgv_lang["NNvietnamese"] 	= "(vô danh)";
-$pgv_lang["PNvietnamese"] 	= "(không biết tuổi)";
-$pgv_lang["NNthai"] 		= "(Unbekannt)";
-$pgv_lang["PNthai"] 		= "(Unbekannt)";
-$pgv_lang["NNother"]		= "(Unbekannt)";
-$pgv_lang["PNother"]		= "(Unbekannt)";
+$pgv_lang["NN"]				= "(Nachname unbekannt)";			// Family name
+$pgv_lang["PN"]				= "(Vorname unbekannt)";			// Given name
+// $pgv_lang["NNhebrew"] 		use value from lang.en.php
+// $pgv_lang["PNhebrew"] 		use value from lang.en.php
+// $pgv_lang["NNarabic"] 		use value from lang.en.php
+// $pgv_lang["PNarabic"] 		use value from lang.en.php
+// $pgv_lang["NNgreek"] 		use value from lang.en.php
+// $pgv_lang["PNgreek"] 		use value from lang.en.php
+// $pgv_lang["NNrussian"] 		use value from lang.en.php
+// $pgv_lang["PNrussian"] 		use value from lang.en.php
+// $pgv_lang["NNchinese"] 		use value from lang.en.php
+// $pgv_lang["PNchinese"] 		use value from lang.en.php
+// $pgv_lang["NNvietnamese"] 	use value from lang.en.php
+// $pgv_lang["PNvietnamese"] 	use value from lang.en.php
+// $pgv_lang["NNthai"] 			use value from lang.en.php
+// $pgv_lang["PNthai"] 			use value from lang.en.php
+$pgv_lang["NNother"]		= "(Nachname unbekannt)";
+$pgv_lang["PNother"]		= "(Vorname unbekannt)";
 $pgv_lang["unrecognized_code"]			= "Unbekanntes GEDCOM Code";
 $pgv_lang["unrecognized_code_msg"]		= "Ein Fehler ist aufgetreten, bitte melden Sie diesen an bei";
 $pgv_lang["indi_info"]					= "Persönliche Informationen";
@@ -488,6 +490,7 @@ $pgv_lang["given_name"]					= "Vorname:";
 $pgv_lang["surname"]					= "Nachname:";
 $pgv_lang["suffix"]						= "Namenszusatz:";
 $pgv_lang["sex"]						= "Geschlecht";
+$pgv_lang["personal_details"]			= "Persönliche Details";
 $pgv_lang["personal_facts"]				= "Persönliche Fakten und Details";
 $pgv_lang["type"]						= "Typ";
 $pgv_lang["parents"]					= "Eltern";
@@ -560,7 +563,7 @@ $pgv_lang["linked_source"]				= "Diese Quelle sowie alle mit ihr verbundene Fami
 $pgv_lang["person_private"]				= "Details dieser Person sind vertraulich. Details werden nicht gesammelt.";
 $pgv_lang["family_private"]				= "Details dieser Familie sind vertraulich. Details werden nicht gesammelt.";
 $pgv_lang["media_private"]				= "Details dieses Medienobjektes sind vertraulich. Details werden nicht gesammelt.";
-$pgv_lang["download"]					= "Klicken Sie mit der rechten Maustaste (beim Mac Control-Klick) auf den untenstehenden Link und wählen &quot;Ziel speichern unter&quot;, um den Sammelbehälter als GEDCOM Datei auf Ihren eigenen Computer zu übertragen (Download).";
+$pgv_lang["download"]					= "Klicken Sie mit der rechten Maustaste (beim Mac Control-Klick) auf den untenstehenden Link und wählen »Ziel speichern unter«, um den Sammelbehälter als GEDCOM Datei auf Ihren eigenen Computer zu übertragen (Download).";
 $pgv_lang["cart_is_empty"]				= "Ihr Sammelbehälter ist leer.";
 $pgv_lang["id"]							= "ID";
 $pgv_lang["ID"]							= "ID";
@@ -775,47 +778,47 @@ $pgv_lang["oct"]						= "Oktober";
 $pgv_lang["nov"]						= "November";
 $pgv_lang["dec"]						= "Dezember";
 
-$pgv_lang["vend"]         				= "Vendémiaire";
-$pgv_lang["brum"]         				= "Brumaire";
-$pgv_lang["frim"]         				= "Frimaire";
-$pgv_lang["nivo"]         				= "Nivôse";
-$pgv_lang["pluv"]         				= "Pluviôse";
-$pgv_lang["vent"]         				= "Ventôse";
-$pgv_lang["germ"]         				= "Germinal";
-$pgv_lang["flor"]         				= "Floréal";
-$pgv_lang["prai"]         				= "Prairial";
-$pgv_lang["mess"]         				= "Messidor";
-$pgv_lang["ther"]         				= "Thermidor";
-$pgv_lang["fruc"]         				= "Fructidor";
-$pgv_lang["comp"]         				= "jours complémentaires";
+// $pgv_lang["vend"]			use value from lang.en.php
+// $pgv_lang["brum"]			use value from lang.en.php
+// $pgv_lang["frim"]			use value from lang.en.php
+// $pgv_lang["nivo"]			use value from lang.en.php
+// $pgv_lang["pluv"]			use value from lang.en.php
+// $pgv_lang["vent"]			use value from lang.en.php
+// $pgv_lang["germ"]			use value from lang.en.php
+// $pgv_lang["flor"]			use value from lang.en.php
+// $pgv_lang["prai"]			use value from lang.en.php
+// $pgv_lang["mess"]			use value from lang.en.php
+// $pgv_lang["ther"]			use value from lang.en.php
+// $pgv_lang["fruc"]			use value from lang.en.php
+// $pgv_lang["comp"]			use value from lang.en.php;
 
-$pgv_lang["tsh"]          				= "Tischri";
-$pgv_lang["csh"]          				= "Cheschwan";
-$pgv_lang["ksl"]          				= "Kislew";
-$pgv_lang["tvt"]          				= "Tewet";
-$pgv_lang["shv"]          				= "Schwat";
-$pgv_lang["adr"]          				= "Adar";
-$pgv_lang["adr_leap_year"]				= "Adar I";
-$pgv_lang["ads"]						= "Adar II";
-$pgv_lang["nsn"]          				= "Nisan";
-$pgv_lang["iyr"]          				= "Ijar";
-$pgv_lang["svn"]          				= "Siwan";
-$pgv_lang["tmz"]          				= "Tammus";
-$pgv_lang["aav"]          				= "Aw";
-$pgv_lang["ell"]          				= "Elul";
+// $pgv_lang["tsh"]				use value from lang.en.php
+// $pgv_lang["csh"]				use value from lang.en.php
+// $pgv_lang["ksl"]				use value from lang.en.php
+// $pgv_lang["tvt"]				use value from lang.en.php
+// $pgv_lang["shv"]				use value from lang.en.php
+// $pgv_lang["adr"]				use value from lang.en.php
+// $pgv_lang["adr_leap_year"]	use value from lang.en.php
+// $pgv_lang["ads"]				use value from lang.en.php
+// $pgv_lang["nsn"]				use value from lang.en.php
+// $pgv_lang["iyr"]				use value from lang.en.php
+// $pgv_lang["svn"]				use value from lang.en.php
+// $pgv_lang["tmz"]				use value from lang.en.php
+// $pgv_lang["aav"]				use value from lang.en.php
+// $pgv_lang["ell"]				use value from lang.en.php
 
-$pgv_lang["muhar"]						= "Muharram";
-$pgv_lang["safar"]						= "Safar";
-$pgv_lang["rabia"]						= "Rabi' al-awwal";
-$pgv_lang["rabit"]						= "Rabi' al-thani";
-$pgv_lang["jumaa"]						= "Jumada al-awwal";
-$pgv_lang["jumat"]						= "Jumada al-thani";
-$pgv_lang["rajab"]						= "Rajab";
-$pgv_lang["shaab"]						= "Sha'aban";
-$pgv_lang["ramad"]						= "Ramadan";
-$pgv_lang["shaww"]						= "Shawwal";
-$pgv_lang["dhuaq"]						= "Dhu al-Qi'dah";
-$pgv_lang["dhuah"]						= "Dhu al-Hijjah";
+// $pgv_lang["muhar"]			use value from lang.en.php
+// $pgv_lang["safar"]			use value from lang.en.php
+// $pgv_lang["rabia"]			use value from lang.en.php
+// $pgv_lang["rabit"]			use value from lang.en.php
+// $pgv_lang["jumaa"]			use value from lang.en.php
+// $pgv_lang["jumat"]			use value from lang.en.php
+// $pgv_lang["rajab"]			use value from lang.en.php
+// $pgv_lang["shaab"]			use value from lang.en.php
+// $pgv_lang["ramad"]			use value from lang.en.php
+// $pgv_lang["shaww"]			use value from lang.en.php
+// $pgv_lang["dhuaq"]			use value from lang.en.php
+// $pgv_lang["dhuah"]			use value from lang.en.php
 
 $pgv_lang["b.c."]         				= "v. Chr.";
 
@@ -848,7 +851,7 @@ $pgv_lang["digest_auth"]				= "Auszug Verifizierung";
 $pgv_lang["no_auth_needed"]				= "Verifizierung nicht erfordert";
 $pgv_lang["file_not_exists"]			= "Eine Datei mit dem eingegebenen Namen existiert nicht.";
 $pgv_lang["research_assistant"]			= "Forschungsassistent";
-$pgv_lang["utf8_to_ansi"]				= "Möchten Sie diese GEDCOM Datei vom UTF-8 in den ANSI (ISO-8859-1) Zeichensatz konvertieren?";
+$pgv_lang["utf8_to_ansi"]				= "Möchten Sie diese GEDCOM Datei vom UTF-8 in den ANSI (ISO 8859-1) Zeichensatz konvertieren?";
 $pgv_lang["media_linked"]				= "Dieses Medien Objekt ist wie folgt verbunden:";
 $pgv_lang["media_not_linked"]			= "Dieses Medien Objekt ist mit keinem GEDCOM Datensatz verbunden.";
 $pgv_lang["media_dir_1"]				= "Dieses Medien Objekt befindet sich auf einem externen Server";
@@ -950,8 +953,8 @@ $pgv_lang["bosa_brothers_offspring_6"]	= "Großneffe";
 $pgv_lang["bosa_brothers_offspring_7"]	= "Großnichte";
 // for the general case of offspring of the nth generation use the text below
 // in this text %1\$d is replaced with the number of generations
-//			  %2\$d is replaced with the number of generations - 1
-//			  %3\$d is replaced with the number of generations - 2
+//              %2\$d is replaced with the number of generations - 1
+//              %3\$d is replaced with the number of generations - 2
 $pgv_lang["n_x_brothers_son"]			= "%2\$d x Großneffe";
 $pgv_lang["n_x_brothers_daughter"]		= "%2\$d x Großnichte";
 // the bosa_sisters_offspring name is used for sisters nephews and nieces - the names below can be extended to any number
@@ -966,8 +969,8 @@ $pgv_lang["bosa_sisters_offspring_6"]	= "Großneffe";
 $pgv_lang["bosa_sisters_offspring_7"]	= "Großnichte";
 // for the general case of offspring of the nth generation use the text below
 // in this text %1\$d is replaced with the number of generations
-//			  %2\$d is replaced with the number of generations - 1
-//			  %3\$d is replaced with the number of generations - 2
+//              %2\$d is replaced with the number of generations - 1
+//              %3\$d is replaced with the number of generations - 2
 $pgv_lang["n_x_sisters_son"]			= "%2\$d x Großneffe";
 $pgv_lang["n_x_sisters_daughter"]		= "%2\$d x Großnichte";
 
@@ -992,8 +995,8 @@ $pgv_lang["bosa_14"]					= "Urenkel";
 $pgv_lang["bosa_15"]					= "Urenkelin";
 // for the general case of offspring of the nth generation use the text below
 // in this text %1\$d is replaced with the number of generations
-//			  %2\$d is replaced with the number of generations - 1
-//			  %3\$d is replaced with the number of generations - 2
+//              %2\$d is replaced with the number of generations - 1
+//              %3\$d is replaced with the number of generations - 2
 $pgv_lang["n_x_grandson_from_son"]		= "%3\$d x Urenkel";
 $pgv_lang["n_x_granddaughter_from_son"]	= "%3\$d x Urenkelin";
 $pgv_lang["n_x_grandson_from_daughter"]	= "%3\$d x Urenkel";
@@ -1013,8 +1016,8 @@ $pgv_lang["sosa_uncle_6"]				= "Großonkel";
 $pgv_lang["sosa_uncle_7"]				= "Großonkel";
 // for the general case of uncles of the nth degree use the text below
 // in this text %1\$d is replaced with the number of generations
-//			  %2\$d is replaced with the number of generations - 1
-//			  %3\$d is replaced with the number of generations - 2
+//              %2\$d is replaced with the number of generations - 1
+//              %3\$d is replaced with the number of generations - 2
 $pgv_lang["n_x_paternal_uncle"]			= "%2\$d x Großonkel";
 $pgv_lang["n_x_maternal_uncle"]			= "%2\$d x Großonkel";
 
@@ -1032,12 +1035,12 @@ $pgv_lang["sosa_aunt_6"]				= "Großtante";
 $pgv_lang["sosa_aunt_7"]				= "Großtante";
 // for the general case of aunts of the nth degree use the text below
 // in this text %1\$d is replaced with the number of generations
-//			  %2\$d is replaced with the number of generations - 1
-//			  %3\$d is replaced with the number of generations - 2
+//              %2\$d is replaced with the number of generations - 1
+//              %3\$d is replaced with the number of generations - 2
 $pgv_lang["n_x_paternal_aunt"]			= "%2\$d x Großtante";
 $pgv_lang["n_x_maternal_aunt"]			= "%2\$d x Großtante";
 
-// the sosa_uncle_bm name is used for uncles (by marriage)- the names below can be extended to any number
+// the sosa_uncle name is used for uncles(by marriage) - the names below can be extended to any number
 // of generations just by adding more translations.
 // to allow fo language variations we specify different relationships for paternal and maternal
 // aunts and uncles
@@ -1051,12 +1054,12 @@ $pgv_lang["sosa_uncle_bm_6"]			= "Großonkel";
 $pgv_lang["sosa_uncle_bm_7"]			= "Großonkel";
 // for the general case of uncles of the nth degree use the text below
 // in this text %1\$d is replaced with the number of generations
-//			  %2\$d is replaced with the number of generations - 1
-//			  %3\$d is replaced with the number of generations - 2
+//              %2\$d is replaced with the number of generations - 1
+//              %3\$d is replaced with the number of generations - 2
 $pgv_lang["n_x_paternal_uncle_bm"]		= "%2\$d x Großonkel";
 $pgv_lang["n_x_maternal_uncle_bm"]		= "%2\$d x Großonkel";
 
-// the sosa_aunt_bm name is used for aunts (by marriage)- the names below can be extended to any number
+// the sosa_aunt name is used for aunts (by marriage)- the names below can be extended to any number
 // of generations just by adding more translations.
 // to allow fo language variations we specify different relationships for paternal and maternal
 // aunts and aunts
@@ -1070,8 +1073,8 @@ $pgv_lang["sosa_aunt_bm_6"]				= "Großtante";
 $pgv_lang["sosa_aunt_bm_7"]				= "Großtante";
 // for the general case of aunts of the nth degree use the text below
 // in this text %1\$d is replaced with the number of generations
-//			  %2\$d is replaced with the number of generations - 1
-//			  %3\$d is replaced with the number of generations - 2
+//              %2\$d is replaced with the number of generations - 1
+//              %3\$d is replaced with the number of generations - 2
 $pgv_lang["n_x_paternal_aunt_bm"]		= "%2\$d x Großtante";
 $pgv_lang["n_x_maternal_aunt_bm"]		= "%2\$d x Großtante";
 
@@ -1196,6 +1199,7 @@ $pgv_lang["on_this_day"]				= "An diesem Tag";
 $pgv_lang["in_this_month"]				= "In diesem Monat";
 $pgv_lang["in_this_year"]				= "In diesem Jahr";
 $pgv_lang["year_anniversary"]			= "#year_var#. Jahrestag";
+$pgv_lang["year_yahrzeit"]				= "#yahrzeit_date#, #yahrzeit# Jahrzeit von #event_date#";
 $pgv_lang["today"]						= "Heute";
 $pgv_lang["day"]						= "Tag:";
 $pgv_lang["month"]						= "Monat:";
@@ -1378,7 +1382,7 @@ $pgv_lang["upcoming_events_block"]		= "Bevorstehende Ereignisse";
 $pgv_lang["upcoming_events_descr"]		= "Der »Bevorstehende Ereignisse« Block zeigt eine Liste von Terminen aus der Datenbank an, die in den kommenden Tagen eintreffen.<br /><br />Sie können für Ihre Portal Seite den Umfang dieses Blocks kontrollieren.  Der Verwalter tut das Gleiche für die Begrüßungs Seite.";
 $pgv_lang["todays_events_block"]		= "An diesem Tag";
 $pgv_lang["todays_events_descr"]		= "Der »An diesem Tag« Block zeigt eine Liste von Daten aus der Datenbank an, die sich heute jähren.<br /><br />Sie können für Ihre Portal Seite den Umfang dieses Blocks kontrollieren.  Der Verwalter tut das Gleiche für die Begrüßungs Seite.";
-$pgv_lang["todo_block"] 				= "Unerledigte Aufgaben";
+$pgv_lang["todo_block"] 				= "»Unerledigte« Aufgaben";
 $pgv_lang["todo_descr"] 				= "Der Block »Unerledigte Aufgaben« zeigt Ihnen alle _TODO Fakten in der Datenbank.";
 $pgv_lang["todo_show_other"]     		= "Aufgaben anderer Benutzern zeigen";
 $pgv_lang["todo_show_unassigned"]		= "Noch nicht zugewiesene Aufgaben zeigen";
@@ -1431,6 +1435,7 @@ $pgv_lang["gedcom_news_limit_nolimit"]	= "Keine";
 $pgv_lang["gedcom_news_limit_date"]		= "Alter";
 $pgv_lang["gedcom_news_limit_count"]	= "Anzahl";
 $pgv_lang["gedcom_news_flag"]			= "Beschränkung:";
+$pgv_lang["gedcom_news_published"]		= "Veröffentlicht : ";
 $pgv_lang["gedcom_news_archive"]		= "Archiv zeigen";
 $pgv_lang["user_news_block"]			= "Benutzer Journal";
 $pgv_lang["user_news_descr"]			= "Der »Benutzer Journal« Block ermöglicht dem Benutzer Notizen oder ein Journal online zu verwalten.";
@@ -1561,7 +1566,7 @@ $pgv_lang["sources_to_events"]			= "Quellen";
 
 $pgv_lang["cleanup"]					= "Korrigieren";
 
-//-- CONFIGURE (extra) messages for programs patriarch, slklist and statistics
+//-- CONFIGURE (extra) messages for programs patriarch and statistics
 $pgv_lang["statistics"]					= "Statistiken";
 $pgv_lang["show_stats_charts"]			= "Statistiken-Diagramme zeigen";
 $pgv_lang["decade_birth"]				= "Geburten: Jahrzehnt";

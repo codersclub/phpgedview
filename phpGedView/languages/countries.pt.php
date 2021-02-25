@@ -3,7 +3,7 @@
  * Portuguese texts
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2018  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2021  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -240,28 +240,16 @@ $countries["SCT"]="Escócia";
 $countries["SDN"]="Sudão";
 $countries["SEA"]="No Mar";
 $countries["SEN"]="Senegal";
-$countries["SER"]="Servia";
-$countries["SGP"]="Singapura";
 $countries["SGP"]="Singapura";
 $countries["SGS"]="Ilhas Geórgia do Sul e Sandwich do Sul";
-$countries["SGS"]="Ilhas Geórgia do Sul e Sandwich do Sul";
-$countries["SHN"]="Santa Helena";
 $countries["SHN"]="Santa Helena";
 $countries["SIC"]="Sicília";
-$countries["SIC"]="Sicília";
-$countries["SJM"]="Ilhas Svalbard e Jan Mayen";
 $countries["SJM"]="Ilhas Svalbard e Jan Mayen";
 $countries["SLB"]="Ilhas Salomão";
-$countries["SLB"]="Ilhas Salomão";
-$countries["SLE"]="Serra Leão";
 $countries["SLE"]="Serra Leão";
 $countries["SLV"]="El Salvador";
-$countries["SLV"]="El Salvador";
-$countries["SMR"]="São Marinho";
 $countries["SMR"]="São Marinho";
 $countries["SOM"]="Somália";
-$countries["SOM"]="Somália";
-$countries["SPM"]="São Pedro e Miquelon";
 $countries["SPM"]="São Pedro e Miquelon";
 $countries["SRB"]="Servia";
 $countries["SSD"]="Sudão do Sul";
@@ -315,6 +303,27 @@ $countries["ZMB"]="Zâmbia";
 $countries["ZWE"]="Zimbabué";
 $countries["???"]="Desconhecido";
 
+/*
+ * The following table lists alternate names for various Chapman codes.
+ * It will be used when country names have to be converted to Chapman codes.
+ * You do not have to list all the possibilities in all page languages.  This
+ * will be done automatically by the country-to-Chapman conversion routine.
+ *
+ * Because the list, and its contents, are specific to each language, the
+ * Translator Tool won't let you work on the list directly.  The list will
+ * have to be updated and amended manually.
+ *
+ * Suppose Chapman code "XYZ" represents the same country, and that country
+ * had the names "Name1", "Name2", "Name3" in its history.  It is now known
+ * as "Current name".  You can list the various names like this:
+ *
+ * $countries["XYZ"]="Current name";
+ * $altCountryNames["XYZ"]="Name1; Name2; Name3";
+ *
+ * The Chapman-to-country conversion will always use the $countries list of
+ * the current page language, no matter what the original country name was.
+ *
+ */
 $altCountryNames["SUN"]="União Soviética";
 $altCountryNames["PLW"]="Belau";
 $altCountryNames["MMR"]="Birmânia";
