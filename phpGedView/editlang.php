@@ -495,6 +495,7 @@ case "export" :
 
 			// Temporarily switch languages to match the language selected for Export
 			//   so that function print_text will substitute text in the correct language
+			require PGV_ROOT.'includes/help_text_vars.php';		// These apply to ALL languages, and may not be present
 			$savedLanguage = $LANGUAGE;
 			if ($savedLanguage != $language2) {		// Only necessary when languages differ
 				$LANGUAGE = $language2;
@@ -715,15 +716,13 @@ default:
 	</tr>
 	<tr>
 		<td class="facts_value width50">
-			<?php print_help_link("translation_forum_desc", "qm"); ?>
-			<a href="<?php echo PGV_TRANSLATORS_URL; ?>" target="_blank" ><?php echo $pgv_lang["translation_forum"]; ?></a>
-				</td>
-			<td class="facts_value width50">
-				<?php
+		</td>
+		<td class="facts_value width50">
+			<?php
 				print_help_link("compare_lang_utility_help", "qm");
-					echo "<a href=\"editlang.php?action=compare\">", $pgv_lang["compare_lang_utility"], "</a>";
-					?>
-			</td>
+				echo "<a href=\"editlang.php?action=compare\">", $pgv_lang["compare_lang_utility"], "</a>";
+			?>
+		</td>
 	</tr>
 	<tr>
 		<td class="facts_value" colspan="2">
