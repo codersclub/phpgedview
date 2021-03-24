@@ -3,7 +3,7 @@
 * Functions for exporting data
 *
 * phpGedView: Genealogy Viewer
-* Copyright (C) 2002 to 2011 PGV Development Team.  All rights reserved.
+* Copyright (C) 2002 to 2021 PGV Development Team.  All rights reserved.
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -496,8 +496,7 @@ function um_export($proceed) {
 		if ($fp) {
 			fwrite($fp, $authtext);
 			fclose($fp);
-			$logline=AddToLog("authenticate.php updated");
-			check_in($logline, "authenticate.php", $INDEX_DIRECTORY);
+			AddToLog("authenticate.php updated");
 			if (($proceed=="export") || ($proceed=="exportovr")) {
 				print $pgv_lang["um_file_create_succ1"]." authenticate.php<br /><br />";
 			}
@@ -534,8 +533,7 @@ function um_export($proceed) {
 			if ($fp) {
 				fwrite($fp, $mstring);
 				fclose($fp);
-				$logline=AddToLog("messages.dat updated");
-				check_in($logline, "messages.dat", $INDEX_DIRECTORY);
+				AddToLog("messages.dat updated");
 				if (($proceed=="export") || ($proceed=="exportovr")) {
 					print $pgv_lang["um_file_create_succ1"]." messages.dat<br /><br />";
 				}
@@ -579,8 +577,7 @@ function um_export($proceed) {
 			if ($fp) {
 				fwrite($fp, $mstring);
 				fclose($fp);
-				$logline=AddToLog("favorites.dat updated");
-				check_in($logline, "favorites.dat", $INDEX_DIRECTORY);
+				AddToLog("favorites.dat updated");
 				if (($proceed=="export") || ($proceed=="exportovr")) {
 					print $pgv_lang["um_file_create_succ1"]." favorites.dat<br /><br />";
 				}
@@ -619,8 +616,7 @@ function um_export($proceed) {
 			if ($fp) {
 				fwrite($fp, $mstring);
 				fclose($fp);
-				$logline=AddToLog("news.dat updated");
-				check_in($logline, "news.dat", $INDEX_DIRECTORY);
+				AddToLog("news.dat updated");
 				if (($proceed=="export") || ($proceed=="exportovr")) {
 					print $pgv_lang["um_file_create_succ1"]." news.dat<br /><br />";
 				}
@@ -661,8 +657,7 @@ function um_export($proceed) {
 			if ($fp) {
 				fwrite($fp, $mstring);
 				fclose($fp);
-				$logline=AddToLog("blocks.dat updated");
-				check_in($logline, "blocks.dat", $INDEX_DIRECTORY);
+				AddToLog("blocks.dat updated");
 				if (($proceed=="export") || ($proceed=="exportovr")) {
 					print $pgv_lang["um_file_create_succ1"]." blocks.dat<br /><br />";
 				}

@@ -326,7 +326,7 @@ function load_privacy_file($ged_id=PGV_GED_ID) {
  * @return mixed	returns true on success, or returns an array of error messages on failure
  */
 function update_site_config($newconfig, $return = false) {
-	global $pgv_lang, $COMMIT_COMMAND;
+	global $pgv_lang;
 
 	$errors = array();
 
@@ -368,10 +368,7 @@ function update_site_config($newconfig, $return = false) {
 		} else {
 			fwrite($fp, $configtext);
 			fclose($fp);
-			$logline = AddToLog("config.php updated by >".getUserName()."<");
-			if (!empty($COMMIT_COMMAND)) {
-				check_in($logline, "config.php", "");
-			}
+			AddToLog("config.php updated by >".getUserName()."<");
 		}
 	}
 
@@ -443,8 +440,7 @@ function update_lang_settings() {
 			fwrite($fp, PGV_EOL);
 			fwrite($fp, "?>".PGV_EOL);
 			fclose($fp);
-		$logline = AddToLog("lang_settings.php updated");
- 		check_in($logline, $Filename, $INDEX_DIRECTORY);
+			AddToLog("lang_settings.php updated");
 		} else $error = "lang_config_write_error";
 	} else $error = "lang_set_file_read_error";
 	return $error;
@@ -2715,8 +2711,7 @@ function write_changes() {
 	//-- release the mutex acquired above
 	$mutex->Release();
 
-	$logline = AddToLog("pgv_changes.php updated");
-	check_in($logline, "pgv_changes.php", $INDEX_DIRECTORY);
+	AddToLog("pgv_changes.php updated");
 	return true;
 }
 
@@ -2891,8 +2886,7 @@ function get_report_list($force=false) {
 	$fp = @fopen($INDEX_DIRECTORY."/reports.dat", "w");
 	@fwrite($fp, serialize($files));
 	@fclose($fp);
-	$logline = AddToLog("reports.dat updated for $LANGUAGE");
- 	check_in($logline, "reports.dat", $INDEX_DIRECTORY);
+	AddToLog("reports.dat updated for $LANGUAGE");
 
 	return $files;
 }
@@ -3252,41 +3246,6 @@ function has_utf8($string) {
 			return true;
 	}
 	return false;
-}
-
-/**
- * check file in
- * @param  string  $logline  Log message
- * @param  string  $filename Filename
- * @param  string  $dirname  Directory
- * @param  boolean $bInsert  Insert Log message
- * @return boolean whether the file was checked in
- */
-function check_in($logline, $filename, $dirname, $bInsert = false) {
-	global $COMMIT_COMMAND;
-	$bRetSts = false;
-	if (!empty($COMMIT_COMMAND) && ($COMMIT_COMMAND=='svn' || $COMMIT_COMMAND=='cvs') && $logline && $filename) {
-		$cwd = getcwd();
-		if ($dirname) {
-			chdir($dirname);
-		}
-		$cmdline= $COMMIT_COMMAND.' commit -m '.escapeshellarg($logline).' '.escapeshellarg($filename);
-		$output = '';
-		$retval = '';
-		exec($cmdline, $output, $retval);
-		if (!empty($output)) {
-			if ($bInsert) {
-				AddToChangeLog($logline);
-			}
-			$outputstring = implode(' ', $output);
-			AddToChangeLog('System Output :'.$outputstring.', Return Value :'.$retval);
-			$bRetSts = true;
-		}
-		if ($dirname) {
-			chdir($cwd);
-		}
-	}
-	return $bRetSts;
 }
 
 /**

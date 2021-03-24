@@ -235,7 +235,6 @@ switch($step) {
 		if (isset($_POST['NEW_LOGIN_URL'])) $_SESSION['install_config']['LOGIN_URL'] = $_POST['NEW_LOGIN_URL'];
 		if (isset($_POST['NEW_PGV_SESSION_SAVE_PATH'])) $_SESSION['install_config']['PGV_SESSION_SAVE_PATH'] = $_POST['NEW_PGV_SESSION_SAVE_PATH'];
 		if (isset($_POST['NEW_PGV_SESSION_TIME'])) $_SESSION['install_config']['PGV_SESSION_TIME'] = $_POST['NEW_PGV_SESSION_TIME'];
-		if (isset($_POST['NEW_COMMIT_COMMAND'])) $_SESSION['install_config']['COMMIT_COMMAND'] = $_POST['NEW_COMMIT_COMMAND'];
 		if (isset($_POST['NEW_PGV_MEMORY_LIMIT'])) $_SESSION['install_config']['PGV_MEMORY_LIMIT'] = $_POST['NEW_PGV_MEMORY_LIMIT'];
 		if (isset($_POST['NEW_MAX_VIEWS'])) $_SESSION['install_config']['MAX_VIEWS'] = $_POST['NEW_MAX_VIEWS'];
 		if (isset($_POST['NEW_MAX_VIEW_TIME'])) $_SESSION['install_config']['MAX_VIEW_TIME'] = $_POST['NEW_MAX_VIEW_TIME'];
@@ -299,9 +298,6 @@ switch($step) {
 				//-- make sure we are using the user's preferred index directory
 				if (isset($_SESSION['install_config']['INDEX_DIRECTORY'])) {
 					$INDEX_DIRECTORY = $_SESSION['install_config']['INDEX_DIRECTORY'];
-				}
-				if (isset($_SESSION['install_config']['COMMIT_COMMAND'])) {
-					$COMMIT_COMMAND = $_SESSION['install_config']['COMMIT_COMMAND'];
 				}
 
 				// Save the languages the user has chosen to have active on the website
@@ -733,7 +729,7 @@ function printConfigForm(){
 	global $TEXT_DIRECTION, $PGV_DXHTMLTAB_COLORS, $PGV_STORE_MESSAGES, $USE_REGISTRATION_MODULE, $REQUIRE_ADMIN_AUTH_REGISTRATION;
 	global $ALLOW_CHANGE_GEDCOM, $PGV_SIMPLE_MAIL, $ALLOW_USER_THEMES, $LOGFILE_CREATE, $SERVER_URL;
 	global $PGV_SMTP_ACTIVE, $PGV_SMTP_HOST, $PGV_SMTP_HELO, $PGV_SMTP_PORT, $PGV_SMTP_AUTH, $PGV_SMTP_AUTH_USER, $PGV_SMTP_AUTH_PASS, $PGV_SMTP_SSL, $PGV_SMTP_FROM_NAME;
-	global $LOGIN_URL, $PGV_SESSION_SAVE_PATH, $PGV_SESSION_TIME, $COMMIT_COMMAND, $PGV_MEMORY_LIMIT, $MAX_VIEWS;
+	global $LOGIN_URL, $PGV_SESSION_SAVE_PATH, $PGV_SESSION_TIME, $PGV_MEMORY_LIMIT, $MAX_VIEWS;
 	global $MAX_VIEW_TIME, $INDEX_DIRECTORY;
 	global $USE_GOOGLE_ANALYTICS, $PGV_GOOGLE_ANALYTICS;
 	global $USE_PIWIK_ANALYTICS, $PGV_PIWIK_URL, $PGV_PIWIK_SITE;
@@ -762,7 +758,6 @@ function printConfigForm(){
 	if (isset($_SESSION['install_config']['PGV_SMTP_FROM_NAME'])) $PGV_SMTP_FROM_NAME = $_SESSION['install_config']['PGV_SMTP_FROM_NAME'];
 	if (isset($_SESSION['install_config']['PGV_SESSION_SAVE_PATH'])) $PGV_SESSION_SAVE_PATH = $_SESSION['install_config']['PGV_SESSION_SAVE_PATH'];
 	if (isset($_SESSION['install_config']['PGV_SESSION_TIME'])) $PGV_SESSION_TIME = $_SESSION['install_config']['PGV_SESSION_TIME'];
-	if (isset($_SESSION['install_config']['COMMIT_COMMAND'])) $COMMIT_COMMAND = $_SESSION['install_config']['COMMIT_COMMAND'];
 	if (isset($_SESSION['install_config']['PGV_MEMORY_LIMIT'])) $PGV_MEMORY_LIMIT = $_SESSION['install_config']['PGV_MEMORY_LIMIT'];
 	if (isset($_SESSION['install_config']['MAX_VIEWS'])) $MAX_VIEWS = $_SESSION['install_config']['MAX_VIEWS'];
 	if (isset($_SESSION['install_config']['MAX_VIEW_TIME'])) $MAX_VIEW_TIME = $_SESSION['install_config']['MAX_VIEW_TIME'];
@@ -899,16 +894,6 @@ function printConfigForm(){
 					?>
 				</td>
 			</tr>
-			<tr>
-				<td class="descriptionbox wrap width30"><?php print_help_link("COMMIT_COMMAND_help", "qm", "COMMIT_COMMAND"); print $pgv_lang['COMMIT_COMMAND'];?></td>
-		 		<td class="optionbox">
-		 			<select name="NEW_COMMIT_COMMAND" tabindex="<?php $i++; print $i?>" onfocus="getHelp('COMMIT_COMMAND_help');">
-						<option value="" <?php if ($COMMIT_COMMAND=="") print "selected=\"selected\""; ?>><?php print $pgv_lang["none"];?></option>
-						<option value="cvs" <?php if ($COMMIT_COMMAND=="cvs") print "selected=\"selected\""; ?>>CVS</option>
-						<option value="svn" <?php if ($COMMIT_COMMAND=="svn") print "selected=\"selected\""; ?>>SVN</option>
-					</select>
-				</td>
-		 	</tr>
 		 	<tr>
 				<td class="descriptionbox wrap width30"><?php print_help_link("PGV_MEMORY_LIMIT_help", "qm", "PGV_MEMORY_LIMIT"); print $pgv_lang["PGV_MEMORY_LIMIT"];?></td>
 				<td class="optionbox"><input type="text" name="NEW_PGV_MEMORY_LIMIT" value="<?php print $PGV_MEMORY_LIMIT;?>" tabindex="<?php $i++; print $i?>" onfocus="getHelp('PGV_MEMORY_LIMIT_help');" /></td>
