@@ -14,6 +14,7 @@ The session.php script uses this information to populate the constants : PGV_VER
 =====================================================================
 
 Version 4.3.1
+ - Fixed: Language files for CA DA DE EN ES FR IT NL PT NO SV have some issues with translations or formatting (canajun2eh)
  - Changed: Remove support for CVS and SVN version control systems -- this feature never worked properly anyway (canajun2eh)
  - Changed: Remove link to SourceForge Translator forum from Translator Tools section of Admin page (canajun2eh)
  - Changed: Match language files for CA DA DE ES FR IT NL PT NO SV with the English versions (canajun2eh)

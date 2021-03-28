@@ -51,7 +51,7 @@ $pgv_lang["module_admin"]			= "Moduladministration";
 $pgv_lang["mod_admin_installed"]	= "Installerade moduler";
 $pgv_lang["mod_admin_tabs"]			= "Hantera flikar";
 $pgv_lang["mod_admin_menus"]		= "Hantera menyer";
-$pgv_lang["mod_admin_intro"]		= "Nedan är listan över alla moduler installerade i denna instans av PhpGedView. Moduler installeras genom att placera dem i katalogen <i>moduler</i>. Här kan du ställa in åtkomstnivån per GEDCOM för varje modul. Om en modul innehåller flikar för personsidan eller menyer för menyraden kan du också ställa in åtkomstnivå och sekvens för var och en av dem.";
+$pgv_lang["mod_admin_intro"]		= "Nedan är listan över alla moduler installerade i denna instans av PhpGedView. Moduler installeras genom att placera dem i katalogen <i>modules</i>. Här kan du ställa in åtkomstnivån per GEDCOM för varje modul. Om en modul innehåller flikar för personsidan eller menyer för menyraden kan du också ställa in åtkomstnivå och sekvens för var och en av dem.";
 $pgv_lang["mod_admin_active"]		= "Aktiv";
 $pgv_lang["mod_admin_name"]			= "Modulnamn";
 $pgv_lang["mod_admin_description"]	= "Beskrivning";
@@ -82,8 +82,8 @@ $pgv_lang["install_step_7"] = "Skapa administratörsanvändare";
 $pgv_lang["install_wizard"] = "Installationsguiden";
 $pgv_lang["basic_site_config"] = "Grund inställningar";
 $pgv_lang["adv_site_config"] = "Avancerade inställningar";
-$pgv_lang["config_not_saved"] = "*Dina inställningar sparas inte förrän i steg 6";
-$pgv_lang["download_config"] = "Ladda ner config.php";
+$pgv_lang["config_not_saved"] = "* Dina inställningar sparas inte förrän i steg 6";
+$pgv_lang["download_config"] = "Ladda ner <i>config.php</i>";
 $pgv_lang["site_unavailable"] = "Webbplatsen är för närvarande inte tillgänglig";
 $pgv_lang["to_manage_users"] = "Använd <a href=\"useradmin.php\">användaradministrationssidan</a> för att hantera användare.";
 $pgv_lang["db_tables_created"] = "Databastabeller skapade";
@@ -96,13 +96,13 @@ $pgv_lang["using_php_version"]		= "Du använder PHP version #PGV_ACTUAL_PHP_VERS
 $pgv_lang["checking_db_support"]		= "Kontrollerar om det finns minimalt databassupport:";
 $pgv_lang["no_db_extensions"]		= "You do not have any of the supported database extensions.";
 $pgv_lang["db_ext_support"]		= "Du har #DBEXT# support";
-$pgv_lang["checking_config.php"]		= "Kontrollerar config.php:";
-$pgv_lang["config.php_missing"]		= "filen config.php hittades inte.";
-$pgv_lang["config.php_missing_instr"]		= "Installationsguiden kommer inte att kunna skriva dina inställningar till config.php filen. Du kan göra en kopia av filen config.dist och byta namn på den till config.php. Alternativt, efter att ha slutfört guiden har du möjlighet att ladda ner dina inställningar och ladda upp den resulterande config.php-filen.";
-$pgv_lang["config.php_not_writable"]		= "config.php är inte skrivbar.";
-$pgv_lang["config.php_not_writable_instr"]		= "Installationsguiden kommer inte att kunna skriva dina inställningar till config.php filen. Du kan ställa in skrivbehörigheter för filen, eller efter att ha slutfört guiden har du möjlighet att ladda ner dina inställningar och ladda upp den resulterande config.php filen.";
+$pgv_lang["checking_config.php"]		= "Kontrollerar <i>config.php</i>:";
+$pgv_lang["config.php_missing"]		= "filen <i>config.php</i> hittades inte.";
+$pgv_lang["config.php_missing_instr"]		= "Installationsguiden kommer inte att kunna skriva dina inställningar till <i>config.php</i> filen. Du kan göra en kopia av filen <i>config.dist</i> och byta namn på den till <i>config.php</i>. Alternativt, efter att ha slutfört guiden har du möjlighet att ladda ner dina inställningar och ladda upp den resulterande <i>config.php</i>-filen.";
+$pgv_lang["config.php_not_writable"]		= "<i>config.php</i> är inte skrivbar.";
+$pgv_lang["config.php_not_writable_instr"]		= "Installationsguiden kommer inte att kunna skriva dina inställningar till <i>config.php</i> filen. Du kan ställa in skrivbehörigheter för filen, eller efter att ha slutfört guiden har du möjlighet att ladda ner dina inställningar och ladda upp den resulterande <i>config.php</i> filen.";
 $pgv_lang["passed"]		= "Passerad";
-$pgv_lang["config.php_writable"]		= "config.php är närvarande och skrivbar.";
+$pgv_lang["config.php_writable"]		= "<i>config.php</i> är närvarande och skrivbar.";
 $pgv_lang["checking_warnings"]		= "Kontrollerar för varningar...";
 $pgv_lang["checking_timelimit"]		= "Kontrollerar förmågan att ändra tidsgräns:";
 $pgv_lang["cannot_change_timelimit"]		= "Det gick inte att ändra tidsgränsen.";
@@ -129,7 +129,7 @@ $pgv_lang["associated_files"]		= "Associerade filer: ";
 $pgv_lang["remove_all_files"]		= "Ta bort alla onödiga filer";
 $pgv_lang["warn_file_delete"]		= "Denna fil innehåller viktig information om språkinställningar eller information om väntande ändringar. Är du säker på att du vill ta bort filen?";
 $pgv_lang["deleted_files"]          = "Borttagna filer:";
-$pgv_lang["index_dir_cleanup_inst"]	= "För att radera filer eller katalog från indexmappen dra den till papperskorgen eller välj dess kryssruta. Klicka på radera-knappenför att permanent tabort de markerade filerna.<br /><br />Filer markerade med <img src=\"./images/RESN_confidential.gif\" /> krävs för att programmet ska fungera och kan inte tas bort.<br />filer markerade med <img src=\"./images/RESN_locked.gif\" /> innehåller viktiga inställningar eller ändrade data och bör endast raderas om du är säker på vad du gör.<br /><br />";
+$pgv_lang["index_dir_cleanup_inst"]	= "För att radera filer eller katalog från indexmappen dra den till papperskorgen eller välj dess kryssruta. Klicka på radera-knappenför att permanent tabort de markerade filerna.<ul><li>Filer markerade med <img src=\"./images/RESN_confidential.gif\" /> krävs för att programmet ska fungera och kan inte tas bort.</li><li>filer markerade med <img src=\"./images/RESN_locked.gif\" /> innehåller viktiga inställningar eller ändrade data och bör endast raderas om du är säker på vad du gör.</li></ul>";
 $pgv_lang["index_dir_cleanup"]		= "Rensa indexmappen";
 $pgv_lang["clear_cache_succes"]		= "Cache-filerna har tagits bort.";
 $pgv_lang["clear_cache"]			= "Töm cache-filerna";
@@ -143,10 +143,10 @@ $pgv_lang["sanity_err6"]			= "Katalogen <i>#GLOBALS[INDEX_DIRECTORY]#</i> är in
 $pgv_lang["sanity_warn0"]			= "Varningar:";
 $pgv_lang["sanity_warn1"]			= "Katalogen <i>#GLOBALS[MEDIA_DIRECTORY]#</i> är inte skrivbar. Du kommer inte kunna ladda upp mediafiler eller skapa miniatyrbilder.";
 $pgv_lang["sanity_warn2"]			= "Katalogen <i>#GLOBALS[MEDIA_DIRECTORY]#thumbs</i> är inte skrivbar. Du kommer inte kunna ladda upp eller skapa miniatyrbilder i PhpGedView.";
-$pgv_lang["sanity_warn3"]			= "GD bildbiblioteket finns inte. PhpGedView kommer att fungera men vissa funktioner som miniatyrbildsskapning och cirkeltavlan kommer inte fungera. Läs <a href=\"http://www.php.net/manual/en/ref.image.php\">http://www.php.net/manual/en/ref.image.php</a> för mer information.";
-$pgv_lang["sanity_warn4"]			= "XML parsningsbiblioteket finns inte. PhpGedView kommer fortfarande att fungera men vissa funktioner som rapportgenerering och web service kommer inte fungera. Läs <a href=\"http://www.php.net/manual/en/ref.xml.php\">http://www.php.net/manual/en/ref.xml.php</a> för mer information.";
-$pgv_lang["sanity_warn5"]			= "DOM XML biblioteket finns inte. PhpGedView kommer fortfarande att fungera men vissa funktioner som GRAMPS export urklippskorgen, nerladdning och web service kommer inte fungera. Läs <a href=\"http://www.php.net/manual/en/ref.dom.php\">http://www.php.net/manual/en/ref.dom.php</a> för mer information.";
-$pgv_lang["sanity_warn6"]			= "Kalender biblioteket finns inte. PhpGedView kommer fortfarande att fungera men vissa funktioner som Konverteringar till andra kalendrar som hebreisk och fransk inte fungera. Läs <a href=\"http://www.php.net/manual/en/ref.calendar.php\">http://www.php.net/manual/en/ref.calendar.php</a> för mer information.";
+$pgv_lang["sanity_warn3"]			= "GD bildbiblioteket finns inte. PhpGedView kommer att fungera men vissa funktioner som miniatyrbildsskapning och cirkeltavlan kommer inte fungera. Läs <a href='http://www.php.net/manual/en/ref.image.php' target='_blank'>http://www.php.net/manual/en/ref.image.php</a> för mer information.";
+$pgv_lang["sanity_warn4"]			= "XML parsningsbiblioteket finns inte. PhpGedView kommer fortfarande att fungera men vissa funktioner som rapportgenerering och web service kommer inte fungera. Läs <a href='https://www.php.net/manual/en/ref.xml.php' target='_blank'>https://www.php.net/manual/en/ref.xml.php</a> för mer information.";
+$pgv_lang["sanity_warn5"]			= "DOM XML biblioteket finns inte. PhpGedView kommer fortfarande att fungera men vissa funktioner som GRAMPS export urklippskorgen, nerladdning och web service kommer inte fungera. Läs <a href='https://www.php.net/manual/en/refs.xml.php' target='_blank'>https://www.php.net/manual/en/refs.xml.php</a> för mer information.";
+$pgv_lang["sanity_warn6"]			= "Kalender biblioteket finns inte. PhpGedView kommer fortfarande att fungera men vissa funktioner som Konverteringar till andra kalendrar som hebreisk och fransk inte fungera. Läs <a href='https://www.php.net/manual/en/ref.calendar.php' target='_blank'>https://www.php.net/manual/en/ref.calendar.php</a> för mer information.";
 $pgv_lang["ip_address"]				= "IPadress";
 $pgv_lang["date_time"]				= "Datum och tid";
 $pgv_lang["log_message"]			= "Logmeddelande";
@@ -161,10 +161,10 @@ $pgv_lang["step2"]				= "Steg 2 av 4:";
 $pgv_lang["refresh"]				= "Ladda om";
 $pgv_lang["move_file_success"]		= "Media- och miniatyrfiler flyttades korrekt.";
 $pgv_lang["media_folder_corrupt"]	= "Mediamappen är skadad.";
-$pgv_lang["gedcom_deleted"]		= "Radering av GEDCOM [#GED#] lyckades.";
+$pgv_lang["gedcom_deleted"]		= "Radering av GEDCOM <b>#GED#</b> lyckades.";
 $pgv_lang["gedadmin"]				= "GEDCOM-administratör";
 $pgv_lang["full_name"]			= "Fullständigt namn";
-$pgv_lang["error_header"] 		= "GEDCOM-filen, <b>[#GEDCOM#]</b>, finns inte på den angivna platsen.";
+$pgv_lang["error_header"] 		= "GEDCOM-filen, <b>#GEDCOM#</b>, finns inte på den angivna platsen.";
 $pgv_lang["confirm_delete_file"]	= "Är du säker på at du vill radera denna fil?";
 $pgv_lang["confirm_folder_delete"] = "Är du säker på att du vill radera denna mapp?";
 $pgv_lang["confirm_remove_links"]	= "Är du säker på att du vill ta bort alla länkar till detta objekt?";
@@ -204,22 +204,6 @@ $pgv_lang["no_update_CHANs"]		= "Uppdatera inte CHAN (Senaste ändring) posterna
 $pgv_lang["no_CHANs_update"]		= "Inga CHAN (Senaste ändring) poster uppdaterades";
 
 $pgv_lang["files_in_backup"]		= "Filer inkluderade i denna backup<br />";
-$pgv_lang["created_remotelinks"]	= "Lyckades skapa <i>Fjärrlänk</i> tabellen.";
-$pgv_lang["created_remotelinks_fail"] 	= "Kunde inte skapa <i>Fjärrlänk</i> tabellen.";
-$pgv_lang["created_indis"]		= "Skapande av <i>Persontabell</i> lyckades.";
-$pgv_lang["created_indis_fail"]	= "Kunde inte skapa <i>Persontabellen</i>.";
-$pgv_lang["created_fams"]		= "Skapande av <i>Familjetabell</i> lyckades.";
-$pgv_lang["created_fams_fail"]	= "Kunde inte skapa <i>Familjetabellen<i>.";
-$pgv_lang["created_sources"]	= "Skapande av <i>Källtabell</i> lyckades.";
-$pgv_lang["created_sources_fail"]	= "Kunde inte skapa <i>Källtabellen</i>.";
-$pgv_lang["created_other"]		= "Skapande av <i>Diversetabell</i> lyckades.";
-$pgv_lang["created_other_fail"]	= "Kunde inte skapa <i>diversetabellen</i>.";
-$pgv_lang["created_places"]		= "Skapande av <i>Ortstabell</i> lyckades.";
-$pgv_lang["created_places_fail"]= "Kunde inte skapa <i>Ortstabellen</i>.";
-$pgv_lang["created_placelinks"] 	= "<i>Ortlänkstabellen</i> skapades utan problem.";
-$pgv_lang["created_placelinks_fail"]	= "Kan inte skapa <i>ortlänkstabellen</i>.";
-$pgv_lang["created_media_fail"]	= "Kan inte skapa <i>Mediatabell</i>.";
-$pgv_lang["created_media_mapping_fail"]	= "Kan inte skapa <i>Mediamappningstabellen.</i>";
 $pgv_lang["no_thumb_dir"]		= "miniatyrbildsmappen existerar inte och det gick inte att skapa en.";
 $pgv_lang["folder_created"]		= "Skapad mapp";
 $pgv_lang["folder_no_create"]		= "Kan inte skapa mapp";
@@ -270,7 +254,7 @@ $pgv_lang["create_user"]		= "Skapa ny användare";
 $pgv_lang["current_users"]						= "Användarlista";
 $pgv_lang["daily"]								= "Daglig";
 $pgv_lang["dataset_exists"]		= "En GEDCOM-fil med detta namn är redan importerad i databasen.";
-$pgv_lang["unsync_warning"] 					= "GEDCOM-filen är <em>inte</em> synkroniserad med databasen. Den innehåller kanske inte den senaste datan. För att åter-importera från databasen istället för från filen så ska du först ladda ner och sedan ladda upp igen.  ";
+$pgv_lang["unsync_warning"] 					= "GEDCOM-filen är <i>inte</i> synkroniserad med databasen. Den innehåller kanske inte den senaste datan. För att åter-importera från databasen istället för från filen så ska du först ladda ner och sedan ladda upp igen.  ";
 $pgv_lang["date_registered"]					= "Registreringsdatum";
 $pgv_lang["day_before_month"]		= "Dag före månad (DD MM ÅÅÅÅ)";
 $pgv_lang["DEFAULT_GEDCOM"]						= "Standard-GEDCOM";
@@ -282,14 +266,14 @@ $pgv_lang["del_unveru"]							= "Användare har inte verifierat sig inom 7 dagar
 $pgv_lang["do_not_change"]			= "Ändra inte";
 $pgv_lang["download_gedcom"]	= "Ladda ner GEDCOM-fil";
 $pgv_lang["download_here"]						= "Klicka här för att ladda ner filer.";
-$pgv_lang["download_note"]		= "NOTERING: Stora GEDCOM kan ta lång tid att processa innan nerladdning. Om PHP-tidsinställningen är för kort är det inte säkert att din nerladdning blir komplett.<br /><br />Du kan kontrollera din nerladdad GEDCOM-fil efter <b>0 TRLR</b> raden i slutet av filen för att försäkra dig om att filen är komplett. GEDCOM-filen är text, du kan använda en texteditor, men var försiktig så att du <u>inte</u> sparar GEDCOM-filen efter du kontrollerat den.<br /><br />Vanligtvis kan det ta lika lång tid att ladda ner som det tog att importera din GEDCOM.";
+$pgv_lang["download_note"]		= "OBS! Stora databaser kan ta lång tid att bearbeta innan de laddas ner. Om PHP tar slut innan nedladdningen är klar kanske den nedladdade filen inte är komplett.<br /><br />För att säkerställa att filen laddades ner korrekt, kontrollera att den sista raden i en fil i GEDCOM-format är <b>0&nbsp;TRLR</b> eller att den sista raden i en fil i XML-format är <b>&lt;/database&gt;</b>. Dessa filer är text; du kan använda vilken lämplig textredigerare som helst, men se till att <u>inte</u> sparar den nedladdade filen efter att du har inspekterat den.<br /><br />I allmänhet kan det ta så mycket tid att ladda ner som det tog att importera din ursprungliga GEDCOM-fil.";
 $pgv_lang["editaccount"]		= "Tillåt användaren att redigera sin kontoinformation";
 $pgv_lang["empty_dataset"]		= "Vill du radera den gamla datan och ersätta den med den nya datan?";
 $pgv_lang["empty_lines_detected"]	= "Tomma rader upptäcktes i din GEDCOM-fil. Vid städning kommer dessa tomma rader att tas bort.";
 $pgv_lang["enable_disable_lang"]				= "Konfigurera stödda språk";
 $pgv_lang["error_ban_server"]       = "Felaktig IPadress.";
 $pgv_lang["error_delete_person"]    = "Du måste välja person vars länk ska raderas.";
-$pgv_lang["error_header_write"]	= "GEDCOM-filen, <b>[#GEDCOM#]</b>, är inte skrivbar. Kontrollera fil- och access-rättigheter.";
+$pgv_lang["error_header_write"]	= "GEDCOM-filen, <b>#GEDCOM#</b>, är inte skrivbar. Kontrollera fil- och access-rättigheter.";
 $pgv_lang["error_remove_site"]					= "Fjärrservern kunde inte tas bort.";
 $pgv_lang["error_remove_site_linked"]			= "Fjärrservern kunde inte tas bort eftersom listan över anslutningar inte är tom.";
 $pgv_lang["error_remote_duplicate"]				= "Den här fjärradatabasen finns redan i listan som <i>#GLOBALS[whichFile]#</i>";
@@ -312,17 +296,17 @@ $pgv_lang["gedcom_not_imported"]				= "Denna GEDOM-fil har inte blivit importera
 $pgv_lang["ibase"]								= "Interbase";
 $pgv_lang["ifx"]								= "Informix";
 $pgv_lang["img_admin_settings"]	= "Ändra bildmanipuleringskonfigurationen";
-$pgv_lang["autoContinue"]						= "Tryck på knappen <<fortsätt>> automatiskt";
+$pgv_lang["autoContinue"]						= "Tryck på knappen «fortsätt» automatiskt";
 $pgv_lang["import_complete"]	= "Importen är färdig";
 $pgv_lang["import_options"]		= "Importeringsval";
 $pgv_lang["import_progress"]	= "Import framsteg...";
 $pgv_lang["import_statistics"]	= "Importeringsstatistik";
-$pgv_lang["import_time_exceeded"]	= "Exekveringstidens gräns nåddes. Klicka på fortsätt nedan för att fortsätta importera GEDCOM-filen.";
+$pgv_lang["import_time_exceeded"]	= "Exekveringstidens gräns nåddes. Klicka på <b>fortsätt</b> nedan för att fortsätta importera GEDCOM-filen.";
 $pgv_lang["inc_languages"]				= "Språk";
 $pgv_lang["INDEX_DIRECTORY"]					= "Indexkatalog";
-$pgv_lang["invalid_dates"]			= "Upptäckte ogiltigt datumformat, vid upprensning kommer formatet att ändras till DD MMM ÅÅÅÅ(t.ex. 1 JAN 2004).";
+$pgv_lang["invalid_dates"]			= "Upptäckte ogiltigt datumformat, vid upprensning kommer formatet att ändras till DD MMM ÅÅÅÅ (t.ex. 1 JAN 2004).";
 $pgv_lang["BOM_detected"] 						= "Ett Byte Order Mark(BOM) hittades i början av filen. Denna speciella kod kommer att tas bort vid rensning.";
-$pgv_lang["invalid_header"]		= "Upptäckt rader före GEDCOM-headern (0 HEAD). Dessa rader kommer att raderas vid städning.";
+$pgv_lang["invalid_header"]		= "Upptäckt rader före GEDCOM-headern <b>0&nbsp;HEAD</b>. Dessa rader kommer att raderas vid städning.";
 $pgv_lang["label_added_servers"]	= "Lagt till server";
 $pgv_lang["label_banned_servers"]   = "Förbjud sajter";
 $pgv_lang["label_families"]         = "Familjer";
@@ -385,7 +369,7 @@ $pgv_lang["reading_file"]		= "Läser GEDCOM-fil";
 $pgv_lang["readme_documentation"]	= "README-dokumentation";
 $pgv_lang["remove_ip"] 			= "Tabort IP-adress";
 $pgv_lang["REQUIRE_ADMIN_AUTH_REGISTRATION"] 	= "Administratören behöver godkänna nya användarregistreringar";
-$pgv_lang["review_readme"]						= "Du bör läsa igenom <a href=\"readme.txt\" target=\"_blank\">readme.txt</a> filen innan du fortsätter med konfigureringen av phpGedView.<br /><br />";
+$pgv_lang["review_readme"]						= "Du bör läsa igenom <a href=\"readme.txt\" target=\"_blank\">readme.txt</a> filen innan du fortsätter med konfigureringen av phpGedView.";
 $pgv_lang["seconds"]							= "&nbsp;&nbsp;sekunder";
 $pgv_lang["select_an_option"]	= "Välj alternativ nedan:";
 $pgv_lang["SERVER_URL"]							= "PhpGedView URL";
@@ -412,7 +396,7 @@ $pgv_lang["user_create_error"]	= "Går inte att skapa användare.  Var snäll g�
 $pgv_lang["user_created"]		= "Ny användare skapad.";
 $pgv_lang["user_default_tab"]	= "Den flik som visas som standard på ansedelsidan";
 $pgv_lang["user_path_length"]					= "Maximal relationssekretess sökvägslängd";
-$pgv_lang["user_relationship_priv"]				= "Begränsa access till besläktade personer";
+$pgv_lang["user_relationship_priv"]				= "Begränsa tillgång till besläktade personer";
 $pgv_lang["users_admin"]						= "Sajtadministratörer";
 $pgv_lang["users_gedadmin"]						= "GEDCOM-Administratörer";
 $pgv_lang["users_total"]						= "Totalt antal användare";
@@ -430,7 +414,7 @@ $pgv_lang["validate_gedcom"]	= "Validera GEDCOM-filen";
 $pgv_lang["verified"]			= "Användaren verifierade sig själv";
 $pgv_lang["verified_by_admin"]	= "Användare godkänd av admin";
 $pgv_lang["verify_gedcom"]		= "Verifiera GEDCOM";
-$pgv_lang["verify_upload_instructions"]	= "Om du väljer att fortsätta kommer den gamla GEDCOM-filen att ersättas med filen du har laddat upp och importprocessen kommer att börja igen. Om du väljer att avbryta kommer den gamla GEDCOM-filen att förbli oförändrad.";
+$pgv_lang["verify_upload_instructions"]	= "En GEDCOM-fil med samma namn har hittats. Om du väljer att fortsätta kommer den gamla GEDCOM-filen att ersättas med filen du laddade upp och importprocessen börjar igen. Om du väljer att avbryta förblir den gamla GEDCOM oförändrad.";
 $pgv_lang["view_changelog"]		= "Visa changelog.txt-filen";
 $pgv_lang["view_logs"]			= "Visa loggfiler";
 $pgv_lang["view_readme"]			= "Visa readme.txt-fil";
@@ -440,14 +424,14 @@ $pgv_lang["warn_users"]			= "Användare med varning";
 $pgv_lang["weekly"]				= "Veckovis";
 $pgv_lang["welcome_new"]		= "Välkommen till din nya PhpGedView sajt.";
 $pgv_lang["yearly"]				= "Årlig";
-$pgv_lang["admin_OK_subject"]					= "Godkännande av konto på #SERVER_NAME#";
-$pgv_lang["admin_OK_message"]					= "Administratören på PhpGedViewsajten #SERVER_NAME# har godkänt din ansökan om ett konto.\r\n\r\nDu kan nu logga in genom att följande link: #SERVER_NAME#";
+$pgv_lang["admin_OK_subject"]					= "Godkännande av konto på #PGV_SERVER_NAME##PGV_SCRIPT_PATH#";
+$pgv_lang["admin_OK_message"]					= "Administratören på PhpGedViewsajten #PGV_SERVER_NAME##PGV_SCRIPT_PATH# har godkänt din ansökan om ett konto.\r\n\r\nDu kan nu logga in genom att följande link: #PGV_SERVER_NAME##PGV_SCRIPT_PATH#";
 
 $pgv_lang["batch_update"]="Utför batchuppdateringar / redigeringar på din GEDCOM";
 
 // Text for the Gedcom Checker
 $pgv_lang["gedcheck"]     = "GEDCOM kontroll";
-$pgv_lang["gedcheck_text"]= 	"Denna modul kontrollera formatet i GEDCOM-filen mot <a \"http://phpgedview.sourceforge.net/ged551-5.pdf\">5.5.1 GEDCOM Specifikationen</a>. Den kollar också efter ett antal vanliga fel i din data. Observera att det finns flera versioner, utökningar och variationer på specifikationen så du bör inte oroa dig för andra fel en de som är flaggade kritiska. Förklaringen till rad-för-rad felen finns i specifikationen, så kolla den först innan du frågar efter hjälp.";
+$pgv_lang["gedcheck_text"]= 	"Denna modul kontrollera formatet i GEDCOM-filen mot <a \"http://phpgedview.sourceforge.net/ged551-5.pdf\">5.5.1 GEDCOM Specifikationen</a>. Den kollar också efter ett antal vanliga fel i din data.<br /><br />Observera att det finns flera versioner, utökningar och variationer på specifikationen så du bör inte oroa dig för andra fel en de som är flaggade kritiska. Förklaringen till rad-för-rad felen finns i specifikationen, så kolla den först innan du frågar efter hjälp.";
 $pgv_lang["gedcheck_sync"] = "Ändringar som görs i databasen synkroniseras inte med filen #GLOBALS[ged]#. Filinnehållet kan vara föråldrat. Du kan synkronisera den med databasen nu genom att <b><a \"#GLOBALS[ged_link]#\">exportera</a></b>.";
 $pgv_lang["gedcheck_nothing"] = "Inga fel hittades på denna nivå.";
 $pgv_lang["level"]        = "Nivå";

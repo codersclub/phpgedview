@@ -32,7 +32,7 @@ if (!defined('PGV_PHPGEDVIEW')) {
 }
 
 $pgv_lang["add_marriage"]			= "Ehedetails hinzufügen";
-$pgv_lang["edit_concurrency_change"] = "Dieser Datensatz wurde zuletzt von <i>#CHANGEUSER#</i> um #CHANGEDATE# geändert.";
+$pgv_lang["edit_concurrency_change"] = "Dieser Datensatz wurde zuletzt von <i>#CHANGEUSER#</i> am #CHANGEDATE# geändert.";
 $pgv_lang["edit_concurrency_msg2"]	= "Ein anderer Benutzer hat den Datensatz mit ID-Nummer #PID# geändert, seit Sie ihn aufruften.";
 $pgv_lang["edit_concurrency_msg1"]	= "Ein Fehler trat während dem Aufbau des Editier-Formulars auf.  Ein anderer Benutzer hat womöglich den Datensatz geändert, seit Sie ihn aufruften.";
 $pgv_lang["edit_concurrency_reload"] = "Bitte rufen Sie die vorige Seite erneut auf.  So können Sie sicher sein, dass Sie den neuesten Datensatz bearbeiten.";
@@ -76,7 +76,7 @@ $pgv_lang["add_unlinked"]			= "Verbindungslose Datensätze";
 $pgv_lang["server_file"]			= "Dateiname auf dem Server";
 $pgv_lang["server_file_advice"]		= "Nicht ändern, um den ursprünglichen Namen zu behalten.";
 $pgv_lang["server_file_advice2"]	= "Sie können hier einen URL eingeben, der mit »http://« beginnt.";
-$pgv_lang["server_folder_advice"]	= "Sie können bis zu #GLOBALS[MEDIA_DIRECTORY_LEVELS]# Verzeichnisnamen zusätzlich zum »#GLOBALS[MEDIA_DIRECTORY]#« Standardnamen eingeben.<br />Der »#GLOBALS[MEDIA_DIRECTORY]#« Teil des Verzeichnisnamens wird NICHT eingegeben.";
+$pgv_lang["server_folder_advice"]	= "Sie können bis zu #GLOBALS[MEDIA_DIRECTORY_LEVELS]# Verzeichnisnamen zusätzlich zum »#GLOBALS[MEDIA_DIRECTORY]#« Standardnamen eingeben. Der »#GLOBALS[MEDIA_DIRECTORY]#« Teil des Verzeichnisnamens wird NICHT eingegeben.";
 $pgv_lang["server_folder_advice2"]	= "Diese Eingabe wird nicht beachtet, wenn Sie oben einen URL eingegeben haben.";
 $pgv_lang["add_linkid_advice"]		= "Die ID Nummer einer Person, Familie, oder Quelle eingeben oder suchen, um eine Verbindung zu diesem Medien Objekt herzustellen.";
 $pgv_lang["use_browse_advice"]		= "Mit dem »Browse« Button können Sie Ihren lokalen Computer nach der gewünschten Datei durchsuchen.";
@@ -97,7 +97,7 @@ $pgv_lang["thumb_media_fail0"]		= "Das Miniaturbild <b>#GLOBALS[oldThumbFolder]#
 $pgv_lang["thumb_media_fail1"]		= "Das Miniaturbild <b>#GLOBALS[oldMediaName]#</b> konnte nicht auf <b>#GLOBALS[newMediaName]#</b> umbenannt werden.";
 $pgv_lang["thumb_media_fail2"]		= "Das Miniaturbild <b>#GLOBALS[oldMediaName]#</b> konnte nicht von <b>#GLOBALS[oldThumbFolder]#</b> nach <b>#GLOBALS[newThumbFolder]#</b> verlegt werden.";
 $pgv_lang["thumb_media_fail3"]		= "Das Miniaturbild konnte nicht von <b>#GLOBALS[oldThumbFolder]##GLOBALS[oldMediaName]#</b> nach <b>#GLOBALS[newThumbFolder]##GLOBALS[newMediaName]#</b> verlegt und umbenannt werden.";
-$pgv_lang["thumb_create_ok0a"]			= "Das Miniaturbild <b>#GLOBALS[imageThumbnail]#</b> wurde automatisch erstellt.<br />";
+$pgv_lang["thumb_create_ok0a"]			= "Das Miniaturbild <b>#GLOBALS[imageThumbnail]#</b> wurde automatisch erstellt.";
 $pgv_lang["thumb_create_ok0b"]			= "Das Miniaturbild #GLOBALS[imageThumbnail]# wurde automatisch erstellt.";
 $pgv_lang["thumb_create_fail0a"]		= "Das Miniaturbild <span style=\"font-size:larger\">#GLOBALS[imageThumbnail]#</span> konnte nicht automatisch erstellt werden : ";
 $pgv_lang["thumb_create_fail0b"]		= "Das Miniaturbild #GLOBALS[imageThumbnail]# konnte nicht automatisch erstellt werden. Error code : ";
@@ -119,7 +119,7 @@ $pgv_lang["label_gedcom_id"]		= "Datenbank ID";
 $pgv_lang["label_local_id"]		 	= "Personen ID";
 $pgv_lang["accept"]					= "Übernehmen";
 $pgv_lang["accept_all"]				= "Alle Änderungen übernehmen";
-$pgv_lang["accept_gedcom"]			= "Entscheiden Sie für jede Änderung, ob Sie sie übernehmen oder verwerfen möchten.<br /><br />Um alle Änderungen auf einmal zu übernehmen, klicken Sie <b>»Alle Änderungen übernehmen«</b> in der Box unten.<br />Weitere Informationen über eine Änderung erhalten Sie über den Link <b>»Änderungen ansehen«</b> oder klicken Sie <b>»GEDCOM Datensatz ansehen«</b>, um die veränderte GEDCOM Datei anzusehen.";
+$pgv_lang["accept_gedcom"]			= "Entscheiden Sie für jede Änderung, ob Sie sie übernehmen oder verwerfen möchten.<br /><br />Um alle Änderungen auf einmal zu übernehmen, klicken Sie <b>#pgv_lang[accept_all]#</b> in der Box unten. Weitere Informationen über eine Änderung erhalten Sie über den Link <b>#pgv_lang[view_change_diff]#</b> oder klicken Sie <b>#pgv_lang[view_gedcom]#</b>, um die veränderte GEDCOM Datei anzusehen.";
 $pgv_lang["accept_successful"]		= "Änderungen in die Datenbank übernommen";
 $pgv_lang["add_child"]				= "Kind hinzufügen";
 $pgv_lang["add_child_to_family"]	= "Kind dieser Familie hinzufügen";
@@ -151,7 +151,7 @@ $pgv_lang["basic_search_discription"] = "Einfache Internetseiten-Suche";
 $pgv_lang["birthdate_search"]		= "Geburtsdatum:";
 $pgv_lang["birthplace_search"]		= "Geburtsort:";
 $pgv_lang["change"]					= "Ändern";
-$pgv_lang["change_family_instr"]	= "Benutze diese Seite zum Ändern oder Entfernen von Familienmitgliedern.<br /><br />Für jedes Familienmitglied können Sie den <b>Ändern</b> Button klicken, um eine andere Person für diese Rolle in der Familie zu wählen.<br /><br />Um Ihre Änderungen zu speichern, klicken Sie den <b>Speichern</b> Button.<br />";
+$pgv_lang["change_family_instr"]	= "Benutze diese Seite zum Ändern oder Entfernen von Familienmitgliedern.<br /><br />Für jedes Familienmitglied können Sie den <b>Ändern</b> Button klicken, um eine andere Person für diese Rolle in der Familie zu wählen. Sie können auch das Link <b>Entfernen</b> verwenden, um diese Person aus der Familie zu entfernen.<br /><br />Um Ihre Änderungen zu speichern, klicken Sie den <b>Speichern</b> Button.";
 $pgv_lang["change_family_members"]	= "Familienmitglieder ändern";
 $pgv_lang["changes_occurred"]		= "An diesem Datensatz wurden folgende Änderungen vorgenommen:";
 $pgv_lang["confirm_remove"]			= "Möchten Sie wirklich diese Person aus dieser Familie entfernen?";
@@ -255,7 +255,6 @@ $pgv_lang["upload"]					= "Hochladen";
 $pgv_lang["upload_error"]			= "Beim Übertragen (upload) Ihrer Datei auf den Server trat ein Fehler auf.";
 $pgv_lang["copy_error"]				= "Die Datei #GLOBALS[whichFile2]# konnte nicht von #GLOBALS[whichFile1]# kopiert werden.";
 $pgv_lang["upload_media"]			= "Multimedia Dateien auf Server hochladen";
-$pgv_lang["upload_media_help"]		= "~#pgv_lang[upload_media]#~<br /><br />Wählen Sie die Dateien zum Hochladen auf Ihren Server. Alle Dateien werden in das <b>#MEDIA_DIRECTORY#</b> Verzeichnis aktualisiert  oder in eines seiner Unterverzeichnisse.<br /><br />Verzeichnisnamen die Sie eingeben, werden an #MEDIA_DIRECTORY# angehängt. Zum Beispiel, #MEDIA_DIRECTORY#Müller. Falls das Miniaturbild-Verzeichnis nicht existiert, wird es automatisch erstellt.";
 $pgv_lang["upload_successful"]		= "Hochladen war erfolgreich";
 $pgv_lang["view_change_diff"]		= "Änderungen ansehen";
 
