@@ -6,7 +6,7 @@
  * used on the indilist, famlist, find, and search pages.
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2017  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2021  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -1801,7 +1801,7 @@ function print_events_table($startjd, $endjd, $events='BIRT MARR DEAT', $only_li
 		if ($summary!="" && $endjd==$startjd) $summary .= "1";
 	}
 	if ($summary!="") {
-		$return .= "<b>";
+		$return .= "<br /><b>";
 		$return .= print_text($summary, 0, 1);
 		$return .= "</b>";
 	}

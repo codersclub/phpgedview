@@ -3,7 +3,7 @@
  * English texts
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2020  PGV Development Team
+ * Copyright (C) 2002 to 2021  PGV Development Team
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -75,11 +75,11 @@ $pgv_lang["add_unlinked_note"]		= "Add an unlinked note";
 $pgv_lang["add_unlinked"]			= "Unlinked Records";
 $pgv_lang["server_file"]				= "File name on server";
 $pgv_lang["server_file_advice"]			= "Do not change to keep original file name.";
-$pgv_lang["server_file_advice2"]		= "You may enter a URL, beginning with &laquo;http://&raquo;.";
-$pgv_lang["server_folder_advice"]		= "You can enter up to #GLOBALS[MEDIA_DIRECTORY_LEVELS]# folder names to follow the default &laquo;#GLOBALS[MEDIA_DIRECTORY]#&raquo;.<br />Do not enter the &laquo;#GLOBALS[MEDIA_DIRECTORY]#&raquo; part of the destination folder name.";
+$pgv_lang["server_file_advice2"]		= "You may enter a URL, beginning with «http://».";
+$pgv_lang["server_folder_advice"]		= "You can enter up to #GLOBALS[MEDIA_DIRECTORY_LEVELS]# folder names to follow the default «#GLOBALS[MEDIA_DIRECTORY]#». Do not enter the «#GLOBALS[MEDIA_DIRECTORY]#» part of the destination folder name.";
 $pgv_lang["server_folder_advice2"]		= "This entry is ignored if you have entered a URL into the file name field.";
 $pgv_lang["add_linkid_advice"]			= "Enter or search for the ID of the person, family, or source to which this media item should be linked.";
-$pgv_lang["use_browse_advice"]			= "Use the &laquo;Browse&raquo; button to search your local computer for the desired file.";
+$pgv_lang["use_browse_advice"]			= "Use the «Browse» button to search your local computer for the desired file.";
 $pgv_lang["add_media_other_folder"]		= "Other folder... please type in";
 $pgv_lang["add_media_file"]				= "Existing Media file on server";
 $pgv_lang["main_media_ok1"]				= "Main media file <b>#GLOBALS[oldMediaName]#</b> renamed to <b>#GLOBALS[newMediaName]#</b>.";
@@ -89,7 +89,7 @@ $pgv_lang["main_media_fail0"]			= "Main media file <b>#GLOBALS[oldMediaFolder]##
 $pgv_lang["main_media_fail1"]			= "Main media file <b>#GLOBALS[oldMediaName]#</b> could not be renamed to <b>#GLOBALS[newMediaName]#</b>.";
 $pgv_lang["main_media_fail2"]			= "Main media file <b>#GLOBALS[oldMediaName]#</b> could not be moved from <b>#GLOBALS[oldMediaFolder]#</b> to <b>#GLOBALS[newMediaFolder]#</b>.";
 $pgv_lang["main_media_fail3"]			= "Main media file could not be moved and renamed from <b>#GLOBALS[oldMediaFolder]##GLOBALS[oldMediaName]#</b> to <b>#GLOBALS[newMediaFolder]##GLOBALS[newMediaName]#</b>.";
-$pgv_lang["resn_disabled"]				= "Note: You must enable the &laquo;#pgv_lang[PRIVACY_BY_RESN]#&raquo; feature for this setting to take effect.";
+$pgv_lang["resn_disabled"]				= "Note: You must enable the «#pgv_lang[PRIVACY_BY_RESN]#» feature for this setting to take effect.";
 $pgv_lang["thumb_media_ok1"]			= "Thumbnail file <b>#GLOBALS[oldMediaName]#</b> renamed to <b>#GLOBALS[newMediaName]#</b>.";
 $pgv_lang["thumb_media_ok2"]			= "Thumbnail file <b>#GLOBALS[oldMediaName]#</b> moved from <b>#GLOBALS[oldThumbFolder]#</b> to <b>#GLOBALS[newThumbFolder]#</b>.";
 $pgv_lang["thumb_media_ok3"]			= "Thumbnail file moved and renamed from <b>#GLOBALS[oldThumbFolder]##GLOBALS[oldMediaName]#</b> to <b>#GLOBALS[newThumbFolder]##GLOBALS[newMediaName]#</b>.";
@@ -97,7 +97,7 @@ $pgv_lang["thumb_media_fail0"]			= "Thumbnail file <b>#GLOBALS[oldThumbFolder]##
 $pgv_lang["thumb_media_fail1"]			= "Thumbnail file <b>#GLOBALS[oldMediaName]#</b> could not be renamed to <b>#GLOBALS[newMediaName]#</b>.";
 $pgv_lang["thumb_media_fail2"]			= "Thumbnail file <b>#GLOBALS[oldMediaName]#</b> could not be moved from <b>#GLOBALS[oldThumbFolder]#</b> to <b>#GLOBALS[newThumbFolder]#</b>.";
 $pgv_lang["thumb_media_fail3"]			= "Thumbnail file could not be moved and renamed from <b>#GLOBALS[oldThumbFolder]##GLOBALS[oldMediaName]#</b> to <b>#GLOBALS[newThumbFolder]##GLOBALS[newMediaName]#</b>.";
-$pgv_lang["thumb_create_ok0a"]			= "Thumbnail <b>#GLOBALS[imageThumbnail]#</b> created automatically.<br />";
+$pgv_lang["thumb_create_ok0a"]			= "Thumbnail <b>#GLOBALS[imageThumbnail]#</b> created automatically.";
 $pgv_lang["thumb_create_ok0b"]			= "Thumbnail #GLOBALS[imageThumbnail]# created automatically.";
 $pgv_lang["thumb_create_fail0a"]		= "Thumbnail <span style=\"font-size:larger\">#GLOBALS[imageThumbnail]#</span> could not be created automatically : ";
 $pgv_lang["thumb_create_fail0b"]		= "Thumbnail #GLOBALS[imageThumbnail]# could not be created automatically. Error code : ";
@@ -107,7 +107,7 @@ $pgv_lang["thumb_create_fail3"]			= "This feature does not support the <span sty
 $pgv_lang["thumb_create_fail4"]			= "The destination directory cannot be created.";
 $pgv_lang["thumb_create_fail5"]			= "The <span style=\"font-size:larger\">#GLOBALS[imageFilename]#</span> input image does not exist or cannot be read.";
 $pgv_lang["thumb_create_fail6"]			= "The size of the <span style=\"font-size:larger\">#GLOBALS[imageFilename]#</span> input image cannot be determined.";
-$pgv_lang["thumb_create_fail7"]			= "There is not enough free memory.<br />Reduce the input image size or adjust the memory allocation in the Site Configuration, Step 4, Advanced Settings.";
+$pgv_lang["thumb_create_fail7"]			= "There is not enough free memory.<br /><br />Reduce the input image size or adjust the memory allocation in the Site Configuration, Step 4, Advanced Settings.";
 $pgv_lang["thumb_create_fail8"]			= "The <span style=\"font-size:larger\">#GLOBALS[imageFilename]#</span> input image is defective.";
 $pgv_lang["add_asso"]				= "Add a new Associate";
 $pgv_lang["edit_sex"]				= "Edit Gender";
@@ -119,7 +119,7 @@ $pgv_lang["label_gedcom_id"]        = "Database ID";
 $pgv_lang["label_local_id"]         = "Person ID";
 $pgv_lang["accept"] 				= "Accept";
 $pgv_lang["accept_all"] 			= "Accept all changes";
-$pgv_lang["accept_gedcom"]			= "Decide for each change to either accept or reject it.<br /><br />To accept all changes at once, click <b>\"Accept all changes\"</b> in the box below.<br />To get more information about a change,<br />click <b>\"View change diff\"</b> to see the differences,<br />or click <b>\"View GEDCOM record\"</b> to see the new data in GEDCOM format.";
+$pgv_lang["accept_gedcom"]			= "Decide for each change to either accept or reject it.<br /><br />To accept all changes at once, click <b>#pgv_lang[accept_all]#</b> in the box below. To get more information about a change, click <b>#pgv_lang[view_change_diff]#</b> to see the differences, or click <b>#pgv_lang[view_gedcom]#</b> to see the new data in GEDCOM format.";
 $pgv_lang["accept_successful"]		= "Changes accepted into database";
 $pgv_lang["add_child"]				= "Add child";
 $pgv_lang["add_child_to_family"]	= "Add a child to this family";
@@ -151,7 +151,7 @@ $pgv_lang["basic_search_discription"] = "Basic site search";
 $pgv_lang["birthdate_search"]		= "Birth date: ";
 $pgv_lang["birthplace_search"]		= "Birth Place: ";
 $pgv_lang["change"]					= "Change";
-$pgv_lang["change_family_instr"]	= "Use this page to change or remove family members.<br /><br />For each member in the family, you can use the Change link to choose a different person to fill that role in the family.  You can also use the Remove link to remove that person from the family.<br /><br />When you have finished changing the family members, click the Save button to save the changes.<br />";
+$pgv_lang["change_family_instr"]	= "Use this page to change or remove family members.<br /><br />For each member in the family, you can use the <b>Change</b> link to choose a different person to fill that role in the family.  You can also use the <b>Remove</b> link to remove that person from the family.<br /><br />When you have finished changing the family members, click the <b>Save</b> button to save the changes.";
 $pgv_lang["change_family_members"]	= "Change Family Members";
 $pgv_lang["changes_occurred"]		= "The following changes were made to this record:";
 $pgv_lang["confirm_remove"]			= "Are you sure you want to remove this person from the family?";
@@ -255,7 +255,6 @@ $pgv_lang["upload"]					= "Upload";
 $pgv_lang["upload_error"]			= "There was an error uploading your file.";
 $pgv_lang["copy_error"]				= "The file #GLOBALS[whichFile2]# could not be copied from #GLOBALS[whichFile1]#";
 $pgv_lang["upload_media"]			= "Upload Media files";
-$pgv_lang["upload_media_help"]		= "~#pgv_lang[upload_media]#~<br /><br />Select files from your local computer to upload to your server.  All files will be uploaded to the directory <b>#MEDIA_DIRECTORY#</b> or to one of its sub-directories.<br /><br />Folder names you specify will be appended to #MEDIA_DIRECTORY#. For example, #MEDIA_DIRECTORY#myfamily. If the thumbnail directory does not exist, it is created automatically.";
 $pgv_lang["upload_successful"]		= "Upload successful";
 $pgv_lang["view_change_diff"]		= "View Change Diff";
 
