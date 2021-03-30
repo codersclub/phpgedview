@@ -14,6 +14,8 @@ The session.php script uses this information to populate the constants : PGV_VER
 =====================================================================
 
 Version 4.3.1
+ - Fixed: User configuration showing inaccurate legend for one option (canajun2eh)
+ - Fixed: GEDCOM configuration showing incorrect legends for two options (canajun2eh)
  - Fixed: Language files for CA DA DE EN ES FR IT NL PT NO SV have some issues with translations or formatting (canajun2eh)
  - Changed: Remove support for CVS and SVN version control systems -- this feature never worked properly anyway (canajun2eh)
  - Changed: Remove link to SourceForge Translator forum from Translator Tools section of Admin page (canajun2eh)
