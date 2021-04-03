@@ -11,8 +11,8 @@
 	<PGVRInput name="address" type="text"><PGVRvar var="pgv_lang[filter_address]" /> </PGVRInput>
 	<PGVRInput name="sortby" type="select" options="NAME,ID"><PGVRvar var="pgv_lang[sort_by]" /></PGVRInput>
 	<PGVRInput name="email_in" type="select" options="all,noemail,onlyemail"><PGVRvar var="pgv_lang[include]"/> </PGVRInput>
-	<PGVRInput name="pageSize" type="select" default="A4" options="A3,A4,letter,legal"><PGVRvar var="pgv_lang[page_size]" /></PGVRInput>
-	<PGVRInput name="fonts" type="select" default="dejavusans" options="courier,dejavusans,dejavusanscondensed,dejavuserif,dejavuserifcondensed,dejavusansmono,freesans,freeserif,freemono,helvetica,times"><PGVRvar var="pgv_lang[font]"/></PGVRInput>
+	<PGVRInput name="pageSize" type="select" default="GLOBALS[pageSizeDefault]" options="GLOBALS[pageSizeOptions]"><PGVRvar var="pgv_lang[page_size]" /></PGVRInput>
+	<PGVRInput name="fonts" type="select" default="GLOBALS[fontsDefault]" options="GLOBALS[fontsOptions]"><PGVRvar var="pgv_lang[font]"/></PGVRInput>
 
 	<!-- Header -->
 	<PGVRStyle name="header" font="$fonts" size="16" style="b" />
@@ -29,8 +29,8 @@
 
 	<PGVRDoc pageSize="$pageSize" >
 		<PGVRHeader>
-			<PGVRCell align="center" height="20" newline="1" style="header"><PGVRvar var="pgv_lang[address_list]" /></PGVRCell>
-			<PGVRCell align="rightrtl" newline="1" style="pagenum"><PGVRvar var="pgv_lang[page]" /> <PGVRPageNum /> <PGVRvar var="pgv_lang[of]" /> <PGVRTotalPages /></PGVRCell>
+			<PGVRCell align="center" height="20" newline="1" style="header" padding="0"><PGVRvar var="pgv_lang[address_list]" /></PGVRCell>
+			<PGVRCell align="rightrtl" newline="1" style="pagenum" padding="0"><PGVRvar var="pgv_lang[page]" /> <PGVRPageNum /> <PGVRvar var="pgv_lang[of]" /> <PGVRTotalPages /></PGVRCell>
 			<PGVRTextBox border="1" height="12" width="40">
 				<PGVRText style="label"> </PGVRText>
 			</PGVRTextBox>

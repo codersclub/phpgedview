@@ -14,8 +14,8 @@
 	<PGVRInput name="abbrNote" type="checkbox" default="1"><PGVRvar var="pgv_lang[show_abbr_notes]" /></PGVRInput>
 	<PGVRInput name="photos" type="checkbox" default="1"><PGVRvar var="pgv_lang[show_photos]" /></PGVRInput>
 	<PGVRInput name="colors" type="checkbox" default="1"><PGVRvar var="pgv_lang[use_colors]" /></PGVRInput>
-	<PGVRInput name="pageSize" type="select" default="A4" options="A3,A4,letter,legal"><PGVRvar var="pgv_lang[page_size]" /></PGVRInput>
-	<PGVRInput name="fonts" type="select" default="dejavusans" options="courier,dejavusans,dejavusanscondensed,dejavuserif,dejavuserifcondensed,dejavusansmono,freesans,freeserif,freemono,helvetica,times"><PGVRvar var="pgv_lang[font]"/></PGVRInput>
+	<PGVRInput name="pageSize" type="select" default="GLOBALS[pageSizeDefault]" options="GLOBALS[pageSizeOptions]"><PGVRvar var="pgv_lang[page_size]" /></PGVRInput>
+	<PGVRInput name="fonts" type="select" default="GLOBALS[fontsDefault]" options="GLOBALS[fontsOptions]"><PGVRvar var="pgv_lang[font]"/></PGVRInput>
 
 	<!-- Header -->
 	<PGVRStyle name="header" font="$fonts" size="14" style="b" />
@@ -91,9 +91,9 @@
 		<PGVRSetVar name="wifeid" value="@WIFE" />
 
 		<PGVRHeader>
-			<PGVRCell align="center" newline="1" style="header"><PGVRvar var="pgv_lang[family_group_report]" /></PGVRCell>
-			<PGVRCell align="center" newline="1" style="subheader"><PGVRGetPersonName id="$famid" /></PGVRCell>
-			<PGVRCell align="rightrtl" newline="1" style="pagenum"><PGVRvar var="pgv_lang[page]" /> <PGVRPageNum /> <PGVRvar var="pgv_lang[of]" /> <PGVRTotalPages /></PGVRCell>
+			<PGVRCell align="center" newline="1" style="header" padding="0"><PGVRvar var="pgv_lang[family_group_report]" /></PGVRCell>
+			<PGVRCell align="center" newline="1" style="subheader" padding="0"><PGVRGetPersonName id="$famid" /></PGVRCell>
+			<PGVRCell align="rightrtl" newline="1" style="pagenum" padding="0"><PGVRvar var="pgv_lang[page]" /> <PGVRPageNum /> <PGVRvar var="pgv_lang[of]" /> <PGVRTotalPages /></PGVRCell>
 		</PGVRHeader>
 
 		<PGVRBody>

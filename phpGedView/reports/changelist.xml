@@ -12,9 +12,9 @@
 	<PGVRInput name="changeRangeEnd" lookup="DATE" type="text" default="NOW"><PGVRvar var="pgv_lang[changedate1]" /></PGVRInput>
 	<PGVRInput name="sortby" type="select" options="CHAN,NAME,BIRT:DATE"><PGVRvar var="pgv_lang[sort_by]" /></PGVRInput>
 	<PGVRInput name="pending" type="select" options="yes,no"><PGVRvar var="pgv_lang[show_pending]" /></PGVRInput>
-	<PGVRInput name="pageSize" type="select" default="A4" options="A3,A4,letter,legal"><PGVRvar var="pgv_lang[page_size]" /></PGVRInput>
+	<PGVRInput name="pageSize" type="select" default="GLOBALS[pageSizeDefault]" options="GLOBALS[pageSizeOptions]"><PGVRvar var="pgv_lang[page_size]" /></PGVRInput>
 	<PGVRInput name="pageorient" type="select" default="landscape" options="landscape,portrait"><PGVRvar var="pgv_lang[orientation]" /></PGVRInput>
-	<PGVRInput name="fonts" type="select" default="dejavusans" options="courier,dejavusans,dejavusanscondensed,dejavuserif,dejavuserifcondensed,dejavusansmono,freesans,freeserif,freemono,helvetica,times"><PGVRvar var="pgv_lang[font]"/></PGVRInput>
+	<PGVRInput name="fonts" type="select" default="GLOBALS[fontsDefault]" options="GLOBALS[fontsOptions]"><PGVRvar var="pgv_lang[font]"/></PGVRInput>
 
 	<!-- Header -->
 	<PGVRStyle name="header" font="$fonts" size="14" style="b" />
@@ -46,8 +46,8 @@
 
 	<PGVRDoc pageSize="$pageSize" orientation="$pageorient" >
 		<PGVRHeader>
-			<PGVRCell align="center" newline="1" style="header"><PGVRvar var="pgv_lang[changes_report]" /></PGVRCell>
-			<PGVRCell align="rightrtl" newline="1" style="pagenum"><PGVRvar var="pgv_lang[page]" /> <PGVRPageNum /> <PGVRvar var="pgv_lang[of]" /> <PGVRTotalPages /></PGVRCell>
+			<PGVRCell align="center" newline="1" style="header" padding="0"><PGVRvar var="pgv_lang[changes_report]" /></PGVRCell>
+			<PGVRCell align="rightrtl" newline="1" style="pagenum" padding="0"><PGVRvar var="pgv_lang[page]" /> <PGVRPageNum /> <PGVRvar var="pgv_lang[of]" /> <PGVRTotalPages /></PGVRCell>
 		</PGVRHeader>
 
 		<PGVRBody>

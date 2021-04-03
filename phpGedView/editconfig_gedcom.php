@@ -454,6 +454,10 @@ if ($action=="update") {
 	$configtext = preg_replace('/\$WELCOME_TEXT_CUST_HEAD\s*=\s*.*;/', "\$WELCOME_TEXT_CUST_HEAD = ".$boolarray[$_POST["NEW_WELCOME_TEXT_CUST_HEAD"]].";", $configtext);
 	$configtext = preg_replace('/\$WORD_WRAPPED_NOTES\s*=\s*.*;/', "\$WORD_WRAPPED_NOTES = ".$boolarray[$_POST["NEW_WORD_WRAPPED_NOTES"]].";", $configtext);
 	$configtext = preg_replace('/\$ZOOM_BOXES\s*=\s*\".*\";/', "\$ZOOM_BOXES = \"".$_POST["NEW_ZOOM_BOXES"]."\";", $configtext);
+	$configtext = preg_replace('/\$pageSizeDefault\s*=\s*\".*\";/', "\$pageSizeDefault = \"".$_POST["NEW_pageSizeDefault"]."\";", $configtext);
+	$configtext = preg_replace('/\$pageSizeOptions\s*=\s*\".*\";/', "\$pageSizeOptions = \"".$_POST["NEW_pageSizeOptions"]."\";", $configtext);
+	$configtext = preg_replace('/\$fontsDefault\s*=\s*\".*\";/', "\$fontsDefault = \"".$_POST["NEW_fontsDefault"]."\";", $configtext);
+	$configtext = preg_replace('/\$fontsOptions\s*=\s*\".*\";/', "\$fontsOptions = \"".$_POST["NEW_fontsOptions"]."\";", $configtext);
 	if (!$_POST["NEW_MEDIA_FIREWALL_ROOTDIR"]) {
 		$NEW_MEDIA_FIREWALL_ROOTDIR = $INDEX_DIRECTORY;
 	} else {
@@ -1791,6 +1795,55 @@ print "&nbsp;<a href=\"javascript: ".$pgv_lang["displ_hide_conf"]."\" onclick=\"
 			<option value="no" <?php if (!$SHOW_EST_LIST_DATES) print "selected=\"selected\""; ?>><?php print $pgv_lang["no"]; ?></option>
 			</select>
 		</td>
+	</tr>
+</table>
+</div>
+
+<table class="facts_table"><tr><td class="subbar <?php print $TEXT_DIRECTION; ?>">
+<?php
+print "<a href=\"javascript: ".$pgv_lang["displ_hide_conf"]."\" onclick=\"expand_layer('layout-options6');return false\"><img id=\"layout-options6_img\" src=\"".$PGV_IMAGE_DIR."/".$PGV_IMAGES["plus"]["other"]."\" border=\"0\" width=\"11\" height=\"11\" alt=\"\" /></a>";
+print "&nbsp;<a href=\"javascript: ".$pgv_lang["displ_hide_conf"]."\" onclick=\"expand_layer('layout-options6');return false\">".$pgv_lang["displ_reports"]."</a>";
+?></td></tr></table>
+<div id="layout-options6" style="display: none">
+<table class="facts_table">
+	<tr>
+		<td class="descriptionbox wrap width20"><?php print_help_link("pageSizeDefault_help", "qm", "pageSizeDefault"); print $pgv_lang["pageSizeDefault"]; ?></td>
+		<td class="optionbox"><select name="NEW_pageSizeDefault" tabindex="<?php $i++; print $i; ?>" onfocus="getHelp('pageSizeDefault_help');">
+			<?php
+			if (!isset($NEW_pageSizeOptions)) $tempSelectList = explode(',', $pageSizeOptions);
+			else $tempSelectList = explode(',', $NEW_pageSizeOptions);
+			foreach($tempSelectList as $tempOption) {
+				echo "<option value='{$tempOption}'";
+				if ($pageSizeDefault == $tempOption) echo " selected='selected'";
+				echo ">{$tempOption}</option>";
+			}
+			?>
+			</select>
+		</td>
+	</tr>
+	<tr>
+		<td class="descriptionbox wrap width20"><?php print_help_link("pageSizeOptions_help", "qm", "pageSizeOptions"); print $pgv_lang["pageSizeOptions"]; ?></td>
+		<td class="optionbox"><input type="text" name="NEW_pageSizeOptions" value="<?php print $pageSizeOptions; ?>" size="40" dir="ltr" tabindex="<?php $i++; print $i; ?>" onfocus="getHelp('pageSizeOptions_help');" /></td>
+	</tr>
+
+	<tr>
+		<td class="descriptionbox wrap width20"><?php print_help_link("fontsDefault_help", "qm", "fontsDefault"); print $pgv_lang["fontsDefault"]; ?></td>
+		<td class="optionbox"><select name="NEW_fontsDefault" tabindex="<?php $i++; print $i; ?>" onfocus="getHelp('fontsDefault_help');">
+			<?php
+			if (!isset($NEW_fontsOptions)) $tempSelectList = explode(',', $fontsOptions);
+			else $tempSelectList = explode(',', $NEW_fontsOptions);
+			foreach($tempSelectList as $tempOption) {
+				echo "<option value='{$tempOption}'";
+				if ($fontsDefault == $tempOption) echo " selected='selected'";
+				echo ">{$tempOption}</option>";
+			}
+			?>
+			</select>
+		</td>
+	</tr>
+	<tr>
+		<td class="descriptionbox wrap width20"><?php print_help_link("fontsOptions_help", "qm", "fontsOptions"); print $pgv_lang["fontsOptions"]; ?></td>
+		<td class="optionbox"><input type="text" name="NEW_fontsOptions" value="<?php print $fontsOptions; ?>" size="40" dir="ltr" tabindex="<?php $i++; print $i; ?>" onfocus="getHelp('fontsOptions_help');" /></td>
 	</tr>
 </table>
 </div>

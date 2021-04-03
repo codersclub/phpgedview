@@ -5,7 +5,7 @@
  * Processes PGV XML Reports and generates a report
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2017  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2021  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -51,6 +51,28 @@ function get_tag_values($tag) {
 	}
 	return $vals;
 }
+
+/**
+ * function to get the value of the variable mentioned in the input string
+ */
+function getVarValue($string) {
+	global $pgv_lang, $factarray, $countries;  // No need to mention the $GLOBALS super variable here
+	
+	while (true) {
+		if (substr($string, 0, 8) == 'GLOBALS[') break;
+		if (substr($string, 0, 9) == 'pgv_lang[') break;
+		if (substr($string, 0, 10) == 'factarray[') break;
+		if (substr($string, 0, 10) == 'countries[') break;
+		return $string;		// Not a variable reference: just return the input string
+	}
+	
+	$varName = str_replace(array('["', "['", '"]', "']"), array('[', '[', ']', ']'), $string);		// Get rid of " and ' 
+	$varName = str_replace(array('[', ']'), array('["', '"]'), $varName);		// before putting in those "
+	$value = $string;
+	eval("if (isset(\$varName)) \$value = \$$varName;");
+	return $value;		// Return the variable's value, if any
+}	
+
 
 if (isset($_REQUEST["action"])) {
 	$action = $_REQUEST["action"];
@@ -248,6 +270,7 @@ elseif ($action=="setup") {
 					if (!isset($input["default"])) {
 						$input["default"] = "";
 					}
+					$input["default"] = getVarValue($input["default"]);		// Look for, and evaluate variable references
 					if (isset($input["lookup"])) {
 						if ($input["lookup"]=="INDI") {
 							if (!empty($pid)) {
@@ -287,6 +310,7 @@ elseif ($action=="setup") {
 						echo " />";
 					}
 					if ($input["type"]=="select") {
+						$input["options"] = getVarValue($input["options"]);		// Look for, and evaluate variable references
 						echo "<select name=\"vars[", $input["name"], "]\" id=\"", $input["name"], "_var\">\n";
 						$options = preg_split("/[, ]+/", $input["options"]);
 						foreach($options as $indexval => $option) {

@@ -55,12 +55,14 @@ if (!isset($embed_fonts)) {
 }
 
 /**
- * Main PGV Report Class
- *
- * Document wide functions and variable defaults that will be inherited of the report modules
- * @package PhpGedView
- * @subpackage Reports
- */
+* Main PGV Report Class
+*
+* Document wide functions and variable Defaults
+* that will be inherited of the report modules
+*
+* @package PhpGedView
+* @subpackage Reports
+*/
 class PGVReportBase {
 	/**
 	* Left Margin (expressed in points) Default: 17.99 mm, 0.7083 inch
@@ -379,7 +381,7 @@ class PGVReportBase {
 	}
 
 	/**
-	* Process the Header , Page header, Body or Footer - PGVReportBase
+	* Process the Header, Page header, Body or Footer - PGVReportBase
 	*
 	* @param string $p Header (H), Page header (PH), Body (B) or Footer (F)
 	*/
@@ -442,20 +444,34 @@ class PGVReportBase {
 }
 
 /**
- * Main PGV Report Element class that all other page elements are extended from
- *
- * @package PhpGedView
- * @subpackage Reports
- */
+* Main PGV Report Element Class
+* That all other Elements are extends from
+*
+* For Classes that extends PGVRElement
+* @see PGVRCell
+* @see PGVRFootnote
+* @see PGVRHtml
+* @see PGVRImage
+* @see PGVRLine
+* @see PGVRPageHeader
+* @see PGVRText
+* @see PGVRTextBox
+* 
+* @package PhpGedView
+* @subpackage Reports
+*/
 class PGVRElement {
 	/**
+	* Raw Text
 	* @var string $text
 	*/
 	public $text = "";
 
 	/**
 	* Element renderer
+	*
 	* @param &$renderer
+	* @return 0
 	*/
 	function render(&$renderer) {
 //		print "Nothing rendered.  Something bad happened";
@@ -567,8 +583,8 @@ class PGVRHtml extends PGVRElement {
 	}
 
 	/**
-	* Get the class type
-	* @return string PGVRHtml
+	* Get the Class Type
+	* @return object PGVRHtml
 	*/
 	function get_type() {
 		return "PGVRHtml";
@@ -576,21 +592,31 @@ class PGVRHtml extends PGVRElement {
 }
 
 /**
- * Cell element class
+* Cell Element Class - PGVRElement
 *
+* @see PGVRElement
+* @see PGVRCellSHandler()
+* @see PGVRCellEHandler()
+* @see PGVRCellPDF
+* @see PGVRCellHTML
+* 
 * @package PhpGedView
 * @subpackage Reports
 */
 class PGVRCell extends PGVRElement {
 	/**
-	* Allows to center or align the text. Possible values are:<ul><li>left or empty string: left align</li><li>center: center align</li><li>right: right align</li><li>justify: justification (default value when $ishtml=false)</li></ul>
+	* Allows to center or align the text. Possible values are:<ul><li>
+	*		left or empty string: left align. Deafualt</li><li>
+	*		center: center align</li><li>
+	*		right: right align</li><li>
+	*		justify: justification</li></ul>
 	* @var string $align
 	*/
 	public $align = "";
 	/**
 	* Whether or not a border should be printed around this box. 0 = no border, 1 = border. Default is 0.
 	* Or a string containing some or all of the following characters (in any order):<ul><li>L: left</li><li>T: top</li><li>R: right</li><li>B: bottom</li></ul>
-	* @var mixed $border
+	* @var mixed $border=null
 	*/
 	public $border;
 	/**
@@ -606,7 +632,7 @@ class PGVRCell extends PGVRElement {
 	/**
 	* Indicates if the cell background must be painted (1) or transparent (0). Default value: 1.
 	* If no background color is set then it will not be painted
-	* @var int $fill
+	* @var int $fill=true
 	*/
 	public $fill;
 	/**
@@ -659,9 +685,15 @@ class PGVRCell extends PGVRElement {
 
 	/**
 	* Resets the box last height after it's done
-	* @var int $reseth
+	* @var boolean $reseth
 	*/
 	public $reseth;
+	
+	/**
+	* Padding the Cell
+	* @var boolean $padding=true 
+	*/
+	public $padding = true;
 
 	/**
 	* CELL - PGVRElement
@@ -679,8 +711,13 @@ class PGVRCell extends PGVRElement {
 	* @param int $stretch Stretch carachter mode
 	* @param string $bocolor Border color
 	* @param string $tcolor Text color
+	* @param boolean $reseth
+	* @param boolean $padding
+	*
+	* @package PhpGedView
+	* @subpackage Reports
 	*/
-	function __construct($width, $height, $border, $align, $bgcolor, $style, $ln, $top, $left, $fill, $stretch, $bocolor, $tcolor, $reseth) {
+	function __construct($width, $height, $border, $align, $bgcolor, $style, $ln, $top, $left, $fill, $stretch, $bocolor, $tcolor, $reseth, $padding) {
 		$this->align = $align;
 		$this->border = $border;
 		$this->bgcolor = $bgcolor;
@@ -697,6 +734,7 @@ class PGVRCell extends PGVRElement {
 		$this->stretch = $stretch;
 		$this->width = $width;
 		$this->reseth = $reseth;
+		$this->padding = $padding;
 		return 0;
 	}
 	/**
@@ -733,8 +771,10 @@ class PGVRCell extends PGVRElement {
 }
 
 /**
- * TextBox element class
+* TextBox Element Class
 *
+* @see PGVRElement
+* @see PGVRTextBoxPDF
 * @package PhpGedView
 * @subpackage Reports
 */
@@ -823,9 +863,9 @@ class PGVRTextBox extends PGVRElement {
 	public $width;
 	/**
 	 * Use cell padding or not
-	 * @var boolean $padding
+	 * @var boolean $padding=true
 	 */
-	public $padding;
+	public $padding=true;
 	/**
 	 * Resets this box last height after it's done
 	 */
@@ -844,8 +884,11 @@ class PGVRTextBox extends PGVRElement {
 	* @param boolean $pagecheck
 	* @param string $style
 	* @param boolean $fill
-	* @param boolean $padding
+	* @param boolean $padding=true
 	* @param boolean $reseth
+	*
+	* @package PhpGedView
+	* @subpackage Reports
 	*/
 	function __construct($width, $height, $border, $bgcolor, $newline, $left, $top, $pagecheck, $style, $fill, $padding, $reseth) {
 		$this->border = $border;
@@ -882,8 +925,9 @@ class PGVRTextBox extends PGVRElement {
 }
 
 /**
- * Text element class
+* Text element class
 *
+* @see PGVRElement
 * @package PhpGedView
 * @subpackage Reports
 */
@@ -914,6 +958,9 @@ class PGVRText extends PGVRElement {
 	*
 	* @param string $style The name of the text style
 	* @param string $color HTML color code
+	*
+	* @package PhpGedView
+	* @subpackage Reports
 	*/
 	function __construct($style, $color) {
 		$this->text = "";
@@ -978,6 +1025,12 @@ class PGVRFootnote extends PGVRElement {
 	* @var float $wrapWidthCell User unit (points)
 	*/
 	public $wrapWidthCell;
+	/**
+	* An internal link is a clickable area within the report.
+	* Ususaly is used fith Source links to the footer
+	*
+	* @var int $addlink
+	*/
 	public $addlink;
 
 	function __construct($style="") {
@@ -1385,16 +1438,20 @@ $processGedcoms = 0;
 $processFootnote = true;
 
 /**
- *XML start element handler
- *
- * This function is called whenever a starting element is reached
- * The element handler will be called if found, otherwise it must be HTML
- *
- * @param resource $parser the resource handler for the XML parser
- * @param string $name the name of the XML element parsed
- * @param array $attrs an array of key value pairs for the attributes
- * @see endElement()
- */
+* XML start element handler
+*
+* This function is called whenever a starting element is reached
+* The element handler will be called if found, otherwise it must be HTML
+*
+* @see endElement()
+*
+* @param resource $parser The resource handler for the XML parser
+* @param string $name The name of the XML element parsed
+* @param array $attrs An array of key value pairs for the attributes
+*
+* @package PhpGedView
+* @subpackage Reports
+*/
 function startElement($parser, $name, $attrs) {
 	global $elementHandler, $processIfs, $processGedcoms, $processRepeats, $vars;
 	global $processFootnote;
@@ -1470,37 +1527,39 @@ function characterData($parser, $data) {
 }
 
 /**
-* XML <PGVRStyleSHandler /> element handler
+* XML <PGVRStyleSHandler /> Element Handler
 *
-* @param array $attrs an array of key value pairs for the attributes
+* Reads the User Input from the Report XML file
+* That will passed to the HTML or PDF Report Generator
+*
 * @see PGVReportBase::$defaultFont
 * @see PGVReportBase::$defaultFontSize
 * @see PGVReportBase::addStyle()
+*
+* @param array $attrs an array of key value pairs for the attributes
+*
+* @package PhpGedView
+* @subpackage Reports
 */
 function PGVRStyleSHandler($attrs) {
 	global $pgvreport;
 
-	if (empty($attrs["name"])) {
+	if (empty($attrs["name"])){
 		die("<strong>REPORT ERROR PGVRStyle: </strong> The \"name\" of the style is missing or not set in the XML file.");
 	}
-
-	// array Style that will be passed on
-	$s = array();
-
-	// string Name af the style
-	$s["name"] = $attrs["name"];
-
-	// string Name of the DEFAULT font
-	$s["font"] = $pgvreport->defaultFont;
-	if (!empty($attrs["font"])) $s["font"] = $attrs["font"];
-
-	// int The size of the font in points
-	$s["size"] = $pgvreport->defaultFontSize;
-	if (!empty($attrs["size"])) $s["size"] = (int)$attrs["size"];	// Get it as int to ignore all decimal points or text (if any text then int(0))
-
-	// string B: bold, I: italic, U: underline, D: line trough, The default value is regular.
-	$s["style"] = "";
-	if (!empty($attrs["style"])) $s["style"] = $attrs["style"];
+	// Style Array
+	$s=array();
+	$s["style"]="";
+	// Style Name
+	$s["name"]=$attrs["name"];
+	// Font Name
+	$s["font"]=$pgvreport->defaultFont;
+	if(!empty($attrs["font"]))		{$s["font"]=$attrs["font"];}
+	// Font size in Points
+	$s["size"]=$pgvreport->defaultFontSize;
+	if(!empty($attrs["size"]))		{$s["size"]=(int)$attrs["size"];}
+	// B: bold, I: italic, U: underline, D: line trough, The default value is regular.
+	if(!empty($attrs["style"]))		{$s["style"]=$attrs["style"];}
 
 	$pgvreport->addStyle($s);
 }
@@ -1657,145 +1716,152 @@ function PGVRFooterSHandler() {
 }
 
 /**
-* XML <PGVRCell> start element handler
+* XML <PGVRCell> Start Element Handler
 *
-* @param array $attrs an array of key value pairs for the attributes
-* @see PGVRCellEHandler()
+* Reads the User Input from the Report XML file
+* That will passed to the HTML or PDF Report Generator
+*
 * @see PGVRCell
+* @see PGVRCellEHandler()
+*
+* @param array $attrs An array of key value pairs for the attributes
+*
+* @package PhpGedView
+* @subpackage Reports
 */
 function PGVRCellSHandler($attrs) {
 	global $printData, $printDataStack, $currentElement, $PGVReportRoot, $pgvreport;
+	/**
+	* Setting up the Defaults for this Cell
+	*
+	* All User Input Type string of "boolean" is converted to real boolean
+	* for the Report Generator for stability and consistency.
+	*
+	* @var string $bgcolor="#FFFFFF"	The Color to Fill the Background with of this Cell in HTML code
+	*									Default White - TCPDF needs a valid HTML code
+	* @var string $bocolor="#000000"	Border Color in HTML code
+	*									Default Black - TCPDF needs a valid HTML code
+	* @var string $tcolor="#000000"		Text Color in HTML code
+	*									Default Black - TCPDF needs a valid HTML code
+	* @var string $border="0"	Whether or not a Border should be printed around this Cell
+	*							Or can also be a combination of letters which Border to paint<ul><li>
+	*							0 = No Borders</li><li>
+	*							1 = All Borders</li><li>
+	*							L = Left</li><li>
+	*							R = Right</li><li>
+	*							T = Topp</li><li>
+	*							B = Buttom</li></ul>
+	* @var string $height=""	Cell minimum height. The cell extends automatically if needed.
+	* 							If the text wraps the Height will automatically be adjusted.
+	* @var string $width="0"	Width of cells. If 0, they extend up to the right margin of the page.
+	* @var string $stretch="0"	Font Stretch Carachter Mode<ul><li>
+	*							0 = disabled (Default)</li><li>
+	*							1 = horizontal scaling only if text is larger than cell width</li><li>
+	*							2 = forced horizontal scaling to fit cell width</li><li>
+	*							3 = character spacing only if text is larger than cell width</li><li>
+	*							4 = forced character spacing to fit cell width</li></ul>
+	*							General font stretching and scaling values will be preserved when possible.
+	*
+	* @var string $style=""		The name of the PGVRStyle in the XML file to render the Text.
+	* @var string $reseth="1"	Reset the Last Cell Height or the next Cell will inherent it
+	* @var string $padding="0"	Whether or not use Padding in the Cell for the Text 2 px
+	* @var string $newline="0"	Indicates where the Current Position should go after this Cell<ul><li>
+	*							0 = No New Line (Default)</li><li>
+	*							1 = New Line</li></ul>
+	*							2 = New Line but not from the Margin, but from where the last Cell Ended
+	* $var string $align="left"|"right"	The Text Alignment of this Cell Based on LTR|RTL
+	*							@example $align="left" If LTR but can be changed by User Input
+	* @var string $fill="0"		Whether or not the Background of the Cell should be painted<ul><li>
+	*							true = painted</li><li>
+	*							false = transparent (Deafult)</li></ul>
+	* @var string $left="."		Position the Left Corner of this Cell on the page. Default is the Current Position
+	* @var string $top="."		Position the Top Corner of this Cell on the page. Default is the Current Position
+	* 
+	* @todo Fix this once and for all and move the defaults to PGVRCell with the info
+	*/
+	$tcolor="";
+	$bocolor="";
+	$bgcolor="";
+	$fill=true;
+	$reseth=true;
+	$padding=false;
+	$width=0;
+	$height=0;
+	$newline=0;
+	$stretch=0;
+	$style="";
+	$border="0";
+	$align="";
+	$top=".";
+	$left=".";
 
-	// string The text alignment of the text in this box.
-	$align= "";
-	if (!empty($attrs["align"])) {
-		$align = $attrs["align"];
-		// RTL supported left/right alignment
-		if ($align == "rightrtl") {
-			if ($pgvreport->rtl) {
-				$align = "left";
-			} else {
-				$align = "right";
-			}
-		} elseif ($align == "leftrtl") {
-			if ($pgvreport->rtl) {
-				$align = "right";
-			} else {
-				$align = "left";
-			}
+	// Test for valid HTML color
+	if(isset($attrs["tcolor"])){
+		if(preg_match("/#[A-Fa-f0-9]{6,6}/", $attrs["tcolor"]))		{$tcolor=$attrs["tcolor"];}
+	}
+	if(isset($attrs["bocolor"])){
+		if(preg_match("/#[A-Fa-f0-9]{6,6}/", $attrs["bocolor"]))	{$bocolor=$attrs["bocolor"];}
+	}
+	if(isset($attrs["bgcolor"])){
+		if(preg_match("/#[A-Fa-f0-9]{6,6}/", $attrs["bgcolor"]))	{$bgcolor=$attrs["bgcolor"];}
+	}
+	// boolean
+	if(isset($attrs["fill"])){
+		if($attrs["fill"]==="1")		{$fill=true;}
+		elseif($attrs["fill"]==="0")	{$fill=false;}
+	}
+	if(isset($attrs["reseth"])){
+		if($attrs["reseth"]==="1")		{$reseth=true;}
+		elseif($attrs["reseth"]==="0")	{$reseth=false;}
+	}
+	if(isset($attrs["padding"])){
+		if($attrs["padding"]==="1")		{$padding=true;}
+		elseif($attrs["padding"]==="0")	{$padding=false;}
+	}
+	// integer
+	if(isset($attrs["width"]))		{$width=(int)$attrs["width"];}
+	if(isset($attrs["height"]))		{$height=(int)$attrs["height"];}
+	if(isset($attrs["newline"]))	{$newline=(int)$attrs["newline"];}
+	if(isset($attrs["stretch"]))	{$stretch=(int)$attrs["stretch"];}
+	// string
+	if(!empty($attrs["style"]))		{$style=$attrs["style"];}
+	if(!empty($attrs["border"]))	{$border=$attrs["border"];}
+	if(!empty($attrs["align"])){
+		$align=$attrs["align"];
+		switch ($align){
+			case "left":	$align="L";	break;
+			case "right":	$align="R";	break;
+			case "center":	$align="C";	break;
+			case "justify":	$align="J";	break;
+			case "rightrtl":$pgvreport->rtl ? $align="L" : $align="R";	break;
+			case "leftrtl":	$pgvreport->rtl ? $align="R" : $align="L";	break;
 		}
 	}
-
-	// string The color to fill the background of this cell
-	$bgcolor = "";
-	if (!empty($attrs["bgcolor"])) $bgcolor = $attrs["bgcolor"];
-
-	// int Whether or not the background should be painted
-	$fill = 1;
-	if (isset($attrs["fill"])) {
-		if ($attrs["fill"] === "0") {
-			$fill = 0;
-		} elseif ($attrs["fill"] === "1") {
-			$fill = 1;
-		}
-	}
-
-	$reseth = true;
-	// boolean  	if true reset the last cell height (default true)
-	if (isset($attrs["reseth"])) {
-		if ($attrs["reseth"] === "0") {
-			$reseth = false;
-		} elseif ($attrs["reseth"] === "1") {
-			$reseth = true;
-		}
-	}
-
-	// mixed Whether or not a border should be printed around this box
-	$border = 0;
-	if (!empty($attrs["border"])) $border = $attrs["border"];
-	// @test Print all borders for testing
-//	$border = 1;
-	// string Border color in HTML code
-	$bocolor = "";
-	if (!empty($attrs["bocolor"])) $bocolor = $attrs["bocolor"];
-
-	// int Cell height (expressed in points) The starting height of this cell. If the text wraps the height will automatically be adjusted.
-	$height= 0;
-	if (!empty($attrs["height"])) $height = (int)$attrs["height"];
-	// int Cell width (expressed in points) Setting the width to 0 will make it the width from the current location to the right margin.
-	$width = 0;
-	if (!empty($attrs["width"])) $width = (int)$attrs["width"];
-
-	// int Stretch carachter mode
-	$stretch= 0;
-	if (!empty($attrs["stretch"])) $stretch = (int)$attrs["stretch"];
-
-	// mixed Position the left corner of this box on the page. The default is the current position.
-	$left = ".";
-	if (isset($attrs["left"])) {
-		if ($attrs["left"] === ".") {
-			$left = ".";
-		} elseif (!empty($attrs["left"])) {
-			$left = (int)$attrs["left"];
-		} elseif ($attrs["left"] === "0") {
-			$left = 0;
-		}
-	}
-	// mixed Position the top corner of this box on the page. the default is the current position
-	$top = ".";
-	if (isset($attrs["top"])) {
-		if ($attrs["top"] === ".") {
-			$top = ".";
-		} elseif (!empty($attrs["top"])) {
-			$top = (int)$attrs["top"];
-		} elseif ($attrs["top"] === "0") {
-			$top = 0;
-		}
-	}
-
-	// string The name of the PGVRStyle that should be used to render the text.
-	$style = "";
-	if (!empty($attrs["style"])) $style = $attrs["style"];
-
-	// string Text color in html code
-	$tcolor = "";
-	if (!empty($attrs["tcolor"])) $tcolor = $attrs["tcolor"];
-
-	// int Indicates where the current position should go after the call.
-	$ln = 0;
-	if (isset($attrs["newline"])) {
-		if (!empty($attrs["newline"])) {
-			$ln = (int)$attrs["newline"];
-		} elseif ($attrs["newline"] === "0") {
-			$ln = 0;
-		}
-	}
-
-	if ($align=="left") {
-		$align="L";
-	} elseif ($align=="right") {
-		$align="R";
-	} elseif ($align=="center") {
-		$align="C";
-	} elseif ($align=="justify") {
-		$align="J";
-	}
+	// mixed
+	if(isset($attrs["top"]) && $attrs["top"] !== ".")	{$top=(int)$attrs["top"];}
+	if(isset($attrs["left"]) && $attrs["left"] !== ".")	{$left=(int)$attrs["left"];}
+	// Check: Fill only if Background Color is Valid
+	if(empty($bgcolor))	{$fill=false;}
 
 	array_push($printDataStack, $printData);
-	$printData = true;
+	$printData=true;
 
-	$currentElement = $PGVReportRoot->createCell($width, $height, $border, $align, $bgcolor, $style, $ln, $top, $left, $fill, $stretch, $bocolor, $tcolor, $reseth);
+	$currentElement=$PGVReportRoot->createCell($width, $height, $border, $align, $bgcolor, $style, $newline, $top, $left, $fill, $stretch, $bocolor, $tcolor, $reseth, $padding);
 }
 
 /**
-* XML </PGVRCell> end element handler
+* XML </PGVRCell> End Element Handler
 *
 * @see PGVRCellSHandler()
+* @see PGVRCell
+*
+* @package PhpGedView
+* @subpackage Reports
 */
 function PGVRCellEHandler() {
 	global $printData, $printDataStack, $currentElement, $pgvreport;
 
-	$printData = array_pop($printDataStack);
+	$printData=array_pop($printDataStack);
 	$pgvreport->addElement($currentElement);
 }
 
@@ -1803,6 +1869,9 @@ function PGVRCellEHandler() {
 * XML <PGVRNow /> element handler
 *
 * @see PGVRElement::addText()
+*
+* @package PhpGedView
+* @subpackage Reports
 */
 function PGVRNowSHandler() {
 	global $currentElement;
@@ -1815,6 +1884,9 @@ function PGVRNowSHandler() {
 * XML <PGVRPageNum /> element handler
 *
 * @see PGVRElement::addText()
+*
+* @package PhpGedView
+* @subpackage Reports
 */
 function PGVRPageNumSHandler() {
 	global $currentElement;
@@ -1825,6 +1897,9 @@ function PGVRPageNumSHandler() {
 * XML <PGVRTotalPages /> element handler
 *
 * @see PGVRElement::addText()
+*
+* @package PhpGedView
+* @subpackage Reports
 */
 function PGVRTotalPagesSHandler() {
 	global $currentElement;
@@ -1921,126 +1996,75 @@ function PGVRGedcomEHandler() {
 }
 
 /**
-* XML <PGVRTextBoxSHandler> start element handler
+* XML <PGVRTextBox> Start Element Handler
+*
+* Reads the User Input from the Report XML file
+* That will passed to the HTML or PDF Report Generator
 *
 * @param array $attrs an array of key value pairs for the attributes
 * @see PGVRTextBoxEHandler()
+* @package PhpGedView
+* @subpackage Reports
 */
 function PGVRTextBoxSHandler($attrs) {
 	global $printData, $printDataStack, $pgvreport, $currentElement, $pgvreportStack, $PGVReportRoot;
 
-	// string Background color code
-	$bgcolor = "";
-	if (!empty($attrs["bgcolor"])) $bgcolor = $attrs["bgcolor"];
+	$bgcolor="";
+	$fill=true;
+	$border=false;
+	$reseth=false;
+	$newline=false;
+	$padding=true;
+	$pagecheck=true;
+	$width=0;
+	$height=0;
+	$style="";
+	$top=".";
+	$left=".";
 
-	// boolean Whether or not fill the background color
-	$fill = true;
-	if (isset($attrs["fill"])) {
-		if ($attrs["fill"] === "0") {
-			$fill = false;
-		} elseif ($attrs["fill"] === "1") {
-			$fill = true;
-		}
-	}
-
-	// var boolean Whether or not a border should be printed around this box. 0 = no border, 1 = border. Default is 0
-	$border = false;
-	if (isset($attrs["border"])) {
-		if ($attrs["border"] === "1") {
-			$border = true;
-		} elseif ($attrs["border"] === "0") {
-			$border = false;
-		}
-	}
-	// @test Print all borders for testing
-//	$border = true;
-
-	/**
-	* Border style of rectangle. Array with keys among the following
-	* <ul><li>L, T, R, B or combinations: Line style of left, top, right or bottom border.</li></ul>
-	* @var string
-	*/
-	/** not yet in use
-	$borderstyle = "";
-	if (!empty($attrs["borderstyle"])) $borderstyle = $attrs["borderstyle"];
-	*/
-
-	// int The starting height of this cell. If the text wraps the height will automatically be adjusted
-	$height = 0;
-	if (!empty($attrs["height"])) $height = (int)$attrs["height"];
-	// int Setting the width to 0 will make it the width from the current location to the margin
-	$width = 0;
-	if (!empty($attrs["width"])) $width = (int)$attrs["width"];
-
-	// mixed Position the left corner of this box on the page. The default is the current position.
-	$left = ".";
-	if (isset($attrs["left"])) {
-		if ($attrs["left"] === ".") {
-			$left = ".";
-		} elseif (!empty($attrs["left"])) {
-			$left = (int)$attrs["left"];
-		} elseif ($attrs["left"] === "0") {
-			$left = 0;
-		}
-	}
-	// mixed Position the top corner of this box on the page. the default is the current position
-	$top = ".";
-	if (isset($attrs["top"])) {
-		if ($attrs["top"] === ".") {
-			$top = ".";
-		} elseif (!empty($attrs["top"])) {
-			$top = (int)$attrs["top"];
-		} elseif ($attrs["top"] === "0") {
-			$top = 0;
-		}
-	}
-	// boolean After this box is finished rendering, should the next section of text start immediately after the this box or should it start on a new line under this box. 0 = no new line, 1 = force new line. Default is 0
-	$newline = false;
-	if (isset($attrs["newline"])) {
-		if ($attrs["newline"] === "1") {
-			$newline = true;
-		} elseif ($attrs["newline"] === "0") {
-			$newline = false;
-		}
+	// Test for valid HTML color
+	if(isset($attrs["bgcolor"])){
+		if(preg_match("/#[A-Fa-f0-9]{6,6}/", $attrs["bgcolor"]))	{$bgcolor=$attrs["bgcolor"];}
 	}
 	// boolean
-	$pagecheck = true;
-	if (isset($attrs["pagecheck"])) {
-		if ($attrs["pagecheck"] === "0") {
-			$pagecheck = false;
-		} elseif ($attrs["pagecheck"] === "1") {
-			$pagecheck = true;
-		}
+	if(isset($attrs["fill"])){
+		if($attrs["fill"]==="1")		{$fill=true;}
+		elseif($attrs["fill"]==="0")	{$fill=false;}
 	}
-	// boolean Cell padding
-	$padding = true;
-	if (isset($attrs["padding"])) {
-		if ($attrs["padding"] === "0") {
-			$padding = false;
-		} elseif ($attrs["padding"] === "1") {
-			$padding = true;
-		}
+	if(isset($attrs["border"])){
+		if($attrs["border"]==="1")		{$border=true;}
+		elseif($attrs["border"]==="0")	{$border=false;}
 	}
-	// boolean Reset this box Height
-	$reseth = false;
-	if (isset($attrs["reseth"])) {
-		if ($attrs["reseth"] === "1") {
-			$reseth = true;
-		} elseif ($attrs["reseth"] === "0") {
-			$reseth = false;
-		}
+	if(isset($attrs["reseth"])){
+		if($attrs["reseth"]==="1")		{$reseth=true;}
+		elseif($attrs["reseth"]==="0")	{$reseth=false;}
 	}
-
-	// string Style of rendering
-	$style = "";
-	// fill and border is enough for now for user input
-//	if (!empty($attrs["style"])) $style = $attrs["style"];
+	if(isset($attrs["newline"])){
+		if($attrs["newline"]==="1")		{$newline=true;}
+		elseif($attrs["newline"]==="0")	{$newline=false;}
+	}
+	if(isset($attrs["padding"])){
+		if($attrs["padding"]==="1")		{$padding=true;}
+		elseif($attrs["padding"]==="0")	{$padding=false;}
+	}
+	if(isset($attrs["pagecheck"])){
+		if($attrs["pagecheck"]==="1")		{$pagecheck=true;}
+		elseif($attrs["pagecheck"]==="0")	{$pagecheck=false;}
+	}
+	// integer
+	if(isset($attrs["width"]))	{$width=(int)$attrs["width"];}
+	if(isset($attrs["height"]))	{$height=(int)$attrs["height"];}
+	// mixed
+	if(isset($attrs["top"]) && $attrs["top"] !== ".")	{$top=(int)$attrs["top"];}
+	if(isset($attrs["left"]) && $attrs["left"] !== ".")	{$left=(int)$attrs["left"];}
+	// Check: Fill only if Background Color is Valid
+	if(empty($bgcolor))	{$fill=false;}
 
 	array_push($printDataStack, $printData);
-	$printData = false;
+	$printData=false;
 
 	array_push($pgvreportStack, $pgvreport);
-	$pgvreport = $PGVReportRoot->createTextBox($width, $height, $border, $bgcolor, $newline, $left, $top, $pagecheck, $style, $fill, $padding, $reseth);
+	$pgvreport=$PGVReportRoot->createTextBox($width, $height, $border, $bgcolor, $newline, $left, $top, $pagecheck, $style, $fill, $padding, $reseth);
 }
 
 /**
@@ -2051,16 +2075,18 @@ function PGVRTextBoxSHandler($attrs) {
 function PGVRTextBoxEHandler() {
 	global $printData, $printDataStack, $pgvreport, $currentElement, $pgvreportStack;
 
-	$printData = array_pop($printDataStack);
-	$currentElement = $pgvreport;
-	$pgvreport = array_pop($pgvreportStack);
+	$printData=array_pop($printDataStack);
+	$currentElement=$pgvreport;
+	$pgvreport=array_pop($pgvreportStack);
 	$pgvreport->addElement($currentElement);
 }
 
 /**
+* XML <PGVRText> Start Element Handler
 * @see PGVRTextEHandler()
-* @todo more variables in PGVRText class, check it out
-* @param array $attrs an array of key value pairs for the attributes
+* @param array $attrs An array of key value pairs for the attributes
+* @package PhpGedView
+* @subpackage Reports
 */
 function PGVRTextSHandler($attrs) {
 	global $printData, $printDataStack, $currentElement, $PGVReportRoot;
@@ -2096,10 +2122,12 @@ function PGVRTextEHandler() {
 * 2. id is set with a record id
 *
 * @param array $attrs an array of key value pairs for the attributes
+* @package PhpGedView
+* @subpackage Reports
 */
 function PGVRGetPersonNameSHandler($attrs) {
 	/*
-	* @deprecated Today is 2021-01-14. Remove this if not causing problems
+	* @deprecated Today is 2021-01-29. Remove this if not causing problems
 	* global $currentElement, $vars, $gedrec, $gedrecStack, $pgv_lang, $SHOW_ID_NUMBERS;
 	*/
 	global $currentElement, $vars, $gedrec;
@@ -2180,14 +2208,15 @@ function PGVRGetPersonNameSHandler($attrs) {
 * XML <PGVRGedcomValue> start element handler
 *
 * @param array $attrs an array of key value pairs for the attributes
+* @package PhpGedView
+* @subpackage Reports
 */
 function PGVRGedcomValueSHandler($attrs) {
 	/*
-	* @deprecated Today is 2021-01-14. Remove this if not causing problems
+	* @deprecated Today is 2021-01-29. Remove this if not causing problems
 	* global $currentElement, $vars, $gedrec, $gedrecStack, $fact, $desc, $type, $SHOW_PEDIGREE_PLACES, $pgv_lang;
 	*/
 	global $currentElement, $gedrec, $fact, $desc;
-
 	$id = "";
 	$match = array();
 	if (preg_match("/0 @(.+)@/", $gedrec, $match)) {
@@ -2270,11 +2299,10 @@ function PGVRGedcomValueSHandler($attrs) {
 */
 function PGVRRepeatTagSHandler($attrs) {
 	/**
-	* @deprecated Today is 2021-01-14. Remove this if not causing problems
+	* @deprecated Today is 2021-01-29. Remove this if not causing problems
 	* global $repeats, $repeatsStack, $gedrec, $repeatBytes, $parser, $parserStack, $processRepeats, $fact, $desc;
 	*/
 	global $repeats, $repeatsStack, $gedrec, $repeatBytes, $parser, $processRepeats, $fact, $desc;
-
 	$processRepeats++;
 	if ($processRepeats>1) return;
 
@@ -2354,6 +2382,8 @@ function PGVRRepeatTagSHandler($attrs) {
 * XML </ PGVRRepeatTag> end element handler
 *
 * @see PGVRRepeatTagSHandler()
+* @package PhpGedView
+* @subpackage Reports
 */
 function PGVRRepeatTagEHandler() {
 	global $processRepeats, $repeats, $repeatsStack, $repeatBytes;
@@ -2452,13 +2482,16 @@ function PGVRRepeatTagEHandler() {
 *
 * @param array $attrs an array of key value pairs for the attributes
 * @see PGVRSetVarSHandler()
+* @package PhpGedView
+* @subpackage Reports
 */
 function PGVRvarSHandler($attrs) {
 	/*
-	* @deprecated Today is 2021-01-14. Remove this if not causing problems
+	* @deprecated Today is 2021-01-29. Remove this if not causing problems
 	* global $currentElement, $gedrec, $gedrecStack, $type, $parser;
 	*/
 	global $currentElement, $type, $parser;
+
 	// Retrievable variables
 	global $desc, $fact, $pgv_lang, $factarray, $language_settings, $vars;
 
@@ -2524,15 +2557,15 @@ function PGVRvarLetterSHandler($attrs) {
 /**
 * @param array $attrs an array of key value pairs for the attributes
 * @see PGVRFactsEHandler()
+* @package PhpGedView
+* @subpackage Reports
 */
 function PGVRFactsSHandler($attrs) {
 	/*
-	* @deprecated Today is 2021-01-14. Remove this if not causing problems
+	* @deprecated Today is 2021-01-29. Remove this if not causing problems
 	* global $repeats, $repeatsStack, $gedrec, $parser, $parserStack, $repeatBytes, $processRepeats, $vars;
 	*/
-
 	global $repeats, $repeatsStack, $gedrec, $parser, $repeatBytes, $processRepeats, $vars;
-
 	$processRepeats++;
 	if ($processRepeats>1) return;
 
@@ -2697,11 +2730,10 @@ function PGVRFactsEHandler() {
 */
 function PGVRSetVarSHandler($attrs) {
 	/*
-	* @deprecated Today is 2021-01-14. Remove this if not causing problems
+	* @deprecated Today is 2021-01-29. Remove this if not causing problems
 	* global $vars, $gedrec, $gedrecStack, $pgv_lang, $factarray, $fact, $desc, $type, $generation;
 	*/
 	global $vars, $gedrec, $pgv_lang, $factarray, $fact, $desc, $type, $generation;
-
 	if (empty($attrs["name"])) {
 		die("<strong>REPORT ERROR PGVRvar: </strong> The attribute \"name=\" is missing or not set in the XML file");
 	}
@@ -2768,9 +2800,12 @@ function PGVRSetVarSHandler($attrs) {
 }
 
 /**
-* XML <PGVRif > start element
+* XML <PGVRif > Start Element Handler
 * @see PGVRifEHandler()
-* @param array $attrs an array of key value pairs for the attributes
+* @param array $attrs An array of key value pairs for the attributes
+*
+* @package PhpGedView
+* @subpackage Reports
 */
 function PGVRifSHandler($attrs) {
 	global $vars, $gedrec, $processIfs, $fact, $desc, $generation, $POSTAL_CODE;
@@ -2779,13 +2814,12 @@ function PGVRifSHandler($attrs) {
 		$processIfs++;
 		return;
 	}
-
 	$vars["POSTAL_CODE"]["id"] = $POSTAL_CODE;
 	$condition = $attrs["condition"];
 	$condition = preg_replace("/\\$(\w+)/", "\$vars[\"$1\"][\"id\"]", $condition);
 	$condition = str_replace(array(" LT ", " GT "), array("<", ">"), $condition);
 	// Replace the first accurance only once of @fact:DATE or in any other combinations to the current fact, such as BIRT
-	$condition = str_replace("@fact", $fact, $condition);
+	$condition = str_replace("@fact", "@". $fact, $condition);
 	$match = array();
 	$count = preg_match_all("/@([\w:\.]+)/", $condition, $match, PREG_SET_ORDER);
 	$i = 0;
@@ -2820,7 +2854,7 @@ function PGVRifSHandler($attrs) {
 		$i++;
 	}
 	$condition = "if ($condition) return true; else return false;";
-	$ret = @eval($condition);
+	$ret = eval($condition);
 	if (!$ret) {
 		$processIfs++;
 	}
@@ -2842,6 +2876,9 @@ function PGVRifEHandler() {
 *
 * @param array $attrs an array of key value pairs for the attributes
 * @see PGVRFootnoteEHandler()
+*
+* @package PhpGedView
+* @subpackage Reports
 */
 function PGVRFootnoteSHandler($attrs) {
 	global $printData, $printDataStack, $currentElement, $footnoteElement, $processFootnote, $gedrec, $PGVReportRoot;
@@ -2876,11 +2913,10 @@ function PGVRFootnoteSHandler($attrs) {
 */
 function PGVRFootnoteEHandler() {
 	/*
-	* @deprecated Today is 2021-01-14. Remove this if not causing problems
+	* @deprecated Today is 2021-01-29. Remove this if not causing problems
 	* global $printData, $printDataStack, $currentElement, $footnoteElement, $processFootnote, $gedrec, $pgvreport;
 	*/
 	global $printData, $printDataStack, $currentElement, $footnoteElement, $processFootnote, $pgvreport;
-
 	if ($processFootnote) {
 		$printData = array_pop($printDataStack);
 		$temp = trim($currentElement->getValue());
@@ -2924,7 +2960,11 @@ function spSHandler() {
 }
 
 /**
-* @param array $attrs an array of key value pairs for the attributes
+* XML <PGVRHighlightedImage> Element Handler
+*
+* @param array $attrs An array of key value pairs for the attributes
+* @package PhpGedView
+* @subpackage Reports
 */
 function PGVRHighlightedImageSHandler($attrs) {
 	global $gedrec, $pgvreport, $PGVReportRoot;
@@ -2997,7 +3037,10 @@ function PGVRHighlightedImageSHandler($attrs) {
 }
 
 /**
-* @param array $attrs an array of key value pairs for the attributes
+* XML <PGVRImage> Element Handler
+* @param array $attrs An array of key value pairs for the attributes
+* @package PhpGedView
+* @subpackage Reports
 */
 function PGVRImageSHandler($attrs) {
 	global $gedrec, $pgvreport, $MEDIA_DIRECTORY, $PGVReportRoot;
@@ -3156,10 +3199,12 @@ function PGVRLineSHandler($attrs) {
 }
 
 /**
-* XML <PGVRList> start element handler
+* XML <PGVRList> Start Element Handler
 *
 * @see PGVRListEHandler()
 * @param array $attrs an array of key value pairs for the attributes
+* @package PhpGedView
+* @subpackage Reports
 */
 function PGVRListSHandler($attrs) {
 	global $gedrec, $repeats, $repeatBytes, $list, $repeatsStack, $processRepeats, $parser, $vars, $sortby;
@@ -3501,8 +3546,10 @@ function PGVRListSHandler($attrs) {
 }
 
 /**
-* XML <PGVRList> end element handler
+* XML <PGVRList /> End Element Handler
 * @see PGVRListSHandler()
+* @package PhpGedView
+* @subpackage Reports
 */
 function PGVRListEHandler() {
 	global $list, $repeats, $repeatsStack, $repeatBytes, $parser, $parserStack, $report, $gedrec, $processRepeats, $list_total, $list_private;
@@ -3585,12 +3632,14 @@ function PGVRListEHandler() {
 }
 
 /**
-* XML <PGVRListTotal> element handler
+* XML <PGVRListTotal> Start Element Handler
 *
 * Prints the total number of records in a list
 * The total number is collected from
 * PGVRList and PGVRRelatives
-* @param array $attrs an array of key value pairs for the attributes
+*
+* @package PhpGedView
+* @subpackage Reports
 */
 function PGVRListTotalSHandler() {
 	global $list_total, $list_private, $currentElement;
@@ -3605,8 +3654,11 @@ function PGVRListTotalSHandler() {
 }
 
 /**
+* XML <PGVRRelatives> Start Element Handler
 * @param array $attrs an array of key value pairs for the attributes
 * @see PGVRRelativesEHandler()
+* @package PhpGedView
+* @subpackage Reports
 */
 function PGVRRelativesSHandler($attrs) {
 	global $repeats, $repeatBytes, $list, $repeatsStack, $processRepeats, $parser, $vars, $sortby;
@@ -3741,9 +3793,11 @@ function PGVRRelativesSHandler($attrs) {
 }
 
 /**
-* XML </ PGVRRelatives> end element handler
+* XML </ PGVRRelatives> End Element Handler
 *
 * @see PGVRRelativesSHandler()
+* @package PhpGedView
+* @subpackage Reports
 */
 function PGVRRelativesEHandler() {
 	global $list, $repeats, $repeatsStack, $repeatBytes, $parser, $parserStack, $report, $gedrec, $processRepeats, $list_total, $list_private, $generation;
@@ -3831,10 +3885,12 @@ function PGVRRelativesEHandler() {
 }
 
 /**
-* XML <PGVRGeneration /> element handler
+* XML <PGVRGeneration /> Element Handler
 *
 * Prints the number of generations
 * @see PGVRElement::addText()
+* @package PhpGedView
+* @subpackage Reports
 */
 function PGVRGenerationSHandler() {
 	global $generation, $currentElement;
@@ -3845,15 +3901,16 @@ function PGVRGenerationSHandler() {
 }
 
 /**
-* XML <PGVRNewPage /> element handler
+* XML <PGVRNewPage /> Element Handler
 *
 * Has to be placed in an element (header, pageheader, body or footer)
+* @package PhpGedView
+* @subpackage Reports
 */
 function PGVRNewPageSHandler() {
 	global $pgvreport;
 
-	$temp = "addpage";
-	$pgvreport->addElement($temp);
+	$pgvreport->addElement("addpage");
 }
 
 /**
@@ -3861,6 +3918,8 @@ function PGVRNewPageSHandler() {
 * @param string $tag HTML tag name
 * @see HTMLEHandler()
 * @see PGVReportBase::createHTML()
+* @package PhpGedView
+* @subpackage Reports
 */
 function HTMLSHandler($tag, $attrs) {
 	global $printData, $printDataStack, $pgvreportStack, $pgvreport, $currentElement, $PGVReportRoot;
@@ -3877,6 +3936,8 @@ function HTMLSHandler($tag, $attrs) {
 /**
 * @param array $attrs an array of key value pairs for the attributes
 * @see HTMLSHandler()
+* @package PhpGedView
+* @subpackage Reports
 */
 function HTMLEHandler($tag) {
 	global $printData, $printDataStack, $pgvreport, $currentElement, $pgvreportStack;
@@ -3890,9 +3951,11 @@ function HTMLEHandler($tag) {
 }
 
 /**
-* XML <PGVRTitleSHandler> start element handler
+* XML <PGVRTitleSHandler> Start Element Handler
 *
 * @see PGVRTitleEHandler()
+* @package PhpGedView
+* @subpackage Reports
 */
 function PGVRTitleSHandler() {
 	global $reportTitle;
@@ -3900,9 +3963,11 @@ function PGVRTitleSHandler() {
 }
 
 /**
-* XML </PGVRTitleEHandler> end element handler
+* XML </PGVRTitleEHandler> End Element Handler
 *
 * @see PGVRTitleSHandler()
+* @package PhpGedView
+* @subpackage Reports
 */
 function PGVRTitleEHandler() {
 	global $reportTitle;
@@ -3910,9 +3975,11 @@ function PGVRTitleEHandler() {
 }
 
 /**
-* XML <PGVRDescriptionSHandler> start element handler
+* XML <PGVRDescriptionSHandler> Start Element Handler
 *
 * @see PGVRDescriptionEHandler()
+* @package PhpGedView
+* @subpackage Reports
 */
 function PGVRDescriptionSHandler() {
 	global $reportDescription;
@@ -3920,9 +3987,11 @@ function PGVRDescriptionSHandler() {
 }
 
 /**
-* XML </PGVRDescriptionEHandler> end element handler
+* XML </PGVRDescriptionEHandler> End Element Handler
 *
 * @see PGVRDescriptionSHandler()
+* @package PhpGedView
+* @subpackage Reports
 */
 function PGVRDescriptionEHandler() {
 	global $reportDescription;

@@ -13,8 +13,8 @@
 	<PGVRInput name="marrdate1" lookup="DATE" type="text"><PGVRvar var="pgv_lang[marrdate1]" /></PGVRInput>
 	<PGVRInput name="marrdate2" lookup="DATE" type="text"><PGVRvar var="pgv_lang[marrdate2]" /></PGVRInput>
 	<PGVRInput name="sortby" type="select" options="NAME,MARR:DATE"><PGVRvar var="pgv_lang[sort_by]" /></PGVRInput>
-	<PGVRInput name="pageSize" type="select" default="A4" options="A3,A4,letter,legal"><PGVRvar var="pgv_lang[page_size]" /></PGVRInput>
-	<PGVRInput name="fonts" type="select" default="dejavusans" options="courier,dejavusans,dejavusanscondensed,dejavuserif,dejavuserifcondensed,dejavusansmono,freesans,freeserif,freemono,helvetica,times"><PGVRvar var="pgv_lang[font]"/></PGVRInput>
+	<PGVRInput name="pageSize" type="select" default="GLOBALS[pageSizeDefault]" options="GLOBALS[pageSizeOptions]"><PGVRvar var="pgv_lang[page_size]" /></PGVRInput>
+	<PGVRInput name="fonts" type="select" default="GLOBALS[fontsDefault]" options="GLOBALS[fontsOptions]"><PGVRvar var="pgv_lang[font]"/></PGVRInput>
 
 	<!-- Header -->
 	<PGVRStyle name="header" font="$fonts" size="14" style="b" />
@@ -30,8 +30,8 @@
 
 	<PGVRDoc pageSize="$pageSize" orientation="landscape">
 		<PGVRHeader>
-			<PGVRCell align="center" newline="1" style="header"><PGVRvar var="pgv_lang[marr_report]" /></PGVRCell>
-			<PGVRCell align="rightrtl" newline="1" style="pagenum"><PGVRvar var="pgv_lang[page]" /> <PGVRPageNum /> <PGVRvar var="pgv_lang[of]" /> <PGVRTotalPages /></PGVRCell>
+			<PGVRCell align="center" newline="1" style="header" padding="0"><PGVRvar var="pgv_lang[marr_report]" /></PGVRCell>
+			<PGVRCell align="rightrtl" newline="1" style="pagenum" padding="0"><PGVRvar var="pgv_lang[page]" /> <PGVRPageNum /> <PGVRvar var="pgv_lang[of]" /> <PGVRTotalPages /></PGVRCell>
 
 			<PGVRSetVar name="fill" value="" />
 			<PGVRif condition="$sortby=='NAME'">

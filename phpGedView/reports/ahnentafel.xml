@@ -8,8 +8,8 @@
 	<PGVRInput name="sources" type="checkbox" default="0"><PGVRvar var="pgv_lang[show_sources]" /></PGVRInput>
 	<PGVRInput name="notes" type="checkbox" default="1"><PGVRvar var="pgv_lang[show_notes]" /></PGVRInput>
 	<PGVRInput name="abbrNote" type="checkbox" default="1"><PGVRvar var="pgv_lang[show_abbr_notes]" /></PGVRInput>
-	<PGVRInput name="pageSize" type="select" default="A4" options="letter,A3,A4,legal"><PGVRvar var="pgv_lang[page_size]" /></PGVRInput>
-	<PGVRInput name="fonts" type="select" default="dejavusans" options="courier,dejavusans,dejavusanscondensed,dejavuserif,dejavuserifcondensed,dejavusansmono,freesans,freeserif,freemono,helvetica,times"><PGVRvar var="pgv_lang[font]"/></PGVRInput>
+	<PGVRInput name="pageSize" type="select" default="GLOBALS[pageSizeDefault]" options="GLOBALS[pageSizeOptions]"><PGVRvar var="pgv_lang[page_size]" /></PGVRInput>
+	<PGVRInput name="fonts" type="select" default="GLOBALS[fontsDefault]" options="GLOBALS[fontsOptions]"><PGVRvar var="pgv_lang[font]"/></PGVRInput>
 
 	<!-- Header -->
 	<PGVRStyle name="header" font="$fonts" size="14" style="b" />
@@ -36,14 +36,15 @@
 	<PGVRSetVar name="generation" value="0" />
 	<PGVRSetVar name="empty_name" value="f" />
 	<PGVRSetVar name="empty_start_value" value="0" />
+	<PGVRSetVar name="spid" value="" />
 	<!-- New Page for Sources controller if SOUR exist -->
 	<PGVRSetVar name="source_exist" value="0" />
 
 	<PGVRDoc pageSize="$pageSize">
 		<PGVRHeader>
-			<PGVRCell align="center" newline="1" style="header"><PGVRvar var="pgv_lang[ahnentafel_report]" /></PGVRCell>
-			<PGVRCell align="center" newline="1" style="subheader"><PGVRGetPersonName id="$pid" /></PGVRCell>
-			<PGVRCell align="rightrtl" newline="1" style="pagenum"><PGVRvar var="pgv_lang[page]" /> <PGVRPageNum /> <PGVRvar var="pgv_lang[of]" /> <PGVRTotalPages /></PGVRCell>
+			<PGVRCell align="center" newline="1" style="header" padding="0"><PGVRvar var="pgv_lang[ahnentafel_report]" /></PGVRCell>
+			<PGVRCell align="center" newline="1" style="subheader" padding="0"><PGVRGetPersonName id="$pid" /></PGVRCell>
+			<PGVRCell align="rightrtl" newline="1" style="pagenum" padding="0"><PGVRvar var="pgv_lang[page]" /> <PGVRPageNum /> <PGVRvar var="pgv_lang[of]" /> <PGVRTotalPages /></PGVRCell>
 		</PGVRHeader>
 
 		<PGVRBody>

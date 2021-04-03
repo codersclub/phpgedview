@@ -11,9 +11,9 @@
 	<PGVRInput name="pid" lookup="INDI" type="text"><PGVRvar var="pgv_lang[enter_pid]" /></PGVRInput>
 	<PGVRInput name="relatives" type="select" options="child-family,spouse-family,direct-ancestors,ancestors,descendants,all"><PGVRvar var="pgv_lang[choose_relatives]" /></PGVRInput>
 	<PGVRInput name="sortby" type="select" default="BIRT:DATE" options="none,ID,NAME,BIRT:DATE,DEAT:DATE"><PGVRvar var="pgv_lang[sort_by]" /></PGVRInput>
-	<PGVRInput name="pageSize" type="select" default="A4" options="A3,A4,letter,legal"><PGVRvar var="pgv_lang[page_size]" /></PGVRInput>
+	<PGVRInput name="pageSize" type="select" default="GLOBALS[pageSizeDefault]" options="GLOBALS[pageSizeOptions]"><PGVRvar var="pgv_lang[page_size]" /></PGVRInput>
 	<PGVRInput name="pageorient" type="select" default="landscape" options="landscape,portrait"><PGVRvar var="pgv_lang[orientation]" /></PGVRInput>
-	<PGVRInput name="fonts" type="select" default="dejavusans" options="courier,dejavusans,dejavusanscondensed,dejavuserif,dejavuserifcondensed,dejavusansmono,freesans,freeserif,freemono,helvetica,times"><PGVRvar var="pgv_lang[font]"/></PGVRInput>
+	<PGVRInput name="fonts" type="select" default="GLOBALS[fontsDefault]" options="GLOBALS[fontsOptions]"><PGVRvar var="pgv_lang[font]"/></PGVRInput>
 
 	<PGVRStyle name="header" font="$fonts" size="14" style="b" />
 	<PGVRStyle name="subheader" font="$fonts" size="12" style="b" />
@@ -41,9 +41,9 @@
 	<PGVRDoc pageSize="$pageSize" orientation="$pageorient" >
 
 		<PGVRHeader>
-			<PGVRCell align="center" newline="1" style="header"><PGVRvar var="pgv_lang[relatives_report]" /></PGVRCell>
-			<PGVRCell align="center" newline="1" style="subheader"><PGVRGetPersonName id="$pid" /></PGVRCell>
-			<PGVRCell align="rightrtl" newline="1" style="pagenum"><PGVRvar var="pgv_lang[page]" /> <PGVRPageNum /> <PGVRvar var="pgv_lang[of]" /> <PGVRTotalPages /></PGVRCell>
+			<PGVRCell align="center" newline="1" style="header" padding="0"><PGVRvar var="pgv_lang[relatives_report]" /></PGVRCell>
+			<PGVRCell align="center" newline="1" style="subheader" padding="0"><PGVRGetPersonName id="$pid" /></PGVRCell>
+			<PGVRCell align="rightrtl" newline="1" style="pagenum" padding="0"><PGVRvar var="pgv_lang[page]" /> <PGVRPageNum /> <PGVRvar var="pgv_lang[of]" /> <PGVRTotalPages /></PGVRCell>
 
 			<PGVRSetVar name="fill" value="" />
 			<PGVRif condition="$sortby=='ID'">
