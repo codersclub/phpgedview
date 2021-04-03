@@ -8,7 +8,7 @@
  * in the $INDEX_DIRECTORY.
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2020  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2021  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -210,6 +210,11 @@ $SURNAME_TRADITION = "paternal";
 $FULL_SOURCES = true; // Include the quality-of-data and date-of-entry-in-original-source fields
 $PREFER_LEVEL2_SOURCES = '1';	//-- When adding close relatives, which Source checkboxes are checked by default: 0: none, 1: facts, 2: record
 $NO_UPDATE_CHAN = false;	// -- Do not update the CHAN record if true
+
+$pageSizeDefault = "A4";		// Reports subsystem: page size default
+$pageSizeOptions = "A3,A4,letter,legal";		// Reports subsystem: page size options
+$fontsDefault = "dejavusans";	// Reports subsystem: font default
+$fontsOptions = "courier,dejavusans,dejavusanscondensed,dejavuserif,dejavuserifcondensed,dejavusansmono,freesans,freeserif,freemono,helvetica,times";	// Reports subsystem: font options
 
 $ENABLE_RSS = true;
 $RSS_FORMAT = "ATOM";		//-- default feed format.

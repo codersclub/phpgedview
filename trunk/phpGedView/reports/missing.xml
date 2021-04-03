@@ -11,8 +11,8 @@
 	<PGVRInput name="pid" type="text" default="" lookup="INDI"><PGVRvar var="pgv_lang[enter_pid]" /></PGVRInput>
 	<PGVRInput name="relatives" type="select" default="direct-ancestors" options="child-family,spouse-family,direct-ancestors,ancestors,descendants,all"><PGVRvar var="pgv_lang[choose_relatives]" /></PGVRInput>
 	<PGVRInput name="maxgen" type="select" default="*" options="*,1,2,3,4,5,6,7,8,9,10"><PGVRvar var="pgv_lang[generations]" /></PGVRInput>
-	<PGVRInput name="pageSize" type="select" default="A4" options="A3,A4,letter,legal"><PGVRvar var="pgv_lang[page_size]" /></PGVRInput>
-	<PGVRInput name="fonts" type="select" default="dejavusans" options="courier,dejavusans,dejavusanscondensed,dejavuserif,dejavuserifcondensed,dejavusansmono,freesans,freeserif,freemono,helvetica,times"><PGVRvar var="pgv_lang[font]"/></PGVRInput>
+	<PGVRInput name="pageSize" type="select" default="GLOBALS[pageSizeDefault]" options="GLOBALS[pageSizeOptions]"><PGVRvar var="pgv_lang[page_size]" /></PGVRInput>
+	<PGVRInput name="fonts" type="select" default="GLOBALS[fontsDefault]" options="GLOBALS[fontsOptions]"><PGVRvar var="pgv_lang[font]"/></PGVRInput>
 
 	<PGVRInput name="fsour" type="checkbox" default="0"><PGVRvar var="pgv_lang[sources_to_events]" /></PGVRInput>
 	<PGVRInput name="fbirt" type="checkbox" default="1"><PGVRvar var="factarray[BIRT]" /></PGVRInput>
@@ -41,7 +41,6 @@
 	<!-- List values - CSS Style name -->
 	<PGVRStyle name="list_value" font="$fonts" size="9" />
 
-
 	<PGVRSetVar name="name" value="300" />
 	<PGVRSetVar name="printname" value="0" />
 	<PGVRSetVar name="vspace" value="5" />
@@ -52,10 +51,10 @@
 
 	<PGVRDoc pageSize="$pageSize">
 		<PGVRHeader>
-			<PGVRCell align="center" newline="1" style="header"><PGVRvar var="pgv_lang[missing_facts_report]" /></PGVRCell>
-			<PGVRCell align="rightrtl" newline="1" style="pagenum"><PGVRvar var="pgv_lang[page]" /> <PGVRPageNum /> / <PGVRTotalPages /></PGVRCell>
-			<PGVRCell align="left" border="1" style="list_label" width="$name"><PGVRvar var="pgv_lang[name]" /></PGVRCell>
-			<PGVRCell align="left" border="1" newline="1" style="list_label"><PGVRvar var="factarray[EVEN]" /></PGVRCell>
+			<PGVRCell align="center" newline="1" style="header" padding="0"><PGVRvar var="pgv_lang[missing_facts_report]" /></PGVRCell>
+			<PGVRCell align="rightrtl" newline="1" style="pagenum" padding="0"><PGVRvar var="pgv_lang[page]" /> <PGVRPageNum /> / <PGVRTotalPages /></PGVRCell>
+			<PGVRCell align="left" border="1" style="list_label" width="$name" padding="1"><PGVRvar var="pgv_lang[name]" /></PGVRCell>
+			<PGVRCell align="left" border="1" newline="1" style="list_label" padding="1"><PGVRvar var="factarray[EVEN]" /></PGVRCell>
 		</PGVRHeader>
 
 <!--	Start with BIRT GEDCOM tag.

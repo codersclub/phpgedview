@@ -10,8 +10,8 @@
 	<PGVRTitle><PGVRvar var="pgv_lang[fact_sources_report]" /></PGVRTitle>
 	<PGVRInput name="sid" lookup="SOUR" default="" type="text"><PGVRvar var="pgv_lang[find_sourceid]" /></PGVRInput>
 	<PGVRInput name="sortby" type="select" default="BIRT:DATE" options="NAME,BIRT:DATE"><PGVRvar var="pgv_lang[sort_by]" /></PGVRInput>
-	<PGVRInput name="pageSize" type="select" default="A4" options="A3,A4,letter,legal"><PGVRvar var="pgv_lang[page_size]" /></PGVRInput>
-	<PGVRInput name="fonts" type="select" default="dejavusans" options="courier,dejavusans,dejavusanscondensed,dejavuserif,dejavuserifcondensed,dejavusansmono,freesans,freeserif,freemono,helvetica,times"><PGVRvar var="pgv_lang[font]"/></PGVRInput>
+	<PGVRInput name="pageSize" type="select" default="GLOBALS[pageSizeDefault]" options="GLOBALS[pageSizeOptions]"><PGVRvar var="pgv_lang[page_size]" /></PGVRInput>
+	<PGVRInput name="fonts" type="select" default="GLOBALS[fontsDefault]" options="GLOBALS[fontsOptions]"><PGVRvar var="pgv_lang[font]"/></PGVRInput>
 
 	<!-- Header -->
 	<PGVRStyle name="header" font="$fonts" size="14" style="b" />
@@ -42,37 +42,37 @@
 
 	<PGVRDoc pageSize="$pageSize" orientation="landscape">
 		<PGVRHeader>
-			<PGVRCell align="center" newline="1" style="header"><PGVRvar var="pgv_lang[source_list]" /></PGVRCell>
+			<PGVRCell align="center" newline="1" style="header" padding="0"><PGVRvar var="pgv_lang[source_list]" /></PGVRCell>
 			<!-- Source Title -->
 			<PGVRGedcom id="$sid">
-				<PGVRCell align="center" newline="1" style="header2"><PGVRGedcomValue tag="TITL" /> (<PGVRvar var="sid" />)</PGVRCell>
+				<PGVRCell align="center" newline="1" style="header2" padding="0"><PGVRGedcomValue tag="TITL" /> (<PGVRvar var="sid" />)</PGVRCell>
 			</PGVRGedcom>
-			<PGVRCell align="rightrtl" newline="1" style="pagenum"><PGVRvar var="pgv_lang[page]" /> <PGVRPageNum /> <PGVRvar var="pgv_lang[of]" /> <PGVRTotalPages /></PGVRCell>
+			<PGVRCell align="rightrtl" newline="1" style="pagenum" padding="0"><PGVRvar var="pgv_lang[page]" /> <PGVRPageNum /> <PGVRvar var="pgv_lang[of]" /> <PGVRTotalPages /></PGVRCell>
 		</PGVRHeader>
 
 		<PGVRBody>
 			<!-- List type -->
 			<PGVRCell align="center" newline="1" style="listtype"><PGVRvar var="pgv_lang[individual_list]" /></PGVRCell>
-			<PGVRTextBox height="$vspace" newline="1" padding="0" />
+			<PGVRTextBox height="$vspace" newline="1" padding="0"/>
 
 			<!-- Individual Name -->
 			<PGVRSetVar name="fill" value="" />
 			<PGVRif condition="$sortby=='NAME'">
 				<PGVRSetVar name="fill" value="#AAAAAA" />
 			</PGVRif>
-			<PGVRCell align="left" bgcolor="$fill" border="1" style="list_label" width="$nameindi"><PGVRvar var="pgv_lang[name]" /></PGVRCell>
+			<PGVRCell align="left" bgcolor="$fill" border="1" style="list_label" width="$nameindi" padding="1"><PGVRvar var="pgv_lang[name]" /></PGVRCell>
 			<!-- Birth date -->
 			<PGVRSetVar name="fill" value="" />
 			<PGVRif condition="$sortby=='BIRT:DATE'">
 				<PGVRSetVar name="fill" value="#AAAAAA" />
 			</PGVRif>
-			<PGVRCell align="left" bgcolor="$fill" border="1" style="list_label" width="$datebirth"><PGVRvar var="factarray[BIRT:DATE]" /></PGVRCell>
+			<PGVRCell align="left" bgcolor="$fill" border="1" style="list_label" width="$datebirth" padding="1"><PGVRvar var="factarray[BIRT:DATE]" /></PGVRCell>
 			<!-- Name of the fact that contains the source -->
-			<PGVRCell align="left" border="1" style="list_label" width="$fact"><PGVRvar var="factarray[EVEN]" /></PGVRCell>
+			<PGVRCell align="left" border="1" style="list_label" width="$fact" padding="1"><PGVRvar var="factarray[EVEN]" /></PGVRCell>
 			<!-- Date of the fact -->
-			<PGVRCell align="left" border="1" style="list_label" width="$dateevent"><PGVRvar var="factarray[DATE]" /></PGVRCell>
+			<PGVRCell align="left" border="1" style="list_label" width="$dateevent" padding="1"><PGVRvar var="factarray[DATE]" /></PGVRCell>
 			<!-- Detailed source text -->
-			<PGVRCell align="left" border="1" newline="1" style="list_label"><PGVRvar var="factarray[PAGE]" /></PGVRCell>
+			<PGVRCell align="left" border="1" newline="1" style="list_label" padding="1"><PGVRvar var="factarray[PAGE]" /></PGVRCell>
 			<PGVRTextBox height="$vspace" newline="1" padding="0" />
 
 			<!-- Individual List -->
@@ -152,13 +152,13 @@
 			<PGVRCell align="center" newline="1" style="listtype"><PGVRvar var="pgv_lang[family_list]" /></PGVRCell>
 			<PGVRTextBox height="$vspace" newline="1" padding="0" />
 			<!-- Family Name -->
-			<PGVRCell align="left" border="1" style="list_label" width="$namefam"><PGVRvar var="pgv_lang[name]" /></PGVRCell>
+			<PGVRCell align="left" border="1" style="list_label" width="$namefam" padding="1"><PGVRvar var="pgv_lang[name]" /></PGVRCell>
 			<!-- Name of the fact that contains the source -->
-			<PGVRCell align="left" border="1" style="list_label" width="$fact"><PGVRvar var="factarray[EVEN]" /></PGVRCell>
+			<PGVRCell align="left" border="1" style="list_label" width="$fact" padding="1"><PGVRvar var="factarray[EVEN]" /></PGVRCell>
 			<!-- Date of the fact -->
-			<PGVRCell align="left" bgcolor="#AAAAAA" border="1" style="list_label" width="$dateevent"><PGVRvar var="factarray[DATE]" /></PGVRCell>
+			<PGVRCell align="left" bgcolor="#AAAAAA" border="1" style="list_label" width="$dateevent" padding="1"><PGVRvar var="factarray[DATE]" /></PGVRCell>
 			<!-- Detailed source text -->
-			<PGVRCell align="left" border="1" newline="1" style="list_label"><PGVRvar var="factarray[PAGE]" /></PGVRCell>
+			<PGVRCell align="left" border="1" newline="1" style="list_label" padding="1"><PGVRvar var="factarray[PAGE]" /></PGVRCell>
 
 			<!-- Family List -->
 			<PGVRTextBox height="$vspace" newline="1" padding="0" />

@@ -9,8 +9,8 @@
 
 	<PGVRTitle><PGVRvar var="pgv_lang[pedigree_chart]" /> - <PGVRvar var="pgv_lang[landscape]" /></PGVRTitle>
 	<PGVRInput name="pid" lookup="INDI" type="text" default=""><PGVRvar var="pgv_lang[enter_pid]" /></PGVRInput>
-	<PGVRInput name="pageSize" type="select" default="A4" options="A3,A4,letter,legal"><PGVRvar var="pgv_lang[page_size]" /></PGVRInput>
-	<PGVRInput name="fonts" type="select" default="dejavusans" options="courier,dejavusans,dejavusanscondensed,dejavuserif,dejavuserifcondensed,dejavusansmono,freesans,freeserif,freemono,helvetica,times"><PGVRvar var="pgv_lang[font]"/></PGVRInput>
+	<PGVRInput name="pageSize" type="select" default="GLOBALS[pageSizeDefault]" options="GLOBALS[pageSizeOptions]"><PGVRvar var="pgv_lang[page_size]" /></PGVRInput>
+	<PGVRInput name="fonts" type="select" default="GLOBALS[fontsDefault]" options="GLOBALS[fontsOptions]"><PGVRvar var="pgv_lang[font]"/></PGVRInput>
 
 	<PGVRStyle name="header" font="$fonts" size="14" style="b" />
 	<PGVRStyle name="subheader" font="$fonts" size="12" style="b" />
@@ -39,8 +39,8 @@
 
 	<PGVRDoc pageSize="$pageSize" orientation="landscape" leftmargin="1" rightmargin="1" topmargin="65">
 		<PGVRHeader>
-			<PGVRCell align="center" newline="1" style="header"><PGVRvar var="pgv_lang[pedigree_chart]" /></PGVRCell>
-			<PGVRCell align="center" newline="1" style="subheader"><PGVRGetPersonName id="$pid" /></PGVRCell>
+			<PGVRCell align="center" newline="1" style="header" padding="0"><PGVRvar var="pgv_lang[pedigree_chart]" /></PGVRCell>
+			<PGVRCell align="center" newline="1" style="subheader" padding="0"><PGVRGetPersonName id="$pid" /></PGVRCell>
 		</PGVRHeader>
 		<PGVRBody>
 
@@ -52,13 +52,13 @@
 			<PGVRLine x1="32" y1="426" x2="210" y2="426" />
 
 			<PGVRGedcom id="$pid">
-			<PGVRTextBox padding="0" pagecheck="0" width="160" height="10" align="left" left="$number_1_2_3" top="258" reseth="1">
+			<PGVRTextBox padding="1" pagecheck="0" width="160" height="10" align="left" left="$number_1_2_3" top="258" reseth="1">
 				<PGVRText style="label1">1.</PGVRText>
 			</PGVRTextBox>
-			<PGVRTextBox padding="0" pagecheck="0" width="160" height="10" align="left" left="$name_1_2_3" top="258" reseth="1">
+			<PGVRTextBox padding="1" pagecheck="0" width="160" height="10" align="left" left="$name_1_2_3" top="258" reseth="1">
 				<PGVRText style="name"><PGVRGetPersonName id="$pid" truncate="$truncatename" /></PGVRText>
 			</PGVRTextBox>
-			<PGVRTextBox padding="0" pagecheck="0" width="160" height="10" align="left" left="$name_1_2_3" top="272" reseth="1">
+			<PGVRTextBox padding="1" pagecheck="0" width="160" height="10" align="left" left="$name_1_2_3" top="272" reseth="1">
 				<PGVRText style="text"><PGVRvarLetter var="factarray[BIRT]" />: <PGVRGedcomValue tag="BIRT:DATE" truncate="$trunc_place" />
 					<br /><PGVRvarLetter var="factarray[PLAC]" />: <PGVRGedcomValue tag="BIRT:PLAC" truncate="$trunc_place" />
 					<PGVRGedcom id="@FAMS">
@@ -72,13 +72,13 @@
 				</PGVRText>
 			</PGVRTextBox>
 
-			<PGVRTextBox padding="0" pagecheck="0" width="160" height="10" align="left" left="$number_1_2_3" top="138" reseth="1">
+			<PGVRTextBox padding="1" pagecheck="0" width="160" height="10" align="left" left="$number_1_2_3" top="138" reseth="1">
 				<PGVRText style="label1">2.</PGVRText>
 			</PGVRTextBox>
-			<PGVRTextBox padding="0" pagecheck="0" width="160" height="10" align="left" left="$name_1_2_3" top="138" reseth="1">
+			<PGVRTextBox padding="1" pagecheck="0" width="160" height="10" align="left" left="$name_1_2_3" top="138" reseth="1">
 				<PGVRText style="name"><PGVRGedcom id="@FAMC"><PGVRGetPersonName id="@HUSB" truncate="$truncatename" /></PGVRGedcom></PGVRText>
 			</PGVRTextBox>
-			<PGVRTextBox padding="0" pagecheck="0" width="160" height="10" align="left" left="$name_1_2_3" top="152" reseth="1">
+			<PGVRTextBox padding="1" pagecheck="0" width="160" height="10" align="left" left="$name_1_2_3" top="152" reseth="1">
 				<PGVRGedcom id="@FAMC:@HUSB">
 					<PGVRText style="text"><PGVRvarLetter var="factarray[BIRT]" />: <PGVRGedcomValue tag="BIRT:DATE" truncate="$trunc_place" />
 						<br /><PGVRvarLetter var="factarray[PLAC]" />: <PGVRGedcomValue tag="BIRT:PLAC" truncate="$trunc_place" />
@@ -94,13 +94,13 @@
 				</PGVRGedcom>
 			</PGVRTextBox>
 
-			<PGVRTextBox padding="0" pagecheck="0" width="160" height="10" align="left" left="$number_1_2_3" top="413" reseth="1">
+			<PGVRTextBox padding="1" pagecheck="0" width="160" height="10" align="left" left="$number_1_2_3" top="413" reseth="1">
 				<PGVRText style="label1">3.</PGVRText>
 			</PGVRTextBox>
-			<PGVRTextBox padding="0" pagecheck="0" width="160" height="10" align="left" left="$name_1_2_3" top="413" reseth="1">
+			<PGVRTextBox padding="1" pagecheck="0" width="160" height="10" align="left" left="$name_1_2_3" top="413" reseth="1">
 				<PGVRText style="name"><PGVRGedcom id="@FAMC"><PGVRGetPersonName id="@WIFE" truncate="$truncatename" /></PGVRGedcom></PGVRText>
 			</PGVRTextBox>
-			<PGVRTextBox padding="0" pagecheck="0" width="160" height="10" align="left" left="$name_1_2_3" top="427" reseth="1">
+			<PGVRTextBox padding="1" pagecheck="0" width="160" height="10" align="left" left="$name_1_2_3" top="427" reseth="1">
 				<PGVRGedcom id="@FAMC:@WIFE">
 					<PGVRText style="text"><PGVRvarLetter var="factarray[BIRT]" />: <PGVRGedcomValue tag="BIRT:DATE" truncate="$trunc_place" />
 						<br /><PGVRvarLetter var="factarray[PLAC]" />: <PGVRGedcomValue tag="BIRT:PLAC" truncate="$trunc_place" />
@@ -123,13 +123,13 @@
 			<PGVRLine x1="210" y1="336" x2="390" y2="336" />
 			<PGVRLine x1="210" y1="456" x2="390" y2="456" />
 
-			<PGVRTextBox padding="0" pagecheck="0" width="160" height="10" align="left" left="$number_4_to_7" top="83" reseth="1">
+			<PGVRTextBox padding="1" pagecheck="0" width="160" height="10" align="left" left="$number_4_to_7" top="83" reseth="1">
 				<PGVRText style="label1">4.</PGVRText>
 			</PGVRTextBox>
-			<PGVRTextBox padding="0" pagecheck="0" width="170" height="10" align="left" left="$name_4_to_7" top="83" reseth="1">
+			<PGVRTextBox padding="1" pagecheck="0" width="170" height="10" align="left" left="$name_4_to_7" top="83" reseth="1">
 				<PGVRText style="name"><PGVRGedcom id="@FAMC:@HUSB:@FAMC"><PGVRGetPersonName id="@HUSB" truncate="$truncatename" /></PGVRGedcom></PGVRText>
 			</PGVRTextBox>
-			<PGVRTextBox padding="0" pagecheck="0" width="160" height="10" align="left" left="$name_4_to_7" top="97" reseth="1">
+			<PGVRTextBox padding="1" pagecheck="0" width="160" height="10" align="left" left="$name_4_to_7" top="97" reseth="1">
 				<PGVRGedcom id="@FAMC:@HUSB:@FAMC:@HUSB">
 					<PGVRText style="text"><PGVRvarLetter var="factarray[BIRT]" />: <PGVRGedcomValue tag="BIRT:DATE" truncate="$trunc_place" />
 						<br /><PGVRvarLetter var="factarray[PLAC]" />: <PGVRGedcomValue tag="BIRT:PLAC" truncate="$trunc_place" />
@@ -145,13 +145,13 @@
 				</PGVRGedcom>
 			</PGVRTextBox>
 
-			<PGVRTextBox padding="0" pagecheck="0" width="160" height="10" align="left" left="$number_4_to_7" top="203" reseth="1">
+			<PGVRTextBox padding="1" pagecheck="0" width="160" height="10" align="left" left="$number_4_to_7" top="203" reseth="1">
 				<PGVRText style="label1">5.</PGVRText>
 			</PGVRTextBox>
-			<PGVRTextBox padding="0" pagecheck="0" width="170" height="10" align="left" left="$name_4_to_7" top="203" reseth="1">
+			<PGVRTextBox padding="1" pagecheck="0" width="170" height="10" align="left" left="$name_4_to_7" top="203" reseth="1">
 				<PGVRText style="name"><PGVRGedcom id="@FAMC:@HUSB:@FAMC"><PGVRGetPersonName id="@WIFE" truncate="$truncatename" /></PGVRGedcom></PGVRText>
 			</PGVRTextBox>
-			<PGVRTextBox padding="0" pagecheck="0" width="160" height="10" align="left" left="$name_4_to_7" top="217" reseth="1">
+			<PGVRTextBox padding="1" pagecheck="0" width="160" height="10" align="left" left="$name_4_to_7" top="217" reseth="1">
 				<PGVRGedcom id="@FAMC:@HUSB:@FAMC:@WIFE">
 					<PGVRText style="text"><PGVRvarLetter var="factarray[BIRT]" />: <PGVRGedcomValue tag="BIRT:DATE" truncate="$trunc_place" />
 						<br /><PGVRvarLetter var="factarray[PLAC]" />: <PGVRGedcomValue tag="BIRT:PLAC" truncate="$trunc_place" />
@@ -163,13 +163,13 @@
 				</PGVRGedcom>
 			</PGVRTextBox>
 
-			<PGVRTextBox padding="0" pagecheck="0" width="160" height="10" align="left" left="$number_4_to_7" top="323" reseth="1">
+			<PGVRTextBox padding="1" pagecheck="0" width="160" height="10" align="left" left="$number_4_to_7" top="323" reseth="1">
 				<PGVRText style="label1">6.</PGVRText>
 			</PGVRTextBox>
-			<PGVRTextBox padding="0" pagecheck="0" width="170" height="10" align="left" left="$name_4_to_7" top="323" reseth="1">
+			<PGVRTextBox padding="1" pagecheck="0" width="170" height="10" align="left" left="$name_4_to_7" top="323" reseth="1">
 				<PGVRText style="name"><PGVRGedcom id="@FAMC:@WIFE:@FAMC"><PGVRGetPersonName id="@HUSB" truncate="$truncatename" /></PGVRGedcom></PGVRText>
 			</PGVRTextBox>
-			<PGVRTextBox padding="0" pagecheck="0" width="160" height="10" align="left" left="$name_4_to_7" top="337" reseth="1">
+			<PGVRTextBox padding="1" pagecheck="0" width="160" height="10" align="left" left="$name_4_to_7" top="337" reseth="1">
 				<PGVRGedcom id="@FAMC:@WIFE:@FAMC:@HUSB">
 					<PGVRText style="text"><PGVRvarLetter var="factarray[BIRT]" />: <PGVRGedcomValue tag="BIRT:DATE" truncate="$trunc_place" />
 						<br /><PGVRvarLetter var="factarray[PLAC]" />: <PGVRGedcomValue tag="BIRT:PLAC" truncate="$trunc_place" />
@@ -185,13 +185,13 @@
 				</PGVRGedcom>
 			</PGVRTextBox>
 
-			<PGVRTextBox padding="0" pagecheck="0" width="160" height="10" align="left" left="$number_4_to_7" top="443" reseth="1">
+			<PGVRTextBox padding="1" pagecheck="0" width="160" height="10" align="left" left="$number_4_to_7" top="443" reseth="1">
 				<PGVRText style="label1">7.</PGVRText>
 			</PGVRTextBox>
-			<PGVRTextBox padding="0" pagecheck="0" width="170" height="10" align="left" left="$name_4_to_7" top="443" reseth="1">
+			<PGVRTextBox padding="1" pagecheck="0" width="170" height="10" align="left" left="$name_4_to_7" top="443" reseth="1">
 				<PGVRText style="name"><PGVRGedcom id="@FAMC:@WIFE:@FAMC"><PGVRGetPersonName id="@WIFE" truncate="$truncatename" /></PGVRGedcom></PGVRText>
 			</PGVRTextBox>
-			<PGVRTextBox padding="0" pagecheck="0" width="160" height="10" align="left" left="$name_4_to_7" top="457" reseth="1">
+			<PGVRTextBox padding="1" pagecheck="0" width="160" height="10" align="left" left="$name_4_to_7" top="457" reseth="1">
 				<PGVRGedcom id="@FAMC:@WIFE:@FAMC:@WIFE">
 					<PGVRText style="text"><PGVRvarLetter var="factarray[BIRT]" />: <PGVRGedcomValue tag="BIRT:DATE" truncate="$trunc_place" />
 						<br /><PGVRvarLetter var="factarray[PLAC]" />: <PGVRGedcomValue tag="BIRT:PLAC" truncate="$trunc_place" />
@@ -222,13 +222,13 @@
 			<PGVRLine x1="390" y1="426" x2="570" y2="426" />
 			<PGVRLine x1="390" y1="486" x2="570" y2="486" />
 
-			<PGVRTextBox padding="0" pagecheck="0" width="160" height="10" align="left" left="$number_8_to_9" top="53" reseth="1">
+			<PGVRTextBox padding="1" pagecheck="0" width="160" height="10" align="left" left="$number_8_to_9" top="53" reseth="1">
 				<PGVRText style="label1">8.</PGVRText>
 			</PGVRTextBox>
-			<PGVRTextBox padding="0" pagecheck="0" width="160" height="10" align="left" left="$name_8_to_15" top="53" reseth="1">
+			<PGVRTextBox padding="1" pagecheck="0" width="160" height="10" align="left" left="$name_8_to_15" top="53" reseth="1">
 				<PGVRText style="name"><PGVRGedcom id="@FAMC:@HUSB:@FAMC:@HUSB:@FAMC"><PGVRGetPersonName id="@HUSB" truncate="$truncatename" /></PGVRGedcom></PGVRText>
 			</PGVRTextBox>
-			<PGVRTextBox padding="0" pagecheck="0" width="160" height="10" align="left" left="$name_8_to_15" top="67" reseth="1">
+			<PGVRTextBox padding="1" pagecheck="0" width="160" height="10" align="left" left="$name_8_to_15" top="67" reseth="1">
 				<PGVRGedcom id="@FAMC:@HUSB:@FAMC:@HUSB:@FAMC:@HUSB">
 					<PGVRText style="text"><PGVRvarLetter var="factarray[BIRT]" />: <PGVRGedcomValue tag="BIRT:DATE" truncate="$trunc_dateplace" />
 						 <PGVRGedcomValue tag="BIRT:PLAC" truncate="$trunc_dateplace" />
@@ -244,13 +244,13 @@
 				</PGVRGedcom>
 			</PGVRTextBox>
 
-			<PGVRTextBox padding="0" pagecheck="0" width="160" height="10" align="left" left="$number_8_to_9" top="113" reseth="1">
+			<PGVRTextBox padding="1" pagecheck="0" width="160" height="10" align="left" left="$number_8_to_9" top="113" reseth="1">
 				<PGVRText style="label1">9.</PGVRText>
 			</PGVRTextBox>
-			<PGVRTextBox padding="0" pagecheck="0" width="160" height="10" align="left" left="$name_8_to_15" top="113" reseth="1">
+			<PGVRTextBox padding="1" pagecheck="0" width="160" height="10" align="left" left="$name_8_to_15" top="113" reseth="1">
 				<PGVRText style="name"><PGVRGedcom id="@FAMC:@HUSB:@FAMC:@HUSB:@FAMC"><PGVRGetPersonName id="@WIFE" truncate="$truncatename" /></PGVRGedcom></PGVRText>
 			</PGVRTextBox>
-			<PGVRTextBox padding="0" pagecheck="0" width="160" height="10" align="left" left="$name_8_to_15" top="127" reseth="1">
+			<PGVRTextBox padding="1" pagecheck="0" width="160" height="10" align="left" left="$name_8_to_15" top="127" reseth="1">
 				<PGVRGedcom id="@FAMC:@HUSB:@FAMC:@HUSB:@FAMC:@WIFE">
 					<PGVRText style="text"><PGVRvarLetter var="factarray[BIRT]" />: <PGVRGedcomValue tag="BIRT:DATE" truncate="$trunc_dateplace" />
 						 <PGVRGedcomValue tag="BIRT:PLAC" truncate="32" />
@@ -262,13 +262,13 @@
 				</PGVRGedcom>
 			</PGVRTextBox>
 
-			<PGVRTextBox padding="0" pagecheck="0" width="160" height="10" align="left" left="$number_10_to_15" top="173" reseth="1">
+			<PGVRTextBox padding="1" pagecheck="0" width="160" height="10" align="left" left="$number_10_to_15" top="173" reseth="1">
 				<PGVRText style="label1">10.</PGVRText>
 			</PGVRTextBox>
-			<PGVRTextBox padding="0" pagecheck="0" width="160" height="10" align="left" left="$name_8_to_15" top="173" reseth="1">
+			<PGVRTextBox padding="1" pagecheck="0" width="160" height="10" align="left" left="$name_8_to_15" top="173" reseth="1">
 				<PGVRText style="name"><PGVRGedcom id="@FAMC:@HUSB:@FAMC:@WIFE:@FAMC"><PGVRGetPersonName id="@HUSB" truncate="$truncatename" /></PGVRGedcom></PGVRText>
 			</PGVRTextBox>
-			<PGVRTextBox padding="0" pagecheck="0" width="160" height="10" align="left" left="$name_8_to_15" top="187" reseth="1">
+			<PGVRTextBox padding="1" pagecheck="0" width="160" height="10" align="left" left="$name_8_to_15" top="187" reseth="1">
 				<PGVRGedcom id="@FAMC:@HUSB:@FAMC:@WIFE:@FAMC:@HUSB">
 					<PGVRText style="text"><PGVRvarLetter var="factarray[BIRT]" />: <PGVRGedcomValue tag="BIRT:DATE" truncate="$trunc_dateplace" />
 						 <PGVRGedcomValue tag="BIRT:PLAC" truncate="$trunc_dateplace" />
@@ -284,13 +284,13 @@
 				</PGVRGedcom>
 			</PGVRTextBox>
 
-			<PGVRTextBox padding="0" pagecheck="0" width="160" height="10" align="left" left="$number_10_to_15" top="233" reseth="1">
+			<PGVRTextBox padding="1" pagecheck="0" width="160" height="10" align="left" left="$number_10_to_15" top="233" reseth="1">
 				<PGVRText style="label1">11.</PGVRText>
 			</PGVRTextBox>
-			<PGVRTextBox padding="0" pagecheck="0" width="160" height="10" align="left" left="$name_8_to_15" top="233" reseth="1">
+			<PGVRTextBox padding="1" pagecheck="0" width="160" height="10" align="left" left="$name_8_to_15" top="233" reseth="1">
 				<PGVRText style="name"><PGVRGedcom id="@FAMC:@HUSB:@FAMC:@WIFE:@FAMC"><PGVRGetPersonName id="@WIFE" truncate="$truncatename" /></PGVRGedcom></PGVRText>
 			</PGVRTextBox>
-			<PGVRTextBox padding="0" pagecheck="0" width="160" height="10" align="left" left="$name_8_to_15" top="247" reseth="1">
+			<PGVRTextBox padding="1" pagecheck="0" width="160" height="10" align="left" left="$name_8_to_15" top="247" reseth="1">
 				<PGVRGedcom id="@FAMC:@HUSB:@FAMC:@WIFE:@FAMC:@WIFE">
 					<PGVRText style="text"><PGVRvarLetter var="factarray[BIRT]" />: <PGVRGedcomValue tag="BIRT:DATE" truncate="$trunc_dateplace" />
 						 <PGVRGedcomValue tag="BIRT:PLAC" truncate="$trunc_dateplace" />
@@ -302,13 +302,13 @@
 				</PGVRGedcom>
 			</PGVRTextBox>
 
-			<PGVRTextBox padding="0" pagecheck="0" width="160" height="10" align="left" left="$number_10_to_15" top="293" reseth="1">
+			<PGVRTextBox padding="1" pagecheck="0" width="160" height="10" align="left" left="$number_10_to_15" top="293" reseth="1">
 				<PGVRText style="label1">12.</PGVRText>
 			</PGVRTextBox>
-			<PGVRTextBox padding="0" pagecheck="0" width="160" height="10" align="left" left="$name_8_to_15" top="293" reseth="1">
+			<PGVRTextBox padding="1" pagecheck="0" width="160" height="10" align="left" left="$name_8_to_15" top="293" reseth="1">
 				<PGVRText style="name"><PGVRGedcom id="@FAMC:@WIFE:@FAMC:@HUSB:@FAMC"><PGVRGetPersonName id="@HUSB" truncate="$truncatename" /></PGVRGedcom></PGVRText>
 			</PGVRTextBox>
-			<PGVRTextBox padding="0" pagecheck="0" width="160" height="10" align="left" left="$name_8_to_15" top="307" reseth="1">
+			<PGVRTextBox padding="1" pagecheck="0" width="160" height="10" align="left" left="$name_8_to_15" top="307" reseth="1">
 				<PGVRGedcom id="@FAMC:@WIFE:@FAMC:@HUSB:@FAMC:@HUSB">
 					<PGVRText style="text"><PGVRvarLetter var="factarray[BIRT]" />: <PGVRGedcomValue tag="BIRT:DATE" truncate="$trunc_dateplace" />
 						 <PGVRGedcomValue tag="BIRT:PLAC" truncate="$trunc_dateplace" />
@@ -324,13 +324,13 @@
 				</PGVRGedcom>
 			</PGVRTextBox>
 
-			<PGVRTextBox padding="0" pagecheck="0" width="160" height="10" align="left" left="$number_10_to_15" top="353" reseth="1">
+			<PGVRTextBox padding="1" pagecheck="0" width="160" height="10" align="left" left="$number_10_to_15" top="353" reseth="1">
 				<PGVRText style="label1">13.</PGVRText>
 			</PGVRTextBox>
-			<PGVRTextBox padding="0" pagecheck="0" width="160" height="10" align="left" left="$name_8_to_15" top="353" reseth="1">
+			<PGVRTextBox padding="1" pagecheck="0" width="160" height="10" align="left" left="$name_8_to_15" top="353" reseth="1">
 				<PGVRText style="name"><PGVRGedcom id="@FAMC:@WIFE:@FAMC:@HUSB:@FAMC"><PGVRGetPersonName id="@WIFE" truncate="$truncatename" /></PGVRGedcom></PGVRText>
 			</PGVRTextBox>
-			<PGVRTextBox padding="0" pagecheck="0" width="160" height="10" align="left" left="$name_8_to_15" top="367" reseth="1">
+			<PGVRTextBox padding="1" pagecheck="0" width="160" height="10" align="left" left="$name_8_to_15" top="367" reseth="1">
 				<PGVRGedcom id="@FAMC:@WIFE:@FAMC:@HUSB:@FAMC:@WIFE">
 					<PGVRText style="text"><PGVRvarLetter var="factarray[BIRT]" />: <PGVRGedcomValue tag="BIRT:DATE" truncate="$trunc_dateplace" />
 						 <PGVRGedcomValue tag="BIRT:PLAC" truncate="32" />
@@ -342,13 +342,13 @@
 				</PGVRGedcom>
 			</PGVRTextBox>
 
-			<PGVRTextBox padding="0" pagecheck="0" width="160" height="10" align="left" left="$number_10_to_15" top="413" reseth="1">
+			<PGVRTextBox padding="1" pagecheck="0" width="160" height="10" align="left" left="$number_10_to_15" top="413" reseth="1">
 				<PGVRText style="label1">14.</PGVRText>
 			</PGVRTextBox>
-			<PGVRTextBox padding="0" pagecheck="0" width="160" height="10" align="left" left="$name_8_to_15" top="413" reseth="1">
+			<PGVRTextBox padding="1" pagecheck="0" width="160" height="10" align="left" left="$name_8_to_15" top="413" reseth="1">
 				<PGVRText style="name"><PGVRGedcom id="@FAMC:@WIFE:@FAMC:@WIFE:@FAMC"><PGVRGetPersonName id="@HUSB" truncate="$truncatename" /></PGVRGedcom></PGVRText>
 			</PGVRTextBox>
-			<PGVRTextBox padding="0" pagecheck="0" width="160" height="10" align="left" left="$name_8_to_15" top="427" reseth="1">
+			<PGVRTextBox padding="1" pagecheck="0" width="160" height="10" align="left" left="$name_8_to_15" top="427" reseth="1">
 				<PGVRGedcom id="@FAMC:@WIFE:@FAMC:@WIFE:@FAMC:@HUSB">
 					<PGVRText style="text"><PGVRvarLetter var="factarray[BIRT]" />: <PGVRGedcomValue tag="BIRT:DATE" truncate="$trunc_dateplace" />
 						 <PGVRGedcomValue tag="BIRT:PLAC" truncate="$trunc_dateplace" />
@@ -364,13 +364,13 @@
 				</PGVRGedcom>
 			</PGVRTextBox>
 
-			<PGVRTextBox padding="0" pagecheck="0" width="160" height="10" align="left" left="$number_10_to_15" top="473" reseth="1">
+			<PGVRTextBox padding="1" pagecheck="0" width="160" height="10" align="left" left="$number_10_to_15" top="473" reseth="1">
 				<PGVRText style="label1">15.</PGVRText>
 			</PGVRTextBox>
-			<PGVRTextBox padding="0" pagecheck="0" width="160" height="10" align="left" left="$name_8_to_15" top="473" reseth="1">
+			<PGVRTextBox padding="1" pagecheck="0" width="160" height="10" align="left" left="$name_8_to_15" top="473" reseth="1">
 				<PGVRText style="name"><PGVRGedcom id="@FAMC:@WIFE:@FAMC:@WIFE:@FAMC"><PGVRGetPersonName id="@WIFE" truncate="$truncatename" /></PGVRGedcom></PGVRText>
 			</PGVRTextBox>
-			<PGVRTextBox padding="0" pagecheck="0" width="160" height="10" align="left" left="$name_8_to_15" top="487" reseth="1">
+			<PGVRTextBox padding="1" pagecheck="0" width="160" height="10" align="left" left="$name_8_to_15" top="487" reseth="1">
 				<PGVRGedcom id="@FAMC:@WIFE:@FAMC:@WIFE:@FAMC:@WIFE">
 					<PGVRText style="text"><PGVRvarLetter var="factarray[BIRT]" />: <PGVRGedcomValue tag="BIRT:DATE" truncate="$trunc_dateplace" />
 						 <PGVRGedcomValue tag="BIRT:PLAC" truncate="$trunc_dateplace" />
@@ -417,13 +417,13 @@
 			<PGVRLine x1="570" y1="471" x2="750" y2="471" />
 			<PGVRLine x1="570" y1="501" x2="750" y2="501" />
 
-			<PGVRTextBox padding="0" pagecheck="0" width="180" height="10" align="left" left="$number_16_to_31" top="38" reseth="1">
+			<PGVRTextBox padding="1" pagecheck="0" width="180" height="10" align="left" left="$number_16_to_31" top="38" reseth="1">
 				<PGVRText style="label1">16.</PGVRText>
 			</PGVRTextBox>
-			<PGVRTextBox padding="0" pagecheck="0" width="180" height="10" align="left" left="$name_16_to_31" top="38" reseth="1">
+			<PGVRTextBox padding="1" pagecheck="0" width="180" height="10" align="left" left="$name_16_to_31" top="38" reseth="1">
 				<PGVRText style="name"><PGVRGedcom id="@FAMC:@HUSB:@FAMC:@HUSB:@FAMC:@HUSB:@FAMC"><PGVRGetPersonName id="@HUSB" truncate="$truncatename" /></PGVRGedcom></PGVRText>
 			</PGVRTextBox>
-			<PGVRTextBox padding="0" pagecheck="0" width="180" height="10" align="left" left="$name_16_to_31" top="52" reseth="1">
+			<PGVRTextBox padding="1" pagecheck="0" width="180" height="10" align="left" left="$name_16_to_31" top="52" reseth="1">
 				<PGVRGedcom id="@FAMC:@HUSB:@FAMC:@HUSB:@FAMC:@HUSB:@FAMC:@HUSB">
 					<PGVRText style="text"><PGVRvarLetter var="factarray[BIRT]" />: <PGVRGedcomValue tag="BIRT:DATE" truncate="20" />
 						<PGVRGedcom id="DEAT">
@@ -436,13 +436,13 @@
 				</PGVRGedcom>
 			</PGVRTextBox>
 
-			<PGVRTextBox padding="0" pagecheck="0" width="180" height="10" align="left" left="$number_16_to_31" top="68" reseth="1">
+			<PGVRTextBox padding="1" pagecheck="0" width="180" height="10" align="left" left="$number_16_to_31" top="68" reseth="1">
 				<PGVRText style="label1">17.</PGVRText>
 			</PGVRTextBox>
-			<PGVRTextBox padding="0" pagecheck="0" width="180" height="10" align="left" left="$name_16_to_31" top="68" reseth="1">
+			<PGVRTextBox padding="1" pagecheck="0" width="180" height="10" align="left" left="$name_16_to_31" top="68" reseth="1">
 				<PGVRText style="name"><PGVRGedcom id="@FAMC:@HUSB:@FAMC:@HUSB:@FAMC:@HUSB:@FAMC"><PGVRGetPersonName id="@WIFE" truncate="$truncatename" /></PGVRGedcom></PGVRText>
 			</PGVRTextBox>
-			<PGVRTextBox padding="0" pagecheck="0" width="180" height="10" align="left" left="$name_16_to_31" top="82" reseth="1">
+			<PGVRTextBox padding="1" pagecheck="0" width="180" height="10" align="left" left="$name_16_to_31" top="82" reseth="1">
 				<PGVRGedcom id="@FAMC:@HUSB:@FAMC:@HUSB:@FAMC:@HUSB:@FAMC:@WIFE">
 					<PGVRText style="text"><PGVRvarLetter var="factarray[BIRT]" />: <PGVRGedcomValue tag="BIRT:DATE" truncate="20" />
 						<PGVRGedcom id="DEAT">
@@ -452,13 +452,13 @@
 				</PGVRGedcom>
 			</PGVRTextBox>
 
-			<PGVRTextBox padding="0" pagecheck="0" width="180" height="10" align="left" left="$number_16_to_31" top="98" reseth="1">
+			<PGVRTextBox padding="1" pagecheck="0" width="180" height="10" align="left" left="$number_16_to_31" top="98" reseth="1">
 				<PGVRText style="label1">18.</PGVRText>
 			</PGVRTextBox>
-			<PGVRTextBox padding="0" pagecheck="0" width="180" height="10" align="left" left="$name_16_to_31" top="98" reseth="1">
+			<PGVRTextBox padding="1" pagecheck="0" width="180" height="10" align="left" left="$name_16_to_31" top="98" reseth="1">
 				<PGVRText style="name"><PGVRGedcom id="@FAMC:@HUSB:@FAMC:@HUSB:@FAMC:@WIFE:@FAMC"><PGVRGetPersonName id="@HUSB" truncate="$truncatename" /></PGVRGedcom></PGVRText>
 			</PGVRTextBox>
-			<PGVRTextBox padding="0" pagecheck="0" width="180" height="10" align="left" left="$name_16_to_31" top="112" reseth="1">
+			<PGVRTextBox padding="1" pagecheck="0" width="180" height="10" align="left" left="$name_16_to_31" top="112" reseth="1">
 				<PGVRGedcom id="@FAMC:@HUSB:@FAMC:@HUSB:@FAMC:@WIFE:@FAMC:@HUSB">
 					<PGVRText style="text"><PGVRvarLetter var="factarray[BIRT]" />: <PGVRGedcomValue tag="BIRT:DATE" truncate="20" />
 						<PGVRGedcom id="DEAT">
@@ -471,13 +471,13 @@
 				</PGVRGedcom>
 			</PGVRTextBox>
 
-			<PGVRTextBox padding="0" pagecheck="0" width="180" height="10" align="left" left="$number_16_to_31" top="129" reseth="1">
+			<PGVRTextBox padding="1" pagecheck="0" width="180" height="10" align="left" left="$number_16_to_31" top="129" reseth="1">
 				<PGVRText style="label1">19.</PGVRText>
 			</PGVRTextBox>
-			<PGVRTextBox padding="0" pagecheck="0" width="180" height="10" align="left" left="$name_16_to_31" top="129" reseth="1">
+			<PGVRTextBox padding="1" pagecheck="0" width="180" height="10" align="left" left="$name_16_to_31" top="129" reseth="1">
 				<PGVRText style="name"><PGVRGedcom id="@FAMC:@HUSB:@FAMC:@HUSB:@FAMC:@WIFE:@FAMC"><PGVRGetPersonName id="@WIFE" truncate="$truncatename" /></PGVRGedcom></PGVRText>
 			</PGVRTextBox>
-			<PGVRTextBox padding="0" pagecheck="0" width="180" height="10" align="left" left="$name_16_to_31" top="142" reseth="1">
+			<PGVRTextBox padding="1" pagecheck="0" width="180" height="10" align="left" left="$name_16_to_31" top="142" reseth="1">
 				<PGVRGedcom id="@FAMC:@HUSB:@FAMC:@HUSB:@FAMC:@WIFE:@FAMC:@WIFE">
 					<PGVRText style="text"><PGVRvarLetter var="factarray[BIRT]" />: <PGVRGedcomValue tag="BIRT:DATE" truncate="20" />
 						<PGVRGedcom id="DEAT">
@@ -487,13 +487,13 @@
 				</PGVRGedcom>
 			</PGVRTextBox>
 
-			<PGVRTextBox padding="0" pagecheck="0" width="180" height="10" align="left" left="$number_16_to_31" top="158" reseth="1">
+			<PGVRTextBox padding="1" pagecheck="0" width="180" height="10" align="left" left="$number_16_to_31" top="158" reseth="1">
 				<PGVRText style="label1">20.</PGVRText>
 			</PGVRTextBox>
-			<PGVRTextBox padding="0" pagecheck="0" width="180" height="10" align="left" left="$name_16_to_31" top="158" reseth="1">
+			<PGVRTextBox padding="1" pagecheck="0" width="180" height="10" align="left" left="$name_16_to_31" top="158" reseth="1">
 				<PGVRText style="name"><PGVRGedcom id="@FAMC:@HUSB:@FAMC:@WIFE:@FAMC:@HUSB:@FAMC"><PGVRGetPersonName id="@HUSB" truncate="$truncatename" /></PGVRGedcom></PGVRText>
 			</PGVRTextBox>
-			<PGVRTextBox padding="0" pagecheck="0" width="180" height="10" align="left" left="$name_16_to_31" top="172" reseth="1">
+			<PGVRTextBox padding="1" pagecheck="0" width="180" height="10" align="left" left="$name_16_to_31" top="172" reseth="1">
 				<PGVRGedcom id="@FAMC:@HUSB:@FAMC:@WIFE:@FAMC:@HUSB:@FAMC:@HUSB">
 					<PGVRText style="text"><PGVRvarLetter var="factarray[BIRT]" />: <PGVRGedcomValue tag="BIRT:DATE" truncate="20" />
 						<PGVRGedcom id="DEAT">
@@ -506,13 +506,13 @@
 				</PGVRGedcom>
 			</PGVRTextBox>
 
-			<PGVRTextBox padding="0" pagecheck="0" width="180" height="10" align="left" left="$number_16_to_31" top="189" reseth="1">
+			<PGVRTextBox padding="1" pagecheck="0" width="180" height="10" align="left" left="$number_16_to_31" top="189" reseth="1">
 				<PGVRText style="label1">21.</PGVRText>
 			</PGVRTextBox>
-			<PGVRTextBox padding="0" pagecheck="0" width="180" height="10" align="left" left="$name_16_to_31" top="189" reseth="1">
+			<PGVRTextBox padding="1" pagecheck="0" width="180" height="10" align="left" left="$name_16_to_31" top="189" reseth="1">
 				<PGVRText style="name"><PGVRGedcom id="@FAMC:@HUSB:@FAMC:@WIFE:@FAMC:@HUSB:@FAMC"><PGVRGetPersonName id="@WIFE" truncate="$truncatename" /></PGVRGedcom></PGVRText>
 			</PGVRTextBox>
-			<PGVRTextBox padding="0" pagecheck="0" width="180" height="10" align="left" left="$name_16_to_31" top="202" reseth="1">
+			<PGVRTextBox padding="1" pagecheck="0" width="180" height="10" align="left" left="$name_16_to_31" top="202" reseth="1">
 				<PGVRGedcom id="@FAMC:@HUSB:@FAMC:@WIFE:@FAMC:@HUSB:@FAMC:@WIFE">
 					<PGVRText style="text"><PGVRvarLetter var="factarray[BIRT]" />: <PGVRGedcomValue tag="BIRT:DATE" truncate="20" />
 						<PGVRGedcom id="DEAT">
@@ -522,13 +522,13 @@
 				</PGVRGedcom>
 			</PGVRTextBox>
 
-			<PGVRTextBox padding="0" pagecheck="0" width="180" height="10" align="left" left="$number_16_to_31" top="218" reseth="1">
+			<PGVRTextBox padding="1" pagecheck="0" width="180" height="10" align="left" left="$number_16_to_31" top="218" reseth="1">
 				<PGVRText style="label1">22.</PGVRText>
 			</PGVRTextBox>
-			<PGVRTextBox padding="0" pagecheck="0" width="180" height="10" align="left" left="$name_16_to_31" top="218" reseth="1">
+			<PGVRTextBox padding="1" pagecheck="0" width="180" height="10" align="left" left="$name_16_to_31" top="218" reseth="1">
 				<PGVRText style="name"><PGVRGedcom id="@FAMC:@HUSB:@FAMC:@WIFE:@FAMC:@WIFE:@FAMC"><PGVRGetPersonName id="@HUSB" truncate="$truncatename" /></PGVRGedcom></PGVRText>
 			</PGVRTextBox>
-			<PGVRTextBox padding="0" pagecheck="0" width="180" height="10" align="left" left="$name_16_to_31" top="232" reseth="1">
+			<PGVRTextBox padding="1" pagecheck="0" width="180" height="10" align="left" left="$name_16_to_31" top="232" reseth="1">
 				<PGVRGedcom id="@FAMC:@HUSB:@FAMC:@WIFE:@FAMC:@WIFE:@FAMC:@HUSB">
 					<PGVRText style="text"><PGVRvarLetter var="factarray[BIRT]" />: <PGVRGedcomValue tag="BIRT:DATE" truncate="20" />
 						<PGVRGedcom id="DEAT">
@@ -541,13 +541,13 @@
 				</PGVRGedcom>
 			</PGVRTextBox>
 
-			<PGVRTextBox padding="0" pagecheck="0" width="180" height="10" align="left" left="$number_16_to_31" top="249" reseth="1">
+			<PGVRTextBox padding="1" pagecheck="0" width="180" height="10" align="left" left="$number_16_to_31" top="249" reseth="1">
 				<PGVRText style="label1">23.</PGVRText>
 			</PGVRTextBox>
-			<PGVRTextBox padding="0" pagecheck="0" width="180" height="10" align="left" left="$name_16_to_31" top="249" reseth="1">
+			<PGVRTextBox padding="1" pagecheck="0" width="180" height="10" align="left" left="$name_16_to_31" top="249" reseth="1">
 				<PGVRText style="name"><PGVRGedcom id="@FAMC:@HUSB:@FAMC:@WIFE:@FAMC:@WIFE:@FAMC"><PGVRGetPersonName id="@WIFE" truncate="$truncatename" /></PGVRGedcom></PGVRText>
 			</PGVRTextBox>
-			<PGVRTextBox padding="0" pagecheck="0" width="180" height="10" align="left" left="$name_16_to_31" top="262" reseth="1">
+			<PGVRTextBox padding="1" pagecheck="0" width="180" height="10" align="left" left="$name_16_to_31" top="262" reseth="1">
 				<PGVRGedcom id="@FAMC:@HUSB:@FAMC:@WIFE:@FAMC:@WIFE:@FAMC:@WIFE">
 					<PGVRText style="text"><PGVRvarLetter var="factarray[BIRT]" />: <PGVRGedcomValue tag="BIRT:DATE" truncate="20" />
 						<PGVRGedcom id="DEAT">
@@ -557,13 +557,13 @@
 				</PGVRGedcom>
 			</PGVRTextBox>
 
-			<PGVRTextBox padding="0" pagecheck="0" width="180" height="10" align="left" left="$number_16_to_31" top="278" reseth="1">
+			<PGVRTextBox padding="1" pagecheck="0" width="180" height="10" align="left" left="$number_16_to_31" top="278" reseth="1">
 				<PGVRText style="label1">24.</PGVRText>
 			</PGVRTextBox>
-			<PGVRTextBox padding="0" pagecheck="0" width="180" height="10" align="left" left="$name_16_to_31" top="278" reseth="1">
+			<PGVRTextBox padding="1" pagecheck="0" width="180" height="10" align="left" left="$name_16_to_31" top="278" reseth="1">
 				<PGVRText style="name"><PGVRGedcom id="@FAMC:@WIFE:@FAMC:@HUSB:@FAMC:@HUSB:@FAMC"><PGVRGetPersonName id="@HUSB" truncate="$truncatename" /></PGVRGedcom></PGVRText>
 			</PGVRTextBox>
-			<PGVRTextBox padding="0" pagecheck="0" width="180" height="10" align="left" left="$name_16_to_31" top="292" reseth="1">
+			<PGVRTextBox padding="1" pagecheck="0" width="180" height="10" align="left" left="$name_16_to_31" top="292" reseth="1">
 				<PGVRGedcom id="@FAMC:@WIFE:@FAMC:@HUSB:@FAMC:@HUSB:@FAMC:@HUSB">
 					<PGVRText style="text"><PGVRvarLetter var="factarray[BIRT]" />: <PGVRGedcomValue tag="BIRT:DATE" truncate="20" />
 						<PGVRGedcom id="DEAT">
@@ -576,13 +576,13 @@
 				</PGVRGedcom>
 			</PGVRTextBox>
 
-			<PGVRTextBox padding="0" pagecheck="0" width="180" height="10" align="left" left="$number_16_to_31" top="309" reseth="1">
+			<PGVRTextBox padding="1" pagecheck="0" width="180" height="10" align="left" left="$number_16_to_31" top="309" reseth="1">
 				<PGVRText style="label1">25.</PGVRText>
 			</PGVRTextBox>
-			<PGVRTextBox padding="0" pagecheck="0" width="180" height="10" align="left" left="$name_16_to_31" top="309" reseth="1">
+			<PGVRTextBox padding="1" pagecheck="0" width="180" height="10" align="left" left="$name_16_to_31" top="309" reseth="1">
 				<PGVRText style="name"><PGVRGedcom id="@FAMC:@WIFE:@FAMC:@HUSB:@FAMC:@HUSB:@FAMC"><PGVRGetPersonName id="@WIFE" truncate="$truncatename" /></PGVRGedcom></PGVRText>
 			</PGVRTextBox>
-			<PGVRTextBox padding="0" pagecheck="0" width="180" height="10" align="left" left="$name_16_to_31" top="322" reseth="1">
+			<PGVRTextBox padding="1" pagecheck="0" width="180" height="10" align="left" left="$name_16_to_31" top="322" reseth="1">
 				<PGVRGedcom id="@FAMC:@WIFE:@FAMC:@HUSB:@FAMC:@HUSB:@FAMC:@WIFE">
 					<PGVRText style="text"><PGVRvarLetter var="factarray[BIRT]" />: <PGVRGedcomValue tag="BIRT:DATE" truncate="20" />
 						<PGVRGedcom id="DEAT">
@@ -592,13 +592,13 @@
 				</PGVRGedcom>
 			</PGVRTextBox>
 
-			<PGVRTextBox padding="0" pagecheck="0" width="180" height="10" align="left" left="$number_16_to_31" top="338" reseth="1">
+			<PGVRTextBox padding="1" pagecheck="0" width="180" height="10" align="left" left="$number_16_to_31" top="338" reseth="1">
 				<PGVRText style="label1">26.</PGVRText>
 			</PGVRTextBox>
-			<PGVRTextBox padding="0" pagecheck="0" width="180" height="10" align="left" left="$name_16_to_31" top="338" reseth="1">
+			<PGVRTextBox padding="1" pagecheck="0" width="180" height="10" align="left" left="$name_16_to_31" top="338" reseth="1">
 				<PGVRText style="name"><PGVRGedcom id="@FAMC:@WIFE:@FAMC:@HUSB:@FAMC:@WIFE:@FAMC"><PGVRGetPersonName id="@HUSB" truncate="$truncatename" /></PGVRGedcom></PGVRText>
 			</PGVRTextBox>
-			<PGVRTextBox padding="0" pagecheck="0" width="180" height="10" align="left" left="$name_16_to_31" top="352" reseth="1">
+			<PGVRTextBox padding="1" pagecheck="0" width="180" height="10" align="left" left="$name_16_to_31" top="352" reseth="1">
 				<PGVRGedcom id="@FAMC:@WIFE:@FAMC:@HUSB:@FAMC:@WIFE:@FAMC:@HUSB">
 					<PGVRText style="text"><PGVRvarLetter var="factarray[BIRT]" />: <PGVRGedcomValue tag="BIRT:DATE" truncate="20" />
 						<PGVRGedcom id="DEAT">
@@ -611,13 +611,13 @@
 				</PGVRGedcom>
 			</PGVRTextBox>
 
-			<PGVRTextBox padding="0" pagecheck="0" width="180" height="10" align="left" left="$number_16_to_31" top="369" reseth="1">
+			<PGVRTextBox padding="1" pagecheck="0" width="180" height="10" align="left" left="$number_16_to_31" top="369" reseth="1">
 				<PGVRText style="label1">27.</PGVRText>
 			</PGVRTextBox>
-			<PGVRTextBox padding="0" pagecheck="0" width="180" height="10" align="left" left="$name_16_to_31" top="369" reseth="1">
+			<PGVRTextBox padding="1" pagecheck="0" width="180" height="10" align="left" left="$name_16_to_31" top="369" reseth="1">
 				<PGVRText style="name"><PGVRGedcom id="@FAMC:@WIFE:@FAMC:@HUSB:@FAMC:@WIFE:@FAMC"><PGVRGetPersonName id="@WIFE" truncate="$truncatename" /></PGVRGedcom></PGVRText>
 			</PGVRTextBox>
-			<PGVRTextBox padding="0" pagecheck="0" width="180" height="10" align="left" left="$name_16_to_31" top="382" reseth="1">
+			<PGVRTextBox padding="1" pagecheck="0" width="180" height="10" align="left" left="$name_16_to_31" top="382" reseth="1">
 				<PGVRGedcom id="@FAMC:@WIFE:@FAMC:@HUSB:@FAMC:@WIFE:@FAMC:@WIFE">
 					<PGVRText style="text"><PGVRvarLetter var="factarray[BIRT]" />: <PGVRGedcomValue tag="BIRT:DATE" truncate="20" />
 						<PGVRGedcom id="DEAT">
@@ -627,13 +627,13 @@
 				</PGVRGedcom>
 			</PGVRTextBox>
 
-			<PGVRTextBox padding="0" pagecheck="0" width="180" height="10" align="left" left="$number_16_to_31" top="398" reseth="1">
+			<PGVRTextBox padding="1" pagecheck="0" width="180" height="10" align="left" left="$number_16_to_31" top="398" reseth="1">
 				<PGVRText style="label1">28.</PGVRText>
 			</PGVRTextBox>
-			<PGVRTextBox padding="0" pagecheck="0" width="180" height="10" align="left" left="$name_16_to_31" top="398" reseth="1">
+			<PGVRTextBox padding="1" pagecheck="0" width="180" height="10" align="left" left="$name_16_to_31" top="398" reseth="1">
 				<PGVRText style="name"><PGVRGedcom id="@FAMC:@WIFE:@FAMC:@WIFE:@FAMC:@HUSB:@FAMC"><PGVRGetPersonName id="@HUSB" truncate="$truncatename" /></PGVRGedcom></PGVRText>
 			</PGVRTextBox>
-			<PGVRTextBox padding="0" pagecheck="0" width="180" height="10" align="left" left="$name_16_to_31" top="412" reseth="1">
+			<PGVRTextBox padding="1" pagecheck="0" width="180" height="10" align="left" left="$name_16_to_31" top="412" reseth="1">
 				<PGVRGedcom id="@FAMC:@WIFE:@FAMC:@WIFE:@FAMC:@HUSB:@FAMC:@HUSB">
 					<PGVRText style="text"><PGVRvarLetter var="factarray[BIRT]" />: <PGVRGedcomValue tag="BIRT:DATE" truncate="20" />
 						<PGVRGedcom id="DEAT">
@@ -646,13 +646,13 @@
 				</PGVRGedcom>
 			</PGVRTextBox>
 
-			<PGVRTextBox padding="0" pagecheck="0" width="180" height="10" align="left" left="$number_16_to_31" top="429" reseth="1">
+			<PGVRTextBox padding="1" pagecheck="0" width="180" height="10" align="left" left="$number_16_to_31" top="429" reseth="1">
 				<PGVRText style="label1">29.</PGVRText>
 			</PGVRTextBox>
-			<PGVRTextBox padding="0" pagecheck="0" width="180" height="10" align="left" left="$name_16_to_31" top="429" reseth="1">
+			<PGVRTextBox padding="1" pagecheck="0" width="180" height="10" align="left" left="$name_16_to_31" top="429" reseth="1">
 				<PGVRText style="name"><PGVRGedcom id="@FAMC:@WIFE:@FAMC:@WIFE:@FAMC:@HUSB:@FAMC"><PGVRGetPersonName id="@WIFE" truncate="$truncatename" /></PGVRGedcom></PGVRText>
 			</PGVRTextBox>
-			<PGVRTextBox padding="0" pagecheck="0" width="180" height="10" align="left" left="$name_16_to_31" top="442" reseth="1">
+			<PGVRTextBox padding="1" pagecheck="0" width="180" height="10" align="left" left="$name_16_to_31" top="442" reseth="1">
 				<PGVRGedcom id="@FAMC:@WIFE:@FAMC:@WIFE:@FAMC:@HUSB:@FAMC:@WIFE">
 					<PGVRText style="text"><PGVRvarLetter var="factarray[BIRT]" />: <PGVRGedcomValue tag="BIRT:DATE" truncate="20" />
 						<PGVRGedcom id="DEAT">
@@ -662,13 +662,13 @@
 				</PGVRGedcom>
 			</PGVRTextBox>
 
-			<PGVRTextBox padding="0" pagecheck="0" width="180" height="10" align="left" left="$number_16_to_31" top="458" reseth="1">
+			<PGVRTextBox padding="1" pagecheck="0" width="180" height="10" align="left" left="$number_16_to_31" top="458" reseth="1">
 				<PGVRText style="label1">30.</PGVRText>
 			</PGVRTextBox>
-			<PGVRTextBox padding="0" pagecheck="0" width="180" height="10" align="left" left="$name_16_to_31" top="458" reseth="1">
+			<PGVRTextBox padding="1" pagecheck="0" width="180" height="10" align="left" left="$name_16_to_31" top="458" reseth="1">
 				<PGVRText style="name"><PGVRGedcom id="@FAMC:@WIFE:@FAMC:@WIFE:@FAMC:@WIFE:@FAMC"><PGVRGetPersonName id="@HUSB" truncate="$truncatename" /></PGVRGedcom></PGVRText>
 			</PGVRTextBox>
-			<PGVRTextBox padding="0" pagecheck="0" width="180" height="10" align="left" left="$name_16_to_31" top="472" reseth="1">
+			<PGVRTextBox padding="1" pagecheck="0" width="180" height="10" align="left" left="$name_16_to_31" top="472" reseth="1">
 				<PGVRGedcom id="@FAMC:@WIFE:@FAMC:@WIFE:@FAMC:@WIFE:@FAMC:@HUSB">
 					<PGVRText style="text"><PGVRvarLetter var="factarray[BIRT]" />: <PGVRGedcomValue tag="BIRT:DATE" truncate="20" />
 						<PGVRGedcom id="DEAT">
@@ -681,13 +681,13 @@
 				</PGVRGedcom>
 			</PGVRTextBox>
 
-			<PGVRTextBox padding="0" pagecheck="0" width="180" height="10" align="left" left="$number_16_to_31" top="489" reseth="1">
+			<PGVRTextBox padding="1" pagecheck="0" width="180" height="10" align="left" left="$number_16_to_31" top="489" reseth="1">
 				<PGVRText style="label1">31.</PGVRText>
 			</PGVRTextBox>
-			<PGVRTextBox padding="0" pagecheck="0" width="180" height="10" align="left" left="$name_16_to_31" top="489" reseth="1">
+			<PGVRTextBox padding="1" pagecheck="0" width="180" height="10" align="left" left="$name_16_to_31" top="489" reseth="1">
 				<PGVRText style="name"><PGVRGedcom id="@FAMC:@WIFE:@FAMC:@WIFE:@FAMC:@WIFE:@FAMC"><PGVRGetPersonName id="@WIFE" truncate="$truncatename" /></PGVRGedcom></PGVRText>
 			</PGVRTextBox>
-			<PGVRTextBox padding="0" pagecheck="0" width="180" height="10" align="left" left="$name_16_to_31" top="502" reseth="1">
+			<PGVRTextBox padding="1" pagecheck="0" width="180" height="10" align="left" left="$name_16_to_31" top="502" reseth="1">
 				<PGVRGedcom id="@FAMC:@WIFE:@FAMC:@WIFE:@FAMC:@WIFE:@FAMC:@WIFE">
 					<PGVRText style="text"><PGVRvarLetter var="factarray[BIRT]" />: <PGVRGedcomValue tag="BIRT:DATE" truncate="20" />
 						<PGVRGedcom id="DEAT">
@@ -701,7 +701,7 @@
 				<PGVRRepeatTag tag="FAMS">
 					<PGVRGedcom id="@FAMS">
 						<PGVRif condition="$my LT 413">
-							<PGVRTextBox padding="0" pagecheck="0" width="150" height="10" newline="1" align="left" left="38" top="$my" reseth="1">
+							<PGVRTextBox padding="1" pagecheck="0" width="150" height="10" newline="1" align="left" left="38" top="$my" reseth="1">
 								<PGVRif condition="$pid==@HUSB">
 									<PGVRText style="name"><PGVRGetPersonName id="@WIFE" truncate="$truncatename" /></PGVRText>
 								</PGVRif>
@@ -713,10 +713,10 @@
 							<PGVRSetVar name="tempY" value="$my+3" />
 							<PGVRLine x1="38" y1="$tempY" x2="160" y2="$tempY" />
 						</PGVRif>
-						<PGVRSetVar name="my" value="$my+2" />
+						<PGVRSetVar name="my" value="$my+6" />
 						<PGVRRepeatTag tag="CHIL">
 							<PGVRif condition="$my LT 413">
-								<PGVRTextBox padding="0" pagecheck="0" width="150" height="10" align="left" left="48" top="$my" reseth="1">
+								<PGVRTextBox padding="1" pagecheck="0" width="150" height="10" align="left" left="48" top="$my" reseth="1">
 									<PGVRText style="text"><PGVRGetPersonName id="@CHIL" truncate="$truncatename" /></PGVRText>
 								</PGVRTextBox>
 								<PGVRSetVar name="my" value="$my+10" />

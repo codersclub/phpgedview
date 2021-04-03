@@ -13,8 +13,8 @@
 	<PGVRInput name="birthdate1" lookup="DATE" type="text"><PGVRvar var="pgv_lang[birthdate1]" /></PGVRInput>
 	<PGVRInput name="birthdate2" lookup="DATE" type="text"><PGVRvar var="pgv_lang[birthdate2]" /></PGVRInput>
 	<PGVRInput name="sortby" type="select" default="NAME" options="none,ID,NAME,BIRT:DATE"><PGVRvar var="pgv_lang[sort_by]" /></PGVRInput>
-	<PGVRInput name="pageSize" type="select" default="A4" options="A3,A4,letter,legal"><PGVRvar var="pgv_lang[page_size]" /></PGVRInput>
-	<PGVRInput name="fonts" type="select" default="dejavusans" options="courier,dejavusans,dejavusanscondensed,dejavuserif,dejavuserifcondensed,dejavusansmono,freesans,freeserif,freemono,helvetica,times"><PGVRvar var="pgv_lang[font]"/></PGVRInput>
+	<PGVRInput name="pageSize" type="select" default="GLOBALS[pageSizeDefault]" options="GLOBALS[pageSizeOptions]"><PGVRvar var="pgv_lang[page_size]" /></PGVRInput>
+	<PGVRInput name="fonts" type="select" default="GLOBALS[fontsDefault]" options="GLOBALS[fontsOptions]"><PGVRvar var="pgv_lang[font]"/></PGVRInput>
 
 	<!-- Header -->
 	<PGVRStyle name="header" font="$fonts" size="14" style="b"/>
@@ -31,27 +31,27 @@
 
 	<PGVRDoc pageSize="$pageSize" orientation="landscape" >
 		<PGVRHeader>
-			<PGVRCell align="center" newline="1" style="header"><PGVRvar var="pgv_lang[birth_report]" /></PGVRCell>
-			<PGVRCell align="rightrtl" newline="1" style="pagenum"><PGVRvar var="pgv_lang[page]" /> <PGVRPageNum /> <PGVRvar var="pgv_lang[of]" /> <PGVRTotalPages /></PGVRCell>
+			<PGVRCell align="center" newline="1" style="header" padding="0"><PGVRvar var="pgv_lang[birth_report]" /></PGVRCell>
+			<PGVRCell align="rightrtl" newline="1" style="pagenum" padding="0"><PGVRvar var="pgv_lang[page]" /> <PGVRPageNum /> <PGVRvar var="pgv_lang[of]" /> <PGVRTotalPages /></PGVRCell>
 
 			<PGVRSetVar name="fill" value="" />
 			<PGVRif condition="($sortby=='NAME') or ($sortby=='ID')"><PGVRSetVar name="fill" value="#AAAAAA" /></PGVRif>
-			<PGVRCell bgcolor="$fill" border="1" width="200" style="label"><PGVRvar var="pgv_lang[name]" /></PGVRCell>
+			<PGVRCell bgcolor="$fill" border="1" width="200" style="label" padding="1"><PGVRvar var="pgv_lang[name]" /></PGVRCell>
 
 			<PGVRSetVar name="fill" value="" />
 			<PGVRif condition="$sortby=='BIRT:DATE'"><PGVRSetVar name="fill" value="#AAAAAA" /></PGVRif>
-			<PGVRCell bgcolor="$fill" border="1" width="100" style="label"><PGVRvar var="factarray[DATE]" /></PGVRCell>
+			<PGVRCell bgcolor="$fill" border="1" width="100" style="label" padding="1"><PGVRvar var="factarray[DATE]" /></PGVRCell>
 
-			<PGVRCell border="1" width="225" style="label"><PGVRvar var="factarray[PLAC]" /></PGVRCell>
-			<PGVRCell border="1" newline="1" style="label"><PGVRvar var="factarray[SOUR]" /></PGVRCell>
+			<PGVRCell border="1" width="225" style="label" padding="1"><PGVRvar var="factarray[PLAC]" /></PGVRCell>
+			<PGVRCell border="1" newline="1" style="label" padding="1"><PGVRvar var="factarray[SOUR]" /></PGVRCell>
 		</PGVRHeader>
 
 		<PGVRBody>
 			<PGVRList list="individual" filter1="BIRT:PLAC CONTAINS $birthplace" filter2="BIRT:DATE GTE $birthdate1" filter3="BIRT:DATE LTE $birthdate2" filter4="NAME CONTAINS $name" sortby="$sortby">
-				<PGVRCell width="200" style="text"><PGVRGetPersonName id="" /> - (<PGVRGedcomValue tag="@id" />)</PGVRCell>
-				<PGVRCell width="100" style="text"><PGVRGedcomValue tag="BIRT:DATE" newline="1" /></PGVRCell>
-				<PGVRCell width="225" style="text"><PGVRGedcomValue tag="BIRT:PLAC" /></PGVRCell>
-				<PGVRCell newline="1" style="text">
+				<PGVRCell width="200" style="text" padding="1"><PGVRGetPersonName id="" /> - (<PGVRGedcomValue tag="@id" />)</PGVRCell>
+				<PGVRCell width="100" style="text" padding="1"><PGVRGedcomValue tag="BIRT:DATE" newline="1" /></PGVRCell>
+				<PGVRCell width="225" style="text" padding="1"><PGVRGedcomValue tag="BIRT:PLAC" /></PGVRCell>
+				<PGVRCell newline="1" style="text" padding="1">
 					<!-- Only with multiple sources use line feed (br) -->
 					<PGVRSetVar name="usebr" value="0"/>
 					<PGVRRepeatTag tag="BIRT:SOUR">

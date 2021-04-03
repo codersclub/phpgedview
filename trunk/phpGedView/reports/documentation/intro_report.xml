@@ -55,10 +55,17 @@
 			"select"	-> Dropdown list
 			"checkbox"	-> Checked or unchecked
 			"text"		-> Can be any text
+		 The DEFAULT and OPTIONS fields are usually strings, as shown below.  However, they can also be references to
+		 standard PhpGedView variables $pgv_var, $factarray, and $countries as well as to the $GLOBALS supervariable.
+		 This allows the Reports sub-system to refer to GEDCOM configuration settings, for example. All GEDCOM
+		 configuration values are found in the $GLOBALS supervariable array. The fourth line of examples below 
+		 illustrates this usage.  These fields are independent:  you can define one as a string and the other as a reference
+		 to a GLOBALS variable if you wish.
 	-->
 	<PGVRInput name="INPageSize" type="select" default="A4" options="A2,A3,A4"><PGVRvar var="pgv_lang[page_size]" /></PGVRInput>
 	<PGVRInput name="INPageOrientation" type="select" default="portrait" options="landscape,portrait"><PGVRvar var="pgv_lang[orientation]" /></PGVRInput>
 	<PGVRInput name="INFonts" type="select" default="dejavusans" options="courier,dejavusans,helvetica,times"><PGVRvar var="pgv_lang[font]" /></PGVRInput>
+	<PGVRInput name="INFonts2" type="select" default="GLOBALS[gedcomDefault]" options="GLOBALS[gedcomOption]"><PGVRvar var="pgv_lang[font]" /></PGVRInput>
 
 	<!-- Header -->
 	<PGVRStyle name="header" font="$INFonts" size="18" style="b"/>
