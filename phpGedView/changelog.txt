@@ -14,6 +14,7 @@ The session.php script uses this information to populate the constants : PGV_VER
 =====================================================================
 
 Version 4.3.1
+ - Changed: Allow full stop in @xxxx@ references (canajun2eh)
  - Changed: Put Reports default font and page size into GEDCOM configuration, Display and Layout section (canajun2eh)
  - Changed: Various improvements to the Reports sub-system (imsza)
  - Fixed: User configuration showing inaccurate legend for one option (canajun2eh)
