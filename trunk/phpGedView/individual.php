@@ -5,7 +5,7 @@
  * Display all of the information about an individual
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2019  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2021  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -28,7 +28,9 @@
 
 define('PGV_SCRIPT_NAME', 'individual.php');
 require './config.php';
-@include PGV_ROOT.'modules/googlemap/defaultconfig.php';
+if (file_exists(PGV_ROOT.'modules/googlemap/defaultconfig.php')) {
+	include PGV_ROOT.'modules/googlemap/defaultconfig.php';
+}
 require PGV_ROOT.'includes/controllers/individual_ctrl.php';
 
 // We have finished writing to $_SESSION, so release the lock
@@ -71,14 +73,14 @@ $linkToID=$controller->pid; // -- Tell addmedia.php what to link to
 			echo PrintReady($controller->indi->getFullName());
 			echo "&nbsp;&nbsp;";
 			echo PrintReady("(".$controller->pid.")");
-			if (PGV_USER_IS_ADMIN) {
-				$user_id=get_user_from_gedcom_xref(PGV_GED_ID, $controller->pid);
-				if ($user_id) {
-					$pgvuser=get_user_name($user_id);
-					echo "&nbsp;";
-					echo printReady("(<a href=\"useradmin.php?action=edituser&amp;username={$pgvuser}\">{$pgvuser}</a>)");
-				}
-			}
+//			if (PGV_USER_IS_ADMIN) {
+//				$user_id=get_user_from_gedcom_xref(PGV_GED_ID, $controller->pid);
+//				if ($user_id) {
+//					$pgvuser=get_user_name($user_id);
+//					echo "&nbsp;";
+//					echo printReady("(<a href=\"useradmin.php?action=edituser&amp;username={$pgvuser}\">{$pgvuser}</a>)");
+//				}
+//			}
 		?>
 		</span><br />
 		<?php if (strlen($controller->indi->getAddName()) > 0) echo "<span class=\"name_head\">", PrintReady($controller->indi->getAddName()), "</span><br />"; ?>

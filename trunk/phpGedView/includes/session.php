@@ -304,8 +304,7 @@ if (file_exists($INDEX_DIRECTORY.'lang_settings.php')) {
 			}
 		}
 	}
-	unset($DefaultSettings);
-	unset($ConfiguredSettings); // We don't need these any more
+	unset($DefaultSettings, $ConfiguredSettings);	// We don't need these any more
 	$Languages_Default = false;
 }
 
@@ -374,6 +373,13 @@ if (PGV_DEBUG) require  PGV_ROOT.'includes/functions/functions_debug.php';		// M
 //-- set the error handler
 set_error_handler('pgv_error_handler');
 
+/* Create a (presumably) unique string for use in building the session ID for Search Engines
+ *
+ * Some shared hosts don't have separate session save paths for each of their users, so we need to make sure
+ * that the session IDs assigned to search engines don't conflict on these shared hosts.
+ * relatedfamilies.com is an example of such poorly configured hosts.
+ */
+$UNIQUE_ID = trim(substr(encrypt($DBUSER, $DBPASS), 1, 8));		// $DBUSER is unique on these servers, but we don't want to reveal that
 
 // Connect to the database
 require PGV_ROOT.'includes/functions/functions_db.php';
@@ -382,7 +388,7 @@ try {
 	// remove escape codes before using PW
 	$DBPASS=str_replace(array("\\\\", "\\\"", "\\\$"), array("\\", "\"", "\$"), $DBPASS);
 	PGV_DB::createInstance($DBTYPE, $DBHOST, $DBPORT, $DBNAME, $DBUSER, $DBPASS, $DB_UTF8_COLLATION);
-	unset($DBUSER, $DBPASS);
+	unset($DBUSER, $DBPASS);	// Make sure that these aren't revealed
 	try {
 		PGV_DB::updateSchema(PGV_ROOT.'includes/db_schema/', 'PGV_SCHEMA_VERSION', PGV_SCHEMA_VERSION);
 	} catch (PDOException $ex) {
@@ -419,7 +425,21 @@ require PGV_ROOT.'includes/session_spider.php';
 if ($PGV_SESSION_TIME>0) {
 	session_cache_expire($PGV_SESSION_TIME/60);
 }
+
 if (!empty($PGV_SESSION_SAVE_PATH)) {
+	// Before we use this directory, we should do a clean-up of expired session files.
+	$sessionFiles = scandir($PGV_SESSION_SAVE_PATH);
+	foreach ($sessionFiles as $fileName) {
+		if (substr($fileName, 0, 5) != 'sess_') continue;
+		// We think we found a session file
+		$fileName = $PGV_SESSION_SAVE_PATH . '/' . $fileName;
+		if (!is_file($fileName)) continue;		// false alarm
+		$fileExpiry = filemtime($fileName) + (2 * 24 * 60 * 60);		// Expiry is 2 days after last modification
+		if (time() > $fileExpiry) {
+			unlink($fileName);
+		}
+	}
+	unset($sessionFiles);
 	session_save_path($PGV_SESSION_SAVE_PATH);
 }
 if (isset($MANUAL_SESSION_START) && !empty($SID)) {

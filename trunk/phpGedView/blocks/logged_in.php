@@ -45,11 +45,6 @@ $PGV_BLOCKS["print_logged_in_users"]["config"]		= array("cache"=>0);
  *
  * prints a list of other users who are logged in
  */
-/**
- * logged in users
- *
- * prints a list of other users who are logged in
- */
 function print_logged_in_users($limitHeight, $config, $side, $index) {
 	global $pgv_lang, $PGV_SESSION_TIME, $TEXT_DIRECTION;
 
@@ -100,8 +95,11 @@ function print_logged_in_users($limitHeight, $config, $side, $index) {
 	if (PGV_USER_ID) {
 		foreach ($loggedusers as $user_id=>$user_name) {
 			$content .= "<tr><td><br />".PrintReady(getUserFullName($user_id))." - ".$user_name;
-			if (PGV_USER_ID!=$user_id && get_user_setting($user_id, 'contactmethod')!="none") {
-				$content .= "<br /><a href=\"javascript:;\" onclick=\"return message('" . $user_id . "');\">" . $pgv_lang["message"] . "</a>";
+			if (PGV_USER_ID!=$user_id) {
+				$method = get_user_setting($user_id, 'contactmethod');
+				if ($method !="none") {
+					$content .= "<br /><a href=\"javascript:;\" onclick=\"return message('{$user_name}');\">" . $pgv_lang["message"] . "</a>";
+				}
 			}
 			$content .= "</td></tr>";
 		}
