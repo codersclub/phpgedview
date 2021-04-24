@@ -397,17 +397,18 @@ function add_structure($prefix, $min, $max, $structure)
 		add_structure($prefix.'FAMC:',     0,    9999, '<<NOTE_STRUCTURE>>');
 		break;
 	case '<<EVENT_DETAIL>>':
-		add_element  ($prefix.'TYPE', $min, $max, $TAG['EVENT_OR_FACT_CLASSIFICATION']);
-		add_element  ($prefix.'DATE', 0,    1,    $TAG['DATE_VALUE']);
-		add_structure($prefix,        0,    1,    '<<PLACE_STRUCTURE>>');
-		add_structure($prefix,        0,    1,    '<<ADDRESS_STRUCTURE>>');
-		add_element  ($prefix.'AGNC', 0,    1,    $TAG['RESPONSIBLE_AGENCY']);
-		add_element  ($prefix.'RELI', 0,    1,    $TAG['RELIGIOUS_AFFILIATION']);
-		add_element  ($prefix.'CAUS', 0,    1,    $TAG['CAUSE_OF_EVENT']);
-		add_element  ($prefix.'RESN', 0,    1,    $TAG['RESTRICTION_NOTICE']);
-		add_structure($prefix,        0,    9999, '<<NOTE_STRUCTURE>>');
-		add_structure($prefix,        0,    9999, '<<SOURCE_CITATION>>');
-		add_structure($prefix,        0,    9999, '<<MULTIMEDIA_LINK>>');
+		add_element  ($prefix.'TYPE',      $min, $max, $TAG['EVENT_OR_FACT_CLASSIFICATION']);
+		add_element  ($prefix.'DATE',      0,    1,    $TAG['DATE_VALUE']);
+		add_element  ($prefix.'DATE:TIME', 0,    1,    $TAG['TIME_VALUE']);
+		add_structure($prefix,             0,    1,    '<<PLACE_STRUCTURE>>');
+		add_structure($prefix,             0,    1,    '<<ADDRESS_STRUCTURE>>');
+		add_element  ($prefix.'AGNC',      0,    1,    $TAG['RESPONSIBLE_AGENCY']);
+		add_element  ($prefix.'RELI',      0,    1,    $TAG['RELIGIOUS_AFFILIATION']);
+		add_element  ($prefix.'CAUS',      0,    1,    $TAG['CAUSE_OF_EVENT']);
+		add_element  ($prefix.'RESN',      0,    1,    $TAG['RESTRICTION_NOTICE']);
+		add_structure($prefix,             0,    9999, '<<NOTE_STRUCTURE>>');
+		add_structure($prefix,             0,    9999, '<<SOURCE_CITATION>>');
+		add_structure($prefix,             0,    9999, '<<MULTIMEDIA_LINK>>');
 		break;
 	case '<<FAMILY_EVENT_DETAIL>>':
 		add_element  ($prefix.'HUSB',     $min, $max, $TAG['NULL']);
@@ -650,19 +651,19 @@ function add_structure($prefix, $min, $max, $structure)
 		add_element  ($prefix.'NAME:TYPE',      0,    1,    $TAG['NAME_TYPE']);
 		add_structure($prefix.'NAME:',          0,    1,    '<<PERSONAL_NAME_PIECES>>');
 		add_element  ($prefix.'NAME:FONE',      0,    9999, $TAG['NAME_PHONETIC_VARIATION']);
-		add_element  ($prefix.'NAME:FONE:TYPE', 1,    1,    $TAG['PHONETIC_TYPE']);
+		add_element  ($prefix.'NAME:FONE:TYPE', 0,    1,    $TAG['PHONETIC_TYPE']);
 		add_structure($prefix.'NAME:FONE:',     0,    1,    '<<PERSONAL_NAME_PIECES>>');
 		add_element  ($prefix.'NAME:ROMN',      0,    9999, $TAG['NAME_ROMANIZED_VARIATION']);
-		add_element  ($prefix.'NAME:ROMN:TYPE', 1,    1,    $TAG['ROMANIZED_TYPE']);
+		add_element  ($prefix.'NAME:ROMN:TYPE', 0,    1,    $TAG['ROMANIZED_TYPE']);
 		add_structure($prefix.'NAME:ROMN:',     0,    1,    '<<PERSONAL_NAME_PIECES>>');
 		break;
 	case '<<PLACE_STRUCTURE>>':
 		add_element  ($prefix.'PLAC',           $min, $max, $TAG['PLACE_NAME']);
 		add_element  ($prefix.'PLAC:FORM',      0,    1,    $TAG['PLACE_HIERARCHY']);
 		add_element  ($prefix.'PLAC:FONE',      0,    9999, $TAG['PLACE_PHONETIC_VARIATION']);
-		add_element  ($prefix.'PLAC:FONE:TYPE', 1,    1,    $TAG['PHONETIC_TYPE']);
+		add_element  ($prefix.'PLAC:FONE:TYPE', 0,    1,    $TAG['PHONETIC_TYPE']);
 		add_element  ($prefix.'PLAC:ROMN',      0,    9999, $TAG['PLACE_ROMANIZED_VARIATION']);
-		add_element  ($prefix.'PLAC:ROMN:TYPE', 1,    1,    $TAG['PHONETIC_TYPE']);
+		add_element  ($prefix.'PLAC:ROMN:TYPE', 0,    1,    $TAG['PHONETIC_TYPE']);
 		add_element  ($prefix.'PLAC:MAP',       0,    1,    $TAG['NULL']);
 		add_element  ($prefix.'PLAC:MAP:LATI',  1,    1,    $TAG['PLACE_LATITUDE']);
 		add_element  ($prefix.'PLAC:MAP:LONG',  1,    1,    $TAG['PLACE_LONGITUDE']);
