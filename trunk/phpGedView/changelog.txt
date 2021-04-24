@@ -14,6 +14,8 @@ The session.php script uses this information to populate the constants : PGV_VER
 =====================================================================
 
 Version 4.3.1
+ - Fixed: whatever:DATE:TIME tags within <<EVENT_DETAIL>> should be permitted in gedcheck (canajun2eh) 
+ - Fixed: FONE:TYPE and ROMN:TYPE tags should be optional in gedcheck (canajun2h) 
  - Fixed: Session files don't expire when stored locally (canajun2eh)
  - Changed: Make session name for search engines unique -- required for some shared servers (canajun2eh)
  - Fixed: Incorrect use of define() function in SOAP (canajun2eh)
