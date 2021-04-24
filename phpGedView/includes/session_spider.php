@@ -33,42 +33,57 @@ define('PGV_SESSION_SPIDER_PHP', '');
 
 /**
  * Changes the session name for known spiders
- * session names are limited to alphanum upper and lower only.
+ * session names are limited to alphanum upper and lower only; length to 31.
  * $outname = '__Spider-name-:/alphanum_only__';
- * Example  =  sess_xxGOOGLEBOTfsHTTPcffWWWdGOOGLxx
- * Matchable by "ls sess_xx??????????????????????????xx"
+ * Example  =  sess_xGOOGLEBOTfsHTTPcffWWWdGOOGLEox
+ * Matchable by "ls sess_x????????????????????????????x"
  *
  * @param string $bot_name
- * @param string $bot_language
  * @return string
  */
-function gen_spider_session_name($bot_name, $bot_language) {
-	$outname = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx';
-
-	$bot_limit = strlen($bot_name);
-	if($bot_limit > 27) {
-		$bot_limit = 27;
-	}
-	for($x=0; $x < $bot_limit; $x++) {
-		if(preg_match('/^[a-zA-Z0-9]+$/', $bot_name[$x])) {
-			$outname[$x+2] = strtoupper($bot_name[$x]);
-		} elseif ($bot_name[$x] == '.') {
-			$outname[$x+2] = 'd';
-		} elseif ($bot_name[$x] == ':') {
-			$outname[$x+2] = 'c';
-		} elseif ($bot_name[$x] == '/') {
-			$outname[$x+2] = 'f';
-		} elseif ($bot_name[$x] == ' ') {
-			$outname[$x+2] = 's';
-		} elseif ($bot_name[$x] == '-') {
-			$outname[$x+2] = 't';
-		} elseif ($bot_name[$x] == '_') {
-			$outname[$x+2] = 'u';
-		} else {
-			$outname[$x+2] = 'o';
+function gen_spider_session_name($bot_name) {
+	global $UNIQUE_ID;
+	
+	// Manipulate the Bot Name
+	$lengthUnique = strlen($UNIQUE_ID);		// This is limited to 8 characters in session.php
+	$lengthName = 29-$lengthUnique;			// Leave room for the $UNIQUE_ID string
+	$name = trim($bot_name);
+	$name = strtoupper($name);
+	$name = str_pad($name, $lengthName);		// Extend the bot name if it's too short
+	$name = substr($name, 0, $lengthName);		// Truncate the bot name if it's too long
+	$name .= $UNIQUE_ID;		// We should have a name that's exactly 29 characters long
+	
+	// Transform illegal characters in that bot name
+	for($i=0; $i<29; $i++) {
+		$thisChar = $name[$i];
+		if (ctype_alnum($thisChar)) continue;
+		if ($thisChar == ' ') {
+			$name[$i] = 's';
+			continue;
 		}
+		if ($thisChar == '.') {
+			$name[$i] = 'd';
+			continue;
+		}
+		if ($thisChar == ':') {
+			$name[$i] = 'c';
+			continue;
+		}
+		if ($thisChar == '/') {
+			$name[$i] = 'f';
+			continue;
+		}
+		if ($thisChar == '-') {
+			$name[$i] = 't';
+			continue;
+		}
+		if ($thisChar == '_') {
+			$name[$i] = 'u';
+			continue;
+		}
+		$name[$i] = 'o';
 	}
-	return($outname);
+	return("x{$name}x");		// Always return a name that's 31 characters long
 }
 
 /**
@@ -432,9 +447,6 @@ $known_spiders = array(
 	'Vagabondo'
 );
 
-// We overlay the following name with carefully selected characters.
-// This is to avoid XSS problems.  Alpha : . / - _ only.  Yes, the following string is 72 chars.
-$spider_name = '                                                                        ';
 
 // If you want to disable spider detection, set real to true here.
 $real = false;
@@ -478,10 +490,10 @@ else {
 	$real = true;
 }
 
-if(!$real) {
+if (!$real) {
 	// strip out several common strings that clutter the User Agent.
 	$bot_name = preg_replace("~AppleWebKit.* ~iU", "", $bot_name);
-	$bot_name = preg_replace("~ Safari.*~i", "", $bot_name);
+	$bot_name = preg_replace("~Safari.*~i", "", $bot_name);
 	$bot_name = preg_replace("~KHTML, like Gecko;~i", "", $bot_name);
 	$bot_name = preg_replace("~compatible;~i", "", $bot_name);
 	$bot_name = preg_replace("~Mozilla.* ~iU", "", $bot_name);
@@ -490,68 +502,32 @@ if(!$real) {
 	$bot_name = preg_replace("~Windows~i", "", $bot_name);
 
 	// Copy in characters, stripping out unwanteds until we are full, stopping at 70.
-	$y = 0;
-	$valid_char = false;
-	$bot_limit = strlen($bot_name);
-	for($x=0; $x < $bot_limit; $x++) {
-		if(preg_match('/^[a-zA-Z]+$/', $bot_name[$x])) {
-			$spider_name[$y] = $bot_name[$x];
-			$valid_char = true;
-			$y++;
-			if ($y > 70) break;
+	$SEARCH_SPIDER = '';
+	$botNameLength = strlen($bot_name);
+	$lastChar = '';
+	for($i=0; $i<$botNameLength; $i++) {
+		$thisChar = $bot_name[$i];
+		if (ctype_alpha($thisChar)) {
+			$SEARCH_SPIDER .= $thisChar;
+			$lastChar = $thisChar;
+			continue;
 		}
-		else if ($bot_name[$x] == ' ')	{
-			if($valid_char) {
-				$spider_name[$y] = ' ';
-				$valid_char = false;
-				$y++;
-				if ($y > 70) break;
-			}
+		if (strpos('.:/-_', $thischar) !== false) {
+			$SEARCH_SPIDER .= $thisChar;
+			$lastChar = $thisChar;
+			continue;
 		}
-		else if ($bot_name[$x] == '.')	{
-			if($valid_char) {
-				$spider_name[$y] = '.';
-				$valid_char = true;
-				$y++;
-				if ($y > 70) break;
-			}
-		}
-		else if ($bot_name[$x] == ':')	{
-			$spider_name[$y] = ':';
-			$valid_char = true;
-			$y++;
-			if ($y > 70) break;
-		}
-		else if ($bot_name[$x] == '/')	{
-			$spider_name[$y] = '/';
-			$valid_char = true;
-			$y++;
-			if ($y > 70) break;
-		}
-		else if ($bot_name[$x] == '-')	{
-			$spider_name[$y] = '-';
-			$valid_char = true;
-			$y++;
-			if ($y > 70) break;
-		}
-		else if ($bot_name[$x] == '_')	{
-			$spider_name[$y] = '_';
-			$valid_char = true;
-			$y++;
-			if ($y > 70) break;
-		}
-		else { // Compress consecutive invalids down to one space char.
-			if($valid_char) {
-				$spider_name[$y] = ' ';
-				$valid_char = false;
-				$y++;
-				if ($y > 70) break;
-			}
+		$thisChar = ' ';
+		if ($thisChar != $lastChar) {
+			$SEARCH_SPIDER .= $thisChar;
+			$lastChar = $thisChar;
 		}
 	}
-	// The SEARCH_SPIDER is set to 70 vetted chars, the session to 26 chars.
-	$SEARCH_SPIDER = $spider_name;
-	$bot_session = gen_spider_session_name($spider_name, "");
+	$SEARCH_SPIDER = str_pad($SEARCH_SPIDER, 70);		// Make that spider name 
+	$SEARCH_SPIDER = substr($SEARCH_SPIDER, 0, 70);		//   exactly 70 characters long
+
+	// The SEARCH_SPIDER is now set to 70 vetted chars, the session to 31 chars.
+	$bot_session = gen_spider_session_name($SEARCH_SPIDER);
 	session_id($bot_session);
 }
 
@@ -576,7 +552,7 @@ try {
 			}
 		}
 		$bot_name = 'MAN'.$_SERVER['REMOTE_ADDR'];
-		$bot_session = gen_spider_session_name($bot_name, '');
+		$bot_session = gen_spider_session_name($bot_name);
 		session_id($bot_session);
 	}
 } catch (PDOException $ex) {

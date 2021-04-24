@@ -14,7 +14,13 @@ The session.php script uses this information to populate the constants : PGV_VER
 =====================================================================
 
 Version 4.3.1
- - Changed: Allow full stop in @xxxx@ references (canajun2eh)
+ - Fixed: Session files don't expire when stored locally (canajun2eh)
+ - Changed: Make session name for search engines unique -- required for some shared servers (canajun2eh)
+ - Fixed: Incorrect use of define() function in SOAP (canajun2eh)
+ - Changed: Don't show Login ID on Personal Details page (canajun2eh)
+ - Fixed: Cannot send messages from Logged-in Users block (canajun2eh)
+ - Changed: Allow full-stop in @xxxx@ references in gedcheck (canajun2eh)
+ - Changed: Allow full-stop in @xxxx@ references (canajun2eh)
  - Changed: Put Reports default font and page size into GEDCOM configuration, Display and Layout section (canajun2eh)
  - Changed: Various improvements to the Reports sub-system (imsza)
  - Fixed: User configuration showing inaccurate legend for one option (canajun2eh)

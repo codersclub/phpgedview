@@ -4,7 +4,7 @@
 // and other common errors.
 //
 // phpGedView: Genealogy Viewer
-// Copyright (C) 2006-2020 Greg Roach and the PhpGedView team, all rights reserved
+// Copyright (C) 2006-2021 Greg Roach and the PhpGedView team, all rights reserved
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -341,7 +341,7 @@ $TAG['USER_REFERENCE_NUMBER']         ='.{1,20}';
 $TAG['USER_REFERENCE_TYPE']           ='.{1,40}';
 $TAG['VERSION_NUMBER']                ='.{1,15}';
 $TAG['WHERE_WITHIN_SOURCE']           ='[^:,]+: ?[^:,]+(, ?[^:,]+: ?[^:,]+)*';
-$TAG['XREF']                          ='@[A-Z0-9!:]{1,22}@';
+$TAG['XREF']                          ='@[A-Z0-9!:\.]{1,22}@';
 
 ////////////////////////////////////////////////////////////////////////////////
 // Build an array with valid tags and their context
