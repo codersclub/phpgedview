@@ -39,6 +39,8 @@
 
 define('PGV_SCRIPT_NAME', 'install.php');
 //-- load up the configuration or the default configuration
+//		Both configuration files load and run session.php.  
+//		We will let session.php define any defaults that are in config.dist that are missing from config.php.
 if (file_exists('./config.php')) {
 	require_once './config.php';
 } else {
@@ -214,6 +216,7 @@ switch($step) {
 		if (isset($_POST['NEW_REQUIRE_ADMIN_AUTH_REGISTRATION'])) $_SESSION['install_config']['REQUIRE_ADMIN_AUTH_REGISTRATION'] = $_POST['NEW_REQUIRE_ADMIN_AUTH_REGISTRATION']=="yes"?true:false;
 		if (isset($_POST['NEW_PGV_SIMPLE_MAIL'])) $_SESSION['install_config']['PGV_SIMPLE_MAIL'] = $_POST['NEW_PGV_SIMPLE_MAIL']=="yes"?true:false;
 		if (isset($_POST["NEW_PGV_SMTP_ACTIVE"])) $_SESSION['install_config']['PGV_SMTP_ACTIVE'] = $_POST["NEW_PGV_SMTP_ACTIVE"]=="yes"?true:false;
+		if (isset($_POST["NEW_PGV_SMTP_DEBUG"])) $_SESSION['install_config']['PGV_SMTP_DEBUG'] = $_POST['NEW_PGV_SMTP_DEBUG'];
 		if (isset($_POST["NEW_PGV_SMTP_HOST"])) $_SESSION['install_config']['PGV_SMTP_HOST'] = $_POST['NEW_PGV_SMTP_HOST'];
 		if (isset($_POST["NEW_PGV_SMTP_HELO"])) $_SESSION['install_config']['PGV_SMTP_HELO'] = $_POST["NEW_PGV_SMTP_HELO"];
 		if (isset($_POST["NEW_PGV_SMTP_PORT"])) $_SESSION['install_config']['PGV_SMTP_PORT'] = $_POST["NEW_PGV_SMTP_PORT"];
@@ -728,7 +731,8 @@ function printDBForm() {
 function printConfigForm(){
 	global $TEXT_DIRECTION, $PGV_DXHTMLTAB_COLORS, $PGV_STORE_MESSAGES, $USE_REGISTRATION_MODULE, $REQUIRE_ADMIN_AUTH_REGISTRATION;
 	global $ALLOW_CHANGE_GEDCOM, $PGV_SIMPLE_MAIL, $ALLOW_USER_THEMES, $LOGFILE_CREATE, $SERVER_URL;
-	global $PGV_SMTP_ACTIVE, $PGV_SMTP_HOST, $PGV_SMTP_HELO, $PGV_SMTP_PORT, $PGV_SMTP_AUTH, $PGV_SMTP_AUTH_USER, $PGV_SMTP_AUTH_PASS, $PGV_SMTP_SSL, $PGV_SMTP_FROM_NAME;
+	global $PGV_SMTP_ACTIVE, $PGV_SMTP_DEBUG; 
+	global $PGV_SMTP_HOST, $PGV_SMTP_HELO, $PGV_SMTP_PORT, $PGV_SMTP_AUTH, $PGV_SMTP_AUTH_USER, $PGV_SMTP_AUTH_PASS, $PGV_SMTP_SSL, $PGV_SMTP_FROM_NAME;
 	global $LOGIN_URL, $PGV_SESSION_SAVE_PATH, $PGV_SESSION_TIME, $PGV_MEMORY_LIMIT, $MAX_VIEWS;
 	global $MAX_VIEW_TIME, $INDEX_DIRECTORY;
 	global $USE_GOOGLE_ANALYTICS, $PGV_GOOGLE_ANALYTICS;
@@ -748,6 +752,7 @@ function printConfigForm(){
 	if (isset($_SESSION['install_config']['SERVER_URL'])) $SERVER_URL = $_SESSION['install_config']['SERVER_URL'];
 	if (isset($_SESSION['install_config']['LOGIN_URL'])) $LOGIN_URL = $_SESSION['install_config']['LOGIN_URL'];
 	if (isset($_SESSION['install_config']['PGV_SMTP_ACTIVE'])) $PGV_SMTP_ACTIVE = $_SESSION['install_config']['PGV_SMTP_ACTIVE'];
+	if (isset($_SESSION['install_config']['PGV_SMTP_DEBUG'])) $PGV_SMTP_DEBUG = $_SESSION['install_config']['PGV_SMTP_DEBUG'];
 	if (isset($_SESSION['install_config']['PGV_SMTP_HOST'])) $PGV_SMTP_HOST = $_SESSION['install_config']['PGV_SMTP_HOST'];
 	if (isset($_SESSION['install_config']['PGV_SMTP_HELO'])) $PGV_SMTP_HELO = $_SESSION['install_config']['PGV_SMTP_HELO'];
 	if (isset($_SESSION['install_config']['PGV_SMTP_PORT'])) $PGV_SMTP_PORT = $_SESSION['install_config']['PGV_SMTP_PORT'];
@@ -771,7 +776,7 @@ function printConfigForm(){
 	if (isset($_SESSION['install_config']['PGV_CLUSTRMAPS_SITE'])) $PGV_CLUSTRMAPS_SITE = $_SESSION['install_config']['PGV_CLUSTRMAPS_SITE'];
 	if (isset($_SESSION['install_config']['PGV_CLUSTRMAPS_SERVER'])) $PGV_CLUSTRMAPS_SERVER = $_SESSION['install_config']['PGV_CLUSTRMAPS_SERVER'];
 	if (empty($PGV_CLUSTRMAPS_SITE)) $PGV_CLUSTRMAPS_SITE = $SERVER_URL;
-
+	
 	$oldmemorylimit = @ini_get('memory_limit');
 	if ($oldmemorylimit > $PGV_MEMORY_LIMIT) $PGV_MEMORY_LIMIT = $oldmemorylimit;
 
@@ -910,6 +915,18 @@ function printConfigForm(){
 					<select name="NEW_PGV_SMTP_ACTIVE" tabindex="<?php $i++; print $i?>" onfocus="getHelp('PGV_SMTP_ACTIVE_help');">
 						<option value="yes" <?php if ($PGV_SMTP_ACTIVE) print "selected=\"selected\""; ?>><?php print $pgv_lang["yes"];?></option>
 						<option value="no" <?php if (!$PGV_SMTP_ACTIVE) print "selected=\"selected\""; ?>><?php print $pgv_lang["no"];?></option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td class="descriptionbox wrap width30"><?php print_help_link("PGV_SMTP_DEBUG_help", "qm", "PGV_SMTP_DEBUG"); print $pgv_lang["PGV_SMTP_DEBUG"];?></td>
+				<td class="optionbox">
+					<select name="NEW_PGV_SMTP_DEBUG" tabindex="<?php $i++; print $i?>" onfocus="getHelp('PGV_SMTP_DEBUG_help');">
+						<option value=0 <?php if ($PGV_SMTP_DEBUG==0) print "selected=\"selected\""; ?>><?php print $pgv_lang["PGV_SMTP_DEBUG_OPTION0"];?></option>
+						<option value=1 <?php if ($PGV_SMTP_DEBUG==1) print "selected=\"selected\""; ?>><?php print $pgv_lang["PGV_SMTP_DEBUG_OPTION1"];?></option>
+						<option value=2 <?php if ($PGV_SMTP_DEBUG==2) print "selected=\"selected\""; ?>><?php print $pgv_lang["PGV_SMTP_DEBUG_OPTION2"];?></option>
+						<option value=3 <?php if ($PGV_SMTP_DEBUG==3) print "selected=\"selected\""; ?>><?php print $pgv_lang["PGV_SMTP_DEBUG_OPTION3"];?></option>
+						<option value=4 <?php if ($PGV_SMTP_DEBUG==4) print "selected=\"selected\""; ?>><?php print $pgv_lang["PGV_SMTP_DEBUG_OPTION4"];?></option>
 					</select>
 				</td>
 			</tr>

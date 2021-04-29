@@ -1574,8 +1574,10 @@ case 'addchildaction':
 	}
 
 	splitSOUR(); // separate SOUR record from the rest
+	
+	$newindixref=get_next_INDI_xref();	// Get new INDI xref, possibly using REFNO provided by user
 
-	$gedrec ="0 @REF@ INDI\n";
+	$gedrec ="0 @$newindixref@ INDI\n";
 	$gedrec.=addNewName();
 	$gedrec.=addNewSex ();
 	if (preg_match_all('/([A-Z0-9_]+)/', $QUICK_REQUIRED_FACTS, $matches)) {
@@ -1663,7 +1665,9 @@ case 'addspouseaction':
 
 	splitSOUR(); // separate SOUR record from the rest
 
-	$gedrec ="0 @REF@ INDI\n";
+	$newindixref=get_next_INDI_xref();	// Get new INDI xref, possibly using REFNO provided by user
+
+	$gedrec ="0 @$newindixref@ INDI\n";
 	$gedrec.=addNewName();
 	$gedrec.=addNewSex ();
 	if (preg_match_all('/([A-Z0-9_]+)/', $QUICK_REQUIRED_FACTS, $matches)) {
@@ -1842,7 +1846,9 @@ case 'addnewparentaction':
 
 	splitSOUR(); // separate SOUR record from the rest
 
-	$gedrec ="0 @REF@ INDI\n";
+	$newindixref=get_next_INDI_xref();	// Get new INDI xref, possibly using REFNO provided by user
+
+	$gedrec ="0 @$newindixref@ INDI\n";
 	$gedrec.=addNewName();
 	$gedrec.=addNewSex ();
 	if (preg_match_all('/([A-Z0-9_]+)/', $QUICK_REQUIRED_FACTS, $matches)) {
@@ -1951,7 +1957,7 @@ case 'addopfchildaction':
 
 	splitSOUR(); // separate SOUR record from the rest
 
-	$newindixref=get_new_xref('INDI');
+	$newindixref=get_next_INDI_xref();	// Get new INDI xref, possibly using REFNO provided by user
 	$newfamxref=get_new_xref('FAM');
 
 	$gedrec ="0 @{$newindixref}@ INDI\n1 FAMC @{$newfamxref}@\n".addNewName().addNewSex ();

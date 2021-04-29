@@ -3142,6 +3142,31 @@ function CheckPageViews() {
 }
 
 /**
+ * get the next available INDI xref
+ * 		If the GEDCOM configuration says to use the user-supplied ID number:
+ *			If the REFN has been supplied, use it ONLY if it's not already in use
+ *		otherwise:
+ *			Use the next available INDI ID supplied by the get_new_xref() function
+ *
+ * @param GEDCOM ID
+ * @return string
+ */
+function get_next_INDI_xref($ged_id=PGV_GED_ID) {
+	global $USE_REFN;
+	
+	if (isset($USE_REFN) && $USE_REFN) {
+		// GEDCOM configuration says to use REFN if possible
+		$xref = safe_POST('REFN', PGV_REGEX_XREF);		// Get the Reference Number from the input form
+		if (!is_null($xref)) {
+			if (!find_person_record($xref, $ged_id)) {
+				return $xref;		// This REFN does not exist as a person, so it's OK to use it 
+			}
+		}
+	}
+	return get_new_xref('INDI', $ged_id);		// Use automatically assigned INDI xref
+}
+
+/**
  * get the next available xref
  * calculates the next available XREF id for the given type of record
  * @param string $type	the type of record, defaults to 'INDI'
