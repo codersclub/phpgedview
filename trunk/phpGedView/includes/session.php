@@ -44,7 +44,7 @@ $revision = '';				// The changelog.txt file can override the revision number
 
 // Look at the changelog.txt file to find overriding information, but accept only the first occurrence of each
 $handle = @fopen('changelog.txt', 'r');
-if ($handle !== FALSE) {
+if ($handle !== false) {
 	// The changelog.txt file exists:  look for the information we need
 	$status = 0x0;
 	while (!feof($handle)) {
@@ -72,6 +72,30 @@ if ($handle !== FALSE) {
 				$revision = $match[1];
 				$status |= 0x4;		// 100 bit set: SVN number found
 				continue;		// this one is redundant, but leave it in for consistency with the above code 
+			}
+		}
+	}
+	fclose($handle);
+}
+
+/*
+ *	Read the optional config.dist file to define any configuration items that are missing from config.php
+ *		This has to be done here, since none of the functions have been loaded and values in config.php or config.dist
+ *		might affect the loading of functions.
+ */
+$handle = @fopen('config.dist', 'r');
+if ($handle !== false) {
+	// The config.dist file exists:  
+	//	Match all variables defined here against those already defined in config.php.  Any missing ones
+	//	should be defined using what's in the config.dist file
+	while (!feof($handle)) {
+		$textLine = fgets($handle);
+		$found = preg_match('~^\$(.*)=(.*);~', $textLine, $match);		// Look for a variable definition
+		if ($found) {
+			$variableName = trim($match[1]);
+			$variableValue = trim($match[2]);
+			if (!isset($$variableName)) {
+				$$variableName = $variableValue;
 			}
 		}
 	}
@@ -175,16 +199,6 @@ $PRIV_HIDE   = PGV_PRIV_HIDE;
 
 // For performance, it is quicker to refer to files using absolute paths
 define ('PGV_ROOT', realpath(dirname(dirname(__FILE__))).DIRECTORY_SEPARATOR);
-
-// New setting, added to config.php in 4.2.0
-if (!isset($DB_UTF8_COLLATION)) {
-	$DB_UTF8_COLLATION=false;
-}
-
-// New setting, added to config.php in 4.1.4
-if (!isset($DBPORT)) {
-	$DBPORT='';
-}
 
 @ini_set('arg_separator.output', '&amp;');
 @ini_set('error_reporting', 0);

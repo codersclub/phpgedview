@@ -1867,10 +1867,12 @@ function print_add_layer($tag, $level=2, $printSaveButton=true) {
 
 // Add some empty tags to create a new fact
 function addSimpleTags($fact) {
-	global $ADVANCED_PLAC_FACTS, $factarray;
+	global $ADVANCED_PLAC_FACTS, $factarray, $nondatefacts;
 	add_simple_tag("0 {$fact}");
-	add_simple_tag("0 DATE", $fact, fact_label("{$fact}:DATE"));
-	add_simple_tag("0 PLAC", $fact, fact_label("{$fact}:PLAC"));
+	if (!in_array($fact, $nondatefacts)) {
+		add_simple_tag("0 DATE", $fact, fact_label("{$fact}:DATE"));
+		add_simple_tag("0 PLAC", $fact, fact_label("{$fact}:PLAC"));
+	}
 
 	if (preg_match_all('/('.PGV_REGEX_TAG.')/', $ADVANCED_PLAC_FACTS, $match)) {
 		foreach ($match[1] as $tag) {

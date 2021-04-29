@@ -458,6 +458,7 @@ if ($action=="update") {
 	$configtext = preg_replace('/\$pageSizeOptions\s*=\s*\".*\";/', "\$pageSizeOptions = \"".$_POST["NEW_pageSizeOptions"]."\";", $configtext);
 	$configtext = preg_replace('/\$fontsDefault\s*=\s*\".*\";/', "\$fontsDefault = \"".$_POST["NEW_fontsDefault"]."\";", $configtext);
 	$configtext = preg_replace('/\$fontsOptions\s*=\s*\".*\";/', "\$fontsOptions = \"".$_POST["NEW_fontsOptions"]."\";", $configtext);
+	$configtext = preg_replace('/\$USE_REFN\s*=\s*.*;/', "\$USE_REFN = ".$boolarray[$_POST["NEW_USE_REFN"]].";", $configtext);
 	if (!$_POST["NEW_MEDIA_FIREWALL_ROOTDIR"]) {
 		$NEW_MEDIA_FIREWALL_ROOTDIR = $INDEX_DIRECTORY;
 	} else {
@@ -1886,6 +1887,14 @@ print "&nbsp;<a href=\"javascript: ".$pgv_lang["editopt_conf"]."\" onclick=\"exp
 		<td class="optionbox"><select name="NEW_ENABLE_AUTOCOMPLETE" tabindex="<?php $i++; print $i; ?>" onfocus="getHelp('ENABLE_AUTOCOMPLETE_help');">
 				<option value="yes" <?php if ($ENABLE_AUTOCOMPLETE) print "selected=\"selected\""; ?>><?php print $pgv_lang["yes"]; ?></option>
 				<option value="no" <?php if (!$ENABLE_AUTOCOMPLETE) print "selected=\"selected\""; ?>><?php print $pgv_lang["no"]; ?></option>
+			</select>
+		</td>
+	</tr>
+	<tr>
+		<td class="descriptionbox wrap width20"><?php print_help_link("USE_REFN_help", "qm", "USE_REFN"); print $pgv_lang["USE_REFN"]; ?></td>
+		<td class="optionbox"><select name="NEW_USE_REFN" tabindex="<?php $i++; print $i; ?>" onfocus="getHelp('USE_REFN_help');">
+				<option value="yes" <?php if ($USE_REFN) print "selected=\"selected\""; ?>><?php print $pgv_lang["yes"]; ?></option>
+				<option value="no" <?php if (!$USE_REFN) print "selected=\"selected\""; ?>><?php print $pgv_lang["no"]; ?></option>
 			</select>
 		</td>
 	</tr>

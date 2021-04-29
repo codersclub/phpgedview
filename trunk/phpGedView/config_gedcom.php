@@ -210,6 +210,7 @@ $SURNAME_TRADITION = "paternal";
 $FULL_SOURCES = true; // Include the quality-of-data and date-of-entry-in-original-source fields
 $PREFER_LEVEL2_SOURCES = '1';	//-- When adding close relatives, which Source checkboxes are checked by default: 0: none, 1: facts, 2: record
 $NO_UPDATE_CHAN = false;	// -- Do not update the CHAN record if true
+$USE_REFN = false;		// Use REFN for new INDI record IDs (lets user assign the ID number instead of automatic assignment by PhpGedView)
 
 $pageSizeDefault = "A4";		// Reports subsystem: page size default
 $pageSizeOptions = "A3,A4,letter,legal";		// Reports subsystem: page size options
