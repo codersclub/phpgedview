@@ -512,7 +512,7 @@ if (!$real) {
 			$lastChar = $thisChar;
 			continue;
 		}
-		if (strpos('.:/-_', $thischar) !== false) {
+		if (strpos('.:/-_', $thisChar) !== false) {
 			$SEARCH_SPIDER .= $thisChar;
 			$lastChar = $thisChar;
 			continue;
