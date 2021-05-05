@@ -246,6 +246,13 @@ $factarray["ENGA:PLAC"] = "Lloc de prometatge";
 $factarray["ENGA:DATE"] = "Data de prometatge";
 $factarray["ENGA:SOUR"] = "Font de prometatge";
 
+$factarray["REPO:NAME"] = "Nom del dipòsit";
+$factarray["REPO:ADDR"] = "Adreça del dipòsit";
+$factarray["REPO:PHON"] = "Número de telèfon del dipòsit";
+$factarray["REPO:FAX"]  = "Número de fax del dipòsit";
+$factarray["REPO:EMAIL"] = "Adreça de correu electrònic del dipòsit";
+$factarray["REPO:WWW"]  = "Pàgina inicial del dipòsit";
+
 // These facts are specific to GEDCOM exports from Family Tree Maker
 $factarray["_MDCL"]	= "Metge";
 $factarray["_DEG"]	= "Grau";

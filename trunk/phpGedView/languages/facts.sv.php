@@ -245,6 +245,13 @@ $factarray["ENGA:PLAC"] = "Förlovningsort";
 $factarray["ENGA:DATE"] = "Förlovningsdatum";
 $factarray["ENGA:SOUR"] = "Förlovningskälla";
 
+$factarray["REPO:NAME"] = "Arkivets namn";
+$factarray["REPO:ADDR"] = "Arkivets adress";
+$factarray["REPO:PHON"] = "Arkivets telefonnummer";
+$factarray["REPO:FAX"]  = "Arkivets faxnummer";
+$factarray["REPO:EMAIL"] = "Arkivets e-postadress";
+$factarray["REPO:WWW"]  = "Arkivets hemsidan";
+
 // These facts are specific to GEDCOM exports from Family Tree Maker
 $factarray["_MDCL"] = "Medicinsk";
 $factarray["_DEG"]  = "Betyg";
