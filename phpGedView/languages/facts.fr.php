@@ -244,6 +244,13 @@ $factarray["ENGA:PLAC"] = "Lieu des Fiançailles";
 $factarray["ENGA:DATE"] = "Date des Fiançailles";
 $factarray["ENGA:SOUR"] = "Source des Fiançailles";
 
+$factarray["REPO:NAME"] = "Nom de l'archive";
+$factarray["REPO:ADDR"] = "Adresse de l'archive";
+$factarray["REPO:PHON"] = "Numéro de téléphone de l'archive";
+$factarray["REPO:FAX"]  = "Numéro de fax de l'archive";
+$factarray["REPO:EMAIL"] = "Adresse e-mail de l'archive";
+$factarray["REPO:WWW"]  = "Page d'accueil de l'archive";
+
 // These facts are specific to GEDCOM exports from Family Tree Maker
 $factarray["_MDCL"]                     = "Médical";
 $factarray["_DEG"]                      = "Diplôme";

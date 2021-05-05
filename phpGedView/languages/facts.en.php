@@ -243,6 +243,14 @@ $factarray["ENGA:PLAC"] = "Engagement Place";
 $factarray["ENGA:DATE"] = "Engagement Date";
 $factarray["ENGA:SOUR"] = "Engagement Source";
 
+$factarray["REPO:NAME"] = "Repository Name";
+$factarray["REPO:ADDR"] = "Repository Address";
+$factarray["REPO:PHON"] = "Repository Telephone number";
+$factarray["REPO:FAX"]  = "Repository FAX number";
+$factarray["REPO:EMAIL"] = "Repository Email Address";
+$factarray["REPO:WWW"]  = "Repository Home Page";
+
+
 // These facts are specific to GEDCOM exports from Family Tree Maker
 $factarray["_MDCL"]	= "Medical";
 $factarray["_DEG"]	= "Degree";

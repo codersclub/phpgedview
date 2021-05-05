@@ -245,6 +245,13 @@ $factarray["ENGA:PLAC"]		= "Verloving plaats";
 $factarray["ENGA:DATE"]		= "Verloving datum";
 $factarray["ENGA:SOUR"]		= "Verloving bron";
 
+$factarray["REPO:NAME"] = "Naam van het archief";
+$factarray["REPO:ADDR"] = "Adres van het archief";
+$factarray["REPO:PHON"] = "Telefoonnummer van het archief";
+$factarray["REPO:FAX"]  = "Faxnummer van het archief";
+$factarray["REPO:EMAIL"] = "E-mailadres van het archief";
+$factarray["REPO:WWW"]  = "Homepage van het archief";
+
 // These facts are specific to GEDCOM exports from Family Tree Maker
 $factarray["_MDCL"] 	= "Medisch";
 $factarray["_DEG"] 		= "Graad";

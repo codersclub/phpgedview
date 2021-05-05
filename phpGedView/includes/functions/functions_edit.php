@@ -986,6 +986,28 @@ function print_addnewrepository_link($element_id) {
 }
 
 /**
+ * Print the name of the repository
+ */
+function print_repository_name($idNum) {
+	global $GEDCOM, $pgv_lang;
+	
+	if (empty($idNum)) return;
+	
+	if (displayDetailsById($idNum, "REPO")) {
+		$ged_id = get_id_from_gedcom($GEDCOM);
+		$repoRecord = find_other_record($idNum, $ged_id);				// Get the 0 @Rnnn@ REPO record
+		if (!empty($repoRecord)) {
+			$ct = preg_match('~1 NAME (.*)~', $repoRecord, $match);		// Find the 1 NAME xxx line
+			if ($ct !== false) {
+				echo '<br />', PrintReady(trim($match[1]));
+			}
+		} else {
+			echo '<br /><span class="error">', $pgv_lang["repo_not_exist"], '</span>';
+		}
+	}
+}
+
+/**
 * @todo add comments
 */
 function print_addnewnote_link($element_id) {
@@ -1038,6 +1060,22 @@ function print_addnewsource_link($element_id) {
 	echo "&nbsp;&nbsp;&nbsp;<a href=\"javascript:;\" onclick=\"addnewsource(document.getElementById('", $element_id, "')); return false;\">";
 	echo $Link;
 	echo "</a>";
+}
+
+/**
+ * Print the name of the source
+ */
+function print_source_name($idNum) {
+	global $GEDCOM, $pgv_lang;
+
+	if (empty($idNum)) return;
+	
+	$record=GedcomRecord::getInstance($idNum);
+	if ($record) {
+		echo '<br />', PrintReady($record->getFullName());
+	} else {
+		echo '<br /><span class="error">', $pgv_lang["sour_not_exist"], '</span>';
+	}
 }
 
 /**
@@ -1606,6 +1644,7 @@ if (substr($tag, 0, strpos($tag, "CENS"))) {
 		if ($fact=="SOUR") {
 			print_findsource_link($element_id);
 			print_addnewsource_link($element_id);
+			print_source_name($value);
 			//print_autopaste_link($element_id, array("S1", "S2"), false, false, true);
 			//-- checkboxes to apply '1 SOUR' to BIRT/MARR/DEAT as '2 SOUR'
 			if ($level==1) {
@@ -1658,6 +1697,7 @@ if (substr($tag, 0, strpos($tag, "CENS"))) {
 		if ($fact=="REPO") {
 			print_findrepository_link($element_id);
 			print_addnewrepository_link($element_id);
+			print_repository_name($value);
 		}
 
 		// Shared Notes Icons ========================================
@@ -1705,7 +1745,8 @@ if (substr($tag, 0, strpos($tag, "CENS"))) {
 			$date=new GedcomDate($value);
 			echo $date->Display(false);
 		}
-		if (($fact=="ASSO" || $fact=="SOUR" || $fact=="OBJE" || ($fact=="NOTE" && $islink)) && $value) {
+//		if (($fact=="ASSO" || $fact=="SOUR" || $fact=="OBJE" || ($fact=="NOTE" && $islink)) && $value) {
+		if (($fact=="ASSO" || $fact=="OBJE" || ($fact=="NOTE" && $islink)) && $value) {
 			$record=GedcomRecord::getInstance($value);
 			if ($record) {
 				echo ' ', PrintReady($record->getFullName()), ' (', $value, ')';
@@ -1719,7 +1760,8 @@ if (substr($tag, 0, strpos($tag, "CENS"))) {
 			$date=new GedcomDate($value);
 			echo getRLM(), $date->Display(false), getRLM();
 		}
-		if (($fact=="ASSO" || $fact=="SOUR" || $fact=="OBJE" || ($fact=="NOTE" && $islink)) && $value) {
+//		if (($fact=="ASSO" || $fact=="SOUR" || $fact=="OBJE" || ($fact=="NOTE" && $islink)) && $value) {
+		if (($fact=="ASSO" || $fact=="OBJE" || ($fact=="NOTE" && $islink)) && $value) {
 			$record=GedcomRecord::getInstance($value);
 			if ($record) {
 				echo getRLM(), PrintReady($record->getFullName()), ' ', getLRM(), '(', $value, ') ', getLRM(), getRLM();
@@ -2399,7 +2441,6 @@ function create_edit_form($gedrec, $linenum, $level0type) {
 	global $pid, $tags, $ADVANCED_PLAC_FACTS, $date_and_time, $templefacts;
 	global $lang_short_cut, $LANGUAGE, $FULL_SOURCES, $TEXT_DIRECTION;
 	// global $TEXT_DIRECTION, $TBLPREFIX, $DBHOST, $DBUSER, $DBPASS, $DBNAME, $SERVER_URL;
-
 	$tags=array();
 	$gedlines = explode("\n", $gedrec); // -- find the number of lines in the record
 	if (!isset($gedlines[$linenum])) {
