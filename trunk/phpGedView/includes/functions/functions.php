@@ -3647,6 +3647,7 @@ function isFileExternal($file) {
  */
 function encrypt($string, $key='') {
 	if (empty($key)) $key = session_id();
+	if (empty($key)) $key = '!@#$%SeCrEt^&*(';		// No session ID?  use a random junk string instead
 	$result = '';
 
 	for($i=0; $i<strlen($string); $i++) {
@@ -3669,6 +3670,7 @@ function encrypt($string, $key='') {
  */
 function decrypt($string, $key='') {
 	if (empty($key)) $key = session_id();
+	if (empty($key)) $key = '!@#$%SeCrEt^&*(';		// No session ID?  use a random junk string instead
 
 	if (substr($string, 0, 1)!='*') return $string;		// Input is not a valid encrypted string
 	$string = base64_decode(strtr(substr($string, 1), '-_!', '+/='));
