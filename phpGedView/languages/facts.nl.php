@@ -23,6 +23,7 @@
  * @package PhpGedView
  * @subpackage Languages
  * @authors Erik Bent, Jans B. Luder, Boudewijn Sjouke, Eduard Wustenveld
+ * @version $Id$
  */
 
 if (!defined('PGV_PHPGEDVIEW')) {
