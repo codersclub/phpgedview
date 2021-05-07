@@ -14,6 +14,7 @@ The session.php script uses this information to populate the constants : PGV_VER
 =====================================================================
 
 Version 4.3.1
+ - Fixed: User is allowed to enter illegal Shared Note and Media IDs while editing (canajun2eh)
  - Fixed: Division by zero in encrypt() and decrypt() functions when key and session_id are both empty (canajun2eh) 
  - Fixed: Missing or inaccurate Help text while adding Source and Repository records (canajun2eh)
  - Fixed: User is allowed to enter illegal Repository and Source IDs while editing (canajun2eh)

@@ -1559,9 +1559,11 @@ case 'update':
 			DumpString($newged);
 		}
 
-		$success  = (replace_gedrec($pid, $newged, $update_CHAN));
+		$success = replace_gedrec($pid, $newged, $update_CHAN);
 		if ($success) {
-			echo "<br /><br />", $pgv_lang["update_successful"], " - ", $pid;
+			echo '<br /><br />', $pgv_lang["update_successful"], " - {$pid}";
+		} else {
+			echo '<br /><br /><span class="error">', $pgv_lang["update_failed"], " - {$pid}</span>";
 		}
 
 	} // end foreach $cens_pids  -------------
