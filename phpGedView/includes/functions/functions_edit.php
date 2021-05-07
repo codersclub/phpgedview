@@ -91,6 +91,7 @@ function checkChangeTime($pid, $gedrec, $last_time) {
 */
 function replace_gedrec($gid, $gedrec, $chan=true, $linkpid='') {
 	global $fcontents, $pgv_changes, $manual_save, $pgv_private_records;
+	global $GEDCOM, $pgv_lang;
 
 	$gid = strtoupper($gid);
 	//-- restore any data that was hidden during privatizing
@@ -102,7 +103,53 @@ function replace_gedrec($gid, $gedrec, $chan=true, $linkpid='') {
 		}
 		unset($pgv_private_records[$gid]);
 	}
-
+	
+	$fail = false;		// Set true when any SOUR, OBJE, NOTE, or REPO reference refers to a non-existent record
+	$ged_id = get_id_from_gedcom($GEDCOM);
+	//-- Find all the SOUR references, and make sure they all refer to legitimate 0 @xxx@ SOUR records
+	$ct = preg_match_all('~\d SOUR @(.*)@~', $gedrec, $sourList);
+	if ($ct > 0) {
+		foreach($sourList[1] as $sourRef) {
+			$sourRecord = find_source_record($sourRef, $ged_id);			// Get the 0 @Snnn@ SOUR record
+			if (empty($sourRecord)) {
+				echo '<br /><span class="error">', sprintf($pgv_lang["sour_not_exist"], $sourRef), '</span>';
+				$fail = true;
+			}
+		}
+	}
+	//-- Find all the OBJ references, and make sure they all refer to legitimate 0 @xxx@ OBJE records
+	$ct = preg_match_all('~\d OBJE @(.*)@~', $gedrec, $mediaList);
+	if ($ct > 0) {
+		foreach($mediaList[1] as $mediaRef) {
+			$mediaRecord = find_media_record($mediaRef, $ged_id);			// Get the 0 @Mnnn@ OBJE record
+			if (empty($mediaRecord)) {
+				echo '<br /><span class="error">', sprintf($pgv_lang["media_not_exist"], $mediaRef), '</span>';
+				$fail = true;
+			}
+		}
+	}
+	//-- Find all the REPO and NOTE references, and make sure they all refer to legitimate records
+	foreach(array('REPO', 'NOTE') as $type) {
+		$lctype = strtolower($type);
+		$ct = preg_match_all("~\d {$type} @(.*)@~", $gedrec, $repoList);
+		if ($ct > 0) {
+			foreach($repoList[1] as $repoRef) {
+				$repoRecord = find_other_record($repoRef, $ged_id);			// Get the 0 @Rnnn@ REPO record
+				if (empty($repoRecord)) {
+					echo '<br /><span class="error">', sprintf($pgv_lang["{$lctype}_not_exist"], $repoRef), '</span>';
+					$fail = true;
+				} else {
+					$ct = preg_match("~0 @.*@ {$type}~", $repoRecord, $match);
+					if ($ct == 0) {			// This ID number exists, but it's not a REPO
+						echo '<br /><span class="error">', sprintf($pgv_lang["{$lctype}_not_exist"], $repoRef), '</span>';
+						$fail = true;
+					}
+				}
+			}
+		}
+	}
+	if ($fail) return false;
+	
 	if (($gedrec = check_gedcom($gedrec, $chan))!==false) {
 		//-- the following block of code checks if the XREF was changed in this record.
 		//-- if it was changed we add a warning to the change log
@@ -971,6 +1018,32 @@ function print_addnewmedia_link($element_id) {
 	echo $Link;
 	echo "</a>";
 }
+
+/**
+ * Print the title of the media object
+ */
+function print_media_title($idNum) {
+	global $GEDCOM, $pgv_lang;
+	
+	if (empty($idNum) || $idNum == 'new') return;
+	
+	if (displayDetailsById($idNum, "OBJE")) {
+		$ged_id = get_id_from_gedcom($GEDCOM);
+		$mediaRecord = find_media_record($idNum, $ged_id);				// Get the 0 @Mnnn@ OBJ record
+		if (empty($mediaRecord)) {
+			echo '<br /><span class="error">', sprintf($pgv_lang["media_not_exist"], $idNum), '</span>';
+			return;
+		}
+		$ct = preg_match('~\d TITL (.*)~', $mediaRecord, $match);		// Find the TITL line
+		if ($ct == 0) {
+			$ct = preg_match('~\d FILE (.*)~', $mediaRecord, $match);	// No TITL? try for the FILE line instead
+		}
+		if ($ct != 0) {
+			echo '<br />', PrintReady(trim($match[1]));
+		}
+	}
+}
+
 /**
 * @todo add comments
 */
@@ -988,21 +1061,26 @@ function print_addnewrepository_link($element_id) {
 /**
  * Print the name of the repository
  */
-function print_repository_name($idNum) {
+function print_repo_name($idNum) {
 	global $GEDCOM, $pgv_lang;
 	
-	if (empty($idNum)) return;
+	if (empty($idNum) || $idNum == 'new') return;
 	
 	if (displayDetailsById($idNum, "REPO")) {
 		$ged_id = get_id_from_gedcom($GEDCOM);
 		$repoRecord = find_other_record($idNum, $ged_id);				// Get the 0 @Rnnn@ REPO record
-		if (!empty($repoRecord)) {
-			$ct = preg_match('~1 NAME (.*)~', $repoRecord, $match);		// Find the 1 NAME xxx line
-			if ($ct !== false) {
-				echo '<br />', PrintReady(trim($match[1]));
-			}
-		} else {
-			echo '<br /><span class="error">', $pgv_lang["repo_not_exist"], '</span>';
+		if (empty($repoRecord)) {
+			echo '<br /><span class="error">', sprintf($pgv_lang["repo_not_exist"], $idNum), '</span>';
+			return;
+		}
+		$ct = preg_match('~0 @.*@ REPO~', $repoRecord, $match);
+		if ($ct == 0) {			// This ID number exists, but it's not a REPO
+			echo '<br /><span class="error">', sprintf($pgv_lang["repo_not_exist"], $idNum), '</span>';
+			return;
+		}
+		$ct = preg_match('~1 NAME (.*)~', $repoRecord, $match);		// Find the 1 NAME xxx line
+		if ($ct != 0) {
+			echo '<br />', PrintReady(trim($match[1]));
 		}
 	}
 }
@@ -1020,6 +1098,33 @@ function print_addnewnote_link($element_id) {
 	echo $Link;
 	echo "</a>";
 }
+
+/**
+ * Print the title of the shared note
+ */
+function print_note_title($idNum) {
+	global $GEDCOM, $pgv_lang;
+	
+	if (empty($idNum) || $idNum == 'new') return;
+	
+	if (displayDetailsById($idNum, "NOTE")) {
+		$ged_id = get_id_from_gedcom($GEDCOM);
+		$noteRecord = find_other_record($idNum, $ged_id);				// Get the 0 @Nnnnn@ NOTE record
+		if (empty($noteRecord)) {
+			echo '<br /><span class="error">', sprintf($pgv_lang["note_not_exist"], $idNum), '</span>';
+			return;
+		}
+		$ct = preg_match('~0 @.*@ NOTE (.*)~', $noteRecord, $match);
+		if ($ct == 0) {			// This ID number exists, but it's not a NOTE
+			echo '<br /><span class="error">', sprintf($pgv_lang["note_not_exist"], $idNum), '</span>';
+			return;
+		}
+		$noteText = trim(substr($match[1], 0, 75));		// Use the 1st 75 characters of the text as its title
+		if (strlen($match[1]) > 75) $noteText .= '...';
+		echo '<br />', PrintReady($noteText);
+	}
+}
+
 
 /**
 * // Used in GEDFact CENS assistant =====================
@@ -1063,18 +1168,24 @@ function print_addnewsource_link($element_id) {
 }
 
 /**
- * Print the name of the source
+ * Print the title of the source
  */
-function print_source_name($idNum) {
+function print_sour_title($idNum) {
 	global $GEDCOM, $pgv_lang;
-
-	if (empty($idNum)) return;
 	
-	$record=GedcomRecord::getInstance($idNum);
-	if ($record) {
-		echo '<br />', PrintReady($record->getFullName());
-	} else {
-		echo '<br /><span class="error">', $pgv_lang["sour_not_exist"], '</span>';
+	if (empty($idNum) || $idNum == 'new') return;
+	
+	if (displayDetailsById($idNum, "SOUR")) {
+		$ged_id = get_id_from_gedcom($GEDCOM);
+		$sourRecord = find_source_record($idNum, $ged_id);			// Get the 0 @Snnn@ SOUR record
+		if (empty($sourRecord)) {
+			echo '<br /><span class="error">', sprintf($pgv_lang["sour_not_exist"], $idNum), '</span>';
+			return;
+		}
+		$ct = preg_match('~1 TITL (.*)~', $sourRecord, $match);		// Find the 1 TITL xxx line
+		if ($ct != 0) {
+			echo '<br />', PrintReady(trim($match[1]));
+		}
 	}
 }
 
@@ -1644,7 +1755,7 @@ if (substr($tag, 0, strpos($tag, "CENS"))) {
 		if ($fact=="SOUR") {
 			print_findsource_link($element_id);
 			print_addnewsource_link($element_id);
-			print_source_name($value);
+			print_sour_title($value);
 			//print_autopaste_link($element_id, array("S1", "S2"), false, false, true);
 			//-- checkboxes to apply '1 SOUR' to BIRT/MARR/DEAT as '2 SOUR'
 			if ($level==1) {
@@ -1697,7 +1808,7 @@ if (substr($tag, 0, strpos($tag, "CENS"))) {
 		if ($fact=="REPO") {
 			print_findrepository_link($element_id);
 			print_addnewrepository_link($element_id);
-			print_repository_name($value);
+			print_repo_name($value);
 		}
 
 		// Shared Notes Icons ========================================
@@ -1726,14 +1837,16 @@ if (substr($tag, 0, strpos($tag, "CENS"))) {
 					}
 				}
 			}
+			print_note_title($value);
 		}
 
 		if ($fact=="OBJE") {
 			print_findmedia_link($element_id, "1media");
-		}
-		if ($fact=="OBJE" && !$value) {
-			print_addnewmedia_link($element_id);
-			$value = "new";
+			if (!$value) {
+				print_addnewmedia_link($element_id);
+				$value = "new";
+			}
+			print_media_title($value);
 		}
 
 		echo "<br />";
@@ -1746,7 +1859,7 @@ if (substr($tag, 0, strpos($tag, "CENS"))) {
 			echo $date->Display(false);
 		}
 //		if (($fact=="ASSO" || $fact=="SOUR" || $fact=="OBJE" || ($fact=="NOTE" && $islink)) && $value) {
-		if (($fact=="ASSO" || $fact=="OBJE" || ($fact=="NOTE" && $islink)) && $value) {
+		if (($fact=="ASSO" && $islink) && $value) {
 			$record=GedcomRecord::getInstance($value);
 			if ($record) {
 				echo ' ', PrintReady($record->getFullName()), ' (', $value, ')';
