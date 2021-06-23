@@ -3,7 +3,7 @@
  * Interface to edit place locations
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2019  PGV Development Team. All rights reserved.
+ * Copyright (C) 2002 to 2021  PGV Development Team. All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -683,11 +683,11 @@ if ($action=="add") {
 				place = response[i];
 				point = place.geometry.location;
 				name = place.formatted_address;
-					//z1 = Math.abs(place.geometry.viewport.f.b - place.geometry.viewport.f.f);
-					//z2 = Math.log(360 / z1 );
-					//z3 = z2 / Math.LN2;
-					//zoomlevel = Math.round(z3) - 2;
-				zoomlevel = Math.round(Math.log(Math.abs(360 / (place.geometry.viewport.f.b - place.geometry.viewport.f.f) )) / Math.LN2) - 2;
+					//x1 = place.geometry.viewport.getNorthEast().lat - place.geometry.viewport.getSouthWest().lat;
+					//x2 = Math.abs(360 / x1 );
+					//x3 = Math.log(x2) / Math.LN2;
+					//zoomlevel = Math.round(x3) - 2;
+				zoomlevel = Math.round(Math.log(Math.abs(360 / (place.geometry.viewport.getNorthEast().lat - place.geometry.viewport.getSouthWest().lat) )) / Math.LN2) - 2;
 				marker = createMarker(point, name, zoomlevel);
 				// map.addOverlay(marker);
 				if (place.geometry.viewport) {
