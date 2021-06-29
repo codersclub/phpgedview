@@ -134,7 +134,7 @@ switch ($action) {
 				else $mail_body .= PGV_SERVER_NAME.PGV_SCRIPT_PATH;
 
 				require_once PGV_ROOT.'includes/functions/functions_mail.php';
-				pgvMail(get_user_setting($user_id, 'email'), $PHPGEDVIEW_EMAIL, str_replace("#SERVER_NAME#", PGV_SERVER_NAME.PGV_SCRIPT_PATH, $pgv_lang["mail04_subject"]), $mail_body);
+				pgvMail(get_user_setting($user_id, 'email'), $PHPGEDVIEW_EMAIL, str_replace(array('#PGV_SERVER_NAME#','#PGV_SCRIPT_PATH#'), array(PGV_SERVER_NAME,PGV_SCRIPT_PATH), $pgv_lang["mail04_subject"]), $mail_body);
 
 				?>
 				<table class="center facts_table">
@@ -418,7 +418,7 @@ switch ($action) {
 
 					$mail_body = "";
 					$mail_body .= str_replace("#user_fullname#", $fullName, $pgv_lang["mail01_line01"]) . "\r\n\r\n";
-					$mail_body .= str_replace("#user_email#", $user_email, str_replace("#SERVER_NAME#", PGV_SERVER_NAME.PGV_SCRIPT_PATH, $pgv_lang["mail01_line02"])) . "  ";
+					$mail_body .= str_replace(array('#PGV_SERVER_NAME#','#PGV_SCRIPT_PATH#','#user_email#'), array(PGV_SERVER_NAME,PGV_SCRIPT_PATH,$user_email), $pgv_lang["mail01_line02"]) . "  ";
 					$mail_body .= $pgv_lang["mail01_line03"] . "\r\n\r\n";
 					$mail_body .= $pgv_lang["mail01_line04"] . "\r\n\r\n";
 					if ($TEXT_DIRECTION=="rtl") {
@@ -434,7 +434,7 @@ switch ($action) {
 					$mail_body .= $pgv_lang["mail01_line05"] . "  ";
 					$mail_body .= $pgv_lang["mail01_line06"] . "\r\n";
 					require_once PGV_ROOT.'includes/functions/functions_mail.php';
-					pgvMail($user_email, $PHPGEDVIEW_EMAIL, str_replace("#SERVER_NAME#", PGV_SERVER_NAME.PGV_SCRIPT_PATH, $pgv_lang["mail01_subject"]), $mail_body);
+					pgvMail($user_email, $PHPGEDVIEW_EMAIL, str_replace(array('#PGV_SERVER_NAME#','#PGV_SCRIPT_PATH#'), array(PGV_SERVER_NAME,PGV_SCRIPT_PATH), $pgv_lang["mail01_subject"]), $mail_body);
 
 					// switch language to webmaster settings
 					$adm_id = get_user_id($WEBMASTER_EMAIL);
@@ -443,7 +443,7 @@ switch ($action) {
 
 					$mail_body = "";
 					$mail_body .= $pgv_lang["mail02_line01"] . "\r\n\r\n";
-					$mail_body .= str_replace("#SERVER_NAME#", PGV_SERVER_NAME.PGV_SCRIPT_PATH, $pgv_lang["mail02_line02"]) . "\r\n\r\n";
+					$mail_body .= str_replace(array('#PGV_SERVER_NAME#','#PGV_SCRIPT_PATH#'), array(PGV_SERVER_NAME,PGV_SCRIPT_PATH), $pgv_lang["mail02_line02"]) . "\r\n\r\n";
 					$mail_body .= $pgv_lang["username"] . " " . $user_name . "\r\n";
 					if ($NAME_REVERSE) {
 						$mail_body .= $pgv_lang["lastname"] . " " . $user_lastname . "\r\n\r\n";
@@ -460,7 +460,7 @@ switch ($action) {
 					$message = array();
 					$message["to"]=$WEBMASTER_EMAIL;
 					$message["from"]=$user_email;
-					$message["subject"] = str_replace("#SERVER_NAME#", PGV_SERVER_NAME.PGV_SCRIPT_PATH, str_replace("#user_email#", $user_email, $pgv_lang["mail02_subject"]));
+					$message["subject"] = str_replace(array('#PGV_SERVER_NAME#','#PGV_SCRIPT_PATH#','#user_email#'), array(PGV_SERVER_NAME,PGV_SCRIPT_PATH,$user_email), $pgv_lang["mail02_subject"]);
 					$message["body"] = $mail_body;
 					$message["created"] = $time;
 					$message["method"] = $SUPPORT_METHOD;
@@ -581,7 +581,7 @@ switch ($action) {
 				$message = array();
 				$message["to"]=$WEBMASTER_EMAIL;
 				$message["from"]=$PHPGEDVIEW_EMAIL;
-				$message["subject"] = str_replace("#SERVER_NAME#", PGV_SERVER_NAME.PGV_SCRIPT_PATH, $pgv_lang["mail03_subject"]);
+				$message["subject"] = str_replace(array('#PGV_SERVER_NAME#','#PGV_SCRIPT_PATH#'), array(PGV_SERVER_NAME,PGV_SCRIPT_PATH), $pgv_lang["mail03_subject"]);
 				$message["body"] = $mail_body;
 				$message["created"] = $time;
 				$message["method"] = $SUPPORT_METHOD;
