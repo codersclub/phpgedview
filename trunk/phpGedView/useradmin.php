@@ -196,8 +196,10 @@ if ($action=='createuser' || $action=='edituser2') {
 					$message["to"]=$username;
 					$headers="From: ".$PHPGEDVIEW_EMAIL;
 					$message["from"]=PGV_USER_NAME;
-					$message["subject"]=str_replace("#SERVER_NAME#", $serverURL, $pgv_lang["admin_OK_subject"]);
-					$message["body"]=str_replace("#SERVER_NAME#", $serverURL, $pgv_lang["admin_OK_message"]);
+//					$message["subject"]=str_replace("#SERVER_NAME#", $serverURL, $pgv_lang["admin_OK_subject"]);
+//					$message["body"]=str_replace("#SERVER_NAME#", $serverURL, $pgv_lang["admin_OK_message"]);
+					$message["subject"]=str_replace(array('#PGV_SERVER_NAME#','#PGV_SCRIPT_PATH#'), array(PGV_SERVER_NAME,PGV_SCRIPT_PATH), $pgv_lang["admin_OK_subject"]);
+					$message["body"]=str_replace(array('#PGV_SERVER_NAME#','#PGV_SCRIPT_PATH#'), array(PGV_SERVER_NAME,PGV_SCRIPT_PATH), $pgv_lang["admin_OK_message"]);
 					$message["created"]="";
 					$message["method"]="messaging2";
 					$message['bulkMail'] = false;
@@ -207,8 +209,10 @@ if ($action=='createuser' || $action=='edituser2') {
 					$message["to"]=PGV_USER_NAME;
 					$headers="From: ".$PHPGEDVIEW_EMAIL;
 					$message["from"]=$username; // fake the from address - so the admin can "reply" to it.
-					$message["subject"]=str_replace("#SERVER_NAME#", $serverURL, $pgv_lang["admin_OK_subject"]);
-					$message["body"]=str_replace("#SERVER_NAME#", $serverURL, $pgv_lang["admin_OK_message"]);
+//					$message["subject"]=str_replace("#SERVER_NAME#", $serverURL, $pgv_lang["admin_OK_subject"]);
+//					$message["body"]=str_replace("#SERVER_NAME#", $serverURL, $pgv_lang["admin_OK_message"]);
+					$message["subject"]=str_replace(array('#PGV_SERVER_NAME#','#PGV_SCRIPT_PATH#'), array(PGV_SERVER_NAME,PGV_SCRIPT_PATH), $pgv_lang["admin_OK_subject"]);
+					$message["body"]=str_replace(array('#PGV_SERVER_NAME#','#PGV_SCRIPT_PATH#'), array(PGV_SERVER_NAME,PGV_SCRIPT_PATH), $pgv_lang["admin_OK_message"]);
 					$message["created"]="";
 					$message["method"]="messaging2";
 					$message['bulkMail'] = false;
