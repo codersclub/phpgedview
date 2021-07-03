@@ -14,6 +14,7 @@ The session.php script uses this information to populate the constants : PGV_VER
 =====================================================================
 
 Version 4.3.1
+ - Fixed: Improperly formatted text in Accept/Reject Changes dialog (canajun2eh)
  - Fixed: Incorrect e-mail text when new user is requesting permission to log in (canajun2eh)
  - Fixed: Illegal Zoom value in places_edit.php of googlemap module when clicking on marker (canajun2eh)
  - Fixed: User is allowed to enter illegal Shared Note and Media IDs while editing (canajun2eh)

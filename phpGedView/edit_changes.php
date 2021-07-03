@@ -3,7 +3,7 @@
  * Interface to review/accept/reject changes made by editing online.
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2018  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2021  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -183,7 +183,8 @@ if (empty($pgv_changes)) {
 	}
 	$output2 .= '</td></tr></table>';
 
-	echo '<center>', $pgv_lang['accept_gedcom'], '<br />', $output2, $output, $output2, '</center>';
+//	echo '<center>', $pgv_lang['accept_gedcom'], '<br />', $output2, $output, $output2, '</center>';
+	echo '<center>', print_text('accept_gedcom',0,1), '<br />', $output2, $output, $output2, '</center>';
 }
 
 echo '</div>';
