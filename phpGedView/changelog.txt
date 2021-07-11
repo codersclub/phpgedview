@@ -14,6 +14,7 @@ The session.php script uses this information to populate the constants : PGV_VER
 =====================================================================
 
 Version 4.3.1
+ - Fixed: New entries in config.dist are not properly evaluated (canajun2eh)
  - Changed: Minor corrections to several language files - does not affect program (canajun2eh) 
  - Fixed: Improperly formatted text in Accept/Reject Changes dialog (canajun2eh)
  - Fixed: Incorrect e-mail text when new user is requesting permission to log in (canajun2eh)
