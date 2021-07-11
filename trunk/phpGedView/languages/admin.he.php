@@ -430,8 +430,8 @@ $pgv_lang["warn_users"]		= "משתמשים עם התראות";
 $pgv_lang["weekly"]			= "שבועי";
 $pgv_lang["welcome_new"]		= "ברוך הבא לאתר האינטרנט החדש PhpGedView שלך.";
 $pgv_lang["yearly"]			= "שנתי";
-$pgv_lang["admin_OK_subject"]	= "אישור משתמש על #SERVER_NAME#";
-$pgv_lang["admin_OK_message"]	= "המנהלן של אתר PhpGedView #SERVER_NAME# אישר את הבקשה שלך לקוד משתמש.\r\n\r\nתוכל עכשיו להשתמש באתר ע\"י הקישור הבא: <a href=\"#SERVER_NAME#\">#SERVER_NAME#</a>";
+$pgv_lang["admin_OK_subject"]	= "אישור משתמש על #PGV_SERVER_NAME##PGV_SCRIPT_PATH#";
+$pgv_lang["admin_OK_message"]	= "המנהלן של אתר PhpGedView #PGV_SERVER_NAME##PGV_SCRIPT_PATH# אישר את הבקשה שלך לקוד משתמש.\r\n\r\nתוכל עכשיו להשתמש באתר ע\"י הקישור הבא: <a href=\"#PGV_SERVER_NAME##PGV_SCRIPT_PATH#\">#PGV_SERVER_NAME##PGV_SCRIPT_PATH#</a>";
 
 $pgv_lang["batch_update"]		= "בצע עדכונים/עריכה באצוה (batch) על קובץ ה-GEDCOM שלך";
 

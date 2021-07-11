@@ -440,8 +440,8 @@ $pgv_lang["warn_users"]							= "Uživatelé s upozorneními";
 $pgv_lang["weekly"]			= "Týdne";
 $pgv_lang["welcome_new"]			= "Vítejte na svých nových stránkách v PhpGedView. Úspešne jste nainstalovali PhpGedView (jinak byste nevideli tuto stránku), a tak se mužete pustit do nastavování systému podle vašich potreb.<br />";
 $pgv_lang["yearly"]			= "Rocne";
-$pgv_lang["admin_OK_subject"]					= "Schválení úctu na webu #SERVER_NAME#";
-$pgv_lang["admin_OK_message"]					= "Správce na PhpGedView webu #SERVER_NAME# schválil svou žádost o úcet.\r\n\r\nNyní mužete se prihlásit pomocí prístupu tímto: #SERVER_NAME#";
+$pgv_lang["admin_OK_subject"]					= "Schválení úctu na webu #PGV_SERVER_NAME##PGV_SCRIPT_PATH#";
+$pgv_lang["admin_OK_message"]					= "Správce na PhpGedView webu #PGV_SERVER_NAME##PGV_SCRIPT_PATH# schválil svou žádost o úcet.\r\n\r\nNyní mužete se prihlásit pomocí prístupu tímto: #PGV_SERVER_NAME##PGV_SCRIPT_PATH#";
 
 $pgv_lang["batch_update"]="Provádet dávkové aktualizace / úpravy na GEDCOM";
 

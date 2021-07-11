@@ -288,9 +288,9 @@ $pgv_lang["visitor"]			= "Vierailija";
 $pgv_lang["warn_users"]		= "Käyttäjät, joilla varoitus";
 $pgv_lang["weekly"]			= "Viikoittain";
 $pgv_lang["welcome_new"]		= "Tervetuloa sinun uudelle PhpGedView internet sivustolle.";
-$pgv_lang["admin_OK_message"]	= "PhpGedView sivuston #SERVER_NAME# ylläpitäjä on hyväksynyt anomuksesi tunnukselle.\r\n\r\nVoit kirjautua sivustolle käyttäen seuraavaa linkkiä:#SERVER_NAME#";
+$pgv_lang["admin_OK_message"]	= "PhpGedView sivuston #PGV_SERVER_NAME##PGV_SCRIPT_PATH# ylläpitäjä on hyväksynyt anomuksesi tunnukselle.\r\n\r\nVoit kirjautua sivustolle käyttäen seuraavaa linkkiä:#PGV_SERVER_NAME##PGV_SCRIPT_PATH#";
 $pgv_lang["yearly"]			= "Vuosittain";
-$pgv_lang["admin_OK_subject"]	= "Tunnus anomus #SERVER_NAME#";
+$pgv_lang["admin_OK_subject"]	= "Tunnus anomus #PGV_SERVER_NAME##PGV_SCRIPT_PATH#";
 
 $pgv_lang["batch_update"]		="Suorita eräpäivitykset/-muokkaukset GEDCOMille";
 

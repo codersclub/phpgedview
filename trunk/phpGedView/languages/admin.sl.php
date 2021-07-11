@@ -441,8 +441,8 @@ $pgv_lang["warn_users"]							= "Uporabnikov z opozorilom";
 $pgv_lang["weekly"]							= "Tedensko";
 $pgv_lang["welcome_new"]						= "Dobrodošli na vašo novo PhpGedView spletno stran.";
 $pgv_lang["yearly"]							= "Letno";
-$pgv_lang["admin_OK_subject"]						= "Odobritev uporabniškega racuna na #SERVER_NAME#";
-$pgv_lang["admin_OK_message"]						= "Upravitelj rodovnika na spletni strani #SERVER_NAME# je odobril vaš zahtevek za uporabniški racun.\r\n\r\nSedaj se lahko prijavite tako da sledite naslednji povezavi: #SERVER_NAME#";
+$pgv_lang["admin_OK_subject"]						= "Odobritev uporabniškega racuna na #PGV_SERVER_NAME##PGV_SCRIPT_PATH#";
+$pgv_lang["admin_OK_message"]						= "Upravitelj rodovnika na spletni strani #PGV_SERVER_NAME##PGV_SCRIPT_PATH# je odobril vaš zahtevek za uporabniški racun.\r\n\r\nSedaj se lahko prijavite tako da sledite naslednji povezavi: #PGV_SERVER_NAME##PGV_SCRIPT_PATH#";
 
 $pgv_lang["batch_update"]						= "Izdelaj skupke popravkov/ureditev vašega GEDCOM-a";
 

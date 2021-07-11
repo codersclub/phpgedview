@@ -774,47 +774,47 @@ $pgv_lang["oct"]				= "Octubre";
 $pgv_lang["nov"]				= "Novembre";
 $pgv_lang["dec"]				= "Desembre";
 
-// $pgv_lang["vend"]			use values from lang.en.php
-// $pgv_lang["brum"]			use values from lang.en.php
-// $pgv_lang["frim"]			use values from lang.en.php
-// $pgv_lang["nivo"]			use values from lang.en.php
-// $pgv_lang["pluv"]			use values from lang.en.php
-// $pgv_lang["vent"]			use values from lang.en.php
-// $pgv_lang["germ"]			use values from lang.en.php
-// $pgv_lang["flor"]			use values from lang.en.php
-// $pgv_lang["prai"]			use values from lang.en.php
-// $pgv_lang["mess"]			use values from lang.en.php
-// $pgv_lang["ther"]			use values from lang.en.php
-// $pgv_lang["fruc"]			use values from lang.en.php
-// $pgv_lang["comp"]			use values from lang.en.php
+// $pgv_lang["vend"]			use value from lang.en.php
+// $pgv_lang["brum"]			use value from lang.en.php
+// $pgv_lang["frim"]			use value from lang.en.php
+// $pgv_lang["nivo"]			use value from lang.en.php
+// $pgv_lang["pluv"]			use value from lang.en.php
+// $pgv_lang["vent"]			use value from lang.en.php
+// $pgv_lang["germ"]			use value from lang.en.php
+// $pgv_lang["flor"]			use value from lang.en.php
+// $pgv_lang["prai"]			use value from lang.en.php
+// $pgv_lang["mess"]			use value from lang.en.php
+// $pgv_lang["ther"]			use value from lang.en.php
+// $pgv_lang["fruc"]			use value from lang.en.php
+// $pgv_lang["comp"]			use value from lang.en.php
 
-// $pgv_lang["tsh"]				use values from lang.en.php
-// $pgv_lang["csh"]				use values from lang.en.php
-// $pgv_lang["ksl"]				use values from lang.en.php
-// $pgv_lang["tvt"]				use values from lang.en.php
-// $pgv_lang["shv"]				use values from lang.en.php
-// $pgv_lang["adr"]				use values from lang.en.php
-// $pgv_lang["adr_leap_year"]	use values from lang.en.php
-// $pgv_lang["ads"]				use values from lang.en.php
-// $pgv_lang["nsn"]				use values from lang.en.php
-// $pgv_lang["iyr"]				use values from lang.en.php
-// $pgv_lang["svn"]				use values from lang.en.php
-// $pgv_lang["tmz"]				use values from lang.en.php
-// $pgv_lang["aav"]				use values from lang.en.php
-// $pgv_lang["ell"]				use values from lang.en.php
+// $pgv_lang["tsh"]				use value from lang.en.php
+// $pgv_lang["csh"]				use value from lang.en.php
+// $pgv_lang["ksl"]				use value from lang.en.php
+// $pgv_lang["tvt"]				use value from lang.en.php
+// $pgv_lang["shv"]				use value from lang.en.php
+// $pgv_lang["adr"]				use value from lang.en.php
+// $pgv_lang["adr_leap_year"]	use value from lang.en.php
+// $pgv_lang["ads"]				use value from lang.en.php
+// $pgv_lang["nsn"]				use value from lang.en.php
+// $pgv_lang["iyr"]				use value from lang.en.php
+// $pgv_lang["svn"]				use value from lang.en.php
+// $pgv_lang["tmz"]				use value from lang.en.php
+// $pgv_lang["aav"]				use value from lang.en.php
+// $pgv_lang["ell"]				use value from lang.en.php
 
-// $pgv_lang["muhar"]			use values from lang.en.php
-// $pgv_lang["safar"]			use values from lang.en.php
-// $pgv_lang["rabia"]			use values from lang.en.php
-// $pgv_lang["rabit"]			use values from lang.en.php
-// $pgv_lang["jumaa"]			use values from lang.en.php
-// $pgv_lang["jumat"]			use values from lang.en.php
-// $pgv_lang["rajab"]			use values from lang.en.php
-// $pgv_lang["shaab"]			use values from lang.en.php
-// $pgv_lang["ramad"]			use values from lang.en.php
-// $pgv_lang["shaww"]			use values from lang.en.php
-// $pgv_lang["dhuaq"]			use values from lang.en.php
-// $pgv_lang["dhuah"]			use values from lang.en.php
+// $pgv_lang["muhar"]			use value from lang.en.php
+// $pgv_lang["safar"]			use value from lang.en.php
+// $pgv_lang["rabia"]			use value from lang.en.php
+// $pgv_lang["rabit"]			use value from lang.en.php
+// $pgv_lang["jumaa"]			use value from lang.en.php
+// $pgv_lang["jumat"]			use value from lang.en.php
+// $pgv_lang["rajab"]			use value from lang.en.php
+// $pgv_lang["shaab"]			use value from lang.en.php
+// $pgv_lang["ramad"]			use value from lang.en.php
+// $pgv_lang["shaww"]			use value from lang.en.php
+// $pgv_lang["dhuaq"]			use value from lang.en.php
+// $pgv_lang["dhuah"]			use value from lang.en.php
 
 $pgv_lang["b.c."]         = "A.C.";
 

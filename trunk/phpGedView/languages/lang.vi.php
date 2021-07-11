@@ -136,20 +136,20 @@ $pgv_lang["text"]					= "Bản văn của Nguồn:";
 $pgv_lang["note"]					= "Lời ghi";
 $pgv_lang["NN"] 			= "(vô danh)";
 $pgv_lang["PN"] 			= "(không biết tuổi)";
-$pgv_lang["NNhebrew"] 		= "(לא-ידוע)";
-$pgv_lang["PNhebrew"] 		= "(לא-ידוע)";
-$pgv_lang["NNarabic"] 		= "(غير معروف)";
-$pgv_lang["PNarabic"] 		= "(غير معروف)";
-$pgv_lang["NNgreek"] 		= "(άγνωστος/η)";
-$pgv_lang["PNgreek"] 		= "(άγνωστος/η)";
-$pgv_lang["NNrussian"] 		= "(неопределено)";
-$pgv_lang["PNrussian"] 		= "(неопределено)";
-$pgv_lang["NNchinese"] 		= "(未知)";
-$pgv_lang["PNchinese"] 		= "(未知)";
-$pgv_lang["NNvietnamese"] 	= "(vô danh)";
-$pgv_lang["PNvietnamese"] 	= "(không biết tuổi)";
-$pgv_lang["NNthai"] 		= "(vô danh)";
-$pgv_lang["PNthai"] 		= "(không biết tuổi)";
+// $pgv_lang["NNhebrew"] 		use value from lang.en.php
+// $pgv_lang["PNhebrew"] 		use value from lang.en.php
+// $pgv_lang["NNarabic"] 		use value from lang.en.php
+// $pgv_lang["PNarabic"] 		use value from lang.en.php
+// $pgv_lang["NNgreek"] 		use value from lang.en.php
+// $pgv_lang["PNgreek"] 		use value from lang.en.php
+// $pgv_lang["NNrussian"] 		use value from lang.en.php
+// $pgv_lang["PNrussian"] 		use value from lang.en.php
+// $pgv_lang["NNchinese"] 		use value from lang.en.php
+// $pgv_lang["PNchinese"] 		use value from lang.en.php
+// $pgv_lang["NNvietnamese"] 	use value from lang.en.php
+// $pgv_lang["PNvietnamese"] 	use value from lang.en.php
+// $pgv_lang["NNthai"] 			use value from lang.en.php
+// $pgv_lang["PNthai"] 			use value from lang.en.php
 $pgv_lang["NNother"] 		= "(vô danh)";
 $pgv_lang["PNother"] 		= "(không biết tuổi)";
 $pgv_lang["unrecognized_code"]		= "Không nhận ra biên mã GEDCOM";
@@ -509,18 +509,18 @@ $pgv_lang["emailadress"]			= "Địa chỉ thư điện tử";
 $pgv_lang["pls_note04"] 			= "Những chổ ghi với * là bắt buộc phải điền vào.";
 $pgv_lang["pls_note05"] 			= "Bạn phải cho một địa chỉ thư điện tử hợp lệ đặng nhận thư điện tử xác nhận.<br /><br /> Sau khi bạn đã điền cái đơn này và những câu hỏi đã trả lời xong, sẽ gửi một bức thư điện tử xác nhận tới địa chỉ bạn đã cho. Bức thư đó sẽ chỉ dẫn bạn làm sao đặng kích hoạt tài khoản của bạn. Nếu bạn không hoàn tất kích hoạt tài khoản như chỉ dẫn trong vòng bảy ngày, sự xin đăng ký của bạn sẽ tự động bị bạt đi. Bạn sẽ phải bắt đầu xin đăng ký lại.<br /><br />Đặng vào cái site này bạn phải biết tên truy nhập và mật khẩu của bạn.<br /><br />Nếu bạn có trở ngại mở tài khoản trên cái website này, xin nộp một đơn yêu cầu hướng dẫn cho chuyên viên kỹ thuật bên dưới.";
 $pgv_lang["mail01_line01"]			= "Chào #user_fullname# ...";
-$pgv_lang["mail01_line02"]			= "Đã yêu cầu mở một tài khoản với địa chỉ thư điện tử ( #user_email# ) của bạn tại ( #SERVER_NAME# ).";
+$pgv_lang["mail01_line02"]			= "Đã yêu cầu mở một tài khoản với địa chỉ thư điện tử ( #user_email# ) của bạn tại ( #PGV_SERVER_NAME##PGV_SCRIPT_NAME# ).";
 $pgv_lang["mail01_line03"]			= "Tin tức về sự yêu cầu tài khoản xem được với mối thu nhập bên dưới.";
 $pgv_lang["mail01_line04"]			= "Xin nhấn vào mối liên kết sau đây và điền vào chi tiết cần thiết đặng xác nhận tài khoản cùng với địa chỉ thư điện tử.";
 $pgv_lang["mail01_line05"]			= "Nếu bạn không có xin tài khoản, xin xóa thư điện này.";
 $pgv_lang["mail01_line06"]			= "Bạn không nhận thêm thư điện nào từ cái site này, vì sự xin tài khoản sẽ huỷ bỏ sau bảy ngày.";
-$pgv_lang["mail01_subject"] 		= "Sự đăng ký của bạn tại #SERVER_NAME#";
+$pgv_lang["mail01_subject"] 		= "Sự đăng ký của bạn tại #PGV_SERVER_NAME##PGV_SCRIPT_NAME#";
 $pgv_lang["mail02_line01"]			= "Chào Quản Lý ...";
-$pgv_lang["mail02_line02"]			= "Một thành viên tương lai đã đăng ký tại ( #SERVER_NAME# ).";
+$pgv_lang["mail02_line02"]			= "Một thành viên tương lai đã đăng ký tại ( #PGV_SERVER_NAME##PGV_SCRIPT_NAME# ).";
 $pgv_lang["mail02_line03"]			= "Thành viên đã nhận thư điện tử đựng tất cả những gì cần thiết đặng xác minh tài khoản của thành viên.";
 $pgv_lang["mail02_line04"]			= "Bạn sẽ được báo tin khi thành viên tương lai đã tự xác minh. Sau đó bạn có thể hoàn tất công việc bằng cách kích hoạt tên truy nhập. Thành viên sẽ không truy nhập được cho tới khi bạn kích hoạt tài khoản.";
 $pgv_lang["mail02_line04a"]			= "Bạn sẽ được báo tin khi thành viên tương lai đã tự xác minh. Sau khi xác minh, thành viên sẽ có thể truy nhập khỏi cần hành động gì thêm của bạn.";
-$pgv_lang["mail02_subject"] 		= "Có đăng ký mới tại #SERVER_NAME#";
+$pgv_lang["mail02_subject"] 		= "Có đăng ký mới tại #PGV_SERVER_NAME##PGV_SCRIPT_NAME#";
 $pgv_lang["hashcode"]				= "Mật mã để xác minh:";
 $pgv_lang["thankyou"]				= "Chào #user_fullname# ...<br />Cám ơn bạn đã đăng ký";
 $pgv_lang["pls_note06"] 			= "Sẽ có một thư điện tử đặng xác nhận gửi tới địa chỉ ( #user_email# ). Bạn phải theo chỉ dẫn trong thư đặng xác nhận việc xin tài khoản. Nếu bạn không kích hoạt tài khoản như chỉ dẫn trong vòng bảy ngày, sự xin đăng ký của bạn sẽ tự động bị bạt đi. Bạn sẽ phải bắt đầu xin đăng ký lại.<br /><br />Sau khi bạn đã làm theo chỉ dẫn trong thư, quản lý còn phải chấp thuận sự yêu cầu của bạn trước khi dùng được tài khoản.<br /><br />Đặng truy nhập vào cái site này bạn phải biết tên truy nhập và mật khẩu của bạn.<br /><br />";
@@ -534,7 +534,7 @@ $pgv_lang["mail03_line01"]			= "Chào Quản Lý ...";
 $pgv_lang["mail03_line02"]			= "Thành viên #newuser[username]# ( #newuser[fullname]# ) đã kiểm dữ kiện đăng ký.";
 $pgv_lang["mail03_line03"]			= "Xin nhấn vào mối liên kết dưới đây đặng truy nhập cái site của bạn. Bạn phải sửa tài khoản thành viên đặng kích hoạt nó.  Như vậy thành viên mới được truy nhập site của bạn.";
 $pgv_lang["mail03_line03a"]			= "Bạn không cần hành không động gì hết; thành viên có thể truy nhập bây giờ.";
-$pgv_lang["mail03_subject"] 		= "Có xác minh mới ở tại #SERVER_NAME#";
+$pgv_lang["mail03_subject"] 		= "Có xác minh mới ở tại #PGV_SERVER_NAME##PGV_SCRIPT_NAME#";
 $pgv_lang["pls_note09"] 			= "Bạn đã chứng thực sự yêu cầu của bạn đặng trở nên thành viên chính thức.";
 $pgv_lang["pls_note10"] 			= "Đã báo hiệu quản lý. Ngay sau khi quản lý cho phép bạn truy nhập, bạn có thể truy nhập với tên truy nhập và mật khẩu của bạn.";
 $pgv_lang["pls_note10a"]			= "Bây giờ bạn có thể đăng nhập với tên truy nhập và mật khẩu của bạn";
@@ -547,7 +547,7 @@ $pgv_lang["mail04_line01"]			= "Chào #user_fullname# ...";
 $pgv_lang["mail04_line02"]			= "Một mật khẩu mới đã được thỉnh cầu cho tên truy nhập của bạn";
 $pgv_lang["mail04_line03"]			= "Đề nghị là:";
 $pgv_lang["mail04_line04"]			= "Xin nhấn vào mối liên kết dưới này hoặc dán nó vào bộ duyệt tìm, rồi truy nhập với mật khẩu mới, và đổi nó ngay lập tức đặng bảo vệ dữ liệu.";
-$pgv_lang["mail04_subject"] 		= "Xin dữ liệu ở #SERVER_NAME#";
+$pgv_lang["mail04_subject"] 		= "Xin dữ liệu ở #PGV_SERVER_NAME##PGV_SCRIPT_NAME#";
 $pgv_lang["pwreqinfo"]				= "Chào bạn...<br /><br />Đã có bức thư điện tử gửi tới địa chỉ (#user[email]#).<br /><br />Xin nhìn trong hộp thư điện tử của bạn; chẳng mấy chốc thư đó phải tới nơi.<br /><br />Lời khuyên:<br />Bạn nên truy nhập nơi đây với mật khẩu mới càng sớm càng tốt, và bạn nên đổi mật khẩu đặng bảo vệ dữ liệu của bạn.<br />";
 $pgv_lang["editowndata"]			= "Tài Khoản của Tôi";
 $pgv_lang["savedata"]				= "Viết xuống dữ liệu đổi rồi";

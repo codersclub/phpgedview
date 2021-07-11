@@ -392,20 +392,20 @@ $pgv_lang["text"]			= "Teksti:";
 $pgv_lang["note"]			= "Lisätieto";
 $pgv_lang["NN"]				= "(Tuntematon)";
 $pgv_lang["PN"]				= "(Tuntematon)";
-$pgv_lang["NNhebrew"] 		= "(לא-ידוע)";
-$pgv_lang["PNhebrew"] 		= "(לא-ידוע)";
-$pgv_lang["NNarabic"] 		= "(غير-معروف)";
-$pgv_lang["PNarabic"] 		= "(غير-معروف)";
-$pgv_lang["NNgreek"] 		= "(άγνωστος/η)";
-$pgv_lang["PNgreek"] 		= "(άγνωστος/η)";
-$pgv_lang["NNrussian"] 		= "(неопределено)";
-$pgv_lang["PNrussian"] 		= "(неопределено)";
-$pgv_lang["NNchinese"] 		= "(未知)";
-$pgv_lang["PNchinese"] 		= "(未知)";
-$pgv_lang["NNvietnamese"] 	= "(vô danh)";
-$pgv_lang["PNvietnamese"] 	= "(không biết tuổi)";
-$pgv_lang["NNthai"] 		= "(Tuntematon)";
-$pgv_lang["PNthai"] 		= "(Tuntematon)";
+// $pgv_lang["NNhebrew"] 		use value from lang.en.php
+// $pgv_lang["PNhebrew"] 		use value from lang.en.php
+// $pgv_lang["NNarabic"] 		use value from lang.en.php
+// $pgv_lang["PNarabic"] 		use value from lang.en.php
+// $pgv_lang["NNgreek"] 		use value from lang.en.php
+// $pgv_lang["PNgreek"] 		use value from lang.en.php
+// $pgv_lang["NNrussian"] 		use value from lang.en.php
+// $pgv_lang["PNrussian"] 		use value from lang.en.php
+// $pgv_lang["NNchinese"] 		use value from lang.en.php
+// $pgv_lang["PNchinese"] 		use value from lang.en.php
+// $pgv_lang["NNvietnamese"] 	use value from lang.en.php
+// $pgv_lang["PNvietnamese"] 	use value from lang.en.php
+// $pgv_lang["NNthai"] 			use value from lang.en.php
+// $pgv_lang["PNthai"] 			use value from lang.en.php
 $pgv_lang["NNother"] 		= "(Tuntematon)";
 $pgv_lang["PNother"] 		= "(Tuntematon)";
 $pgv_lang["unrecognized_code"]	= "Tuntematon GEDCOM-koodi";
@@ -704,47 +704,47 @@ $pgv_lang["oct"]			= "lokakuu";
 $pgv_lang["nov"]			= "marraskuu";
 $pgv_lang["dec"]			= "joulukuu";
 
-$pgv_lang["vend"]         		= "Vendémiaire";
-$pgv_lang["brum"]         		= "Brumaire";
-$pgv_lang["frim"]         			= "Frimaire";
-$pgv_lang["nivo"]         			= "Nivôse";
-$pgv_lang["pluv"]         			= "Pluviôse";
-$pgv_lang["vent"]         		= "Ventôse";
-$pgv_lang["germ"]         		= "Germinal";
-$pgv_lang["flor"]         			= "Floréal";
-$pgv_lang["prai"]         			= "Prairial";
-$pgv_lang["mess"]         		= "Messidor";
-$pgv_lang["ther"]         			= "Thermidor";
-$pgv_lang["fruc"]         			= "Fructidor";
-$pgv_lang["comp"]         		= "jours complémentaires";
+// $pgv_lang["vend"]			use value from lang.en.php
+// $pgv_lang["brum"]			use value from lang.en.php
+// $pgv_lang["frim"]			use value from lang.en.php
+// $pgv_lang["nivo"]			use value from lang.en.php
+// $pgv_lang["pluv"]			use value from lang.en.php
+// $pgv_lang["vent"]			use value from lang.en.php
+// $pgv_lang["germ"]			use value from lang.en.php
+// $pgv_lang["flor"]			use value from lang.en.php
+// $pgv_lang["prai"]			use value from lang.en.php
+// $pgv_lang["mess"]			use value from lang.en.php
+// $pgv_lang["ther"]			use value from lang.en.php
+// $pgv_lang["fruc"]			use value from lang.en.php
+// $pgv_lang["comp"]			use value from lang.en.php
 
-$pgv_lang["tsh"]          			= "tishri-kuu";
-$pgv_lang["csh"]          		= "chesvan-kuu";
-$pgv_lang["ksl"]          			= "kislev-kuu";
-$pgv_lang["tvt"]          			= "tevet-kuu";
-$pgv_lang["shv"]          			= "shvat-kuu";
-$pgv_lang["adr"]          			= "adar-kuu";
-$pgv_lang["adr_leap_year"]		= "adar I-kuu";
-$pgv_lang["ads"]          		= "adar II-kuu";
-$pgv_lang["nsn"]          		= "nisan-kuu";
-$pgv_lang["iyr"]          			= "ijar-kuu";
-$pgv_lang["svn"]          			= "sivan-kuu";
-$pgv_lang["tmz"]          		= "tamuz-kuu";
-$pgv_lang["aav"]          			= "av-kuu";
-$pgv_lang["ell"]          			= "elul-kuu";
+// $pgv_lang["tsh"]				use value from lang.en.php
+// $pgv_lang["csh"]				use value from lang.en.php
+// $pgv_lang["ksl"]				use value from lang.en.php
+// $pgv_lang["tvt"]				use value from lang.en.php
+// $pgv_lang["shv"]				use value from lang.en.php
+// $pgv_lang["adr"]				use value from lang.en.php
+// $pgv_lang["adr_leap_year"]	use value from lang.en.php
+// $pgv_lang["ads"]				use value from lang.en.php
+// $pgv_lang["nsn"]				use value from lang.en.php
+// $pgv_lang["iyr"]				use value from lang.en.php
+// $pgv_lang["svn"]				use value from lang.en.php
+// $pgv_lang["tmz"]				use value from lang.en.php
+// $pgv_lang["aav"]				use value from lang.en.php
+// $pgv_lang["ell"]				use value from lang.en.php
 
-$pgv_lang["muhar"]        		= "muharram";
-$pgv_lang["safar"]        		= "safar";
-$pgv_lang["rabia"]        		= "rabi` al-awwal";
-$pgv_lang["rabit"]        			= "rabi` al-sani";
-$pgv_lang["jumaa"]        		= "jumada-al-awwal";
-$pgv_lang["jumat"]        		= "jumada-al-sani";
-$pgv_lang["rajab"]        		= "rajab";
-$pgv_lang["shaab"]        		= "sha`ban";
-$pgv_lang["ramad"]        		= "ramadan";
-$pgv_lang["shaww"]        		= "shawwal";
-$pgv_lang["dhuaq"]        		= "dhul-qa`da";
-$pgv_lang["dhuah"]        		= "dhul-hijja";
+// $pgv_lang["muhar"]			use value from lang.en.php
+// $pgv_lang["safar"]			use value from lang.en.php
+// $pgv_lang["rabia"]			use value from lang.en.php
+// $pgv_lang["rabit"]			use value from lang.en.php
+// $pgv_lang["jumaa"]			use value from lang.en.php
+// $pgv_lang["jumat"]			use value from lang.en.php
+// $pgv_lang["rajab"]			use value from lang.en.php
+// $pgv_lang["shaab"]			use value from lang.en.php
+// $pgv_lang["ramad"]			use value from lang.en.php
+// $pgv_lang["shaww"]			use value from lang.en.php
+// $pgv_lang["dhuaq"]			use value from lang.en.php
+// $pgv_lang["dhuah"]			use value from lang.en.php
 
 $pgv_lang["b.c."]         			= "eKr";
 $pgv_lang["abt"]			= "noin";
@@ -1071,18 +1071,18 @@ $pgv_lang["requestaccount"]		= "Pyydä uusi käyttäjätili";
 $pgv_lang["emailadress"]		= "Sähköpostiosoite";
 $pgv_lang["mandatory"] 		= "*:llä merkitty ovat pakollisia.";
 $pgv_lang["mail01_line01"]		= "Hei #user_fullname# ...";
-$pgv_lang["mail01_line02"]		= "Olemme saaneet pyynnön kirjautua koneeseen (#SERVER_NAME#) sähköpostiosoitteellasi (#user_email#).";
+$pgv_lang["mail01_line02"]		= "Olemme saaneet pyynnön kirjautua koneeseen (#PGV_SERVER_NAME##PGV_SCRIPT_NAME#) sähköpostiosoitteellasi (#user_email#).";
 $pgv_lang["mail01_line03"]		= "Seuraavat tiedot olivat käytössä.";
 $pgv_lang["mail01_line04"]		= "Klikkaa alla olevaa linkkiä, täytä tiedot ja varmista tilisi ja sähköpostiosoitteesi.";
 $pgv_lang["mail01_line05"]		= "Jos sinä et pyytänyt tätä tietoa, voit pyyhkiä tämän ilmoituksen.";
 $pgv_lang["mail01_line06"]		= "Et tule saamaan lisäviestejä tältä järjestelmältä ja tili pyyhitään seitsemän päivän kuluttua jos tätä ei vahvisteta.";
-$pgv_lang["mail01_subject"]		= "Kirjoittautumisesi koneella #SERVER_NAME#";
+$pgv_lang["mail01_subject"]		= "Kirjoittautumisesi koneella #PGV_SERVER_NAME##PGV_SCRIPT_NAME#";
 $pgv_lang["mail02_line01"]		= "Hei ylläpitäjä...";
-$pgv_lang["mail02_line02"]		= "Uusi käyttäjä rekisteröityi (#SERVER_NAME#) lle";
+$pgv_lang["mail02_line02"]		= "Uusi käyttäjä rekisteröityi (#PGV_SERVER_NAME##PGV_SCRIPT_NAME#) lle";
 $pgv_lang["mail02_line03"]		= "Käyttäjä sai sähköpostin jossa on tarpeelliset tiedot joiden avulla hän voi vahvistaa tilinsä.";
 $pgv_lang["mail02_line04"]		= "Heti kun käyttäjä on vahvistanut tilin, tulet saamaan sähköposti ilmoituksen jonka mukaan sinun tulee antaa käyttäjälle oikeudet kirjoittautua verkkopaikallesi.";
 $pgv_lang["mail02_line04a"]		= "Sinulle ilmoitetaan sähköpostitse, kun tämä käyttäjäehdokas on varmentanut itsensä. Varmennuksen jälkeen käyttäjä voi kirjautua järjestelmään ilman sinun toimenpiteitäsi.";
-$pgv_lang["mail02_subject"]		= "Uusi kirjoittautuminen koneella #SERVER_NAME#";
+$pgv_lang["mail02_subject"]		= "Uusi kirjoittautuminen koneella #PGV_SERVER_NAME##PGV_SCRIPT_NAME#";
 $pgv_lang["hashcode"]		= "Vahvistuskoodi:";
 $pgv_lang["thankyou"]			= "Hei #user_fullname# ...<br />Kiitos rekisteröinnistäsi";
 $pgv_lang["pls_note06"]		= "Tulet saamaan koodin sähköpostissa osoitteeseen (#user_email#). Käytä viesti tilisi vahvistukseen. Tilisi pyyhitään seitsemän päivän kuluttua jos et vahvista sitä (voit sen jälkeen rekisteröidä tilin uudelleen). Kirjautuminen sivuille vaatii käyttäjätunnuksen ja salasanan.<br /><br />";
@@ -1096,7 +1096,7 @@ $pgv_lang["mail03_line01"]		= "Hei hallinnoitsija...";
 $pgv_lang["mail03_line02"]		= "#newuser[username]# ( #newuser[fullname]# ) on vahvistanut rekisteröintitiedot.";
 $pgv_lang["mail03_line03"]		= "Huom! Klikkaa alla olevaa linkkiä, kirjaudu verkkopaikkaan ja anna hänelle lupa kirjautua sivuillesi.";
 $pgv_lang["mail03_line03a"]		= "Sinun ei tarvitse tehdä mitään; käyttäjä voi nyt kirjautua.";
-$pgv_lang["mail03_subject"]		= "Uusi vahvistus koneella #SERVER_NAME#";
+$pgv_lang["mail03_subject"]		= "Uusi vahvistus koneella #PGV_SERVER_NAME##PGV_SCRIPT_NAME#";
 $pgv_lang["pls_note09"]		= "Sinut on tunnistettu rekisteröidyksi käyttäjäksi.";
 $pgv_lang["pls_note10"]		= "Ylläpitäjä on saanut ilmoituksen. Heti kun hän on antanut sinulle oikeuden kirjautua, voit kirjautua käyttäjätunnuksella ja salasanalla.";
 $pgv_lang["pls_note10a"]		= "Voit nyt kirjautua järjestelmään käyttäjätunnuksellasi ja salasanallasi.";
@@ -1109,7 +1109,7 @@ $pgv_lang["mail04_line02"]		= "Uusi salasana on pyydetty käyttäjätunnukselles
 $pgv_lang["mail04_line03"]		= "Suosittelu:";
 $pgv_lang["mail04_line04"]		= "Klikkaa aihe-linkkiä, kirjoittaudu sisään uudella salasanalla ja vaihda salasana niin että tietosuoja säilyy.";
 $pgv_lang["mail04_line05"]		= "Kirjauduttuasi, valitse linkki '#pgv_lang[myuserdata]#' '#pgv_lang[mygedview]#'-valikosta ja täytä salasanakentät vaihtaaksesi salasanasi.";
-$pgv_lang["mail04_subject"]		= "Tietopyyntö koneelta #SERVER_NAME#";
+$pgv_lang["mail04_subject"]		= "Tietopyyntö koneelta #PGV_SERVER_NAME##PGV_SCRIPT_NAME#";
 $pgv_lang["pwreqinfo"]		= "Hei...<br /><br />Sähköposti, jossa on uusi salasana, on lähetetty osoitteeseen <b>#user[email]#</b>.<br /><br />Tutki sähköpostitiliäsi parin minuutin kuluttua. Sinun tulisi saada posti siihen mennessä.<br /><br />Suosittelu:<br />Saatuasi sähköpostisi sinun tulee kirjoittautua ja muuttaa salasanasi lisätäksesi tietosuoja kokonaisuutta.";
 $pgv_lang["editowndata"]		= "Käyttäjätilini";
 $pgv_lang["myuserdata"]		= "Käyttäjätilini";

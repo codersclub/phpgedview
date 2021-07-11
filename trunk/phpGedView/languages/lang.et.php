@@ -750,12 +750,12 @@ $pgv_lang["requestaccount"] 			= "Registreeru kasutajaks";
 $pgv_lang["emailadress"]			= "E-mail";
 $pgv_lang["mandatory"] 			= "* tähistatud väljad on kohustuslikud";
 $pgv_lang["mail01_line01"]			= "Tere #user_fullname# ...";
-$pgv_lang["mail01_line02"]			= "Saime soovi luua veebilehe ( #SERVER_NAME# ) kasutamiseks konto teie meiliaadressiga ( #user_email# ).";
+$pgv_lang["mail01_line02"]			= "Saime soovi luua veebilehe ( #PGV_SERVER_NAME##PGV_SCRIPT_NAME# ) kasutamiseks konto teie meiliaadressiga ( #user_email# ).";
 $pgv_lang["mail01_line03"]			= "Informatsiooni saab allpoololeval lingil.";
 $pgv_lang["mail01_line04"]			= "Oma konto ja mailiaadressi kinnitamiseks klõpsa järgneval lingil ja sisesta nõutavad andmed.";
 $pgv_lang["mail01_line05"]			= "Kui te pole meie kasutajakontot soovinud, siis võite käesoleva sõnumi kustutada.";
 $pgv_lang["mail01_line06"]			= "Te ei saa sellelt aadressilt rohkem sõnumeid, sest see kontonõue aegub automaatselt seitsme päeva pärast.";
-$pgv_lang["mail01_subject"] 			= "Kasutajaks registreerimine aadressil #SERVER_NAME#";
+$pgv_lang["mail01_subject"] 			= "Kasutajaks registreerimine aadressil #PGV_SERVER_NAME##PGV_SCRIPT_NAME#";
 
 $pgv_lang["mail02_line01"]			= "Tere administraator ...";
 $pgv_lang["hashcode"]			= "Kontrollkood:";
