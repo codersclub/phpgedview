@@ -93,14 +93,16 @@ if ($handle !== false) {
 		$found = preg_match('~^\$(.*)=(.*);~', $textLine, $match);		// Look for a variable definition
 		if ($found) {
 			$variableName = trim($match[1]);
-			$variableValue = trim($match[2]);
 			if (!isset($$variableName)) {
-				$$variableName = $variableValue;
+				eval($textLine);		// The entry in config.dist defines the variable missing from config.php
 			}
 		}
 	}
 	fclose($handle);
 }
+
+// Get rid of these, in case they're used elsewhere for a different purpose
+unset($version, $release, $revision, $handle, $status, $textLine, $found, $match, $variableName);
 
 // ------------------ The real PhpGedView begins here ------------
 
@@ -112,10 +114,6 @@ define('PGV_SVN_REVISION',    $revision);
 define('PGV_VERSION_TEXT',    trim(PGV_VERSION.' '.PGV_VERSION_RELEASE.' '.PGV_SVN_REVISION));
 define('PGV_PHPGEDVIEW_URL',  'http://www.phpgedview.net');
 define('PGV_PHPGEDVIEW_WIKI', 'http://wiki.phpgedview.net');
-define('PGV_TRANSLATORS_URL', 'https://sourceforge.net/projects/phpgedview/forums/forum/294245');
-
-// Get rid of these, in case they're used elsewhere for a different purpose
-unset($version, $release, $revision, $handle, $status, $textLine, $found, $match);
 
 // Enable debugging output?
 define('PGV_DEBUG',      false);
