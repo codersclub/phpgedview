@@ -157,7 +157,7 @@ $pgv_lang["visitor"] = "遊客";
 $pgv_lang["weekly"] = "每週";
 $pgv_lang["welcome_new"] = "歡迎來到你的家族網站。";
 $pgv_lang["yearly"] = "每年";
-$pgv_lang["admin_OK_subject"] = "允許賬戶在#SERVER_NAME#";
+$pgv_lang["admin_OK_subject"] = "允許賬戶在#PGV_SERVER_NAME##PGV_SCRIPT_PATH#";
 $pgv_lang["gedcheck"] = "家譜文件檢查";
 $pgv_lang["level"] = "層次";
 $pgv_lang["error"] = "出錯";
@@ -457,7 +457,7 @@ $pgv_lang["view_logs"] = "查看日誌文件";
 $pgv_lang["view_readme"] = "查看readme.txt文件";
 $pgv_lang["visibleonline"] = "在線時可見其他用戶";
 $pgv_lang["warn_users"] = "有警告的用戶";
-$pgv_lang["admin_OK_message"] = "網站 #SERVER_NAME# 的管理員已經批淮了您的帳戶申請。\r\n\r\n您現在可以通過訪問以下鏈接登錄：#SERVER_NAME#";
+$pgv_lang["admin_OK_message"] = "網站 #PGV_SERVER_NAME##PGV_SCRIPT_PATH# 的管理員已經批淮了您的帳戶申請。\r\n\r\n您現在可以通過訪問以下鏈接登錄：#PGV_SERVER_NAME##PGV_SCRIPT_PATH#";
 $pgv_lang["batch_update"] = "在GEDCOM上執行批量更新/編輯";
 //Text for the Gedcom Checker
 $pgv_lang["gedcheck_text"] = "該模塊根據<a href=\"http://phpgedview.sourceforge.net/ged551-5.pdf\">5.5.1 GEDCOM規範</a>檢查GEDCOM文件的格式。它還檢查您的數據中存在許多常見錯誤。請注意，規範中有許多版本，擴展和變體，因此除了標記為嚴重的問題之外，您不應該關注任何問題。所有行的解釋- 在規範中可以找到線上錯誤，因此請在尋求幫助前查看。";

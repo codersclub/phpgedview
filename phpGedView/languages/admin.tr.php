@@ -439,8 +439,8 @@ $pgv_lang["warn_users"]							= "Uyarilan kullanicilar";
 $pgv_lang["weekly"]								= "Haftalik";
 $pgv_lang["welcome_new"]			= "Yeni PhpGedView websitesine hos geldiniz.";
 $pgv_lang["yearly"]								= "Yillik";
-$pgv_lang["admin_OK_subject"]					= "#SERVER_NAME# sitedeki hesabiniz onaylandi";
-$pgv_lang["admin_OK_message"]					= "PhpGedView #SERVER_NAME# sitedeki üyelik hesabiniz yönetici tarafindan onaylandi.\r\n\r\nSimdi asagidaki linki tiklayin PhpGedView sitesine kullanici adinizi ve sifrenizi kullanarak giris yapabilirsiniz: \r\n#SERVER_NAME#\r\n";
+$pgv_lang["admin_OK_subject"]					= "#PGV_SERVER_NAME##PGV_SCRIPT_PATH# sitedeki hesabiniz onaylandi";
+$pgv_lang["admin_OK_message"]					= "PhpGedView #PGV_SERVER_NAME##PGV_SCRIPT_PATH# sitedeki üyelik hesabiniz yönetici tarafindan onaylandi.\r\n\r\nSimdi asagidaki linki tiklayin PhpGedView sitesine kullanici adinizi ve sifrenizi kullanarak giris yapabilirsiniz: #PGV_SERVER_NAME##PGV_SCRIPT_PATH#\r\n";
 
 $pgv_lang["batch_update"]="GEDCOM kümeyi güncelleme/düzenleme yönetimi";
 

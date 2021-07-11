@@ -876,17 +876,17 @@ $pgv_lang["emailadress"] = "電子郵件：";
 $pgv_lang["pls_note04"] = "標記*的空格為必填。";
 $pgv_lang["pls_note05"] = "待完成此頁面上的表格並驗證您的答案後，您將收到一封確認電子郵件，其中包含您在此頁面上指定的電子郵件地址。 使用確認電子郵件，您將激活您的帳戶; 如果您未能在七天內激活您的帳戶，它將被清除（您可以在此時再次註冊該帳戶）。 要使用此站點，您需要知道您的登錄名和密碼。您必須在此頁面上指定現有的有效電子郵件地址才能收到帳戶確認電子郵件。<br /><br />如果您在本網站註冊帳戶時遇到問題，請向網站管理員提交幫助請求。";
 $pgv_lang["mail01_line01"] = "你好，#user_fullname#：";
-$pgv_lang["mail01_line02"] = "您在（#SERVER_NAME#）上使用了電子郵件地址（#user_email#）進行註冊。";
+$pgv_lang["mail01_line02"] = "您在（#PGV_SERVER_NAME##PGV_SCRIPT_NAME#）上使用了電子郵件地址（#user_email#）進行註冊。";
 $pgv_lang["mail01_line03"] = "有關註冊信息顯示在下面的鏈接中：";
 $pgv_lang["mail01_line04"] = "請單擊下面的鏈接並填寫所需數據以驗證您的帳戶和電子郵件地址。";
 $pgv_lang["mail01_line05"] = "如果您沒有請求此數據，則可以刪除此消息。";
 $pgv_lang["mail01_line06"] = "您不會再從此系統收到任何郵件，因為該帳戶將在七天內未經驗證而被刪除。";
-$pgv_lang["mail01_subject"] = "請激活您在#SERVER_NAME#的註冊賬戶";
+$pgv_lang["mail01_subject"] = "請激活您在#PGV_SERVER_NAME##PGV_SCRIPT_NAME#的註冊賬戶";
 $pgv_lang["mail02_line01"] = "你好 管理員...";
-$pgv_lang["mail02_line02"] = "新用戶在(#SERVER_NAME#)處進行了新的用戶註冊。";
+$pgv_lang["mail02_line02"] = "新用戶在(#PGV_SERVER_NAME##PGV_SCRIPT_NAME#)處進行了新的用戶註冊。";
 $pgv_lang["mail02_line03"] = "用戶收到了一封包含必要數據的電子郵件，以驗證其帳戶。";
 $pgv_lang["mail02_line04"] = "用戶完成此驗證後，您將立即通過郵件通知該用戶登錄您網站的權限。";
-$pgv_lang["mail02_subject"] = "新註冊#SERVER_NAME#";
+$pgv_lang["mail02_subject"] = "新註冊#PGV_SERVER_NAME##PGV_SCRIPT_NAME#";
 $pgv_lang["hashcode"] = "驗證碼:";
 $pgv_lang["thankyou"] = "#user_fullname# ...<br />感謝您的註冊";
 $pgv_lang["pls_note06"] = "現在，您的電子郵件地址（#user_email#）將收到一封確認信。 打開您的電子郵件，並激活您的帳戶; 如果您未能在七天內激活您的帳戶，它將被清除（您可以在此時再次註冊該帳戶）。要登錄此站點，您需要知道您的登錄名和密碼。";
@@ -898,7 +898,7 @@ $pgv_lang["pls_note08"] = "檢查用戶#user_name#的數據";
 $pgv_lang["mail03_line01"] = "你好 管理員 ...";
 $pgv_lang["mail03_line02"] = "#newuser[username]# (#newuser[fullname]#) 已經驗證了註冊數據。";
 $pgv_lang["mail03_line03"] = "請點擊以下鏈接登錄您的網​​站編輯用戶並授予他登錄您網站的權限。";
-$pgv_lang["mail03_subject"] = "#SERVER_NAME#的新驗證";
+$pgv_lang["mail03_subject"] = "#PGV_SERVER_NAME##PGV_SCRIPT_NAME#的新驗證";
 $pgv_lang["pls_note09"] = "您被確定為註冊用戶。";
 $pgv_lang["pls_note10"] = "管理員已收到通知。<br />一旦他授予您登錄權限，您就可以使用您的用戶名和密碼登錄。";
 $pgv_lang["pls_note10a"] = "你可以用你的用戶名和密碼進入網站。";
@@ -912,7 +912,7 @@ $pgv_lang["mail04_line02"] = "你已經請求了一個新密碼";
 $pgv_lang["mail04_line03"] = "建議：";
 $pgv_lang["mail04_line04"] = "現在請點擊下面的鏈接，使用新密碼登錄並進行更改以確保數據的完整性。";
 $pgv_lang["mgv"] = "用戶中心";
-$pgv_lang["mail04_subject"] = "數據請求在#SERVER_NAME#";
+$pgv_lang["mail04_subject"] = "數據請求在#PGV_SERVER_NAME##PGV_SCRIPT_NAME#";
 $pgv_lang["welcome_text_cust_head"] = "<span class='center'><b>歡迎來到這個家譜網站</b></span><br />只有註冊過的可以瀏覽網站。<br /> ";
 $pgv_lang["welcome_text_auth_mode_3"] = "<span class='center'><b>歡迎到這個家譜網站</b></span><br />只有<u>家庭成員</u>才可以看。<br /><br />你可以登錄或申請一個賬號<br /><br />註冊後要通過網站管理的批淮才可以看。";
 $pgv_lang["pwreqinfo"] = "<br />一封包含新密碼的郵件被發送到電子郵件地址(#user[email]#)。<br /><br />請檢查您的郵件帳戶，郵件應在接下來的幾分鐘內收到。<br /><br />建議：<br /><br />收到郵件後，您應該使用新密碼登錄本網站。";
@@ -1225,20 +1225,20 @@ $pgv_lang["males"] = "男性";
 $pgv_lang["females"] = "女性";
 $pgv_lang["NN"] 			= "（未知）";
 $pgv_lang["PN"] 			= "（未知）";
-$pgv_lang["NNhebrew"] 		= "(לא-ידוע)";
-$pgv_lang["PNhebrew"] 		= "(לא-ידוע)";
-$pgv_lang["NNarabic"] 		= "(غير معروف)";
-$pgv_lang["PNarabic"] 		= "(غير معروف)";
-$pgv_lang["NNgreek"] 		= "(άγνωστος/η)";
-$pgv_lang["PNgreek"] 		= "(άγνωστος/η)";
-$pgv_lang["NNrussian"] 		= "(неопределено)";
-$pgv_lang["PNrussian"] 		= "(неопределено)";
-$pgv_lang["NNchinese"] 		= "(未知)";
-$pgv_lang["PNchinese"] 		= "(未知)";
-$pgv_lang["NNvietnamese"] 	= "(vô danh)";
-$pgv_lang["PNvietnamese"] 	= "(không biết tuổi)";
-$pgv_lang["NNthai"] 		= "（未知）";
-$pgv_lang["PNthai"] 		= "（未知）";
+// $pgv_lang["NNhebrew"] 		use value from lang.en.php
+// $pgv_lang["PNhebrew"] 		use value from lang.en.php
+// $pgv_lang["NNarabic"] 		use value from lang.en.php
+// $pgv_lang["PNarabic"] 		use value from lang.en.php
+// $pgv_lang["NNgreek"] 		use value from lang.en.php
+// $pgv_lang["PNgreek"] 		use value from lang.en.php
+// $pgv_lang["NNrussian"] 		use value from lang.en.php
+// $pgv_lang["PNrussian"] 		use value from lang.en.php
+// $pgv_lang["NNchinese"] 		use value from lang.en.php
+// $pgv_lang["PNchinese"] 		use value from lang.en.php
+// $pgv_lang["NNvietnamese"] 	use value from lang.en.php
+// $pgv_lang["PNvietnamese"] 	use value from lang.en.php
+// $pgv_lang["NNthai"] 			use value from lang.en.php
+// $pgv_lang["PNthai"] 			use value from lang.en.php
 $pgv_lang["NNother"] 		= "（未知）";
 $pgv_lang["PNother"] 		= "（未知）";
 $pgv_lang["unrecognized_code_msg"] = "這是一個錯誤，我們想修復它。請將此錯誤報告給";
@@ -1361,48 +1361,47 @@ $pgv_lang["p.m."] = "下午";
 $pgv_lang["noon"] = "M";
 $pgv_lang["midn"] = "錳";
 
+// $pgv_lang["vend"]			use value from lang.en.php
+// $pgv_lang["brum"]			use value from lang.en.php
+// $pgv_lang["frim"]			use value from lang.en.php
+// $pgv_lang["nivo"]			use value from lang.en.php
+// $pgv_lang["pluv"]			use value from lang.en.php
+// $pgv_lang["vent"]			use value from lang.en.php
+// $pgv_lang["germ"]			use value from lang.en.php
+// $pgv_lang["flor"]			use value from lang.en.php
+// $pgv_lang["prai"]			use value from lang.en.php
+// $pgv_lang["mess"]			use value from lang.en.php
+// $pgv_lang["ther"]			use value from lang.en.php
+// $pgv_lang["fruc"]			use value from lang.en.php
+// $pgv_lang["comp"]			use value from lang.en.php
 
-$pgv_lang["vend"]         = "Vendémiaire";
-$pgv_lang["brum"]         = "Brumaire";
-$pgv_lang["frim"]         = "Frimaire";
-$pgv_lang["nivo"]         = "Nivôse";
-$pgv_lang["pluv"]         = "Pluviôse";
-$pgv_lang["vent"]         = "Ventôse";
-$pgv_lang["germ"]         = "Germinal";
-$pgv_lang["flor"]         = "Floréal";
-$pgv_lang["prai"]         = "Prairial";
-$pgv_lang["mess"]         = "Messidor";
-$pgv_lang["ther"]         = "Thermidor";
-$pgv_lang["fruc"]         = "Fructidor";
-$pgv_lang["comp"]         = "jours complémentaires";
+// $pgv_lang["tsh"]				use value from lang.en.php
+// $pgv_lang["csh"]				use value from lang.en.php
+// $pgv_lang["ksl"]				use value from lang.en.php
+// $pgv_lang["tvt"]				use value from lang.en.php
+// $pgv_lang["shv"]				use value from lang.en.php
+// $pgv_lang["adr"]				use value from lang.en.php
+// $pgv_lang["adr_leap_year"]	use value from lang.en.php
+// $pgv_lang["ads"]				use value from lang.en.php
+// $pgv_lang["nsn"]				use value from lang.en.php
+// $pgv_lang["iyr"]				use value from lang.en.php
+// $pgv_lang["svn"]				use value from lang.en.php
+// $pgv_lang["tmz"]				use value from lang.en.php
+// $pgv_lang["aav"]				use value from lang.en.php
+// $pgv_lang["ell"]				use value from lang.en.php
 
-$pgv_lang["tsh"]          = "Tishrei";
-$pgv_lang["csh"]          = "Heshvan";
-$pgv_lang["ksl"]          = "Kislev";
-$pgv_lang["tvt"]          = "Tevet";
-$pgv_lang["shv"]          = "Shevat";
-$pgv_lang["adr"]          = "Adar";
-$pgv_lang["adr_leap_year"]= "Adar I";
-$pgv_lang["ads"]          = "Adar II";
-$pgv_lang["nsn"]          = "Nissan";
-$pgv_lang["iyr"]          = "Iyar";
-$pgv_lang["svn"]          = "Sivan";
-$pgv_lang["tmz"]          = "Tamuz";
-$pgv_lang["aav"]          = "Av";
-$pgv_lang["ell"]          = "Elul";
-
-$pgv_lang["muhar"]        = "Muharram";
-$pgv_lang["safar"]        = "Safar";
-$pgv_lang["rabia"]        = "Rabi' al-awwal";
-$pgv_lang["rabit"]        = "Rabi' al-thani";
-$pgv_lang["jumaa"]        = "Jumada al-awwal";
-$pgv_lang["jumat"]        = "Jumada al-thani";
-$pgv_lang["rajab"]        = "Rajab";
-$pgv_lang["shaab"]        = "Sha'aban";
-$pgv_lang["ramad"]        = "Ramadan";
-$pgv_lang["shaww"]        = "Shawwal";
-$pgv_lang["dhuaq"]        = "Dhu al-Qi'dah";
-$pgv_lang["dhuah"]        = "Dhu al-Hijjah";
+// $pgv_lang["muhar"]			use value from lang.en.php
+// $pgv_lang["safar"]			use value from lang.en.php
+// $pgv_lang["rabia"]			use value from lang.en.php
+// $pgv_lang["rabit"]			use value from lang.en.php
+// $pgv_lang["jumaa"]			use value from lang.en.php
+// $pgv_lang["jumat"]			use value from lang.en.php
+// $pgv_lang["rajab"]			use value from lang.en.php
+// $pgv_lang["shaab"]			use value from lang.en.php
+// $pgv_lang["ramad"]			use value from lang.en.php
+// $pgv_lang["shaww"]			use value from lang.en.php
+// $pgv_lang["dhuaq"]			use value from lang.en.php
+// $pgv_lang["dhuah"]			use value from lang.en.php
 
 $pgv_lang["b.c."] = "公元前。";
 

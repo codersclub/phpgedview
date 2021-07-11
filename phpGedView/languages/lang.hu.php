@@ -142,20 +142,20 @@ $pgv_lang["text"]						= "Forrás Szöveg: ";
 $pgv_lang["note"]						= "Megjegyzés:";
 $pgv_lang["NN"]				= "(ismeretlen)";
 $pgv_lang["PN"]				= "(ismeretlen)";
-$pgv_lang["NNhebrew"] 		= "(לא-ידוע)";
-$pgv_lang["PNhebrew"] 		= "(לא-ידוע)";
-$pgv_lang["NNarabic"] 		= "(غير معروف)";
-$pgv_lang["PNarabic"] 		= "(غير معروف)";
-$pgv_lang["NNgreek"] 		= "(άγνωστος/η)";
-$pgv_lang["PNgreek"] 		= "(άγνωστος/η)";
-$pgv_lang["NNrussian"] 		= "(неопределено)";
-$pgv_lang["PNrussian"] 		= "(неопределено)";
-$pgv_lang["NNchinese"] 		= "(未知)";
-$pgv_lang["PNchinese"] 		= "(未知)";
-$pgv_lang["NNvietnamese"] 	= "(vô danh)";
-$pgv_lang["PNvietnamese"] 	= "(không biết tuổi)";
-$pgv_lang["NNthai"] 		= "(ismeretlen)";
-$pgv_lang["PNthai"] 		= "(ismeretlen)";
+// $pgv_lang["NNhebrew"] 		use value from lang.en.php
+// $pgv_lang["PNhebrew"] 		use value from lang.en.php
+// $pgv_lang["NNarabic"] 		use value from lang.en.php
+// $pgv_lang["PNarabic"] 		use value from lang.en.php
+// $pgv_lang["NNgreek"] 		use value from lang.en.php
+// $pgv_lang["PNgreek"] 		use value from lang.en.php
+// $pgv_lang["NNrussian"] 		use value from lang.en.php
+// $pgv_lang["PNrussian"] 		use value from lang.en.php
+// $pgv_lang["NNchinese"] 		use value from lang.en.php
+// $pgv_lang["PNchinese"] 		use value from lang.en.php
+// $pgv_lang["NNvietnamese"] 	use value from lang.en.php
+// $pgv_lang["PNvietnamese"] 	use value from lang.en.php
+// $pgv_lang["NNthai"] 			use value from lang.en.php
+// $pgv_lang["PNthai"] 			use value from lang.en.php
 $pgv_lang["NNother"] 		= "(ismeretlen)";
 $pgv_lang["PNother"] 		= "(ismeretlen)";
 $pgv_lang["unrecognized_code"]					= "Ismeretlen GEDCOM-kód";
@@ -434,45 +434,49 @@ $pgv_lang["sep"]						= "szeptember";
 $pgv_lang["oct"]						= "október";
 $pgv_lang["nov"]						= "november";
 $pgv_lang["dec"]						= "december";
-$pgv_lang["vend"]         = "Vendémiaire";
-$pgv_lang["brum"]         = "Brumaire";
-$pgv_lang["frim"]         = "Frimaire";
-$pgv_lang["nivo"]         = "Nivôse";
-$pgv_lang["pluv"]         = "Pluviôse";
-$pgv_lang["vent"]         = "Ventôse";
-$pgv_lang["germ"]         = "Germinal";
-$pgv_lang["flor"]         = "Floréal";
-$pgv_lang["prai"]         = "Prairial";
-$pgv_lang["mess"]         = "Messidor";
-$pgv_lang["ther"]         = "Thermidor";
-$pgv_lang["fruc"]         = "Fructidor";
-$pgv_lang["comp"]         = "jours complémentaires";
-$pgv_lang["tsh"]          					= "Tisri";
-$pgv_lang["csh"]          					= "Hesván";
-$pgv_lang["ksl"]          					= "Kiszlév";
-$pgv_lang["tvt"]          					= "Tévész";
-$pgv_lang["shv"]          					= "Svát";
-$pgv_lang["adr"]          					= "Ádár";
-$pgv_lang["adr_leap_year"]					= "Ádár risón";
-$pgv_lang["ads"]          					= "Ádár séni";
-$pgv_lang["nsn"]          					= "Niszán";
-$pgv_lang["iyr"]          					= "Ijár";
-$pgv_lang["svn"]          					= "Sziván";
-$pgv_lang["tmz"]          					= "Tamuz";
-$pgv_lang["aav"]          					= "Áv";
-$pgv_lang["ell"]          					= "Elul";
-$pgv_lang["muhar"]        					= "Moharrem";
-$pgv_lang["safar"]        					= "Safar";
-$pgv_lang["rabia"]        					= "Rébi el avvel";
-$pgv_lang["rabit"]        					= "Rébi el accher";
-$pgv_lang["jumaa"]        					= "Dsemádi el avvel";
-$pgv_lang["jumat"]        					= "Dsemádi el accher";
-$pgv_lang["rajab"]        					= "Redseb";
-$pgv_lang["shaab"]        					= "Sabán";
-$pgv_lang["ramad"]        					= "Ramadán";
-$pgv_lang["shaww"]        					= "Sevvál";
-$pgv_lang["dhuaq"]        					= "Dsül kade";
-$pgv_lang["dhuah"]        					= "Dsül hedse";
+
+// $pgv_lang["vend"]			use value from lang.en.php
+// $pgv_lang["brum"]			use value from lang.en.php
+// $pgv_lang["frim"]			use value from lang.en.php
+// $pgv_lang["nivo"]			use value from lang.en.php
+// $pgv_lang["pluv"]			use value from lang.en.php
+// $pgv_lang["vent"]			use value from lang.en.php
+// $pgv_lang["germ"]			use value from lang.en.php
+// $pgv_lang["flor"]			use value from lang.en.php
+// $pgv_lang["prai"]			use value from lang.en.php
+// $pgv_lang["mess"]			use value from lang.en.php
+// $pgv_lang["ther"]			use value from lang.en.php
+// $pgv_lang["fruc"]			use value from lang.en.php
+// $pgv_lang["comp"]			use value from lang.en.php
+
+// $pgv_lang["tsh"]				use value from lang.en.php
+// $pgv_lang["csh"]				use value from lang.en.php
+// $pgv_lang["ksl"]				use value from lang.en.php
+// $pgv_lang["tvt"]				use value from lang.en.php
+// $pgv_lang["shv"]				use value from lang.en.php
+// $pgv_lang["adr"]				use value from lang.en.php
+// $pgv_lang["adr_leap_year"]	use value from lang.en.php
+// $pgv_lang["ads"]				use value from lang.en.php
+// $pgv_lang["nsn"]				use value from lang.en.php
+// $pgv_lang["iyr"]				use value from lang.en.php
+// $pgv_lang["svn"]				use value from lang.en.php
+// $pgv_lang["tmz"]				use value from lang.en.php
+// $pgv_lang["aav"]				use value from lang.en.php
+// $pgv_lang["ell"]				use value from lang.en.php
+
+// $pgv_lang["muhar"]			use value from lang.en.php
+// $pgv_lang["safar"]			use value from lang.en.php
+// $pgv_lang["rabia"]			use value from lang.en.php
+// $pgv_lang["rabit"]			use value from lang.en.php
+// $pgv_lang["jumaa"]			use value from lang.en.php
+// $pgv_lang["jumat"]			use value from lang.en.php
+// $pgv_lang["rajab"]			use value from lang.en.php
+// $pgv_lang["shaab"]			use value from lang.en.php
+// $pgv_lang["ramad"]			use value from lang.en.php
+// $pgv_lang["shaww"]			use value from lang.en.php
+// $pgv_lang["dhuaq"]			use value from lang.en.php
+// $pgv_lang["dhuah"]			use value from lang.en.php
+
 $pgv_lang["abt"]						= "körülbelül";
 $pgv_lang["aft"]						= "után";
 $pgv_lang["and"]						= "és";
@@ -763,19 +767,19 @@ $pgv_lang["no_account_yet"]					= "Még nem regisztrálta magát?";
 $pgv_lang["requestaccount"]					= "Regisztráció kérése";
 $pgv_lang["emailadress"]					= "Email cím";
 $pgv_lang["mail01_line01"]					= "Kedves #user_fullname#!";
-$pgv_lang["mail01_line02"]					= "Az ön email címével ( #user_email# ) belépést kezdeményeztek ( #SERVER_NAME# ).";
+$pgv_lang["mail01_line02"]					= "Az ön email címével ( #user_email# ) belépést kezdeményeztek ( #PGV_SERVER_NAME##PGV_SCRIPT_NAME# ).";
 $pgv_lang["mail01_line03"]					= "A következő adatokat használtuk.";
 $pgv_lang["mail01_line04"]					= "Kérem kattintson a következő linkre, és töltse ki a kért adatokat, hogy ellenőrizni tudjuk az adatait és az email címét.";
 $pgv_lang["mail01_line05"]					= "Ha nem Ön kérte ezt az adatot, akkor nyugodtan törölheti ezt az üzenetet.";
 $pgv_lang["mail01_line06"]					= "Nem fog kapni több levelet a rendszertől, mivel a felhasználói azonosítója 7 napon belül további figyelmeztetés nélkül törlésre kerül.";
 $pgv_lang["mail02_line04a"]					= "Ön kapni fog egy email-t amint a jövendő felhasználó ellenőrizte magát. Csak az ellenőrzés után tud a felhasználó bejelentkezni az ön beavatkozása nélkül.";
-$pgv_lang["mail01_subject"]					= "Az Ön regisztrációja a(z) #SERVER_NAME# szerveren";
+$pgv_lang["mail01_subject"]					= "Az Ön regisztrációja a(z) #PGV_SERVER_NAME##PGV_SCRIPT_NAME# szerveren";
 $pgv_lang["mail02_line01"]					= "Kedves Adminisztrátor!";
-$pgv_lang["mail02_line02"]					= "Egy felhasználó új azonosítót készített a(z) ( #SERVER_NAME# ) szerveren.";
+$pgv_lang["mail02_line02"]					= "Egy felhasználó új azonosítót készített a(z) ( #PGV_SERVER_NAME##PGV_SCRIPT_NAME# ) szerveren.";
 $pgv_lang["pls_note06a"] 					= "Mi most küldeni fogunk egy ellenőrző email -t erre a címre ( #user_email# ). Önnek meg kell erősítenie a számla kérését az ellenőrző email alapján. Ha ön nem erősíti meg a számla kérését akkor automatikusan 7 nap után elutasításra kerül a kérelme. Önnek egy új kérelmet kell írnia.<br /><br />Miután követte az instrukciókat az ellenőrző email-ben, utána tud csak bejelentkezni. Ahhoz hogy bejelentkezzen tudnia kell a felhasználónevét és a jelszavát.<br /><br />";
 $pgv_lang["mail02_line03"]					= "A felhasználó kapott egy emailt a fontosabb adatokkal, ahhoz hogy ellenőrizni tudja az azonosítóját.";
 $pgv_lang["mail02_line04"]					= "Amint a felhasználó elvégezte ezt az ellenőrzést, email-ben kap értesítést, így jogot adhat a felhasználónak a bejelentkezéshez.";
-$pgv_lang["mail02_subject"]					= "Új regisztráció a(z) #SERVER_NAME# szerveren";
+$pgv_lang["mail02_subject"]					= "Új regisztráció a(z) #PGV_SERVER_NAME##PGV_SCRIPT_NAME# szerveren";
 $pgv_lang["hashcode"]						= "Ellenőrző kód:";
 $pgv_lang["thankyou"]						= "Kedves #user_fullname#!<br />Köszönjük a regisztrációt";
 $pgv_lang["pls_note06"]						= "Kapni fog egy ellenőrző emailt erre a címre ( #user_email# ). Ezt a levelet használja az azonosítója aktiválásához; ha hét napon belül nem sikerül az aktiválás, áthelyezésre kerül az azonosítója (akkor újra megkísérelheti a regisztrációt).<br /><br />Ahhoz hogy bejelentkezzen az oldalra, tudnia kell az azonosítóját, és a jelszavát.";
@@ -789,7 +793,7 @@ $pgv_lang["pls_note08"]						= "A <b>#user_name#</b> felhasználó adatait leell
 $pgv_lang["mail03_line01"]					= "Kedves Adminisztrátor!";
 $pgv_lang["mail03_line02"]					= "#newuser[username]# ( #newuser[fullname]# ) ellenőrizte a regisztrációs adatait.";
 $pgv_lang["mail03_line03"]					= "Kérem, kattintson a lenti hivatkozásra, jelentkezzen be, és adjon a felhasználónak jogot a bejelntkezéshez.";
-$pgv_lang["mail03_subject"]					= "Új ellenőrzés a(z) #SERVER_NAME# szerveren";
+$pgv_lang["mail03_subject"]					= "Új ellenőrzés a(z) #PGV_SERVER_NAME##PGV_SCRIPT_NAME# szerveren";
 $pgv_lang["pls_note09"]						= "Önt regisztrált felhasználóként azonosítottuk.";
 $pgv_lang["pls_note10"]						= "Az adminisztrátort értesítettük. Amint ő megadja az engedélyt a bejelentkezéshez, be tud majd jelentkezni a felhasználónevével és jelszavával.";
 $pgv_lang["data_incorrect"]					= "Hibás adat!<br />Kérem próbálja újra!";
@@ -802,7 +806,7 @@ $pgv_lang["mail04_line02"]					= "Az Ön felhasználónevéhez új jelszót igé
 $pgv_lang["mail04_line03"]					= "Ajánlások:";
 $pgv_lang["mail04_line04"]					= "Kattintson az alábbi hivatkozásra, jelentkezzen be az új jelszóval majd változtassa meg ahhoz hogy az adatai biztonságban maradjanak.";
 $pgv_lang["mail04_line05"]					= "Miután be jelentkezett, válassza a '#pgv_lang[myuserdata]#' linket a '#pgv_lang[mygedview]#' menü alatt és töltse ki a jelszó mezőket hogy megváltoztassa a jelszavát.";
-$pgv_lang["mail04_subject"]					= "Adat kérése a(z) #SERVER_NAME# szerveren";
+$pgv_lang["mail04_subject"]					= "Adat kérése a(z) #PGV_SERVER_NAME##PGV_SCRIPT_NAME# szerveren";
 $pgv_lang["pwreqinfo"]						= "Tisztelt Felhasználó!<br /><br />Egy emailt küldtünk a (#user[email]#) címre, amiben benne van az új jelszó.<br /><br />Kérjük, nézze meg a levelesládáját, mert ez a levél perceken belül megérkezhet.<br /><br />Javaslat:<br /><br />Miután megkapta az új jelszavát emailben, jelentkezzen be az új jelszóval majd változtassa meg ahhoz hogy az adatai biztonságban maradjanak.";
 $pgv_lang["editowndata"]					= "Felhasználói adataim";
 $pgv_lang["myuserdata"]						= "Felhasználói adataim";

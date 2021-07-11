@@ -788,7 +788,7 @@ $pgv_lang["dec"]						= "Dezember";
 // $pgv_lang["mess"]			use value from lang.en.php
 // $pgv_lang["ther"]			use value from lang.en.php
 // $pgv_lang["fruc"]			use value from lang.en.php
-// $pgv_lang["comp"]			use value from lang.en.php;
+// $pgv_lang["comp"]			use value from lang.en.php
 
 // $pgv_lang["tsh"]				use value from lang.en.php
 // $pgv_lang["csh"]				use value from lang.en.php

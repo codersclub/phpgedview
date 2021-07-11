@@ -461,20 +461,20 @@ $pgv_lang["text"]			= "Zapis vira:";
 $pgv_lang["note"]			= "Zapisek";
 $pgv_lang["NN"] 			= "(neznano)";
 $pgv_lang["PN"] 			= "(neznano)";
-$pgv_lang["NNhebrew"] 		= "(לא ידוע)";
-$pgv_lang["PNhebrew"] 		= "(לא ידוע)";
-$pgv_lang["NNarabic"] 		= "(غير معروف)";
-$pgv_lang["PNarabic"] 		= "(غير معروف)";
-$pgv_lang["NNgreek"] 		= "(άγνωστος/η)";
-$pgv_lang["PNgreek"] 		= "(άγνωστος/η)";
-$pgv_lang["NNrussian"] 		= "(неопределено)";
-$pgv_lang["PNrussian"] 		= "(неопределено)";
-$pgv_lang["NNchinese"] 		= "(未知)";
-$pgv_lang["PNchinese"] 		= "(未知)";
-$pgv_lang["NNvietnamese"]	= "(vô danh)";
-$pgv_lang["PNvietnamese"]	= "(không biết tuổi)";
-$pgv_lang["NNthai"] 		= "(neznano)";
-$pgv_lang["PNthai"] 		= "(neznano)";
+// $pgv_lang["NNhebrew"] 		use value from lang.en.php
+// $pgv_lang["PNhebrew"] 		use value from lang.en.php
+// $pgv_lang["NNarabic"] 		use value from lang.en.php
+// $pgv_lang["PNarabic"] 		use value from lang.en.php
+// $pgv_lang["NNgreek"] 		use value from lang.en.php
+// $pgv_lang["PNgreek"] 		use value from lang.en.php
+// $pgv_lang["NNrussian"] 		use value from lang.en.php
+// $pgv_lang["PNrussian"] 		use value from lang.en.php
+// $pgv_lang["NNchinese"] 		use value from lang.en.php
+// $pgv_lang["PNchinese"] 		use value from lang.en.php
+// $pgv_lang["NNvietnamese"] 	use value from lang.en.php
+// $pgv_lang["PNvietnamese"] 	use value from lang.en.php
+// $pgv_lang["NNthai"] 			use value from lang.en.php
+// $pgv_lang["PNthai"] 			use value from lang.en.php
 $pgv_lang["NNother"] 		= "(neznano)";
 $pgv_lang["PNother"] 		= "(neznano)";
 $pgv_lang["unrecognized_code"]		= "Neprepoznana GEDCOM koda";
@@ -779,47 +779,47 @@ $pgv_lang["oct"]			= "oktober";
 $pgv_lang["nov"]			= "november";
 $pgv_lang["dec"]			= "december";
 
-$pgv_lang["vend"]         = "Vendémiaire";
-$pgv_lang["brum"]         = "Brumaire";
-$pgv_lang["frim"]         = "Frimaire";
-$pgv_lang["nivo"]         = "Nivôse";
-$pgv_lang["pluv"]         = "Pluviôse";
-$pgv_lang["vent"]         = "Ventôse";
-$pgv_lang["germ"]         = "Germinal";
-$pgv_lang["flor"]         = "Floréal";
-$pgv_lang["prai"]         = "Prairial";
-$pgv_lang["mess"]         = "Messidor";
-$pgv_lang["ther"]         = "Thermidor";
-$pgv_lang["fruc"]         = "Fructidor";
-$pgv_lang["comp"]         = "jours complémentaires";
+// $pgv_lang["vend"]			use value from lang.en.php
+// $pgv_lang["brum"]			use value from lang.en.php
+// $pgv_lang["frim"]			use value from lang.en.php
+// $pgv_lang["nivo"]			use value from lang.en.php
+// $pgv_lang["pluv"]			use value from lang.en.php
+// $pgv_lang["vent"]			use value from lang.en.php
+// $pgv_lang["germ"]			use value from lang.en.php
+// $pgv_lang["flor"]			use value from lang.en.php
+// $pgv_lang["prai"]			use value from lang.en.php
+// $pgv_lang["mess"]			use value from lang.en.php
+// $pgv_lang["ther"]			use value from lang.en.php
+// $pgv_lang["fruc"]			use value from lang.en.php
+// $pgv_lang["comp"]			use value from lang.en.php
 
-$pgv_lang["tsh"]          = "Tishrei";
-$pgv_lang["csh"]          = "Heshvan";
-$pgv_lang["ksl"]          = "Kislev";
-$pgv_lang["tvt"]          = "Tevet";
-$pgv_lang["shv"]          = "Shevat";
-$pgv_lang["adr"]          = "Adar";
-$pgv_lang["adr_leap_year"]= "Adar I";
-$pgv_lang["ads"]          = "Adar II";
-$pgv_lang["nsn"]          = "Nissan";
-$pgv_lang["iyr"]          = "Iyar";
-$pgv_lang["svn"]          = "Sivan";
-$pgv_lang["tmz"]          = "Tamuz";
-$pgv_lang["aav"]          = "Av";
-$pgv_lang["ell"]          = "Elul";
+// $pgv_lang["tsh"]				use value from lang.en.php
+// $pgv_lang["csh"]				use value from lang.en.php
+// $pgv_lang["ksl"]				use value from lang.en.php
+// $pgv_lang["tvt"]				use value from lang.en.php
+// $pgv_lang["shv"]				use value from lang.en.php
+// $pgv_lang["adr"]				use value from lang.en.php
+// $pgv_lang["adr_leap_year"]	use value from lang.en.php
+// $pgv_lang["ads"]				use value from lang.en.php
+// $pgv_lang["nsn"]				use value from lang.en.php
+// $pgv_lang["iyr"]				use value from lang.en.php
+// $pgv_lang["svn"]				use value from lang.en.php
+// $pgv_lang["tmz"]				use value from lang.en.php
+// $pgv_lang["aav"]				use value from lang.en.php
+// $pgv_lang["ell"]				use value from lang.en.php
 
-$pgv_lang["muhar"]        = "Muharram";
-$pgv_lang["safar"]        = "Safar";
-$pgv_lang["rabia"]        = "Rabi' al-awwal";
-$pgv_lang["rabit"]        = "Rabi' al-thani";
-$pgv_lang["jumaa"]        = "Jumada al-awwal";
-$pgv_lang["jumat"]        = "Jumada al-thani";
-$pgv_lang["rajab"]        = "Rajab";
-$pgv_lang["shaab"]        = "Sha'aban";
-$pgv_lang["ramad"]        = "Ramadan";
-$pgv_lang["shaww"]        = "Shawwal";
-$pgv_lang["dhuaq"]        = "Dhu al-Qi'dah";
-$pgv_lang["dhuah"]        = "Dhu al-Hijjah";
+// $pgv_lang["muhar"]			use value from lang.en.php
+// $pgv_lang["safar"]			use value from lang.en.php
+// $pgv_lang["rabia"]			use value from lang.en.php
+// $pgv_lang["rabit"]			use value from lang.en.php
+// $pgv_lang["jumaa"]			use value from lang.en.php
+// $pgv_lang["jumat"]			use value from lang.en.php
+// $pgv_lang["rajab"]			use value from lang.en.php
+// $pgv_lang["shaab"]			use value from lang.en.php
+// $pgv_lang["ramad"]			use value from lang.en.php
+// $pgv_lang["shaww"]			use value from lang.en.php
+// $pgv_lang["dhuaq"]			use value from lang.en.php
+// $pgv_lang["dhuah"]			use value from lang.en.php
 
 $pgv_lang["b.c."]         = "B.C.";
 
@@ -1229,19 +1229,19 @@ $pgv_lang["requestaccount"] 			= "Zahtevajte nov uporabniški račun";
 $pgv_lang["emailadress"]			= "E-poštni naslov";
 $pgv_lang["mandatory"] 				= "Polja označena z * so obvezna.";
 $pgv_lang["mail01_line01"]			= "Zdravo, #user_fullname# ...";
-$pgv_lang["mail01_line02"]			= "Na strežnik #SERVER_NAME# je bil sprejet zahtevek za vzpostavitev računa PhpGedView z vašim e-poštnim naslovom #user_email#.";
+$pgv_lang["mail01_line02"]			= "Na strežnik #PGV_SERVER_NAME##PGV_SCRIPT_NAME# je bil sprejet zahtevek za vzpostavitev računa PhpGedView z vašim e-poštnim naslovom #user_email#.";
 $pgv_lang["mail01_line03"]			= "Podatki o zahtevku so prikazani na spodnji povezavi.";
 $pgv_lang["mail01_line04"]			= "Kliknite na naslednjo povezavo in vpišite zahtevane podatke za potrditev zahtevka in elektronskega naslova.";
 $pgv_lang["mail01_line05"]			= "Izbrišite sporočilo, če računa niste zahtevali.";
 $pgv_lang["mail01_line06"]			= "S te strani ne boste več prejemali sporočil, ker bo zahtevek po računu samodejno izbrisan v sedmih dneh.";
-$pgv_lang["mail01_subject"] 			= "Registrirali ste se na strežniku #SERVER_NAME#";
+$pgv_lang["mail01_subject"] 			= "Registrirali ste se na strežniku #PGV_SERVER_NAME##PGV_SCRIPT_NAME#";
 
 $pgv_lang["mail02_line01"]			= "Zdravo, upravitelj ...";
-$pgv_lang["mail02_line02"]			= "Možni uporabnik se je prijavil pri PhpGedView na strežniku #SERVER_NAME#.";
+$pgv_lang["mail02_line02"]			= "Možni uporabnik se je prijavil pri PhpGedView na strežniku #PGV_SERVER_NAME##PGV_SCRIPT_NAME#.";
 $pgv_lang["mail02_line03"]			= "Uporabnik je prejel elektronsko sporočilo z zahtevanimi podatki za potrditev zahtevka po dostopu.";
 $pgv_lang["mail02_line04"]			= "Po elektronski pošti boste obveščeni, ko bo možni uporabnik potrdil svoj zahtevek. Z aktivacijo uporabniškega imena lahko postopek zaključite. Novi uporabnik se ne bo mogel prijaviti, dokler ne aktivirate računa.";
 $pgv_lang["mail02_line04a"]			= "Po elektronski pošti boste obveščeni, kdaj je možni uporabnik potrdil svoj zahtevek. Potem se bo lahko uporabnik prijavil brez vašega posredovanja.";
-$pgv_lang["mail02_subject"] 			= "Nova registracija na strežniku #SERVER_NAME#";
+$pgv_lang["mail02_subject"] 			= "Nova registracija na strežniku #PGV_SERVER_NAME##PGV_SCRIPT_NAME#";
 
 $pgv_lang["hashcode"]				= "Koda za preverjanje:";
 $pgv_lang["thankyou"]				= "Zdravo, #user_fullname# ...<br />Zahvaljujemo se, da ste se registrirali.";
@@ -1259,7 +1259,7 @@ $pgv_lang["mail03_line01"]			= "Zdravo, upravljalec ...";
 $pgv_lang["mail03_line02"]			= "Uporabnik #newuser[username]# (#newuser[fullname]#) je potrdil zahtevek po odprtju računa.";
 $pgv_lang["mail03_line03"]			= "Kliknite na spodnjo povezavo za prijavo na vašo stran. Najprej uredite (edit) uporabnika, da se bo račun aktiviral in omogočil uporabniku dostop na vašo stran.";
 $pgv_lang["mail03_line03a"]			= "Ni vam več treba posredovati. Uporabnik se lahko sam prijavi.";
-$pgv_lang["mail03_subject"] 		= "Nov uporabnik na strežniku #SERVER_NAME#";
+$pgv_lang["mail03_subject"] 		= "Nov uporabnik na strežniku #PGV_SERVER_NAME##PGV_SCRIPT_NAME#";
 
 $pgv_lang["pls_note09"] 			= "Potrdili ste zahtevek za registriranega uporabnika.";
 $pgv_lang["pls_note10"] 			= "Upravitelj je prejel obvestilo. Ko vam bo dal dovoljenje za prijavo, se boste lahko prijavljali sami s svojim uporabniškim imenom in geslom.";
@@ -1275,7 +1275,7 @@ $pgv_lang["mail04_line02"]			= "Novo geslo je bilo zahtevano za vaše uporabniš
 $pgv_lang["mail04_line03"]			= "Priporočilo:";
 $pgv_lang["mail04_line04"]			= "Kliknite na spodno povezavo ali pa jo prelepite v brskalnik. Prijavite se z novim geslom in ga takoj zamenjajte, da ohranite vaše podatke varne.";
 $pgv_lang["mail04_line05"]			= "Potem ko ste se prijavili izberite povezavo «#pgv_lang[editowndata]#» v meniju «#pgv_lang[mygedview]#» in izpolnite polji za geslo.";
-$pgv_lang["mail04_subject"] 		= "Novo geslo na #SERVER_NAME#";
+$pgv_lang["mail04_subject"] 		= "Novo geslo na #PGV_SERVER_NAME##PGV_SCRIPT_NAME#";
 
 $pgv_lang["pwreqinfo"]				= "Zdravo,...<br /><br />Pošta z vašim novim geslom je bila poslana na naveden naslov za uporabnika <b>#user[email]#</b>.<br /><br />Preverite vaš poštni predal. Sporočilo boste prejeli v kratkem.<br /><br />Nasvet:<br />Ponovno se prijavite semkaj kakor hitro je to mogoče in zamenjajte geslo, da ohranite varnost podatkov.";
 
