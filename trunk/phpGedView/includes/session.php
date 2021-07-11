@@ -101,9 +101,6 @@ if ($handle !== false) {
 	fclose($handle);
 }
 
-// Get rid of these, in case they're used elsewhere for a different purpose
-unset($version, $release, $revision, $handle, $status, $textLine, $found, $match, $variableName);
-
 // ------------------ The real PhpGedView begins here ------------
 
 // Identify ourself
@@ -114,6 +111,9 @@ define('PGV_SVN_REVISION',    $revision);
 define('PGV_VERSION_TEXT',    trim(PGV_VERSION.' '.PGV_VERSION_RELEASE.' '.PGV_SVN_REVISION));
 define('PGV_PHPGEDVIEW_URL',  'http://www.phpgedview.net');
 define('PGV_PHPGEDVIEW_WIKI', 'http://wiki.phpgedview.net');
+
+// Get rid of these, in case they're used elsewhere for a different purpose
+unset($version, $release, $revision, $handle, $status, $textLine, $found, $match, $variableName);
 
 // Enable debugging output?
 define('PGV_DEBUG',      false);
