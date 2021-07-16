@@ -77,8 +77,8 @@ $user_theme              =safe_POST('user_theme',               $ALL_THEME_DIRS)
 $user_language           =safe_POST('user_language',            array_keys($pgv_language), $LANGUAGE);
 $new_contact_method      =safe_POST('new_contact_method',       $ALL_CONTACT_METHODS, $CONTACT_METHOD);
 $new_default_tab         =safe_POST('new_default_tab',          array_keys($ALL_DEFAULT_TABS), $GEDCOM_DEFAULT_TAB);
-$new_comment             =safe_POST('new_comment',              PGV_REGEX_UNSAFE);
-$new_comment_exp         =safe_POST('new_comment_exp'           );
+$new_comment             =safe_POST('new_comment',              PGV_REGEX_NOSCRIPT);
+$new_comment_exp         =safe_POST('new_comment_exp',          PGV_REGEX_NOSCRIPT);
 $new_max_relation_path   =safe_POST_integer('new_max_relation_path', 1, $MAX_RELATION_PATH_LENGTH, 2);
 $new_sync_gedcom         =safe_POST('new_sync_gedcom',          'Y',   'N');
 $new_relationship_privacy=safe_POST('new_relationship_privacy', 'Y',   'N');
@@ -88,6 +88,12 @@ $visibleonline           =safe_POST('visibleonline',            'Y',   'N');
 $editaccount             =safe_POST('editaccount',              'Y',   'N');
 $verified                =safe_POST('verified',                 'yes', 'no');
 $verified_by_admin       =safe_POST('verified_by_admin',        'yes', 'no');
+
+// Validate the Comment Expiry field
+if (!empty($new_comment_exp)) {
+	$expiryTime = strtotime($new_comment_exp);
+	if ($expiryTime === false) $new_comment_exp = 'yesterday';		// The Comment Expiry isn't meaningful, so pick something meaningful
+}
 
 if (empty($ged)) {
 	$ged=$GEDCOM;
@@ -555,8 +561,10 @@ if ($action == "listusers") {
 		if (!isset($language_settings[get_user_setting($user_id, 'language')]))
 			set_user_setting($user_id, 'language', $LANGUAGE);
 		if ($filter == "warnings") {
-			if (get_user_setting($user_id, 'comment_exp')) {
-				if ((strtotime(get_user_setting($user_id, 'comment_exp')) == "-1") || (strtotime(get_user_setting($user_id, 'comment_exp')) >= time())) unset($users[$user_id]);
+			$comment_exp = get_user_setting($user_id, 'comment_exp');
+			if (!empty($comment_exp)) {
+				$expiryTime = strtotime($comment_exp);
+				if ($expiryTime == "-1" || $expiryTime >= time()) unset($users[$user_id]);
 			}
 			else if (((date("U") - (int)get_user_setting($user_id, 'reg_timestamp')) <= 604800) || (get_user_setting($user_id, 'verified')=="yes")) unset($users[$user_id]);
 		}
@@ -644,8 +652,10 @@ if ($action == "listusers") {
 		if ($TEXT_DIRECTION=="ltr") echo getLRM();
 		else                        echo getRLM();
 		echo "</a></td>\n";
-		if (get_user_setting($user_id, "comment_exp")) {
-			if ((strtotime(get_user_setting($user_id, "comment_exp")) != "-1") && (strtotime(get_user_setting($user_id, "comment_exp")) < time())) echo "\t<td class=\"optionbox red\">", $user_name;
+		$comment_exp = get_user_setting($user_id, "comment_exp");
+		if (!empty($comment_exp)) {
+			$expiryTime = strtotime($comment_exp);
+			if ($expiryTime !== false && $expiryTime < time()) echo "\t<td class=\"optionbox wrap\">", '<span class="warning">', $user_name, '</span>';
 			else echo "\t<td class=\"optionbox wrap\">", $user_name;
 		}
 		else echo "\t<td class=\"optionbox wrap\">", $user_name;
@@ -1146,8 +1156,10 @@ if ($action == "cleanup2") {
 		$totusers = $totusers + 1;
 		if (((date("U") - (int)get_user_setting($user_id, 'reg_timestamp')) > 604800) && (get_user_setting($user_id, 'verified')!="yes")) $warnusers++;
 		else {
-			if (get_user_setting($user_id, 'comment_exp')) {
-				if ((strtotime(get_user_setting($user_id, 'comment_exp')) != "-1") && (strtotime(get_user_setting($user_id, 'comment_exp')) < time())) $warnusers++;
+			$comment_exp = get_user_setting($user_id, 'comment_exp');
+			if ($comment_exp) {
+				$expiryTime = strtotime($comment_exp);
+				if ($expiryTime !== false && $expiryTime < time()) $warnusers++;
 			}
 		}
 		if ((get_user_setting($user_id, 'verified_by_admin') != "yes") && (get_user_setting($user_id, 'verified') == "yes")) {
@@ -1200,9 +1212,12 @@ if ($action == "cleanup2") {
 		echo "</td><td class=\"font11\">", $geds["number"], "</td></tr>";
 	}
 	echo "<tr><td class=\"font11\"></td></tr><tr><td class=\"font11\">";
-	if ($warnusers == 0) echo $pgv_lang["warn_users"];
-	else echo "<a href=\"useradmin.php?action=listusers&amp;filter=warnings\">", $pgv_lang["warn_users"], "</a>";
-	echo "</td><td class=\"font11\">", $warnusers, "</td></tr>";
+	if ($warnusers == 0) {
+		echo $pgv_lang["warn_users"], "</td><td class=\"font11\">0</td></tr>";
+	} else {
+		echo "<a href=\"useradmin.php?action=listusers&amp;filter=warnings\"><span class='warning'>", $pgv_lang["warn_users"], "</span></a>";
+		echo "</td><td class=\"font11\"><span class='warning'>", $warnusers, "</span></td></tr>";
+	}
 
 	echo "<tr><td class=\"font11\">";
 	if ($applusers == 0) echo $pgv_lang["users_unver"];

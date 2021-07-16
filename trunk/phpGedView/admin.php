@@ -5,7 +5,7 @@
  * Provides links for administrators to get to other administrative areas of the site
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2020  PGV Development Team
+ * Copyright (C) 2002 to 2021  PGV Development Team
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -85,7 +85,6 @@ if (count($dir_array)>0) {
 		$d_logfile_str .= "</option>\n";
 	}
 	$d_logfile_str .= "</select>\n";
-// $d_logfile_str .= "<input type=\"submit\" name=\"logfile\" value=\" &gt; \" />";
 	$d_logfile_str .= "<input type=\"button\" name=\"logfile\" value=\" &gt; \" onclick=\"window.open('printlog.php?logfile='+document.logform.logfilename.options[document.logform.logfilename.selectedIndex].value, '_blank', 'top=50,left=10,width=600,height=500,scrollbars=1,resizable=1');\" />";
 	$d_logfile_str .= "</form>";
 }
@@ -107,16 +106,18 @@ $err_write = file_is_writeable("config.php");
 
 $verify_msg = false;
 $warn_msg = false;
+// Look for users that require Admin verification or who have expired Admin warnings
 foreach(get_all_users() as $user_id=>$user_name) {
 	if (get_user_setting($user_id, 'verified_by_admin')!='yes' && get_user_setting($user_id, 'verified')=='yes')  {
 		$verify_msg = true;
 	}
-	$comment_exp=get_user_setting($user_id, 'comment_exp');
-	if (!empty($comment_exp) && (strtotime($comment_exp) != "-1") && (strtotime($comment_exp) < time())) {
-		$warn_msg = true;
+	$comment_exp = get_user_setting($user_id, 'comment_exp');
+	if (!empty($comment_exp)) {
+		$expiryTime = strtotime($comment_exp);
+		if ($expiryTime !== false && $expiryTime < time()) $warn_msg = true;
 	}
 	if ($verify_msg && $warn_msg) {
-		break;
+		break;		// No need to look further
 	}
 }
 
