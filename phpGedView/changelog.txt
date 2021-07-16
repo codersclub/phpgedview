@@ -14,6 +14,8 @@ The session.php script uses this information to populate the constants : PGV_VER
 =====================================================================
 
 Version 4.3.1
+ - Changed: Improve handling of Comment and Comment Expiry fields in User Admin (canajun2eh)
+ - Fixed: User Admin should not allow scripts in Comment and Comment Expiry fields (canajun2eh) 
  - Fixed: Version, SVN number, and release type not properly picked up -- caused by error in SVN 7308 (canajun2eh)
  - Fixed: New entries in config.dist are not properly evaluated (canajun2eh)
  - Changed: Minor corrections to several language files - does not affect program (canajun2eh) 
