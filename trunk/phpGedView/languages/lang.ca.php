@@ -417,6 +417,7 @@ $pgv_lang["lists"]			= "Llistes";
 $pgv_lang["box_width"] 			= "Amplada del caixetí";
 $pgv_lang["random_surn"]			= "Cognom a l'atzar";
 $pgv_lang["generation_number"]		= "Generacions";
+$pgv_lang["variable"]				= "Variable";
 
 //-- FUNCTIONS FILE MESSAGES
 $pgv_lang["unable_to_find_family"] 	= "Impossible trobar cap família amb l'ID";

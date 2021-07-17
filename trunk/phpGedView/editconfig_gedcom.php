@@ -365,6 +365,8 @@ if ($action=="update") {
 	$configtext = preg_replace('/\$LINK_ICONS\s*=\s*\".*\";/', "\$LINK_ICONS = \"".$_POST["NEW_LINK_ICONS"]."\";", $configtext);
 	$configtext = preg_replace('/\$MAX_DESCENDANCY_GENERATIONS\s*=\s*".*";/', "\$MAX_DESCENDANCY_GENERATIONS = \"".$_POST["NEW_MAX_DESCENDANCY_GENERATIONS"]."\";", $configtext);
 	$configtext = preg_replace('/\$MAX_PEDIGREE_GENERATIONS\s*=\s*".*";/', "\$MAX_PEDIGREE_GENERATIONS = \"".$_POST["NEW_MAX_PEDIGREE_GENERATIONS"]."\";", $configtext);
+	$configtext = preg_replace('/\$SOSA_WIDTH_NORMAL\s*=\s*".*";/', "\$SOSA_WIDTH_NORMAL = \"".$_POST["NEW_SOSA_WIDTH_NORMAL"]."\";", $configtext);
+	$configtext = preg_replace('/\$SOSA_WIDTH_WIDE\s*=\s*".*";/', "\$SOSA_WIDTH_WIDE = \"".$_POST["NEW_SOSA_WIDTH_WIDE"]."\";", $configtext);
 	$configtext = preg_replace('/\$MEDIA_DIRECTORY\s*=\s*".*";/', "\$MEDIA_DIRECTORY = \"".$_POST["NEW_MEDIA_DIRECTORY"]."\";", $configtext);
 	$configtext = preg_replace('/\$MEDIA_DIRECTORY_LEVELS\s*=\s*".*";/', "\$MEDIA_DIRECTORY_LEVELS = \"".$_POST["NEW_MEDIA_DIRECTORY_LEVELS"]."\";", $configtext);
 	$configtext = preg_replace('/\$MEDIA_EXTERNAL\s*=\s*.*;/', "\$MEDIA_EXTERNAL = ".$boolarray[$_POST["NEW_MEDIA_EXTERNAL"]].";", $configtext);
@@ -1503,7 +1505,30 @@ print "&nbsp;<a href=\"javascript: ".$pgv_lang["displ_layout_conf"]."\" onclick=
 	</tr>
 	<tr>
 		<td class="descriptionbox wrap width20"><?php print_help_link("MAX_DESCENDANCY_GENERATIONS_help", "qm", "MAX_DESCENDANCY_GENERATIONS"); print $pgv_lang["MAX_DESCENDANCY_GENERATIONS"]; ?></td>
-		<td class="optionbox"><input type="text" name="NEW_MAX_DESCENDANCY_GENERATIONS" value="<?php print $MAX_DESCENDANCY_GENERATIONS; ?>" size="5" tabindex="<?php $i++; print $i; ?>" onfocus="getHelp('DMAX_DESCENDANCY_GENERATIONS_help');" /></td>
+		<td class="optionbox"><input type="text" name="NEW_MAX_DESCENDANCY_GENERATIONS" value="<?php print $MAX_DESCENDANCY_GENERATIONS; ?>" size="5" tabindex="<?php $i++; print $i; ?>" onfocus="getHelp('MAX_DESCENDANCY_GENERATIONS_help');" /></td>
+	</tr>
+	<tr>
+		<td class="descriptionbox wrap width20"><?php print_help_link("SOSA_WIDTH_NORMAL_help", "qm", "SOSA_WIDTH_NORMAL"); print $pgv_lang["SOSA_WIDTH_NORMAL"]; ?></td>
+		<td class="optionbox"><select name="NEW_SOSA_WIDTH_NORMAL" tabindex="<?php $i++; print $i; ?>" onfocus="getHelp('SOSA_WIDTH_NORMAL_help');" />
+				<option value="" <?php if ($SOSA_WIDTH_NORMAL=="") print "selected='selected'"; ?>><?php print $pgv_lang["variable"]?></option>
+				<option value="12" <?php if ($SOSA_WIDTH_NORMAL=="12") print "selected='selected'"; ?>>12</option>
+				<option value="15" <?php if ($SOSA_WIDTH_NORMAL=="15") print "selected='selected'"; ?>>15</option>
+				<option value="18" <?php if ($SOSA_WIDTH_NORMAL=="18") print "selected='selected'"; ?>>18</option>
+			</select>
+		</td>
+	</tr>
+	<tr>
+		<td class="descriptionbox wrap width20"><?php print_help_link("SOSA_WIDTH_WIDE_help", "qm", "SOSA_WIDTH_WIDE"); print $pgv_lang["SOSA_WIDTH_WIDE"]; ?></td>
+		<td class="optionbox"><select name="NEW_SOSA_WIDTH_WIDE" tabindex="<?php $i++; print $i; ?>" onfocus="getHelp('SOSA_WIDTH_WIDE_help');" />
+				<option value="" <?php if ($SOSA_WIDTH_WIDE=="") print "selected='selected'"; ?>><?php print $pgv_lang["variable"]?></option>
+				<option value="25" <?php if ($SOSA_WIDTH_WIDE=="25") print "selected='selected'"; ?>>25</option>
+				<option value="50" <?php if ($SOSA_WIDTH_WIDE=="50") print "selected='selected'"; ?>>50</option>
+				<option value="75" <?php if ($SOSA_WIDTH_WIDE=="75") print "selected='selected'"; ?>>75</option>
+				<option value="100" <?php if ($SOSA_WIDTH_WIDE=="100") print "selected='selected'"; ?>>100</option>
+				<option value="125" <?php if ($SOSA_WIDTH_WIDE=="125") print "selected='selected'"; ?>>125</option>
+				<option value="150" <?php if ($SOSA_WIDTH_WIDE=="150") print "selected='selected'"; ?>>150</option>
+			</select>
+		</td>
 	</tr>
 	<tr>
 		<td class="descriptionbox wrap width20"><?php print_help_link("PEDIGREE_LAYOUT_help", "qm", "PEDIGREE_LAYOUT"); print $pgv_lang["PEDIGREE_LAYOUT"]; ?></td>

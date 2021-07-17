@@ -57,8 +57,10 @@ $ENABLE_MULTI_LANGUAGE = true;			//-- set to true to give users the option of se
 $DEFAULT_PEDIGREE_GENERATIONS = "4";	// -- set the default number of generations to display on the pedigree charts
 $MAX_PEDIGREE_GENERATIONS = "10";		// -- set the max number of generations to display on the pedigree charts
 $MAX_DESCENDANCY_GENERATIONS = "15";	// -- set the max number of generations to display on the descendancy charts
+$SOSA_WIDTH_NORMAL = "15";				// -- space to be reserved for SOSA numbers on the Pedigree chart
+$SOSA_WIDTH_WIDE = "50";				// -- space to be reserved for SOSA numbers in the Booklet view of the Pedigree chart
 $USE_RIN = false;						// -- Use the RIN # instead of the regular GEDCOM ID for places where you are asked to enter an ID
-$PEDIGREE_ROOT_ID = "";				// -- use this line to change the default person who appears on
+$PEDIGREE_ROOT_ID = "";					// -- use this line to change the default person who appears on
 										// -- the Pedigree tree
 $GEDCOM_ID_PREFIX = "I";					// -- This is the prefix prepend to newly generated individual records
 $SOURCE_ID_PREFIX = "S";					// -- This is the prefix prepend to newly generated source records

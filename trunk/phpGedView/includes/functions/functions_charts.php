@@ -43,6 +43,7 @@ require_once PGV_ROOT.'includes/classes/class_person.php';
  */
 function print_sosa_number($sosa, $pid='', $arrowDirection='up') {
 	global $view, $pbwidth, $pbheight, $wideSosa;
+	global $SOSA_WIDTH_NORMAL, $SOSA_WIDTH_WIDE;
 	global $PGV_IMAGE_DIR, $PGV_IMAGES;
 
 	if (substr($sosa,-1,1)=='.') {
@@ -51,8 +52,8 @@ function print_sosa_number($sosa, $pid='', $arrowDirection='up') {
 		$personLabel = $sosa;
 	}
 
-	if (isset($wideSosa) && $wideSosa) $sosaWidth = 50;		// If specified, allow more room
-	else $sosaWidth = 15;
+	if (isset($wideSosa) && $wideSosa) $sosaWidth = $SOSA_WIDTH_WIDE;		// If specified, allow more room
+	else $sosaWidth = $SOSA_WIDTH_NORMAL;
 
 	if ($arrowDirection=='blank') {
 		$visibility = 'hidden';

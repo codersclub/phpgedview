@@ -415,6 +415,7 @@ $pgv_lang["lists"]				= "Listor";
 $pgv_lang["box_width"] 			= "Boxvidd";
 $pgv_lang["random_surn"]			= "Slumpmässigt efternamn";
 $pgv_lang["generation_number"]		= "Generationer";
+$pgv_lang["variable"]				= "Variabel";
 
 //-- FUNCTIONS FILE MESSAGES
 $pgv_lang["unable_to_find_family"]	= "Kan inte hitta familj med id";
