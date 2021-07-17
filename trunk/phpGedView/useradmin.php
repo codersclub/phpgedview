@@ -92,7 +92,8 @@ $verified_by_admin       =safe_POST('verified_by_admin',        'yes', 'no');
 // Validate the Comment Expiry field
 if (!empty($new_comment_exp)) {
 	$expiryTime = strtotime($new_comment_exp);
-	if ($expiryTime === false) $new_comment_exp = 'yesterday';		// The Comment Expiry isn't meaningful, so pick something meaningful
+	if ($expiryTime === false) $expiryTime = strtotime('yesterday');		// The Comment Expiry isn't meaningful, so pick something meaningful
+	$new_comment_exp = strtoupper(date('d M Y', $expiryTime));		// Standardize the Comment Expiry date
 }
 
 if (empty($ged)) {
@@ -556,7 +557,7 @@ if ($action == "listusers") {
 			break;
 	}
 
-	// First filter the users, otherwise the javascript to unfold priviledges gets disturbed
+	// First filter the users, otherwise the javascript to unfold privileges gets disturbed
 	foreach($users as $user_id=>$user_name) {
 		if (!isset($language_settings[get_user_setting($user_id, 'language')]))
 			set_user_setting($user_id, 'language', $LANGUAGE);
@@ -564,7 +565,7 @@ if ($action == "listusers") {
 			$comment_exp = get_user_setting($user_id, 'comment_exp');
 			if (!empty($comment_exp)) {
 				$expiryTime = strtotime($comment_exp);
-				if ($expiryTime == "-1" || $expiryTime >= time()) unset($users[$user_id]);
+				if ($expiryTime === false || $expiryTime >= time()) unset($users[$user_id]);
 			}
 			else if (((date("U") - (int)get_user_setting($user_id, 'reg_timestamp')) <= 604800) || (get_user_setting($user_id, 'verified')=="yes")) unset($users[$user_id]);
 		}
@@ -709,11 +710,11 @@ if ($action == "listusers") {
 		echo "</td>\n";
 		echo "\t<td class=\"optionbox wrap\">";
 		if (get_user_setting($user_id, 'verified')=="yes") echo $pgv_lang["yes"];
-		else echo $pgv_lang["no"];
+		else echo '<span class="warning">',$pgv_lang["no"],'</span>';
 		echo "</td>\n";
 		echo "\t<td class=\"optionbox wrap\">";
 		if (get_user_setting($user_id, 'verified_by_admin')=="yes") echo $pgv_lang["yes"];
-		else echo $pgv_lang["no"];
+		else echo '<span class="warning">',$pgv_lang["no"],'</span>';
 		echo "</td>\n";
 		if ($view != "preview") {
 			echo "\t<td class=\"optionbox wrap\">";
