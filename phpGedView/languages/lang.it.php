@@ -416,7 +416,8 @@ $pgv_lang["charts"] 				= "Diagrammi";
 $pgv_lang["lists"]					= "Liste";
 $pgv_lang["box_width"] 				= "Grandezza riquadro";
 $pgv_lang["random_surn"]			= "Cognome casuale";
-$pgv_lang["generation_number"] = "generazioni";
+$pgv_lang["generation_number"]		= "generazioni";
+$pgv_lang["variable"]				= "Variabile";
 
 //-- FUNCTIONS FILE MESSAGES
 $pgv_lang["unable_to_find_family"]	= "Impossibile trovare una famiglia con questo ID";

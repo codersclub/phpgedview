@@ -419,6 +419,7 @@ $pgv_lang["lists"]						= "Listen";
 $pgv_lang["box_width"]					= "Box Breite";
 $pgv_lang["random_surn"]				= "Zufällig gewählter Nachname";
 $pgv_lang["generation_number"]			= "Generationen";
+$pgv_lang["variable"]					= "Variabel";
 
 //-- FUNCTIONS FILE MESSAGES
 $pgv_lang["unable_to_find_family"]		= "Kann die Familie mit folgender ID nicht finden:";

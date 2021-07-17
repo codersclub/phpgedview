@@ -417,6 +417,7 @@ $pgv_lang["lists"]				= "Slægtslister";
 $pgv_lang["box_width"]			= "Boksbredde";
 $pgv_lang["random_surn"]			= "Tilfældigt efternavn";
 $pgv_lang["generation_number"]		= "Generationer";
+$pgv_lang["variable"]				= "Variabel";
 
 //-- FUNCTIONS FILE MESSAGES
 $pgv_lang["unable_to_find_family"]	= "Kan ikke finde familien med ID ";

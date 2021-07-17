@@ -416,6 +416,7 @@ $pgv_lang["lists"]                      = "Listes";
 $pgv_lang["box_width"]                  = "Largeur de boîte";
 $pgv_lang["random_surn"]                = "Un nom au hasard";
 $pgv_lang["generation_number"]			= "Générations";
+$pgv_lang["variable"]					= "Variable";
 
 //-- FUNCTIONS FILE MESSAGES
 $pgv_lang["unable_to_find_family"]      = "Aucun lien famille";
