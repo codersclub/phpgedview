@@ -35,12 +35,18 @@ if (!PGV_USER_CAN_ACCEPT) {
 
 require $INDEX_DIRECTORY.'pgv_changes.php';
 
-$action=safe_GET('action');
-$cid   =safe_GET('cid');
-$index =safe_GET('index');
-$ged   =safe_GET('ged');
+$action = safe_GET('action');
+$cid    = safe_GET('cid');
+$index  = safe_GET('index');
+$ged    = safe_GET('ged');
+$popup  = safe_GET_bool('popup');
 
-print_simple_header($pgv_lang['review_changes']);
+if ($popup) {
+	print_simple_header($pgv_lang['review_changes']);
+} else {
+	print_header($pgv_lang['review_changes']);
+}
+
 ?>
 <script language="JavaScript" type="text/javascript">
 <!--
@@ -189,6 +195,10 @@ if (empty($pgv_changes)) {
 
 echo '</div>';
 
-echo "<br /><br /><center><a href=\"javascript:;\" onclick=\"if (window.opener.showchanges) window.opener.showchanges(); window.close();\">", $pgv_lang['close_window'], '</a><br /></center>';
-print_simple_footer();
+if ($popup) {
+	echo "<br /><br /><center><a href=\"javascript:;\" onclick=\"if (window.opener.showchanges) window.opener.showchanges(); window.close();\">", $pgv_lang['close_window'], '</a><br /></center>';
+	print_simple_footer();
+} else {
+	print_footer();
+}
 ?>

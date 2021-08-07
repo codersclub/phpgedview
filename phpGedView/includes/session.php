@@ -740,13 +740,6 @@ if (PGV_SCRIPT_NAME!='install.php' && PGV_SCRIPT_NAME!='editconfig_help.php') {
 		$_SESSION['timediff'] = 0;
 	}
 
-	//-- load any editing changes
-	if (PGV_USER_CAN_EDIT && file_exists("{$INDEX_DIRECTORY}pgv_changes.php")) {
-		require $INDEX_DIRECTORY.'pgv_changes.php';
-	} else {
-		$pgv_changes = array();
-	}
-
 	if (empty($LOGIN_URL)) {
 		$LOGIN_URL = 'login.php';
 	}
@@ -840,4 +833,50 @@ if (isset($USE_CLUSTRMAPS_ANALYTICS) && $USE_CLUSTRMAPS_ANALYTICS) {
 	else define ('PGV_CLUSTRMAPS_SITE', PGV_SERVER_NAME.PGV_SCRIPT_PATH);
 	if (!empty($PGV_CLUSTRMAPS_SERVER)) define ('PGV_CLUSTRMAPS_SERVER', $PGV_CLUSTRMAPS_SERVER);
 }
+
+//-- load any editing changes
+if (file_exists("{$INDEX_DIRECTORY}pgv_changes.php")) {
+	require $INDEX_DIRECTORY.'pgv_changes.php';
+} else {
+	$pgv_changes = array();
+	write_changes();	// Update the /index/pgv_changes.php file
+}
+
+// Send the Review Changes e-mail if it hasn't already been sent and hasn't been actioned yet
+if (count($pgv_changes) == 0) {
+	set_site_setting('LAST_CHANGE_EMAIL', '0');		// Make sure that an e-mail will be sent when new changes exist
+} else if (safe_GET('action') != 'ajax') {			// Don't let any blocks send that e-mail
+	$lastEmail = intval(get_site_setting('LAST_CHANGE_EMAIL'));
+	$emailDue = $lastEmail + $REMINDER_FREQ*24*60*60;		// n days after the last e-mail was sent; zero means "never send reminders"
+//	$emailDue = $lastEmail + 15*60;		// 15 minutes after the last e-mail was sent (for testing only)
+	$currentTime = time();
+	if (($REMINDER_FREQ > 0) && ($currentTime > $emailDue)) {
+		// It's time to send another e-mail to all users with at least "Accept" rights
+		set_site_setting('LAST_CHANGE_EMAIL', strval($currentTime));
+		$tempText = '';		// For debugging
+//		$tempText .= "\nLast email sent: " . date("Y-m-d H:i:s", $lastEmail);
+//		$tempText .= "\nNext email due: " . date("Y-m-d H:i:s", $emailDue);  
+//		$tempText .= "\nCurrent time: " . date("Y-m-d H:i:s", $currentTime);  
+		foreach (get_all_users() as $user_id=>$user_name) {
+			if (userIsAdmin($user_id) || userGedcomAdmin($user_id, PGV_GED_ID) || userCanAccept($user_id, PGV_GED_ID)) {
+				// This user has "Accept" rights; send them an e-mail
+				$message = array();
+				$message["to"]=$user_name;
+				$message["from"] = $PHPGEDVIEW_EMAIL;
+				$message["subject"] = $pgv_lang["review_changes_subject"];
+				$message["body"] = $pgv_lang["review_changes_body"]."\n{$tempText}\n";
+				$message["body"] .= PGV_SERVER_NAME.PGV_SCRIPT_PATH.'edit_changes.php';
+				$message["method"] = get_user_setting($user_id, 'contactmethod');
+				$message["url"] = PGV_SCRIPT_NAME;
+				if (!empty($QUERY_STRING)) $message["url"] .= "?".html_entity_decode($QUERY_STRING);
+				$message["no_from"] = true;
+				$message["bulkMail"] = false;
+				addMessage($message);
+			}
+		}
+	}
+}
+
+if (!PGV_USER_CAN_EDIT) $pgv_changes = array();		// Hide changes from users without editing rights
+
 ?>

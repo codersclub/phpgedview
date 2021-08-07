@@ -37,12 +37,10 @@ define('PGV_REVIEW_CHANGES_PHP', '');
 $PGV_BLOCKS["review_changes_block"]["name"]			= $pgv_lang["review_changes_block"];
 $PGV_BLOCKS["review_changes_block"]["descr"]		= "review_changes_descr";
 $PGV_BLOCKS["review_changes_block"]["type"]    		= "both";	// Allow on both the Welcome and the MyGedView pages
-$PGV_BLOCKS["review_changes_block"]["canconfig"]	= true;
+$PGV_BLOCKS["review_changes_block"]["canconfig"]	= false;
 $PGV_BLOCKS["review_changes_block"]["hidesearch"]	= true;	// should this block be hidden from search engines
 $PGV_BLOCKS["review_changes_block"]["config"]		= array(
-	"cache"=>0,
-	"days"=>1,
-	"sendmail"=>"yes"
+	"cache"=>0
 	);
 
 /**
@@ -55,62 +53,15 @@ function review_changes_block($limitHeight, $config, $side, $index) {
 	global $pgv_changes, $TEXT_DIRECTION, $SHOW_SOURCES, $PGV_BLOCKS;
 	global $PHPGEDVIEW_EMAIL;
 
-	if ($pgv_changes) {
-		//-- if the time difference from the last email is greater than 24 hours then send out another email
-		$LAST_CHANGE_EMAIL=get_site_setting('LAST_CHANGE_EMAIL');
-		if (time()-$LAST_CHANGE_EMAIL > (60*60*24*$config["days"])) {
-			$LAST_CHANGE_EMAIL = time();
-			set_site_setting('LAST_CHANGE_EMAIL', $LAST_CHANGE_EMAIL);
-			write_changes();
-			if ($config["sendmail"]=="yes") {
-				// Which users have pending changes?
-				$users_with_changes=array();
-				foreach (get_all_users() as $user_id=>$user_name) {
-					foreach (get_all_gedcoms() as $ged_id=>$ged_name) {
-						if (exists_pending_change($user_id, $ged_id)) {
-							$users_with_changes[$user_id]=$user_name;
-							break;
-						}
-					}
-				}
-				foreach ($users_with_changes as $user_id=>$user_name) {
-					//-- send message
-					$message = array();
-					$message["to"]=$user_name;
-					$message["from"] = $PHPGEDVIEW_EMAIL;
-					$message["subject"] = $pgv_lang["review_changes_subject"];
-					$message["body"] = $pgv_lang["review_changes_body"];
-					$message["method"] = get_user_setting($user_id, 'contactmethod');
-					$message["url"] = PGV_SCRIPT_NAME."?".html_entity_decode($QUERY_STRING);
-					$message["no_from"] = true;
-					$message["bulkMail"] = false;
-					addMessage($message);
-				}
-			}
-		}
+	if (count($pgv_changes) > 0) {
 		if (PGV_USER_CAN_EDIT) {
 			$id="review_changes_block";
 			$title = print_help_link("review_changes_help", "qm","",false,true);
-			if ($PGV_BLOCKS["review_changes_block"]["canconfig"]) {
-				if ($ctype=="gedcom" && PGV_USER_GEDCOM_ADMIN || $ctype=="user" && PGV_USER_ID) {
-					if ($ctype=="gedcom") {
-						$name = PGV_GEDCOM;
-					} else {
-						$name = PGV_USER_NAME;
-					}
-					$title .= "<a href=\"javascript: configure block\" onclick=\"window.open('".encode_url("index_edit.php?name={$name}&ctype={$ctype}&action=configure&side={$side}&index={$index}")."', '_blank', 'top=50,left=50,width=600,height=350,scrollbars=1,resizable=1'); return false;\">";
-					$title .= "<img class=\"adminicon\" src=\"$PGV_IMAGE_DIR/".$PGV_IMAGES["admin"]["small"]."\" width=\"15\" height=\"15\" border=\"0\" alt=\"".$pgv_lang["config_block"]."\" /></a>";
-				}
-			}
 			$title .= $pgv_lang["review_changes"];
 
 			$content = "";
 			if (PGV_USER_CAN_ACCEPT) {
-				$content .= "<a href=\"javascript:;\" onclick=\"window.open('edit_changes.php','_blank','width=600,height=500,resizable=1,scrollbars=1'); return false;\">".$pgv_lang["accept_changes"]."</a><br />";
-			}
-			if ($config["sendmail"]=="yes") {
-				$content .= $pgv_lang["last_email_sent"].format_timestamp($LAST_CHANGE_EMAIL)."<br />";
-				$content .= $pgv_lang["next_email_sent"].format_timestamp($LAST_CHANGE_EMAIL+(60*60*24*$config["days"]))."<br /><br />";
+				$content .= "<a href=\"javascript:;\" onclick=\"window.open('edit_changes.php?popup=y','_blank','width=600,height=500,resizable=1,scrollbars=1'); return false;\">".$pgv_lang["review_changes"]."</a><br />";
 			}
 			foreach ($pgv_changes as $cid=>$changes) {
 				$change = $changes[count($changes)-1];
@@ -141,31 +92,4 @@ function review_changes_block($limitHeight, $config, $side, $index) {
 		}
 	}
 }
-
-function review_changes_block_config($config) {
-	global $pgv_lang, $PGV_BLOCKS;
-
-	print $pgv_lang["review_changes_email"];
-	print "&nbsp;<select name='sendmail'>";
-	print "<option value='yes'";
-	if ($config["sendmail"]=="yes") print " selected='selected'";
-	print ">".$pgv_lang["yes"]."</option>";
-	print "<option value='no'";
-	if ($config["sendmail"]=="no") print " selected='selected'";
-	print ">".$pgv_lang["no"]."</option>";
-	print "</select><br /><br />";
-	print "{$pgv_lang["review_changes_email_freq"]}&nbsp;<input type='number' name='days' value='{$config["days"]}' size='2' min='1' max='30' />";
-	// Cache file life
-	if ($ctype=="gedcom") {
-		print "<tr><td class=\"descriptionbox wrap width33\">";
-		print_help_link("cache_life_help", "qm");
-		print $pgv_lang["cache_life"];
-		print "</td><td class=\"optionbox\">";
-		print "<input type='number' name='cache' size='2' value='{$config['cache']}' min='-1' max='30' />";
-		print "</td></tr>";
-	}
-	// Cache file life is not configurable by user:  anything other than "no cache" doesn't make sense
-	print "<input type='hidden' name='cache' value='{$config['cache']}' />";
-}
-
 ?>

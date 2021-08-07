@@ -48,11 +48,6 @@ if (!isset($action)) $action="";
 
 print_header($pgv_lang["administration"]);
 
-$d_pgv_changes = "";
-if (count($pgv_changes) > 0) {
-	$d_pgv_changes = "<a href=\"javascript:;\" onclick=\"window.open('edit_changes.php','_blank','width=600,height=500,resizable=1,scrollbars=1'); return false;\">" . $pgv_lang["accept_changes"] . "</a>\n";
-}
-
 if (!isset($logfilename)) {
 	$logfilename = "";
 }
@@ -177,8 +172,24 @@ echo PGV_JS_START, 'function showchanges() {window.location.reload();}', PGV_JS_
 		<td class="optionbox width50"><?php print_help_link("help_edit_merge.php", "qm"); ?><a href="edit_merge.php"><?php echo $pgv_lang["merge_records"]; ?></a></td>
 	</tr>
 	<tr>
-		<td class="optionbox width50"><?php if (PGV_USER_IS_ADMIN) { print_help_link("help_dir_editor.php", "qm"); echo "<a href=\"dir_editor.php\">", $pgv_lang["index_dir_cleanup"], "</a>"; } ?>&nbsp;</td>
-		<td class="optionbox width50"><?php if ($d_pgv_changes != "") echo $d_pgv_changes; else echo "&nbsp;"; ?></td>
+		<td class="optionbox width50">
+			<?php 
+			if (PGV_USER_IS_ADMIN) { 
+				print_help_link("help_dir_editor.php", "qm"); 
+				echo "<a href=\"dir_editor.php\">", $pgv_lang["index_dir_cleanup"], "</a>"; 
+			} 
+			?>
+			&nbsp;
+		</td>
+		<td class="optionbox width50">
+			<?php 
+			if (count($pgv_changes) > 0 && PGV_USER_CAN_ACCEPT) {
+				print_help_link("review_changes_help", "qm");
+				echo "<a href='javascript:;' onclick=\"window.open('edit_changes.php?popup=y','_blank','width=600,height=500,resizable=1,scrollbars=1'); return false;\">" . $pgv_lang["review_changes"] . "</a>\n";
+			}
+			?>
+			&nbsp;
+		</td>
 	</tr>
 <?php if (PGV_USER_GEDCOM_ADMIN && is_dir(PGV_ROOT.'modules/batch_update')) { ?>
 	<tr>
