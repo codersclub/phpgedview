@@ -3,7 +3,7 @@
 * System for generating menus.
 *
 * phpGedView: Genealogy Viewer
-* Copyright (C) 2002 to 2020 PGV Development Team. All rights reserved.
+* Copyright (C) 2002 to 2021 PGV Development Team. All rights reserved.
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -90,6 +90,7 @@ class MenuBar
 	static function getMygedviewMenu() {
 		global $TEXT_DIRECTION, $PGV_IMAGE_DIR, $PGV_IMAGES, $pgv_lang;
 		global $PEDIGREE_FULL_DETAILS, $PEDIGREE_LAYOUT, $USE_QUICK_UPDATE;
+		global $pgv_changes;
 		if ($TEXT_DIRECTION=="rtl") $ff="_rtl"; else $ff="";
 
 		$showFull = ($PEDIGREE_FULL_DETAILS) ? 1 : 0;
@@ -171,6 +172,14 @@ class MenuBar
 				$submenu->addIcon($PGV_IMAGE_DIR."/".$PGV_IMAGES["admin"]["small"]);
 			$submenu->addClass("submenuitem$ff", "submenuitem_hover$ff", "", "icon_small_admin");
 			$menu->addSubmenu($submenu);
+			//-- review changes submenu
+			if (count($pgv_changes) > 0 && PGV_USER_CAN_ACCEPT) {
+				$submenu = new Menu($pgv_lang["review_changes"], "edit_changes.php");
+				if (!empty($PGV_IMAGES["admin"]["small"]))
+					$submenu->addIcon($PGV_IMAGE_DIR."/".$PGV_IMAGES["admin"]["small"]);
+				$submenu->addClass("submenuitem$ff", "submenuitem_hover$ff", "", "icon_small_admin");
+				$menu->addSubmenu($submenu);
+			}
 			//-- user_admin submenu
 			if (PGV_USER_IS_ADMIN) {
 				$submenu = new Menu($pgv_lang["user_admin"], "useradmin.php");

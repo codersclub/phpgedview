@@ -227,6 +227,7 @@ switch($step) {
 		if (isset($_POST["NEW_PGV_SMTP_FROM_NAME"])) $_SESSION['install_config']['PGV_SMTP_FROM_NAME'] = $_POST["NEW_PGV_SMTP_FROM_NAME"];
 		if (isset($_POST['NEW_ALLOW_USER_THEMES'])) $_SESSION['install_config']['ALLOW_USER_THEMES'] = $_POST['NEW_ALLOW_USER_THEMES']=="yes"?true:false;
 		if (isset($_POST['NEW_LOGFILE_CREATE'])) $_SESSION['install_config']['LOGFILE_CREATE'] = $_POST['NEW_LOGFILE_CREATE'];
+		if (isset($_POST['NEW_REMINDER_FREQ'])) $_SESSION['install_config']['REMINDER_FREQ'] = $_POST['NEW_REMINDER_FREQ'];
 		if (isset($_POST['NEW_SERVER_URL'])) {
 			$temp = trim($_POST['NEW_SERVER_URL']);
 			if ($temp!='') $temp = trim($temp,'/').'/';		// Ensure presence of trailing "/"
@@ -730,7 +731,7 @@ function printDBForm() {
 
 function printConfigForm(){
 	global $TEXT_DIRECTION, $PGV_DXHTMLTAB_COLORS, $PGV_STORE_MESSAGES, $USE_REGISTRATION_MODULE, $REQUIRE_ADMIN_AUTH_REGISTRATION;
-	global $ALLOW_CHANGE_GEDCOM, $PGV_SIMPLE_MAIL, $ALLOW_USER_THEMES, $LOGFILE_CREATE, $SERVER_URL;
+	global $ALLOW_CHANGE_GEDCOM, $PGV_SIMPLE_MAIL, $ALLOW_USER_THEMES, $LOGFILE_CREATE, $REMINDER_FREQ, $SERVER_URL;
 	global $PGV_SMTP_ACTIVE, $PGV_SMTP_DEBUG; 
 	global $PGV_SMTP_HOST, $PGV_SMTP_HELO, $PGV_SMTP_PORT, $PGV_SMTP_AUTH, $PGV_SMTP_AUTH_USER, $PGV_SMTP_AUTH_PASS, $PGV_SMTP_SSL, $PGV_SMTP_FROM_NAME;
 	global $LOGIN_URL, $PGV_SESSION_SAVE_PATH, $PGV_SESSION_TIME, $PGV_MEMORY_LIMIT, $MAX_VIEWS;
@@ -749,6 +750,7 @@ function printConfigForm(){
 	if (isset($_SESSION['install_config']['PGV_SIMPLE_MAIL'])) $PGV_SIMPLE_MAIL = $_SESSION['install_config']['PGV_SIMPLE_MAIL'];
 	if (isset($_SESSION['install_config']['ALLOW_USER_THEMES'])) $ALLOW_USER_THEMES = $_SESSION['install_config']['ALLOW_USER_THEMES'];
 	if (isset($_SESSION['install_config']['LOGFILE_CREATE'])) $LOGFILE_CREATE = $_SESSION['install_config']['LOGFILE_CREATE'];
+	if (isset($_SESSION['install_config']['REMINDER_FREQ'])) $REMINDER_FREQ = $_SESSION['install_config']['REMINDER_FREQ'];
 	if (isset($_SESSION['install_config']['SERVER_URL'])) $SERVER_URL = $_SESSION['install_config']['SERVER_URL'];
 	if (isset($_SESSION['install_config']['LOGIN_URL'])) $LOGIN_URL = $_SESSION['install_config']['LOGIN_URL'];
 	if (isset($_SESSION['install_config']['PGV_SMTP_ACTIVE'])) $PGV_SMTP_ACTIVE = $_SESSION['install_config']['PGV_SMTP_ACTIVE'];
@@ -874,6 +876,12 @@ function printConfigForm(){
 						<option value="monthly" <?php if ($LOGFILE_CREATE=="monthly") print "selected=\"selected\""; ?>><?php print $pgv_lang["monthly"];?></option>
 						<option value="yearly" <?php if ($LOGFILE_CREATE=="yearly") print "selected=\"selected\""; ?>><?php print $pgv_lang["yearly"];?></option>
 					</select>
+				</td>
+			</tr>
+			<tr>
+				<td class="descriptionbox wrap width30"><?php print_help_link("REMINDER_FREQ_help", "qm", "REMINDER_FREQ"); print $pgv_lang["REMINDER_FREQ"];?></td>
+				<td class="optionbox">
+					<input type='number' name='NEW_REMINDER_FREQ' tabindex='<?php $i++; print $i?>' value='<?php print $REMINDER_FREQ ?>' size='2' min='0' max='7' />
 				</td>
 			</tr>
 			<tr>

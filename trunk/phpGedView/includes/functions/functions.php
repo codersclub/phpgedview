@@ -2695,21 +2695,24 @@ function write_changes() {
 			}
 		}
 	}
+	$changestext .= "?>\n";	
 	$fp = fopen($INDEX_DIRECTORY."pgv_changes.php", "wb");
-	if ($fp===false) {
+	if ($fp === false) {
 		print "ERROR 6: Unable to open changes file resource.  Unable to complete request.\n";
+		$mutex->Release();		//-- release the mutex acquired above
+		AddToLog("pgv_changes.php NOT updated");
 		return false;
 	}
 	$fw = fwrite($fp, $changestext);
-	if ($fw===false) {
+	if ($fw === false) {
 		print "ERROR 7: Unable to write to changes file.\n";
 		fclose($fp);
+		$mutex->Release();		//-- release the mutex acquired above
+		AddToLog("pgv_changes.php NOT updated");
 		return false;
 	}
 	fclose($fp);
-
-	//-- release the mutex acquired above
-	$mutex->Release();
+	$mutex->Release();		//-- release the mutex acquired above
 
 	AddToLog("pgv_changes.php updated");
 	return true;

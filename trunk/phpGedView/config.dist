@@ -51,7 +51,7 @@ $REQUIRE_ADMIN_AUTH_REGISTRATION = true;		//-- require an admin user to authoriz
 $ALLOW_USER_THEMES = true;						//-- Allow user to set their own theme
 $ALLOW_CHANGE_GEDCOM = true;					//-- A true value will provide a link in the footer to allow users to change the gedcom they are viewing
 $LOGFILE_CREATE = "monthly";					//-- set how often new log files are created, "none" turns logs off, "daily", "weekly", "monthly", "yearly"
-$LOG_LANG_ERROR = false;						//-- Set if non-existing language variables should be written to a logfile
+$REMINDER_FREQ = 1;								//-- How frequently should "Review Changes" reminders be sent (in days)
 $PGV_SESSION_SAVE_PATH = "";					//-- Path to save PHP session Files -- DO NOT MODIFY unless you know what you are doing
 												//-- leaving it blank will use the default path for your php configuration as found in php.ini
 $PGV_SESSION_TIME = "7200";						//-- number of seconds to wait before an inactive session times out

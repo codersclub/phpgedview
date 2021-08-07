@@ -14,6 +14,7 @@ The session.php script uses this information to populate the constants : PGV_VER
 =====================================================================
 
 Version 4.3.1
+ - Changed: Various improvements to the Review Changes sub-system (canajun2eh)
  - Changed: Allow GEDCOM configuration to set SOSA number width in Booklet view of Descendancy Chart (canajun2eh)
  - Changed: Improvements to User Administration (canajun2eh)
  - Changed: Improve handling of Comment and Comment Expiry fields in User Admin (canajun2eh)
