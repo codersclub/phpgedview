@@ -5,9 +5,9 @@
 	<PGVRDescription>Prints an Ahnentafel report for the selected individual</PGVRDescription>
 	<PGVRInput name="pid" lookup="INDI" type="text"><PGVRvar var="pgv_lang[enter_pid]" /></PGVRInput>
 	<PGVRInput name="maxgen" type="select" options="3,4,5,6,7,8,9,*"><PGVRvar var="pgv_lang[generations]" /></PGVRInput>
-	<PGVRInput name="sources" type="checkbox" default="0"><PGVRvar var="pgv_lang[show_sources]" /></PGVRInput>
-	<PGVRInput name="notes" type="checkbox" default="1"><PGVRvar var="pgv_lang[show_notes]" /></PGVRInput>
-	<PGVRInput name="abbrNote" type="checkbox" default="1"><PGVRvar var="pgv_lang[show_abbr_notes]" /></PGVRInput>
+	<PGVRInput name="showSources" type="checkbox" default="0"><PGVRvar var="pgv_lang[show_sources]" /></PGVRInput>
+	<PGVRInput name="showNotes" type="checkbox" default="1"><PGVRvar var="pgv_lang[show_notes]" /></PGVRInput>
+	<PGVRInput name="showAbbrNotes" type="checkbox" default="1"><PGVRvar var="pgv_lang[show_abbr_notes]" /></PGVRInput>
 	<PGVRInput name="pageSize" type="select" default="GLOBALS[pageSizeDefault]" options="GLOBALS[pageSizeOptions]"><PGVRvar var="pgv_lang[page_size]" /></PGVRInput>
 	<PGVRInput name="fonts" type="select" default="GLOBALS[fontsDefault]" options="GLOBALS[fontsOptions]"><PGVRvar var="pgv_lang[font]"/></PGVRInput>
 
@@ -104,7 +104,7 @@
 							Individual, name... -->
 					<PGVRTextBox height="12" newline="1">
 						<PGVRText style="name"><PGVRGetPersonName id="" /> </PGVRText>
-						<PGVRif condition="$sources==1">
+						<PGVRif condition="$showSources==1">
 							<!-- print level 1 sources -->
 							<PGVRRepeatTag tag="SOUR">
 								<PGVRFootnote>
@@ -143,7 +143,7 @@
 									<PGVRvar var="pgv_lang[ahnentafel_born_f]" />
 								</PGVRif>
 							</PGVRText>
-							<PGVRif condition="$sources==1">
+							<PGVRif condition="$showSources==1">
 								<PGVRRepeatTag tag="BIRT:SOUR">
 									<PGVRFootnote>
 										<PGVRGedcom id="@SOUR">
@@ -181,7 +181,7 @@
 									<PGVRvar var="pgv_lang[ahnentafel_christened_f]" />
 								</PGVRif>
 							</PGVRText>
-							<PGVRif condition="$sources==1">
+							<PGVRif condition="$showSources==1">
 								<PGVRRepeatTag tag="CHR:SOUR">
 									<PGVRFootnote>
 										<PGVRGedcom id="@SOUR">
@@ -227,7 +227,7 @@
 												<PGVRvar var="pgv_lang[ahnentafel_married_f]" />
 											</PGVRif>
 										</PGVRText>
-										<PGVRif condition="$sources==1">
+										<PGVRif condition="$showSources==1">
 											<PGVRRepeatTag tag="MARR:SOUR">
 												<PGVRFootnote>
 													<PGVRGedcom id="@SOUR">
@@ -270,7 +270,7 @@
 									<PGVRvar var="pgv_lang[ahnentafel_died_f]" />
 								</PGVRif>
 							</PGVRText>
-							<PGVRif condition="$sources==1">
+							<PGVRif condition="$showSources==1">
 								<PGVRRepeatTag tag="DEAT:SOUR">
 									<PGVRFootnote>
 										<PGVRGedcom id="@SOUR">
@@ -306,7 +306,7 @@
 									<PGVRvar var="pgv_lang[ahnentafel_cremated_f]" />
 								</PGVRif>
 							</PGVRText>
-							<PGVRif condition="$sources==1">
+							<PGVRif condition="$showSources==1">
 								<PGVRRepeatTag tag="CREM:SOUR">
 									<PGVRFootnote>
 										<PGVRGedcom id="@SOUR">
@@ -356,7 +356,7 @@
 									<PGVRvar var="pgv_lang[ahnentafel_buried_f]" />
 								</PGVRif>
 							</PGVRText>
-							<PGVRif condition="$sources==1">
+							<PGVRif condition="$showSources==1">
 								<PGVRRepeatTag tag="BURI:SOUR">
 									<PGVRFootnote>
 										<PGVRGedcom id="@SOUR">
@@ -383,14 +383,14 @@
 							<PGVRSetVar name="printPronoun" value="$pronoun" />
 						</PGVRGedcom>
 					</PGVRTextBox>
-					<PGVRif condition="$notes==1">
+					<PGVRif condition="$showNotes==1">
 						<PGVRRepeatTag tag="NOTE">
 							<PGVRTextBox height="10" newline="1" padding="0" />
 							<PGVRCell left="30" newline="1" style="note">
-								<PGVRif condition="$abbrNote==1">
+								<PGVRif condition="$showAbbrNotes==1">
 									<PGVRGedcomValue tag="NOTE" truncate="0" />		<!-- 0: show abbreviated Note text -->
 								</PGVRif>
-								<PGVRif condition="$abbrNote==0">
+								<PGVRif condition="$showAbbrNotes==0">
 									<PGVRGedcomValue tag="NOTE" truncate="-1" />	<!-- -1: show full Note text -->
 								</PGVRif>
 							</PGVRCell>
