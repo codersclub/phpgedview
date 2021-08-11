@@ -5,7 +5,7 @@
 	<PGVRDescription>Prints a descendant chart in portrait mode</PGVRDescription>
 	<PGVRInput name="pid" lookup="INDI" type="text" default=""><PGVRvar var="pgv_lang[enter_pid]" /></PGVRInput>
 	<PGVRInput name="maxgen" type="select" options="3,4,5,6,7,8,9,*"><PGVRvar var="pgv_lang[generations]" /></PGVRInput>
-	<PGVRInput name="sources" type="checkbox" default="0"><PGVRvar var="pgv_lang[show_sources]" /></PGVRInput>
+	<PGVRInput name="showSources" type="checkbox" default="0"><PGVRvar var="pgv_lang[show_sources]" /></PGVRInput>
 	<PGVRInput name="pageSize" type="select" default="GLOBALS[pageSizeDefault]" options="GLOBALS[pageSizeOptions]"><PGVRvar var="pgv_lang[page_size]" /></PGVRInput>
 	<PGVRInput name="fonts" type="select" default="GLOBALS[fontsDefault]" options="GLOBALS[fontsOptions]"><PGVRvar var="pgv_lang[font]"/></PGVRInput>
 
@@ -62,7 +62,7 @@
 
 					<PGVRTextBox border="" height="40" newline="1">
 						<PGVRText style="name"><PGVRGetPersonName id="" /> </PGVRText>
-<!-- main -->			<PGVRif condition="$sources==1">
+<!-- main -->			<PGVRif condition="$showSources==1">
 							<!-- print level 1 sources -->
 							<PGVRRepeatTag tag="SOUR">
 								<PGVRFootnote>
@@ -107,7 +107,7 @@
 							<PGVRif condition="$gender=='female'">
 								<PGVRText style="text"> <PGVRvar var="pgv_lang[ahnentafel_born_f]" /> </PGVRText>
 							</PGVRif>
-							<PGVRif condition="$sources==1">
+							<PGVRif condition="$showSources==1">
 								<PGVRRepeatTag tag="BIRT:SOUR">
 									<PGVRFootnote>
 										<PGVRGedcom id="@SOUR">
@@ -139,7 +139,7 @@
 							<PGVRif condition="$gender=='female'">
 								<PGVRText style="text"> <PGVRvar var="pgv_lang[ahnentafel_died_f]" /> </PGVRText>
 							</PGVRif>
-							<PGVRif condition="$sources==1">
+							<PGVRif condition="$showSources==1">
 								<PGVRRepeatTag tag="DEAT:SOUR">
 									<PGVRFootnote>
 										<PGVRGedcom id="@SOUR">
@@ -176,7 +176,7 @@
 										</PGVRif>
 										<PGVRSetVar name="printPeriod" value="true" />
 										<PGVRText style="text"> <PGVRvar var="pgv_lang[ahnentafel_married_m]" /> </PGVRText>
-										<PGVRif condition="$sources==1">
+										<PGVRif condition="$showSources==1">
 											<PGVRRepeatTag tag="MARR:SOUR">
 												<PGVRFootnote>
 													<PGVRGedcom id="@SOUR">
@@ -194,7 +194,7 @@
 									<PGVRif condition="$marrExists=='true'">
 										<PGVRGedcom id="@WIFE">
 											<PGVRText style="name"> <PGVRGetPersonName id="" /> </PGVRText>
-<!-- wife -->									<PGVRif condition="$sources==1">
+<!-- wife -->									<PGVRif condition="$showSources==1">
 													<!-- print level 1 sources -->
 													<PGVRRepeatTag tag="SOUR">
 														<PGVRFootnote>
@@ -243,7 +243,7 @@
 										</PGVRif>
 										<PGVRSetVar name="printPeriod" value="true" />
 										<PGVRText style="text"> <PGVRvar var="pgv_lang[ahnentafel_married_f]" /> </PGVRText>
-										<PGVRif condition="$sources==1">
+										<PGVRif condition="$showSources==1">
 											<PGVRRepeatTag tag="MARR:SOUR">
 												<PGVRFootnote>
 													<PGVRGedcom id="@SOUR">
@@ -261,7 +261,7 @@
 									<PGVRif condition="$marrExists=='true'">
 										<PGVRGedcom id="@HUSB">
 											<PGVRText style="name"> <PGVRGetPersonName id="" /> </PGVRText>
-<!-- husband -->							<PGVRif condition="$sources==1">
+<!-- husband -->							<PGVRif condition="$showSources==1">
 												<!-- print level 1 sources -->
 												<PGVRRepeatTag tag="SOUR">
 													<PGVRFootnote>
@@ -331,7 +331,7 @@
 												</PGVRif>
 												<PGVRSetVar name="birtExist" value="true" />
 												<PGVRText style="text"> <PGVRvar var="pgv_lang[ahnentafel_born_f]" /> </PGVRText>
-												<PGVRif condition="$sources==1">
+												<PGVRif condition="$showSources==1">
 													<PGVRRepeatTag tag="BIRT:SOUR">
 														<PGVRFootnote>
 															<PGVRGedcom id="@SOUR">
@@ -362,7 +362,7 @@
 													<PGVRText style="text"> <PGVRvar var="pgv_lang[and]" /></PGVRText>
 												</PGVRif>
 												<PGVRText style="text"> <PGVRvar var="pgv_lang[ahnentafel_died_f]" /> </PGVRText>
-												<PGVRif condition="$sources==1">
+												<PGVRif condition="$showSources==1">
 													<PGVRRepeatTag tag="DEAT:SOUR">
 														<PGVRFootnote>
 															<PGVRGedcom id="@SOUR">
@@ -402,7 +402,7 @@
 												</PGVRif>
 												<PGVRSetVar name="birtExist" value="true" />
 												<PGVRText style="text"> <PGVRvar var="pgv_lang[ahnentafel_born_m]" /> </PGVRText>
-												<PGVRif condition="$sources==1">
+												<PGVRif condition="$showSources==1">
 													<PGVRRepeatTag tag="BIRT:SOUR">
 														<PGVRFootnote>
 															<PGVRGedcom id="@SOUR">
@@ -433,7 +433,7 @@
 													<PGVRText style="text"> <PGVRvar var="pgv_lang[and]" /></PGVRText>
 												</PGVRif>
 												<PGVRText style="text"> <PGVRvar var="pgv_lang[ahnentafel_died_m]" /> </PGVRText>
-												<PGVRif condition="$sources==1">
+												<PGVRif condition="$showSources==1">
 													<PGVRRepeatTag tag="DEAT:SOUR">
 														<PGVRFootnote>
 															<PGVRGedcom id="@SOUR">
@@ -527,7 +527,7 @@
 										<PGVRTextBox height="20" newline="1">
 											<PGVRText style="label1"><PGVRvar var="familyChildRoman" /></PGVRText>
 											<PGVRText style="name">  <PGVRGetPersonName id="" /> </PGVRText>
-<!-- children -->							<PGVRif condition="$sources==1">
+<!-- children -->							<PGVRif condition="$showSources==1">
 												<!-- print level 1 sources -->
 												<PGVRRepeatTag tag="SOUR">
 													<PGVRFootnote>

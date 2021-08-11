@@ -9,10 +9,10 @@
 
 	<PGVRTitle><PGVRvar var="pgv_lang[family_group_report]" /></PGVRTitle>
 	<PGVRInput name="famid" lookup="FAM" type="text" default=""><PGVRvar var="pgv_lang[enter_famid]" /></PGVRInput>
-	<PGVRInput name="sources" type="checkbox" default="0"><PGVRvar var="pgv_lang[show_sources]" /></PGVRInput>
-	<PGVRInput name="notes" type="checkbox" default="1"><PGVRvar var="pgv_lang[show_notes]" /></PGVRInput>
-	<PGVRInput name="abbrNote" type="checkbox" default="1"><PGVRvar var="pgv_lang[show_abbr_notes]" /></PGVRInput>
-	<PGVRInput name="photos" type="checkbox" default="1"><PGVRvar var="pgv_lang[show_photos]" /></PGVRInput>
+	<PGVRInput name="showSources" type="checkbox" default="0"><PGVRvar var="pgv_lang[show_sources]" /></PGVRInput>
+	<PGVRInput name="showNotes" type="checkbox" default="1"><PGVRvar var="pgv_lang[show_notes]" /></PGVRInput>
+	<PGVRInput name="showAbbrNotes" type="checkbox" default="1"><PGVRvar var="pgv_lang[show_abbr_notes]" /></PGVRInput>
+	<PGVRInput name="showPhotos" type="checkbox" default="1"><PGVRvar var="pgv_lang[show_photos]" /></PGVRInput>
 	<PGVRInput name="colors" type="checkbox" default="1"><PGVRvar var="pgv_lang[use_colors]" /></PGVRInput>
 	<PGVRInput name="pageSize" type="select" default="GLOBALS[pageSizeDefault]" options="GLOBALS[pageSizeOptions]"><PGVRvar var="pgv_lang[page_size]" /></PGVRInput>
 	<PGVRInput name="fonts" type="select" default="GLOBALS[fontsDefault]" options="GLOBALS[fontsOptions]"><PGVRvar var="pgv_lang[font]"/></PGVRInput>
@@ -77,7 +77,7 @@
 	<PGVRSetVar name="dwidth" value="185" />
 	<PGVRSetVar name="pwidth" value="436" />
 	<!-- reset the widths if the photos are shown -->
-	<PGVRif condition="$photos==1">
+	<PGVRif condition="$showPhotos==1">
 		<PGVRSetVar name="width" value="433" />
 		<PGVRSetVar name="width1" value="418" />
 		<PGVRSetVar name="width2" value="233" />
@@ -100,7 +100,7 @@
 			<PGVRGedcom id="$famid">
 				<!-- Print the Family name with Level 1 sources -->
 				<!-- Show all family images -->
-				<PGVRif condition="$photos==1">
+				<PGVRif condition="$showPhotos==1">
 					<!-- This is an image not a text, so don't use text padding
 					Reset also the last height after all the images has been printed
 					set pagecheck to 0, the image function check is too
@@ -118,7 +118,7 @@
 					<PGVRTextBox bgcolor="$malebox_bgcolor" border="1" width="$width" newline="1">
 						<PGVRText color="$tcolor" style="text"><PGVRvar var="pgv_lang[husband]" />  </PGVRText>
 						<PGVRText color="$tcolor" style="name"><PGVRGetPersonName id="" /> </PGVRText>
-						<PGVRif condition="$sources==1">
+						<PGVRif condition="$showSources==1">
 							<!-- print level 1 sources -->
 							<PGVRRepeatTag tag="SOUR">
 								<PGVRFootnote>
@@ -153,7 +153,7 @@
 						<PGVRTextBox bgcolor="$factbox_bgcolor" border="1" left="15" width="$dwidth">
 							<PGVRText color="$tcolor" style="fact"><PGVRvar var="factarray[BIRT]" />  </PGVRText>
 							<PGVRText color="$tcolor" style="text"><PGVRGedcomValue tag="BIRT:DATE" /> </PGVRText>
-							<PGVRif condition="$sources==1">
+							<PGVRif condition="$showSources==1">
 								<PGVRRepeatTag tag="BIRT:SOUR">
 									<PGVRFootnote>
 										<PGVRGedcom id="@SOUR">
@@ -178,7 +178,7 @@
 						<PGVRTextBox bgcolor="$factbox_bgcolor" border="1" left="15" width="$dwidth">
 							<PGVRText color="$tcolor" style="fact"><PGVRvar var="factarray[CHR]" />  </PGVRText>
 							<PGVRText color="$tcolor" style="text"><PGVRGedcomValue tag="CHR:DATE" /> </PGVRText>
-							<PGVRif condition="$sources==1">
+							<PGVRif condition="$showSources==1">
 								<PGVRRepeatTag tag="CHR:SOUR">
 									<PGVRFootnote>
 										<PGVRGedcom id="@SOUR">
@@ -203,7 +203,7 @@
 						<PGVRTextBox bgcolor="$factbox_bgcolor" border="1" left="15" width="$dwidth">
 							<PGVRText color="$tcolor" style="fact"><PGVRvar var="factarray[BAPM]" />  </PGVRText>
 							<PGVRText color="$tcolor" style="text"><PGVRGedcomValue tag="BAPM:DATE" /> </PGVRText>
-							<PGVRif condition="$sources==1">
+							<PGVRif condition="$showSources==1">
 								<PGVRRepeatTag tag="BAPM:SOUR">
 									<PGVRFootnote>
 										<PGVRGedcom id="@SOUR">
@@ -228,7 +228,7 @@
 						<PGVRTextBox bgcolor="$factbox_bgcolor" border="1" left="15" width="$dwidth">
 							<PGVRText color="$tcolor" style="fact"><PGVRvar var="factarray[@fact]" />  </PGVRText>
 							<PGVRText color="$tcolor" style="text"><PGVRGedcomValue tag="@fact:DATE" /> </PGVRText>
-							<PGVRif condition="$sources==1">
+							<PGVRif condition="$showSources==1">
 								<PGVRRepeatTag tag="@fact:SOUR">
 									<PGVRFootnote>
 										<PGVRGedcom id="@SOUR">
@@ -264,7 +264,7 @@
 						<PGVRTextBox bgcolor="$factbox_bgcolor" border="1" left="15" width="$dwidth">
 							<PGVRText color="$tcolor" style="fact"><PGVRvar var="factarray[DEAT]" />  </PGVRText>
 							<PGVRText color="$tcolor" style="text"><PGVRGedcomValue tag="DEAT:DATE" /> </PGVRText>
-							<PGVRif condition="$sources==1">
+							<PGVRif condition="$showSources==1">
 								<PGVRRepeatTag tag="DEAT:SOUR">
 									<PGVRFootnote>
 										<PGVRGedcom id="@SOUR">
@@ -290,7 +290,7 @@
 						<PGVRTextBox bgcolor="$factbox_bgcolor" border="1" left="15" width="$dwidth">
 							<PGVRText color="$tcolor" style="fact"><PGVRvar var="factarray[CREM]" />  </PGVRText>
 							<PGVRText color="$tcolor" style="text"><PGVRGedcomValue tag="CREM:DATE" /> </PGVRText>
-							<PGVRif condition="$sources==1">
+							<PGVRif condition="$showSources==1">
 								<PGVRRepeatTag tag="CREM:SOUR">
 									<PGVRFootnote>
 										<PGVRGedcom id="@SOUR">
@@ -326,7 +326,7 @@
 						<PGVRTextBox bgcolor="$factbox_bgcolor" border="1" left="15" width="$dwidth">
 							<PGVRText color="$tcolor" style="fact"><PGVRvar var="factarray[BURI]" />  </PGVRText>
 							<PGVRText color="$tcolor" style="text"><PGVRGedcomValue tag="BURI:DATE" /> </PGVRText>
-							<PGVRif condition="$sources==1">
+							<PGVRif condition="$showSources==1">
 								<PGVRRepeatTag tag="BURI:SOUR">
 									<PGVRFootnote>
 										<PGVRGedcom id="@SOUR">
@@ -352,7 +352,7 @@
 							<PGVRTextBox bgcolor="$factbox_bgcolor" border="1" left="15" width="$dwidth">
 								<PGVRText color="$tcolor" style="fact"><PGVRvar var="factarray[MARR]" />  </PGVRText>
 								<PGVRText color="$tcolor" style="text"><PGVRGedcomValue tag="MARR:DATE" /> </PGVRText>
-								<PGVRif condition="$sources==1">
+								<PGVRif condition="$showSources==1">
 									<PGVRRepeatTag tag="MARR:SOUR">
 										<PGVRFootnote>
 											<PGVRGedcom id="@SOUR">
@@ -377,7 +377,7 @@
 							<PGVRTextBox bgcolor="$factbox_bgcolor" border="1" left="15" width="$dwidth">
 								<PGVRText color="$tcolor" style="fact"><PGVRvar var="factarray[@fact]" />  </PGVRText>
 								<PGVRText color="$tcolor" style="text"><PGVRGedcomValue tag="@fact:DATE" /> </PGVRText>
-								<PGVRif condition="$sources==1">
+								<PGVRif condition="$showSources==1">
 									<PGVRRepeatTag tag="@fact:SOUR">
 										<PGVRFootnote>
 											<PGVRGedcom id="@SOUR">
@@ -437,15 +437,15 @@
 						</PGVRTextBox>
 					</PGVRGedcom>
 					<!-- print any notes for the husband -->
-					<PGVRif condition="$notes==1">
+					<PGVRif condition="$showNotes==1">
 						<PGVRRepeatTag tag="NOTE">
 							<PGVRTextBox bgcolor="$factbox_bgcolor" border="1" left="15" width="$width1" newline="1">
 								<PGVRText color="$tcolor" style="name"><PGVRvar var="factarray[NOTE]" />  </PGVRText>
 								<PGVRText color="$tcolor" style="text">
-									<PGVRif condition="$abbrNote==1">
+									<PGVRif condition="$showAbbrNotes==1">
 										<PGVRGedcomValue tag="NOTE" truncate="0" />		<!-- 0: show abbreviated Note text -->
 									</PGVRif>
-									<PGVRif condition="$abbrNote==0">
+									<PGVRif condition="$showAbbrNotes==0">
 										<PGVRGedcomValue tag="NOTE" truncate="-1" />	<!-- -1: show full Note text -->
 									</PGVRif>
 								</PGVRText>
@@ -462,7 +462,7 @@
 					<PGVRTextBox bgcolor="$femalebox_bgcolor" border="1" width="$width" newline="1">
 						<PGVRText color="$tcolor" style="text"><PGVRvar var="pgv_lang[wife]" />  </PGVRText>
 						<PGVRText color="$tcolor" style="name"><PGVRGetPersonName id="" /> </PGVRText>
-						<PGVRif condition="$sources==1">
+						<PGVRif condition="$showSources==1">
 							<!-- print level 1 sources -->
 							<PGVRRepeatTag tag="SOUR">
 								<PGVRFootnote>
@@ -497,7 +497,7 @@
 						<PGVRTextBox bgcolor="$factbox_bgcolor" border="1" left="15" width="$dwidth">
 							<PGVRText color="$tcolor" style="fact"><PGVRvar var="factarray[BIRT]" />  </PGVRText>
 							<PGVRText color="$tcolor" style="text"><PGVRGedcomValue tag="BIRT:DATE" /> </PGVRText>
-							<PGVRif condition="$sources==1">
+							<PGVRif condition="$showSources==1">
 								<PGVRRepeatTag tag="BIRT:SOUR">
 									<PGVRFootnote>
 										<PGVRGedcom id="@SOUR">
@@ -522,7 +522,7 @@
 						<PGVRTextBox bgcolor="$factbox_bgcolor" border="1" left="15" width="$dwidth">
 							<PGVRText color="$tcolor" style="fact"><PGVRvar var="factarray[CHR]" />  </PGVRText>
 							<PGVRText color="$tcolor" style="text"><PGVRGedcomValue tag="CHR:DATE" /> </PGVRText>
-							<PGVRif condition="$sources==1">
+							<PGVRif condition="$showSources==1">
 								<PGVRRepeatTag tag="CHR:SOUR">
 									<PGVRFootnote>
 										<PGVRGedcom id="@SOUR">
@@ -547,7 +547,7 @@
 						<PGVRTextBox bgcolor="$factbox_bgcolor" border="1" left="15" width="$dwidth">
 							<PGVRText color="$tcolor" style="fact"><PGVRvar var="factarray[BAPM]" />  </PGVRText>
 							<PGVRText color="$tcolor" style="text"><PGVRGedcomValue tag="BAPM:DATE" /> </PGVRText>
-							<PGVRif condition="$sources==1">
+							<PGVRif condition="$showSources==1">
 								<PGVRRepeatTag tag="BAPM:SOUR">
 									<PGVRFootnote>
 										<PGVRGedcom id="@SOUR">
@@ -572,7 +572,7 @@
 						<PGVRTextBox bgcolor="$factbox_bgcolor" border="1" left="15" width="$dwidth">
 							<PGVRText color="$tcolor" style="fact"><PGVRvar var="factarray[@fact]" />  </PGVRText>
 							<PGVRText color="$tcolor" style="text"><PGVRGedcomValue tag="@fact:DATE" /> </PGVRText>
-							<PGVRif condition="$sources==1">
+							<PGVRif condition="$showSources==1">
 								<PGVRRepeatTag tag="@fact:SOUR">
 									<PGVRFootnote>
 										<PGVRGedcom id="@SOUR">
@@ -608,7 +608,7 @@
 						<PGVRTextBox bgcolor="$factbox_bgcolor" border="1" left="15" width="$dwidth">
 							<PGVRText color="$tcolor" style="fact"><PGVRvar var="factarray[DEAT]" />  </PGVRText>
 							<PGVRText color="$tcolor" style="text"><PGVRGedcomValue tag="DEAT:DATE" /> </PGVRText>
-							<PGVRif condition="$sources==1">
+							<PGVRif condition="$showSources==1">
 								<PGVRRepeatTag tag="DEAT:SOUR">
 									<PGVRFootnote>
 										<PGVRGedcom id="@SOUR">
@@ -634,7 +634,7 @@
 						<PGVRTextBox bgcolor="$factbox_bgcolor" border="1" left="15" width="$dwidth">
 							<PGVRText color="$tcolor" style="fact"><PGVRvar var="factarray[CREM]" />  </PGVRText>
 							<PGVRText color="$tcolor" style="text"><PGVRGedcomValue tag="CREM:DATE" /> </PGVRText>
-							<PGVRif condition="$sources==1">
+							<PGVRif condition="$showSources==1">
 								<PGVRRepeatTag tag="CREM:SOUR">
 									<PGVRFootnote>
 										<PGVRGedcom id="@SOUR">
@@ -670,7 +670,7 @@
 						<PGVRTextBox bgcolor="$factbox_bgcolor" border="1" left="15" width="$dwidth">
 							<PGVRText color="$tcolor" style="fact"><PGVRvar var="factarray[BURI]" />  </PGVRText>
 							<PGVRText color="$tcolor" style="text"><PGVRGedcomValue tag="BURI:DATE" /> </PGVRText>
-							<PGVRif condition="$sources==1">
+							<PGVRif condition="$showSources==1">
 								<PGVRRepeatTag tag="BURI:SOUR">
 									<PGVRFootnote>
 										<PGVRGedcom id="@SOUR">
@@ -719,15 +719,15 @@
 					</PGVRGedcom>
 
 					<!-- print the wife's notes -->
-					<PGVRif condition="$notes==1">
+					<PGVRif condition="$showNotes==1">
 						<PGVRRepeatTag tag="NOTE">
 							<PGVRTextBox bgcolor="$factbox_bgcolor" border="1" left="15" width="$width1" newline="1">
 								<PGVRText color="$tcolor" style="name"><PGVRvar var="factarray[NOTE]" />  </PGVRText>
 								<PGVRText color="$tcolor" style="text">
-									<PGVRif condition="$abbrNote==1">
+									<PGVRif condition="$showAbbrNotes==1">
 										<PGVRGedcomValue tag="NOTE" truncate="0" />		<!-- 0: show abbreviated Note text -->
 									</PGVRif>
-									<PGVRif condition="$abbrNote==0">
+									<PGVRif condition="$showAbbrNotes==0">
 										<PGVRGedcomValue tag="NOTE" truncate="-1" />	<!-- -1: show full Note text -->
 									</PGVRif>
 								</PGVRText>
@@ -753,7 +753,7 @@
 							<PGVRTextBox bgcolor="$malebox_bgcolor" border="1" left="15" newline="1" width="$width1">
 								<PGVRText color="$tcolor" style="text"><PGVRvar var="pgv_lang[son]" />  </PGVRText>
 								<PGVRText color="$tcolor" style="name"><PGVRGetPersonName id="" /> </PGVRText>
-								<PGVRif condition="$sources==1">
+								<PGVRif condition="$showSources==1">
 									<!-- print level 1 sources -->
 									<PGVRRepeatTag tag="SOUR">
 										<PGVRFootnote>
@@ -788,7 +788,7 @@
 							<PGVRTextBox bgcolor="$femalebox_bgcolor" border="1" left="15" newline="1" width="$width1">
 								<PGVRText color="$tcolor" style="text"><PGVRvar var="pgv_lang[daughter]" />  </PGVRText>
 								<PGVRText color="$tcolor" style="name"><PGVRGetPersonName id="" /> </PGVRText>
-								<PGVRif condition="$sources==1">
+								<PGVRif condition="$showSources==1">
 									<!-- print level 1 sources -->
 									<PGVRRepeatTag tag="SOUR">
 										<PGVRFootnote>
@@ -823,7 +823,7 @@
 							<PGVRTextBox bgcolor="$unknowngenderbox_bgcolor" border="1" left="15" newline="1" width="$width1">
 								<PGVRText color="$tcolor" style="text"><PGVRvar var="factarray[SEX]" /> <PGVRvar var="pgv_lang[stat_unknown]" />  </PGVRText>
 								<PGVRText color="$tcolor" style="name"><PGVRGetPersonName id="" /> </PGVRText>
-								<PGVRif condition="$sources==1">
+								<PGVRif condition="$showSources==1">
 									<!-- print level 1 sources -->
 									<PGVRRepeatTag tag="SOUR">
 										<PGVRFootnote>
@@ -859,7 +859,7 @@
 							<PGVRTextBox bgcolor="$factbox_bgcolor" border="1" left="15" width="$dwidth">
 								<PGVRText color="$tcolor" style="fact"><PGVRvar var="factarray[BIRT]" />  </PGVRText>
 								<PGVRText color="$tcolor" style="text"><PGVRGedcomValue tag="BIRT:DATE" /> </PGVRText>
-								<PGVRif condition="$sources==1">
+								<PGVRif condition="$showSources==1">
 									<PGVRRepeatTag tag="BIRT:SOUR">
 										<PGVRFootnote>
 											<PGVRGedcom id="@SOUR">
@@ -884,7 +884,7 @@
 							<PGVRTextBox bgcolor="$factbox_bgcolor" border="1" left="15" width="$dwidth">
 								<PGVRText color="$tcolor" style="fact"><PGVRvar var="factarray[CHR]" />  </PGVRText>
 								<PGVRText color="$tcolor" style="text"><PGVRGedcomValue tag="CHR:DATE" /> </PGVRText>
-								<PGVRif condition="$sources==1">
+								<PGVRif condition="$showSources==1">
 									<PGVRRepeatTag tag="CHR:SOUR">
 										<PGVRFootnote>
 											<PGVRGedcom id="@SOUR">
@@ -909,7 +909,7 @@
 							<PGVRTextBox bgcolor="$factbox_bgcolor" border="1" left="15" width="$dwidth">
 								<PGVRText color="$tcolor" style="fact"><PGVRvar var="factarray[BAPM]" />  </PGVRText>
 								<PGVRText color="$tcolor" style="text"><PGVRGedcomValue tag="BAPM:DATE" /> </PGVRText>
-								<PGVRif condition="$sources==1">
+								<PGVRif condition="$showSources==1">
 									<PGVRRepeatTag tag="BAPM:SOUR">
 										<PGVRFootnote>
 											<PGVRGedcom id="@SOUR">
@@ -934,7 +934,7 @@
 							<PGVRTextBox bgcolor="$factbox_bgcolor" border="1" left="15" width="$dwidth">
 								<PGVRText color="$tcolor" style="fact"><PGVRvar var="factarray[@fact]" />  </PGVRText>
 								<PGVRText color="$tcolor" style="text"><PGVRGedcomValue tag="@fact:DATE" /> </PGVRText>
-								<PGVRif condition="$sources==1">
+								<PGVRif condition="$showSources==1">
 									<PGVRRepeatTag tag="@fact:SOUR">
 										<PGVRFootnote>
 											<PGVRGedcom id="@SOUR">
@@ -976,7 +976,7 @@
 							<PGVRTextBox bgcolor="$factbox_bgcolor" border="1" left="15" width="$dwidth">
 								<PGVRText color="$tcolor" style="fact"><PGVRvar var="factarray[DEAT]" />  </PGVRText>
 								<PGVRText color="$tcolor" style="text"><PGVRGedcomValue tag="DEAT:DATE" /> </PGVRText>
-								<PGVRif condition="$sources==1">
+								<PGVRif condition="$showSources==1">
 									<PGVRRepeatTag tag="DEAT:SOUR">
 										<PGVRFootnote>
 											<PGVRGedcom id="@SOUR">
@@ -1002,7 +1002,7 @@
 							<PGVRTextBox bgcolor="$factbox_bgcolor" border="1" left="15" width="$dwidth">
 								<PGVRText color="$tcolor" style="fact"><PGVRvar var="factarray[CREM]" />  </PGVRText>
 								<PGVRText color="$tcolor" style="text"><PGVRGedcomValue tag="CREM:DATE" /> </PGVRText>
-								<PGVRif condition="$sources==1">
+								<PGVRif condition="$showSources==1">
 									<PGVRRepeatTag tag="CREM:SOUR">
 										<PGVRFootnote>
 											<PGVRGedcom id="@SOUR">
@@ -1038,7 +1038,7 @@
 							<PGVRTextBox bgcolor="$factbox_bgcolor" border="1" left="15" width="$dwidth">
 								<PGVRText color="$tcolor" style="fact"><PGVRvar var="factarray[BURI]" />  </PGVRText>
 								<PGVRText color="$tcolor" style="text"><PGVRGedcomValue tag="BURI:DATE" /> </PGVRText>
-								<PGVRif condition="$sources==1">
+								<PGVRif condition="$showSources==1">
 									<PGVRRepeatTag tag="BURI:SOUR">
 										<PGVRFootnote>
 											<PGVRGedcom id="@SOUR">
@@ -1095,15 +1095,15 @@
 						</PGVRRepeatTag>
 
 						<!-- print any notes for the child -->
-						<PGVRif condition="$notes==1">
+						<PGVRif condition="$showNotes==1">
 							<PGVRRepeatTag tag="NOTE">
 								<PGVRTextBox bgcolor="$factbox_bgcolor" border="1" left="15" width="$width1" newline="1">
 									<PGVRText color="$tcolor" style="name"><PGVRvar var="factarray[NOTE]" />  </PGVRText>
 									<PGVRText color="$tcolor" style="text">
-										<PGVRif condition="$abbrNote==1">
+										<PGVRif condition="$showAbbrNotes==1">
 											<PGVRGedcomValue tag="NOTE" truncate="0" />		<!-- 0: show abbreviated Note text -->
 										</PGVRif>
-										<PGVRif condition="$abbrNote==0">
+										<PGVRif condition="$showAbbrNotes==0">
 											<PGVRGedcomValue tag="NOTE" truncate="-1" />	<!-- -1: show full Note text -->
 										</PGVRif>
 									</PGVRText>

@@ -158,8 +158,19 @@ class MenuBar
 			$submenu->addClass("submenuitem$ff", "submenuitem_hover$ff", "", "icon_small_indis");
 			$menu->addSubmenu($submenu);
 		}
-		if (PGV_USER_GEDCOM_ADMIN){
+		$skipSeparator = false;
+		if (count($pgv_changes) > 0 && PGV_USER_CAN_ACCEPT) {
 			$menu->addSeparator();
+			$skipSeparator = true;
+			//-- review changes submenu
+			$submenu = new Menu($pgv_lang["review_changes"], "edit_changes.php");
+			if (!empty($PGV_IMAGES["admin"]["small"]))
+				$submenu->addIcon($PGV_IMAGE_DIR."/".$PGV_IMAGES["admin"]["small"]);
+			$submenu->addClass("submenuitem$ff", "submenuitem_hover$ff", "", "icon_small_admin");
+			$menu->addSubmenu($submenu);
+		}
+		if (PGV_USER_GEDCOM_ADMIN){
+			if (!$skipSeparator) $menu->addSeparator();		// Insert that separator if it's not already present
 			//-- admin submenu
 			$submenu = new Menu($pgv_lang["admin"], "admin.php");
 			if (!empty($PGV_IMAGES["admin"]["small"]))
@@ -172,14 +183,6 @@ class MenuBar
 				$submenu->addIcon($PGV_IMAGE_DIR."/".$PGV_IMAGES["admin"]["small"]);
 			$submenu->addClass("submenuitem$ff", "submenuitem_hover$ff", "", "icon_small_admin");
 			$menu->addSubmenu($submenu);
-			//-- review changes submenu
-			if (count($pgv_changes) > 0 && PGV_USER_CAN_ACCEPT) {
-				$submenu = new Menu($pgv_lang["review_changes"], "edit_changes.php");
-				if (!empty($PGV_IMAGES["admin"]["small"]))
-					$submenu->addIcon($PGV_IMAGE_DIR."/".$PGV_IMAGES["admin"]["small"]);
-				$submenu->addClass("submenuitem$ff", "submenuitem_hover$ff", "", "icon_small_admin");
-				$menu->addSubmenu($submenu);
-			}
 			//-- user_admin submenu
 			if (PGV_USER_IS_ADMIN) {
 				$submenu = new Menu($pgv_lang["user_admin"], "useradmin.php");

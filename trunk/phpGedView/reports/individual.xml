@@ -9,10 +9,10 @@
 
 	<PGVRTitle><PGVRvar var="pgv_lang[individual_report]" /></PGVRTitle>
 	<PGVRInput name="pid" lookup="INDI" type="text" default=""><PGVRvar var="pgv_lang[enter_pid]" /></PGVRInput>
-	<PGVRInput name="sources" type="checkbox" default="0"><PGVRvar var="pgv_lang[show_sources]" /></PGVRInput>
-	<PGVRInput name="notes" type="checkbox" default="1"><PGVRvar var="pgv_lang[show_notes]" /></PGVRInput>
-	<PGVRInput name="abbrNote" type="checkbox" default="1"><PGVRvar var="pgv_lang[show_abbr_notes]" /></PGVRInput>
-	<PGVRInput name="photos" type="select" default="highlighted" options="none,all,highlighted"><PGVRvar var="pgv_lang[show_photos]" /></PGVRInput>
+	<PGVRInput name="showSources" type="checkbox" default="0"><PGVRvar var="pgv_lang[show_sources]" /></PGVRInput>
+	<PGVRInput name="showNotes" type="checkbox" default="1"><PGVRvar var="pgv_lang[show_notes]" /></PGVRInput>
+	<PGVRInput name="showAbbrNotes" type="checkbox" default="1"><PGVRvar var="pgv_lang[show_abbr_notes]" /></PGVRInput>
+	<PGVRInput name="showPhotos" type="select" default="highlighted" options="none,all,highlighted"><PGVRvar var="pgv_lang[show_photos]" /></PGVRInput>
 	<PGVRInput name="pageSize" type="select" default="GLOBALS[pageSizeDefault]" options="GLOBALS[pageSizeOptions]"><PGVRvar var="pgv_lang[page_size]" /></PGVRInput>
 	<PGVRInput name="fonts" type="select" default="GLOBALS[fontsDefault]" options="GLOBALS[fontsOptions]"><PGVRvar var="pgv_lang[font]"/></PGVRInput>
 
@@ -49,7 +49,7 @@
 	<PGVRSetVar name="dwidth" value="200" />
 	<PGVRSetVar name="pwidth" value="436" />
 	<!-- change the widths for no pictures -->
-	<PGVRif condition="$photos=='none'">
+	<PGVRif condition="$showPhotos=='none'">
 		<PGVRSetVar name="width" value="0" />
 		<PGVRSetVar name="width1" value="0" />
 		<PGVRSetVar name="width2" value="0" />
@@ -67,7 +67,7 @@
 			<!-- set the gedcom context for this individual -->
 			<PGVRGedcom id="$pid">
 				<!-- show the persons images -->
-				<PGVRif condition="$photos=='all'">
+				<PGVRif condition="$showPhotos=='all'">
 					<!-- This is an image not a text, so don't use text padding
 					Reset also the last height after all the images has been printed
 					set pagecheck to 0, the image function check is too
@@ -79,7 +79,7 @@
 					</PGVRTextBox>
 				</PGVRif>
 				<!-- show the person's Highlighted Image -->
-				<PGVRif condition="$photos=='highlighted'">
+				<PGVRif condition="$showPhotos=='highlighted'">
 					<PGVRHighlightedImage left="$pwidth" width="80" />
 				</PGVRif>
 
@@ -90,7 +90,7 @@
 
 				<PGVRTextBox border="1" width="$width" height="16" newline="1">
 					<PGVRText style="bold"><PGVRGetPersonName id="" /> </PGVRText>
-					<PGVRif condition="$sources==1">
+					<PGVRif condition="$showSources==1">
 						<!-- print level 1 sources -->
 						<PGVRRepeatTag tag="SOUR">
 							<PGVRFootnote>
@@ -123,7 +123,7 @@
 					<PGVRTextBox border="1" width="$dwidth" height="16">
 						<PGVRText style="pagenum"><PGVRvar var="factarray[@fact]" />  </PGVRText>
 						<PGVRText style="text"><PGVRGedcomValue tag="@fact:DATE" /> </PGVRText>
-						<PGVRif condition="$sources==1">
+						<PGVRif condition="$showSources==1">
 							<PGVRRepeatTag tag="@fact:SOUR">
 							<!-- print fact level 2 sources -->
 								<PGVRFootnote>
@@ -178,7 +178,7 @@
 				</PGVRFacts>
 
 				<!-- print any level 1 notes -->
-				<PGVRif condition="($notes==1) and (@NOTE!='')">
+				<PGVRif condition="($showNotes==1) and (@NOTE!='')">
 					<PGVRTextBox width="15" height="16" newline="1" padding="0" />
 					<PGVRTextBox border="1" width="$width" height="16" newline="1" bgcolor="$stbgcolor">
 						<PGVRText style="label1"><PGVRvar var="pgv_lang[notes]" /></PGVRText>
@@ -186,10 +186,10 @@
 					<PGVRRepeatTag tag="NOTE">
 						<PGVRTextBox border="1" width="$width" height="16" newline="1">
 							<PGVRText style="pagenum">
-								<PGVRif condition="$abbrNote==1">
+								<PGVRif condition="$showAbbrNotes==1">
 									<PGVRGedcomValue tag="NOTE" truncate="0" />		<!-- 0: show abbreviated Note text -->
 								</PGVRif>
-								<PGVRif condition="$abbrNote==0">
+								<PGVRif condition="$showAbbrNotes==0">
 									<PGVRGedcomValue tag="NOTE" truncate="-1" />	<!-- -1: show full Note text -->
 								</PGVRif>
 							</PGVRText>
@@ -209,7 +209,7 @@
 							<PGVRTextBox border="1" width="$width" height="16" newline="1">
 								<PGVRText style="label1"><PGVRvar var="pgv_lang[father]" />  </PGVRText>
 								<PGVRText style="bold"> <PGVRGetPersonName id="" /> </PGVRText>
-								<PGVRif condition="$sources==1">
+								<PGVRif condition="$showSources==1">
 									<PGVRRepeatTag tag="SOUR">
 										<PGVRFootnote>
 											<PGVRGedcom id="@SOUR">
@@ -246,7 +246,7 @@
 							<PGVRTextBox border="1" width="$width" height="16" newline="1">
 								<PGVRText style="label1"><PGVRvar var="pgv_lang[mother]" />  </PGVRText>
 								<PGVRText style="bold"> <PGVRGetPersonName id="" /> </PGVRText>
-								<PGVRif condition="$sources==1">
+								<PGVRif condition="$showSources==1">
 									<PGVRRepeatTag tag="SOUR">
 										<PGVRFootnote>
 											<PGVRGedcom id="@SOUR">
@@ -296,7 +296,7 @@
 										<PGVRText style="label1"><PGVRvar var="factarray[SEX]" /> <PGVRvar var="pgv_lang[stat_unknown]" />  </PGVRText>
 									</PGVRif>
 									<PGVRText style="bold"> <PGVRGetPersonName id="" /> </PGVRText>
-									<PGVRif condition="$sources==1">
+									<PGVRif condition="$showSources==1">
 										<PGVRRepeatTag tag="SOUR">
 											<PGVRFootnote>
 												<PGVRGedcom id="@SOUR">
@@ -363,7 +363,7 @@
 									<PGVRText style="label1"><PGVRvar var="pgv_lang[wife]" />  </PGVRText>
 								</PGVRif>
 								<PGVRText style="bold"> <PGVRGetPersonName id="" /> </PGVRText>
-								<PGVRif condition="$sources==1">
+								<PGVRif condition="$showSources==1">
 									<PGVRRepeatTag tag="SOUR">
 										<PGVRFootnote>
 											<PGVRGedcom id="@SOUR">
@@ -413,7 +413,7 @@
 										<PGVRText style="label1"><PGVRvar var="factarray[SEX]" /> <PGVRvar var="pgv_lang[stat_unknown]" />  </PGVRText>
 									</PGVRif>
 									<PGVRText style="bold"> <PGVRGetPersonName id="" /> </PGVRText>
-									<PGVRif condition="$sources==1">
+									<PGVRif condition="$showSources==1">
 										<PGVRRepeatTag tag="SOUR">
 											<PGVRFootnote>
 												<PGVRGedcom id="@SOUR">
