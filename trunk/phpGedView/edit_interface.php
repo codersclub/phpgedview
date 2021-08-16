@@ -1395,9 +1395,11 @@ case 'update':
 			DumpString($gedrec);
 		}
 
-		// add or remove Y
-		if ($text[0]=="Y" or $text[0]=="y") $text[0]="";
-		if (in_array($tag[0], $emptyfacts) && array_unique($text)==array("") && !$islink[0]) $text[0]="Y";
+		if ($text !== null) {
+			// add or remove Y
+			if ($text[0]=="Y" or $text[0]=="y") $text[0]="";
+			if (in_array($tag[0], $emptyfacts) && array_unique($text)==array("") && !$islink[0]) $text[0]="Y";
+		}
 		//-- check for photo update
 		if (count($_FILES)>0) {
 			if (isset($_REQUEST['folder'])) $folder = $_REQUEST['folder'];
