@@ -484,9 +484,9 @@ case 'edit':
 		if ($level1type!="NOTE") print_add_layer("NOTE");
 	} else {
 		if ($level1type!="SEX") {
-			if ($level1type!="ASSO" && $level1type!="REPO" && $level1type!="NOTE") print_add_layer("ASSO");
+//			if ($level1type!="ASSO" && $level1type!="REPO" && $level1type!="NOTE") print_add_layer("ASSO");
 			// allow to add godfather and godmother for CHR fact or best man and bridesmaid  for MARR fact in one window
-			if ($level1type=="CHR" || $level1type=="MARR") print_add_layer("ASSO2");
+//			if ($level1type=="CHR" || $level1type=="MARR") print_add_layer("ASSO2");
 			if ($level1type!="SOUR" && $level1type!="REPO" ) print_add_layer("SOUR");
 			if ($level1type!="NOTE") print_add_layer("NOTE");
 			// Shared Note addition ------------
@@ -537,9 +537,9 @@ case 'add':
 		if ($fact!="NOTE") print_add_layer("NOTE");
 	} else {
 		if ($fact!="OBJE") {
-			if ($fact!="ASSO" && $fact!="SOUR" && $fact!="REPO" && $fact!="SHARED_NOTE") print_add_layer("ASSO");
+//			if ($fact!="ASSO" && $fact!="SOUR" && $fact!="REPO" && $fact!="SHARED_NOTE") print_add_layer("ASSO");
 			// allow to add godfather and godmother for CHR fact or best man and bridesmaid  for MARR fact in one window
-			if ($fact=="CHR" || $fact=="MARR") print_add_layer("ASSO2");
+//			if ($fact=="CHR" || $fact=="MARR") print_add_layer("ASSO2");
 			if ($fact!="SOUR" && $fact!="REPO" ) print_add_layer("SOUR");
 			if ($fact!="NOTE" && $fact!="SHARED_NOTE") print_add_layer("NOTE");
 			// Shared Note addition ------------
@@ -646,9 +646,9 @@ case 'linkspouse':
 		echo "</td></tr>\n";
 	}
 	echo "</table>";
-	print_add_layer("ASSO");
+//	print_add_layer("ASSO");
 	// allow to add godfather and godmother for CHR fact or best man and bridesmaid  for MARR fact in one window
-	print_add_layer("ASSO2");
+//	print_add_layer("ASSO2");
 	print_add_layer("SOUR");
 	print_add_layer("NOTE");
 	print_add_layer("SHARED_NOTE");
