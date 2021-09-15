@@ -3,7 +3,7 @@
 * Controller for the Individual Page
 *
 * phpGedView: Genealogy Viewer
-* Copyright (C) 2002 to 2018 PGV Development Team. All rights reserved.
+* Copyright (C) 2002 to 2021 PGV Development Team. All rights reserved.
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -1559,6 +1559,11 @@ class IndividualControllerRoot extends BaseController {
 			}
 			// 2nd to 5th level notes/sources
 			$this->indi->add_family_facts(false);
+			foreach ($this->getGlobalFacts() as $key => $factrec) {
+				for ($i=2; $i<6; $i++) {
+					print_main_notes($factrec->getGedcomRecord(), $i, $this->pid, $factrec->getLineNumber(), true);
+				}
+			}
 			foreach ($this->getIndiFacts() as $key => $factrec) {
 				for ($i=2; $i<6; $i++) {
 					print_main_notes($factrec->getGedcomRecord(), $i, $this->pid, $factrec->getLineNumber(), true);

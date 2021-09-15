@@ -467,12 +467,12 @@ function file_is_writeable($file) {
  * @see http://us2.php.net/manual/en/function.set-error-handler.php
  */
 function pgv_error_handler($errno, $errstr, $errfile, $errline) {
-	if ((error_reporting() > 0)&&($errno<2048)) {
+	if (((error_reporting() & $errno) > 0)&&($errno<2048)) {
 		if (PGV_ERROR_LEVEL==0) {
-			return;
+			return true;
 		}
 		if (stristr($errstr, "by reference")==true) {
-			return;
+			return true;
 		}
 		$fmt_msg="\n<br />ERROR {$errno}: {$errstr}<br />\n";
 		$log_msg="ERROR {$errno}: {$errstr}; ";
