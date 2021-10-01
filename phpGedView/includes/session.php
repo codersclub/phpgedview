@@ -396,19 +396,26 @@ $UNIQUE_ID = trim(substr(encrypt($DBUSER, $DBPASS), 1, 8));		// $DBUSER is uniqu
 // Connect to the database
 require PGV_ROOT.'includes/functions/functions_db.php';
 require PGV_ROOT.'includes/classes/class_pgv_db.php';
-try {
-	// remove escape codes before using PW
-	$DBPASS=str_replace(array("\\\\", "\\\"", "\\\$"), array("\\", "\"", "\$"), $DBPASS);
-	PGV_DB::createInstance($DBTYPE, $DBHOST, $DBPORT, $DBNAME, $DBUSER, $DBPASS, $DB_UTF8_COLLATION);
-	unset($DBUSER, $DBPASS);	// Make sure that these aren't revealed
+
+if (empty($DBUSER) || $DBUSER == 'root') {
+	$databasePresent = false;
+} else {
 	try {
-		PGV_DB::updateSchema(PGV_ROOT.'includes/db_schema/', 'PGV_SCHEMA_VERSION', PGV_SCHEMA_VERSION);
+		// remove escape codes before using PW
+		$DBPASS=str_replace(array("\\\\", "\\\"", "\\\$"), array("\\", "\"", "\$"), $DBPASS);
+		PGV_DB::createInstance($DBTYPE, $DBHOST, $DBPORT, $DBNAME, $DBUSER, $DBPASS, $DB_UTF8_COLLATION);
+		unset($DBUSER, $DBPASS);	// Make sure that these aren't revealed
+		$databasePresent = true;
+		try {
+			PGV_DB::updateSchema(PGV_ROOT.'includes/db_schema/', 'PGV_SCHEMA_VERSION', PGV_SCHEMA_VERSION);
+		} catch (PDOException $ex) {
+			// The schema update scripts should never fail.  If they do, there is no clean recovery.
+			die($ex);
+		}
 	} catch (PDOException $ex) {
-		// The schema update scripts should never fail.  If they do, there is no clean recovery.
-		die($ex);
+		$databasePresent = false;
+		// Can't connect to the DB?  We'll get redirected to install.php later.....
 	}
-} catch (PDOException $ex) {
-	// Can't connect to the DB?  We'll get redirected to install.php later.....
 }
 
 // The authentication interface includes logging - which may be to the database
@@ -660,7 +667,7 @@ require PGV_ROOT.'includes/functions/functions_privacy.php';
 
 // The curren't user's profile - from functions in authentication.php
 define('PGV_USER_ID',           getUserId     ());
-if (PGV_DB::isConnected()) {
+if ($databasePresent && PGV_DB::isConnected()) {
 	define('PGV_USER_NAME',         getUserName   ());
 	define('PGV_USER_IS_ADMIN',     userIsAdmin   (PGV_USER_ID));
 	define('PGV_USER_AUTO_ACCEPT',  userAutoAccept(PGV_USER_ID));
@@ -698,7 +705,7 @@ if (isset($SHOW_CONTEXT_HELP) && $show_context_help==='yes') $_SESSION['show_con
 if (isset($SHOW_CONTEXT_HELP) && $show_context_help==='no') $_SESSION['show_context_help'] = false;
 if (!isset($USE_THUMBS_MAIN)) $USE_THUMBS_MAIN = false;
 if (PGV_SCRIPT_NAME!='install.php' && PGV_SCRIPT_NAME!='editconfig_help.php') {
-	if (!PGV_DB::isConnected() || !PGV_ADMIN_USER_EXISTS) {
+	if (!$databasePresent || !PGV_DB::isConnected() || !PGV_ADMIN_USER_EXISTS) {
 		header('Location: install.php');
 		exit;
 	}
@@ -842,41 +849,43 @@ if (file_exists("{$INDEX_DIRECTORY}pgv_changes.php")) {
 	write_changes();	// Update the /index/pgv_changes.php file
 }
 
-// Send the Review Changes e-mail if it hasn't already been sent and hasn't been actioned yet
-if (count($pgv_changes) == 0) {
-	set_site_setting('LAST_CHANGE_EMAIL', '0');		// Make sure that an e-mail will be sent when new changes exist
-} else if (safe_GET('action') != 'ajax') {			// Don't let any blocks send that e-mail
-	$lastEmail = intval(get_site_setting('LAST_CHANGE_EMAIL'));
-	$emailDue = $lastEmail + $REMINDER_FREQ*24*60*60;		// n days after the last e-mail was sent; zero means "never send reminders"
-//	$emailDue = $lastEmail + 15*60;		// 15 minutes after the last e-mail was sent (for testing only)
-	$currentTime = time();
-	if (($REMINDER_FREQ > 0) && ($currentTime > $emailDue)) {
-		// It's time to send another e-mail to all users with at least "Accept" rights
-		set_site_setting('LAST_CHANGE_EMAIL', strval($currentTime));
-		$tempText = '';		// For debugging
-//		$tempText .= "\nLast email sent: " . date("Y-m-d H:i:s", $lastEmail);
-//		$tempText .= "\nNext email due: " . date("Y-m-d H:i:s", $emailDue);  
-//		$tempText .= "\nCurrent time: " . date("Y-m-d H:i:s", $currentTime);  
-		foreach (get_all_users() as $user_id=>$user_name) {
-			if (userIsAdmin($user_id) || userGedcomAdmin($user_id, PGV_GED_ID) || userCanAccept($user_id, PGV_GED_ID)) {
-				// This user has "Accept" rights; send them an e-mail
-				$message = array();
-				$message["to"]=$user_name;
-				$message["from"] = $PHPGEDVIEW_EMAIL;
-				$message["subject"] = $pgv_lang["review_changes_subject"];
-				$message["body"] = $pgv_lang["review_changes_body"]."\n{$tempText}\n";
-				$message["body"] .= PGV_SERVER_NAME.PGV_SCRIPT_PATH.'edit_changes.php';
-				$message["method"] = get_user_setting($user_id, 'contactmethod');
-				$message["url"] = PGV_SCRIPT_NAME;
-				if (!empty($QUERY_STRING)) $message["url"] .= "?".html_entity_decode($QUERY_STRING);
-				$message["no_from"] = true;
-				$message["bulkMail"] = false;
-				addMessage($message);
+if ($databasePresent) {
+	// Send the Review Changes e-mail if it hasn't already been sent and hasn't been actioned yet
+	if (count($pgv_changes) == 0) {
+		set_site_setting('LAST_CHANGE_EMAIL', '0');		// Make sure that an e-mail will be sent when new changes exist
+	} else if (safe_GET('action') != 'ajax') {			// Don't let any blocks send that e-mail
+		$lastEmail = intval(get_site_setting('LAST_CHANGE_EMAIL'));
+		$emailDue = $lastEmail + $REMINDER_FREQ*24*60*60;		// n days after the last e-mail was sent; zero means "never send reminders"
+	//	$emailDue = $lastEmail + 15*60;		// 15 minutes after the last e-mail was sent (for testing only)
+		$currentTime = time();
+		if (($REMINDER_FREQ > 0) && ($currentTime > $emailDue)) {
+			// It's time to send another e-mail to all users with at least "Accept" rights
+			set_site_setting('LAST_CHANGE_EMAIL', strval($currentTime));
+			$tempText = '';		// For debugging
+	//		$tempText .= "\nLast email sent: " . date("Y-m-d H:i:s", $lastEmail);
+	//		$tempText .= "\nNext email due: " . date("Y-m-d H:i:s", $emailDue);  
+	//		$tempText .= "\nCurrent time: " . date("Y-m-d H:i:s", $currentTime);  
+			foreach (get_all_users() as $user_id=>$user_name) {
+				if (userIsAdmin($user_id) || userGedcomAdmin($user_id, PGV_GED_ID) || userCanAccept($user_id, PGV_GED_ID)) {
+					// This user has "Accept" rights; send them an e-mail
+					$message = array();
+					$message["to"]=$user_name;
+					$message["from"] = $PHPGEDVIEW_EMAIL;
+					$message["subject"] = $pgv_lang["review_changes_subject"];
+					$message["body"] = $pgv_lang["review_changes_body"]."\n{$tempText}\n";
+					$message["body"] .= PGV_SERVER_NAME.PGV_SCRIPT_PATH.'edit_changes.php';
+					$message["method"] = get_user_setting($user_id, 'contactmethod');
+					$message["url"] = PGV_SCRIPT_NAME;
+					if (!empty($QUERY_STRING)) $message["url"] .= "?".html_entity_decode($QUERY_STRING);
+					$message["no_from"] = true;
+					$message["bulkMail"] = false;
+					addMessage($message);
+				}
 			}
 		}
 	}
-}
 
-if (!PGV_USER_CAN_EDIT) $pgv_changes = array();		// Hide changes from users without editing rights
+	if (!PGV_USER_CAN_EDIT) $pgv_changes = array();		// Hide changes from users without editing rights
+}
 
 ?>
