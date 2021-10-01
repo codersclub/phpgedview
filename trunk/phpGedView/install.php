@@ -38,19 +38,20 @@
  */
 
 define('PGV_SCRIPT_NAME', 'install.php');
-//-- load up the configuration or the default configuration
-//		Both configuration files load and run session.php.  
-//		We will let session.php define any defaults that are in config.dist that are missing from config.php.
-if (file_exists('./config.php')) {
-	require_once './config.php';
-} else {
-	require_once './config.dist';
+//-- Create the /config.php file if it's missing (new install)
+//      Things work a LOT better if there's a config.php file
+//      Use the /config.dist file as a starting point
+
+if (!file_exists('./config.php')) {
+	copy('./config.dist', './config.php');		// config.php file is missing:  it's a new install
 }
+
+require_once './config.php';
 
 require_once PGV_ROOT.'includes/functions/functions_import.php';
 
 //-- if we are configured, then make sure that only admins access this page
-if (PGV_DB::isConnected() && PGV_ADMIN_USER_EXISTS && !PGV_USER_IS_ADMIN) {
+if ($CONFIGURED && PGV_DB::isConnected() && PGV_ADMIN_USER_EXISTS && !PGV_USER_IS_ADMIN) {
 	header("Location: login.php?url=install.php");
 	exit;
 }
