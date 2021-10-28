@@ -1781,7 +1781,7 @@ class IndividualControllerRoot extends BaseController {
 			print "</td></tr>";
 		}
 		else {
-			$media_found = print_main_media($this->pid, 0, true);
+			if ($MULTI_MEDIA) $media_found = print_main_media($this->pid, 0, true);
 			if (!$media_found) print "<tr><td id=\"no_tab4\" colspan=\"2\" class=\"facts_value\">".$pgv_lang["no_tab4"]."</td></tr>\n";
 			//-- New Media link
 			if (!$this->isPrintPreview() && PGV_USER_CAN_EDIT && $this->indi->canDisplayDetails()) {
