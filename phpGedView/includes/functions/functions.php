@@ -213,11 +213,12 @@ function get_config_file($ged_id=PGV_GED_ID) {
 	global $INDEX_DIRECTORY;
 
 	$config=get_gedcom_setting($ged_id, 'config');
-	// Compatibility with non-php based storage, (PGV 4.3.0 onwards)
+	if (empty($config)) return 'config_gedcom.php';		// New install
+	
 	$config=str_replace('${INDEX_DIRECTORY}', $INDEX_DIRECTORY, $config);
 
 	if (!file_exists($config)) {
-		return 'config_gedcom.php';
+		return 'config_gedcom.php';		// New install
 	} else {
 		return $config;
 	}
@@ -280,11 +281,12 @@ function get_privacy_file($ged_id=PGV_GED_ID) {
 	global $INDEX_DIRECTORY;
 
 	$privfile=get_gedcom_setting($ged_id, 'privacy');
-	// Compatibility with non-php based storage
+	if (empty($privfile)) return 'privacy.php';		// New install
+	
 	$privfile=str_replace('${INDEX_DIRECTORY}', $INDEX_DIRECTORY, $privfile);
 
 	if (!file_exists($privfile) || version_compare(get_privacy_file_version($privfile), PGV_REQUIRED_PRIVACY_VERSION)<0) {
-		return 'privacy.php';
+		return 'privacy.php';		// New install
 	} else {
 		return $privfile;
 	}
