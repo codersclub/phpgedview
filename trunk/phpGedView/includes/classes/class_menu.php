@@ -3,7 +3,7 @@
 * System for generating menus.
 *
 * phpGedView: Genealogy Viewer
-* Copyright (C) 2002 to 2010 PGV Development Team. All rights reserved.
+* Copyright (C) 2002 to 2021 PGV Development Team. All rights reserved.
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -87,7 +87,7 @@ class Menu {
 	{
 		if (file_exists($icon)) $this->icon = $icon;
 		else $this->icon = null;
-		if (file_exists($hovericon)) $this->hovericon = $hovericon;
+		if (!empty($hovericon) && file_exists($hovericon)) $this->hovericon = $hovericon;
 		else $this->hovericon = null;
 	}
 

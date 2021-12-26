@@ -864,7 +864,7 @@ function user_contact_menu($user_id, $method=null) {
 	}
 
 	// Webmaster/contact addresses can be an email address as well as a user-id
-	if (strpos($user_id, '@')!==false) {
+	if (!empty($userid) && strpos($user_id, '@')!==false) {
 		$email=$user_id;
 		$fullname=$user_id;
 		if ($method!='none') {
