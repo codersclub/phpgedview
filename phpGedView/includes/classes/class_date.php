@@ -3,7 +3,7 @@
  * Classes for Gedcom Date/Calendar functionality.
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2007 to 2008  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2007 to 2021  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -983,26 +983,28 @@ class GedcomDate {
 
 	function __construct($date) {
 		// Extract any explanatory text
-		if (preg_match('/^(.*)( ?\(.*)$/', $date, $match)) {
-			$date=$match[1];
-			$this->text=$match[2];
-		}
-		// Ignore punctuation and normalise whitespace
-		$date=preg_replace(
-			array('/(\d+|@#[^@]+@)/', '/[\s;:.,-]+/', '/^ /', '/ $/'),
-			array(' $1 ', ' ', '', ''),
-			strtolower($date)
-		);
-		if (preg_match('/^(from|bet) (.+) (and|to) (.+)/', $date, $match)) {
-			$this->qual1=$match[1];
-			$this->date1=$this->ParseDate($match[2]);
-			$this->qual2=$match[3];
-			$this->date2=$this->ParseDate($match[4]);
-		} elseif (preg_match('/^(from|bet|to|and|bef|aft|cal|est|int|abt) (.+)/', $date, $match)) {
-			$this->qual1=$match[1];
-			$this->date1=$this->ParseDate($match[2]);
-		} else {
-			$this->date1=$this->ParseDate($date);
+		if (!empty($date)) {		// PHP 8.1.1 doesn't like NULL
+			if (preg_match('/^(.*)( ?\(.*)$/', $date, $match)) {
+				$date=$match[1];
+				$this->text=$match[2];
+			}
+			// Ignore punctuation and normalise whitespace
+			$date=preg_replace(
+				array('/(\d+|@#[^@]+@)/', '/[\s;:.,-]+/', '/^ /', '/ $/'),
+				array(' $1 ', ' ', '', ''),
+				strtolower($date)
+			);
+			if (preg_match('/^(from|bet) (.+) (and|to) (.+)/', $date, $match)) {
+				$this->qual1=$match[1];
+				$this->date1=$this->ParseDate($match[2]);
+				$this->qual2=$match[3];
+				$this->date2=$this->ParseDate($match[4]);
+			} elseif (preg_match('/^(from|bet|to|and|bef|aft|cal|est|int|abt) (.+)/', $date, $match)) {
+				$this->qual1=$match[1];
+				$this->date1=$this->ParseDate($match[2]);
+			} else {
+				$this->date1=$this->ParseDate($date);
+			}
 		}
 	}
 
@@ -1209,10 +1211,12 @@ class GedcomDate {
 	}
 	function MinJD() {
 		$tmp=$this->MinDate();
+		if (!is_object($tmp)) return 0;
 		return $tmp->minJD;
 	}
 	function MaxJD() {
 		$tmp=$this->MaxDate();
+		if (!is_object($tmp)) return 0;
 		return $tmp->maxJD;
 	}
 	function JD() {

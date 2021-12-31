@@ -240,8 +240,10 @@ function get_medialist($currentdirOnly = false, $directory = "", $linkOnly = fal
 		$media["LINKS"] = array ();
 		$media["CHANGE"] = "";
 		// Extract Format and Type from GEDCOM record
-		$media["FORM"] = strtolower(get_gedcom_value("FORM", 2, $row->m_gedrec));
-		$media["TYPE"] = strtolower(get_gedcom_value("FORM:TYPE", 2, $row->m_gedrec));
+		$media["FORM"] = get_gedcom_value("FORM", 2, $row->m_gedrec);
+		if (!empty($media["FORM"])) $media["FORM"] = strtolower($media["FORM"]);		// PHP 8.1.1 doesn't like converting NULL to lower-case
+		$media["TYPE"] = get_gedcom_value("TYPE", 2, $row->m_gedrec);
+		if (!empty($media["TYPE"])) $media["TYPE"] = strtolower($media["TYPE"]);		// PHP 8.1.1 doesn't like converting NULL to lower-case
 
 		// Build a sortable key for the medialist
 		$firstChar = substr($media["XREF"], 0, 1);
@@ -697,7 +699,7 @@ function thumbnail_file($filename, $generateThumb = true, $overwrite = false) {
 	global $MEDIA_DIRECTORY, $PGV_IMAGE_DIR, $PGV_IMAGES, $AUTO_GENERATE_THUMBS, $MEDIA_DIRECTORY_LEVELS;
 	global $MEDIA_EXTERNAL;
 
-	if (strlen($filename) == 0)
+	if (empty($filename))
 		return false;
 	if (!isset ($generateThumb))
 		$generateThumb = true;
@@ -1627,6 +1629,7 @@ function findImageSize($file) {
 		}
 	}
 	if (!$imgsize) {
+		$imgsize = array();		// Stupid PHP 8.1.1 doesn't like treating FALSE as an empty array!
 		$imgsize[0] = 300;
 		$imgsize[1] = 300;
 		$imgsize[2] = false;

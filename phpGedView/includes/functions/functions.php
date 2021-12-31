@@ -3635,6 +3635,7 @@ function loadLanguage($desiredLanguage="english", $forceLoad=false) {
  * determines whether the passed in filename is a link to an external source (i.e. contains '://')
  */
 function isFileExternal($file) {
+	if (empty($file)) return false;			// PHP 8.1.1 doesn't like NULL
 	return strpos($file, '://') !== false;
 }
 

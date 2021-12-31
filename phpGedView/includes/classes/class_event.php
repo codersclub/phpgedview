@@ -3,7 +3,7 @@
  * Class that defines an event details object
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2008  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2008 to 2021  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -75,13 +75,15 @@ class Event {
 	function getValue($code) {
 		if (is_null($this->values)) {
 			$this->values=array();
-			preg_match_all('/\n2 ('.PGV_REGEX_TAG.') (.+)/', $this->gedcomRecord, $matches, PREG_SET_ORDER);
-			foreach ($matches as $match) {
-				// If this is a link, remove the "@"
-				if (preg_match('/^@'.PGV_REGEX_XREF.'@$/', $match[2])) {
-					$this->values[$match[1]]=trim($match[2], "@");
-				} else {
-					$this->values[$match[1]]=$match[2];
+			if (!empty($this->gedcomRecord)) {		// PHP 8.1.1 doesn't like NULL here
+				preg_match_all('/\n2 ('.PGV_REGEX_TAG.') (.+)/', $this->gedcomRecord, $matches, PREG_SET_ORDER);
+				foreach ($matches as $match) {
+					// If this is a link, remove the "@"
+					if (preg_match('/^@'.PGV_REGEX_XREF.'@$/', $match[2])) {
+						$this->values[$match[1]]=trim($match[2], "@");
+					} else {
+						$this->values[$match[1]]=$match[2];
+					}
 				}
 			}
 		}
