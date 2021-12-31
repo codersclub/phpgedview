@@ -83,7 +83,12 @@ $linkToID=$controller->pid; // -- Tell addmedia.php what to link to
 //			}
 		?>
 		</span><br />
-		<?php if (strlen($controller->indi->getAddName()) > 0) echo "<span class=\"name_head\">", PrintReady($controller->indi->getAddName()), "</span><br />"; ?>
+		<?php
+			$addName = $controller->indi->getAddName();
+			if (!empty($addName)) {
+				echo "<span class=\"name_head\">", PrintReady($addName), "</span><br />";
+			} 
+		?>
 		<?php if ($controller->indi->canDisplayDetails()) { ?>
 		<table><tr>
 		<?php

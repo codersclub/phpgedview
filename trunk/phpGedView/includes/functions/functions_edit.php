@@ -1299,6 +1299,7 @@ if (substr($tag, 0, strpos($tag, "CENS"))) {
 	if ($upperlevel) $element_id=$upperlevel."_".$fact; // ex: BIRT_DATE | DEAT_DATE ...
 
 	// field value
+	if (is_null($value)) $value = '';		// PHP 8.1.1 doesn't like NULL
 	$islink = (substr($value, 0, 1)=="@" and substr($value, 0, 2)!="@#");
 	if ($islink) $value=trim(trim(substr($tag, strlen($fact)+3)), " @\r");
 	else $value=trim(substr($tag, strlen($fact)+3));

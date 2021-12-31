@@ -372,7 +372,7 @@ function print_pedigree_person($pid, $style=1, $show_famlink=true, $count=0, $pe
 		if ($TEXT_DIRECTION=="ltr") $showid .= "<span class=\"details$style\">" . getLRM() . "($pid)" . getLRM() . " </span>";
 		else $showid .= "<span class=\"details$style\">" . getRLM() . "($pid)" . getRLM() . " </span>";
 	}
-	if (strlen($addname) > 0) {
+	if (!empty($addname)) {
 		$tempStyle = $style;
 		if (hasRTLText($addname) && $style=='1') $tempStyle = '2';
 		$addname = "<br /><span id=\"addnamedef-$boxID\" class=\"name$tempStyle\"> ".PrintReady($addname)."</span>";
@@ -2093,7 +2093,7 @@ function format_fact_date(&$eventObj, $anchor=false, $time=false) {
 	$wife_age=get_gedcom_value('WIFE:AGE', 2, $factrec);
 
 	// Calculated age
-	if (preg_match('/2 DATE (.+)/', $factrec, $match)) {
+	if (!empty($factrec) && preg_match('/2 DATE (.+)/', $factrec, $match)) {
 		$date=new GedcomDate($match[1]);
 		$html.=' '.$date->Display($anchor && !$SEARCH_SPIDER);
 		// time
@@ -2183,11 +2183,12 @@ function format_fact_date(&$eventObj, $anchor=false, $time=false) {
 		// 1 DEAT Y with no DATE => print YES
 		// 1 DEAT N is not allowed
 		// It is not proper GEDCOM form to use a N(o) value with an event tag to infer that it did not happen.
-		$factrec = str_replace("\nPGV_OLD\n", '', $factrec);
-		$factrec = str_replace("\nPGV_NEW\n", '', $factrec);
-		$factdetail = explode(' ', trim($factrec));
-		if (isset($factdetail)) if (count($factdetail) == 3) if (strtoupper($factdetail[2]) == 'Y') {
-			$html.=$pgv_lang['yes'];
+		if (!empty($factrec)) {		// PHP 8.1.1 doesn't like NULL here
+			$factrec = str_replace(array("\nPGV_OLD\n","\nPGV_NEW\n"), '', $factrec);
+			$factdetail = explode(' ', trim($factrec));
+			if (isset($factdetail)) if (count($factdetail) == 3) if (strtoupper($factdetail[2]) == 'Y') {
+				$html.=$pgv_lang['yes'];
+			}
 		}
 	}
 	// print gedcom ages

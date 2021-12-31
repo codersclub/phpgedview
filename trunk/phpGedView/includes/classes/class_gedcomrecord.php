@@ -68,7 +68,7 @@ class GedcomRecord {
 		} else {
 			// Construct from raw GEDCOM data
 			$this->gedrec=$data;
-			if (preg_match('/^0 (?:@('.PGV_REGEX_XREF.')@ )?('.PGV_REGEX_TAG.')/', $data, $match)) {
+			if (!empty($data) && preg_match('/^0 (?:@('.PGV_REGEX_XREF.')@ )?('.PGV_REGEX_TAG.')/', $data, $match)) {
 				$this->xref=$match[1];
 				$this->type=$match[2];
 			}
@@ -834,7 +834,7 @@ class GedcomRecord {
 			return;
 		}
 		//-- must trim the record here because the record is trimmed in edit and it could mess up line numbers
-		$this->gedrec = trim($this->gedrec);
+		$this->gedrec = trim($this->gedrec . ' ');		// Make sure we don't have a NULL record here (PHP 8.1.1 doesn't like NULL)
 		//-- find all the fact information
 		$indilines = explode("\n", $this->gedrec);   // -- find the number of lines in the individuals record
 		$lct = count($indilines);

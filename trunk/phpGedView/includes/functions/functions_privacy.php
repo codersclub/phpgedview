@@ -826,7 +826,7 @@ function privatize_gedcom($gedrec) {
 	global $pgv_lang, $factarray, $GEDCOM, $SHOW_PRIVATE_RELATIONSHIPS, $pgv_private_records;
 	global $global_facts, $person_facts;
 
-	if (preg_match('/^0 @('.PGV_REGEX_XREF.')@ ('.PGV_REGEX_TAG.')(.*)/', $gedrec, $match)) {
+	if (!empty($gedrec) && preg_match('/^0 @('.PGV_REGEX_XREF.')@ ('.PGV_REGEX_TAG.')(.*)/', $gedrec, $match)) {
 		$gid = $match[1];
 		$type = $match[2];
 		$data = $match[3];
