@@ -3,7 +3,7 @@
  * Class that defines an event details object
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2008 to 2021  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2008 to 2022  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -357,7 +357,7 @@ class Event {
 		$date=$this->getDate();
 
 		// If no year, use birth date as fallback
-		if ($date->date1->y==0 && is_object($this->parentObject) && $this->parentObject->getType()=='INDI')
+		if (is_object($date->date1) && $date->date1->y==0 && is_object($this->parentObject) && $this->parentObject->getType()=='INDI')
 			$date=$this->parentObject->getEstimatedBirthDate();
 
 		$gdate=new GregorianDate($date->MinDate());
