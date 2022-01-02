@@ -3,7 +3,7 @@
 * Class file for a person
 *
 * phpGedView: Genealogy Viewer
-* Copyright (C) 2002 to 2021  PGV Development Team.  All rights reserved.
+* Copyright (C) 2002 to 2022  PGV Development Team.  All rights reserved.
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -138,13 +138,11 @@ class Person extends GedcomRecord {
 						break;
 					}
 				}
-				if (is_null($this->_getBirthDate)) {
-					$this->_getBirthDate=new GedcomDate('');
-				}
 			} else {
 				$this->_getBirthDate=new GedcomDate("({$pgv_lang['private']})");
 			}
 		}
+		if (is_null($this->_getBirthDate)) $this->_getBirthDate=new GedcomDate('');
 		return $this->_getBirthDate;
 	}
 
@@ -207,6 +205,10 @@ class Person extends GedcomRecord {
 	* @return string the year of birth
 	*/
 	function getBirthYear(){
+//		echo '<br />getBirthDate<br  />'; var_dump($this->getBirthDate()); echo '<br />';
+//		echo '<br />MinDate<br  />'; var_dump($this->getBirthDate()->MinDate()); echo '<br />';
+//		die();
+		if (is_null($this->getBirthDate()->MinDate())) return '';
 		return $this->getBirthDate()->MinDate()->Format('Y');
 	}
 
@@ -225,13 +227,11 @@ class Person extends GedcomRecord {
 						break;
 					}
 				}
-				if (is_null($this->_getDeathDate)) {
-					$this->_getDeathDate=new GedcomDate('');
-				}
 			} else {
 				$this->_getDeathDate=new GedcomDate("({$pgv_lang['private']})");
 			}
 		}
+		if (is_null($this->_getDeathDate)) $this->_getDeathDate=new GedcomDate('');
 		return $this->_getDeathDate;
 	}
 
@@ -265,6 +265,7 @@ class Person extends GedcomRecord {
 	* @return string the year of death
 	*/
 	function getDeathYear() {
+		if (is_null($this->getDeathDate()->MinDate())) return '';
 		return $this->getDeathDate()->MinDate()->Format('Y');
 	}
 

@@ -21,7 +21,7 @@
  * Other special characters are all listed at the bottom.
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2007  PGV Development Team
+ * Copyright (C) 2002 to 2022  PGV Development Team
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -52,6 +52,7 @@ define('PGV_SPECIALCHARS_PHP', '');
 loadLangFile("pgv_confighelp");
 
 $specialchar_languages = array(
+	"xx" => "None of these",
 	"af" => "Afrikaans",
 	"cs" => $pgv_lang["lang_name_czech"], // Czech
 	"sk" => $pgv_lang["lang_name_slovak"], // Slovak
@@ -84,7 +85,7 @@ $specialchar_languages = array(
 
 switch ($language_filter) {
 case "af": // Afrikaans
-   $ucspecialchars = array(
+	$ucspecialchars = array(
 		"&#200;" => "È",
 		"&#201;" => "É",
 		"&#202;" => "Ê",
@@ -106,8 +107,9 @@ case "af": // Afrikaans
 		"&#329;" => "ŉ", // n preceded by apostrophe
 	);
 	break;
+
 case "cs": // Ceština
-   $ucspecialchars = array(
+	$ucspecialchars = array(
 		"&#193;" => "Á",
 		"&#260;" => "Ą", // A cedille
 		"&#196;" => "Ä",
@@ -152,8 +154,9 @@ case "cs": // Ceština
 		"&#382;" => "ž", // z hachek
 	);
 	break;
+
 case "sk": // Slovenčina
-   $ucspecialchars = array(
+	$ucspecialchars = array(
 		"&#193;" => "Á",
 		"&#196;" => "Ä",
 		"&#268;" => "Č", // C hachek
@@ -198,8 +201,9 @@ case "sk": // Slovenčina
 		"&#382;" => "ž", // z hachek
 	);
 	break;
+
 case "da": // Dansk
-   $ucspecialchars = array(
+	$ucspecialchars = array(
 		"&#197;" => "Å",
 		"&#198;" => "Æ",
 		"&#201;" => "É",
@@ -222,13 +226,15 @@ case "da": // Dansk
 		"&#253;" => "ý",
 	);
 	break;
+
 case "de": // Deutsch
-   $ucspecialchars = array(
+	$ucspecialchars = array(
 		"&#196;" => "Ä",
 		"&#214;" => "Ö",
 		"&#220;" => "Ü",
 		"&#192;" => "À",
 		"&#201;" => "É",
+		"ẞ"      => "ẞ",  // Sharp S (Eszett)
 	);
 	$lcspecialchars = array(
 		"&#228;" => "ä",
@@ -236,11 +242,12 @@ case "de": // Deutsch
 		"&#252;" => "ü",
 		"&#224;" => "à",
 		"&#233;" => "é",
-		"&#223;" => "ß",
+		"&#223;" => "ß",  // Sharp s (Eszett)
 	);
 	break;
+
 case "en": // English  -- limited copy of the default case (Western European set)
-   $ucspecialchars = array(
+	$ucspecialchars = array(
    		"&#192;" => "À",
 		"&#193;" => "Á",
 		"&#194;" => "Â",
@@ -274,6 +281,7 @@ case "en": // English  -- limited copy of the default case (Western European set
 		"&#220;" => "Ü",
 		"&#221;" => "Ý",
 		"&#159;" => "Ÿ",
+		"ẞ"      => "ẞ",  // Sharp S (Eszett)
 	);
 	$lcspecialchars = array(
 		"&#224;" => "à",
@@ -309,11 +317,12 @@ case "en": // English  -- limited copy of the default case (Western European set
 		"&#252;" => "ü",
 		"&#253;" => "ý",
 		"&#255;" => "ÿ",
-		"&#223;" => "ß",
+		"&#223;" => "ß",  // Sharp s (Eszett)
 	);
 	break;
+
 case "es": // Español
-   $ucspecialchars = array(
+	$ucspecialchars = array(
 		"&#193;" => "Á",
 		"&#201;" => "É",
 		"&#205;" => "Í",
@@ -334,16 +343,18 @@ case "es": // Español
 		"&#231;" => "ç",
 	);
 	break;
+
 case "eu": // Euskara
-   $ucspecialchars = array(
+	$ucspecialchars = array(
 		"&#199;" => "Ç",
 	);
 	$lcspecialchars = array(
 		"&#231;" => "ç",
 	);
 	break;
+
 case "fr": // Français
-   $ucspecialchars = array(
+	$ucspecialchars = array(
 		"&#192;" => "À",
 		"&#194;" => "Â",
 		"&#198;" => "Æ",
@@ -380,8 +391,9 @@ case "fr": // Français
 		"&#255;" => "ÿ",
 	);
 	break;
+
 case "gd-ie": // Gaeilge
-   $ucspecialchars = array(
+	$ucspecialchars = array(
 		"&#193;" => "Á",
 		"&#201;" => "É",
 		"&#205;" => "Í",
@@ -396,8 +408,9 @@ case "gd-ie": // Gaeilge
 		"&#250;" => "ú",
 	);
 	break;
+
 case "is": // Íslenska
-   $ucspecialchars = array(
+	$ucspecialchars = array(
 		"&#193;" => "Á",
 		"&#198;" => "Æ",
 		"&#208;" => "Ð",
@@ -422,8 +435,9 @@ case "is": // Íslenska
 		"&#253;" => "ý",
 	);
 	break;
+
 case "it": // Italiano
-   $ucspecialchars = array(
+	$ucspecialchars = array(
 		"&#192;" => "À",
 		"&#200;" => "È",
 		"&#201;" => "É",
@@ -448,8 +462,9 @@ case "it": // Italiano
 		"&#239;" => "ï",
 	);
 	break;
+
 case "hu": // Magyar
-   $ucspecialchars = array(
+	$ucspecialchars = array(
 		"&#193;" => "Á",
 		"&#201;" => "É",
 		"&#205;" => "Í",
@@ -472,8 +487,9 @@ case "hu": // Magyar
 		"&#369;" => "ű", // u with double acute
 	);
 	break;
+
 case "lt": // Lithuanian
-   $ucspecialchars = array(
+	$ucspecialchars = array(
 		"&#260;" => "Ą", // A cedille
 		"&#268;" => "Č", // C with hachek/caron
 		"&#280;" => "Ę", // E cedille
@@ -496,8 +512,9 @@ case "lt": // Lithuanian
 		"&#382;" => "ž", // z hachek
          );
 	break;
+
 case "nl": // Nederlands
-   $ucspecialchars = array(
+	$ucspecialchars = array(
 		"&#193;" => "Á",
 		"&#194;" => "Â",
 		"&#200;" => "È",
@@ -536,8 +553,9 @@ case "nl": // Nederlands
 		"&#252;" => "ü",
 	);
 	break;
+
 case "no": // Norsk
-   $ucspecialchars = array(
+	$ucspecialchars = array(
 		"&#198;" => "Æ",
 		"&#216;" => "Ø",
 		"&#197;" => "Å",
@@ -560,8 +578,9 @@ case "no": // Norsk
 		"&#244;" => "ô",
 	);
 	break;
+
 case "hawaiian": // 'Olelo Hawai'i
-   $ucspecialchars = array(
+	$ucspecialchars = array(
 		"&#256;" => "Ā", // A with macron
 		"&#274;" => "Ē", // E with macron
 		"&#298;" => "Ī", // I with macron
@@ -578,8 +597,9 @@ case "hawaiian": // 'Olelo Hawai'i
 		"&#x2018;" => "‘", // ‘okina ('okina) - new unicode &#699;
 	);
 	break;
+
 case "pl": // Polski
-   $ucspecialchars = array(
+	$ucspecialchars = array(
 		"&#260;" => "Ą", // A with ogonek
 		"&#262;" => "Ć", // C with acute
 		"&#280;" => "Ę", // E with ogonek
@@ -602,8 +622,9 @@ case "pl": // Polski
 		"&#380;" => "ż", // z with dot above
 	);
 	break;
+
 case "pt": // Portuguese
-   $ucspecialchars = array(
+	$ucspecialchars = array(
 		"&#192;" => "À",
 		"&#193;" => "Á",
 		"&#194;" => "Â",
@@ -638,8 +659,9 @@ case "pt": // Portuguese
 		"&#242;" => "ò",
 	);
 	break;
+
 case "sl": // Slovenšcina
-   $ucspecialchars = array(
+	$ucspecialchars = array(
 		"&#268;" => "Č", // C with caron
 		"&#352;" => "Š", // S with caron
 		"&#381;" => "Ž", // Z with caron
@@ -660,8 +682,9 @@ case "sl": // Slovenšcina
 		"&#252;" => "ü",
 	);
 	break;
+
 case "fi": // Suomi
-   $ucspecialchars = array(
+	$ucspecialchars = array(
 		"&#196;" => "Ä",
 		"&#214;" => "Ö",
 		"&#197;" => "Å",
@@ -676,8 +699,9 @@ case "fi": // Suomi
 		"&#382;" => "ž",
 	);
 	break;
+
 case "sv": // Svenska
-   $ucspecialchars = array(
+	$ucspecialchars = array(
 		"&#196;" => "Ä",
 		"&#197;" => "Å",
 		"&#201;" => "É",
@@ -696,8 +720,9 @@ case "sv": // Svenska
 		"&#252;" => "ü",
 	);
 	break;
+
 case "tr": // Türkçe
-   $ucspecialchars = array(
+	$ucspecialchars = array(
 		"&#194;" => "Â",
 		"&#199;" => "Ç",
 		"&#286;" => "Ğ", // G with breve
@@ -720,8 +745,9 @@ case "tr": // Türkçe
 		"&#252;" => "ü",
 	);
 	break;
+
 case "el": // greek
-$ucspecialchars = array(
+	$ucspecialchars = array(
 		"Ά" => "Ά",
 		"Α" => "Α",
 		"Β" => "Β", // G with breve
@@ -795,9 +821,10 @@ $ucspecialchars = array(
 		"ώ" => "ώ",
 		"ω" => "ω",
 	);
-	break;
-	case "he": // hebrew
-   $ucspecialchars = array(
+	
+
+case "he": // hebrew
+	$ucspecialchars = array(
 		"א" => "א",
 		"ב" => "ב",
 		"ג" => "ג",
@@ -856,8 +883,9 @@ $ucspecialchars = array(
 		"ת" => "ת"
 	);
 	break;
-	case "ar": // arabic
-   $ucspecialchars = array(
+
+case "ar": // arabic
+	$ucspecialchars = array(
 		"ا" => "ا",
 		"ب" => "ب",
 		"ت" => "ت",
@@ -926,8 +954,9 @@ $ucspecialchars = array(
 		"ی" => "ی"
 	);
 	break;
-	case "ru": // russian
-   $ucspecialchars = array(
+
+case "ru": // russian
+	$ucspecialchars = array(
 		"А" => "А",
 		"Б" => "Б",
 		"В" => "В",
@@ -998,7 +1027,8 @@ $ucspecialchars = array(
 		"я" => "я"
 	);
 	break;
-	case "vi": // vietnamese
+
+case "vi": // vietnamese
     $ucspecialchars = array(
         "À" => "À", // A with grave
         "Á" => "Á", // A with acute
@@ -1135,11 +1165,10 @@ $ucspecialchars = array(
         "ỷ" => "ỷ", // y with hook above
         "ỹ" => "ỹ", // y with tilde
 	);
-break;
-
+	break;
 
 default: // list all
-   $ucspecialchars = array(
+	$ucspecialchars = array(
 		"&#192;" => "À",
 		"&#193;" => "Á",
 		"&#194;" => "Â",
@@ -1190,6 +1219,7 @@ default: // list all
 		"&#352;" => "Š", // S hachek
 		"&#346;" => "Ś", // S with acute
 		"&#350;" => "Ş", // S with cedilla
+		"ẞ"      => "ẞ", // Sharp S (Eszett)
 		"&#356;" => "Ť", // T hachek
 		"&#217;" => "Ù",
 		"&#218;" => "Ú",
@@ -1258,7 +1288,7 @@ default: // list all
 		"&#353;" => "š", // s hachek
 		"&#347;" => "ś", // s with acute
 		"&#351;" => "ş", // s with cedilla
-		"&#223;" => "ß",
+		"&#223;" => "ß", // sharp s (Eszett)
 		"&#357;" => "ť", // t apostrophe
 		"&#249;" => "ù",
 		"&#250;" => "ú",

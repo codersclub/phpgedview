@@ -3,7 +3,7 @@
  * Classes for Gedcom Date/Calendar functionality.
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2007 to 2021  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2007 to 2022  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -75,6 +75,10 @@ class CalendarDate {
 			}
 			$this->y=$this->ExtractYear($date[0]);
 			$this->SetJDfromYMD();
+			return;
+		}
+		
+		if (!is_object($date)) {
 			return;
 		}
 
@@ -1126,21 +1130,20 @@ class GedcomDate {
 			$func="DefaultDateLocalisation";
 
 		// Two dates with text before, between and after
-		$q1=$this->qual1;
-		$d1=$this->date1->Format($date_fmt);
-		$q2=$this->qual2;
-		if (is_null($this->date2))
-			$d2='';
-		else
-			$d2=$this->date2->Format($date_fmt);
-		$q3='';
+		$q1 = $this->qual1;
+		$d1 = '';
+		if (!is_null($this->date1)) $d1 = $this->date1->Format($date_fmt);
+		$q2 = $this->qual2;
+		$d2 = '';
+		if (!is_null($this->date2)) $d2 = $this->date2->Format($date_fmt);
+		$q3 = '';
 		// Localise the date
 		$func($q1, $d1, $q2, $d2, $q3);
 		// Convert to other calendars, if requested
 		$conv1='';
 		$conv2='';
 		foreach ($cal_fmts as $cal_fmt)
-			if ($cal_fmt!='none') {
+			if ($cal_fmt!='none' && !is_null($this->date1)) {
 				$d1conv=$this->date1->convert_to_cal($cal_fmt);
 				if ($d1conv->InValidRange()) {
 					$d1tmp=$d1conv->Format($date_fmt);
@@ -1239,7 +1242,8 @@ class GedcomDate {
 	// Calculate the number of full years between two events.
 	// Return the result as either a number of years (for indi lists, etc.)
 	static function GetAgeYears($d1, $d2=null, $warn_on_negative=true) {
-		if (!is_object($d1)) return;
+		if (!is_object($d1)) return '';
+		if (empty($d1->date1)) return '';		// Not sure how this happens, but it causes a fatal error
 		if (!is_object($d2))
 			return $d1->date1->GetAge(false, client_jd(), $warn_on_negative );
 		else
@@ -1249,6 +1253,7 @@ class GedcomDate {
 	// Calculate the years/months/days between two events
 	// Return a gedcom style age string: "1y 2m 3d" (for fact details)
 	static function GetAgeGedcom($d1, $d2=null, $warn_on_negative=true) {
+		if (empty($d1->date1)) return '';		// Not sure how this happens, but it causes a fatal error
 		if (is_null($d2)) {
 			return $d1->date1->GetAge(true, client_jd(), $warn_on_negative);
 		} else {
