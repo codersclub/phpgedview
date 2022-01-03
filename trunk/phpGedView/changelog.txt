@@ -14,6 +14,9 @@ The session.php script uses this information to populate the constants : PGV_VER
 =====================================================================
 
 Version 4.3.1
+ - Updated: TCPDF updated to version 4.4.4 (canajun2eh)
+ - Changed: Upper-case Sharp S (Eszett) added to list of special characters (canajun2eh)
+ - Fixed: Error: Call to a member function GetAge() on null (canajun2eh)
  - Fixed: LOTS!!! of "deprecated" warnings under PHP 8.1.1 (canajun2eh)
  - Fixed: New install under PHP 8.1.1 causes "deprecated" errors in class_menu.php, functions.php and functions_print.php (canajun2eh)
  - Fixed: Call to undefined function getSequencedMediaList() from individual_ctrl.php when Multi-Media is disabled (canajun2eh)
