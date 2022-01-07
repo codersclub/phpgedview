@@ -4,7 +4,7 @@
 * Controller for the timeline chart
 *
 * phpGedView: Genealogy Viewer
-* Copyright (C) 2002 to 2017 PGV Development Team.  All rights reserved.
+* Copyright (C) 2002 to 2022 PGV Development Team.  All rights reserved.
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -449,7 +449,7 @@ class LifespanControllerRoot extends BaseController {
 				$eventspacing = Array();
 				foreach($unparsedEvents as $index=>$val) {
 					$date = $val->getDate();
-					if (!empty($date)) {
+					if (!empty($date) && !empty($date->date1)) {
 						$fact = $val->getTag();
 						$yearsin = $date->date1->y-$birthYear;
 						if ($lifespannumeral==0) {

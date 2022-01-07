@@ -5,7 +5,7 @@
  * used by the SAX parser to generate reports from the XML report file.
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2021  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2022  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -496,13 +496,15 @@ class PGVRElement {
 				$embed_fonts = true;
 			}
 		}
-		$t = trim($t, "\r\n\t");
-		$t = str_replace(array("<br />", "&nbsp;"), array("\n", " "), $t);
-		if (!PGV_RNEW) {
-			$t = strip_tags($t);
-			$t = unhtmlentities($t);
+		if (!is_null($t)) {		// PHP 8.1.1 doesn't like NULL
+			$t = trim($t, "\r\n\t");
+			$t = str_replace(array("<br />", "&nbsp;"), array("\n", " "), $t);
+			if (!PGV_RNEW) {
+				$t = strip_tags($t);
+				$t = unhtmlentities($t);
+			}
+			$this->text .= $t;
 		}
-		$this->text .= $t;
 
 		// Adding the title and description to the Document Properties
 		if ($reportTitle) {
@@ -1924,6 +1926,7 @@ function PGVRGedcomSHandler($attrs) {
 		$id = $match[1];
 	}
 	$tag = $attrs["id"];
+	if (is_null($fact)) $fact = '';		// PHP 8.1.1 doesn't like NULL
 	$tag = str_replace("@fact", $fact, $tag);
 	$tags = explode(":", $tag);
 	$newgedrec = "";
@@ -2191,12 +2194,14 @@ function PGVRGetPersonNameSHandler($attrs) {
 				}
 			} else {
 				$addname = $record->getAddName();
-				$addname = preg_replace("/<span class=\"starredname\">(.*)<\/span> ?/", "\\1* ", $addname); //@@ restores the * for underlining a given name
-				if (!PGV_RNEW) {
-					$addname = strip_tags($addname);//@@
-				}
-				if (!empty($addname)) {
-					$name .= " ".$addname;
+				if (!empty($addname)) {		// PHP 8.1.1 doesn't like NULL
+					$addname = preg_replace("/<span class=\"starredname\">(.*)<\/span> ?/", "\\1* ", $addname); //@@ restores the * for underlining a given name
+					if (!PGV_RNEW) {
+						$addname = strip_tags($addname);//@@
+					}
+					if (!empty($addname)) {
+						$name .= " ".$addname;
+					}
 				}
 			}
 			$currentElement->addText(trim($name));
@@ -2243,6 +2248,7 @@ function PGVRGedcomValueSHandler($attrs) {
 		if ($tag=="@id") {
 			$currentElement->addText($id);
 		} else {
+			if (is_null($fact)) $fact = '';		// PHP 8.1.1 doesn't like NULL
 			$tag = str_replace("@fact", $fact, $tag);
 			if (empty($attrs["level"])) {
 				$temp = explode(" ", trim($gedrec));
@@ -2330,6 +2336,7 @@ function PGVRRepeatTagSHandler($attrs) {
 			$value = trim($value);
 			$currentElement->addText($value);
 		} else {
+			if (is_null($fact)) $fact = '';		// PHP 8.1.1 doesn't like NULL
 			$tag = str_replace("@fact", $fact, $tag);
 			$tags = explode(":", $tag);
 			$temp = explode(" ", trim($gedrec));
@@ -2825,7 +2832,7 @@ function PGVRifSHandler($attrs) {
 	$i = 0;
 	while( $i < $count ) {
 		$id = $match[$i][1];
-		$value="\"\"";
+		$value='""';
 		if ($id=="ID") {
 			if (preg_match("/0 @(.+)@/", $gedrec, $match)) {
 				$value = "'".$match[1]."'";
@@ -2848,8 +2855,9 @@ function PGVRifSHandler($attrs) {
 				$level++;
 				$value = get_gedcom_value($id, $level, $gedrec, "", false);
 			}
-			$value = "\"".str_replace(array("'", '"'), array("\'", '\"'), $value)."\"";
+			if (!is_null($value)) $value = "\"".str_replace(array("'", '"'), array("\'", '\"'), $value)."\"";
 		}
+		if (is_null($value)) $value = '';		// PHP 8.1.1 doesn't like NULL
 		$condition = str_replace("@$id", $value, $condition);
 		$i++;
 	}

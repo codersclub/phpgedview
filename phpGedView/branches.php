@@ -3,7 +3,7 @@
 * List branches by surname
 *
 * phpGedView: Genealogy Viewer
-* Copyright (C) 2002 to 2018  PGV Development Team.  All rights reserved.
+* Copyright (C) 2002 to 2022  PGV Development Team.  All rights reserved.
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -133,6 +133,7 @@ function print_fams($person, $famid=null) {
 	// current indi
 	echo "<li>";
 	$class = "";
+	if (is_null($_SESSION['user_ancestors'])) $_SESSION['user_ancestors'] = array();
 	$sosa = @array_search($person->getXref(), $_SESSION['user_ancestors']);
 	if ($sosa) {
 		$class = "search_hit";
