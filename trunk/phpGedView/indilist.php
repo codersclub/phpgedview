@@ -21,7 +21,7 @@
  * Updates to one file almost certainly need to be made to the other one as well.
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2009 PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2022 PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -121,6 +121,7 @@ if ($show_all=='yes') {
 } else {
 	$show_all='no';
 	$surname='';
+	if (is_null($alpha)) $alpha = '';
 	if ($alpha=='@') {
 		$legend=$pgv_lang['NN'];
 		$surname_sublist='no';

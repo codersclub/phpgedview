@@ -3,7 +3,7 @@
  * Controller for the Descendancy Page
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2019	PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2022	PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -128,7 +128,7 @@ class DescendancyControllerRoot extends BaseController {
 	// Validate form variables
 	$this->pid=check_rootid($this->pid);
 
-	if (strlen($this->name)<30) $this->cellwidth="420";
+	if (is_null($this->name) || strlen($this->name)<30) $this->cellwidth="420";
 	else $this->cellwidth=(strlen($this->name)*14);
 
 	$this->descPerson = Person::getInstance($this->pid);

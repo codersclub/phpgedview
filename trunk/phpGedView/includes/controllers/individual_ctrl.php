@@ -3,7 +3,7 @@
 * Controller for the Individual Page
 *
 * phpGedView: Genealogy Viewer
-* Copyright (C) 2002 to 2021 PGV Development Team. All rights reserved.
+* Copyright (C) 2002 to 2022 PGV Development Team. All rights reserved.
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -1215,7 +1215,7 @@ class IndividualControllerRoot extends BaseController {
 					<?php //echo "<span class=\"details_label\">", $factarray["NCHI"], ": </span>", $family->getNumberOfChildren(), "<br />";?>
 					<?php
 					if ($date && $date->isOK() || $place) {
-						$marr_type = "MARR_".strtoupper($family->getMarriageType());
+						$marr_type = strtoupper("MARR_".$family->getMarriageType());		// Don't try to convert NULL (PHP 8.1.1 doesn't like that)
 						if (isset($factarray[$marr_type])) {
 							echo "<span class=\"details_label\">", $factarray[$marr_type], ": </span>";
 						} else {

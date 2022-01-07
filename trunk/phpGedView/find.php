@@ -3,7 +3,7 @@
  * Popup window that will allow a user to search for a family id, person id
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2020  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2022  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -86,6 +86,7 @@ if (empty($language_filter)) {
 		$language_filter=$lang_short_cut[$LANGUAGE];
 	}
 }
+$_SESSION["language_filter"] = $language_filter;		// Make this selection sticky
 require PGV_ROOT.'includes/specialchars.php';
 // End variables for Find Special Character
 
