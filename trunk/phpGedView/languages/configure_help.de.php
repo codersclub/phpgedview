@@ -3,7 +3,7 @@
  * German Language file for PhpGedView.
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2021  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2022  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -622,6 +622,7 @@ $pgv_lang["lang_name_spanish-ar"]		= "Spanisch (Latein-Amerika)";
 $pgv_lang["lang_name_swedish"]			= "Schwedisch";
 $pgv_lang["lang_name_turkish"]			= "Türkisch";
 $pgv_lang["lang_name_vietnamese"]		= "Vietnamesisch";
+$pgv_lang["lang_name_unknown"]			= "Keine dieser Sprachen";		// used ONLY in "Find Special Characters"
 $pgv_lang["lang_new_language"]			= "Neue Sprache";
 $pgv_lang["original_lang_name"]			= "Original-Name der Sprache auf #D_LANGNAME#";
 $pgv_lang["original_lang_name_help"]	= "~Ursprünglicher Name der Sprache~<br /><br />Wie heißt diese Sprache in dieser Sprache?<br /><br />Englisch nennt sich <b>english</b>; Deutsch nennt sich <b>Deutsch</b>; Niederländisch nennt sich <b>nederlands</b>; Tschechisch nennt sich <b>ceština</b> usw.";

@@ -3,7 +3,7 @@
  * Portugese Language file for PhpGedView.
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2021  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2022  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -622,7 +622,8 @@ $pgv_lang["lang_name_spanish-ar"]				= "Espanhol Latino Americano";
 $pgv_lang["lang_name_swedish"]					= "Sueco";
 $pgv_lang["lang_name_turkish"]					= "Turco";
 $pgv_lang["lang_name_vietnamese"]				= "Vietnamita";
-$pgv_lang["lang_new_language"]					= "Novo Idioma";
+$pgv_lang["lang_name_unknown"]					= "Nenhum desses idiomas";		// used ONLY in "Find Special Characters"
+$pgv_lang["lang_new_language"]					= "Novo idioma";
 $pgv_lang["original_lang_name"]					= "Nome original do idioma em #D_LANGNAME#";
 $pgv_lang["original_lang_name_help"]			= "~Nome original do idioma~<br /><br /> Como esse idioma é denominado neste idioma?<br /><br /> O inglês se autodenomina <b>English</b>; O alemão se autodenomina <b>Deutsch</b>; O holandês se autodenomina <b>Nederlands</b>; O tcheco se autodenomina <b>Ceština</b>, etc.";
 $pgv_lang["lang_shortcut"]						= "Abreviatura para arquivos de idioma";
