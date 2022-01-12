@@ -3,7 +3,7 @@
  * Catalan texts
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2021  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2022  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -622,6 +622,7 @@ $pgv_lang["lang_name_spanish-ar"]			= "Castellà (Amèrica Llatina)";
 $pgv_lang["lang_name_swedish"]			= "Suec";
 $pgv_lang["lang_name_turkish"]			= "Turc";
 $pgv_lang["lang_name_vietnamese"]	= "Vietnamita";
+$pgv_lang["lang_name_unknown"]		= "Cap d'aquestes llengües";		// used ONLY in "Find Special Characters"
 $pgv_lang["lang_new_language"]		= "Nou Idioma";
 $pgv_lang["original_lang_name"]			= "Nom original de l'idioma #D_LANGNAME#";
 $pgv_lang["original_lang_name_help"]		= "~Nom original de la llengua~<br /><br />Com es diu aquest idioma en el seu llenguatge?<br /><br />L'anglès s'anomena a sí mateix <b>English</b>; l'alemany <b>Deutsch</b>; l'holandès <b>Nederlands</b>; el txec <b>Ceština</b>, etc.";

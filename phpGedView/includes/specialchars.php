@@ -52,7 +52,7 @@ define('PGV_SPECIALCHARS_PHP', '');
 loadLangFile("pgv_confighelp");
 
 $specialchar_languages = array(
-	"xx" => "None of these",
+	"xx" => $pgv_lang["lang_name_unknown"],		// None of these
 	"af" => "Afrikaans",
 	"cs" => $pgv_lang["lang_name_czech"], // Czech
 	"sk" => $pgv_lang["lang_name_slovak"], // Slovak
@@ -827,7 +827,7 @@ case "el": // greek
 		"ώ" => "ώ",
 		"ω" => "ω",
 	);
-	
+	break;
 
 case "he": // hebrew
 	$ucspecialchars = array(

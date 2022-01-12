@@ -14,6 +14,8 @@ The session.php script uses this information to populate the constants : PGV_VER
 =====================================================================
 
 Version 4.3.1
+ - Fixed: "Magnify" option in "Find Special Characters" does not work (canajun2eh)
+ - Fixed: Character set selection in "Find Special Characters" displays Hebrew when Greek is selected (canajun2eh)
  - Fixed: Missing "Umlaut" characters e, i, y (yes!!!) in German Special Characters list (canajun2eh) 
  - Fixed: Character set selection in "Find Special Characters" should be sticky (canajun2eh)
  - Fixed: More warnings due to PHP 8.1.1 (canajun2eh)

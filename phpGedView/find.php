@@ -721,46 +721,34 @@ if ($action=="filter") {
 	// Output Special Characters
 	if ($type == "specialchar") {
 		echo "<table class=\"tabs_table $TEXT_DIRECTION width90\"><tr><td class=\"list_value center wrap\" dir=\"$TEXT_DIRECTION\"><br/>";
-		// lower case special characters
 		if ($magnify) {
 			echo '<span class="largechars">';
 		}
+		// lower case special characters
 		foreach($lcspecialchars as $key=>$value) {
 			$value = str_replace("'", "\'", $value);
 			echo "<a href=\"javascript:;\" onclick=\"return paste_char('$value', '$language_filter', '$magnify');\">";
 			echo $key;
-			echo "</span></a> ";
-		}
-		if ($magnify) {
-			echo '<span class="largechars">';
+			echo "</a> ";
 		}
 		echo '<br/><br/>';
 		//upper case special characters
-		if ($magnify) {
-			echo '<span class="largechars">';
-		}
 		foreach($ucspecialchars as $key=>$value) {
 			$value = str_replace("'", "\'", $value);
 			echo "<a href=\"javascript:;\" onclick=\"return paste_char('$value', '$language_filter', '$magnify');\">";
 			echo $key;
-			echo "</span></a> ";
-		}
-		if ($magnify) {
-			echo '<span class="largechars">';
+			echo "</a> ";
 		}
 		echo '<br/><br/>';
 		// other special characters (not letters)
-		if ($magnify) {
-			echo '<span class="largechars">';
-		}
 		foreach($otherspecialchars as $key=>$value) {
 			$value = str_replace("'", "\'", $value);
 			echo "<a href=\"javascript:;\" onclick=\"return paste_char('$value', '$language_filter', '$magnify');\">";
 			echo $key;
-			echo "</span></a> ";
+			echo "</a> ";
 		}
 		if ($magnify) {
-			echo '<span class="largechars">';
+			echo '</span>';
 		}
 		echo '<br/><br/></td></tr></table>';
 	}
