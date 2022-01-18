@@ -3,7 +3,7 @@
  * Configuration file required by GoogleMap module
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2009  PGV Development Team. All rights reserved.
+ * Copyright (C) 2002 to 2022  PGV Development Team. All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -82,7 +82,7 @@ $GM_POSTFIX      [1]=get_site_setting('GM_POSTFIX_1',       ''     ); // Text to
 $GM_PRE_POST_MODE[1]=get_site_setting('GM_PRE_POST_MODE_1', '0'    ); // Prefix/Postfix mode. Possible value are:
                                                                       // 0 = no pre/postfix
                                                                       // 1 = Normal name, Prefix, Postfix, Both
-                                                                      // 2 = Normal name, Postfix, Prefxi, Both
+                                                                      // 2 = Normal name, Postfix, Prefix, Both
                                                                       // 3 = Prefix, Postfix, Both, Normal name
                                                                       // 4 = Postfix, Prefix, Both, Normal name
                                                                       // 5 = Prefix, Postfix, Normal name, Both

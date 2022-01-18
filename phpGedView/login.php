@@ -3,7 +3,7 @@
  * Login Page.
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2020  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2022  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -199,6 +199,7 @@ $tab=0;		// initialize tab index
 		<input type="hidden" name="usertime" value="" />
 		<?php
 		if (!empty($message)) print "<span class='error'><br /><b>$message</b><br /><br /></span>\r\n";
+		if (is_null($username)) $username = '';			// PHP 8.1.1 doesn't like NULL  (see htmlentities, below)
 		?>
 		<!--table-->
 		<table class="center facts_table width50">

@@ -1096,7 +1096,7 @@ class IndividualControllerRoot extends BaseController {
 	function printParentsRows(&$family, &$people, $type) {
 		global $personcount, $pgv_changes, $pgv_lang, $factarray;
 		global $PGV_IMAGE_DIR, $PGV_IMAGES;
-		global $lang_short_cut, $LANGUAGE;
+		global $lang_short_cut, $LANGUAGE, $GEDCOM;
 		$elderdate = "";
 		//-- new father/husband
 		$styleadd = "";

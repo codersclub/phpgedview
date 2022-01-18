@@ -3,7 +3,7 @@
 * Base class for all gedcom records
 *
 * phpGedView: Genealogy Viewer
-* Copyright (C) 2002 to 2021 PGV Development Team.  All rights reserved.
+* Copyright (C) 2002 to 2022 PGV Development Team.  All rights reserved.
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -154,7 +154,7 @@ class GedcomRecord {
 			}
 
 			// If we didn't find the record in the database, it may be remote
-			if (!$data && strpos($pid, ':')) {
+			if (!$data && !is_null($pid) && strpos($pid, ':')) {
 				list($servid, $remoteid)=explode(':', $pid);
 				$service=ServiceClient::getInstance($servid);
 				if ($service) {

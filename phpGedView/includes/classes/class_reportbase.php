@@ -40,6 +40,8 @@ define("PGV_RNEW", false);
 
 define("PGV_CLASS_REPORTBASE_PHP", "");
 
+global $RTLOrd, $LANGUAGE;
+
 $ascii_langs = array("english", "danish", "dutch", "french", "hebrew", "hungarian", "german", "norwegian", "spanish", "spanish-ar");
 
 //-- setup special characters array to force embedded fonts
@@ -249,9 +251,9 @@ class PGVReportBase {
 		if (($this->pagew == 0) AND ($this->pageh == 0)) {
 			/**
 			* The current ISO 216 standard was introduced in 1975 and is a direct follow up to the german DIN 476 standard from 1922. ISO 216 is also called EN 20216 in Europe.
-			* The ISO paper sizes are based on the metric system so everything else is aproxiamte
+			* The ISO paper sizes are based on the metric system so everything else is aproximate
 			*
-			* The Series A is used for Standard Printing and Stationary.
+			* The Series A is used for Standard Printing and Stationery.
 			* The Series B is used for Posters, Wall-Charts etc.
 			* The C series is used for folders, post cards and envelopes. C series envelope is suitable to insert A series sizes.
 			* ISO also define format series RA and SRA for untrimmed raw paper, where SRA stands for 'supplementary raw format A'.
@@ -491,12 +493,12 @@ class PGVRElement {
 	function addText($t) {
 		global $embed_fonts, $SpecialOrds, $pgvreport, $reportTitle, $reportDescription;
 
-		foreach($SpecialOrds as $ord) {
-			if (strpos($t, chr($ord))!==false) {
-				$embed_fonts = true;
-			}
-		}
 		if (!is_null($t)) {		// PHP 8.1.1 doesn't like NULL
+			foreach($SpecialOrds as $ord) {
+				if (strpos($t, chr($ord))!==false) {
+					$embed_fonts = true;
+				}
+			}
 			$t = trim($t, "\r\n\t");
 			$t = str_replace(array("<br />", "&nbsp;"), array("\n", " "), $t);
 			if (!PGV_RNEW) {
@@ -703,14 +705,14 @@ class PGVRCell extends PGVRElement {
 	* @param int $width cell width (expressed in points)
 	* @param int $height cell height (expressed in points)
 	* @param mixed $border Border style
-	* @param string $align Text alignement
+	* @param string $align Text alignment
 	* @param string $bgcolor Background color code
 	* @param string $style The name of the text style
 	* @param int $ln Indicates where the current position should go after the call
 	* @param mixed $top Y-position
 	* @param mixed $left X-position
 	* @param int $fill Indicates if the cell background must be painted (1) or transparent (0). Default value: 0.
-	* @param int $stretch Stretch carachter mode
+	* @param int $stretch Stretch caracter mode
 	* @param string $bocolor Border color
 	* @param string $tcolor Text color
 	* @param boolean $reseth
@@ -1529,10 +1531,10 @@ function characterData($parser, $data) {
 }
 
 /**
-* XML <PGVRStyleSHandler /> Element Handler
+* XML &lt;PGVRStyleSHandler /&gt; Element Handler
 *
-* Reads the User Input from the Report XML file
-* That will passed to the HTML or PDF Report Generator
+* Reads the User Input from the Report XML file;
+* will be passed to the HTML or PDF Report Generator
 *
 * @see PGVReportBase::$defaultFont
 * @see PGVReportBase::$defaultFontSize
@@ -1567,7 +1569,7 @@ function PGVRStyleSHandler($attrs) {
 }
 
 /**
-* XML <PGVRDoc> start element handler
+* XML &lt;PGVRDoc&gt; start element handler
 *
 * Sets up the basics of the document proparties
 * @param array $attrs an array of key value pairs for the attributes
@@ -1650,7 +1652,7 @@ function PGVRDocSHandler($attrs) {
 }
 
 /**
-* XML </PGVRDoc> end element handler
+* XML &lt;/PGVRDoc&gt; end element handler
 *
 * @see PGVRDocSHandler()
 */
@@ -1660,7 +1662,7 @@ function PGVRDocEHandler() {
 }
 
 /**
-* XML <PGVRHeader> start element handler
+* XML &lt;PGVRHeader&gt; start element handler
 *
 * @see PGVReportBase::setProcessing()
 */
@@ -1673,7 +1675,7 @@ function PGVRHeaderSHandler() {
 }
 
 /**
-* XML <PGVRPageHeader> start element handler
+* XML &lt;PGVRPageHeader&gt; start element handler
 *
 * @param array $attrs an array of key value pairs for the attributes
 * @see PGVRPageHeaderEHandler()
@@ -1688,7 +1690,7 @@ function PGVRPageHeaderSHandler($attrs) {
 }
 
 /**
-* XML <PGVRPageHeaderEHandler> end element handler
+* XML &lt;PGVRPageHeaderEHandler&gt; end element handler
 *
 * @see PGVRPageHeaderSHandler()
 */
@@ -1702,7 +1704,7 @@ function PGVRPageHeaderEHandler() {
 }
 
 /**
-* XML <PGVRBodySHandler> start element handler
+* XML &lt;PGVRBodySHandler&gt; Start element handler
 */
 function PGVRBodySHandler() {
 	global $pgvreport;
@@ -1710,7 +1712,7 @@ function PGVRBodySHandler() {
 }
 
 /**
-* XML <PGVRFooterSHandler> start element handler
+* XML &lt;PGVRFooterSHandler&gt; Start element handler
 */
 function PGVRFooterSHandler() {
 	global $pgvreport;
@@ -1718,7 +1720,7 @@ function PGVRFooterSHandler() {
 }
 
 /**
-* XML <PGVRCell> Start Element Handler
+* XML &lt;PGVRCell&gt; Start Element Handler
 *
 * Reads the User Input from the Report XML file
 * That will passed to the HTML or PDF Report Generator
@@ -1852,7 +1854,7 @@ function PGVRCellSHandler($attrs) {
 }
 
 /**
-* XML </PGVRCell> End Element Handler
+* XML &lt;/PGVRCell&gt; End Element Handler
 *
 * @see PGVRCellSHandler()
 * @see PGVRCell
@@ -1868,7 +1870,7 @@ function PGVRCellEHandler() {
 }
 
 /**
-* XML <PGVRNow /> element handler
+* XML &lt;PGVRNow /&gt; element handler
 *
 * @see PGVRElement::addText()
 *
@@ -1883,7 +1885,7 @@ function PGVRNowSHandler() {
 }
 
 /**
-* XML <PGVRPageNum /> element handler
+* XML &lt;PGVRPageNum /&gt; element handler
 *
 * @see PGVRElement::addText()
 *
@@ -1896,7 +1898,7 @@ function PGVRPageNumSHandler() {
 }
 
 /**
-* XML <PGVRTotalPages /> element handler
+* XML &lt;PGVRTotalPages /&gt; element handler
 *
 * @see PGVRElement::addText()
 *
@@ -1999,10 +2001,10 @@ function PGVRGedcomEHandler() {
 }
 
 /**
-* XML <PGVRTextBox> Start Element Handler
+* XML &lt;PGVRTextBox&gt; Start Element Handler
 *
-* Reads the User Input from the Report XML file
-* That will passed to the HTML or PDF Report Generator
+* Reads the User Input from the Report XML file;
+* will be passed to the HTML or PDF Report Generator
 *
 * @param array $attrs an array of key value pairs for the attributes
 * @see PGVRTextBoxEHandler()
@@ -2071,7 +2073,7 @@ function PGVRTextBoxSHandler($attrs) {
 }
 
 /**
-* XML <PGVRTextBoxEHandler> end element handler
+* XML &lt;PGVRTextBoxEHandler&gt; End element handler
 *
 * @see PGVRTextBoxSHandler()
 */
@@ -2085,7 +2087,7 @@ function PGVRTextBoxEHandler() {
 }
 
 /**
-* XML <PGVRText> Start Element Handler
+* XML &lt;PGVRText&gt; Start Element Handler
 * @see PGVRTextEHandler()
 * @param array $attrs An array of key value pairs for the attributes
 * @package PhpGedView
@@ -2119,7 +2121,7 @@ function PGVRTextEHandler() {
 }
 
 /**
-* XML <PGVRGetPersonName> start element handler
+* XML &lt;PGVRGetPersonName&gt; Start element handler
 * Get the name
 * 1. id is empty - current GEDCOM record
 * 2. id is set with a record id
@@ -2210,7 +2212,7 @@ function PGVRGetPersonNameSHandler($attrs) {
 }
 
 /**
-* XML <PGVRGedcomValue> start element handler
+* XML &lt;PGVRGedcomValue&gt; Start element handler
 *
 * @param array $attrs an array of key value pairs for the attributes
 * @package PhpGedView
@@ -2298,7 +2300,7 @@ function PGVRGedcomValueSHandler($attrs) {
 }
 
 /**
-* XML <PGVRRepeatTag> start element handler
+* XML &lt;PGVRRepeatTag&gt; Start element handler
 *
 * @see PGVRRepeatTagEHandler()
 * @param array $attrs an array of key value pairs for the attributes
@@ -2306,9 +2308,9 @@ function PGVRGedcomValueSHandler($attrs) {
 function PGVRRepeatTagSHandler($attrs) {
 	/**
 	* @deprecated Today is 2021-01-29. Remove this if not causing problems
-	* global $repeats, $repeatsStack, $gedrec, $repeatBytes, $parser, $parserStack, $processRepeats, $fact, $desc;
+	* global $repeats, $repeatsStack, $gedrec, $repeatBytes, $parser, $parserStack, $processRepeats, $currentElement, $fact, $desc;
 	*/
-	global $repeats, $repeatsStack, $gedrec, $repeatBytes, $parser, $processRepeats, $fact, $desc;
+	global $repeats, $repeatsStack, $gedrec, $repeatBytes, $parser, $processRepeats, $currentElement, $fact, $desc;
 	$processRepeats++;
 	if ($processRepeats>1) return;
 
@@ -2386,7 +2388,7 @@ function PGVRRepeatTagSHandler($attrs) {
 }
 
 /**
-* XML </ PGVRRepeatTag> end element handler
+* XML &lt;/ PGVRRepeatTag&gt; End element handler
 *
 * @see PGVRRepeatTagSHandler()
 * @package PhpGedView
@@ -2646,7 +2648,7 @@ function PGVRFactsSHandler($attrs) {
 }
 
 /**
-* XML </ PGVRFacts> end element handler
+* XML &lt;/ PGVRFacts&gt; End element handler
 *
 * @see PGVRFactsSHandler()
 */
@@ -2731,7 +2733,7 @@ function PGVRFactsEHandler() {
 }
 
 /**
-* Setting upp or changing variables in the XML
+* Setting up or changing variables in the XML
 * The XML variable name and value is stored in the global variable $vars
 * @param array $attrs an array of key value pairs for the attributes
 */
@@ -2807,7 +2809,7 @@ function PGVRSetVarSHandler($attrs) {
 }
 
 /**
-* XML <PGVRif > Start Element Handler
+* XML &lt;PGVRif &gt; Start Element Handler
 * @see PGVRifEHandler()
 * @param array $attrs An array of key value pairs for the attributes
 *
@@ -2825,7 +2827,7 @@ function PGVRifSHandler($attrs) {
 	$condition = $attrs["condition"];
 	$condition = preg_replace("/\\$(\w+)/", "\$vars[\"$1\"][\"id\"]", $condition);
 	$condition = str_replace(array(" LT ", " GT "), array("<", ">"), $condition);
-	// Replace the first accurance only once of @fact:DATE or in any other combinations to the current fact, such as BIRT
+	// Replace the first occurrence only once of @fact:DATE or in any other combinations to the current fact, such as BIRT
 	$condition = str_replace("@fact", "@". $fact, $condition);
 	$match = array();
 	$count = preg_match_all("/@([\w:\.]+)/", $condition, $match, PREG_SET_ORDER);
@@ -2857,7 +2859,7 @@ function PGVRifSHandler($attrs) {
 			}
 			if (!is_null($value)) $value = "\"".str_replace(array("'", '"'), array("\'", '\"'), $value)."\"";
 		}
-		if (is_null($value)) $value = '';		// PHP 8.1.1 doesn't like NULL
+		if (is_null($value)) $value = "''";		// PHP 8.1.1 doesn't like NULL
 		$condition = str_replace("@$id", $value, $condition);
 		$i++;
 	}
@@ -2869,7 +2871,7 @@ function PGVRifSHandler($attrs) {
 }
 
 /**
-* XML <PGVRif /> end element
+* XML &lt;PGVRif /&gt; End element
 * @see PGVRifSHandler()
 */
 function PGVRifEHandler() {
@@ -2878,9 +2880,9 @@ function PGVRifEHandler() {
 }
 
 /**
-* XML <PGVRFootnote > start element
+* XML &lt;PGVRFootnote &gt; Start element
 * Collect the Footnote links
-* GEDCOM Records that are protected by Privacy setting will be ignore
+* GEDCOM Records that are protected by Privacy setting will be ignored
 *
 * @param array $attrs an array of key value pairs for the attributes
 * @see PGVRFootnoteEHandler()
@@ -2914,7 +2916,7 @@ function PGVRFootnoteSHandler($attrs) {
 }
 
 /**
-* XML <PGVRFootnote /> end element
+* XML &lt;PGVRFootnote /&gt; End element
 * Print the collected Footnote data
 *
 * @see PGVRFootnoteSHandler()
@@ -2938,7 +2940,7 @@ function PGVRFootnoteEHandler() {
 }
 
 /**
-* XML <PGVRFootnoteTexts /> element
+* XML &lt;PGVRFootnoteTexts /&gt; element
 *
 * @param array $attrs an array of key value pairs for the attributes
 */
@@ -2959,7 +2961,7 @@ function brSHandler() {
 }
 
 /**
-* XML <sp />element Forced space handler
+* XML &lt;sp /&gt; element Forced space handler
 *
 */
 function spSHandler() {
@@ -2968,7 +2970,7 @@ function spSHandler() {
 }
 
 /**
-* XML <PGVRHighlightedImage> Element Handler
+* XML &lt;PGVRHighlightedImage&gt; element Handler
 *
 * @param array $attrs An array of key value pairs for the attributes
 * @package PhpGedView
@@ -3045,7 +3047,7 @@ function PGVRHighlightedImageSHandler($attrs) {
 }
 
 /**
-* XML <PGVRImage> Element Handler
+* XML &lt;PGVRImage&gt; element Handler
 * @param array $attrs An array of key value pairs for the attributes
 * @package PhpGedView
 * @subpackage Reports
@@ -3150,7 +3152,7 @@ function PGVRImageSHandler($attrs) {
 }
 
 /**
-* XML <PGVRLine> element handler
+* XML &lt;PGVRLine&gt; element handler
 *
 * @param array $attrs an array of key value pairs for the attributes
 */
@@ -3207,7 +3209,7 @@ function PGVRLineSHandler($attrs) {
 }
 
 /**
-* XML <PGVRList> Start Element Handler
+* XML &lt;PGVRList&gt; Start Element Handler
 *
 * @see PGVRListEHandler()
 * @param array $attrs an array of key value pairs for the attributes
@@ -3216,7 +3218,7 @@ function PGVRLineSHandler($attrs) {
 */
 function PGVRListSHandler($attrs) {
 	global $gedrec, $repeats, $repeatBytes, $list, $repeatsStack, $processRepeats, $parser, $vars, $sortby;
-	global $pgv_changes, $GEDCOM, $TBLPREFIX;
+	global $pgv_changes, $GEDCOM, $TBLPREFIX, $fact, $desc;
 
 	$processRepeats++;
 	if ($processRepeats > 1) return;
@@ -3262,6 +3264,7 @@ function PGVRListSHandler($attrs) {
 			$sql_col_prefix=substr($listname, 0, 1)."_"; // i_ for individual, f_ for family, etc.
 			$sql_join=array();
 			$sql_where=array($sql_col_prefix."file=".PGV_GED_ID);
+			$sql_order_list = array();		// List of columns, but without " ASC" or " DESC"
 			$sql_order_by=array();
 			foreach ($attrs as $attr=>$value) {
 				if ((strpos($attr, "filter")===0) && $value) {
@@ -3287,6 +3290,7 @@ function PGVRListSHandler($attrs) {
 						}
 						if ($sortby==$match[1]) {
 							$sortby="";
+							$sql_order_list[]="{$attr}.d_julianday1";
 							$sql_order_by[]="{$attr}.d_julianday1";
 						}
 						unset($attrs[$attr]); // This filter has been fully processed
@@ -3304,6 +3308,7 @@ function PGVRListSHandler($attrs) {
 							// Let the DB do the name sorting even when no name was entered
 							if ($sortby=="NAME"){
 								$sortby="";
+								$sql_order_list[]="{$attr}.n_sort";
 								$sql_order_by[]="{$attr}.n_sort";
 							}
 						}
@@ -3316,6 +3321,7 @@ function PGVRListSHandler($attrs) {
 						$sql_where[]="{$attr}.n_full ".PGV_DB::$LIKE." ".PGV_DB::quote(UTF8_strtoupper("%{$match[1]}%"));
 						if ($sortby=="NAME") {
 							$sortby="";
+							$sql_order_list[]="{$attr}.n_sort";
 							$sql_order_by[]="{$attr}.n_sort";
 						}
 						unset($attrs[$attr]); // This filter has been fully processed
@@ -3327,7 +3333,7 @@ function PGVRListSHandler($attrs) {
 					}
 					/**
 					* General Purpose DB Filter for Individual and Family Lists
-					* Place any other filter before these filters because they will pick up any filters that has not been processed
+					* Place any other filter before these filters because they will pick up any filters that have not been processed
 					* Also, do not unset() these two filters. These are just the first primary filters to reduce the returned list from the DB
 					*/
 					elseif (($listname=="individual") and (preg_match('/^(\w*):*(\w*) CONTAINS (.*)$/', $value, $match))){
@@ -3356,12 +3362,12 @@ function PGVRListSHandler($attrs) {
 				}
 			}
 			if ($listname=="family") {
-				$list=search_fams_custom($sql_join, $sql_where, $sql_order_by);
+				$list=search_fams_custom($sql_order_list, $sql_join, $sql_where, $sql_order_by);
 			} else {
-				$list=search_indis_custom($sql_join, $sql_where, $sql_order_by);
+				$list=search_indis_custom($sql_order_list, $sql_join, $sql_where, $sql_order_by);
 			}
 			// Clean up the SQL queries - they will not be used again
-			unset($sql_join, $sql_where, $sql_order_by);
+			unset($sql_join, $sql_where, $sql_order_list, $sql_order_by);
 			break;
 		default:
 			die("Invalid list name: $listname");
@@ -3554,7 +3560,7 @@ function PGVRListSHandler($attrs) {
 }
 
 /**
-* XML <PGVRList /> End Element Handler
+* XML &lt;PGVRList /&gt; End Element Handler
 * @see PGVRListSHandler()
 * @package PhpGedView
 * @subpackage Reports
@@ -3640,7 +3646,7 @@ function PGVRListEHandler() {
 }
 
 /**
-* XML <PGVRListTotal> Start Element Handler
+* XML &lt;PGVRListTotal&gt; Start Element Handler
 *
 * Prints the total number of records in a list
 * The total number is collected from
@@ -3662,7 +3668,7 @@ function PGVRListTotalSHandler() {
 }
 
 /**
-* XML <PGVRRelatives> Start Element Handler
+* XML &lt;PGVRRelatives&gt; Start Element Handler
 * @param array $attrs an array of key value pairs for the attributes
 * @see PGVRRelativesEHandler()
 * @package PhpGedView
@@ -3801,7 +3807,7 @@ function PGVRRelativesSHandler($attrs) {
 }
 
 /**
-* XML </ PGVRRelatives> End Element Handler
+* XML &lt;/ PGVRRelatives&gt; End Element Handler
 *
 * @see PGVRRelativesSHandler()
 * @package PhpGedView
@@ -3893,7 +3899,7 @@ function PGVRRelativesEHandler() {
 }
 
 /**
-* XML <PGVRGeneration /> Element Handler
+* XML &lt;PGVRGeneration /&gt; element Handler
 *
 * Prints the number of generations
 * @see PGVRElement::addText()
@@ -3909,7 +3915,7 @@ function PGVRGenerationSHandler() {
 }
 
 /**
-* XML <PGVRNewPage /> Element Handler
+* XML &lt;PGVRNewPage /&gt; element Handler
 *
 * Has to be placed in an element (header, pageheader, body or footer)
 * @package PhpGedView
@@ -3959,7 +3965,7 @@ function HTMLEHandler($tag) {
 }
 
 /**
-* XML <PGVRTitleSHandler> Start Element Handler
+* XML &lt;PGVRTitleSHandler&gt; Start Element Handler
 *
 * @see PGVRTitleEHandler()
 * @package PhpGedView
@@ -3971,7 +3977,7 @@ function PGVRTitleSHandler() {
 }
 
 /**
-* XML </PGVRTitleEHandler> End Element Handler
+* XML &lt;/PGVRTitleEHandler&gt; End Element Handler
 *
 * @see PGVRTitleSHandler()
 * @package PhpGedView
@@ -3983,7 +3989,7 @@ function PGVRTitleEHandler() {
 }
 
 /**
-* XML <PGVRDescriptionSHandler> Start Element Handler
+* XML &lt;PGVRDescriptionSHandler&gt; Start Element Handler
 *
 * @see PGVRDescriptionEHandler()
 * @package PhpGedView
@@ -3995,7 +4001,7 @@ function PGVRDescriptionSHandler() {
 }
 
 /**
-* XML </PGVRDescriptionEHandler> End Element Handler
+* XML &lt;/PGVRDescriptionEHandler&gt; End Element Handler
 *
 * @see PGVRDescriptionSHandler()
 * @package PhpGedView
