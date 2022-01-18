@@ -88,9 +88,11 @@
 					<PGVRif condition="@ADDR:CTRY != ''">
 						<PGVRText style="text"><br /><PGVRGedcomValue tag="ADDR:CTRY" /></PGVRText>
 					</PGVRif>
+					<!--
 					<PGVRif condition="$showid==1">
 						<PGVRText style="idstyle"><br />                                                                       <PGVRGedcomValue tag="@id" /></PGVRText>
 					</PGVRif>
+					-->
 				</PGVRTextBox>
 				<PGVRSetVar name="count" value="$count+1" />
 				<PGVRSetVar name="X" value="$X+$Xspace" />
@@ -99,7 +101,7 @@
 					<PGVRSetVar name="Y" value="$Y+$Yspace" />
 					<PGVRSetVar name="Y" value="$Y+$height" />
 				</PGVRif>
-				<PGVRif condition="$Y>$pageHeight">
+				<PGVRif condition="$Y>$height">
 					<PGVRSetVar name="Y" value="$Ystart" />
 					<PGVRSetVar name="X" value="$Xstart" />
 					<PGVRNewPage />

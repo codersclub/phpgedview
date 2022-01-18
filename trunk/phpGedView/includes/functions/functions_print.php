@@ -5,7 +5,7 @@
 * Various printing functions used by all scripts and included by the functions.php file.
 *
 * phpGedView: Genealogy Viewer
-* Copyright (C) 2002 to 2021  PGV Development Team.  All rights reserved.
+* Copyright (C) 2002 to 2022  PGV Development Team.  All rights reserved.
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -1655,6 +1655,7 @@ function PrintReady($text, $InHeaders=false, $trim=true) {
 		$HighlightOK=false;
 	}
 	//-- convert all & to &amp;
+	if (is_null($text)) $text = '';			// PHP 8.1.1 doesn't like NULL
 	$text = str_replace("&", "&amp;", $text);
 	//$text = preg_replace(array("/&/", "/</", "/>/"), array("&amp;", "&lt;", "&gt;"), $text);
 	//-- make sure we didn't double convert existing HTML entities like so:  &foo; to &amp;foo;

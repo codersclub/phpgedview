@@ -3,7 +3,7 @@
 * Functions for exporting data
 *
 * phpGedView: Genealogy Viewer
-* Copyright (C) 2002 to 2021 PGV Development Team.  All rights reserved.
+* Copyright (C) 2002 to 2022 PGV Development Team.  All rights reserved.
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -232,12 +232,14 @@ function convert_media_path($rec, $path, $slashes) {
 	global $MEDIA_DIRECTORY;
 
 	$file = get_gedcom_value("FILE", 1, $rec);
-	if (preg_match("~^https?://~i", $file)) return $rec;	// don't modify URLs
-
-	$rec = str_replace('FILE '.$MEDIA_DIRECTORY, 'FILE '.trim($path).'/', $rec);
-	$rec = str_replace('\\', '/', $rec);
-	$rec = str_replace('//', '/', $rec);
-	if ($slashes=='backward') $rec = str_replace('/', '\\', $rec);
+	if (!is_null($file)) {		// PHP 8.1.1 doesn't like NULL
+		if (preg_match("~^https?://~i", $file)) return $rec;	// don't modify URLs
+    	
+		$rec = str_replace('FILE '.$MEDIA_DIRECTORY, 'FILE '.trim($path).'/', $rec);
+		$rec = str_replace('\\', '/', $rec);
+		$rec = str_replace('//', '/', $rec);
+		if ($slashes=='backward') $rec = str_replace('/', '\\', $rec);
+	}
 	return $rec;
 }
 

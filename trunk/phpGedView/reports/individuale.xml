@@ -785,7 +785,7 @@
 		</PGVRBody>
 
 		<!-- if the sources were on, print the source citations as footnotes -->
-		<PGVRif condition="$showSourcesPresent">
+		<PGVRif condition="$sourcesPresent">
 			<PGVRNewPage />
 			<PGVRBody>
 				<PGVRTextBox newline="1">
