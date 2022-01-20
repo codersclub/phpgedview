@@ -3,7 +3,7 @@
  * Online UI for editing config.php site configuration variables
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2016  PGV Development Team. All rights reserved.
+ * Copyright (C) 2002 to 2022  PGV Development Team. All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -554,6 +554,12 @@ function delete_place(placeid) {
 	}
 }
 
+function inactivePlacesSubmit() { 
+	form=document.getElementById('formViewInPl'); 
+	isChecked = form.querySelector("input[type=checkbox]").checked; 
+	form.action = form.action.replace(/#disp#/, isChecked ? "inactive" : ""); 
+}
+
 //-->
 </script>
 <?php
@@ -578,10 +584,11 @@ foreach (array_reverse($where_am_i, true) as $id=>$place) {
 	echo " - ";
 }
 echo "<a href=\"module.php?mod=googlemap&pgvaction=places&parent=0&display=$display\">{$pgv_lang['top_level']}</a>";
-echo "<br /><br /><form name=\"active\" method=\"post\" action=\"module.php?mod=googlemap&pgvaction=places&parent=$parent&display=$display\">";
+echo "<br /><br /><form id=\"formViewInPl\" name=\"active\" method=\"post\" action=\"module.php?mod=googlemap&pgvaction=places&parent=$parent&display=#disp#\">";
 echo "\n<table><tr><td class=\"optionbox\">", $pgv_lang["list_inactive"], ": <input type=\"checkbox\" name=\"display\" value=\"inactive\"";
 if ($display == 'inactive') echo " checked=\"checked\"";
-echo ">\n<input type=\"submit\" value=\"", $pgv_lang["view"], "\" >";
+echo ">\n<input type=\"submit\" value=\"", $pgv_lang["view"], "\"";
+echo " onclick=\"inactivePlacesSubmit()\" >";
 print_help_link("PLE_ACTIVE_help", "qm", "PLE_ACTIVE");
 echo "</td></tr></table>";
 echo "</form>";
