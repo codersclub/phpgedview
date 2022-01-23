@@ -3,7 +3,7 @@
 * PopUp Window to provide editing features.
 *
 * phpGedView: Genealogy Viewer
-* Copyright (C) 2002 to 2021  PGV Development Team.  All rights reserved.
+* Copyright (C) 2002 to 2022  PGV Development Team.  All rights reserved.
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -2246,7 +2246,7 @@ case 'al_reorder_media_update': // Update sort using Album Page
 	function SwapArray($Array){
 		$Values = array();
 //		while (list($Key, $Val) = each($Array))
-		foreach ($array as $Key => $Val) 
+		foreach ($Array as $Key => $Val) 
 			$Values[$Val] = $Key;
 		return $Values;
 	}

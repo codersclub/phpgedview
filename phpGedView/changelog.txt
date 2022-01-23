@@ -14,6 +14,9 @@ The session.php script uses this information to populate the constants : PGV_VER
 =====================================================================
 
 Version 4.3.1
+ - Changed: Minor corrections to various scripts (tbabczynski)
+ - Changed: Minor cleanup of some comments in class_reportbase.php (canajun2eh)
+ - Changed: Simplify startup logic in session.php (doesn't actually fix anything) (canajun2eh)
  - Fixed: googlemap: "inactive" view can't be deactivated with check box (tbabczynski)
  - Fixed: PDO error, postgreSQL database when creating Changes report (canajun2eh)
  - Fixed: More warnings due to PHP 8.1.1 (canajun2eh)
