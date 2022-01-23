@@ -3,7 +3,7 @@
  * phpGedView Research Assistant Tool.
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2007  John Finlay and Others
+ * Copyright (C) 2002 to 2022  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -510,7 +510,7 @@ class research_assistant extends ra_functions {
 		$task->setID($taskid);
 		if (empty($folderId))
 		{
-			$out .= $this->print_menu();
+			$out  = $this->print_menu();
 			$out .= $this->printMessage("There was no folder to put the task in.", false);
 			return $out;
 		}

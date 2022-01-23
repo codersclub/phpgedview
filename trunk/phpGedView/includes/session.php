@@ -3,7 +3,7 @@
  * Startup and session logic
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2021  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2022  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -46,31 +46,33 @@ $revision = '';				// The changelog.txt file can override the revision number
 $handle = @fopen('changelog.txt', 'r');
 if ($handle !== false) {
 	// The changelog.txt file exists:  look for the information we need
-	$status = 0x0;
+	$haveVersion = false;
+	$haveRelease = false;
+	$haveRevision = false;
 	while (!feof($handle)) {
-		if (($status & 0x7) == 0x7) break;		// We have what we need
+		if ($haveVersion && $haveRelease && $haveRevision) break;		// We have what we need
 		$textLine = fgets($handle);
-		if (($status & 0x1) == 0x0) {
+		if (!$haveVersion) {
 			$found = preg_match('~^Version (.*)~', $textLine, $match);		// Look for the first Version xxx line
 			if ($found) {
 				$version = trim($match[1]);
-				$status |= 0x1;		// 001 bit set: Version found
+				$haveVersion = true;
 				continue;
 			}
 		}
-		if (($status & 0x2) == 0x0) {
+		if (!$haveRelease) {
 			$found = preg_match('~^Release: (.*)~', $textLine, $match);		// Look for the first Release: xxx line
 			if ($found) {
 				$release = trim($match[1]);
-				$status |= 0x2;		// 010 bit set: Release found
+				$haveRelease = true;
 				continue;
 			}
 		}
-		if (($status & 0x4) == 0x0) {
+		if (!$haveRevision) {
 			$found = preg_match('~.*Id: changelog\.txt (\d\d\d\d)~', $textLine, $match);		// Look for the first (only) $Id line
 			if ($found) {
 				$revision = $match[1];
-				$status |= 0x4;		// 100 bit set: SVN number found
+				$haveRevision = true;
 				continue;		// this one is redundant, but leave it in for consistency with the above code 
 			}
 		}
@@ -90,7 +92,7 @@ if ($handle !== false) {
 	//	should be defined using what's in the config.dist file
 	while (!feof($handle)) {
 		$textLine = fgets($handle);
-		$found = preg_match('~^\$(.*)=(.*);~', $textLine, $match);		// Look for a variable definition
+		$found = preg_match('~^\$(.*)=.*;~', $textLine, $match);		// Look for a variable definition
 		if ($found) {
 			$variableName = trim($match[1]);
 			if (!isset($$variableName)) {
@@ -100,6 +102,7 @@ if ($handle !== false) {
 	}
 	fclose($handle);
 }
+	
 
 // ------------------ The real PhpGedView begins here ------------
 
@@ -113,7 +116,7 @@ define('PGV_PHPGEDVIEW_URL',  'http://www.phpgedview.net');
 define('PGV_PHPGEDVIEW_WIKI', 'http://wiki.phpgedview.net');
 
 // Get rid of these, in case they're used elsewhere for a different purpose
-unset($version, $release, $revision, $handle, $status, $textLine, $found, $match, $variableName);
+unset($version, $release, $revision, $handle, $haveVersion, $haveRelease, $haveRevision, $textLine, $found, $match, $variableName);
 
 // Enable debugging output?
 define('PGV_DEBUG',      false);

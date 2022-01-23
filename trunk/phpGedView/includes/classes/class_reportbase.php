@@ -251,7 +251,7 @@ class PGVReportBase {
 		if (($this->pagew == 0) AND ($this->pageh == 0)) {
 			/**
 			* The current ISO 216 standard was introduced in 1975 and is a direct follow up to the german DIN 476 standard from 1922. ISO 216 is also called EN 20216 in Europe.
-			* The ISO paper sizes are based on the metric system so everything else is aproximate
+			* The ISO paper sizes are based on the metric system so everything else is approximate
 			*
 			* The Series A is used for Standard Printing and Stationery.
 			* The Series B is used for Posters, Wall-Charts etc.
@@ -712,7 +712,7 @@ class PGVRCell extends PGVRElement {
 	* @param mixed $top Y-position
 	* @param mixed $left X-position
 	* @param int $fill Indicates if the cell background must be painted (1) or transparent (0). Default value: 0.
-	* @param int $stretch Stretch caracter mode
+	* @param int $stretch Stretch character mode
 	* @param string $bocolor Border color
 	* @param string $tcolor Text color
 	* @param boolean $reseth
@@ -1457,8 +1457,7 @@ $processFootnote = true;
 * @subpackage Reports
 */
 function startElement($parser, $name, $attrs) {
-	global $elementHandler, $processIfs, $processGedcoms, $processRepeats, $vars;
-	global $processFootnote;
+	global $elementHandler, $processIfs, $processGedcoms, $processRepeats, $vars, $processFootnote;
 
 	$newattrs = array();
 	$match = array();
@@ -1494,8 +1493,7 @@ function startElement($parser, $name, $attrs) {
  * @see startElement()
  */
 function endElement($parser, $name) {
-	global $elementHandler, $processIfs, $processGedcoms, $processRepeats;
-	global $processFootnote;
+	global $elementHandler, $processIfs, $processGedcoms, $processRepeats, $processFootnote;
 
 	if (($processFootnote || $name=="PGVRFootnote")&&($processIfs==0 || $name=="PGVRif")&&($processGedcoms==0 || $name=="PGVRGedcom")&&($processRepeats==0 || $name=="PGVRFacts" || $name=="PGVRRepeatTag" || $name=="PGVRList" || $name=="PGVRRelatives")) {
 		if (isset($elementHandler[$name]["end"])) {
@@ -1519,7 +1517,6 @@ function endElement($parser, $name) {
  */
 function characterData($parser, $data) {
 	global $printData, $currentElement, $processGedcoms, $processIfs, $processRepeats, $reportTitle, $pgvreport, $reportDescription;
-//	global $processFootnote;
 
 	if ($printData && ($processGedcoms==0) && ($processIfs==0)&&($processRepeats==0)) {
 		$currentElement->addText($data);
@@ -1658,6 +1655,7 @@ function PGVRDocSHandler($attrs) {
 */
 function PGVRDocEHandler() {
 	global $pgvreport;
+
 	$pgvreport->run();
 }
 
@@ -1708,6 +1706,7 @@ function PGVRPageHeaderEHandler() {
 */
 function PGVRBodySHandler() {
 	global $pgvreport;
+
 	$pgvreport->setProcessing("B");
 }
 
@@ -1716,6 +1715,7 @@ function PGVRBodySHandler() {
 */
 function PGVRFooterSHandler() {
 	global $pgvreport;
+
 	$pgvreport->setProcessing("F");
 }
 
@@ -1735,6 +1735,7 @@ function PGVRFooterSHandler() {
 */
 function PGVRCellSHandler($attrs) {
 	global $printData, $printDataStack, $currentElement, $PGVReportRoot, $pgvreport;
+
 	/**
 	* Setting up the Defaults for this Cell
 	*
@@ -1894,6 +1895,7 @@ function PGVRNowSHandler() {
 */
 function PGVRPageNumSHandler() {
 	global $currentElement;
+
 	$currentElement->addText("#PAGENUM#");
 }
 
@@ -1907,6 +1909,7 @@ function PGVRPageNumSHandler() {
 */
 function PGVRTotalPagesSHandler() {
 	global $currentElement;
+
 	$currentElement->addText("#PAGETOT#");
 }
 
@@ -2131,11 +2134,7 @@ function PGVRTextEHandler() {
 * @subpackage Reports
 */
 function PGVRGetPersonNameSHandler($attrs) {
-	/*
-	* @deprecated Today is 2021-01-29. Remove this if not causing problems
-	* global $currentElement, $vars, $gedrec, $gedrecStack, $pgv_lang, $SHOW_ID_NUMBERS;
-	*/
-	global $currentElement, $vars, $gedrec;
+	global $currentElement, $vars, $gedrec, $pgv_lang;
 
 	$id = "";
 	$match = array();
@@ -2165,7 +2164,6 @@ function PGVRGetPersonNameSHandler($attrs) {
 			return;
 		}
 		if (!$record->canDisplayName()) {
-			global $pgv_lang;
 			$currentElement->addText($pgv_lang["private"]);
 		} else {
 			$name = $record->getFullName();
@@ -2219,11 +2217,8 @@ function PGVRGetPersonNameSHandler($attrs) {
 * @subpackage Reports
 */
 function PGVRGedcomValueSHandler($attrs) {
-	/*
-	* @deprecated Today is 2021-01-29. Remove this if not causing problems
-	* global $currentElement, $vars, $gedrec, $gedrecStack, $fact, $desc, $type, $SHOW_PEDIGREE_PLACES, $pgv_lang;
-	*/
 	global $currentElement, $gedrec, $fact, $desc;
+
 	$id = "";
 	$match = array();
 	if (preg_match("/0 @(.+)@/", $gedrec, $match)) {
@@ -2306,11 +2301,8 @@ function PGVRGedcomValueSHandler($attrs) {
 * @param array $attrs an array of key value pairs for the attributes
 */
 function PGVRRepeatTagSHandler($attrs) {
-	/**
-	* @deprecated Today is 2021-01-29. Remove this if not causing problems
-	* global $repeats, $repeatsStack, $gedrec, $repeatBytes, $parser, $parserStack, $processRepeats, $currentElement, $fact, $desc;
-	*/
 	global $repeats, $repeatsStack, $gedrec, $repeatBytes, $parser, $processRepeats, $currentElement, $fact, $desc;
+
 	$processRepeats++;
 	if ($processRepeats>1) return;
 
@@ -2395,7 +2387,7 @@ function PGVRRepeatTagSHandler($attrs) {
 * @subpackage Reports
 */
 function PGVRRepeatTagEHandler() {
-	global $processRepeats, $repeats, $repeatsStack, $repeatBytes;
+	global $processRepeats, $repeats, $repeatsStack, $repeatBytes, $parser, $parserStack, $report, $gedrec;
 
 	$processRepeats--;
 	if ($processRepeats>0) {
@@ -2404,12 +2396,6 @@ function PGVRRepeatTagEHandler() {
 
 	// Check if there is anything to repeat
 	if (count($repeats)>0) {
-		// No need to load them if not used...
-		global $parser, $parserStack, $report, $gedrec;
-		/*
-		* @deprecated Today is 2021-01-14. Remove this if not causing problems
-		* $line = xml_get_current_line_number($parser)-1;
-		*/
 		$lineoffset = 0;
 		foreach($repeatsStack as $rep) {
 			$lineoffset += $rep[1];
@@ -2495,14 +2481,7 @@ function PGVRRepeatTagEHandler() {
 * @subpackage Reports
 */
 function PGVRvarSHandler($attrs) {
-	/*
-	* @deprecated Today is 2021-01-29. Remove this if not causing problems
-	* global $currentElement, $gedrec, $gedrecStack, $type, $parser;
-	*/
-	global $currentElement, $type, $parser;
-
-	// Retrievable variables
-	global $desc, $fact, $pgv_lang, $factarray, $language_settings, $vars;
+	global $currentElement, $type, $parser, $desc, $fact, $pgv_lang, $factarray, $language_settings, $vars;
 
 	if (empty($attrs["var"])) {
 		die("<strong>REPORT ERROR PGVRvar: </strong> The attribute \"var=\" is missing or not set in the XML file on line: ".xml_get_current_line_number($parser));
@@ -2570,11 +2549,8 @@ function PGVRvarLetterSHandler($attrs) {
 * @subpackage Reports
 */
 function PGVRFactsSHandler($attrs) {
-	/*
-	* @deprecated Today is 2021-01-29. Remove this if not causing problems
-	* global $repeats, $repeatsStack, $gedrec, $parser, $parserStack, $repeatBytes, $processRepeats, $vars;
-	*/
-	global $repeats, $repeatsStack, $gedrec, $parser, $repeatBytes, $processRepeats, $vars;
+	global $repeats, $repeatsStack, $gedrec, $parser, $repeatBytes, $processRepeats, $vars, $nonfacts;
+
 	$processRepeats++;
 	if ($processRepeats>1) return;
 
@@ -2616,7 +2592,6 @@ function PGVRFactsSHandler($attrs) {
 			}
 		}
 	} else {
-		global $nonfacts;
 		$nonfacts = preg_split("/[\s,;:]/", $tag);
 		$record = new GedcomRecord($gedrec);
 		switch ($record->getType()) {
@@ -2738,11 +2713,8 @@ function PGVRFactsEHandler() {
 * @param array $attrs an array of key value pairs for the attributes
 */
 function PGVRSetVarSHandler($attrs) {
-	/*
-	* @deprecated Today is 2021-01-29. Remove this if not causing problems
-	* global $vars, $gedrec, $gedrecStack, $pgv_lang, $factarray, $fact, $desc, $type, $generation;
-	*/
 	global $vars, $gedrec, $pgv_lang, $factarray, $fact, $desc, $type, $generation;
+
 	if (empty($attrs["name"])) {
 		die("<strong>REPORT ERROR PGVRvar: </strong> The attribute \"name=\" is missing or not set in the XML file");
 	}
@@ -2876,6 +2848,7 @@ function PGVRifSHandler($attrs) {
 */
 function PGVRifEHandler() {
 	global $processIfs;
+
 	if ($processIfs>0) $processIfs--;
 }
 
@@ -2922,11 +2895,8 @@ function PGVRFootnoteSHandler($attrs) {
 * @see PGVRFootnoteSHandler()
 */
 function PGVRFootnoteEHandler() {
-	/*
-	* @deprecated Today is 2021-01-29. Remove this if not causing problems
-	* global $printData, $printDataStack, $currentElement, $footnoteElement, $processFootnote, $gedrec, $pgvreport;
-	*/
 	global $printData, $printDataStack, $currentElement, $footnoteElement, $processFootnote, $pgvreport;
+
 	if ($processFootnote) {
 		$printData = array_pop($printDataStack);
 		$temp = trim($currentElement->getValue());
@@ -2957,6 +2927,7 @@ function PGVRFootnoteTextsSHandler() {
 */
 function brSHandler() {
 	global $printData, $currentElement, $processGedcoms;
+
 	if ($printData && ($processGedcoms==0)) $currentElement->addText("<br />");
 }
 
@@ -2966,6 +2937,7 @@ function brSHandler() {
 */
 function spSHandler() {
 	global $printData, $currentElement, $processGedcoms;
+
 	if ($printData && ($processGedcoms==0)) $currentElement->addText(" ");
 }
 
@@ -3217,8 +3189,7 @@ function PGVRLineSHandler($attrs) {
 * @subpackage Reports
 */
 function PGVRListSHandler($attrs) {
-	global $gedrec, $repeats, $repeatBytes, $list, $repeatsStack, $processRepeats, $parser, $vars, $sortby;
-	global $pgv_changes, $GEDCOM, $TBLPREFIX, $fact, $desc;
+	global $gedrec, $repeats, $repeatBytes, $list, $repeatsStack, $processRepeats, $parser, $vars, $sortby, $pgv_changes, $GEDCOM, $TBLPREFIX, $fact, $desc;
 
 	$processRepeats++;
 	if ($processRepeats > 1) return;
@@ -3264,7 +3235,6 @@ function PGVRListSHandler($attrs) {
 			$sql_col_prefix=substr($listname, 0, 1)."_"; // i_ for individual, f_ for family, etc.
 			$sql_join=array();
 			$sql_where=array($sql_col_prefix."file=".PGV_GED_ID);
-			$sql_order_list = array();		// List of columns, but without " ASC" or " DESC"
 			$sql_order_by=array();
 			foreach ($attrs as $attr=>$value) {
 				if ((strpos($attr, "filter")===0) && $value) {
@@ -3290,7 +3260,6 @@ function PGVRListSHandler($attrs) {
 						}
 						if ($sortby==$match[1]) {
 							$sortby="";
-							$sql_order_list[]="{$attr}.d_julianday1";
 							$sql_order_by[]="{$attr}.d_julianday1";
 						}
 						unset($attrs[$attr]); // This filter has been fully processed
@@ -3308,7 +3277,6 @@ function PGVRListSHandler($attrs) {
 							// Let the DB do the name sorting even when no name was entered
 							if ($sortby=="NAME"){
 								$sortby="";
-								$sql_order_list[]="{$attr}.n_sort";
 								$sql_order_by[]="{$attr}.n_sort";
 							}
 						}
@@ -3321,7 +3289,6 @@ function PGVRListSHandler($attrs) {
 						$sql_where[]="{$attr}.n_full ".PGV_DB::$LIKE." ".PGV_DB::quote(UTF8_strtoupper("%{$match[1]}%"));
 						if ($sortby=="NAME") {
 							$sortby="";
-							$sql_order_list[]="{$attr}.n_sort";
 							$sql_order_by[]="{$attr}.n_sort";
 						}
 						unset($attrs[$attr]); // This filter has been fully processed
@@ -3362,12 +3329,12 @@ function PGVRListSHandler($attrs) {
 				}
 			}
 			if ($listname=="family") {
-				$list=search_fams_custom($sql_order_list, $sql_join, $sql_where, $sql_order_by);
+				$list=search_fams_custom($sql_join, $sql_where, $sql_order_by);
 			} else {
-				$list=search_indis_custom($sql_order_list, $sql_join, $sql_where, $sql_order_by);
+				$list=search_indis_custom($sql_join, $sql_where, $sql_order_by);
 			}
 			// Clean up the SQL queries - they will not be used again
-			unset($sql_join, $sql_where, $sql_order_list, $sql_order_by);
+			unset($sql_join, $sql_where, $sql_order_by);
 			break;
 		default:
 			die("Invalid list name: $listname");
@@ -3575,10 +3542,6 @@ function PGVRListEHandler() {
 
 	// Check if there is any list
 	if (count($list) > 0) {
-		/*
-		* @deprecated Today is 2021-01-14. Remove this if not causing problems
-		* $line = xml_get_current_line_number($parser)-1;
-		*/
 		$lineoffset = 0;
 		foreach($repeatsStack as $rep) {
 			$lineoffset += $rep[1];
@@ -3823,10 +3786,6 @@ function PGVRRelativesEHandler() {
 
 	// Check if there is any relatives
 	if (count($list) > 0) {
-		/*
-		* @deprecated Today is 2021-01-14. Remove this if not causing problems
-		* $line = xml_get_current_line_number($parser)-1;
-		*/
 		$lineoffset = 0;
 		foreach($repeatsStack as $rep) {
 			$lineoffset += $rep[1];
@@ -3955,6 +3914,7 @@ function HTMLSHandler($tag, $attrs) {
 */
 function HTMLEHandler($tag) {
 	global $printData, $printDataStack, $pgvreport, $currentElement, $pgvreportStack;
+
 	if ($tag=="tempdoc") return;
 
 	$printData = array_pop($printDataStack);
@@ -3973,6 +3933,7 @@ function HTMLEHandler($tag) {
 */
 function PGVRTitleSHandler() {
 	global $reportTitle;
+
 	$reportTitle = true;
 }
 
@@ -3985,6 +3946,7 @@ function PGVRTitleSHandler() {
 */
 function PGVRTitleEHandler() {
 	global $reportTitle;
+
 	$reportTitle = false;
 }
 
@@ -3997,6 +3959,7 @@ function PGVRTitleEHandler() {
 */
 function PGVRDescriptionSHandler() {
 	global $reportDescription;
+
 	$reportDescription = true;
 }
 
@@ -4009,6 +3972,7 @@ function PGVRDescriptionSHandler() {
 */
 function PGVRDescriptionEHandler() {
 	global $reportDescription;
+
 	$reportDescription = false;
 }
 ?>
