@@ -3,7 +3,7 @@
  * Catalan Language file for PhpGedView.
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2021  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2022  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -1330,8 +1330,11 @@ $pgv_lang["message_deleted"]		= "Missatge esborrat";
 $pgv_lang["message_sent"]		= "Missatge enviat a #TO_USER#";
 $pgv_lang["message_failed"]		= "Missatge no s'ha pogut enviar";
 $pgv_lang["message_error"]		= "Error PHPMailer: ";
-$pgv_lang["message_invalid_from"]	= "Adreça del remitent no vàlid: &lt;#email#&gt;";
-$pgv_lang["message_invalid_to"]		= "Adreça del destinatari no vàlid: &lt;#email#&gt;";
+$pgv_lang["message_invalid_from"]	= "L'adreça del remitent no vàlid: &laquo;#email#&raquo;";
+$pgv_lang["message_invalid_to"]		= "L'adreça del destinatari no vàlid: &laquo;#email#&raquo;";
+$pgv_lang["message_illegal_chars"]	= "Caràcters il·legals a l'adreça &laquo;#email#&raquo;";
+$pgv_lang["message_bad_format"]		= "L'adreça &laquo;#email#&raquo; no té el format correcte";
+$pgv_lang["message_no_MX"]			= "El domini de l'adreça &laquo;#email#&raquo no existeix o no té un registre MX"; 
 $pgv_lang["reset"]			= "Neteja";
 $pgv_lang["site_default"]		= "Per defecte la del lloc";
 $pgv_lang["mygedview_desc"] 		= "El vostre portal MyGedView us permet tenir ex-libris de familiars preferits, estar al corrent d'aniversaris i col·laborar amb altres usuaris.";

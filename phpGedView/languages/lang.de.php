@@ -3,7 +3,7 @@
  * German Language file for PhpGedView.
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2021  PGV Development Team.  All rights reerved.
+ * Copyright (C) 2002 to 2022  PGV Development Team.  All rights reerved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -1332,8 +1332,11 @@ $pgv_lang["message_deleted"]			= "Nachricht gelöscht";
 $pgv_lang["message_sent"]				= "Nachricht an #TO_USER# gesendet";
 $pgv_lang["message_failed"]				= "Nachricht konnte nicht gesendet werden";
 $pgv_lang["message_error"]				= "PHPMailer Fehler: ";
-$pgv_lang["message_invalid_from"]		= "Ungültige Absenderadresse: &lt;#email#&gt;";
-$pgv_lang["message_invalid_to"]			= "Ungültige Empfängeradresse: &lt;#email#&gt;";
+$pgv_lang["message_invalid_from"]		= "Ungültige Absenderadresse: &raquo;#email#&laquo;";
+$pgv_lang["message_invalid_to"]			= "Ungültige Empfängeradresse: &raquo;#email#&laquo;";
+$pgv_lang["message_illegal_chars"]		= "Ungültige Zeichen in der Adresse &raquo;#email#&laquo;";
+$pgv_lang["message_bad_format"]			= "Die Adresse &raquo;#email#&laquo; ist nicht korrekt formatiert";
+$pgv_lang["message_no_MX"]				= "Das Domain der Adresse &raquo;#email#&laquo; existiert nicht oder hat keinen MX-Eintrag"; 
 $pgv_lang["reset"]						= "Reset";
 $pgv_lang["site_default"]				= "Grundeinstellung";
 $pgv_lang["mygedview_desc"]				= "Dieses Portal ermöglicht Ihnen das Anlegen von Lesezeichen zu bevorzugten Personen, Überwachen bevorstehender Ereignisse und die Zusammenarbeit mit anderen PhpGedView Benutzern.";

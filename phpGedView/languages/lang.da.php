@@ -3,7 +3,7 @@
  * Danish Language file for PhpGedView.
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2021  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2022  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -1330,8 +1330,11 @@ $pgv_lang["message_deleted"]		= "Meddelelsen slettet";
 $pgv_lang["message_sent"]		= "Meddelelsen sendt til #TO_USER#";
 $pgv_lang["message_failed"]		= "Meddelelsen kunne ikke sendes";
 $pgv_lang["message_error"]		= "PHPMailer fejl: ";
-$pgv_lang["message_invalid_from"]	= "Ugyldig afsenderadresse: &lt;#email#&gt;";
-$pgv_lang["message_invalid_to"]		= "Ugyldig modtageradresse: &lt;#email#&gt;";
+$pgv_lang["message_invalid_from"]	= "Ugyldig afsenderadresse: &laquo;#email#&raquo;";
+$pgv_lang["message_invalid_to"]		= "Ugyldig modtageradresse: &laquo;#email#&raquo;";
+$pgv_lang["message_illegal_chars"]	= "Ugyldig tegn i adressen &laquo;#email#&raquo;";
+$pgv_lang["message_bad_format"]		= "Adressen &laquo;#email#&raquo; er ikke formateret korrekt";
+$pgv_lang["message_no_MX"]			= "Domænet for adressen &laquo;#email#&raquo; eksisterer ikke eller har ikke en MX-record"; 
 $pgv_lang["reset"]				= "Nulstil";
 $pgv_lang["site_default"]		= "Standard på hjemmesiden";
 $pgv_lang["mygedview_desc"]		= "Dette er Mine Sider, hvor du kan vælge egne favoritter, få en påmindelse om begivenheder og samarbejde med andre brugere.";

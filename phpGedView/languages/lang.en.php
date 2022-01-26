@@ -3,7 +3,7 @@
  * English texts
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2021  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2022  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -1329,8 +1329,11 @@ $pgv_lang["message_deleted"]		= "Message Deleted";
 $pgv_lang["message_sent"]			= "Message sent to #TO_USER#";
 $pgv_lang["message_failed"]			= "Message could not be sent";
 $pgv_lang["message_error"]			= "PHPMailer error: ";
-$pgv_lang["message_invalid_from"]	= "Invalid sender address: &lt;#email#&gt;";
-$pgv_lang["message_invalid_to"]		= "Invalid recipient address: &lt;#email#&gt;";
+$pgv_lang["message_invalid_from"]	= "Invalid sender address: &laquo;#email#&raquo;";
+$pgv_lang["message_invalid_to"]		= "Invalid recipient address: &laquo;#email#&raquo;";
+$pgv_lang["message_illegal_chars"]	= "Illegal characters in the address &laquo;#email#&raquo;";
+$pgv_lang["message_bad_format"]		= "The address &laquo;#email#&raquo; is not formatted correctly";
+$pgv_lang["message_no_MX"]			= "The domain of the address &laquo;#email#&raquo; does not exist or does not have an MX record"; 
 $pgv_lang["reset"]					= "Reset";
 $pgv_lang["site_default"]			= "Site Default";
 $pgv_lang["mygedview_desc"] 		= "Your MyGedView page allows you to keep bookmarks of your favorite people, track upcoming events, and collaborate with other PhpGedView users.";
