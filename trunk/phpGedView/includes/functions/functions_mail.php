@@ -44,14 +44,29 @@ function pgvMail($to, $from, $subject, $message, $bulkMail=false, $fromFullName=
 	//$mailFormat = "multipart";
 
 	$errorMessage = '';
-	if (!validEmail($from)) {		// Validate "from" e-mail address
-		$errorMessage .= str_replace('#email#', $from, $pgv_lang["message_invalid_from"]);
+
+	$isValid = validEmail($from);		// Validate "from" e-mail address
+	if ($isValid !== true) {			// Validity check failed
+		$emailAddr = str_replace(array('<', '>'), array('&lt;', '&gt'), $from);		// Make sure this is printable
+		if ($isValid !== false) {		//	We have a message from the validation routine
+			$errorMessage .= str_replace('#email#', $emailAddr, $isValid);
+			$errorMessage .= '<br />';
+		}
+		$errorMessage .= str_replace('#email#', $emailAddr, $pgv_lang["message_invalid_from"]);
 		$errorMessage .= '<br />';
 	}
-	if (!validEmail($to)) {			// Validate "to" e-mail address
-		$errorMessage .= str_replace('#email#', $to, $pgv_lang["message_invalid_to"]);
+
+	$isValid = validEmail($to);			// Validate "to" e-mail address
+	if ($isValid !== true) {			// Validity check failed
+		$emailAddr = str_replace(array('<', '>'), array('&lt;', '&gt'), $to);		// Make sure this is printable
+		if ($isValid !== false) {		//	We have a message from the validation routine
+			$errorMessage .= str_replace('#email#', $emailAddr, $isValid);
+			$errorMessage .= '<br />';
+		}
+		$errorMessage .= str_replace('#email#', $emailAddr, $pgv_lang["message_invalid_to"]);
 		$errorMessage .= '<br />';
 	}
+
 	if ($errorMessage != '' ) {		// Quit if either address check failed
 		echo '<span class="error">', $errorMessage, '</span>';
 		return false;
@@ -310,76 +325,54 @@ function RFC2047Encode($string, $charset) {
 }
 
 /**
- * Validate an email address.
+ * Validate an email address
+ *		The input e-mail address can be in either of these forms:
+ *			mailbox@domain
+ *			full name <mailbox@domain>
  *
- * Returns true if the input email address has the correct address format and the domain exists.
+ * 		Return values:
+ *			TRUE if the input e-mail address passes all validity checks
+ *			FALSE if the input e-mail address fails any of the validity checks (no error message)
+ *			text.  An error message if the validity check chooses to supply such a message instead of FALSE
  */
-function validEmail($email) {
-	$isValid = true;
+function validEmail($emailAddr) {
+	global $pgv_lang;
+	
+	$found = preg_match('~\s<(.*)>~', $emailAddr, $match);		// Look for an e-mail address inside angle brackets
+	if ($found) $email = $match[1];
+	else $email = $emailAddr;
+	$emailAddr = trim($emailAddr);
 
-	while ($isValid) {
+	while (true) {
+		$sanitizedEmail = filter_var($email, FILTER_SANITIZE_EMAIL);		// Sanitize the e-mail address
+		if ($sanitizedEmail != $email) {
+			$isValid = $pgv_lang["message_illegal_chars"];
+			break;		// The e-mail address contained illegal characters
+		}
+
+		$validatedEmail = filter_var($email, FILTER_VALIDATE_EMAIL);
+		if (!$validatedEmail) {
+			$isValid = $pgv_lang["message_bad_format"];
+			break;		// The e-mail address is not formatted correctly
+		}
+		
 		$atIndex = strrpos($email, "@");
-		if ($atIndex === false) {
-		   $isValid = false;
-		   break;
+		if ($atIndex === false) {		// This should never happen: the format check above takes care of this
+			$isValid = false;
+			break;		// The e-mail address does not contain an at-sign
 		}
 
 		$domain = substr($email, $atIndex+1);
-		$local = substr($email, 0, $atIndex);
-		$localLen = strlen($local);
-		$domainLen = strlen($domain);
 
-		// Validate local part (what's in front of last @ symbol)
+		if (!checkdnsrr($domain, "MX")) {
+			$isValid = $pgv_lang["message_no_MX"];
+			break;		// The domain is not found in DNS or does not support email
+		}
+		
+		$isValid = true;
+		break;			// The e-mail address passed all checks
+	}
 
-		if ($localLen < 1 || $localLen > 65) {
-			// local part missing or length exceeded
-			$isValid = false;
-			break;
-		}
-		if ($local[0] == '.' || $local[$localLen-1] == '.') {
-			// local part starts or ends with '.'
-			$isValid = false;
-			break;
-		}
-		if (preg_match('/\\.\\./', $local)) {
-			// local part has two consecutive dots
-			$isValid = false;
-			break;
-		}
-		$tempLocal = str_replace("\\\\","",$local);
-		if (!preg_match('/^(\\\\.|[A-Za-z0-9!#%&`_=\\/$\'*+?^{}|~.-])+$/', $tempLocal)) {
-			// character not valid in local part unless
-			// local part is quoted
-			if (!preg_match('/^"(\\\\"|[^"])+"$/', $tempLocal)) {
-				$isValid = false;
-				break;
-			}
-		}
-
-		// Validate domain part (what's after the last @ symbol)
-
-		if ($domainLen < 1 || $domainLen > 255) {
-			// domain part missing or length exceeded
-			$isValid = false;
-			break;
-		}
-		if (!preg_match('/^[A-Za-z0-9\\-\\.]+$/', $domain)) {
-			// character not valid in domain part
-			$isValid = false;
-			break;
-		}
-		if (preg_match('/\\.\\./', $domain)) {
-			// domain part has two consecutive dots
-			$isValid = false;
-			break;
-		}
-		if (!checkdnsrr($domain,"MX")) {
-			// domain not found in DNS or domain does not support email
-			$isValid = false;
-			break;
-		}
-		break;
-   }
-   return $isValid;
+   	return $isValid;
 }
 ?>

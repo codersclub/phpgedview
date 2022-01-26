@@ -3,7 +3,7 @@
  * Dutch Language file for PhpGedView.
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2021  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2022  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -1330,8 +1330,11 @@ $pgv_lang["message_deleted"]		= "Bericht verwijderd";
 $pgv_lang["message_sent"]		= "Bericht verzonden naar #TO_USER#";
 $pgv_lang["message_failed"]		= "Bericht kon niet worden verzonden";
 $pgv_lang["message_error"]		= "PHPMailer fout: ";
-$pgv_lang["message_invalid_from"]	= "Ongeldig afzenderadres: &lt;#email#&gt;";
-$pgv_lang["message_invalid_to"]		= "Ongeldig ontvangeradres: &lt;#email#&gt;";
+$pgv_lang["message_invalid_from"]	= "Ongeldig afzenderadres: &laquo;#email#&raquo;";
+$pgv_lang["message_invalid_to"]		= "Ongeldig ontvangeradres: &laquo;#email#&raquo;";
+$pgv_lang["message_illegal_chars"]	= "Illegale tekens in het adres &laquo;#email#&raquo;";
+$pgv_lang["message_bad_format"]		= "Het adres &laquo;#email#&raquo is niet correct opgemaakt";
+$pgv_lang["message_no_MX"]			= "Het domein van het adres &laquo;#email#&raqu bestaat niet of heeft geen MX-record"; 
 $pgv_lang["reset"]					= "Herstel";
 $pgv_lang["site_default"]			= "Standaard site";
 $pgv_lang["mygedview_desc"]			= "Op uw persoonlijke MyGedView pagina kunt u uw favoriete personen aangeven, kijken naar gebeurtenissen die binnenkort plaatsvinden en samenwerken met andere PhpGedView gebruikers van deze site.";

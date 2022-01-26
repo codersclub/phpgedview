@@ -3,7 +3,7 @@
  * French Language file for PhpGedView.
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2021  PGV Development Team. All rights reserved.
+ * Copyright (C) 2002 to 2022  PGV Development Team. All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -1329,8 +1329,11 @@ $pgv_lang["message_deleted"]            = "Le message supprimé";
 $pgv_lang["message_sent"]		= "Le message envoyé à #TO_USER#";
 $pgv_lang["message_failed"]		= "Le message n'a pas pu être envoyé";
 $pgv_lang["message_error"]		= "Erreur PHPMailer: ";
-$pgv_lang["message_invalid_from"]	= "Adresse de l'expéditeur invalide: &lt;#email#&gt;";
-$pgv_lang["message_invalid_to"]		= "Adresse de destinataire non valide: &lt;#email#&gt;";
+$pgv_lang["message_invalid_from"]	= "L'adresse de l'expéditeur invalide: &laquo;#email#&raquo;";
+$pgv_lang["message_invalid_to"]		= "L'adresse du destinataire invalide: &laquo;#email#&raquo;";
+$pgv_lang["message_illegal_chars"]	= "Caractères illégaux dans l'adresse &laquo;#email#&raquo;";
+$pgv_lang["message_bad_format"]		= "L'adresse &laquo;#email#&raquo; n'est pas formatée correctement";
+$pgv_lang["message_no_MX"]			= "Le domaine de l'adresse &laquo;#email#&raquo; n'existe pas ou n'a pas d'enregistrement MX"; 
 $pgv_lang["reset"]                      = "Restaurer";
 $pgv_lang["site_default"]               = "Par défaut pour le site";
 $pgv_lang["mygedview_desc"]             = "Pour organiser vos favoris, suivre les anniversaires, échanger avec les autres utilisateurs...";

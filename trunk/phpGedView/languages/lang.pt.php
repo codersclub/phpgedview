@@ -3,7 +3,7 @@
  * Portugese Language file for PhpGedView.
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2021  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2022  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -1330,8 +1330,11 @@ $pgv_lang["message_deleted"]			= "Mensagem excluida";
 $pgv_lang["message_sent"] 				= "Mensagem enviada para #TO_USER#";
 $pgv_lang["message_failed"] 			= "Não foi possível enviar a mensagem";
 $pgv_lang["message_error"] 				= "Erro PHPMailer: ";
-$pgv_lang["message_invalid_from"] 		= "Endereço do remetente inválido: &lt;#email#&gt;";
-$pgv_lang["message_invalid_to"] 		= "Endereço do destinatário inválido: &lt;#email#&gt;";
+$pgv_lang["message_invalid_from"] 		= "Endereço do remetente inválido: &laquo;#email#&raquo;";
+$pgv_lang["message_invalid_to"] 		= "Endereço do destinatário inválido: &laquo;#email#&raquo;";
+$pgv_lang["message_illegal_chars"]		= "Caracteres ilegais no endereço &laquo;#email#&raquo;";
+$pgv_lang["message_bad_format"]			= "O endereço &laquo;#email#&raquo; não está formatado corretamente";
+$pgv_lang["message_no_MX"]				= "O domínio do endereço &laquo;#email#&raquo; não existe ou não possui registro MX"; 
 $pgv_lang["reset"]						= "Restaurar";
 $pgv_lang["site_default"]				= "Padrão do Site";
 $pgv_lang["mygedview_desc"]				= "A página Meu Portal permite que você faça favoritos de suas pessoas favoritas, veja os próximos eventos e colabore com outros Membros.";

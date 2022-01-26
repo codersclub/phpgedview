@@ -14,6 +14,8 @@ The session.php script uses this information to populate the constants : PGV_VER
 =====================================================================
 
 Version 4.3.1
+ - Changed: Improved error messages when internal mail system fails (canajun2eh)
+ - Fixed: Internal mail system fails when site is configured to not use simple mail headers (canajun2eh)
  - Changed: Minor corrections to various scripts (tbabczynski)
  - Changed: Minor cleanup of some comments in class_reportbase.php (canajun2eh)
  - Changed: Simplify startup logic in session.php (doesn't actually fix anything) (canajun2eh)
