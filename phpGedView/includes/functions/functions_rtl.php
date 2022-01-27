@@ -6,7 +6,7 @@
  * routines and sorting functions.
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2021  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2022  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -493,43 +493,6 @@ function spanLTRRTL($inputText, $direction='BOTH', $class='') {
 	$result = str_replace(array($startLTR, $endLTR, $startRTL, $endRTL), array($sLTR, $eLTR, $sRTL, $eRTL), $result);
 	if ($debug) {echo '<b>Final Output:</b>'; DumpString($result);}
 	return $result;
-}
-
-/*
- * Wrap words that have an asterisk suffix in <u> and </u> tags.  This should underline
- * starred names to show the preferred name
- */
-function starredName($textSpan, $direction) {
-	global $TEXT_DIRECTION;
-
-	// To avoid a TCPDF bug that mixes up the word order, insert those <u> and </u> tags
-	// only when page and span directions are identical.
-	if ($direction == strtoupper($TEXT_DIRECTION)) {
-		while (true) {
-			$starPos = strpos($textSpan, '*');
-			if ($starPos === false) break;
-			$trailingText = substr($textSpan, $starPos+1);
-			$textSpan = substr($textSpan, 0, $starPos);
-			$wordStart = strrpos($textSpan, ' ');		// Find the start of the word
-			if ($wordStart !== false) {
-				$leadingText = substr($textSpan, 0, $wordStart+1);
-				$wordText = substr($textSpan, $wordStart+1);
-			} else {
-				$leadingText = '';
-				$wordText = $textSpan;
-			}
-			$textSpan = $leadingText . '<u>' . $wordText . '</u>' . $trailingText;
-		}
-		$textSpan = preg_replace('~<span class="starredname">(.*)</span>~', '<u>\1</u>', $textSpan);
-		// The &nbsp; is a work-around for a TCPDF bug eating blanks.
-		$textSpan = str_replace(array(' <u>', '</u> '), array('&nbsp;<u>', '</u>&nbsp;'), $textSpan);
-	} else {
-		// Text and page directions differ:  remove the <span> and </span>
-		$textSpan = preg_replace('~(.*)\*~', '\1', $textSpan);
-		$textSpan = preg_replace('~<span class="starredname">(.*)</span>~', '\1', $textSpan);
-	}
-
-	return $textSpan;
 }
 
 /**

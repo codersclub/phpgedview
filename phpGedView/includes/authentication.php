@@ -10,7 +10,7 @@
  * Other possible options are to use LDAP for authentication.
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2021  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2022  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -250,7 +250,7 @@ function adminUserExists() {
 }
 
 // Get the full name for a user
-function getUserFullName($user_id) {
+function getUserFullName($user_id, $processStar=true) {
 	global $TBLPREFIX, $NAME_REVERSE;
 
 	$sql=
@@ -258,7 +258,11 @@ function getUserFullName($user_id) {
 		"	WHERE user_id=? AND setting_name IN (?,?)".
 		" ORDER BY setting_name ".($NAME_REVERSE ? 'DESC' : 'ASC');
 
-	return implode(' ', PGV_DB::prepare($sql)->execute(array($user_id, 'firstname', 'lastname'))->fetchOneColumn());
+	$fullName = implode(' ', PGV_DB::prepare($sql)->execute(array($user_id, 'firstname', 'lastname'))->fetchOneColumn());
+	if ($processStar) {
+		$fullName = starredName($fullName);		// Underline that starred name
+	}
+	return $fullName;
 }
 
 // Get the root person for this gedcom
