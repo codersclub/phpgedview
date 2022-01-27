@@ -14,6 +14,7 @@ The session.php script uses this information to populate the constants : PGV_VER
 =====================================================================
 
 Version 4.3.1
+ - Fixed: User names that contain "*" are not underlined (canajun2eh)
  - Changed: Improved error messages when internal mail system fails (canajun2eh)
  - Fixed: Internal mail system fails when site is configured to not use simple mail headers (canajun2eh)
  - Changed: Minor corrections to various scripts (tbabczynski)

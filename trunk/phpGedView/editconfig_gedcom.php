@@ -3,7 +3,7 @@
  * UI for online updating of the GEDCOM config file.
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2021  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2022  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -2209,7 +2209,7 @@ print "&nbsp;<a href=\"javascript: ".$pgv_lang["contact_conf"]."\" onclick=\"exp
 				if (get_user_setting($user_id, 'verified_by_admin')=="yes") {
 					print "<option value=\"".$user_name."\"";
 					if ($CONTACT_EMAIL==$user_name) print " selected=\"selected\"";
-					print ">".getUserFullName($user_id)." - ".$user_name."</option>\n";
+					print ">".getUserFullName($user_id, false)." - ".$user_name."</option>\n";		// Show this user's full name NOT underlined
 				}
 			}
 		?>
@@ -2238,7 +2238,7 @@ print "&nbsp;<a href=\"javascript: ".$pgv_lang["contact_conf"]."\" onclick=\"exp
 				if (userIsAdmin($user_id)) {
 					print "<option value=\"".$user_name."\"";
 					if ($WEBMASTER_EMAIL==$user_name) print " selected=\"selected\"";
-					print ">".getUserFullName($user_id)." - ".$user_name."</option>\n";
+					print ">".getUserFullName($user_id, false)." - ".$user_name."</option>\n";		// Show this user's full name NOT underlined
 				}
 			}
 		?>
