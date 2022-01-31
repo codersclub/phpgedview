@@ -133,8 +133,11 @@ function print_fams($person, $famid=null) {
 	// current indi
 	echo "<li>";
 	$class = "";
-	if (is_null($_SESSION['user_ancestors'])) $_SESSION['user_ancestors'] = array();
-	$sosa = @array_search($person->getXref(), $_SESSION['user_ancestors']);
+	if (!isset($_SESSION['user_ancestors'])) {
+		$sosa = false;
+	} else {
+		$sosa = @array_search($person->getXref(), $_SESSION['user_ancestors']);
+	}
 	if ($sosa) {
 		$class = "search_hit";
 		$sosa = "<a dir=$TEXT_DIRECTION target=\"_blank\" class=\"details1 {$person->getBoxStyle()}\" title=\"Sosa\" href=\"relationship.php?pid2=".PGV_USER_ROOT_ID."&pid1=".$person->getXref()."\">&nbsp;{$sosa}&nbsp;</a>".sosa_gen($sosa);
