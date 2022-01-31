@@ -3,7 +3,7 @@
 * Functions used for debugging
 *
 * phpGedView: Genealogy Viewer
-* Copyright (C) 2002 to 2019  PGV Development Team.  All rights reserved.
+* Copyright (C) 2002 to 2022  PGV Development Team.  All rights reserved.
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -46,8 +46,10 @@ define('PGV_FUNCTIONS_DEBUG_PHP', '');
  * of the following 2nd, 3rd, and 4th bytes of the original UTF-8 character.
 */
 
-function DumpString($input) {
-	if (empty($input)) return false;
+function string_dump($input) {
+	if (!is_string($input) || $input == '') return false;
+	
+	$fillChar = '.';		// This character replaces unprintable text (don't use the UTF-8 Replacement Character)
 
 	$UTF8 = array();
 	$hex1L = '';
@@ -61,7 +63,7 @@ function DumpString($input) {
 
 	$pos = 0;
 	while (true) {
-		// Separate the input string into UTF8 characters
+		// Separate the input string into UTF-8 characters
 		$byte0 = ord(substr($input, $pos, 1));
 		$charLen = 1;
 		if (($byte0 & 0xE0) == 0xC0) $charLen = 2;  // 2-byte sequence
@@ -70,7 +72,7 @@ function DumpString($input) {
 		$thisChar = substr($input, $pos, $charLen);
 		$UTF8[] = $thisChar;
 
-		// Separate the current UTF8 character into hexadecimal digits
+		// Separate the current UTF-8 character into hexadecimal digits
 		$byte = bin2hex(substr($thisChar, 0, 1));
 		$hex1L .= substr($byte, 0, 1);
 		$hex1R .= substr($byte, 1, 1);
@@ -123,37 +125,77 @@ function DumpString($input) {
 		$thisLine .= substr('........10........20........30........40........50........60........70........80........90.......100', 0, $lineLength);
 		echo str_replace(' ', '&nbsp;', $thisLine), '<br />';
 
-		// Line 2: UTF8 character string
+		// Line 2: UTF-8 character string.  Here we need to ensure that unprintable codes are transformed properly
+		//									and that HTML tags or entities aren't acted upon by the browser
 		$thisLine = '';
 		for ($i=$pos; $i<($pos+$lineLength); $i++) {
-			if (ord(substr($UTF8[$i], 0, 1)) < 0x20) {
-				$thisChar = "&nbsp;";
-			} else {
+			while (true) {
 				$thisChar = $UTF8[$i];
-				switch ($thisChar) {
-				case '&':
-					$thisChar = '&amp;';
-					break;
-				case '<':
-					$thisChar = '&lt;';
-					break;
-				case ' ':
-				case PGV_UTF8_LRM:
-				case PGV_UTF8_RLM:
-				case PGV_UTF8_LRO:
-				case PGV_UTF8_RLO:
-				case PGV_UTF8_LRE:
-				case PGV_UTF8_RLE:
-				case PGV_UTF8_PDF:
-					$thisChar = '&nbsp;';
+
+				// ASCII control codes
+				if ($thisChar < "\x20") {
+					$thisChar = $fillChar;		// ASCII control codes are not printable
 					break;
 				}
+				if ($thisChar == "\x7F") {
+					$thisChar = $fillChar;		// ASCII DEL code is not printable
+					break;
+				}
+				
+				switch ($thisChar) {
+					// Special treatment of HTML entities and HTML tags
+					case '&':
+						$thisChar = '&amp;';		// Ampersand is an HTML entity lead-in and should receive special treatment
+						break 2;
+					case '<':
+						$thisChar = '&lt;';			// Less-than is an HTML tag lead-in and should also receive special treatment
+						break 2;
+					case ' ':
+						$thisChar = '&nbsp;';		// Make sure the browser doesn't try to split the text at a space code
+						break 2;
+					// UTF-8 control codes, mostly according to Wikipedia
+					case "\xD8\x9C":		//					U+061C	ALM (Right-to-left zero-width Arabic character)
+					case PGV_UTF8_LRM:		// \xE2\x80\x8E		U+200E  LRM (Left-to-right zero-width character)
+					case PGV_UTF8_RLM:		// \xE2\x80\x8F		U+200F  RLM (Right-to-left zero-width non-Arabic character)
+					case "\xE2\x80\xA8":	//					U+2028	LS (Line separator)
+					case "\xE2\x80\xA9":	//					U+2029	PS (Paragraph separator)
+					case PGV_UTF8_LRO:		// \xE2\x80\xAD		U+202D  (Left to Right override: force everything following to LTR mode)
+					case PGV_UTF8_RLO:		// \xE2\x80\xAE		U+202E  (Right to Left override: force everything following to RTL mode)
+					case PGV_UTF8_LRE:		// \xE2\x80\xAA		U+202A  (Left to Right embedding: treat everything following as LTR text)
+					case PGV_UTF8_RLE:		// \xE2\x80\xAB		U+202B  (Right to Left embedding: treat everything following as RTL text)
+					case PGV_UTF8_PDF:		// \xE2\x80\xAC		U+202C  (Pop directional formatting: restore state prior to last LRO, RLO, LRE, RLE)
+					case "\xE2\x81\xA6":	//					U+2066	LRI (Treat the following text as isolated and left-to-right)			
+					case "\xE2\x81\xA7":	//					U+2067	RLI (Treat the following text as isolated and right-to-left)			
+					case "\xE2\x81\xA8":	//					U+2068	FSI (Treat the following text as isolated and in the direction of its first strong directional character that is not inside a nested isolate)			
+					case "\xE2\x81\xA9":	//					U+2069	PDI (End the scope of the last LRI, RLI, or FSI)			
+						$thisChar = $fillChar;		// UTF-8 control codes are not printable
+						break 2;
+					}
+	
+				// Check for Control Pictures block U+2400 to U+243F
+				if (($thisChar >= "\xE2\x90\x80") && ($thisChar <= "\xE2\x90\xBF")) {
+					$thisChar = $fillChar;		// These codes mess up spacing of the text line
+					break;
+				}
+	
+				// Check for the Specials code block U+FFF0 to U+FFFF
+				if (($thisChar >= "\xEF\xBF\xB0") && ($thisChar <= "\xEF\xBF\xBF")) {
+					$thisChar = $fillChar;		// These codes mess up spacing of the text line
+					break;
+				}
+				
+				// Check for code points beyond the Basic set
+				if (($thisChar > "\xEF\xBF\xBF")) {
+					$thisChar = '&nbsp;';		// Don't try to print anything for these
+					break;
+				}
+				
+				break;		// None of the above
 			}
-//			$thisLine .= PGV_UTF8_LRM;
+
 			$thisLine .= $thisChar;
 		}
 		echo '&nbsp;&nbsp;UTF8&nbsp;', $thisLine, '<br />';
-//		echo '&nbsp;&nbsp;UTF8&nbsp;', PGV_UTF8_LRO, $thisLine, PGV_UTF8_PDF, '<br />';
 
 		// Line 3:  First hexadecimal byte
 		$thisLine = 'Byte 1 ';

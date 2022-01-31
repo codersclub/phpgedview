@@ -294,7 +294,7 @@ return $pgvLogo;
  * this function encodes a string in quoted_printable format
  * found at http://us3.php.net/bin2hex
  */
-function hex4email ($string,$charset) {
+function hex4email($string, $charset) {
 
 	//-- check if the string has extended characters in it
 	$str = utf8_decode($string);
@@ -330,49 +330,54 @@ function RFC2047Encode($string, $charset) {
  *			mailbox@domain
  *			full name <mailbox@domain>
  *
+ *		The optional second parameter, when set FALSE will make this function operate in "quiet" mode, where
+ *			no error messages are returned.  This allows this function to be used where it's undesirable to
+ *			produce explicit error messages, such as address validation while configuring a new user.
+ *
  * 		Return values:
  *			TRUE if the input e-mail address passes all validity checks
  *			FALSE if the input e-mail address fails any of the validity checks (no error message)
  *			text.  An error message if the validity check chooses to supply such a message instead of FALSE
  */
-function validEmail($emailAddr) {
+function validEmail($emailAddr, $verbose=true) {
 	global $pgv_lang;
+	
+	if (!isset(
+			$pgv_lang["message_illegal_chars"],
+			$pgv_lang["message_bad_format"],
+			$pgv_lang["message_no_MX"]
+		)) $verbose = false;		// If these messages don't exist, force "quiet" mode
 	
 	$found = preg_match('~\s<(.*)>~', $emailAddr, $match);		// Look for an e-mail address inside angle brackets
 	if ($found) $email = $match[1];
-	else $email = $emailAddr;
-	$emailAddr = trim($emailAddr);
+	else $email = $emailAddr;		// No angle brackets: The entire input is the e-mail address to be checked
+	$email = trim($email);
 
-	while (true) {
-		$sanitizedEmail = filter_var($email, FILTER_SANITIZE_EMAIL);		// Sanitize the e-mail address
-		if ($sanitizedEmail != $email) {
-			$isValid = $pgv_lang["message_illegal_chars"];
-			break;		// The e-mail address contained illegal characters
-		}
-
-		$validatedEmail = filter_var($email, FILTER_VALIDATE_EMAIL);
-		if (!$validatedEmail) {
-			$isValid = $pgv_lang["message_bad_format"];
-			break;		// The e-mail address is not formatted correctly
-		}
-		
-		$atIndex = strrpos($email, "@");
-		if ($atIndex === false) {		// This should never happen: the format check above takes care of this
-			$isValid = false;
-			break;		// The e-mail address does not contain an at-sign
-		}
-
-		$domain = substr($email, $atIndex+1);
-
-		if (!checkdnsrr($domain, "MX")) {
-			$isValid = $pgv_lang["message_no_MX"];
-			break;		// The domain is not found in DNS or does not support email
-		}
-		
-		$isValid = true;
-		break;			// The e-mail address passed all checks
+	$sanitizedEmail = filter_var($email, FILTER_SANITIZE_EMAIL);		// Sanitize the e-mail address
+	if ($sanitizedEmail != $email) {
+		if ($verbose) return $pgv_lang["message_illegal_chars"];
+		return false;		// The e-mail address contained illegal characters
 	}
 
-   	return $isValid;
+	$validatedEmail = filter_var($email, FILTER_VALIDATE_EMAIL);
+	if (!$validatedEmail) {
+		if ($verbose) return $pgv_lang["message_bad_format"];
+		return false;		// The e-mail address is not formatted correctly
+	}
+	
+	$atIndex = strrpos($email, "@");
+	if ($atIndex === false) {		// This should never happen: the format check above takes care of this
+		if ($verbose) return $pgv_lang["message_bad_format"];
+		return false;		// The e-mail address does not contain an at-sign
+	}
+
+	$domain = substr($email, $atIndex+1);
+
+	if (!checkdnsrr($domain, "MX")) {
+		if ($verbose) return $pgv_lang["message_no_MX"];
+		return false;		// The domain is not found in DNS or does not support email
+	}
+	
+	return true;			// The e-mail address passed all checks
 }
 ?>
