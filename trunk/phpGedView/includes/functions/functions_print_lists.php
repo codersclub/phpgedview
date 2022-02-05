@@ -6,7 +6,7 @@
  * used on the indilist, famlist, find, and search pages.
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2021  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2022  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -36,7 +36,7 @@ define('PGV_FUNCTIONS_PRINT_LISTS_PHP', '');
 
 require_once PGV_ROOT.'includes/classes/class_person.php';
 require_once PGV_ROOT.'includes/functions/functions_places.php';
-require_once PGV_ROOT.'includes/cssparser.inc.php';
+require_once PGV_ROOT.'includes/classes/class_cssparser.php';
 
 /**
  * print a sortable table of individuals
@@ -1944,13 +1944,13 @@ function print_chart_by_age($data, $title) {
 	global $pgv_lang, $GEDCOM;
 	global $view, $stylesheet, $print_stylesheet;
 
-	$css = new cssparser(false);
+	$css = new cssparser();
 	if ($view=="preview") {
-		$css->Parse($print_stylesheet);
+		$ParseCSSIndex = $css->ParseCSS($print_stylesheet);
 	} else {
-		$css->Parse($stylesheet);
+		$ParseCSSIndex = $css->ParseCSS($stylesheet);
 	}
-	$color = $css->Get("body", "background-color");
+	$color = $css->GetCSSFiltered($ParseCSSIndex, 'body', 'background-color', 'all');
 	$color = str_replace("#", "", $color);
 	switch(strtoupper($color)) {
 	case "": case "FFFFFF": case "WHITE":
@@ -2022,10 +2022,10 @@ function print_chart_by_decade($data, $title) {
 	global $pgv_lang;
 	global $view, $stylesheet, $print_stylesheet;
 
-	$css = new cssparser(false);
-	if ($view=="preview") $css->Parse($print_stylesheet);
-	else $css->Parse($stylesheet);
-	$color = $css->Get("body", "background-color");
+	$css = new cssparser();
+	if ($view=="preview") $ParseCSSIndex = $css->ParseCSS($print_stylesheet);
+	else $ParseCSSIndex = $css->ParseCSS($stylesheet);
+	$color = $css->GetCSSFiltered($ParseCSSIndex, 'body', 'background-color', 'all');
 	$color = str_replace("#", "", $color);
 	switch(strtoupper($color)) {
 	case "": case "FFFFFF": case "WHITE":

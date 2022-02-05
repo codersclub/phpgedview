@@ -5,7 +5,7 @@
  * authenticate.php and xxxxxx.dat files (MySQL mode).
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2021 PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2022 PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -246,7 +246,7 @@ class UserMigrateControllerRoot extends BaseController {
 
 		// Make the zip
 		if (count($this->flist) > 0) {
-			require_once PGV_ROOT.'includes/pclzip.lib.php';
+			require_once PGV_ROOT.'includes/classes/class_pclzip.php';
 			$this->buname = date("YmdHis").".zip";
 			$this->fname = $INDEX_DIRECTORY.$this->buname;
 			$comment = "Created by ".PGV_PHPGEDVIEW." ".PGV_VERSION_TEXT." on ".date("r").".";

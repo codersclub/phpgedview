@@ -3,7 +3,7 @@
  * Sound table for Daitch-Mokotoff "Sounds like" algorithm
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2009  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2022  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -68,7 +68,7 @@ define('VAV_YOD', 'ױ');
  * Used to transform the Name string to simplify the "sounds like" table.
  * This is especially useful in Hebrew.
  *
- * Each array entry defines the "from" and "to" arguments of an preg($from, $to, $text)
+ * Each array entry defines the "from" and "to" arguments of a preg($from, $to, $text)
  * function call to achieve the desired transformations.
  *
  * Note about the use of "\x01":
@@ -296,13 +296,15 @@ $dmsounds["SHT"] = array('0',   '2','43','43');
 $dmsounds["SHTCH"] = array('0',   '2','4','4');
 $dmsounds["SHTSH"] = array('0',   '2','4','4');
 $dmsounds["ß"] = array('0',   '','4','4');
+$dmsounds["ẞ"] = array('0',   '','4','4');
+$dmsounds["SS"] = array('0',   '','4','4');
+$dmsounds["SSZ"] = array('0',   '4','4','4');
 $dmsounds["ST"] = array('0',   '2','43','43');
 $dmsounds["STCH"] = array('0',   '2','4','4');
 $dmsounds["STRS"] = array('0',   '2','4','4');
 $dmsounds["STRZ"] = array('0',   '2','4','4');
 $dmsounds["STSCH"] = array('0',   '2','4','4');
 $dmsounds["STSH"] = array('0',   '2','4','4');
-$dmsounds["SSZ"] = array('0',   '4','4','4');
 $dmsounds["SZ"] = array('0',   '4','4','4');
 $dmsounds["SZCS"] = array('0',   '2','4','4');
 $dmsounds["SZCZ"] = array('0',   '2','4','4');

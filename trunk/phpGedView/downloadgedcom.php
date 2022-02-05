@@ -4,7 +4,7 @@
  * Allow an admin user to download the entire gedcom	file.
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2009  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2022  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -65,7 +65,7 @@ if ($action == 'download') {
 }
 
 if ($action == "download" && $zip == "yes") {
-	require PGV_ROOT.'includes/pclzip.lib.php';
+	require PGV_ROOT.'includes/classes/class_pclzip.php';
 
 	$temppath = $INDEX_DIRECTORY . "tmp/";
 	$fileName = $ged;

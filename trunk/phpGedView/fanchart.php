@@ -3,7 +3,7 @@
  * Displays a fan chart
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2021  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2022  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -114,20 +114,18 @@ function print_fan_chart($treeid, $fanw=640, $fandeg=270) {
 
 	if (empty($fanChart)) {
 		// For compatibility reasons only, parse CSS file
-		require PGV_ROOT.'includes/cssparser.inc.php';
-		$css = new cssparser(false);
-//		if ($view=="preview") $css->Parse($print_stylesheet);
-//		else $css->Parse($stylesheet);
-		$css->Parse($stylesheet);
+		require_once PGV_ROOT.'includes/classes/class_cssparser.php';
+		$css = new cssparser();
+		$ParseCSSIndex = $css->ParseCSS($stylesheet);
 
 		$fanChart = array();
-		$fanChart['font'] = $css->Get('.fan_chart','font-family');
+		$fanChart['font'] = $css->GetCSSFiltered($ParseCSSIndex, '.fan_chart', 'font-family', 'all');
 		$fanChart['font'] = str_replace(array('url(', ')'), '', $fanChart['font']);
-		$fanChart['size'] = $css->Get('.fan_chart','font-size');
-		$fanChart['color'] = $css->Get('.fan_chart', 'color');
-		$fanChart['bgColor'] = $css->Get('.fan_chart', 'background-color');
-		$fanChart['bgMColor'] = $css->Get('.fan_chart_box', 'background-color');
-		$fanChart['bgFColor'] = $css->Get('.fan_chart_boxF', 'background-color');
+		$fanChart['size'] = $css->GetCSSFiltered($ParseCSSIndex, '.fan_chart', 'font-size', 'all');
+		$fanChart['color'] = $css->GetCSSFiltered($ParseCSSIndex, '.fan_chart', 'color', 'all');
+		$fanChart['bgColor'] = $css->GetCSSFiltered($ParseCSSIndex, '.fan_chart', 'background-color', 'all');
+		$fanChart['bgMColor'] = $css->GetCSSFiltered($ParseCSSIndex, '.fan_chart_box', 'background-color', 'all');
+		$fanChart['bgFColor'] = $css->GetCSSFiltered($ParseCSSIndex, '.fan_chart_boxF', 'background-color', 'all');
 	}
 
 	// Validate
