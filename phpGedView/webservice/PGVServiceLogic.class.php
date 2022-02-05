@@ -3,7 +3,7 @@
  *  PGV SOAP implementation of the genealogy web service
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2020  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2022  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -52,7 +52,7 @@ class PGVServiceLogic extends GenealogyService {
 			$libs .= 'zlib,';
 		}
 		//pgv zip
-		if (file_exists('includes/pclzip.lib.php')) {
+		if (file_exists('includes/classes/class_pclzip.php')) {
 			$libs .= 'zip,';
 		}
 		//trim the string
@@ -74,7 +74,7 @@ class PGVServiceLogic extends GenealogyService {
 		}
 		//get the list
 		$compression_list = $this->getCompressionLibs();
-		//set the compression, use none if they dont' match
+		//set the compression, use none if they don't match
 		if (strstr($compression_list,$lib) !== false) {
 			return $lib;
 		} else {
