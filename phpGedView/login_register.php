@@ -3,7 +3,7 @@
  * Register as a new User or request new password if it is lost
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2021  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2022  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -133,7 +133,6 @@ switch ($action) {
 				if ($TEXT_DIRECTION=="rtl") $mail_body .= "<a href=\"".PGV_SERVER_NAME.PGV_SCRIPT_PATH."\">".PGV_SERVER_NAME.PGV_SCRIPT_PATH."</a>";
 				else $mail_body .= PGV_SERVER_NAME.PGV_SCRIPT_PATH;
 
-				require_once PGV_ROOT.'includes/functions/functions_mail.php';
 				pgvMail(get_user_setting($user_id, 'email'), $PHPGEDVIEW_EMAIL, str_replace(array('#PGV_SERVER_NAME#','#PGV_SCRIPT_PATH#'), array(PGV_SERVER_NAME,PGV_SCRIPT_PATH), $pgv_lang["mail04_subject"]), $mail_body);
 
 				?>
@@ -433,7 +432,7 @@ switch ($action) {
 					$mail_body .= $pgv_lang["comments"].": " . $user_comments . "\r\n\r\n";
 					$mail_body .= $pgv_lang["mail01_line05"] . "  ";
 					$mail_body .= $pgv_lang["mail01_line06"] . "\r\n";
-					require_once PGV_ROOT.'includes/functions/functions_mail.php';
+
 					pgvMail($user_email, $PHPGEDVIEW_EMAIL, str_replace(array('#PGV_SERVER_NAME#','#PGV_SCRIPT_PATH#'), array(PGV_SERVER_NAME,PGV_SCRIPT_PATH), $pgv_lang["mail01_subject"]), $mail_body);
 
 					// switch language to webmaster settings
