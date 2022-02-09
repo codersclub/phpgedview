@@ -14,6 +14,9 @@ The session.php script uses this information to populate the constants : PGV_VER
 =====================================================================
 
 Version 4.3.1
+ - Changed: Added showWikiURL option to PHPMailer to optionally suppress Wiki URL on connection errors (canajun2eh)
+ - Updated: Updated PHPMailer to version 6.5.3 (canajun2eh)
+ - Fixed: PHP 7 incompatibility in /includes/classes/class_cssparser.php (canajun2eh)
  - Updated: Updated cssparser to version 2, renamed, and moved to /includes/classes (canajun2eh)
  - Updated: Updated pclzip.lib.php to version 2.8.4, renamed, and moved to /includes/classes (canajun2eh)
  - Changed: Daitch-Mokotoff soundex algorithm to support Upper-case Eszett (canajun2eh)

@@ -3,7 +3,7 @@
  * Mail specific functions
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2021  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2022  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -143,15 +143,11 @@ function pgvMail($to, $from, $subject, $message, $bulkMail=false, $fromFullName=
 	}
 	// if SMTP mail is set active AND we have SMTP settings available, use the PHPMailer classes
 	if ($PGV_SMTP_ACTIVE  && ( $PGV_SMTP_HOST && $PGV_SMTP_PORT ) ) {
-		require_once PGV_ROOT.'includes/PHPMailer/src/Exception.php';
-		require_once PGV_ROOT.'includes/PHPMailer/src/PHPMailer.php';
-		require_once PGV_ROOT.'includes/PHPMailer/src/SMTP.php';
-		require_once PGV_ROOT.'includes/PHPMailer/src/POP3.php';
-		$mail_object = new \PHPMailer\PHPMailer\PHPMailer();
+		$mail_object = new \PHPMailer\PHPMailer\PHPMailer(true);
 		$mail_object->isSMTP();						// Tell PHPMailer to use SMTP
 		$mail_object->SMTPDebug = $PGV_SMTP_DEBUG;	// 0:off; 1:client messages; 2:client & server messages; 3:as 2 plus connection status; 4: verbose
 		$mail_object->setLanguage('en','');			// PHPMailer errors are in English only
-//		$mail_object->ShowWikiURL = false;			// Don't show Wiki URL on PHPMailer connect errors
+		$mail_object->showWikiURL = false;			// Don't show Wiki URL on PHPMailer connect errors
 		if ( $PGV_SMTP_AUTH && ( $PGV_SMTP_AUTH_USER && $PGV_SMTP_AUTH_PASS ) ) {
 			$mail_object->SMTPAuth = $PGV_SMTP_AUTH;
 			$mail_object->Username = $PGV_SMTP_AUTH_USER;

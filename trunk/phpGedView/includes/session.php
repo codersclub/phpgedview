@@ -539,6 +539,20 @@ if (empty($PHPGEDVIEW_EMAIL)) {
 require PGV_ROOT.'includes/functions/functions_print.php';
 require PGV_ROOT.'includes/functions/functions_rtl.php';
 
+// The PHP engine fails when the following 3 statements are made conditional.  Making them unconditional doesn't actually harm anything.
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+use PHPMailer\PHPMailer\SMTP;
+
+if (!$SEARCH_SPIDER) {		// Search engines shouldn't be sending any e-mails
+	require PGV_ROOT.'includes/functions/functions_mail.php';
+	if ($PGV_SMTP_ACTIVE) {		// If we're going to use the PHPMailer package:
+		require PGV_ROOT.'includes/PHPMailer/src/PHPMailer.php';
+		require PGV_ROOT.'includes/PHPMailer/src/Exception.php';
+		require PGV_ROOT.'includes/PHPMailer/src/SMTP.php';
+	}
+}
+
 if ($SEARCH_SPIDER) $MULTI_MEDIA = false;		// NEVER let search engines anywhere near multi-media
 
 if ($MULTI_MEDIA) {
