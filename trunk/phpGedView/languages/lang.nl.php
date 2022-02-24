@@ -82,13 +82,13 @@ $pgv_lang["changedate1"]			= "Einddatum van lijst met wijzigingen";
 $pgv_lang["changedate2"]			= "Startdatum van lijst met wijzigingen";
 $pgv_lang["search_place_word"]		= "Alleen hele woorden";
 $pgv_lang["invalid_search_input"]	= "Jaar wordt alleen gebruikt in combinatie met een achternaam, voornaam of locatienaam.";
-$pgv_lang["duplicate_username"]			= "Een gebruiker met die naam is reeds aanwezig. Ga terug en kies een andere naam.";
+$pgv_lang["duplicate_username"]		= "Een gebruiker «#username#» is reeds aanwezig. Ga terug en kies een andere naam.";
+$pgv_lang["usercreate_fail"]		= "De gebruiker «#username#» kan niet aan het systeem worden toegevoegd.";
 $pgv_lang["cache_life"]				= "Levensduur v.d. Cache file";
-$pgv_lang["genealogy"]					= "genealogie";
+$pgv_lang["genealogy"]				= "genealogie";
 $pgv_lang["activate"]				= "Activeer";
-$pgv_lang["deactivate"]					= "Deactiveer";
-$pgv_lang["play"]					= "Speel af";
-$pgv_lang["stop"]					= "Stop";
+$pgv_lang["deactivate"]				= "Deactiveer";
+$pgv_lang["play_stop"]				= "Speel / Stop";
 $pgv_lang["random_media_start_slide"]	= "Start diavoorstelling bij het laden v.d. pagina?";
 $pgv_lang["random_media_ajax_controls"]	= "Toon diavoorstelling controls?";
 $pgv_lang["description"]				= "Omschrijving";
@@ -232,10 +232,10 @@ $pgv_lang["cookie_help"]				= "Deze site gebruikt \"cookies\" om uw aanmelding v
 //new stuff
 //Individual
 $pgv_lang["indi_is_remote"]			= "De informatie over deze persoon is afkomstig van een gekoppelde site.";
-$pgv_lang["link_remote"]            = "Koppel persoon op andere site";
+$pgv_lang["link_remote"]			= "Koppel persoon op andere site";
 //Add Remote Link
-$pgv_lang["title_search_link"]      = "Lokale koppeling toevoegen";
-$pgv_lang["label_site_url2"]        	= "Website URL";
+$pgv_lang["title_search_link"]  	= "Lokale koppeling toevoegen";
+$pgv_lang["label_site_url2"]			= "Website URL";
 //new stuff
 
 $pgv_lang["delete_family_confirm"]		= "Door het verwijderen van het gezin verbreekt u het verband tussen de personen. De gegevens van de personen zelf worden niet verwijderd. Weet u zeker dat u dit gezin wilt verwijderen?";
@@ -375,7 +375,7 @@ $pgv_lang["for_contact"]				= "Neem voor genealogische vragen contact op met";
 $pgv_lang["for_all_contact"]			= "Neem voor genealogische vragen en vragen over de site contact op met";
 $pgv_lang["choose_username"]			= "Gewenste gebruikersnaam";
 $pgv_lang["username"]				= "Gebruikersnaam";
-$pgv_lang["invalid_username"]		= "De gebruikersnaam bevat ongeldige tekens";
+$pgv_lang["invalid_username"]		= "De gebruikersnaam «#username#» bevat ongeldige tekens";
 $pgv_lang["firstname"]					= "Voornaam";
 $pgv_lang["lastname"]				= "Achternaam";
 $pgv_lang["choose_password"]			= "Gewenst wachtwoord";
@@ -438,6 +438,7 @@ $pgv_lang["clippings_cart"]				= "Stamboomknipsels";
 $pgv_lang["print_preview"]			= "Printervriendelijke versie";
 $pgv_lang["cancel_preview"]			= "Annuleren printervriendelijke versie";
 $pgv_lang["change_lang"]			= "Wijzig taal";
+$pgv_lang["language"]				= "Taal";
 $pgv_lang["print"]					= "Afdrukken";
 $pgv_lang["total_queries"]			= "Totaal aantal databasevragen:";
 $pgv_lang["total_privacy_checks"]	= "Aantal privacycontroles:";
@@ -628,7 +629,7 @@ $pgv_lang["search_soundex"]			= "Zoeken met Soundex";
 $pgv_lang["search_replace"]			= "Zoeken en vervangen";
 $pgv_lang["search_sources"]			= "Bronnen";
 $pgv_lang["search_shared_notes"]	= "Gedeelde notities";
-$pgv_lang["search_more_chars"]      = "Voer meer dan één letter in.";
+$pgv_lang["search_more_chars"]  	= "Voer meer dan één letter in.";
 $pgv_lang["search_soundextype"]		= "Soundex type:";
 $pgv_lang["search_russell"]			= "Eenvoudig";
 $pgv_lang["search_tagfilter"]		= "Zoekfilter:";
@@ -711,8 +712,8 @@ $pgv_lang["week1"]					= "week";
 $pgv_lang["weeks"]					= "weken";
 $pgv_lang["day1"]					= "dag";
 $pgv_lang["days"]					= "dagen";
-$pgv_lang["after_death"]        	= "na overlijden";
-$pgv_lang["at_death_day"]      		= "op de datum van overlijden";
+$pgv_lang["after_death"]			= "na overlijden";
+$pgv_lang["at_death_day"]  			= "op de datum van overlijden";
 $pgv_lang["timeline_title"]			= "Tijdlijn";
 $pgv_lang["timeline_chart"]			= "Tijdlijn";
 $pgv_lang["remove_person"]			= "Persoon verwijderen";
@@ -732,19 +733,19 @@ $pgv_lang["include_family"] 		= "Inclusief directe familie";
 $pgv_lang["lifespan_chart"] 		= "Levensduur Grafiek";
 
 // calendar conversion options
-$pgv_lang["cal_none"]               	= "Geen kalendar conversie";
-$pgv_lang["cal_gregorian"]           = "Gregoriaans";
+$pgv_lang["cal_none"]   				= "Geen kalendar conversie";
+$pgv_lang["cal_gregorian"]   		= "Gregoriaans";
 $pgv_lang["cal_julian"]					= "Juliaans";
-$pgv_lang["cal_french"]              = "Frans";
-$pgv_lang["cal_jewish"]               = "Joods";
-$pgv_lang["cal_hebrew"]               = "Hebreeuws";
+$pgv_lang["cal_french"]  			= "Frans";
+$pgv_lang["cal_jewish"]   			= "Joods";
+$pgv_lang["cal_hebrew"]   			= "Hebreeuws";
 $pgv_lang["cal_jewish_and_gregorian"] = "Joods en Gregoriaans";
 $pgv_lang["cal_hebrew_and_gregorian"] = "Hebreeuws en Gregoriaans";
-$pgv_lang["cal_hijri"]                = "Hijri";
-$pgv_lang["cal_arabic"]             = "Arabisch";
+$pgv_lang["cal_hijri"]				= "Hijri";
+$pgv_lang["cal_arabic"] 			= "Arabisch";
 
 // some religious dates
-$pgv_lang["easter"]     				= "Pasen";
+$pgv_lang["easter"] 					= "Pasen";
 $pgv_lang["ascension"]  			= "Hemelvaart";
 $pgv_lang["pentecost"]  			= "Pinksteren";
 $pgv_lang["assumption"]				= "Maria Hemelvaart";
@@ -752,10 +753,10 @@ $pgv_lang["all_saints"] 			= "Allerheiligen";
 $pgv_lang["christmas"]  				= "Kerstmis";
 
 // am/pm suffixes for 12 hour clocks
-$pgv_lang["a.m."]       			= "vm";
-$pgv_lang["p.m."]       			= "nm";
-$pgv_lang["noon"]       			= "mi";
-$pgv_lang["midn"]       			= "na";
+$pgv_lang["a.m."]   				= "vm";
+$pgv_lang["p.m."]   				= "nm";
+$pgv_lang["noon"]   				= "mi";
+$pgv_lang["midn"]   				= "na";
 
 //-- MONTH NAMES
 $pgv_lang["jan"]					= "januari";
@@ -813,7 +814,7 @@ $pgv_lang["dec"]					= "december";
 // $pgv_lang["dhuaq"]			use value from lang.en.php
 // $pgv_lang["dhuah"]			use value from lang.en.php
 
-$pgv_lang["b.c."]         			= "B.C.";
+$pgv_lang["b.c."] 					= "B.C.";
 
 $pgv_lang["abt"]					= "ongeveer";
 $pgv_lang["aft"]					= "na";
@@ -829,9 +830,10 @@ $pgv_lang["cir"]					= "circa";
 $pgv_lang["apx"]					= "ongeveer";
 
 //-- Admin File Messages
+$pgv_lang["email_invalid"]			= "Ongeldig e-mailadres.";
 $pgv_lang["password_mismatch"]		= "Wachtwoorden zijn verschillend.";
-$pgv_lang["enter_username"]				= "U moet de gebruikersnaam invullen.";
-$pgv_lang["enter_password"]				= "U moet het wachtwoord invullen.";
+$pgv_lang["enter_username"]			= "U moet de gebruikersnaam invullen.";
+$pgv_lang["enter_password"]			= "U moet het wachtwoord invullen.";
 $pgv_lang["save"]					= "Opslaan";
 $pgv_lang["saveandgo"]				= "Opslaan en naar een nieuw bestand gaan";
 $pgv_lang["delete"]						= "Verwijder";
@@ -919,20 +921,20 @@ $pgv_lang["oldest_top"]				= "Toon oudste bovenaan";
 $pgv_lang["relationship_male_1_is_the_2_of_3"] 		= "%1\$s is %2\$s van %3\$s.";
 $pgv_lang["relationship_female_1_is_the_2_of_3"] 	= "%1\$s is %2\$s van %3\$s.";
 
-$pgv_lang["mother_in_law"]		    = "schoonmoeder";
-$pgv_lang["father_in_law"]		    	= "schoonvader";
-$pgv_lang["brother_in_law"]		    	= "zwager";
-$pgv_lang["sister_in_law"]		    = "schoonzuster";
+$pgv_lang["mother_in_law"]			= "schoonmoeder";
+$pgv_lang["father_in_law"]				= "schoonvader";
+$pgv_lang["brother_in_law"]				= "zwager";
+$pgv_lang["sister_in_law"]			= "schoonzuster";
 $pgv_lang["brothers_wife"]				= "Schoonzuster";
-$pgv_lang["son_in_law"]		        = "schoonzoon";
+$pgv_lang["son_in_law"]				= "schoonzoon";
 $pgv_lang["daughter_in_law"]			= "schoondochter";
 $pgv_lang["uncle_in_law"]			= "aangetrouwde oom";
 $pgv_lang["aunt_in_law"]			= "aangetrouwde tante";
 $pgv_lang["cousin_in_law"]				= "aangetrouwde neef/nicht";
 $pgv_lang["m_cousin_in_law"]		= "aangetrouwde neef";
 $pgv_lang["f_cousin_in_law"]			= "aangetrouwde nicht";
-$pgv_lang["step_son"]		        = "stiefzoon";
-$pgv_lang["step_daughter"]	    	= "stiefdochter";
+$pgv_lang["step_son"]				= "stiefzoon";
+$pgv_lang["step_daughter"]			= "stiefdochter";
 
 // the bosa_brothers_offspring name is used for fraternal nephews and nieces - the names below can be extended to any number
 // of generations just by adding more translations.
@@ -1012,7 +1014,7 @@ $pgv_lang["sosa_uncle_7"] 			= "oud-oom";
 //              %2\$d is replaced with the number of generations - 1
 //              %3\$d is replaced with the number of generations - 2
 $pgv_lang["n_x_paternal_uncle"]		= "%2\$d x oud-oom";
-$pgv_lang["n_x_maternal_uncle"]	    = "%2\$d x oud-oom";
+$pgv_lang["n_x_maternal_uncle"]		= "%2\$d x oud-oom";
 
 // the sosa_aunt name is used for aunts - the names below can be extended to any number
 // of generations just by adding more translations.
@@ -1031,7 +1033,7 @@ $pgv_lang["sosa_aunt_7"] 			= "oud-tante";
 //              %2\$d is replaced with the number of generations - 1
 //              %3\$d is replaced with the number of generations - 2
 $pgv_lang["n_x_paternal_aunt"]		= "%2\$d x oud-tante";
-$pgv_lang["n_x_maternal_aunt"]	    = "%2\$d x oud-tante";
+$pgv_lang["n_x_maternal_aunt"]		= "%2\$d x oud-tante";
 
 // the sosa_uncle name is used for uncles(by marriage) - the names below can be extended to any number
 // of generations just by adding more translations.
@@ -1215,14 +1217,16 @@ $pgv_lang["recent_events"]			= "Recent verleden (&lt; 100 jaar)";
 $pgv_lang["day_not_set"]				= "Dag niet bekend";
 
 //-- user self registration module
+$pgv_lang["siteadmin"]				= "PhpGedView-beheerder";
+$pgv_lang["PGV_program"]			= "PhpGedView-programma";
 $pgv_lang["lost_password"]			= "Wachtwoord vergeten?";
 $pgv_lang["requestpassword"]		= "Vraag nieuw wachtwoord aan";
 $pgv_lang["no_account_yet"]			= "Nog geen gebruikersnaam?";
 $pgv_lang["requestaccount"]			= "Vraag toestemming om in te loggen";
-$pgv_lang["emailadress"]				= "E-mail adres";
+$pgv_lang["emailadress"]			= "E-mail adres";
 $pgv_lang["mandatory"] 				= "Vakken met een * zijn verplicht.";
 $pgv_lang["mail01_line01"]			= "Hallo #user_fullname# ...";
-$pgv_lang["mail01_line02"]			= "Op #PGV_SERVER_NAME##PGV_SCRIPT_PATH# is een verzoek gedaan om aan te melden met uw e-mailadres #user_email#.";
+$pgv_lang["mail01_line02"]			= "Op #PGV_SERVER_NAME##PGV_SCRIPT_PATH# is een verzoek gedaan om aan te melden met uw e-mailadres «#user_email#».";
 $pgv_lang["mail01_line03"]			= "De volgende gegevens zijn gebruikt.";
 $pgv_lang["mail01_line04"]			= "Klik op onderstaande koppeling en vul de gegevens in om uw gebruikersnaam en e-mailadres te verifiëren.";
 $pgv_lang["mail01_line05"]			= "Als u deze gegevens niet heeft aangevraagd, kunt u dit bericht verwijderen.";
@@ -1319,7 +1323,7 @@ $pgv_lang["message"]				= "Stuur bericht";
 $pgv_lang["my_messages"]			= "Mijn berichten";
 $pgv_lang["date_created"]				= "Datum verzonden:";
 $pgv_lang["message_from"]			= "E-mail adres:";
-$pgv_lang["message_from_name"]		= "Uw naam:";
+$pgv_lang["message_from_name"]		= "Afzender:";
 $pgv_lang["message_to"]				= "Bericht aan:";
 $pgv_lang["message_subject"]		= "Onderwerp:";
 $pgv_lang["message_body"]			= "Inhoud:";
@@ -1334,7 +1338,7 @@ $pgv_lang["message_invalid_from"]	= "Ongeldig afzenderadres: &laquo;#email#&raqu
 $pgv_lang["message_invalid_to"]		= "Ongeldig ontvangeradres: &laquo;#email#&raquo;";
 $pgv_lang["message_illegal_chars"]	= "Illegale tekens in het adres &laquo;#email#&raquo;";
 $pgv_lang["message_bad_format"]		= "Het adres &laquo;#email#&raquo is niet correct opgemaakt";
-$pgv_lang["message_no_MX"]			= "Het domein van het adres &laquo;#email#&raqu bestaat niet of heeft geen MX-record"; 
+$pgv_lang["message_no_MX"]			= "Het domein van het adres &laquo;#email#&raqu bestaat niet of heeft geen MX-record";
 $pgv_lang["reset"]					= "Herstel";
 $pgv_lang["site_default"]			= "Standaard site";
 $pgv_lang["mygedview_desc"]			= "Op uw persoonlijke MyGedView pagina kunt u uw favoriete personen aangeven, kijken naar gebeurtenissen die binnenkort plaatsvinden en samenwerken met andere PhpGedView gebruikers van deze site.";
@@ -1355,7 +1359,6 @@ $pgv_lang["message_email1"]			= "Het volgende bericht is verzonden naar uw PhpGe
 $pgv_lang["message_email2"]			= "U zond het volgende bericht naar een PhpGedView-gebruiker:";
 $pgv_lang["message_email3"]			= "U zond het volgende bericht naar de PhpGedView beheerder:";
 $pgv_lang["viewing_url"]			= "Het bericht is verzonden vanaf de volgende URL:";
-$pgv_lang["messaging2_help"]		= "Als u dit bericht verzendt, ontvangt u een kopie op het e-mailadres dat u heeft opgegeven.";
 $pgv_lang["random_picture"]			= "Willekeurige afbeelding";
 $pgv_lang["message_instructions"]	= "<b>Let op:</b> Vertrouwelijke informatie over levende personen wordt alleen verstrekt aan verwanten en andere geautoriseerde personen. Voordat u vertrouwelijke informatie ontvangt, wordt eerst uw relatie met de desbetreffende persoon geverifieerd. Soms is informatie over reeds overleden personen ook vertrouwelijk. Dit kan voorkomen, als er niet voldoende informatie voorhanden is, om vast te stellen of de persoon daadwerkelijk is overleden. Waarschijnlijk is ook niet meer informatie voorhanden over deze persoon.<br /><br />Controleer, voordat u een vraag stelt, aan de hand van data, plaatsen en familieleden, dat het de juiste persoon betreft. Als u genealogische informatie versterkt, vermeldt dan de bronnen waar de informatie vandaan komt.";
 $pgv_lang["sending_to"]				= "Bericht wordt verzonden naar #TO_USER#";
@@ -1380,10 +1383,10 @@ $pgv_lang["todays_events_block"]	= "Op deze dag";
 $pgv_lang["todays_events_descr"]	= "Het «Op deze dag» blok toont een lijst met gebeurtenissen, die op deze dag hebben plaatsgevonden. De gebeurtenissen zijn beperkt tot de actieve genealogie. Op de persoonlijke MyGedView pagina worden alleen gebeurtenissen van levende personen getoond, op een Welkomstpagina de gebeurtenissen van alle personen. Als geen gebeurtenissen worden gevonden, wordt het vak niet getoond.";
 $pgv_lang["todo_block"] 			= "Taken Te Doen";
 $pgv_lang["todo_descr"] 			= "Het «Taken Te Doen» blok somt alle, uitstaande «Te Doen» taken in het bestand, op.";
-$pgv_lang["todo_show_other"]     	= "Toon taken van andere gebruikers";
+$pgv_lang["todo_show_other"] 		= "Toon taken van andere gebruikers";
 $pgv_lang["todo_show_unassigned"]	= "Toon niet toegewezen taken";
-$pgv_lang["todo_show_future"]    	= "Toon toekomstige taken";
-$pgv_lang["todo_nothing"]        	= "Er zijn geen taken te doen.";
+$pgv_lang["todo_show_future"]		= "Toon toekomstige taken";
+$pgv_lang["todo_nothing"]			= "Er zijn geen taken te doen.";
 $pgv_lang["yahrzeit_block"]			= "Yahrzeiten";
 $pgv_lang["yahrzeit_descr"]			= "Het «Yahrzeiten» blok toont jaarlijkse herdenkingen, van overlijdens data, die in de nabije toekomst plaatsvinden. U kunt de te tonen periode instellen. De beheerder kan instellen hoe ver dit blok in de toekomst kijkt.";
 $pgv_lang["logged_in_users_block"]	= "Aangemelde gebruikers";

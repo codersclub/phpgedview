@@ -6,7 +6,7 @@
  * routines and sorting functions.
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2021  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2022  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -214,7 +214,7 @@ function get_config_file($ged_id=PGV_GED_ID) {
 
 	$config=get_gedcom_setting($ged_id, 'config');
 	if (empty($config)) return 'config_gedcom.php';		// New install
-	
+
 	$config=str_replace('${INDEX_DIRECTORY}', $INDEX_DIRECTORY, $config);
 
 	if (!file_exists($config)) {
@@ -282,7 +282,7 @@ function get_privacy_file($ged_id=PGV_GED_ID) {
 
 	$privfile=get_gedcom_setting($ged_id, 'privacy');
 	if (empty($privfile)) return 'privacy.php';		// New install
-	
+
 	$privfile=str_replace('${INDEX_DIRECTORY}', $INDEX_DIRECTORY, $privfile);
 
 	if (!file_exists($privfile) || version_compare(get_privacy_file_version($privfile), PGV_REQUIRED_PRIVACY_VERSION)<0) {
@@ -350,7 +350,7 @@ function update_site_config($newconfig, $return = false) {
 	}
 	$tempConfigText = str_replace("\n?>", "\n", $tempConfigText);	// Get rid of PHP close tag
 	$tempConfigText = trim($tempConfigText);	// Get rid of leading and trailing white spaces
-	
+
 	// Make sure we don't escape from the config file
 	$tempConfigText = preg_replace("~\n(include|require)~i", "\n// $1", $tempConfigText);
 
@@ -2697,7 +2697,7 @@ function write_changes() {
 			}
 		}
 	}
-	$changestext .= "?>\n";	
+	$changestext .= "?>\n";
 	$fp = fopen($INDEX_DIRECTORY."pgv_changes.php", "wb");
 	if ($fp === false) {
 		print "ERROR 6: Unable to open changes file resource.  Unable to complete request.\n";
@@ -2791,7 +2791,7 @@ function normalize_query_string($query) {
 	return $new_query;
 }
 
-function getAlphabet() {
+function getAlphabet($extraChars='', $UTF8_split=false) {
 	global $ALPHABET_upper, $ALPHABET_lower, $LANGUAGE;
 	global $alphabet, $alphabet_lower, $alphabet_upper, $alphabet_lang;
 
@@ -2800,17 +2800,23 @@ function getAlphabet() {
 		$alphabet = "0123456789".$ALPHABET_upper[$LANGUAGE].$ALPHABET_lower[$LANGUAGE];
 		$alphabet_lower = "0123456789".$ALPHABET_lower[$LANGUAGE];
 		$alphabet_upper = "0123456789".$ALPHABET_upper[$LANGUAGE];
-		foreach ($ALPHABET_upper as $l => $upper) {
-			if ($l <> $LANGUAGE) {
-				$alphabet .= $ALPHABET_upper[$l];
-				$alphabet_upper .= $ALPHABET_upper[$l];
-				$alphabet .= $ALPHABET_lower[$l];
-				$alphabet_lower .= $ALPHABET_lower[$l];
+		foreach ($ALPHABET_upper as $lang => $upper) {
+			if ($lang != $LANGUAGE) {
+				$alphabet .= $ALPHABET_upper[$lang];
+				$alphabet_upper .= $ALPHABET_upper[$lang];
+				$alphabet .= $ALPHABET_lower[$lang];
+				$alphabet_lower .= $ALPHABET_lower[$lang];
 			}
 		}
+
 		$alphabet_lang = $LANGUAGE;
 	}
-	return $alphabet;
+
+	// Make sure there aren't any duplicates in the returned result.  The GLOBAL results aren't affected
+	// array_values() is needed because array_unique() just unsets, leaving holes in the key sequence where there were duplicates
+	$tempAlphabet = array_values(array_unique(UTF8_str_split($alphabet . $extraChars)));
+	if ($UTF8_split) return $tempAlphabet;
+	return implode('', $tempAlphabet);
 }
 
 /**
@@ -3158,13 +3164,13 @@ function CheckPageViews() {
  */
 function get_next_INDI_xref($ged_id=PGV_GED_ID) {
 	global $USE_REFN;
-	
+
 	if (isset($USE_REFN) && $USE_REFN) {
 		// GEDCOM configuration says to use REFN if possible
 		$xref = safe_POST('REFN', PGV_REGEX_XREF);		// Get the Reference Number from the input form
 		if (!is_null($xref)) {
 			if (!find_person_record($xref, $ged_id)) {
-				return $xref;		// This REFN does not exist as a person, so it's OK to use it 
+				return $xref;		// This REFN does not exist as a person, so it's OK to use it
 			}
 		}
 	}
@@ -3294,25 +3300,47 @@ function has_utf8($string) {
  *	To load the "configure_help.xx.php" and the "faqlist.xx.php" file set, the function
  *	would be called thus:
  *		loadLangFile("pgv_confighelp, pgv_faqlib");
- *	To load all files, call the function this way:
+ *	To load all files in the "pgv_" list, call the function this way:
  *		loadLangFile("all");
  *	To load the file XXX for module YYY, call
  *		loadLangFile("YYY:XXX");
+ *	To re-load all files that were previously loaded, call the function this way:
+ *		loadLangFile("restore");
+ *
+ *  You would use the "restore" option after having changed the language, as happens in
+ *  the login_register script.
  */
-function loadLangFile($fileListNames="", $lang="") {
+function loadLangFile($fileList="", $lang="") {
 	global $pgv_language, $confighelpfile, $helptextfile, $factsfile, $adminfile, $editorfile, $countryfile, $faqlistfile, $extrafile;
 	global $LANGUAGE, $lang_short_cut, $lng_codes, $lng_synonyms;
 	global $pgv_lang, $countries, $altCountryNames, $factarray, $factAbbrev, $faqlist;
 	if (empty($lang)) $lang=$LANGUAGE;
-	$allLists = "pgv_lang, pgv_confighelp, pgv_help, pgv_facts, pgv_admin, pgv_editor, pgv_country, pgv_faqlib";
+	$allList = "pgv_lang, pgv_confighelp, pgv_help, pgv_facts, pgv_admin, pgv_editor, pgv_country, pgv_faqlib";
 
 	// Empty list or "all" means "load complete file set"
-	if (empty($fileListNames) || $fileListNames=="all")
-		$fileListNames = $allLists;
+	if (empty($fileList) || $fileList=="all")
+		$fileList = $allList;
+
+	// "restore" means "re-load everything that was previously loaded", presumably after having changed the language
+	if ($fileList == 'restore') {
+		$fileList = $allList;
+		if (isset($_SESSION['PGV_LOADEDLANGFILES'])) $fileList = $_SESSION['PGV_LOADEDLANGFILES'];
+		// Make sure we start with a clean slate
+		$pgv_lang = array();
+		$countries = array();
+		$altCountryNames = array();
+		$factarray = array();
+		$factAbbrev = array();
+		$faqlist = array();
+
+	} else {
+		if (isset($_SESSION['PGV_LOADEDLANGFILES'])) $fileList .= ','.$_SESSION['PGV_LOADEDLANGFILES'];
+		$_SESSION['PGV_LOADEDLANGFILES'] = $fileList;		// Save this new list for future use
+	}
 
 	// Split input into a list of file types
-	$fileListNames = str_replace(array(";", " "), array(",", ""), $fileListNames);
-	$list = explode(",", $fileListNames);
+	$fileList = str_replace(array(';', ' '), array(',', ''), $fileList);
+	$list = array_unique(explode(",", $fileList));		// Get rid of any duplicates in the list
 
 	// Work on each input file type
 	foreach ($list as $fileListName) {
@@ -3359,10 +3387,10 @@ function loadLangFile($fileListNames="", $lang="") {
 			}
 		}
 		if (file_exists($fileName1)) {
-			require $fileName1;
+			require $fileName1;		// Load the English version first
 		}
-		if ($lang!='english' && file_exists($fileName2)) {
-			require $fileName2;
+		if ($fileName1 != $fileName2 && file_exists($fileName2)) {
+			require $fileName2;		// Load the version for the other language if it's not English
 		}
 	}
 
@@ -3379,7 +3407,6 @@ function loadLangFile($fileListNames="", $lang="") {
 	if (file_exists($extrafile[$lang])) {
 		require $extrafile[$lang];
 	}
-
 }
 
 
@@ -3437,8 +3464,13 @@ function loadLanguage($desiredLanguage="english", $forceLoad=false) {
 
 	if ($forceLoad) {
 		$LANGUAGE = "english";
-		require $pgv_language[$LANGUAGE];			// Load English
-		require $factsfile[$LANGUAGE];
+		loadLangFile('pgv_lang, pgv_facts');		// Load the English basic set
+		if (!$CONFIGURED || !PGV_DB::isConnected() || !PGV_ADMIN_USER_EXISTS || PGV_USER_GEDCOM_ADMIN) {
+			loadLangFile('pgv_admin');		// Load the English "Admin" set
+		}
+		if (!PGV_DB::isConnected() || !PGV_ADMIN_USER_EXISTS || PGV_USER_GEDCOM_ADMIN || PGV_USER_CAN_EDIT) {
+			loadLangFile('pgv_editor');		// Load the English "Editor" set
+		}
 
 		$TEXT_DIRECTION = $TEXT_DIRECTION_array[$LANGUAGE];
 		$DATE_FORMAT	= $DATE_FORMAT_array[$LANGUAGE];
@@ -3450,33 +3482,13 @@ function loadLanguage($desiredLanguage="english", $forceLoad=false) {
 		$file = PGV_ROOT.'includes/extras/functions.'.$lang_short_cut[$LANGUAGE].'.php';
 		if (file_exists($file)) {
 			require_once $file;
-		}
-		// load admin lang keys
-		$file = $adminfile[$LANGUAGE];
-		if (file_exists($file)) {
-			if (!$CONFIGURED || !PGV_DB::isConnected() || !PGV_ADMIN_USER_EXISTS || PGV_USER_GEDCOM_ADMIN) {
-				require $file;
-			}
-		}
-		// load the edit lang keys
-		$file = $editorfile[$LANGUAGE];
-		if (file_exists($file)) {
-			if (!PGV_DB::isConnected() || !PGV_ADMIN_USER_EXISTS || PGV_USER_GEDCOM_ADMIN || PGV_USER_CAN_EDIT) {
-				require $file;
-			}
 		}
 	}
 
 	if ($desiredLanguage!=$LANGUAGE) {
 		$LANGUAGE = $desiredLanguage;
-		$file = $pgv_language[$LANGUAGE];
-		if (file_exists($file)) {
-			require $file;  // Load the requested language
-		}
-		$file = $factsfile[$LANGUAGE];
-		if (file_exists($file)) {
-			require $file;
-		}
+
+		loadLangFile('restore');		// Load the previously loaded files, but in the new language
 
 		$TEXT_DIRECTION = $TEXT_DIRECTION_array[$LANGUAGE];
 		$DATE_FORMAT	= $DATE_FORMAT_array[$LANGUAGE];
@@ -3488,21 +3500,6 @@ function loadLanguage($desiredLanguage="english", $forceLoad=false) {
 		$file = PGV_ROOT.'includes/extras/functions.'.$lang_short_cut[$LANGUAGE].'.php';
 		if (file_exists($file)) {
 			require_once $file;
-		}
-
-		// load admin lang keys
-		$file = $adminfile[$LANGUAGE];
-		if (file_exists($file)) {
-			if (!$CONFIGURED || !PGV_DB::isConnected() || !PGV_ADMIN_USER_EXISTS || PGV_USER_GEDCOM_ADMIN) {
-				require $file;
-			}
-		}
-		// load the edit lang keys
-		$file = $editorfile[$LANGUAGE];
-		if (file_exists($file)) {
-			if (!PGV_DB::isConnected() || !PGV_ADMIN_USER_EXISTS || PGV_USER_CAN_EDIT) {
-				require $file;
-			}
 		}
 	}
 
@@ -3516,14 +3513,9 @@ function loadLanguage($desiredLanguage="english", $forceLoad=false) {
 		require $file;
 	}
 
-	// Modify certain spellings if Ashkenazi pronounciations are in use.
 	if ($JEWISH_ASHKENAZ_PRONUNCIATION) {
-		switch($lang_short_cut[$LANGUAGE]) {
-		case 'en':
-			$pgv_lang['csh']='Cheshvan';
-			$pgv_lang['tvt']='Teves';
-			break;
-		}
+		$pgv_lang['csh']='Cheshvan';	// If Ashkenazi pronounciations are in use
+		$pgv_lang['tvt']='Teves';		//   modify these spellings
 	}
 
 	// Special formatting options; R selects conversion to a language-dependent calendar.
@@ -4023,8 +4015,8 @@ function removeDir($dir) {
 		$success = @unlink($dir);
 		clearstatcache();
 		return $success;
-	} 
-	
+	}
+
 	// Not a file: it must be a directory.
 	// We have to empty it before attempting to delete it
 	$d = dir($dir);

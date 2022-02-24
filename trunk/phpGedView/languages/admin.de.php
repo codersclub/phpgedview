@@ -3,7 +3,7 @@
  * German language file for PhpGedView
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2021  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2022  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -131,7 +131,7 @@ $pgv_lang["warning_instr"]			= "Falls Sie Warnhinweise erhalten haben, können S
 $pgv_lang["associated_files"]		= "Verwandte Dateien:";
 $pgv_lang["remove_all_files"]		= "Alle nicht unbedingt erforderliche Dateien löschen";
 $pgv_lang["warn_file_delete"]		= "Diese Datei enthält wichtige Daten wie zum Beispiel die Spracheinstellungen oder noch nicht eingetragene Änderungen der Datenbank. Sind Sie sicher, dass Sie diese Datei löschen möchten?";
-$pgv_lang["deleted_files"]          = "Gelöschte Dateien:";
+$pgv_lang["deleted_files"]  		 = "Gelöschte Dateien:";
 $pgv_lang["index_dir_cleanup_inst"]	= "Dateien oder Unterverzeichnisse werden aus dem Index-Verzeichnis gelöscht, indem Sie die Namen in den Papierkorb verlegen oder sie in der Liste ankreuzen. Die so gekennzeichneten Dateien werden unwiderruflich gelöscht, wenn Sie auf den »Löschen« Button klicken.<br /><ul><li>Unbedingt erforderliche Dateien sind mit <img src=\"./images/RESN_confidential.gif\" alt=\"\" /> gekennzeichnet; sie dürfen nicht gelöscht werden.</li><li>Dateien, die mit <img src=\"./images/RESN_locked.gif\" alt=\"\" /> gekennzeichnet sind, enthalten wichtige Datensätze und sollten nur gelöscht werden, wenn Sie sich dessen sicher sind.</li></ul>";
 $pgv_lang["index_dir_cleanup"]		= "Indexverzeichnis aufräumen";
 $pgv_lang["clear_cache_succes"]		= "Die Cachedateien wurden gelöscht.";
@@ -327,7 +327,7 @@ $pgv_lang["LANG_SELECTION"]			= "Unterstützte Sprachen";
 $pgv_lang["LANGUAGE_DEFAULT"]		= "Sie haben noch nicht die Liste der bei Ihrer Seite unterstützten Sprachen konfiguriert.  PhpGedView benutzt deshalb die Standard-Liste.";
 $pgv_lang["last_login"]				= "Letzte Anmeldung";
 $pgv_lang["lasttab"]				= "Zuletzt benutzter Ordner auf der Personenseite";
-$pgv_lang["leave_blank"]			= "Kennwort leer lassen, um das aktuelle Kennwort beizubehalten.";
+$pgv_lang["leave_blank"]			= "Kennwort leer lassen, um das aktuelle Kennwort zu behalten.";
 $pgv_lang["link_manage_servers"]	= "Internetseiten verwalten";
 $pgv_lang["logfile_content"]		= "Inhalt der Logdatei";
 $pgv_lang["macfile_detected"]		= "Macintosh Datei erkannt. Beim Korrigieren wird Ihre Datei ins DOS Format konvertiert.";

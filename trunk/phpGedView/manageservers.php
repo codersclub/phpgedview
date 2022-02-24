@@ -5,7 +5,7 @@
 *  Allow a user the ability to manage servers i.e. allowing, banning, deleting
 *
 * phpGedView: Genealogy Viewer
-* Copyright (C) 2002 to 2019  PGV Development Team.  All rights reserved.
+* Copyright (C) 2002 to 2022  PGV Development Team.  All rights reserved.
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -44,6 +44,21 @@ if (!PGV_USER_GEDCOM_ADMIN) {
 	print_footer();
 	exit;
 }
+
+?>
+<script language="JavaScript" type="text/javascript">
+<!--
+	function toggleVizPW(whichForm, whichField) {
+		// This script should really be in the general script file, /js/phpgedview.js
+		// but we don't want to load the whole works just for this one seldom-used script.
+		var frm = document[whichForm];
+		var field = frm[whichField];
+		if (field.type === "password") field.type = "text";
+		else field.type = "password";
+	}
+//-->
+</script>
+<?php
 
 $banned = array();
 if (file_exists($INDEX_DIRECTORY.'banned.php')) {
@@ -564,7 +579,8 @@ if (empty($errorServer)) {
 			<?php print $pgv_lang["label_password_id"];?>
 		</td>
 		<td class="facts_value">
-			<input type="password" name="password" />
+			<input type="password" name="password" />&nbsp;&nbsp;&nbsp;
+			<input type="checkbox" onclick="toggleVizPW('addserversform', 'password')" /><?php echo $pgv_lang["show"]; ?>
 		</td>
 		</tr>
 		<tr>

@@ -30,14 +30,14 @@ define('PGV_SCRIPT_NAME', 'login.php');
 require './config.php';
 
 // Extract query parameters
-$url     =safe_POST('url',      PGV_REGEX_URL);
-$type    =safe_POST('type',     array('full', 'simple'));
+$url 	 =safe_POST('url',      PGV_REGEX_URL);
+$type	 =safe_POST('type',     array('full', 'simple'));
 $action  =safe_POST('action');
 $username=safe_POST('username', PGV_REGEX_USERNAME);
 $password=safe_POST('password', PGV_REGEX_PASSWORD);
 $usertime=safe_POST('usertime');
-$pid     =safe_POST('pid',      PGV_REGEX_XREF);
-$ged     =safe_POST('ged',      get_all_gedcoms(), $GEDCOM);
+$pid 	 =safe_POST('pid',      PGV_REGEX_XREF);
+$ged 	 =safe_POST('ged',      get_all_gedcoms(), $GEDCOM);
 $help_message=safe_GET('help_messge');
 
 // Some variables can come from the URL as well as the form
@@ -55,6 +55,21 @@ if (empty($url)) {
 }
 
 $message='';
+
+	?>
+	<script language="JavaScript" type="text/javascript">
+	<!--
+		function toggleVizPW(whichForm, whichField) {
+			// This script should really be in the general script file, /js/phpgedview.js
+			// but we don't want to load the whole works just for this one seldom-used script.
+			var frm = document[whichForm];
+			var field = frm[whichField];
+			if (field.type === "password") field.type = "text";
+			else field.type = "password";
+		}
+	//-->
+	</script>
+	<?php
 
 if ($action=='login') {
 	if ($user_id=authenticateUser($username, $password)) {
@@ -210,7 +225,7 @@ $tab=0;		// initialize tab index
 			</tr>
 			<tr>
 				<td class="descriptionbox <?php print $TEXT_DIRECTION; ?> wrap width50"><?php print_help_link("password_help", "qm", "password"); print $pgv_lang["password"]; ?></td>
-				<td class="optionbox <?php print $TEXT_DIRECTION; ?>"><input type="password" tabindex="<?php echo ++$tab; ?>" name="password" size="20" class="formField" /></td>
+				<td class="optionbox <?php print $TEXT_DIRECTION; ?>"><input type="password" tabindex="<?php echo ++$tab; ?>" name="password" size="20" class="formField" />&nbsp;&nbsp;&nbsp;<input type="checkbox" onclick="toggleVizPW('loginform', 'password')" /><?php echo $pgv_lang["show"]; ?></td>
 			</tr>
 			<tr>
 				<td class="topbottombar" colspan="2">

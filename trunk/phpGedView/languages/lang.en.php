@@ -81,13 +81,13 @@ $pgv_lang["changedate1"]			= "Ending range of change dates";
 $pgv_lang["changedate2"]			= "Starting range of change dates";
 $pgv_lang["search_place_word"]		= "Whole words only";
 $pgv_lang["invalid_search_input"] 	= "Please enter a Given name, Last name, or Place in addition to Year";
-$pgv_lang["duplicate_username"] 	= "Duplicate user name.  A user with that user name already exists.  Please choose another user name.";
+$pgv_lang["duplicate_username"] 	= "Duplicate user name «#username#».  A user with that user name already exists.  Please choose another user name.";
+$pgv_lang["usercreate_fail"]		= "The user «#username#» could not be added to the system.";
 $pgv_lang["cache_life"]				= "Cache file life";
 $pgv_lang["genealogy"]				= "genealogy";
 $pgv_lang["activate"]				= "Activate";
 $pgv_lang["deactivate"]				= "Deactivate";
-$pgv_lang["play"]					= "Play";
-$pgv_lang["stop"]					= "Stop";
+$pgv_lang["play_stop"]				= "Play / Stop";
 $pgv_lang["random_media_start_slide"]	= "Start slideshow on page load?";
 $pgv_lang["random_media_ajax_controls"]	= "Show slideshow controls?";
 $pgv_lang["description"]			= "Description";
@@ -231,10 +231,10 @@ $pgv_lang["cookie_help"]			= "This site uses cookies to keep track of your login
 //new stuff
 //Individual
 $pgv_lang["indi_is_remote"]			= "The information for this individual was linked from a remote site.";
-$pgv_lang["link_remote"]            = "Link remote person";
+$pgv_lang["link_remote"]			= "Link remote person";
 //Add Remote Link
-$pgv_lang["title_search_link"]      = "Add Local Link";
-$pgv_lang["label_site_url2"]        = "Site URL";
+$pgv_lang["title_search_link"]  	= "Add Local Link";
+$pgv_lang["label_site_url2"]		= "Site URL";
 //new stuff
 
 $pgv_lang["delete_family_confirm"]	= "Deleting the family will unlink all of the individuals from each other but will leave the individuals in place.  Are you sure you want to delete this family?";
@@ -374,12 +374,12 @@ $pgv_lang["for_contact"]			= "For help with genealogy questions contact";
 $pgv_lang["for_all_contact"]		= "For technical support or genealogy questions, please contact";
 $pgv_lang["choose_username"]		= "Desired user name";
 $pgv_lang["username"]				= "User name";
-$pgv_lang["invalid_username"]		= "User name contains invalid characters";
+$pgv_lang["invalid_username"]		= "User name «#username#» contains invalid characters";
 $pgv_lang["firstname"]				= "First Name";
 $pgv_lang["lastname"]				= "Last Name";
 $pgv_lang["choose_password"]		= "Desired password";
 $pgv_lang["password"]				= "Password";
-$pgv_lang["confirm"]				= "Confirm Password";
+$pgv_lang["confirm"]				= "Confirm password";
 $pgv_lang["login"]					= "Login";
 $pgv_lang["logout"] 				= "Logout";
 $pgv_lang["admin"]					= "Administration";
@@ -437,6 +437,7 @@ $pgv_lang["clippings_cart"] 		= "Family Tree Clippings Cart";
 $pgv_lang["print_preview"]			= "Printer-friendly Version";
 $pgv_lang["cancel_preview"] 		= "Back to normal view";
 $pgv_lang["change_lang"]			= "Change Language";
+$pgv_lang["language"]				= "Language";
 $pgv_lang["print"]					= "Print";
 $pgv_lang["total_queries"]			= "Total Database Queries: ";
 $pgv_lang["total_privacy_checks"]	= "Total privacy checks: ";
@@ -627,7 +628,7 @@ $pgv_lang["search_soundex"]			= "Soundex Search";
 $pgv_lang["search_replace"]			= "Search and Replace";
 $pgv_lang["search_sources"]			= "Sources";
 $pgv_lang["search_shared_notes"]	= "Shared Notes";
-$pgv_lang["search_more_chars"]      = "Please enter more than one character";
+$pgv_lang["search_more_chars"]  	= "Please enter more than one character";
 $pgv_lang["search_soundextype"]		= "Soundex type:";
 $pgv_lang["search_russell"]			= "Simple";
 $pgv_lang["search_tagfilter"]		= "Exclude Filter";
@@ -710,8 +711,8 @@ $pgv_lang["week1"]					= "week";
 $pgv_lang["weeks"]					= "weeks";
 $pgv_lang["day1"]					= "day";
 $pgv_lang["days"]					= "days";
-$pgv_lang["after_death"]        	= "after death";
-$pgv_lang["at_death_day"]      		= "on the date of death";
+$pgv_lang["after_death"]			= "after death";
+$pgv_lang["at_death_day"]  			= "on the date of death";
 $pgv_lang["timeline_title"] 		= "PhpGedView Timeline";
 $pgv_lang["timeline_chart"] 		= "Timeline Chart";
 $pgv_lang["remove_person"]			= "Remove Person";
@@ -731,19 +732,19 @@ $pgv_lang["include_family"] = "Include Immediate Family";
 $pgv_lang["lifespan_chart"] = "Lifespan Chart";
 
 // calendar conversion options
-$pgv_lang["cal_none"]                 = "No calendar conversion";
-$pgv_lang["cal_gregorian"]            = "Gregorian";
-$pgv_lang["cal_julian"]               = "Julian";
-$pgv_lang["cal_french"]               = "French";
-$pgv_lang["cal_jewish"]               = "Jewish";
-$pgv_lang["cal_hebrew"]               = "Hebrew";
+$pgv_lang["cal_none"] 				= "No calendar conversion";
+$pgv_lang["cal_gregorian"]			= "Gregorian";
+$pgv_lang["cal_julian"]   			= "Julian";
+$pgv_lang["cal_french"]   			= "French";
+$pgv_lang["cal_jewish"]   			= "Jewish";
+$pgv_lang["cal_hebrew"]   			= "Hebrew";
 $pgv_lang["cal_jewish_and_gregorian"] = "Jewish and Gregorian";
 $pgv_lang["cal_hebrew_and_gregorian"] = "Hebrew and Gregorian";
-$pgv_lang["cal_hijri"]                = "Hijri";
-$pgv_lang["cal_arabic"]               = "Arabic";
+$pgv_lang["cal_hijri"]				= "Hijri";
+$pgv_lang["cal_arabic"]   			= "Arabic";
 
 // some religious dates
-$pgv_lang["easter"]     = "Easter";
+$pgv_lang["easter"] 	= "Easter";
 $pgv_lang["ascension"]  = "Ascension";
 $pgv_lang["pentecost"]  = "Pentecost";
 $pgv_lang["assumption"] = "Assumption";
@@ -751,10 +752,10 @@ $pgv_lang["all_saints"] = "All Saints";
 $pgv_lang["christmas"]  = "Christmas";
 
 // am/pm suffixes for 12 hour clocks
-$pgv_lang["a.m."]         = "am";
-$pgv_lang["p.m."]         = "pm";
-$pgv_lang["noon"]         = "m";
-$pgv_lang["midn"]         = "mn";
+$pgv_lang["a.m."] 		= "am";
+$pgv_lang["p.m."] 		= "pm";
+$pgv_lang["noon"] 		= "m";
+$pgv_lang["midn"] 		= "mn";
 
 //-- MONTH NAMES
 $pgv_lang["jan"]		= "January";
@@ -770,49 +771,49 @@ $pgv_lang["oct"]		= "October";
 $pgv_lang["nov"]		= "November";
 $pgv_lang["dec"]		= "December";
 
-$pgv_lang["vend"]         = "Vendémiaire";
-$pgv_lang["brum"]         = "Brumaire";
-$pgv_lang["frim"]         = "Frimaire";
-$pgv_lang["nivo"]         = "Nivôse";
-$pgv_lang["pluv"]         = "Pluviôse";
-$pgv_lang["vent"]         = "Ventôse";
-$pgv_lang["germ"]         = "Germinal";
-$pgv_lang["flor"]         = "Floréal";
-$pgv_lang["prai"]         = "Prairial";
-$pgv_lang["mess"]         = "Messidor";
-$pgv_lang["ther"]         = "Thermidor";
-$pgv_lang["fruc"]         = "Fructidor";
-$pgv_lang["comp"]         = "jours complémentaires";
+$pgv_lang["vend"] 		= "Vendémiaire";
+$pgv_lang["brum"] 		= "Brumaire";
+$pgv_lang["frim"] 		= "Frimaire";
+$pgv_lang["nivo"] 		= "Nivôse";
+$pgv_lang["pluv"] 		= "Pluviôse";
+$pgv_lang["vent"] 		= "Ventôse";
+$pgv_lang["germ"] 		= "Germinal";
+$pgv_lang["flor"] 		= "Floréal";
+$pgv_lang["prai"] 		= "Prairial";
+$pgv_lang["mess"] 		= "Messidor";
+$pgv_lang["ther"] 		= "Thermidor";
+$pgv_lang["fruc"] 		= "Fructidor";
+$pgv_lang["comp"] 		= "jours complémentaires";
 
-$pgv_lang["tsh"]          = "Tishrei";
-$pgv_lang["csh"]          = "Heshvan";
-$pgv_lang["ksl"]          = "Kislev";
-$pgv_lang["tvt"]          = "Tevet";
-$pgv_lang["shv"]          = "Shevat";
-$pgv_lang["adr"]          = "Adar";
+$pgv_lang["tsh"]  		= "Tishrei";
+$pgv_lang["csh"]  		= "Heshvan";
+$pgv_lang["ksl"]  		= "Kislev";
+$pgv_lang["tvt"]  		= "Tevet";
+$pgv_lang["shv"]  		= "Shevat";
+$pgv_lang["adr"]  		= "Adar";
 $pgv_lang["adr_leap_year"]= "Adar I";
-$pgv_lang["ads"]          = "Adar II";
-$pgv_lang["nsn"]          = "Nissan";
-$pgv_lang["iyr"]          = "Iyar";
-$pgv_lang["svn"]          = "Sivan";
-$pgv_lang["tmz"]          = "Tamuz";
-$pgv_lang["aav"]          = "Av";
-$pgv_lang["ell"]          = "Elul";
+$pgv_lang["ads"]  		= "Adar II";
+$pgv_lang["nsn"]  		= "Nissan";
+$pgv_lang["iyr"]  		= "Iyar";
+$pgv_lang["svn"]  		= "Sivan";
+$pgv_lang["tmz"]  		= "Tamuz";
+$pgv_lang["aav"]  		= "Av";
+$pgv_lang["ell"]  		= "Elul";
 
-$pgv_lang["muhar"]        = "Muharram";
-$pgv_lang["safar"]        = "Safar";
-$pgv_lang["rabia"]        = "Rabi' al-awwal";
-$pgv_lang["rabit"]        = "Rabi' al-thani";
-$pgv_lang["jumaa"]        = "Jumada al-awwal";
-$pgv_lang["jumat"]        = "Jumada al-thani";
-$pgv_lang["rajab"]        = "Rajab";
-$pgv_lang["shaab"]        = "Sha'aban";
-$pgv_lang["ramad"]        = "Ramadan";
-$pgv_lang["shaww"]        = "Shawwal";
-$pgv_lang["dhuaq"]        = "Dhu al-Qi'dah";
-$pgv_lang["dhuah"]        = "Dhu al-Hijjah";
+$pgv_lang["muhar"]		= "Muharram";
+$pgv_lang["safar"]		= "Safar";
+$pgv_lang["rabia"]		= "Rabi' al-awwal";
+$pgv_lang["rabit"]		= "Rabi' al-thani";
+$pgv_lang["jumaa"]		= "Jumada al-awwal";
+$pgv_lang["jumat"]		= "Jumada al-thani";
+$pgv_lang["rajab"]		= "Rajab";
+$pgv_lang["shaab"]		= "Sha'aban";
+$pgv_lang["ramad"]		= "Ramadan";
+$pgv_lang["shaww"]		= "Shawwal";
+$pgv_lang["dhuaq"]		= "Dhu al-Qi'dah";
+$pgv_lang["dhuah"]		= "Dhu al-Hijjah";
 
-$pgv_lang["b.c."]         = "B.C.";
+$pgv_lang["b.c."] 		= "B.C.";
 
 $pgv_lang["abt"]					= "about";
 $pgv_lang["aft"]					= "after";
@@ -828,6 +829,7 @@ $pgv_lang["cir"]					= "circa";
 $pgv_lang["apx"]					= "approx.";
 
 //-- Admin File Messages
+$pgv_lang["email_invalid"]			= "Invalid email address.";
 $pgv_lang["password_mismatch"]		= "Passwords do not match.";
 $pgv_lang["enter_username"] 		= "You must enter a user name.";
 $pgv_lang["enter_password"] 		= "You must enter a password.";
@@ -1011,7 +1013,7 @@ $pgv_lang["sosa_uncle_7"] 				= "great uncle";      // mother's mother's brother
 //              %2\$d is replaced with the number of generations - 1
 //              %3\$d is replaced with the number of generations - 2
 $pgv_lang["n_x_paternal_uncle"]		= "%2\$d x great uncle";
-$pgv_lang["n_x_maternal_uncle"]	    = "%2\$d x great uncle";
+$pgv_lang["n_x_maternal_uncle"]		= "%2\$d x great uncle";
 
 // the sosa_aunt name is used for aunts - the names below can be extended to any number
 // of generations just by adding more translations.
@@ -1030,7 +1032,7 @@ $pgv_lang["sosa_aunt_7"] 				= "great aunt";      // mother's mother's sister
 //              %2\$d is replaced with the number of generations - 1
 //              %3\$d is replaced with the number of generations - 2
 $pgv_lang["n_x_paternal_aunt"]		= "%2\$d x great aunt";
-$pgv_lang["n_x_maternal_aunt"]	    = "%2\$d x great aunt";
+$pgv_lang["n_x_maternal_aunt"]		= "%2\$d x great aunt";
 
 // the sosa_uncle name is used for uncles(by marriage) - the names below can be extended to any number
 // of generations just by adding more translations.
@@ -1049,7 +1051,7 @@ $pgv_lang["sosa_uncle_bm_7"] 				= "great uncle";      // mother's mother's brot
 //              %2\$d is replaced with the number of generations - 1
 //              %3\$d is replaced with the number of generations - 2
 $pgv_lang["n_x_paternal_uncle_bm"]		= "%2\$d x great uncle";
-$pgv_lang["n_x_maternal_uncle_bm"]	    = "%2\$d x great uncle";
+$pgv_lang["n_x_maternal_uncle_bm"]		= "%2\$d x great uncle";
 
 // the sosa_aunt name is used for aunts (by marriage)- the names below can be extended to any number
 // of generations just by adding more translations.
@@ -1068,51 +1070,51 @@ $pgv_lang["sosa_aunt_bm_7"] 				= "great aunt";      // mother's mother's sister
 //              %2\$d is replaced with the number of generations - 1
 //              %3\$d is replaced with the number of generations - 2
 $pgv_lang["n_x_paternal_aunt_bm"]		= "%2\$d x great aunt";
-$pgv_lang["n_x_maternal_aunt_bm"]	    = "%2\$d x great aunt";
+$pgv_lang["n_x_maternal_aunt_bm"]		= "%2\$d x great aunt";
 
 // if a specific cousin relationship cannot be represented in a language translate as "";
-$pgv_lang["male_cousin_1"]              = "first cousin";
-$pgv_lang["male_cousin_2"]              = "second cousin";
-$pgv_lang["male_cousin_3"]              = "third cousin";
-$pgv_lang["male_cousin_4"]              = "fourth cousin";
-$pgv_lang["male_cousin_5"]              = "fifth cousin";
-$pgv_lang["male_cousin_6"]              = "sixth cousin";
-$pgv_lang["male_cousin_7"]              = "seventh cousin";
-$pgv_lang["male_cousin_8"]              = "eighth cousin";
-$pgv_lang["male_cousin_9"]              = "ninth cousin";
-$pgv_lang["male_cousin_10"]             = "tenth cousin";
-$pgv_lang["male_cousin_11"]             = "eleventh cousin";
-$pgv_lang["male_cousin_12"]             = "twelfth cousin";
-$pgv_lang["male_cousin_13"]             = "thirteenth cousin";
-$pgv_lang["male_cousin_14"]             = "fourteenth cousin";
-$pgv_lang["male_cousin_15"]             = "fifteenth cousin";
-$pgv_lang["male_cousin_16"]             = "sixteenth cousin";
-$pgv_lang["male_cousin_17"]             = "seventeenth cousin";
-$pgv_lang["male_cousin_18"]             = "eighteenth cousin";
-$pgv_lang["male_cousin_19"]             = "nineteenth cousin";
-$pgv_lang["male_cousin_20"]             = "twentieth cousin";
-$pgv_lang["male_cousin_n"]              = "%d x cousin";
-$pgv_lang["female_cousin_1"]            = "first cousin";
-$pgv_lang["female_cousin_2"]            = "second cousin";
-$pgv_lang["female_cousin_3"]            = "third cousin";
-$pgv_lang["female_cousin_4"]            = "fourth cousin";
-$pgv_lang["female_cousin_5"]            = "fifth cousin";
-$pgv_lang["female_cousin_6"]            = "sixth cousin";
-$pgv_lang["female_cousin_7"]            = "seventh cousin";
-$pgv_lang["female_cousin_8"]            = "eighth cousin";
-$pgv_lang["female_cousin_9"]            = "ninth cousin";
-$pgv_lang["female_cousin_10"]           = "tenth cousin";
-$pgv_lang["female_cousin_11"]           = "eleventh cousin";
-$pgv_lang["female_cousin_12"]           = "twelfth cousin";
-$pgv_lang["female_cousin_13"]           = "thirteenth cousin";
-$pgv_lang["female_cousin_14"]           = "fourteenth cousin";
-$pgv_lang["female_cousin_15"]           = "fifteenth cousin";
-$pgv_lang["female_cousin_16"]           = "sixteenth cousin";
-$pgv_lang["female_cousin_17"]           = "seventeenth cousin";
-$pgv_lang["female_cousin_18"]           = "eighteenth cousin";
-$pgv_lang["female_cousin_19"]           = "nineteenth cousin";
-$pgv_lang["female_cousin_20"]           = "twentieth cousin";
-$pgv_lang["female_cousin_n"]            = "%d x cousin";
+$pgv_lang["male_cousin_1"]  			= "first cousin";
+$pgv_lang["male_cousin_2"]  			= "second cousin";
+$pgv_lang["male_cousin_3"]  			= "third cousin";
+$pgv_lang["male_cousin_4"]  			= "fourth cousin";
+$pgv_lang["male_cousin_5"]  			= "fifth cousin";
+$pgv_lang["male_cousin_6"]  			= "sixth cousin";
+$pgv_lang["male_cousin_7"]  			= "seventh cousin";
+$pgv_lang["male_cousin_8"]  			= "eighth cousin";
+$pgv_lang["male_cousin_9"]  			= "ninth cousin";
+$pgv_lang["male_cousin_10"] 			= "tenth cousin";
+$pgv_lang["male_cousin_11"] 			= "eleventh cousin";
+$pgv_lang["male_cousin_12"] 			= "twelfth cousin";
+$pgv_lang["male_cousin_13"] 			= "thirteenth cousin";
+$pgv_lang["male_cousin_14"] 			= "fourteenth cousin";
+$pgv_lang["male_cousin_15"] 			= "fifteenth cousin";
+$pgv_lang["male_cousin_16"] 			= "sixteenth cousin";
+$pgv_lang["male_cousin_17"] 			= "seventeenth cousin";
+$pgv_lang["male_cousin_18"] 			= "eighteenth cousin";
+$pgv_lang["male_cousin_19"] 			= "nineteenth cousin";
+$pgv_lang["male_cousin_20"] 			= "twentieth cousin";
+$pgv_lang["male_cousin_n"]  			= "%d x cousin";
+$pgv_lang["female_cousin_1"]			= "first cousin";
+$pgv_lang["female_cousin_2"]			= "second cousin";
+$pgv_lang["female_cousin_3"]			= "third cousin";
+$pgv_lang["female_cousin_4"]			= "fourth cousin";
+$pgv_lang["female_cousin_5"]			= "fifth cousin";
+$pgv_lang["female_cousin_6"]			= "sixth cousin";
+$pgv_lang["female_cousin_7"]			= "seventh cousin";
+$pgv_lang["female_cousin_8"]			= "eighth cousin";
+$pgv_lang["female_cousin_9"]			= "ninth cousin";
+$pgv_lang["female_cousin_10"]   		= "tenth cousin";
+$pgv_lang["female_cousin_11"]   		= "eleventh cousin";
+$pgv_lang["female_cousin_12"]   		= "twelfth cousin";
+$pgv_lang["female_cousin_13"]   		= "thirteenth cousin";
+$pgv_lang["female_cousin_14"]   		= "fourteenth cousin";
+$pgv_lang["female_cousin_15"]   		= "fifteenth cousin";
+$pgv_lang["female_cousin_16"]   		= "sixteenth cousin";
+$pgv_lang["female_cousin_17"]   		= "seventeenth cousin";
+$pgv_lang["female_cousin_18"]   		= "eighteenth cousin";
+$pgv_lang["female_cousin_19"]   		= "nineteenth cousin";
+$pgv_lang["female_cousin_20"]   		= "twentieth cousin";
+$pgv_lang["female_cousin_n"]			= "%d x cousin";
 
 // Only referenced from english specific functions
 $pgv_lang["removed_ascending_1"]   = " once removed ascending";
@@ -1214,14 +1216,16 @@ $pgv_lang["recent_events"]			= "Recent Years (&lt; 100 yrs)";
 $pgv_lang["day_not_set"]			= "Day not set";
 
 //-- user self registration module
+$pgv_lang["siteadmin"]				= "PhpGedView administrator";
+$pgv_lang["PGV_program"]			= "PhpGedView program";
 $pgv_lang["lost_password"]			= "Lost your password?";
 $pgv_lang["requestpassword"]		= "Request new password";
 $pgv_lang["no_account_yet"] 		= "No account?";
 $pgv_lang["requestaccount"] 		= "Request permission to log in";
 $pgv_lang["emailadress"]			= "Email Address";
-$pgv_lang["mandatory"] 			= "Fields marked with * are mandatory.";
+$pgv_lang["mandatory"] 				= "Fields marked with * are mandatory.";
 $pgv_lang["mail01_line01"]			= "Hello #user_fullname# ...";
-$pgv_lang["mail01_line02"]			= "A request was received at #PGV_SERVER_NAME##PGV_SCRIPT_PATH# to create a PhpGedView account with your email address #user_email#.";
+$pgv_lang["mail01_line02"]			= "A request was received at #PGV_SERVER_NAME##PGV_SCRIPT_PATH# to create a PhpGedView account with your email address «#user_email#».";
 $pgv_lang["mail01_line03"]			= "Information about the request is shown under the link below.";
 $pgv_lang["mail01_line04"]			= "Please click on the following link and fill in the requested data to confirm your request and email address.";
 $pgv_lang["mail01_line05"]			= "If you didn't request an account, you can just delete this message.";
@@ -1229,10 +1233,10 @@ $pgv_lang["mail01_line06"]			= "You won't get any more email from this site, bec
 $pgv_lang["mail01_subject"] 		= "Your registration at #PGV_SERVER_NAME##PGV_SCRIPT_PATH#";
 
 $pgv_lang["mail02_line01"]			= "Hello Administrator ...";
-$pgv_lang["mail02_line02"]			= "A prospective user registered himself with PhpGedView at #PGV_SERVER_NAME##PGV_SCRIPT_PATH#.";
-$pgv_lang["mail02_line03"]			= "The user received an email with the information necessary to confirm his access request.";
-$pgv_lang["mail02_line04"]			= "You will be informed by email when this prospective user has confirmed his request.  You can then complete the process by activating the user name.  The new user will not be able to login until you activate the account.";
-$pgv_lang["mail02_line04a"]			= "You will be informed by email when this prospective user has confirmed his request.  After this, the user will be able to login without any action on your part.";
+$pgv_lang["mail02_line02"]			= "A prospective user requested a PhpGedView account at #PGV_SERVER_NAME##PGV_SCRIPT_PATH#.";
+$pgv_lang["mail02_line03"]			= "The user received an email with the information necessary to confirm this request.";
+$pgv_lang["mail02_line04"]			= "You will be informed by email when this prospective user has confirmed the request.  You can then complete the process by activating the user name.  The new user will not be able to login until you activate the account.";
+$pgv_lang["mail02_line04a"]			= "You will be informed by email when this prospective user has confirmed the request.  After this, the user will be able to login without any action on your part.";
 $pgv_lang["mail02_subject"] 		= "New registration at #PGV_SERVER_NAME##PGV_SCRIPT_PATH#";
 
 $pgv_lang["hashcode"]				= "Verification code:";
@@ -1248,13 +1252,13 @@ $pgv_lang["pls_note07"] 			= "~#pgv_lang[user_verify]#~<br /><br />To confirm yo
 $pgv_lang["pls_note08"] 			= "The data for the user <b>#user_name#</b> was checked.";
 
 $pgv_lang["mail03_line01"]			= "Hello Administrator ...";
-$pgv_lang["mail03_line02"]			= "User #newuser[username]# (#newuser[fullname]#) has confirmed his request for an account.";
-$pgv_lang["mail03_line03"]			= "Please click on the link below to login to your site.  You must Edit the user to activate the account so that he can login to your site.";
+$pgv_lang["mail03_line02"]			= "User #newuser[username]# (#newuser[fullname]#) has confirmed the request for an account.";
+$pgv_lang["mail03_line03"]			= "Please click on the link below to login to your site.  You must Edit the user to activate the account so that they can login to your site.";
 $pgv_lang["mail03_line03a"]			= "You do not have to take any action; the user can now login.";
 $pgv_lang["mail03_subject"] 		= "New user at #PGV_SERVER_NAME##PGV_SCRIPT_PATH#";
 
 $pgv_lang["pls_note09"] 			= "You have confirmed your request to become a registered user.";
-$pgv_lang["pls_note10"] 			= "The Administrator has been informed.  As soon as he gives you permission to login, you can login with your user name and password.";
+$pgv_lang["pls_note10"] 			= "The Administrator has been informed.  As soon as they give you permission to login, you can login with your user name and password.";
 $pgv_lang["pls_note10a"]			= "You can now login with your user name and password.";
 $pgv_lang["data_incorrect"] 		= "Data was not correct, please try again";
 $pgv_lang["user_not_found"] 		= "Could not verify the information you entered.  Please try again or contact the site administrator for more information.";
@@ -1318,7 +1322,7 @@ $pgv_lang["message"]				= "Send Message";
 $pgv_lang["my_messages"]			= "My Messages";
 $pgv_lang["date_created"]			= "Date Sent:";
 $pgv_lang["message_from"]			= "Email Address:";
-$pgv_lang["message_from_name"]		= "Your Name:";
+$pgv_lang["message_from_name"]		= "Sender:";
 $pgv_lang["message_to"] 			= "Message To:";
 $pgv_lang["message_subject"]		= "Subject:";
 $pgv_lang["message_body"]			= "Body:";
@@ -1333,7 +1337,7 @@ $pgv_lang["message_invalid_from"]	= "Invalid sender address: &laquo;#email#&raqu
 $pgv_lang["message_invalid_to"]		= "Invalid recipient address: &laquo;#email#&raquo;";
 $pgv_lang["message_illegal_chars"]	= "Illegal characters in the address &laquo;#email#&raquo;";
 $pgv_lang["message_bad_format"]		= "The address &laquo;#email#&raquo; is not formatted correctly";
-$pgv_lang["message_no_MX"]			= "The domain of the address &laquo;#email#&raquo; does not exist or does not have an MX record"; 
+$pgv_lang["message_no_MX"]			= "The domain of the address &laquo;#email#&raquo; does not exist or does not have an MX record";
 $pgv_lang["reset"]					= "Reset";
 $pgv_lang["site_default"]			= "Site Default";
 $pgv_lang["mygedview_desc"] 		= "Your MyGedView page allows you to keep bookmarks of your favorite people, track upcoming events, and collaborate with other PhpGedView users.";
@@ -1354,7 +1358,6 @@ $pgv_lang["message_email1"] 		= "The following message has been sent to your Php
 $pgv_lang["message_email2"] 		= "You sent the following message to a PhpGedView user:";
 $pgv_lang["message_email3"] 		= "You sent the following message to a PhpGedView administrator:";
 $pgv_lang["viewing_url"]			= "This message was sent while viewing the following URL: ";
-$pgv_lang["messaging2_help"]		= "When you send this message you will receive a copy sent via email to the address you provided.";
 $pgv_lang["random_picture"] 		= "Random Picture";
 $pgv_lang["message_instructions"]	= "<b>Please Note:</b> Private information of living individuals will only be given to family relatives and close friends.  You will be asked to verify your relationship before you will receive any private data.  Sometimes information of dead persons may also be private.  If this is the case, it is because there is not enough information known about the person to determine whether they are alive or not and we probaby do not have more information on this person.<br /><br />Before asking a question, please verify that you are inquiring about the correct person by checking dates, places, and close relatives.  If you are submitting changes to the genealogical data, please include the sources where you obtained the data.";
 $pgv_lang["sending_to"] 			= "This message will be sent to #TO_USER#";
@@ -1379,10 +1382,10 @@ $pgv_lang["todays_events_block"]	= "On This Day";
 $pgv_lang["todays_events_descr"]	= "The «On This Day» block shows anniversaries of events for today.  You can configure the amount of detail shown.";
 $pgv_lang["todo_block"] = "«To Do» tasks";
 $pgv_lang["todo_descr"] = "The «To Do» block lists all outstanding _TODO facts in the database.";
-$pgv_lang["todo_show_other"]     = "Show other users' tasks";
+$pgv_lang["todo_show_other"] 	= "Show other users' tasks";
 $pgv_lang["todo_show_unassigned"]= "Show unassigned tasks";
-$pgv_lang["todo_show_future"]    = "Show future tasks";
-$pgv_lang["todo_nothing"]        = "There are no «To Do» tasks.";
+$pgv_lang["todo_show_future"]	= "Show future tasks";
+$pgv_lang["todo_nothing"]		= "There are no «To Do» tasks.";
 $pgv_lang["yahrzeit_block"]			= "Yahrzeiten";
 $pgv_lang["yahrzeit_descr"]			= "The «Yahrzeiten» block shows anniversaries of death dates that will occur in the near future.  You can configure the period shown, and the Administrator can configure how far into the future this block will look.";
 $pgv_lang["logged_in_users_block"]	= "Logged-In Users";

@@ -73,7 +73,7 @@ if ($handle !== false) {
 			if ($found) {
 				$revision = $match[1];
 				$haveRevision = true;
-				continue;		// this one is redundant, but leave it in for consistency with the above code 
+				continue;		// this one is redundant, but leave it in for consistency with the above code
 			}
 		}
 	}
@@ -87,7 +87,7 @@ if ($handle !== false) {
  */
 $handle = @fopen('config.dist', 'r');
 if ($handle !== false) {
-	// The config.dist file exists:  
+	// The config.dist file exists:
 	//	Match all variables defined here against those already defined in config.php.  Any missing ones
 	//	should be defined using what's in the config.dist file
 	while (!feof($handle)) {
@@ -102,7 +102,7 @@ if ($handle !== false) {
 	}
 	fclose($handle);
 }
-	
+
 
 // ------------------ The real PhpGedView begins here ------------
 
@@ -572,61 +572,61 @@ if (empty($PEDIGREE_GENERATIONS)) {
  *  This code existed in both lang_settings_std.php and in lang_settings.php.
  *  It has been removed from both files and inserted here, where it belongs.
  */
-$languages            =array();
-$pgv_lang_use         =array();
-$pgv_lang_self        =array();
-$lang_short_cut       =array();
-$lang_langcode        =array();
-$pgv_language         =array();
-$confighelpfile       =array();
-$helptextfile         =array();
-$flagsfile            =array();
-$factsfile            =array();
-$adminfile            =array();
-$editorfile           =array();
-$countryfile          =array();
-$faqlistfile          =array();
-$extrafile            =array();
-$factsarray           =array();
-$pgv_lang_name        =array();
-$ALPHABET_upper       =array();
-$ALPHABET_lower       =array();
+$languages			 =array();
+$pgv_lang_use 		 =array();
+$pgv_lang_self		 =array();
+$lang_short_cut   	 =array();
+$lang_langcode		 =array();
+$pgv_language 		 =array();
+$confighelpfile   	 =array();
+$helptextfile 		 =array();
+$flagsfile			 =array();
+$factsfile			 =array();
+$adminfile			 =array();
+$editorfile   		 =array();
+$countryfile  		 =array();
+$faqlistfile  		 =array();
+$extrafile			 =array();
+$factsarray   		 =array();
+$pgv_lang_name		 =array();
+$ALPHABET_upper   	 =array();
+$ALPHABET_lower   	 =array();
 $MULTI_LETTER_ALPHABET=array();
 $MULTI_LETTER_EQUIV   =array();
-$DICTIONARY_SORT      =array();
-$COLLATION            =array();
-$DATE_FORMAT_array    =array();
-$TIME_FORMAT_array    =array();
-$WEEK_START_array     =array();
+$DICTIONARY_SORT  	 =array();
+$COLLATION			 =array();
+$DATE_FORMAT_array	 =array();
+$TIME_FORMAT_array	 =array();
+$WEEK_START_array 	 =array();
 $TEXT_DIRECTION_array =array();
 $NAME_REVERSE_array   =array();
 
 foreach ($language_settings as $key => $value) {
 	if (!isset($value['pgv_lang_self']) || !isset($value['pgv_language'])) continue;
-	$languages[$key]            =$value['pgv_langname'];
-	$pgv_lang_use[$key]         =$value['pgv_lang_use'];
-	$pgv_lang_self[$key]        =$value['pgv_lang_self'];
-	$lang_short_cut[$key]       =$value['lang_short_cut'];
-	$lang_langcode[$key]        =$value['langcode'];
-	$pgv_language[$key]         =$value['pgv_language'];
-	$confighelpfile[$key]       =$value['confighelpfile'];
-	$helptextfile[$key]         =$value['helptextfile'];
-	$flagsfile[$key]            =$value['flagsfile'];
-	$factsfile[$key]            =$value['factsfile'];
-	$adminfile[$key]            =$value['adminfile'];
-	$editorfile[$key]           =$value['editorfile'];
-	$countryfile[$key]          =$value['countryfile'];
-	$faqlistfile[$key]          =$value['faqlistfile'];
-	$extrafile[$key]            =$value['extrafile'];
-	$ALPHABET_upper[$key]       =$value['ALPHABET_upper'];
-	$ALPHABET_lower[$key]       =$value['ALPHABET_lower'];
+	$languages[$key]			 =$value['pgv_langname'];
+	$pgv_lang_use[$key] 		 =$value['pgv_lang_use'];
+	$pgv_lang_self[$key]		 =$value['pgv_lang_self'];
+	$lang_short_cut[$key]   	 =$value['lang_short_cut'];
+	$lang_langcode[$key]		 =$value['langcode'];
+	$pgv_language[$key] 		 =$value['pgv_language'];
+	$confighelpfile[$key]   	 =$value['confighelpfile'];
+	$helptextfile[$key] 		 =$value['helptextfile'];
+	$flagsfile[$key]			 =$value['flagsfile'];
+	$factsfile[$key]			 =$value['factsfile'];
+	$adminfile[$key]			 =$value['adminfile'];
+	$editorfile[$key]   		 =$value['editorfile'];
+	$countryfile[$key]  		 =$value['countryfile'];
+	$faqlistfile[$key]  		 =$value['faqlistfile'];
+	$extrafile[$key]			 =$value['extrafile'];
+	$ALPHABET_upper[$key]   	 =$value['ALPHABET_upper'];
+	$ALPHABET_lower[$key]   	 =$value['ALPHABET_lower'];
 	$MULTI_LETTER_ALPHABET[$key]=$value['MULTI_LETTER_ALPHABET'];
 	$MULTI_LETTER_EQUIV[$key]   =$value['MULTI_LETTER_EQUIV'];
-	$DICTIONARY_SORT[$key]      =$value['DICTIONARY_SORT'];
-	$COLLATION[$key]            =$value['COLLATION'];
-	$DATE_FORMAT_array[$key]    =$value['DATE_FORMAT'];
-	$TIME_FORMAT_array[$key]    =$value['TIME_FORMAT'];
-	$WEEK_START_array[$key]     =$value['WEEK_START'];
+	$DICTIONARY_SORT[$key]  	 =$value['DICTIONARY_SORT'];
+	$COLLATION[$key]			 =$value['COLLATION'];
+	$DATE_FORMAT_array[$key]	 =$value['DATE_FORMAT'];
+	$TIME_FORMAT_array[$key]	 =$value['TIME_FORMAT'];
+	$WEEK_START_array[$key] 	 =$value['WEEK_START'];
 	$TEXT_DIRECTION_array[$key] =$value['TEXT_DIRECTION'];
 	$NAME_REVERSE_array[$key]   =$value['NAME_REVERSE'];
 
@@ -880,14 +880,19 @@ if ($databasePresent) {
 			set_site_setting('LAST_CHANGE_EMAIL', strval($currentTime));
 			$tempText = '';		// For debugging
 	//		$tempText .= "\nLast email sent: " . date("Y-m-d H:i:s", $lastEmail);
-	//		$tempText .= "\nNext email due: " . date("Y-m-d H:i:s", $emailDue);  
-	//		$tempText .= "\nCurrent time: " . date("Y-m-d H:i:s", $currentTime);  
+	//		$tempText .= "\nNext email due: " . date("Y-m-d H:i:s", $emailDue);
+	//		$tempText .= "\nCurrent time: " . date("Y-m-d H:i:s", $currentTime);
+			$admin_id = getAdminID();
 			foreach (get_all_users() as $user_id=>$user_name) {
 				if (userIsAdmin($user_id) || userGedcomAdmin($user_id, PGV_GED_ID) || userCanAccept($user_id, PGV_GED_ID)) {
 					// This user has "Accept" rights; send them an e-mail
 					$message = array();
-					$message["to"]=$user_name;
-					$message["from"] = $PHPGEDVIEW_EMAIL;
+					$message["to"] = get_user_setting($user_id, 'email');
+					$message["toFullName"] = getUserFullName($user_id, false);
+					$message["toUserID"] = $user_id;
+					$message["from"] = get_user_setting($admin_id, 'email');
+					$message["fromFullName"] = $pgv_lang['PGV_program'];
+					$message["fromUserID"] = $admin_id;
 					$message["subject"] = $pgv_lang["review_changes_subject"];
 					$message["body"] = $pgv_lang["review_changes_body"]."\n{$tempText}\n";
 					$message["body"] .= PGV_SERVER_NAME.PGV_SCRIPT_PATH.'edit_changes.php';

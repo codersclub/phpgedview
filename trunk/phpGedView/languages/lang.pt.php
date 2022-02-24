@@ -82,13 +82,13 @@ $pgv_lang["changedate1"]				= "Intervalo final de datas mudança";
 $pgv_lang["changedate2"]				= "Intervalo começando de datas mudança";
 $pgv_lang["search_place_word"]			= "Apenas palavras inteiras";
 $pgv_lang["invalid_search_input"]		= "Favor informar um Nome, Sobrenome ou Local. Opcionalmente informe o Ano";
-$pgv_lang["duplicate_username"]			= "Nome de Membro duplicado.  Já existe um Membro com este nome. Por favor escolha outro nome de Membro.";
+$pgv_lang["duplicate_username"]			= "Nome de Membro «#username#» duplicado.  Já existe um Membro com este nome. Por favor escolha outro nome de Membro.";
+$pgv_lang["usercreate_fail"]			= "O usuário «#username#» não pôde ser adicionado ao sistema.";
 $pgv_lang["cache_life"]					= "Vida de arquivo Cache";
 $pgv_lang["genealogy"]					= "Genealogia";
 $pgv_lang["activate"]					= "Ativar";
 $pgv_lang["deactivate"]					= "Desativar";
-$pgv_lang["play"]						= "Começar";
-$pgv_lang["stop"]						= "Terminar";
+$pgv_lang["play_stop"]					= "Começar / Terminar";
 $pgv_lang["random_media_start_slide"]	= "Iniciar apresentação de diapositivos no carregamento da página?";
 $pgv_lang["random_media_ajax_controls"]	= "Mostrar controles da apresentação de diapositivos?";
 $pgv_lang["description"]				= "Descrição";
@@ -375,7 +375,7 @@ $pgv_lang["for_contact"]				= "Para Ajuda sobre questões Genealógicas entre em
 $pgv_lang["for_all_contact"]			= "Para suporte técnico ou questões Genealógicas, por favor entre em contato com";
 $pgv_lang["choose_username"]			= "Nome Membro desejado";
 $pgv_lang["username"]					= "Membro";
-$pgv_lang["invalid_username"]			= "Nome do Membro contém caracteres inválidos";
+$pgv_lang["invalid_username"]			= "Nome do membro «#username#» contém caracteres inválidos";
 $pgv_lang["firstname"]					= "Nome";
 $pgv_lang["lastname"]					= "Sobrenome";
 $pgv_lang["choose_password"]			= "Senha desejada";
@@ -438,6 +438,7 @@ $pgv_lang["clippings_cart"]				= "Extração de Dados";
 $pgv_lang["print_preview"]				= "Exibir formato de Impressão";
 $pgv_lang["cancel_preview"]				= "Voltar ao modo normal de exibição";
 $pgv_lang["change_lang"]				= "Trocar o Idioma";
+$pgv_lang["language"]					= "Idioma";
 $pgv_lang["print"]						= "Imprimir";
 $pgv_lang["total_queries"]				= "Nº de consultas ao Banco de Dados: ";
 $pgv_lang["total_privacy_checks"]		= "Nº de verificações de privacidade:";
@@ -711,8 +712,8 @@ $pgv_lang["week1"]						= "semana";
 $pgv_lang["weeks"]						= "semanas";
 $pgv_lang["day1"]						= "dia";
 $pgv_lang["days"]						= "dias";
-$pgv_lang["after_death"]        		= "após morte";
-$pgv_lang["at_death_day"]      			= "na data da morte";
+$pgv_lang["after_death"]				= "após morte";
+$pgv_lang["at_death_day"]  				= "na data da morte";
 $pgv_lang["timeline_title"]				= "Linha do Tempo";
 $pgv_lang["timeline_chart"]				= "Linha do Tempo";
 $pgv_lang["remove_person"]				= "Remover Pessoa";
@@ -732,7 +733,7 @@ $pgv_lang["include_family"] 			= "Incluem família imediata";
 $pgv_lang["lifespan_chart"] 			= "Gráfico tempo de vida";
 
 // calendar conversion options
-$pgv_lang["cal_none"]                 	= "Nenhuma conversão calendário";
+$pgv_lang["cal_none"] 					= "Nenhuma conversão calendário";
 $pgv_lang["cal_gregorian"]				= "Gregoriano";
 $pgv_lang["cal_julian"]					= "Juliano";
 $pgv_lang["cal_french"]					= "Francês";
@@ -741,10 +742,10 @@ $pgv_lang["cal_hebrew"]					= "Hebreu";
 $pgv_lang["cal_jewish_and_gregorian"]	= "Judeu e Gregoriano";
 $pgv_lang["cal_hebrew_and_gregorian"]	= "Hebreu e Gregoriano";
 $pgv_lang["cal_hijri"]					= "Hijri";
-$pgv_lang["cal_arabic"]               	= "Árabe";
+$pgv_lang["cal_arabic"]   				= "Árabe";
 
 // some religious dates
-$pgv_lang["easter"]     				= "Páscoa";
+$pgv_lang["easter"] 					= "Páscoa";
 $pgv_lang["ascension"]  				= "Ascensão";
 $pgv_lang["pentecost"]  				= "Pentecostes";
 $pgv_lang["assumption"] 				= "Assunção";
@@ -752,10 +753,10 @@ $pgv_lang["all_saints"] 				= "Todos os Santos";
 $pgv_lang["christmas"]  				= "Natal";
 
 // am/pm suffixes for 12 hour clocks
-$pgv_lang["a.m."]         				= "am";
-$pgv_lang["p.m."]         				= "pm";
-$pgv_lang["noon"]         				= "m";
-$pgv_lang["midn"]         				= "mn";
+$pgv_lang["a.m."] 						= "am";
+$pgv_lang["p.m."] 						= "pm";
+$pgv_lang["noon"] 						= "m";
+$pgv_lang["midn"] 						= "mn";
 
 //-- MONTH NAMES
 $pgv_lang["jan"]						= "Janeiro";
@@ -813,7 +814,7 @@ $pgv_lang["dec"]						= "Dezembro";
 // $pgv_lang["dhuaq"]			use value from lang.en.php
 // $pgv_lang["dhuah"]			use value from lang.en.php
 
-$pgv_lang["b.c."]         				= "aC";
+$pgv_lang["b.c."] 						= "aC";
 
 $pgv_lang["abt"]						= "ao redor de";
 $pgv_lang["aft"]						= "após";
@@ -829,6 +830,7 @@ $pgv_lang["cir"]						= "aproximadamente";
 $pgv_lang["apx"]						= "aprox.";
 
 //-- Admin File Messages
+$pgv_lang["email_invalid"]				= "Endereço de email invalido.";
 $pgv_lang["password_mismatch"]			= "Senhas não conferem.";
 $pgv_lang["enter_username"]				= "Informe o nome do Membro.";
 $pgv_lang["enter_password"]				= "Informe sua senha.";
@@ -919,12 +921,12 @@ $pgv_lang["oldest_top"]					= "Exibir mais velho no topo";
 $pgv_lang["relationship_male_1_is_the_2_of_3"] = "%1\$s é o %2\$s de %3\$s.";
 $pgv_lang["relationship_female_1_is_the_2_of_3"] = "%1\$s é o %2\$s de %3\$s.";
 
-$pgv_lang["mother_in_law"]		    	= "Sogra";
-$pgv_lang["father_in_law"]		    	= "Sogro";
-$pgv_lang["brother_in_law"]		    	= "Cunhado";
-$pgv_lang["sister_in_law"]		    	= "Cunhada";
+$pgv_lang["mother_in_law"]				= "Sogra";
+$pgv_lang["father_in_law"]				= "Sogro";
+$pgv_lang["brother_in_law"]				= "Cunhado";
+$pgv_lang["sister_in_law"]				= "Cunhada";
 $pgv_lang["brothers_wife"]				= "Cunhada"; // brother's wife
-$pgv_lang["son_in_law"]		        	= "genro";
+$pgv_lang["son_in_law"]					= "genro";
 $pgv_lang["daughter_in_law"]			= "nora";
 $pgv_lang["uncle_in_law"]				= "Tio-de-lei";
 $pgv_lang["aunt_in_law"]				= "Tia-de-lei";
@@ -1050,7 +1052,7 @@ $pgv_lang["sosa_uncle_bm_7"]			= "tio-avô";	// mothers mothers brother
 //              %2\$d is replaced with the number of generations - 1
 //              %3\$d is replaced with the number of generations - 2
 $pgv_lang["n_x_paternal_uncle_bm"]		= "%2\$d x tio-avô";
-$pgv_lang["n_x_maternal_uncle_bm"]	    = "%2\$d x tio-avô";
+$pgv_lang["n_x_maternal_uncle_bm"]		= "%2\$d x tio-avô";
 
 // the sosa_aunt name is used for aunts (by marriage)- the names below can be extended to any number
 // of generations just by adding more translations.
@@ -1215,6 +1217,8 @@ $pgv_lang["recent_events"]				= "Eventos Recentes (&lt; 100 anos)";
 $pgv_lang["day_not_set"]				= "Dia não configurado";
 
 //-- user self registration module
+$pgv_lang["siteadmin"]					= "Admistrador PhpGedView";
+$pgv_lang["PGV_program"]				= "Programa PhpGedView";
 $pgv_lang["lost_password"]				= "Perdeu sua senha?";
 $pgv_lang["requestpassword"]			= "Solicitação de cadastramento de nova senha";
 $pgv_lang["no_account_yet"]				= "Ainda não é um Membro cadastrado?";
@@ -1222,7 +1226,7 @@ $pgv_lang["requestaccount"]				= "Solicite permissão para fazer login";
 $pgv_lang["emailadress"]				= "E-mail";
 $pgv_lang["mandatory"]					= "Campos com * são obrigatórios.";
 $pgv_lang["mail01_line01"]				= "Olá #user_fullname# ...";
-$pgv_lang["mail01_line02"]				= "Um pedido de cadastramento de conta feito em #PGV_SERVER_NAME##PGV_SCRIPT_PATH# está utilizando seu endereço de E-mail #user_email#.";
+$pgv_lang["mail01_line02"]				= "Um pedido de cadastramento de conta feito em #PGV_SERVER_NAME##PGV_SCRIPT_PATH# está utilizando seu endereço de E-mail «#user_email#».";
 $pgv_lang["mail01_line03"]				= "Os seguintes dados estão sendo usuados.";
 $pgv_lang["mail01_line04"]				= "Por favor clique no link abaixo e preencha o formulário para validar sua Conta e endereço de E-mail.";
 $pgv_lang["mail01_line05"]				= "Ignore esta mensagem caso você não tenha solicitado esse cadastramento.";
@@ -1319,7 +1323,7 @@ $pgv_lang["message"]					= "Enviar Mensagem";
 $pgv_lang["my_messages"]				= "Minhas Mensagens";
 $pgv_lang["date_created"]				= "Data";
 $pgv_lang["message_from"]				= "E-mail:";
-$pgv_lang["message_from_name"]			= "Seu Nome:";
+$pgv_lang["message_from_name"]			= "Remetente:";
 $pgv_lang["message_to"]					= "Para:";
 $pgv_lang["message_subject"]			= "Assunto:";
 $pgv_lang["message_body"]				= "Corpo:";
@@ -1334,7 +1338,7 @@ $pgv_lang["message_invalid_from"] 		= "Endereço do remetente inválido: &laquo;
 $pgv_lang["message_invalid_to"] 		= "Endereço do destinatário inválido: &laquo;#email#&raquo;";
 $pgv_lang["message_illegal_chars"]		= "Caracteres ilegais no endereço &laquo;#email#&raquo;";
 $pgv_lang["message_bad_format"]			= "O endereço &laquo;#email#&raquo; não está formatado corretamente";
-$pgv_lang["message_no_MX"]				= "O domínio do endereço &laquo;#email#&raquo; não existe ou não possui registro MX"; 
+$pgv_lang["message_no_MX"]				= "O domínio do endereço &laquo;#email#&raquo; não existe ou não possui registro MX";
 $pgv_lang["reset"]						= "Restaurar";
 $pgv_lang["site_default"]				= "Padrão do Site";
 $pgv_lang["mygedview_desc"]				= "A página Meu Portal permite que você faça favoritos de suas pessoas favoritas, veja os próximos eventos e colabore com outros Membros.";
@@ -1355,7 +1359,6 @@ $pgv_lang["message_email1"]				= "Esta mensagem foi enviada por ";
 $pgv_lang["message_email2"]				= "Mensagem enviada para:";
 $pgv_lang["message_email3"]				= "Mensagem enviada para o Administrador:";
 $pgv_lang["viewing_url"]				= "Esta mensagem foi enviada quando navegava pelo seguinte endereço: ";
-$pgv_lang["messaging2_help"]			= "Após confirmar o envio da mensagem, uma cópia será enviada para seu e-mail.";
 $pgv_lang["random_picture"]				= "Imagem Aleatória";
 $pgv_lang["message_instructions"]		= "<b>Importante:</b> Informações privadas de pessoas vivas somente serão fornecidas aos parentes e amigos próximos.  Será solicitado confirmação de seu parentesco antes de você receber qualquer dado privado. Ocasionalmente informações de pessoas já falecidas podem ser privadas. Se esse for o caso, é porquê não há informação suficiente a respeito da pessoa que permita determinar se a mesma está viva ou não e nós provavelmente não temos mais informações sobre essa pessoa.<br /><br />Antecipadamente, por favor, verifique se o que está pesquisando sobre a pessoa está correto, verificando datas, locais e parentesco.  Se você está enviando alterações sobre dados de genealogia, por favor informe as fontes de onde obteve os dados.";
 $pgv_lang["sending_to"]					= "Esta mensagem será enviada para #TO_USER#";
@@ -1380,10 +1383,10 @@ $pgv_lang["todays_events_block"]		= "Este dia";
 $pgv_lang["todays_events_descr"]		= "O bloco «Este dia» mostra aniversários de eventos para hoje. Você pode configurar a quantidade de detalhes mostrados.";
 $pgv_lang["todo_block"]					= "Tarefas para fazer";
 $pgv_lang["todo_descr"]					= "O bloco «Tarefas para fazer» listas de todos os fatos incompletos _TODO no banco de dados.";
-$pgv_lang["todo_show_other"]     		= "Mostrar tarefas de outros Membros";
+$pgv_lang["todo_show_other"] 			= "Mostrar tarefas de outros Membros";
 $pgv_lang["todo_show_unassigned"]		= "Mostrar tarefas não atribuídos";
-$pgv_lang["todo_show_future"]    		= "Mostrar tarefas futuras";
-$pgv_lang["todo_nothing"]        		= "Não existem tarefas para fazer.";
+$pgv_lang["todo_show_future"]			= "Mostrar tarefas futuras";
+$pgv_lang["todo_nothing"]				= "Não existem tarefas para fazer.";
 $pgv_lang["yahrzeit_block"]				= "Yahrzeiten";
 $pgv_lang["yahrzeit_descr"]				= "O bloco «Yahrzeiten» mostra aniversários de datas morte que irá ocorrer no futuro próximo. Você pode configurar o período indicado, eo administrador pode configurar o quão longe no futuro, este bloco vai olhar.";
 $pgv_lang["logged_in_users_block"]		= "Membros Conectados";

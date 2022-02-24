@@ -3,7 +3,7 @@
 * Various functions used to generate the PhpGedView RSS feed.
 *
 * phpGedView: Genealogy Viewer
-* Copyright (C) 2002 to 2021 PGV Development Team.  All rights reserved.
+* Copyright (C) 2002 to 2022 PGV Development Team.  All rights reserved.
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -434,12 +434,17 @@ function getRecentChanges() {
 /**
 * Returns a random media for the RSS feed
 *
-* @return the array with random media data. the format is $dataArray[0] = title, $dataArray[1] = date,
-* $dataArray[2] = data, $dataArray[3] = file path, $dataArray[4] = mime type,
-* $dataArray[5] = file size, $dataArray[5] = media title
+* @return the array with random media data. the format is
+*	$dataArray[0] = title
+*	$dataArray[1] = date
+*	$dataArray[2] = data
+*	$dataArray[3] = file path
+*	$dataArray[4] = mime type
+*	$dataArray[5] = file size
+*	$dataArray[6] = media title
 */
 function getRandomMedia() {
-	global $pgv_lang, $foundlist, $MULTI_MEDIA, $TEXT_DIRECTION, $PGV_IMAGE_DIR, $PGV_IMAGES;
+	global $pgv_lang, $MULTI_MEDIA, $TEXT_DIRECTION, $PGV_IMAGE_DIR, $PGV_IMAGES;
 	global $MEDIA_EXTERNAL, $MEDIA_DIRECTORY, $SHOW_SOURCES;
 	global $MEDIATYPE, $THUMBNAIL_WIDTH, $USE_MEDIA_VIEWER;
 	global $PGV_BLOCKS, $ctype, $action;
@@ -455,30 +460,29 @@ function getRandomMedia() {
 
 
 	if (!$MULTI_MEDIA) return;
-	$medialist = array();
-	$foundlist = array();
+	$mediaList = array();
 
-	$medialist = get_medialist(false, '', true, true);
-	$ct = count($medialist);
+	$mediaList = get_medialist(false, '', true, true);
+	$ct = count($mediaList);
 	if ($ct>0) {
 		$i=0;
 		$disp = false;
 		//-- try up to 40 times to get a media to display
 		while($i<40) {
 			$error = false;
-			$value = array_rand($medialist);
-			$links = $medialist[$value]["LINKS"];
-			$disp = ($medialist[$value]["EXISTS"]>0) && $medialist[$value]["LINKED"] && $medialist[$value]["CHANGE"]!="delete" ;
-			$disp &= displayDetailsById($medialist[$value]["XREF"], "OBJE");
-			$disp &= !FactViewRestricted($medialist[$value]["XREF"], $medialist[$value]["GEDCOM"]);
+			$value = array_rand($mediaList);
+			$links = $mediaList[$value]["LINKS"];
+			$disp = ($mediaList[$value]["EXISTS"]>0) && $mediaList[$value]["LINKED"] && $mediaList[$value]["CHANGE"]!="delete" ;
+			$disp &= displayDetailsById($mediaList[$value]["XREF"], "OBJE");
+			$disp &= !FactViewRestricted($mediaList[$value]["XREF"], $mediaList[$value]["GEDCOM"]);
 
-			$isExternal = isFileExternal($medialist[$value]["FILE"]);
+			$isExternal = isFileExternal($mediaList[$value]["FILE"]);
 
-			if (!$isExternal) $disp &= ($medialist[$value]["THUMBEXISTS"]>0);
+			if (!$isExternal) $disp &= ($mediaList[$value]["THUMBEXISTS"]>0);
 
 			// Filter according to format and type  (Default: unless configured otherwise, don't filter)
-			if (!empty($medialist[$value]["FORM"]) && isset($config["filter_".$medialist[$value]["FORM"]]) && $config["filter_".$medialist[$value]["FORM"]]!="yes") $disp = false;
-			if (!empty($medialist[$value]["TYPE"]) && isset($config["filter_".$medialist[$value]["TYPE"]]) && $config["filter_".$medialist[$value]["TYPE"]]!="yes") $disp = false;
+			if (!empty($mediaList[$value]["FORM"]) && isset($config["filter_".$mediaList[$value]["FORM"]]) && $config["filter_".$mediaList[$value]["FORM"]]!="yes") $disp = false;
+			if (!empty($mediaList[$value]["TYPE"]) && isset($config["filter_".$mediaList[$value]["TYPE"]]) && $config["filter_".$mediaList[$value]["TYPE"]]!="yes") $disp = false;
 
 			if ($disp && count($links) != 0){
 				foreach($links as $key=>$type) {
@@ -490,7 +494,7 @@ function getRandomMedia() {
 				}
 				if ($disp && $filter!="all") {
 					// Apply filter criteria
-					$ct = preg_match("/0 (@.*@) OBJE/", $medialist[$value]["GEDCOM"], $match);
+					$ct = preg_match("/0 (@.*@) OBJE/", $mediaList[$value]["GEDCOM"], $match);
 					$objectID = $match[1];
 					$ct2 = preg_match("/(\d) OBJE {$objectID}/", $gedrec, $match2);
 					if ($ct2>0) {
@@ -507,33 +511,33 @@ function getRandomMedia() {
 			}
 			//-- otherwise remove the private media item from the list
 			else {
-				unset($medialist[$value]);
+				unset($mediaList[$value]);
 			}
 			//-- if there are no more media items, then try to get some more
-			if (count($medialist)==0) $medialist = get_medialist(false, '', true, true);
+			if (count($mediaList)==0) $mediaList = get_medialist(false, '', true, true);
 			$i++;
 		}
 		if (!$disp) return false;
 
-		$imgsize = findImageSize($medialist[$value]["FILE"]);
+		$imgsize = findImageSize($mediaList[$value]["FILE"]);
 		$imgwidth = $imgsize[0]+40;
 		$imgheight = $imgsize[1]+150;
 
-		$mediaid = $medialist[$value]["XREF"];
+		$mediaid = $mediaList[$value]["XREF"];
 		$randomMedia .= "<a href=\"".encode_url("mediaviewer.php?mid={$mediaid}")."\">";
 		$mediaTitle = "";
-		if (!empty($medialist[$value]["TITL"])) {
-			$mediaTitle = PrintReady($medialist[$value]["TITL"]);
+		if (!empty($mediaList[$value]["TITL"])) {
+			$mediaTitle = PrintReady($mediaList[$value]["TITL"]);
 		} else {
-			$mediaTitle = basename($medialist[$value]["FILE"]);
+			$mediaTitle = basename($mediaList[$value]["FILE"]);
 		}
 		//if ($block) {
-			$randomMedia .= "<img src=\"".$medialist[$value]["THUMB"]."\" border=\"0\" class=\"thumbnail\"";
+			$randomMedia .= "<img src=\"".$mediaList[$value]["THUMB"]."\" border=\"0\" class=\"thumbnail\"";
 			if ($isExternal) $randomMedia .=  " width=\"".$THUMBNAIL_WIDTH."\"";
 			$randomMedia .= " alt=\"" . $mediaTitle . "\" title=\"" . $mediaTitle . "\" />";
 		/*} else {
-			print "<img src=\"".$medialist[$value]["FILE"]."\" border=\"0\" class=\"thumbnail\" ";
-			$imgsize = findImageSize($medialist[$value]["FILE"]);
+			print "<img src=\"".$mediaList[$value]["FILE"]."\" border=\"0\" class=\"thumbnail\" ";
+			$imgsize = findImageSize($mediaList[$value]["FILE"]);
 			if ($imgsize[0] > 175) print "width=\"175\" ";
 			print " alt=\"" . $mediaTitle . "\" title=\"" . $mediaTitle . "\" />";
 		}*/
@@ -544,7 +548,7 @@ function getRandomMedia() {
 		$randomMedia .= "</a>";
 
 		$dataArray[2] = $randomMedia;
-		$dataArray[3] = $medialist[$value]["FILE"];
+		$dataArray[3] = $mediaList[$value]["FILE"];
 		$dataArray[4] = image_type_to_mime_type($imgsize[2]);
 		if ($dataArray[4] == false){
 			$dataArray[4] ="";
@@ -558,9 +562,8 @@ function getRandomMedia() {
 				$dataArray[4] = "application/pdf";
 			}
 		}
-		$dataArray[5] = @filesize($medialist[$value]["FILE"]);
+		$dataArray[5] = @filesize($mediaList[$value]["FILE"]);
 		$dataArray[6] = $mediaTitle;
-		//$dataArray[7] = $medialist[$value]["XREF"];
 	}
 	return $dataArray;
 }

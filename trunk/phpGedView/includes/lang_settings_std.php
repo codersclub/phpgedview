@@ -5,7 +5,7 @@
  * -> NEVER manually delete or edit this file <-
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2021  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2022  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -89,10 +89,10 @@ $language_settings['catalan']=array(
 'WEEK_START'=>'1',
 'TEXT_DIRECTION'=>'ltr',
 'NAME_REVERSE'=>false,
-'ALPHABET_upper'=>'AÀBCÇDEÈÉFGHIÍÏJKLMNÑOÒÓPQRSTUÚÜVWXYZ',
-'ALPHABET_lower'=>'aàbcçdeèéfghiíïjklmnñoòópqrstuúüvwxyz',
-'MULTI_LETTER_ALPHABET'=>'l·l',
-'MULTI_LETTER_EQUIV'=>'',
+'ALPHABET_upper'=>'AÀBCÇDEÈÉFGHIÌÍÏJKLĿMNÑOÒÓPQRSTUÚÜVWXYZ',
+'ALPHABET_lower'=>'aàbcçdeèéfghiìíïjklŀmnñoòópqrstuúüvwxyz',
+'MULTI_LETTER_ALPHABET'=>'',
+'MULTI_LETTER_EQUIV'=>'L·L=Ŀ;l·l=ŀ',
 'DICTIONARY_SORT'=>true,
 'COLLATION'=>'utf8_unicode_ci'
 );
