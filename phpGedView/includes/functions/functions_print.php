@@ -5,7 +5,7 @@
 * Various printing functions used by all scripts and included by the functions.php file.
 *
 * phpGedView: Genealogy Viewer
-* Copyright (C) 2002 to 2022  PGV Development Team.  All rights reserved.
+* Copyright (C) 2002 to 2021  PGV Development Team.  All rights reserved.
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -484,7 +484,7 @@ function print_header($title, $head="", $use_alternate_styles=true) {
 			$user_id=get_user_id($CONTACT_EMAIL);
 			if ($user_id) {
 				$cuserName=getUserFullName($user_id);
-				if (empty($META_AUTHOR   )) $META_AUTHOR    = $cuserName;
+				if (empty($META_AUTHOR   )) $META_AUTHOR	 = $cuserName;
 				if (empty($META_PUBLISHER)) $META_PUBLISHER = $cuserName;
 				if (empty($META_COPYRIGHT)) $META_COPYRIGHT = $cuserName;
 			}
@@ -496,26 +496,26 @@ function print_header($title, $head="", $use_alternate_styles=true) {
 			$META_PAGE_TOPIC = $GEDCOM_TITLE;
 		}
 
-/*		$javascript .='<script language="JavaScript" type="text/javascript">
-	<!--
-	function hidePrint() {
-		var printlink = document.getElementById("printlink");
-		var printlinktwo = document.getElementById("printlinktwo");
-		if (printlink) {
-			printlink.style.display="none";
-			printlinktwo.style.display="none";
-		}
-	}
-	function showBack() {
-		var printlink = document.getElementById("printlink");
-		var printlinktwo = document.getElementById("printlinktwo");
-		if (printlink) {
-			printlink.style.display="inline";
-			printlinktwo.style.display="inline";
-		}
-	}
-	//-->
-	</script>'; */
+//		$javascript .='<script language="JavaScript" type="text/javascript">
+//	<!--
+//	function hidePrint() {
+//		var printlink = document.getElementById("printlink");
+//		var printlinktwo = document.getElementById("printlinktwo");
+//		if (printlink) {
+//			printlink.style.display="none";
+//			printlinktwo.style.display="none";
+//		}
+//	}
+//	function showBack() {
+//		var printlink = document.getElementById("printlink");
+//		var printlinktwo = document.getElementById("printlinktwo");
+//		if (printlink) {
+//			printlink.style.display="inline";
+//			printlinktwo.style.display="inline";
+//		}
+//	}
+//	-->
+//	</script>';
 	}
 	$javascript.=PGV_JS_START.'
 		/* setup some javascript variables */
@@ -718,9 +718,9 @@ function linkWebAnalytics() {
 		$result .= '	_paq.push([\'trackPageView\']);'."\n";
 		$result .= '	_paq.push([\'enableLinkTracking\']);'."\n";
 		$result .= '	(function() {'."\n";
-		$result .= '    	var u=(("https:" == document.location.protocol) ? "https" : "http") + "://'.PGV_PIWIK_URL.'/";'."\n";
+		$result .= '		var u=(("https:" == document.location.protocol) ? "https" : "http") + "://'.PGV_PIWIK_URL.'/";'."\n";
 		$result .= '		_paq.push([\'setTrackerUrl\', u+\'matomo.php\']);'."\n";
-		$result .= '    	_paq.push([\'setSiteId\', '.PGV_PIWIK_SITE.']);'."\n";
+		$result .= '		_paq.push([\'setSiteId\', '.PGV_PIWIK_SITE.']);'."\n";
 		$result .= '		var d=document, g=d.createElement(\'script\'), s=d.getElementsByTagName(\'script\')[0];'."\n";
 		$result .= '		g.type=\'text/javascript\'; g.async=true; g.defer=true; g.src=u+\'matomo.js\'; s.parentNode.insertBefore(g,s);'."\n";
 		$result .= '	})();'."\n";
@@ -734,7 +734,7 @@ function linkWebAnalytics() {
  *		define('PGV_CLUSTRMAPS_SITE', 'PGV website address');			// The URL to your PGV installation
  *		define('PGV_CLUSTRMAPS_SERVER', 'ClustrMaps server number');	// The ClustrMaps server number
  *              New code format. <script type="text/javascript" id="clustrmaps" src="//cdn.clustrmaps.com/map_v2.js?u=XXXX&d=YYYY"></script>
-                Replace XXXX and YYYY with your values for PGV_CLUSTRMAPS_SITE and PGV_CLUSTRMAPS_SERVER in config.php
+				Replace XXXX and YYYY with your values for PGV_CLUSTRMAPS_SITE and PGV_CLUSTRMAPS_SERVER in config.php
  */
 	if (defined('PGV_CLUSTRMAPS_SITE') && defined('PGV_CLUSTRMAPS_SERVER')) {
 		$result .= '<!-- ClustrMaps -->'."\n";
@@ -821,7 +821,7 @@ function user_contact_link($user_id, $method=null, $linkOnly=false, $subject='')
 	if (is_null($method)) {
 		$method=get_user_setting($user_id, 'contactmethod');
 	}
-	
+
 	$subject = str_replace(' ', '%20', $subject);
 
 	// Webmaster/contact addresses can be an email address as well as a user-id
@@ -1324,7 +1324,7 @@ function print_fact_notes($factrec, $level, $textOnly=false, $return=false) {
 		}
 		/*
 		if($closeSpan){
-		    if ($j==$ct-1 || $textOnly==false) {
+			if ($j==$ct-1 || $textOnly==false) {
 				$data .= "</span>";
 			} else {
 				$data .= "</span><br /><br />";
@@ -1528,8 +1528,8 @@ function print_text($help, $level=0, $noprint=0){
 		}
 	}
 	$sentence = preg_replace_callback('/~([^<>]{1,})~/',
-	                                  'tempFunc_print_text',
-	                                  $sentence);
+									  'tempFunc_print_text',
+									  $sentence);
 	if ($noprint>0) return $sentence;
 	if ($level>0) return $sentence;
 	echo $sentence;
@@ -1655,7 +1655,6 @@ function PrintReady($text, $InHeaders=false, $trim=true) {
 		$HighlightOK=false;
 	}
 	//-- convert all & to &amp;
-	if (is_null($text)) $text = '';			// PHP 8.1.1 doesn't like NULL
 	$text = str_replace("&", "&amp;", $text);
 	//$text = preg_replace(array("/&/", "/</", "/>/"), array("&amp;", "&lt;", "&gt;"), $text);
 	//-- make sure we didn't double convert existing HTML entities like so:  &foo; to &amp;foo;
@@ -2555,7 +2554,7 @@ function print_findfamily_link($element_id, $ged='', $asString=false) {
 	echo $out;
 }
 
-function print_specialchar_link($element_id, $vert, $asString=false) {
+function print_specialchar_link($element_id, $asString=false) {
 	global $pgv_lang, $PGV_IMAGE_DIR, $PGV_IMAGES;
 
 	$text = $pgv_lang["find_specialchar"];
@@ -2564,7 +2563,7 @@ function print_specialchar_link($element_id, $vert, $asString=false) {
 	$out = " <a href=\"javascript:;\" onclick=\"findSpecialChar(document.getElementById('".$element_id."')); updatewholename(); return false;\">";
 	$out .= $Link;
 	$out .= "</a>";
-	if ($asString) return $out;
+	if ($asString) return $out;		// I don't think this functionality is used anywhere
 	echo $out;
 }
 

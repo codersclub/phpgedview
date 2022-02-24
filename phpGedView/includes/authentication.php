@@ -430,124 +430,108 @@ function addMessage($message) {
 	global $TEXT_DIRECTION, $TEXT_DIRECTION_array, $DATE_FORMAT, $DATE_FORMAT_array, $TIME_FORMAT, $TIME_FORMAT_array, $WEEK_START, $WEEK_START_array;
 	global $PHPGEDVIEW_EMAIL;
 
-	$user_id_from=get_user_id($message['from']);
-	$user_id_to  =get_user_id($message['to']);
+	if ($message["method"] == "none")
+		return false;		// "none" will always return false because the user could not be contacted at all
 
-	if (!$user_id_to) {
+	// Validate the various "from" and "to" settings in the $message array
+
+	if (!isset($message['toUserID'])) $message['toUserID'] = get_user_id($message['to']);
+	if (!isset($message['fromUserID'])) $message['fromUserID'] = get_user_id($message['from']);
+
+	if (!$message['toUserID']) {
 		//-- the to user must be a valid user in the system before it will send any mails
 		return false;
 	}
+
+	if (!isset($message['toFullName'])) $message['toFullName'] = getUserFullName($message['toUserID'], false);
+	if (!isset($message['fromFullName'])) $message['fromFullName'] = getUserFullName($message['fromUserID'], false);
 
 	$success = false;
 
 	// Switch to the "from" user's language
 	$oldLanguage = $LANGUAGE;
-	$from_lang=get_user_setting($user_id_from, 'language');
-	if ($from_lang && $LANGUAGE!=$from_lang) {
-		loadLanguage($from_lang, true);
+	$fromLang=get_user_setting($message['fromUserID'], 'language');
+	if ($fromLang && $LANGUAGE!=$fromLang) {
+		loadLanguage($fromLang, true);
 	}
 
 	//-- setup the message body for the "from" user
-	$email2 = $message["body"];
-	if (isset($message["from_name"]))
-		$email2 = $pgv_lang["message_from_name"]." ".$message["from_name"]."\r\n".$pgv_lang["message_from"]." ".$message["from_email"]."\r\n\r\n".$email2;
-	if (!empty($message["url"]))
-		$email2 .= "\r\n\r\n--------------------------------------\r\n\r\n".$pgv_lang["viewing_url"]."\r\n".$SERVER_URL.$message["url"]."\r\n";
-	$email2 .= "\r\n=--------------------------------------=\r\nIP ADDRESS: ".$_SERVER['REMOTE_ADDR']."\r\n";
+	$emailAddr = "{$message['fromFullName']} &gt;{$message['from']}&lt;";
+	if ($PGV_SIMPLE_MAIL) $emailAddr = $message['from'];
+
+	$email2 = "{$pgv_lang['message_from_name']} {$message['fromFullName']}\r\n{$pgv_lang['message_from']} {$emailAddr}\r\n\r\n{$message['body']}";
+	if (!empty($message['url']))
+		$email2 .= "\r\n\r\n--------------------------------------\r\n\r\n{$pgv_lang['viewing_url']}\r\n{$SERVER_URL}{$message['url']}\r\n";
+	$email2 .= "\r\n=--------------------------------------=\r\nIP ADDRESS: {$_SERVER['REMOTE_ADDR']}\r\n";
 	$email2 .= "DNS LOOKUP: ".gethostbyaddr($_SERVER['REMOTE_ADDR'])."\r\n";
 	$email2 .= "LANGUAGE: $LANGUAGE\r\n";
-	$subject2 = "[".$pgv_lang["phpgedview_message"].($TEXT_DIRECTION=="ltr"?"] ":" [").$message["subject"];
-	$from ="";
-	if (!$user_id_from) {
-		$from = $message["from"];
-		$email2 = $pgv_lang["message_email3"]."\r\n\r\n".$email2;
-		$fromFullName = $message["from"];
-	} else {
-		$fromFullName = getUserFullName($user_id_from);
-		if (!$PGV_SIMPLE_MAIL)
-			$from = hex4email($fromFullName,$CHARACTER_SET). " <".get_user_setting($user_id_from, 'email').">";
-		else
-			$from = get_user_setting($user_id_from, 'email');
-		$email2 = $pgv_lang["message_email2"]."\r\n\r\n".$email2;
+	$email2 = $pgv_lang["message_email2"]."\r\n\r\n".$email2;
+	$subject2 = ($TEXT_DIRECTION=="ltr"?"[":"]").$pgv_lang["phpgedview_message"].($TEXT_DIRECTION=="ltr"?"] ":" [").$message['subject'];
 
-	}
+	$fromAddr = hex4email($message['fromFullName'],$CHARACTER_SET). " <".get_user_setting($message['fromUserID'], 'email').">";
+	if ($PGV_SIMPLE_MAIL) $fromAddr = get_user_setting($message['fromUserID'], 'email');
+
 	if ($message["method"]!="messaging") {
-		$subject1 = "[".$pgv_lang["phpgedview_message"].($TEXT_DIRECTION=="ltr"?"] ":" [").$message["subject"];
-		if (!$user_id_from) {
+		$subject1 = ($TEXT_DIRECTION=="ltr"?"[":"]").$pgv_lang["phpgedview_message"].($TEXT_DIRECTION=="ltr"?"] ":" [").$message["subject"];
+		if (!$message['fromUserID']) {
 			$email1 = $pgv_lang["message_email1"];
-			if (!empty($message["from_name"])) {
-				$email1 .= $message["from_name"]."\r\n\r\n".$message["body"];
+			if (!empty($message['fromFullName'])) {
+				$email1 .= $message['fromFullName']."\r\n\r\n".$message['body'];
 			} else {
-				$email1 .= $from."\r\n\r\n".$message["body"];
+				$email1 .= $fromAddr."\r\n\r\n".$message['body'];
 			}
 		} else {
-			$email1 = $pgv_lang["message_email1"];
-			$email1 .= $fromFullName."\r\n\r\n".$message["body"];
-		}
-		if (!isset($message["no_from"])) {
-			if (stristr($from, $PHPGEDVIEW_EMAIL)){
-				$from = get_user_setting(get_user_id($WEBMASTER_EMAIL), 'email');
-			}
-			if (!$user_id_from) {
-				$header2 = $PHPGEDVIEW_EMAIL;
-			} elseif (isset($to)) {
-				$header2 = $to;
-			}
-			if (!empty($header2)) {
-				$success = pgvMail($from, $header2, $subject2, $email2, $message['bulkMail'], $fromFullName);
-			}
+			$email1 = "{$pgv_lang['message_email1']}{$message['fromFullName']}\r\n\r\n{$message['body']}";
 		}
 	}
 
 	//-- Load the "to" users language
-	$to_lang=get_user_setting($user_id_to, 'language');
-	if ($to_lang && $LANGUAGE!=$to_lang) {
-		loadLanguage($to_lang, true);
+	$toLang=get_user_setting($message['toUserID'], 'language');
+	if ($toLang && $LANGUAGE!=$toLang) {
+		loadLanguage($toLang, true);
 	}
-	if (isset($message["from_name"]))
-		$message["body"] = $pgv_lang["message_from_name"]." ".$message["from_name"]."\r\n".$pgv_lang["message_from"]." ".$message["from_email"]."\r\n\r\n".$message["body"];
+	$message['body'] = "{$pgv_lang['message_from_name']} {$message['fromFullName']}\r\n{$pgv_lang['message_from']} {$message['from']}\r\n\r\n{$message['body']}";
 	//-- [ phpgedview-Feature Requests-1588353 ] Supress admin IP address in Outgoing PGV Email
-	if (!userIsAdmin($user_id_from)) {
+	if (!userIsAdmin($message['fromUserID'])) {
 		if (!empty($message["url"]))
-			$message["body"] .= "\r\n\r\n--------------------------------------\r\n\r\n".$pgv_lang["viewing_url"]."\r\n".$SERVER_URL.$message["url"]."\r\n";
-		$message["body"] .= "\r\n=--------------------------------------=\r\nIP ADDRESS: ".$_SERVER['REMOTE_ADDR']."\r\n";
-		$message["body"] .= "DNS LOOKUP: ".gethostbyaddr($_SERVER['REMOTE_ADDR'])."\r\n";
-		$message["body"] .= "LANGUAGE: $LANGUAGE\r\n";
+			$message['body'] .= "\r\n\r\n--------------------------------------\r\n\r\n".$pgv_lang["viewing_url"]."\r\n".$SERVER_URL.$message["url"]."\r\n";
+		$message['body'] .= "\r\n=--------------------------------------=\r\nIP ADDRESS: ".$_SERVER['REMOTE_ADDR']."\r\n";
+		$message['body'] .= "DNS LOOKUP: ".gethostbyaddr($_SERVER['REMOTE_ADDR'])."\r\n";
+		$message['body'] .= "LANGUAGE: $LANGUAGE\r\n";
 	}
 	if (empty($message["created"]))
 		$message["created"] = gmdate ("D, d M Y H:i:s T");
-	if ($PGV_STORE_MESSAGES && ($message["method"]!="messaging3" && $message["method"]!="mailto" && $message["method"]!="none")) {
+
+	if ($PGV_STORE_MESSAGES && ($message["method"]=="messaging" || $message["method"]=="messaging2")) {
+		// "messaging": Internal messaging only; "messaging2": Internal messaging with e-mails; anything else: No internal messaging
 		PGV_DB::prepare("INSERT INTO {$TBLPREFIX}messages (m_id, m_from, m_to, m_subject, m_body, m_created) VALUES (?, ? ,? ,? ,? ,?)")
-			->execute(array(get_next_id("messages", "m_id"), $message["from"], $message["to"], $message["subject"], $message["body"], $message["created"]));
+			->execute(array(get_next_id("messages", "m_id"), get_user_name($message["fromUserID"]), get_user_name($message["toUserID"]), $message["subject"], $message["body"], $message["created"]));
 		$success = true;
 	}
+
 	if ($message["method"]!="messaging") {
-		$subject1 = "[".$pgv_lang["phpgedview_message"].($TEXT_DIRECTION=="ltr"?"] ":" [").$message["subject"];
-		if (!$user_id_from) {
+		// Anything other than "internal messaging only" means that we need to create and send an e-mail.  "none" has alrady been eliminated
+		$subject1 = ($TEXT_DIRECTION=="ltr"?"[":"]").$pgv_lang["phpgedview_message"].($TEXT_DIRECTION=="ltr"?"] ":" [").$message["subject"];
+		if (!$message['fromUserID']) {
 			$email1 = $pgv_lang["message_email1"];
-			if (!empty($message["from_name"]))
-				$email1 .= $message["from_name"]."\r\n\r\n".$message["body"];
+			if (!empty($message['fromFullName']))
+				$email1 .= $message['fromFullName']."\r\n\r\n".$message['body'];
 			else
-				$email1 .= $from."\r\n\r\n".$message["body"];
+				$email1 .= $from."\r\n\r\n".$message['body'];
 		} else {
 			$email1 = $pgv_lang["message_email1"];
-			$email1 .= $fromFullName."\r\n\r\n".$message["body"];
+			$email1 .= $message['fromFullName']."\r\n\r\n".$message['body'];
 		}
-		if (!$user_id_to) {
+		if (!$message['toUserID']) {
 			//-- the to user must be a valid user in the system before it will send any mails
 			if ($LANGUAGE!=$oldLanguage) loadLanguage($oldLanguage, true);			// restore language settings if needed
 			return false;
-		} else {
-			$toFullName=getUserFullName($user_id_to);
-			$to = get_user_setting($user_id_to, 'email');
-			if (!$PGV_SIMPLE_MAIL)
-				$to = hex4email($toFullName, $CHARACTER_SET). " <".$to.">";
 		}
-		if (!empty($to)) {
-			if ($from_lang && $LANGUAGE!=$from_lang) {
-				loadLanguage($from_lang, true);		// Switch back to sender's language so errors are in right language
+		if (!empty($message['to'])) {
+			if ($fromLang && $LANGUAGE!=$fromLang) {
+				loadLanguage($fromLang, true);		// Switch back to sender's language so errors are in right language
 			}
-			$success = pgvMail($to, $from, $subject1, $email1, $message['bulkMail'], $fromFullName);
+			$success = pgvMail($message['to'], $message['from'], $subject1, $email1, $message['bulkMail'], $message['toFullName'], $message['fromFullName']);
 		}
 	}
 
@@ -681,8 +665,8 @@ function getUserFavorites($username) {
  * right (index: "right") of the Welcome and the Portal pages.
  *
  * Within each list, the order of the entries defines the order in which the blocks should
- * appear on the left or the right side of the page.  Any given block can appear more than 
- * once, and it can also appear on both sides of the page. 
+ * appear on the left or the right side of the page.  Any given block can appear more than
+ * once, and it can also appear on both sides of the page.
  */
 function getBlocks($username) {
 	global $TBLPREFIX, $PGV_BLOCKS;
@@ -799,7 +783,7 @@ function validateConfig($name, $config) {
 	foreach ($PGV_BLOCKS[$name]['config'] as $option => $setting) {
 		if (!isset($config[$option])) $config[$option] = $setting;
 	}
-	// Make SURE that options that should be integers actually ARE integers.  
+	// Make SURE that options that should be integers actually ARE integers.
 	// Assume that the same option name isn't used for different purposes in different blocks
 	if (isset($config['cache'])) $config['cache'] = (int) $config['cache'];
 	if (isset($config['days'])) $config['days'] = (int) $config['days'];

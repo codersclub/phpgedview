@@ -84,13 +84,13 @@ $pgv_lang["changedate1"]				= "Datenbereich Ende";
 $pgv_lang["changedate2"]				= "Datenbereich Anfang";
 $pgv_lang["search_place_word"]			= "Ganze Worte";
 $pgv_lang["invalid_search_input"]		= "Bitte geben Sie einen Namen oder einen Ort zusätzlich zur Jahresangabe ein";
-$pgv_lang["duplicate_username"]			= "Doppelter Benutzername. Ein Benutzer mit dem gewählten Namen existiert bereits. Bitte wählen Sie einen anderen Benutzernamen.";
+$pgv_lang["duplicate_username"]			= "Doppelter Benutzername »#username#«. Ein Benutzer mit dem gewählten Namen existiert bereits. Bitte wählen Sie einen anderen Benutzernamen.";
+$pgv_lang["usercreate_fail"]			= "Der Benutzer »#username#« konnte dem System nicht hinzugefügt werden.";
 $pgv_lang["cache_life"]					= "Cache-Datei Lebensdauer";
 $pgv_lang["genealogy"]					= "Ahnenforschung";
 $pgv_lang["activate"]					= "Aktivieren";
 $pgv_lang["deactivate"]					= "Halten";
-$pgv_lang["play"]						= "Start";
-$pgv_lang["stop"]						= "Stop";
+$pgv_lang["play_stop"]					= "Start / Stop";
 $pgv_lang["random_media_start_slide"]	= "Wiedergabe automatisch abspielen?";
 $pgv_lang["random_media_ajax_controls"]	= "Diashow-Steuerelemente anzeigen?";
 $pgv_lang["description"]				= "Beschreibung";
@@ -328,7 +328,7 @@ $pgv_lang["top10_pageviews_msg"]		= "Sie müssen in der GEDCOM Konfiguration die
 $pgv_lang["review_changes_descr"]		= "Der »#pgv_lang[review_changes_block]#« Block zeigt Benutzern mit Editierrechten eine Liste der Datensätze die online geändert wurden und die noch kontrolliert und übernommen bzw. verworfen werden müssen.<br /><br />Wenn dieser Block aktiviert ist, erhalten alle Benutzer mit Editierrechten täglich eine Mail, die auf offene Änderungen hinweist.";
 $pgv_lang["review_changes_block"]		= "Offene Änderungen";
 $pgv_lang["review_changes_subject"]		= "PhpGedView - Änderungen kontrollieren";
-$pgv_lang["review_changes_body"]		= "An einer genealogischen Datenbank wurden Änderungen vorgenommen. Diese Änderungen müssen kontrolliert und übernommen werden, bevor sie für alle Nutzer sichtbar werden. Bitte klicken Sie auf das angegebene URL, um zur betreffenden PhpGedView-Seite zu gelangen. Sie müssen sich anmelden, um die Änderungen zu kontrollieren. ";
+$pgv_lang["review_changes_body"]		= "An einer genealogischen Datenbank wurden Änderungen vorgenommen. Diese Änderungen müssen kontrolliert und übernommen werden, bevor sie für alle Nutzer sichtbar werden. Bitte klicken Sie das angegebene URL, um zur betreffenden PhpGedView-Seite zu gelangen. Sie müssen sich anmelden, um die Änderungen zu kontrollieren. ";
 $pgv_lang["show_pending"]				= "Offene Änderungen zeigen";
 $pgv_lang["show_spouses"]				= "Ehepartner zeigen";
 $pgv_lang["quick_update_title"]			= "Schnelle Bearbeitung";
@@ -377,7 +377,7 @@ $pgv_lang["for_contact"]				= "Bei genealogischen Fragen wenden Sie sich an folg
 $pgv_lang["for_all_contact"]			= "Für Support sowie bei genealogischen Fragen wenden Sie sich an folgende Kontaktadresse:";
 $pgv_lang["choose_username"]			= "Gewünschter Benutzername";
 $pgv_lang["username"]					= "Benutzername";
-$pgv_lang["invalid_username"]			= "Der Benutzername enthält unzulässige Zeichen";
+$pgv_lang["invalid_username"]			= "Der Benutzername «#username#» enthält unzulässige Zeichen";
 $pgv_lang["firstname"]					= "Vorname";
 $pgv_lang["lastname"]					= "Nachname";
 $pgv_lang["choose_password"]			= "Gewünschtes Kennwort";
@@ -440,6 +440,7 @@ $pgv_lang["clippings_cart"]				= "Sammelbehälter";
 $pgv_lang["print_preview"]				= "Für Drucker optimierte Version";
 $pgv_lang["cancel_preview"]				= "Zurück zur normalen Ansicht";
 $pgv_lang["change_lang"]				= "Sprache ändern";
+$pgv_lang["language"]					= "Sprache";
 $pgv_lang["print"]						= "Drucken";
 $pgv_lang["total_queries"]				= "Anzahl der Datenanfragen an die Datenbank:";
 $pgv_lang["total_privacy_checks"]		= "Anzahl der Datenschutzüberprüfungen:";
@@ -713,8 +714,8 @@ $pgv_lang["week1"]						= "Woche";
 $pgv_lang["weeks"]						= "Wochen";
 $pgv_lang["day1"]						= "Tag";
 $pgv_lang["days"]						= "Tage";
-$pgv_lang["after_death"]        		= "nach Tod";
-$pgv_lang["at_death_day"]      			= "am Sterbedatum";
+$pgv_lang["after_death"]				= "nach Tod";
+$pgv_lang["at_death_day"]  				= "am Sterbedatum";
 $pgv_lang["timeline_title"]				= "Lebensspanne";
 $pgv_lang["timeline_chart"]				= "Lebenspannenanzeige";
 $pgv_lang["remove_person"]				= "Person entfernen";
@@ -734,19 +735,19 @@ $pgv_lang["include_family"]				= "Direkte Familie hinzufügen";
 $pgv_lang["lifespan_chart"]				= "Lebensspannendiagramm";
 
 // calendar conversion options
-$pgv_lang["cal_none"]                 	= "Keine Übersetzung";
-$pgv_lang["cal_gregorian"]            	= "Gregorianisch";
-$pgv_lang["cal_julian"]               	= "Julianisch";
-$pgv_lang["cal_french"]               	= "Französisch";
-$pgv_lang["cal_jewish"]               	= "Jüdisch";
-$pgv_lang["cal_hebrew"]               	= "Hebräisch";
+$pgv_lang["cal_none"] 					= "Keine Übersetzung";
+$pgv_lang["cal_gregorian"]				= "Gregorianisch";
+$pgv_lang["cal_julian"]   				= "Julianisch";
+$pgv_lang["cal_french"]   				= "Französisch";
+$pgv_lang["cal_jewish"]   				= "Jüdisch";
+$pgv_lang["cal_hebrew"]   				= "Hebräisch";
 $pgv_lang["cal_jewish_and_gregorian"] 	= "Jüdisch und Gregorianisch";
 $pgv_lang["cal_hebrew_and_gregorian"] 	= "Hebräisch und Gregorianisch";
-$pgv_lang["cal_hijri"]                	= "Hijri";
-$pgv_lang["cal_arabic"]               	= "Arabisch";
+$pgv_lang["cal_hijri"]					= "Hijri";
+$pgv_lang["cal_arabic"]   				= "Arabisch";
 
 // some religious dates
-$pgv_lang["easter"]     				= "Ostern";
+$pgv_lang["easter"] 					= "Ostern";
 $pgv_lang["ascension"]  				= "Himmelfahrt";
 $pgv_lang["pentecost"]  				= "Pfingsten";
 $pgv_lang["assumption"] 				= "Mariä Himmelfahrt";
@@ -754,10 +755,10 @@ $pgv_lang["all_saints"] 				= "Allerheiligen";
 $pgv_lang["christmas"]  				= "Weihnachten";
 
 // am/pm suffixes for 12 hour clocks
-$pgv_lang["a.m."]         				= "am";
-$pgv_lang["p.m."]         				= "pm";
-$pgv_lang["noon"]         				= "m";
-$pgv_lang["midn"]         				= "mn";
+$pgv_lang["a.m."] 						= "am";
+$pgv_lang["p.m."] 						= "pm";
+$pgv_lang["noon"] 						= "m";
+$pgv_lang["midn"] 						= "mn";
 
 //-- MONTH NAMES
 $pgv_lang["jan"]						= "Januar";
@@ -815,7 +816,7 @@ $pgv_lang["dec"]						= "Dezember";
 // $pgv_lang["dhuaq"]			use value from lang.en.php
 // $pgv_lang["dhuah"]			use value from lang.en.php
 
-$pgv_lang["b.c."]         				= "v. Chr.";
+$pgv_lang["b.c."] 						= "v. Chr.";
 
 $pgv_lang["abt"]						= "um";
 $pgv_lang["aft"]						= "nach";
@@ -831,6 +832,7 @@ $pgv_lang["cir"]						= "ca.";
 $pgv_lang["apx"]						= "ungef.";
 
 //-- Admin File Messages
+$pgv_lang["email_invalid"]				= "Ungültige E-Mail-Adresse.";
 $pgv_lang["password_mismatch"]			= "Passwörter stimmen nicht überein.";
 $pgv_lang["enter_username"]				= "Sie müssen einen Benutzernamen eingeben.";
 $pgv_lang["enter_password"]				= "Sie müssen ein Kennwort eingeben.";
@@ -1217,6 +1219,8 @@ $pgv_lang["recent_events"]				= "Jüngere Ereignisse (&lt; 100 Jahre)";
 $pgv_lang["day_not_set"]				= "Kein Tag angegeben";
 
 //-- user self registration module
+$pgv_lang["siteadmin"]					= "PhpGedView Verwalter";
+$pgv_lang["PGV_program"]				= "PhpGedView Programm";
 $pgv_lang["lost_password"]				= "Haben Sie Ihr Kennwort vergessen?";
 $pgv_lang["requestpassword"]			= "Neues Kennwort beantragen";
 $pgv_lang["no_account_yet"]				= "Haben Sie noch keine Benutzerdaten?";
@@ -1224,9 +1228,9 @@ $pgv_lang["requestaccount"]				= "Benutzerantrag";
 $pgv_lang["emailadress"]				= "Emailadresse";
 $pgv_lang["mandatory"]					= "Obligatorische Felder sind mit einem * markiert.";
 $pgv_lang["mail01_line01"]				= "Hallo #user_fullname# ...";
-$pgv_lang["mail01_line02"]				= "Auf der PhpGedView Webseite #PGV_SERVER_NAME##PGV_SCRIPT_PATH# wurde ein Zugangsantrag mit Ihrer Emailadresse #user_email# gestellt.";
+$pgv_lang["mail01_line02"]				= "Auf der PhpGedView Webseite #PGV_SERVER_NAME##PGV_SCRIPT_PATH# wurde ein Zugangsantrag mit Ihrer Emailadresse »#user_email#« gestellt.";
 $pgv_lang["mail01_line03"]				= "Informationen zu der Anfrage können Sie unter dem untenstehenden Link abrufen.";
-$pgv_lang["mail01_line04"]				= "Bitte klicken Sie nun auf den folgenden Link und geben Sie die dort geforderten Daten ein, um Ihren Antrag und Ihre Emailadresse zu bestätigen.";
+$pgv_lang["mail01_line04"]				= "Bitte klicken Sie nun das folgende Link und geben Sie die dort geforderten Daten ein, um Ihren Antrag und Ihre Emailadresse zu bestätigen.";
 $pgv_lang["mail01_line05"]				= "Falls Sie keinen Zugang beantragt haben, können Sie diese Email einfach löschen.";
 $pgv_lang["mail01_line06"]				= "Sie werden keine weitere Email erhalten, da ohne Ihre Bestätigung die angegebenen Daten nach einer Woche automatisch gelöscht werden.";
 $pgv_lang["mail01_subject"]				= "Ihre Anmeldung bei #PGV_SERVER_NAME##PGV_SCRIPT_PATH#";
@@ -1240,8 +1244,8 @@ $pgv_lang["mail02_subject"]				= "Neue Anmeldung bei #PGV_SERVER_NAME##PGV_SCRIP
 
 $pgv_lang["hashcode"]					= "Verifizierungscode:";
 $pgv_lang["thankyou"]					= "Hallo #user_fullname# ...<br />Danke für Ihren Antrag.";
-$pgv_lang["pls_note06"]					= "Ihnen wird nun eine Bestätigungsmail an die Adresse <b>#user_email#</b> geschickt.  Sie müssen den in der Mail enthaltenen Anweisungen folgen, um Ihren Benutzernamen zu aktivieren. Falls Sie innerhalb von 7 Tagen nicht reagieren, wird Ihr Antrag automatisch abgewiesen.  Sie müssen dann erneut antragen.<br /><br />Wenn Sie den Anweisungen in der Bestätigungsmail gefolgt sind, muss der Verwalter Ihren Benutzernamen noch freischalten, bevor Sie ihn benutzen können.<br /><br />Um sich auf dieser Website anzumelden, benötigen Sie Ihren Benutzernamen und Ihr Kennwort.";
-$pgv_lang["pls_note06a"]				= "Ihnen wird nun eine Bestätigungsmail an die Adresse <b>#user_email#</b> geschickt. Sie müssen den in der Mail enthaltenen Anweisungen folgen, um Ihren Benutzernamen zu aktivieren. Falls Sie innerhalb von 7 Tagen nicht reagieren, wird Ihr Antrag automatisch abgewiesen. Sie müssen dann erneut antragen.<br /><br />Wenn Sie den Anweisungen in der Bestätigungsmail gefolgt sind, können Sie sich sofort auf dieser Website anmelden. Dazu benötigen Sie Ihren Benutzernamen und Ihr Kennwort.";
+$pgv_lang["pls_note06"]					= "Ihnen wird nun eine Bestätigungsmail an die Adresse <b>#user_email#</b> geschickt.  Sie müssen den in der Mail enthaltenen Anweisungen folgen, um Ihren Benutzernamen zu aktivieren. Falls Sie innerhalb von 7 Tagen nicht reagieren, wird Ihr Antrag automatisch abgewiesen.  Sie müssen dann erneut antragen.<br /><br />Wenn die Anweisungen in der Bestätigungsmail gefolgt sind, muss der Verwalter Ihren Benutzernamen noch freischalten, bevor Sie ihn benutzen können.<br /><br />Um sich auf dieser Website anzumelden, benötigen Sie Ihren Benutzernamen und Ihr Kennwort.";
+$pgv_lang["pls_note06a"]				= "Ihnen wird nun eine Bestätigungsmail an die Adresse <b>#user_email#</b> geschickt. Sie müssen den in der Mail enthaltenen Anweisungen folgen, um Ihren Benutzernamen zu aktivieren. Falls Sie innerhalb von 7 Tagen nicht reagieren, wird Ihr Antrag automatisch abgewiesen. Sie müssen dann erneut antragen.<br /><br />Wenn die Anweisungen in der Bestätigungsmail gefolgt sind, können Sie sich sofort auf dieser Website anmelden. Dazu benötigen Sie Ihren Benutzernamen und Ihr Kennwort.";
 
 $pgv_lang["registernew"]				= "Verifizierung der neuen Benutzerdaten";
 $pgv_lang["user_verify"]				= "Benutzerverifizierung";
@@ -1252,7 +1256,7 @@ $pgv_lang["pls_note08"]					= "Die Eingaben für den Benutzer <b>#user_name#</b>
 
 $pgv_lang["mail03_line01"]				= "Hallo Verwalter ...";
 $pgv_lang["mail03_line02"]				= "Der Benutzer #newuser[username]# (#newuser[fullname]#) hat seine Registrierungsdaten bestätigt.";
-$pgv_lang["mail03_line03"]				= "Bitte klicken Sie jetzt auf den unten stehenden Link und melden sich an.  Sie müssen den Zugang dieses Benutzers frei geben, damit dieser sich mit seinem Benutzernamen und Kennwort anmelden kann.";
+$pgv_lang["mail03_line03"]				= "Bitte klicken Sie jetzt das unten stehenden Link.  Sie müssen den Zugang dieses Benutzers frei geben, damit dieser sich mit seinem Benutzernamen und Kennwort anmelden kann.";
 $pgv_lang["mail03_line03a"]				= "Der Benutzer kann sich jetzt anmelden;  Sie müssen nichts weiter unternehmen.";
 $pgv_lang["mail03_subject"]				= "Neue Verifizierung bei #PGV_SERVER_NAME##PGV_SCRIPT_PATH#";
 
@@ -1268,7 +1272,7 @@ $pgv_lang["pls_note11"]					= "Um ein neues Kennwort zu beantragen, geben Sie bi
 $pgv_lang["mail04_line01"]				= "Hallo #user_fullname#...";
 $pgv_lang["mail04_line02"]				= "Für Ihren Benutzernamen wurde ein neues Kennwort angefordert.";
 $pgv_lang["mail04_line03"]				= "Empfehlung:";
-$pgv_lang["mail04_line04"]				= "Bitte klicken Sie jetzt auf den unten stehenden Link oder kopieren Sie ihn in die Adresszeile Ihres Browsers, melden sich mit dem neuen Kennwort an und ändern Sie es sofort aus Datenschutzgründen.";
+$pgv_lang["mail04_line04"]				= "Bitte klicken Sie jetzt das unten stehenden Link oder kopieren Sie es in die Adresszeile Ihres Browsers, melden Sie sich mit dem neuen Kennwort an und ändern Sie es sofort aus Datenschutzgründen.";
 $pgv_lang["mail04_line05"]				= "Um Ihr Kennwort, nachdem Sie sich angemeldet haben zu ändern, wählen Sie die »#pgv_lang[editowndata]#« Verbindung innerhalb des »#pgv_lang[mygedview]#« Menüs und tragen Sie dann in beiden Kennwort Feldern Ihr gewünschtes Kennwort ein.";
 $pgv_lang["mail04_subject"]				= "Neues Kennwort bei #PGV_SERVER_NAME##PGV_SCRIPT_PATH#";
 
@@ -1279,9 +1283,9 @@ $pgv_lang["user_theme"]					= "Mein Theme";
 $pgv_lang["mgv"]						= "MeinGedView";
 $pgv_lang["mygedview"]					= "Mein GedView Portal";
 $pgv_lang["passwordlength"]				= "Das Kennwort muss mindestens 6 Zeichen lang sein.";
-$pgv_lang["welcome_text_auth_mode_1"]	= "<span class='center'><b>Willkommen auf dieser Genealogie Webseite</b></span><br />Den Zugriff auf diese Seite erhält jeder Benutzer, der einen Zugang beantragt hat.<br /><br />Wenn Sie bereits einen Benutzernamen haben, können Sie sich auf dieser Seite anmelden. Wenn Sie noch keinen Zugang besitzen, können Sie diesen beantragen, indem Sie auf das entsprechende Link klicken.<br /><br />Sobald Ihre Angaben überprüft sind, wird der Verwalter Ihren Zugang freigeben. Sie werden dann eine Bestätigungsungsmail erhalten.";
-$pgv_lang["welcome_text_auth_mode_2"]	= "<span class='center'><b>Willkommen auf dieser Genealogie Webseite</b></span><br />Der Zugriff auf diese Seite ist nur <u>autorisierten</u> Benutzern erlaubt.<br /><br />Wenn Sie bereits einen Benutzernamen haben, können Sie sich auf dieser Seite anmelden. Wenn Sie noch keinen Zugang besitzen, können Sie diesen beantragen, indem Sie auf das entsprechende Link klicken.<br /><br />Sobald Ihre Angaben überprüft sind, wird der Verwalter Ihrem Antrag zustimmen (oder ihn ablehnen). Sie werden eine Mail mit dem Antragsergebnis erhalten.";
-$pgv_lang["welcome_text_auth_mode_3"]	= "<span class='center'><b>Willkommen auf dieser Genealogie Webseite</b></span><br />Den Zugriff auf diese Seite erhalten <u>nur Familienmitglieder</u>.<br /><br />Wenn Sie bereits einen Benutzernamen haben, können Sie sich auf dieser Seite anmelden. Wenn Sie noch keinen Zugang besitzen, können Sie diesen beantragen, indem Sie auf das entsprechende Link klicken.<br /><br />Sobald Ihre Angaben überprüft sind, wird der Verwalter Ihrem Antrag zustimmen (oder ihn ablehnen). Sie werden eine Mail mit dem Antragsergebnis erhalten.";
+$pgv_lang["welcome_text_auth_mode_1"]	= "<span class='center'><b>Willkommen auf dieser Genealogie Webseite</b></span><br />Den Zugriff auf diese Seite erhält jeder Benutzer, der einen Zugang beantragt hat.<br /><br />Wenn Sie bereits einen Benutzernamen haben, können Sie sich auf dieser Seite anmelden. Wenn Sie noch keinen Zugang besitzen, können Sie diesen beantragen, indem Sie das entsprechende Link klicken.<br /><br />Sobald Ihre Angaben überprüft sind, wird der Verwalter Ihren Zugang freigeben. Sie werden dann eine Bestätigungsungsmail erhalten.";
+$pgv_lang["welcome_text_auth_mode_2"]	= "<span class='center'><b>Willkommen auf dieser Genealogie Webseite</b></span><br />Der Zugriff auf diese Seite ist nur <u>autorisierten</u> Benutzern erlaubt.<br /><br />Wenn Sie bereits einen Benutzernamen haben, können Sie sich auf dieser Seite anmelden. Wenn Sie noch keinen Zugang besitzen, können Sie diesen beantragen, indem Sie das entsprechende Link klicken.<br /><br />Sobald Ihre Angaben überprüft sind, wird der Verwalter Ihrem Antrag zustimmen (oder ihn ablehnen). Sie werden eine Mail mit dem Antragsergebnis erhalten.";
+$pgv_lang["welcome_text_auth_mode_3"]	= "<span class='center'><b>Willkommen auf dieser Genealogie Webseite</b></span><br />Den Zugriff auf diese Seite erhalten <u>nur Familienmitglieder</u>.<br /><br />Wenn Sie bereits einen Benutzernamen haben, können Sie sich auf dieser Seite anmelden. Wenn Sie noch keinen Zugang besitzen, können Sie diesen beantragen, indem Sie das entsprechende Link klicken.<br /><br />Sobald Ihre Angaben überprüft sind, wird der Verwalter Ihrem Antrag zustimmen (oder ihn ablehnen). Sie werden eine Mail mit dem Antragsergebnis erhalten.";
 $pgv_lang["welcome_text_cust_head"]		= "<span class='center'><b>Willkommen auf dieser Genealogie Webseite</b></span><br />Der Zugriff ist Benutzern vorbehalten, die einen Benutzernamen und ein Kennwort für diese Webseite haben.";
 $pgv_lang["acceptable_use"]				= "<div class=\"largeError\">Bitte beachten Sie:</div><div class=\"error\">Indem Sie dieses ausgefüllte Formular einsenden, bestätigen Sie Ihr Einverständnis mit den folgenden Bedingungen:<ul><li>daß Sie immer Informationen über lebende Personen, die in dieser Datenbank vorkommen, vertraulich halten;</li><li>und daß Sie in der unten stehenden Textbox Ihre Verwandtschaft zu Personen in dieser Datenbank erklären oder uns Informationen über Personen, die in dieser Datenbank vorkommen sollten aber dort fehlen, mitteilen.</li></ul></div>";
 
@@ -1321,7 +1325,7 @@ $pgv_lang["message"]					= "Nachricht senden";
 $pgv_lang["my_messages"]				= "Meine Nachrichten";
 $pgv_lang["date_created"]				= "gesendet:";
 $pgv_lang["message_from"]				= "Emailadresse:";
-$pgv_lang["message_from_name"]			= "Ihr Name:";
+$pgv_lang["message_from_name"]			= "Absender:";
 $pgv_lang["message_to"]					= "An:";
 $pgv_lang["message_subject"]			= "Betreff:";
 $pgv_lang["message_body"]				= "Text:";
@@ -1336,7 +1340,7 @@ $pgv_lang["message_invalid_from"]		= "Ungültige Absenderadresse: &raquo;#email#
 $pgv_lang["message_invalid_to"]			= "Ungültige Empfängeradresse: &raquo;#email#&laquo;";
 $pgv_lang["message_illegal_chars"]		= "Ungültige Zeichen in der Adresse &raquo;#email#&laquo;";
 $pgv_lang["message_bad_format"]			= "Die Adresse &raquo;#email#&laquo; ist nicht korrekt formatiert";
-$pgv_lang["message_no_MX"]				= "Das Domain der Adresse &raquo;#email#&laquo; existiert nicht oder hat keinen MX-Eintrag"; 
+$pgv_lang["message_no_MX"]				= "Das Domain der Adresse &raquo;#email#&laquo; existiert nicht oder hat keinen MX-Eintrag";
 $pgv_lang["reset"]						= "Reset";
 $pgv_lang["site_default"]				= "Grundeinstellung";
 $pgv_lang["mygedview_desc"]				= "Dieses Portal ermöglicht Ihnen das Anlegen von Lesezeichen zu bevorzugten Personen, Überwachen bevorstehender Ereignisse und die Zusammenarbeit mit anderen PhpGedView Benutzern.";
@@ -1357,8 +1361,7 @@ $pgv_lang["message_email1"]				= "Die folgende Nachricht wurde an Ihr PhpGedView
 $pgv_lang["message_email2"]				= "Sie haben die folgende Nachricht an einen PhpGedView Benutzer gesendet:";
 $pgv_lang["message_email3"]				= "Sie haben die folgende Nachricht an einen PhpGedView Verwalter gesendet:";
 $pgv_lang["viewing_url"]				= "Diese Nachricht wurde gesendet als die folgende Seite aufgerufen wurde: ";
-$pgv_lang["messaging2_help"]			= "Wenn Sie diese Nachricht senden, erhalten Sie eine Kopie an die von Ihnen angegebene Adresse.";
-$pgv_lang["random_picture"]				= "Zufällig ausgewähltes Bild";
+$pgv_lang["random_picture"]				= "Zufällig gewähltes Bild";
 $pgv_lang["message_instructions"]		= "<b>Bitte beachten:</b> Private Informationen von lebenden Personen werden nur Familienangehörigen und nahen Freunden zugänglich gemacht. Bevor Sie irgendwelche persönlichen Daten ansehen können, müssen Sie Ihren Verwandtschaftsgrad belegen. Es kann auch vorkommen, dass bestimmte Daten von bereits verstorbenen Personen vertraulich sind. Dies kann der Fall sein, wenn nicht genügend Informationen vorhanden sind, um sicher zu belegen, ob die Person noch lebt oder verstorben ist.<br /><br />Bevor Sie Fragen stellen, überprüfen Sie bitte, dass Sie über die richtige Person fragen, indem Sie Orte, Zeitangaben und Verwandte prüfen. Falls Sie Änderungen der genealogischen Daten übermitteln, geben Sie bitte auch die Quelle an, von der Sie Ihre Informationen bezogen haben.";
 $pgv_lang["sending_to"]					= "Diese Nachricht wird an #TO_USER# gesendet";
 $pgv_lang["preferred_lang"]				= "Dieser Nutzer bevorzugt Nachrichten in #USERLANG#";
@@ -1382,10 +1385,10 @@ $pgv_lang["todays_events_block"]		= "An diesem Tag";
 $pgv_lang["todays_events_descr"]		= "Der »An diesem Tag« Block zeigt eine Liste von Daten aus der Datenbank an, die sich heute jähren.<br /><br />Sie können für Ihre Portal Seite den Umfang dieses Blocks kontrollieren.  Der Verwalter tut das Gleiche für die Begrüßungs Seite.";
 $pgv_lang["todo_block"] 				= "»Unerledigte« Aufgaben";
 $pgv_lang["todo_descr"] 				= "Der »Unerledigte Aufgaben« Block zeigt Ihnen alle _TODO Fakten in der Datenbank.";
-$pgv_lang["todo_show_other"]     		= "Aufgaben anderer Benutzern zeigen";
+$pgv_lang["todo_show_other"] 			= "Aufgaben anderer Benutzern zeigen";
 $pgv_lang["todo_show_unassigned"]		= "Noch nicht zugewiesene Aufgaben zeigen";
-$pgv_lang["todo_show_future"]    		= "Zukünftige Aufgaben zeigen";
-$pgv_lang["todo_nothing"]        		= "Es sind keine unerledigte Aufgaben vorhanden.";
+$pgv_lang["todo_show_future"]			= "Zukünftige Aufgaben zeigen";
+$pgv_lang["todo_nothing"]				= "Es sind keine unerledigte Aufgaben vorhanden.";
 $pgv_lang["yahrzeit_block"]				= "Jahrzeiten";
 $pgv_lang["yahrzeit_descr"]				= "Der »Jahrzeiten« Block zeigt eine Liste von Todesdaten, die sich in den kommenden Tagen jähren.<br /><br />Sie können für Ihre Portal Seite den Umfang dieses Blocks kontrollieren.  Der Verwalter tut das Gleiche für die Begrüßungs Seite.";
 $pgv_lang["logged_in_users_block"]		= "Angemeldete Benutzer";
@@ -1395,7 +1398,7 @@ $pgv_lang["user_messages_descr"]		= "Der »Benutzernachrichten« Block zeigt ein
 $pgv_lang["user_favorites_block"]		= "Benutzerlesezeichen";
 $pgv_lang["user_favorites_descr"]		= "Der »Lesezeichen« Block zeigt dem Benutzer eine Liste der von ihm als wichtig angesehenen Personen in der Datenbank an, deren Daten er so schneller wieder auffinden kann.";
 $pgv_lang["welcome_block"]				= "Willkommen";
-$pgv_lang["welcome_descr"]				= "Der »Willkommen« Block zeigt dem Benutzer das aktuelle Datum und die Uhrzeit, Links zur Änderung der Benutzereinstellung und zu seiner eigenen Stammbaumansicht und auch einen Link zur Anpassung seiner Mein GedView Seite.";
+$pgv_lang["welcome_descr"]				= "Der »Willkommen« Block zeigt dem Benutzer das aktuelle Datum und die Uhrzeit, Links zur Änderung der Benutzereinstellung und zu seiner eigenen Stammbaumansicht und auch ein Link zur Anpassung seiner Mein GedView Seite.";
 $pgv_lang["random_media_block"]			= "Zufälliges Bild";
 $pgv_lang["random_media_descr"]			= "Der »Zufälliges Bild« Block wählt bei jedem Aufruf zufällig ein Bild aus der Datenbank aus und stellt es dar.<br /><br />Der Verwalter kontrolliert die Art der Medien Objekte die hier gezeigt werden können.";
 $pgv_lang["random_media_persons_or_all"]	= "Personen, Ereignisse oder alle Medien zeigen?";
@@ -1462,7 +1465,7 @@ $pgv_lang["hit_count"]					= "Besucher:";
 $pgv_lang["phpgedview_message"]			= "PhpGedView Nachricht";
 $pgv_lang["common_surnames"]			= "Häufigste Nachnamen";
 $pgv_lang["default_news_title"]			= "Willkommen zur Ahnenforschung";
-$pgv_lang["default_news_text"]			= "Die genealogischen Informationen dieser Webseite werden mit Hilfe von <a href=\"http://www.phpgedview.net/\" target=\"_blank\">PhpGedView</a> dargestellt.  Diese Seite gibt Ihnen einen Überblick und eine Einführung zu diesem Ahnenforschungs Projekt.<br /><br />Um mit den Daten zu arbeiten, wählen Sie z.B. ein Diagramm aus dem Diagramm Menü aus, öffnen Sie die Personen Liste oder suchen Sie nach einem Namen oder Ort.<br /><br />Wenn Sie bei der Nutzung dieser Seite auf Schwierigkeiten stoßen, können Sie auf das Hilfe Menü klicken, um nähere Informationen zur jeweiligen Seite zu bekommen.<br /><br />Viel Erfolg bei der Ahnenforschung!";
+$pgv_lang["default_news_text"]			= "Die genealogischen Informationen dieser Webseite werden mit Hilfe von <a href=\"http://www.phpgedview.net/\" target=\"_blank\">PhpGedView</a> dargestellt.  Diese Seite gibt Ihnen einen Überblick und eine Einführung zu diesem Ahnenforschungs Projekt.<br /><br />Um mit den Daten zu arbeiten, wählen Sie z.B. ein Diagramm aus dem Diagramm Menü aus, öffnen Sie die Personen Liste oder suchen Sie nach einem Namen oder Ort.<br /><br />Wenn Sie bei der Nutzung dieser Seite auf Schwierigkeiten stoßen, können Sie das Hilfe Menü klicken, um nähere Informationen zur jeweiligen Seite zu bekommen.<br /><br />Viel Erfolg bei der Ahnenforschung!";
 $pgv_lang["reset_default_blocks"]		= "Zurückstellen zur Block Standard-Auswahl";
 $pgv_lang["recent_changes"]				= "Neueste Änderungen";
 $pgv_lang["recent_changes_block"]		= "Neueste Änderungen";

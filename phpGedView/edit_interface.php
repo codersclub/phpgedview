@@ -35,10 +35,10 @@ uasort($countries, "stringsort");
 // TODO decide what (if any) validation is required on these parameters
 $action =safe_REQUEST($_REQUEST, 'action',  PGV_REGEX_UNSAFE);
 $linenum=safe_REQUEST($_REQUEST, 'linenum', PGV_REGEX_UNSAFE);
-$pid    =safe_REQUEST($_REQUEST, 'pid',     PGV_REGEX_XREF);
+$pid	 =safe_REQUEST($_REQUEST, 'pid',     PGV_REGEX_XREF);
 $famid  =safe_REQUEST($_REQUEST, 'famid',   PGV_REGEX_XREF);
 $text   =safe_REQUEST($_REQUEST, 'text',    PGV_REGEX_UNSAFE);
-$tag    =safe_REQUEST($_REQUEST, 'tag',     PGV_REGEX_UNSAFE);
+$tag	 =safe_REQUEST($_REQUEST, 'tag',     PGV_REGEX_UNSAFE);
 $famtag =safe_REQUEST($_REQUEST, 'famtag',  PGV_REGEX_UNSAFE);
 $glevels=safe_REQUEST($_REQUEST, 'glevels', PGV_REGEX_UNSAFE);
 $islink =safe_REQUEST($_REQUEST, 'islink',  PGV_REGEX_UNSAFE);
@@ -421,7 +421,7 @@ case 'editraw':
 		echo "<input type=\"hidden\" name=\"action\" value=\"updateraw\" />\n";
 		echo "<input type=\"hidden\" name=\"pid\" value=\"$pid\" />\n";
 		echo "<input id=\"savebutton2\" type=\"submit\" value=\"", $pgv_lang["save"], "\" /><br />\n";
-		print_specialchar_link("newgedrec", true);
+		print_specialchar_link("newgedrec", false);
 		echo "<br />\n";
 		echo "<textarea name=\"newgedrec\" id=\"newgedrec\" rows=\"20\" cols=\"80\" dir=\"ltr\">", $gedrec, "</textarea>\n<br />";
 		if (PGV_USER_IS_ADMIN) {
@@ -787,7 +787,7 @@ case 'addnewsource':
 			<td class="optionbox wrap"><input tabindex="<?php echo $tabkey; ?>" type="text" name="AUTH" id="AUTH" value="" size="40" maxlength="255" /> <?php print_specialchar_link("AUTH", false); ?></td></tr>
 			<?php $tabkey++; ?>
 			<tr><td class="descriptionbox <?php echo $TEXT_DIRECTION; ?> wrap width25"><?php print_help_link("edit_PUBL_help", "qm", "PUBL"); echo $factarray["PUBL"]; ?></td>
-			<td class="optionbox wrap"><textarea tabindex="<?php echo $tabkey; ?>" name="PUBL" id="PUBL" rows="5" cols="60"></textarea><br /><?php print_specialchar_link("PUBL", true); ?></td></tr>
+			<td class="optionbox wrap"><textarea tabindex="<?php echo $tabkey; ?>" name="PUBL" id="PUBL" rows="5" cols="60"></textarea><br /><?php print_specialchar_link("PUBL", false); ?></td></tr>
 			<?php $tabkey++; ?>
 			<tr><td class="descriptionbox <?php echo $TEXT_DIRECTION; ?> wrap width25"><?php print_help_link("edit_REPO_help", "qm", "REPO"); echo $factarray["REPO"]; ?></td>
 			<td class="optionbox wrap"><input tabindex="<?php echo $tabkey; ?>" type="text" name="REPO" id="REPO" value="" size="10" /> <?php print_findrepository_link("REPO"); print_addnewrepository_link("REPO"); ?></td></tr>
@@ -927,7 +927,7 @@ case 'addnewnote':
 					echo $pgv_lang["shared_note"];
 					echo "</td>";
 					echo "<td class=\"optionbox wrap\" ><textarea name=\"NOTE\" id=\"NOTE\" rows=\"15\" cols=\"87\"></textarea>";
-						print_specialchar_link("NOTE", true);
+					print_specialchar_link("NOTE", false);
 					echo "</td>";
 				echo "</tr>";
 			if (PGV_USER_IS_ADMIN) {
@@ -1198,7 +1198,7 @@ case 'editnote':
 				<td class="optionbox wrap">
 					<textarea tabindex="<?php echo $tabkey; ?>" name="NOTE" id="NOTE" rows="15" cols="90"><?php
 						echo htmlspecialchars($note_content);
-					?></textarea><br /><?php print_specialchar_link("NOTE", true); ?>
+					?></textarea><br /><?php print_specialchar_link("NOTE", false); ?>
 				</td>
 			</tr>
 			<?php $tabkey++;
@@ -1259,7 +1259,7 @@ case 'addnewrepository':
 			<?php $tabkey++; ?>
 			<?php } ?>
 			<tr><td class="descriptionbox <?php echo $TEXT_DIRECTION; ?> wrap width25"><?php print_help_link("edit_REPO_ADDR_help", "qm", "ADDR"); echo $factarray["REPO:ADDR"]; ?></td>
-			<td class="optionbox wrap"><textarea tabindex="<?php echo $tabkey; ?>" name="ADDR" id="ADDR" rows="5" cols="60"></textarea><?php print_specialchar_link("ADDR", true); ?> </td></tr>
+			<td class="optionbox wrap"><textarea tabindex="<?php echo $tabkey; ?>" name="ADDR" id="ADDR" rows="5" cols="60"></textarea><?php print_specialchar_link("ADDR", false); ?> </td></tr>
 			<?php $tabkey++; ?>
 			<tr><td class="descriptionbox <?php echo $TEXT_DIRECTION; ?> wrap width25"><?php print_help_link("edit_REPO_PHON_help", "qm", "PHON"); echo $factarray["REPO:PHON"]; ?></td>
 			<td class="optionbox wrap"><input tabindex="<?php echo $tabkey; ?>" type="text" name="PHON" id="PHON" value="" size="40" maxlength="255" /> </td></tr>
@@ -1578,7 +1578,7 @@ case 'addchildaction':
 	}
 
 	splitSOUR(); // separate SOUR record from the rest
-	
+
 	$newindixref=get_next_INDI_xref();	// Get new INDI xref, possibly using REFNO provided by user
 
 	$gedrec ="0 @$newindixref@ INDI\n";
@@ -2246,7 +2246,7 @@ case 'al_reorder_media_update': // Update sort using Album Page
 	function SwapArray($Array){
 		$Values = array();
 //		while (list($Key, $Val) = each($Array))
-		foreach ($Array as $Key => $Val) 
+		foreach ($Array as $Key => $Val)
 			$Values[$Val] = $Key;
 		return $Values;
 	}

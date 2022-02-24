@@ -5,7 +5,7 @@
  * This block prints a form that will allow a user to login
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2021  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2022  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -49,28 +49,44 @@ function print_login_block($limitHeight, $config, $side, $index) {
 	global $pgv_lang, $QUERY_STRING, $USE_REGISTRATION_MODULE, $LOGIN_URL;
 	global $WEBMASTER_EMAIL, $SUPPORT_METHOD, $TEXT_DIRECTION;
 
+	?>
+	<script language="JavaScript" type="text/javascript">
+	<!--
+		function toggleVizPW(whichForm, whichField) {
+			// This script should really be in the general script file, /js/phpgedview.js
+			// but we don't want to load the whole works just for this one seldom-used script.
+			var frm = document[whichForm];
+			var field = frm[whichField];
+			if (field.type === "password") field.type = "text";
+			else field.type = "password";
+		}
+	//-->
+	</script>
+	<?php
+
 	if (PGV_USER_ID) {
 		$id="logout_block";
 		$title = $pgv_lang["logout"];
 
 		$i = 0;			// Initialize tab index
 
-		$content = '<div class="center"><form method="post" action="index.php?logout=1" name="logoutform" onsubmit="return true;">';
+		$content = '';
+		$content .= '<div class="center"><form method="post" action="index.php?logout=1" name="logoutform" onsubmit="return true;">';
 		$content .= '<br /><a href="edituser.php" class="name2">'.$pgv_lang["logged_in_as"].' ('.PGV_USER_NAME.')</a><br /><br />';
 
 		$i++;
 		$content .= "<input type=\"submit\" tabindex=\"{$i}\" value=\"".$pgv_lang["logout"]."\" />";
-
 		$content .= "<br /><br /></form></div>";
 	} else {
 		$id="login_block";
 		$title = "";
+		$title .= print_help_link("index_login_register_help", "qm", "", false, true);
+		$title .= $pgv_lang["login"];
 
 		$i = 0;			// Initialize tab index
 
-		$title .= print_help_link("index_login_register_help", "qm", "", false, true);
-		$title .= $pgv_lang["login"];
-		$content = "<div class=\"center\"><form method=\"post\" action=\"$LOGIN_URL\" name=\"loginform\" onsubmit=\"t = new Date(); document.loginform.usertime.value=t.getFullYear()+'-'+(t.getMonth()+1)+'-'+t.getDate()+' '+t.getHours()+':'+t.getMinutes()+':'+t.getSeconds(); return true;\">";
+		$content = '';
+		$content .= "<div class=\"center\"><form method=\"post\" action=\"$LOGIN_URL\" name=\"loginform\" onsubmit=\"t = new Date(); document.loginform.usertime.value=t.getFullYear()+'-'+(t.getMonth()+1)+'-'+t.getDate()+' '+t.getHours()+':'+t.getMinutes()+':'+t.getSeconds(); return true;\">";
 		$content .= "<input type=\"hidden\" name=\"url\" value=\"index.php\" />";
 		$content .= "<input type=\"hidden\" name=\"ged\" value=\"";
 		$content .= PGV_GEDCOM;
@@ -104,6 +120,8 @@ function print_login_block($limitHeight, $config, $side, $index) {
 		$content .= "<td ";
 		$content .= write_align_with_textdir_check("left", true);
 		$content .= " class=\"{$TEXT_DIRECTION}\"><input type=\"password\" tabindex=\"{$i}\" name=\"password\"  size=\"20\" class=\"formField\" />";
+		$content .= '<br /><input type="checkbox" onclick="toggleVizPW(\'loginform\', \'password\')" />';
+		$content .= $pgv_lang['show'];
 		$content .= "</td></tr>";
 
 		// Row 3: "Login" link

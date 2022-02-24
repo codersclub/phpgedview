@@ -3,7 +3,7 @@
  * Swedish Language file for PhpGedView.
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2022  PGV Development Team
+ * Copyright (C) 2002 to 2022  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -80,13 +80,13 @@ $pgv_lang["changedate1"]			= "Slutet på datumblockett för andringsdatam";
 $pgv_lang["changedate2"]			= "Start för datumblocket för ändringsdatum";
 $pgv_lang["search_place_word"]		= "Endast hela ord";
 $pgv_lang["invalid_search_input"] 	= "Var vänlig och skriv in ett förnamn, efternamn eller ort tillsammans med ett årtal";
-$pgv_lang["duplicate_username"] 	= "En avändare med detta användarnamn finns redan. Välj ett annat användarnamn.";
+$pgv_lang["duplicate_username"] 	= "En avändare «#username#» finns redan. Välj ett annat användarnamn.";
+$pgv_lang["usercreate_fail"]		= "Användaren «#username#» kunde inte läggas till i systemet.";
 $pgv_lang["cache_life"]				= "Cachefils livslängd";
-$pgv_lang["genealogy"]					= "genealogi";
-$pgv_lang["activate"]					= "Aktivera";
-$pgv_lang["deactivate"]					= "Avaktivera";
-$pgv_lang["play"]					= "Spela";
-$pgv_lang["stop"]					= "Stopp";
+$pgv_lang["genealogy"]				= "genealogi";
+$pgv_lang["activate"]				= "Aktivera";
+$pgv_lang["deactivate"]				= "Avaktivera";
+$pgv_lang["play_stop"]				= "Start / Stop";
 $pgv_lang["random_media_start_slide"]	= "Starta bildspel när sidan laddas?";
 $pgv_lang["random_media_ajax_controls"]	= "Visa bildspelskontroller?";
 $pgv_lang["description"]		= "Beskrivning";
@@ -230,10 +230,10 @@ $pgv_lang["cookie_help"]			= "Denna sajt använder cookies för att komma ihåg 
 //new stuff
 //Individual
 $pgv_lang["indi_is_remote"]			= "Informationen om denna person är länkad ifrån en annan sajt.";
-$pgv_lang["link_remote"]            = "Länka en person från en annan sajt";
+$pgv_lang["link_remote"]			= "Länka en person från en annan sajt";
 //Add Remote Link
-$pgv_lang["title_search_link"]      = "Lägg till lokal länk";
-$pgv_lang["label_site_url2"]        = "Sajt URL";
+$pgv_lang["title_search_link"]  	= "Lägg till lokal länk";
+$pgv_lang["label_site_url2"]		= "Sajt URL";
 //new stuff
 
 $pgv_lang["delete_family_confirm"]	= "Radering av familjen kommer att koppla loss alla personerna ifrån familjen men kommer att lämna alla personerna orörda. Är du säker på att du ska radera familjen?";
@@ -373,12 +373,12 @@ $pgv_lang["for_contact"]		= "För hjälp med släktfrågor kontakta";
 $pgv_lang["for_all_contact"]	= "För teknisk support eller släktfrågor kontakta";
 $pgv_lang["choose_username"]		= "Önskat användarnamn";
 $pgv_lang["username"]			= "Användarnamn";
-$pgv_lang["invalid_username"]	= "Användarnamn innehåller ogiltiga tecken";
+$pgv_lang["invalid_username"]	= "Användarnamn «#username#» innehåller ogiltiga tecken";
 $pgv_lang["firstname"]				= "Förnamn";
 $pgv_lang["lastname"]				= "Efternamn";
 $pgv_lang["choose_password"]		= "Önskat lösenord";
 $pgv_lang["password"]			= "Lösenord";
-$pgv_lang["confirm"]            = "Bekräfta lösenord";
+$pgv_lang["confirm"]			= "Bekräfta lösenord";
 $pgv_lang["login"]				= "Logga in";
 $pgv_lang["logout"]				= "Logga ut";
 $pgv_lang["admin"]				= "Administration";
@@ -436,6 +436,7 @@ $pgv_lang["clippings_cart"]		= "Släktträdsurklippskorg";
 $pgv_lang["print_preview"]		= "Utskriftsvänlig version";
 $pgv_lang["cancel_preview"]		= "Tillbaka till normal vy";
 $pgv_lang["change_lang"]		= "Ändra språk";
+$pgv_lang["language"]			= "Språk";
 $pgv_lang["print"]				= "Skriv ut";
 $pgv_lang["total_queries"]		= "Totalt antal databasfrågor:";
 $pgv_lang["total_privacy_checks"] = "Totalt antal integritetskontroller: ";
@@ -601,8 +602,8 @@ $pgv_lang["next_page"]				= "Nästa sida";
 $pgv_lang["last_page"]				= "Sista sidan";
 $pgv_lang["next_image"]				= "Nästa bild";
 $pgv_lang["file_not_found"]		= "Filen kunde inte hittas.";
-$pgv_lang["medialist_show"]     = "Visa";
-$pgv_lang["per_page"]           = "mediaobjekt per sida";
+$pgv_lang["medialist_show"] 	= "Visa";
+$pgv_lang["per_page"]   		= "mediaobjekt per sida";
 $pgv_lang["media_format"]		= "Mediaformat";
 $pgv_lang["image_size"]			= "Bilddimensioner";
 $pgv_lang["media_id"]			= "Media ID";
@@ -626,7 +627,7 @@ $pgv_lang["search_soundex"]			= "Soundex-sökning";
 $pgv_lang["search_replace"]			= "Sök och ersätt";
 $pgv_lang["search_sources"]			= "Källor";
 $pgv_lang["search_shared_notes"]	= "Delade anteckningar";
-$pgv_lang["search_more_chars"]      = "Var vänlig och skriv in mer än ett tecken";
+$pgv_lang["search_more_chars"]  	= "Var vänlig och skriv in mer än ett tecken";
 $pgv_lang["search_soundextype"]		= "Soundextyp:";
 $pgv_lang["search_russell"]			= "Enkel";
 $pgv_lang["search_tagfilter"]		= "Undantagsfilter";
@@ -676,7 +677,7 @@ $pgv_lang["name_contains"]		= "Namnet innehåller:";
 $pgv_lang["filter"]				= "Filter";
 $pgv_lang["apply_filter"]			= "Tillämpa filter";
 $pgv_lang["find_individual"]	= "Sök id för person";
-$pgv_lang["find_familyid"]      = "Sök id för familj";
+$pgv_lang["find_familyid"]  	= "Sök id för familj";
 $pgv_lang["find_sourceid"]		= "Sök id för källa";
 $pgv_lang["find_specialchar"]	= "Hitta specialbokstäver";
 $pgv_lang["magnify"]			= "Förstora";
@@ -709,8 +710,8 @@ $pgv_lang["week1"]					= "vecka";
 $pgv_lang["weeks"]					= "veckor";
 $pgv_lang["day1"]					= "dag";
 $pgv_lang["days"]					= "dagar";
-$pgv_lang["after_death"]        ="efter döden";
-$pgv_lang["at_death_day"]      		= "på dödsdatumet";
+$pgv_lang["after_death"]		="efter döden";
+$pgv_lang["at_death_day"]  			= "på dödsdatumet";
 $pgv_lang["timeline_title"]		= "PhpGedView tidslinje";
 $pgv_lang["timeline_chart"]		= "Tidslinje";
 $pgv_lang["remove_person"]		= "Ta bort person";
@@ -730,19 +731,19 @@ $pgv_lang["include_family"] = "Inkludera nära familjemedlemmar";
 $pgv_lang["lifespan_chart"] = "Livslinjetavla";
 
 // calendar conversion options
-$pgv_lang["cal_none"]                 = "Ingen kalenderkonvertering";
-$pgv_lang["cal_gregorian"]            = "Gregoriansk";
-$pgv_lang["cal_julian"]               = "Juliansk";
-$pgv_lang["cal_french"]               = "Fransk";
-$pgv_lang["cal_jewish"]               = "Judisk";
-$pgv_lang["cal_hebrew"]               = "Hebreisk";
+$pgv_lang["cal_none"] 				= "Ingen kalenderkonvertering";
+$pgv_lang["cal_gregorian"]			= "Gregoriansk";
+$pgv_lang["cal_julian"]   			= "Juliansk";
+$pgv_lang["cal_french"]   			= "Fransk";
+$pgv_lang["cal_jewish"]   			= "Judisk";
+$pgv_lang["cal_hebrew"]   			= "Hebreisk";
 $pgv_lang["cal_jewish_and_gregorian"] = "Judisk och Gregoriansk";
 $pgv_lang["cal_hebrew_and_gregorian"] = "Hebreisk och Gregoriansk";
-$pgv_lang["cal_hijri"]                = "Hijri";
-$pgv_lang["cal_arabic"]               = "Arabisk";
+$pgv_lang["cal_hijri"]				= "Hijri";
+$pgv_lang["cal_arabic"]   			= "Arabisk";
 
 // some religious dates
-$pgv_lang["easter"]     = "Påsk";
+$pgv_lang["easter"] 	= "Påsk";
 $pgv_lang["ascension"]  = "Kristi himmelsfärdsdag";
 $pgv_lang["pentecost"]  = "Pingst";
 $pgv_lang["assumption"] = "Marias himmelsfärdsdag";
@@ -750,10 +751,10 @@ $pgv_lang["all_saints"] = "Alla helgons dag";
 $pgv_lang["christmas"]  = "Jul";
 
 // am/pm suffixes for 12 hour clocks
-$pgv_lang["a.m."]         = "am";
-$pgv_lang["p.m."]         = "pm";
-$pgv_lang["noon"]         = "md";
-$pgv_lang["midn"]         = "mn";
+$pgv_lang["a.m."] 		= "am";
+$pgv_lang["p.m."] 		= "pm";
+$pgv_lang["noon"] 		= "md";
+$pgv_lang["midn"] 		= "mn";
 
 //-- MONTH NAMES
 $pgv_lang["jan"]				= "Januari";
@@ -811,7 +812,7 @@ $pgv_lang["dec"]				= "December";
 // $pgv_lang["dhuaq"]			use value from lang.en.php
 // $pgv_lang["dhuah"]			use value from lang.en.php
 
-$pgv_lang["b.c."]         = "f.Kr.";
+$pgv_lang["b.c."] 		= "f.Kr.";
 
 $pgv_lang["abt"]				= "omkring";
 $pgv_lang["aft"]				= "efter";
@@ -827,6 +828,7 @@ $pgv_lang["cir"]				= "cirka";
 $pgv_lang["apx"]				= "ungefär";
 
 //-- Admin File Messages
+$pgv_lang["email_invalid"]		= "Ogiltig e-postadress.";
 $pgv_lang["password_mismatch"]	= "Lösenorden stämmer inte överens.";
 $pgv_lang["enter_username"]		= "Du måste mata in ett användarnamn.";
 $pgv_lang["enter_password"]		= "Du måste ange ett lösenord.";
@@ -911,14 +913,14 @@ $pgv_lang["rela_wife"]			= "Relation till maka";
 $pgv_lang["next_path"]			= "Hitta nästa sökväg";
 $pgv_lang["show_path"]			= "Visa sökväg";
 $pgv_lang["line_up_generations"]= "Rada upp samma generationer";
-$pgv_lang["oldest_top"]         = "Visa den äldsta överst";
+$pgv_lang["oldest_top"] 		= "Visa den äldsta överst";
 
 // %1\$s replaced by first person, %2\$s by the relationship and %3\$s by the second person.
 $pgv_lang["relationship_male_1_is_the_2_of_3"] = "%1\$s är %2\$s till %3\$s.";
 $pgv_lang["relationship_female_1_is_the_2_of_3"] = "%1\$s är %2\$s till %3\$s.";
 
-$pgv_lang["mother_in_law"]		    = "Svärmor";
-$pgv_lang["father_in_law"]		    = "Svärfar";
+$pgv_lang["mother_in_law"]			= "Svärmor";
+$pgv_lang["father_in_law"]			= "Svärfar";
 $pgv_lang["brother_in_law"]		= "Svåger";
 $pgv_lang["sister_in_law"]			= "Svägerska";
 $pgv_lang["brothers_wife"]		= "Svägerska"; // brother's wife
@@ -929,8 +931,8 @@ $pgv_lang["aunt_in_law"]			= "Svärfaster/-moster";
 $pgv_lang["cousin_in_law"]			= "Kusin";
 $pgv_lang["m_cousin_in_law"]		= "Manlig kusin";
 $pgv_lang["f_cousin_in_law"]		= "Kvinnlig kusin";
-$pgv_lang["step_son"]		        = "styvson";
-$pgv_lang["step_daughter"]	    	= "styvdotter";
+$pgv_lang["step_son"]				= "styvson";
+$pgv_lang["step_daughter"]			= "styvdotter";
 
 // the bosa_brothers_offspring name is used for fraternal nephews and nieces - the names below can be extended to any number
 // of generations just by adding more translations.
@@ -968,21 +970,21 @@ $pgv_lang["n_x_sisters_daughter"] = "%2\$d x bra systerdotter";
 // the bosa name is used for offspring - the names below can be extended to any number
 // of generations just by adding more translations.
 // 1st generation
-$pgv_lang["bosa_2"] 				= "Son";					// son                           
-$pgv_lang["bosa_3"] 				= "dotter";					// daughter                      
+$pgv_lang["bosa_2"] 				= "Son";					// son
+$pgv_lang["bosa_3"] 				= "dotter";					// daughter
 // 2nd generation
-$pgv_lang["bosa_4"] 				= "sonson";					// son's son                     
-$pgv_lang["bosa_5"] 				= "sondotter";				// son's daughter                
-$pgv_lang["bosa_6"] 				= "dotterson";				// daughter's son                
-$pgv_lang["bosa_7"] 				= "dotterdotter";			// daughter's daughter           
+$pgv_lang["bosa_4"] 				= "sonson";					// son's son
+$pgv_lang["bosa_5"] 				= "sondotter";				// son's daughter
+$pgv_lang["bosa_6"] 				= "dotterson";				// daughter's son
+$pgv_lang["bosa_7"] 				= "dotterdotter";			// daughter's daughter
 // 3rd generation
-$pgv_lang["bosa_8"] 				= "sonsonson";				// son's son's son               
-$pgv_lang["bosa_9"] 				= "sonsondotter";			// son's son's daughter          
-$pgv_lang["bosa_10"]				= "sondotterson";			// son's daughter's son          
-$pgv_lang["bosa_11"]				= "sondotterdotter";		// son's daughter's daughter     
-$pgv_lang["bosa_12"]				= "dottersonson";			// daughter's son's son          
-$pgv_lang["bosa_13"]				= "dottersondotter";		// daughter's son's daughter     
-$pgv_lang["bosa_14"]				= "dotterdotterson";		// daughter's daughter's son     
+$pgv_lang["bosa_8"] 				= "sonsonson";				// son's son's son
+$pgv_lang["bosa_9"] 				= "sonsondotter";			// son's son's daughter
+$pgv_lang["bosa_10"]				= "sondotterson";			// son's daughter's son
+$pgv_lang["bosa_11"]				= "sondotterdotter";		// son's daughter's daughter
+$pgv_lang["bosa_12"]				= "dottersonson";			// daughter's son's son
+$pgv_lang["bosa_13"]				= "dottersondotter";		// daughter's son's daughter
+$pgv_lang["bosa_14"]				= "dotterdotterson";		// daughter's daughter's son
 $pgv_lang["bosa_15"]				= "dotterdotterdotter";		// daughter's daughter's daughter
 // for the general case of offspring of the nth generation use the text below
 // in this text %1\$d is replaced with the number of generations
@@ -998,38 +1000,38 @@ $pgv_lang["n_x_granddaughter_from_daughter"] = "%3\$d x dotterdotter";
 // to allow fo language variations we specify different relationships for paternal and maternal
 // aunts and uncles
 // 1st generation
-$pgv_lang["sosa_uncle_2"] 				= "farbror";		// father's brother          
-$pgv_lang["sosa_uncle_3"] 				= "morbror";		// mother's brother          
+$pgv_lang["sosa_uncle_2"] 				= "farbror";		// father's brother
+$pgv_lang["sosa_uncle_3"] 				= "morbror";		// mother's brother
 // 2nd generation
 $pgv_lang["sosa_uncle_4"] 				= "farfars bror";	// father's father's brother
-$pgv_lang["sosa_uncle_5"] 				= "farmors bror";	// father's mother's brother 
-$pgv_lang["sosa_uncle_6"] 				= "morfars bror";	// mother's father's brother 
-$pgv_lang["sosa_uncle_7"] 				= "mormors bror";	// mother's mother's brother 
+$pgv_lang["sosa_uncle_5"] 				= "farmors bror";	// father's mother's brother
+$pgv_lang["sosa_uncle_6"] 				= "morfars bror";	// mother's father's brother
+$pgv_lang["sosa_uncle_7"] 				= "mormors bror";	// mother's mother's brother
 // for the general case of uncles of the nth degree use the text below
 // in this text %1\$d is replaced with the number of generations
 //              %2\$d is replaced with the number of generations - 1
 //              %3\$d is replaced with the number of generations - 2
 $pgv_lang["n_x_paternal_uncle"]		= "%2\$d x farbror";
-$pgv_lang["n_x_maternal_uncle"]	    = "%2\$d x morbror";
+$pgv_lang["n_x_maternal_uncle"]		= "%2\$d x morbror";
 
 // the sosa_aunt name is used for aunts - the names below can be extended to any number
 // of generations just by adding more translations.
 // to allow fo language variations we specify different relationships for paternal and maternal
 // aunts and aunts
 // 1st generation
-$pgv_lang["sosa_aunt_2"] 				= "faster";				// father's sister          
-$pgv_lang["sosa_aunt_3"] 				= "moster";				// mother's sister          
+$pgv_lang["sosa_aunt_2"] 				= "faster";				// father's sister
+$pgv_lang["sosa_aunt_3"] 				= "moster";				// mother's sister
 // 2nd generation
 $pgv_lang["sosa_aunt_4"] 				= "farfars syster";		// father's father's sister
-$pgv_lang["sosa_aunt_5"] 				= "farmors syster";		// father's mother's sister 
-$pgv_lang["sosa_aunt_6"] 				= "morfars syster";		// mother's father's sister 
-$pgv_lang["sosa_aunt_7"] 				= "mormors syster";		// mother's mother's sister 
+$pgv_lang["sosa_aunt_5"] 				= "farmors syster";		// father's mother's sister
+$pgv_lang["sosa_aunt_6"] 				= "morfars syster";		// mother's father's sister
+$pgv_lang["sosa_aunt_7"] 				= "mormors syster";		// mother's mother's sister
 // for the general case of aunts of the nth degree use the text below
 // in this text %1\$d is replaced with the number of generations
 //              %2\$d is replaced with the number of generations - 1
 //              %3\$d is replaced with the number of generations - 2
 $pgv_lang["n_x_paternal_aunt"]		= "%2\$d x faster";
-$pgv_lang["n_x_maternal_aunt"]	    = "%2\$d x moster";
+$pgv_lang["n_x_maternal_aunt"]		= "%2\$d x moster";
 
 // the sosa_uncle name is used for uncles(by marriage) - the names below can be extended to any number
 // of generations just by adding more translations.
@@ -1048,7 +1050,7 @@ $pgv_lang["sosa_uncle_bm_7"] 				= "mormors bror";		// mother's mother's brother
 //              %2\$d is replaced with the number of generations - 1
 //              %3\$d is replaced with the number of generations - 2
 $pgv_lang["n_x_paternal_uncle_bm"]		= "%2\$d x fars bror";
-$pgv_lang["n_x_maternal_uncle_bm"]	    = "%2\$d x morbror";
+$pgv_lang["n_x_maternal_uncle_bm"]		= "%2\$d x morbror";
 
 // the sosa_aunt name is used for aunts (by marriage)- the names below can be extended to any number
 // of generations just by adding more translations.
@@ -1067,51 +1069,51 @@ $pgv_lang["sosa_aunt_bm_7"] 				= "mormors syster";		// mother's mother's sister
 //              %2\$d is replaced with the number of generations - 1
 //              %3\$d is replaced with the number of generations - 2
 $pgv_lang["n_x_paternal_aunt_bm"]		= "%2\$d x fars syster";
-$pgv_lang["n_x_maternal_aunt_bm"]	    = "%2\$d x moster";
+$pgv_lang["n_x_maternal_aunt_bm"]		= "%2\$d x moster";
 
 // if a specific cousin relationship cannot be represented in a language translate as "";
-$pgv_lang["male_cousin_1"]              = "kusin";
-$pgv_lang["male_cousin_2"]              = "Tremänning";
-$pgv_lang["male_cousin_3"]              = "Fyrmänning";
-$pgv_lang["male_cousin_4"]              = "Femmänning";
-$pgv_lang["male_cousin_5"]              = "Sexmänning";
-$pgv_lang["male_cousin_6"]              = "Sjumänning";
-$pgv_lang["male_cousin_7"]              = "Åttamänning";
-$pgv_lang["male_cousin_8"]              = "Niomänning";
-$pgv_lang["male_cousin_9"]              = "Tiomänning";
-$pgv_lang["male_cousin_10"]             = "Elvamänning";
-$pgv_lang["male_cousin_11"]             = "Tolvmänning";
-$pgv_lang["male_cousin_12"]             = "Trettonmänning";
-$pgv_lang["male_cousin_13"]             = "Fjortonmänning";
-$pgv_lang["male_cousin_14"]             = "Femtonmänning";
-$pgv_lang["male_cousin_15"]             = "Sextonmänning";
-$pgv_lang["male_cousin_16"]             = "Sjuttonmänning";
-$pgv_lang["male_cousin_17"]             = "Artonmänning";
-$pgv_lang["male_cousin_18"]             = "Nittonmänning";
-$pgv_lang["male_cousin_19"]             = "Tjugomänning";
-$pgv_lang["male_cousin_20"]             = "Tjugoenmänning";
-$pgv_lang["male_cousin_n"]              = "%d x männing";
-$pgv_lang["female_cousin_1"]            = "kusin";
-$pgv_lang["female_cousin_2"]            = "Tremänning";
-$pgv_lang["female_cousin_3"]            = "Fyrmänning";
-$pgv_lang["female_cousin_4"]            = "Femmänning";
-$pgv_lang["female_cousin_5"]            = "Sexmänning";
-$pgv_lang["female_cousin_6"]            = "Sjumänning";
-$pgv_lang["female_cousin_7"]            = "Åttamänning";
-$pgv_lang["female_cousin_8"]            = "Niomänning";
-$pgv_lang["female_cousin_9"]            = "Tiomänning";
-$pgv_lang["female_cousin_10"]           = "Elvamänning";
-$pgv_lang["female_cousin_11"]           = "Tolvmänning";
-$pgv_lang["female_cousin_12"]           = "Trettonmänning";
-$pgv_lang["female_cousin_13"]           = "Fjortonmänning";
-$pgv_lang["female_cousin_14"]           = "Femtonmänning";
-$pgv_lang["female_cousin_15"]           = "Sextonmänning";
-$pgv_lang["female_cousin_16"]           = "Sjuttonmänning";
-$pgv_lang["female_cousin_17"]           = "Artonmänning";
-$pgv_lang["female_cousin_18"]           = "Nittonmänning";
-$pgv_lang["female_cousin_19"]           = "Tjugomänning";
-$pgv_lang["female_cousin_20"]           = "Tjugoenmänning";
-$pgv_lang["female_cousin_n"]            = "%d x männing";
+$pgv_lang["male_cousin_1"]  			= "kusin";
+$pgv_lang["male_cousin_2"]  			= "Tremänning";
+$pgv_lang["male_cousin_3"]  			= "Fyrmänning";
+$pgv_lang["male_cousin_4"]  			= "Femmänning";
+$pgv_lang["male_cousin_5"]  			= "Sexmänning";
+$pgv_lang["male_cousin_6"]  			= "Sjumänning";
+$pgv_lang["male_cousin_7"]  			= "Åttamänning";
+$pgv_lang["male_cousin_8"]  			= "Niomänning";
+$pgv_lang["male_cousin_9"]  			= "Tiomänning";
+$pgv_lang["male_cousin_10"] 			= "Elvamänning";
+$pgv_lang["male_cousin_11"] 			= "Tolvmänning";
+$pgv_lang["male_cousin_12"] 			= "Trettonmänning";
+$pgv_lang["male_cousin_13"] 			= "Fjortonmänning";
+$pgv_lang["male_cousin_14"] 			= "Femtonmänning";
+$pgv_lang["male_cousin_15"] 			= "Sextonmänning";
+$pgv_lang["male_cousin_16"] 			= "Sjuttonmänning";
+$pgv_lang["male_cousin_17"] 			= "Artonmänning";
+$pgv_lang["male_cousin_18"] 			= "Nittonmänning";
+$pgv_lang["male_cousin_19"] 			= "Tjugomänning";
+$pgv_lang["male_cousin_20"] 			= "Tjugoenmänning";
+$pgv_lang["male_cousin_n"]  			= "%d x männing";
+$pgv_lang["female_cousin_1"]			= "kusin";
+$pgv_lang["female_cousin_2"]			= "Tremänning";
+$pgv_lang["female_cousin_3"]			= "Fyrmänning";
+$pgv_lang["female_cousin_4"]			= "Femmänning";
+$pgv_lang["female_cousin_5"]			= "Sexmänning";
+$pgv_lang["female_cousin_6"]			= "Sjumänning";
+$pgv_lang["female_cousin_7"]			= "Åttamänning";
+$pgv_lang["female_cousin_8"]			= "Niomänning";
+$pgv_lang["female_cousin_9"]			= "Tiomänning";
+$pgv_lang["female_cousin_10"]   		= "Elvamänning";
+$pgv_lang["female_cousin_11"]   		= "Tolvmänning";
+$pgv_lang["female_cousin_12"]   		= "Trettonmänning";
+$pgv_lang["female_cousin_13"]   		= "Fjortonmänning";
+$pgv_lang["female_cousin_14"]   		= "Femtonmänning";
+$pgv_lang["female_cousin_15"]   		= "Sextonmänning";
+$pgv_lang["female_cousin_16"]   		= "Sjuttonmänning";
+$pgv_lang["female_cousin_17"]   		= "Artonmänning";
+$pgv_lang["female_cousin_18"]   		= "Nittonmänning";
+$pgv_lang["female_cousin_19"]   		= "Tjugomänning";
+$pgv_lang["female_cousin_20"]   		= "Tjugoenmänning";
+$pgv_lang["female_cousin_n"]			= "%d x männing";
 
 // Only referenced from english specific functions
 $pgv_lang["removed_ascending_1"]   = "";
@@ -1213,6 +1215,8 @@ $pgv_lang["recent_events"]		= "Senare år (&lt; 100 år)";
 $pgv_lang["day_not_set"]		= "Dag inte satt";
 
 //-- user self registration module
+$pgv_lang["siteadmin"]			= "PhpGedView-administratör";
+$pgv_lang["PGV_program"]		= "PhpGedView-programmet";
 $pgv_lang["lost_password"]		= "Förlorat ditt lösenord?";
 $pgv_lang["requestpassword"]	= "Begär nytt lösenord";
 $pgv_lang["no_account_yet"]		= "Inget konto än?";
@@ -1220,7 +1224,7 @@ $pgv_lang["requestaccount"]		= "Begär tillstånd att logga in";
 $pgv_lang["emailadress"]		= "E-postadress";
 $pgv_lang["mandatory"] 			= "Fält markerat med * är obligatoriska.";
 $pgv_lang["mail01_line01"]		= "Hej #user_fullname# ...";
-$pgv_lang["mail01_line02"]		= "En begäran mottogs från #PGV_SERVER_NAME##PGV_SCRIPT_PATH# om att skapa ett konto med din e-postadress #user_email#.";
+$pgv_lang["mail01_line02"]		= "En begäran mottogs från #PGV_SERVER_NAME##PGV_SCRIPT_PATH# om att skapa ett konto med din e-postadress «#user_email#».";
 $pgv_lang["mail01_line03"]		= "Informationen om förfrågan visas under länken nedan.";
 $pgv_lang["mail01_line04"]		= "Klicka på länken nedan och fyll i den begärda datan för att verifiera ditt konto och e-postadress.";
 $pgv_lang["mail01_line05"]		= "Om du inte begärde ett konto kan du radera meddelandet.";
@@ -1317,7 +1321,7 @@ $pgv_lang["message"]			= "Skicka meddelande";
 $pgv_lang["my_messages"]		= "Mina meddelande";
 $pgv_lang["date_created"]		= "Datum skickat:";
 $pgv_lang["message_from"]		= "E-post adress:";
-$pgv_lang["message_from_name"]	= "Ditt namn:";
+$pgv_lang["message_from_name"]	= "Avsändare:";
 $pgv_lang["message_to"]			= "Till:";
 $pgv_lang["message_subject"]	= "Ärende:";
 $pgv_lang["message_body"]		= "Meddelande:";
@@ -1332,7 +1336,7 @@ $pgv_lang["message_invalid_from"]	= "Ogiltig avsändaradress: &laquo;#email#&raq
 $pgv_lang["message_invalid_to"]		= "Ogiltig mottagareadress: &laquo;#email#&raquo;";
 $pgv_lang["message_illegal_chars"]	= "Ogiltig tecken i adressen &laquo;#email#&raquo;";
 $pgv_lang["message_bad_format"]		= "Adressen &laquo;#email#&raquo; är inte korrekt formaterad";
-$pgv_lang["message_no_MX"]			= "Domänen för adressen &laquo;#email#&raquo; existerar inte eller har ingen MX-post"; 
+$pgv_lang["message_no_MX"]			= "Domänen för adressen &laquo;#email#&raquo; existerar inte eller har ingen MX-post";
 $pgv_lang["reset"]				= "Återställ";
 $pgv_lang["site_default"]		= "Sajt-standard";
 $pgv_lang["mygedview_desc"]		= "Din MyGedView sida tillåter dig att ha bokmärken över dina favorit-personer, spåra kommande händelser och samarbeta med andra användare av PhpGedView.";
@@ -1353,7 +1357,6 @@ $pgv_lang["message_email1"]		= "Foljande meddelande har skickats till ditt PhpGe
 $pgv_lang["message_email2"]		= "Du skickade följande meddelande till ett PhpGedView användarkonto:";
 $pgv_lang["message_email3"]		= "Du skickade följande meddelande till en PhpgedView administratör:";
 $pgv_lang["viewing_url"]		= "Detta meddelande sändes medan följande url visades:";
-$pgv_lang["messaging2_help"]	= "När du skickar detta meddelande så kommer du att få en kopia via e-post till den e-postadress som du har angett.";
 $pgv_lang["random_picture"]		= "Slumpvist vald bild";
 $pgv_lang["message_instructions"]	= "<b>Observera:</b> Privat information om levande personer kommer endast ges till släktingar och nära vänner. Du kommer att ombedas att verifiera ditt släktskap innan du kommer att erhålla någon information. Ibland är även information om döda personer privat. Om detta är fallet så beror det på att det inte finns tillräckligt med information för att avgöra om personen är död eller fortfarande lever och vi har antagligen inte mer information om denna person.<br /><br />Före du ställer några frågor så kontrollera att det är rätt person genom att kontrollera datum, orter och nära släktingar. Om du skickar ändringar av den genealogiska datan så inkludera källan var du fått uppgifterna ifrån.";
 $pgv_lang["sending_to"]			= "Detta meddelande kommer att sändas till #TO_USER#";
@@ -1378,10 +1381,10 @@ $pgv_lang["todays_events_block"]	= "På denna dagen";
 $pgv_lang["todays_events_descr"]	= "Blocket «På denna dagen» visar en lista på händelser som hänt denna dag. Du kan konfigurera detaljnivån som ska visas.";
 $pgv_lang["todo_block"] = "Uppgifter att utföra";
 $pgv_lang["todo_descr"] = "Blocket «Uppgifter att utföra» visar alla utestående _TODO-fakta i databasen.";
-$pgv_lang["todo_show_other"]     = "Visa andra användares uppgifter";
+$pgv_lang["todo_show_other"] 	= "Visa andra användares uppgifter";
 $pgv_lang["todo_show_unassigned"]= "Visa uppgifter som inte har tilldelats";
-$pgv_lang["todo_show_future"]    = "Visa framtida uppgifter";
-$pgv_lang["todo_nothing"]        = "Det finns inga uppgifter att utföra uppgifter";
+$pgv_lang["todo_show_future"]	= "Visa framtida uppgifter";
+$pgv_lang["todo_nothing"]		= "Det finns inga uppgifter att utföra uppgifter";
 $pgv_lang["yahrzeit_block"]			= "Yahrzeiten";
 $pgv_lang["yahrzeit_descr"]			= "Blocket «Yahrzeiten» visar årsdagar av dödsdatum, som infaller i en nära framtid. Du kan konfigurera perioden som visas och administratören kan konfigurera hur lång in i framtiden man ska kolla efter dödsdagar.";
 $pgv_lang["logged_in_users_block"]	= "Inloggad anvädar";
@@ -1410,7 +1413,7 @@ $pgv_lang["login_descr"]		= "Blocket «Inloggning» skriver ut användarnamn och
 $pgv_lang["theme_select_block"] = "Tema väljaren";
 $pgv_lang["theme_select_descr"] = "Blocket «Tema väljaren» visar tema-väljaren även om temaväljaren är avstängd.";
 $pgv_lang["block_top10_title"]  = "Vanligaste efternamnen";
-$pgv_lang["block_top10"]        = "Vanligaste efternamnen";
+$pgv_lang["block_top10"]		= "Vanligaste efternamnen";
 $pgv_lang["block_top10_descr"]  = "Blocket «Vanligaste efternamnen» visar en tabell över de vanligaste efternamnen i databasen";
 $pgv_lang["block_cookiepolicy"]			= "Cookiepolicy";
 $pgv_lang["block_cookiepolicy_title"]	= "Cookiepolicy";
@@ -1454,7 +1457,7 @@ $pgv_lang["move_down"]			= "Flytta ner";
 $pgv_lang["move_right"]			= "Flytta åt höger";
 $pgv_lang["move_left"]			= "Flytta åt vänster";
 $pgv_lang["broadcast_all"]		= "Skicka till alla användare";
-$pgv_lang["hit_count"]    		= "Träffar:";
+$pgv_lang["hit_count"]			= "Träffar:";
 $pgv_lang["phpgedview_message"]	= "PhpGedView meddelande";
 $pgv_lang["common_surnames"]	= "De vanligaste efternamnen";
 $pgv_lang["default_news_title"]		= "Välkommen till din släkt";
@@ -1483,9 +1486,9 @@ $pgv_lang["enter_report_values"]= "Fyll i rapportvärden";
 $pgv_lang["selected_report"]	= "Vald rapport";
 $pgv_lang["select_report"]		= "Välj rapport";
 $pgv_lang["download_report"]	= "Ladda ner rapport";
-$pgv_lang["reports"]            = "Rapporter";
-$pgv_lang["pdf_reports"]        = "PDF Rapporter";
-$pgv_lang["html_reports"]       = "HTML-Rapporter";
+$pgv_lang["reports"]			= "Rapporter";
+$pgv_lang["pdf_reports"]		= "PDF Rapporter";
+$pgv_lang["html_reports"]   	= "HTML-Rapporter";
 
 //-- Ahnentafel report
 $pgv_lang["ahnentafel_report"]	= "Antavlerapport";
@@ -1524,11 +1527,11 @@ $pgv_lang["descendancy_pronoun_m"]	= "Hon ";
 $pgv_lang["descendancy_pronoun_f"]	= "Han ";
 
 $pgv_lang["family_group_report"]  = "Familjegruppsrapporter";
-$pgv_lang["page"]               = "Sida";
-$pgv_lang["of"]                 = "av";
-$pgv_lang["enter_famid"]        = "Skriv in familje-ID";
-$pgv_lang["show_sources"]       = "Visa källor?";
-$pgv_lang["show_notes"]         = "Visa anteckningar?";
+$pgv_lang["page"]   			= "Sida";
+$pgv_lang["of"] 				= "av";
+$pgv_lang["enter_famid"]		= "Skriv in familje-ID";
+$pgv_lang["show_sources"]   	= "Visa källor?";
+$pgv_lang["show_notes"] 		= "Visa anteckningar?";
 $pgv_lang["show_abbr_notes"] 		= "Visa förkortade anteckningar?";
 $pgv_lang["show_photos"]		= "Visa foton?";
 $pgv_lang["relatives_report_ext"]	= "Utökad släktrapport";
@@ -1557,7 +1560,7 @@ $pgv_lang["burialplace"]			= "Begravningsplats innehåller";
 $pgv_lang["fact_sources_report"]	= "Faktakällor";
 $pgv_lang["missing_facts_report"]	= "Saknade fakta hos släktingar";
 $pgv_lang["sources_to_events"]		= "Källor till evenemang";
-                                                                  
+
 $pgv_lang["cleanup"]			= "Städa up";
 
 //-- CONFIGURE (extra) messages for programs patriarch and statistics
@@ -1569,32 +1572,32 @@ $pgv_lang["decade_marriage"]		= "Äktenskapets decennium";
 $pgv_lang["avg_age"]				= "Genomsnittlig ålder";
 
 //-- Merge Records
-$pgv_lang["merge_same"]         = "Posterna är inte av samma typ. Kan inte slå ihop poster som inte är samma typ.";
-$pgv_lang["merge_step1"]        = "Slå ihop steg 1 av 3";
-$pgv_lang["merge_step2"]        = "Slå ihop steg 2 av 3";
-$pgv_lang["merge_step3"]        = "Slå ihop steg 3 av 3";
+$pgv_lang["merge_same"] 		= "Posterna är inte av samma typ. Kan inte slå ihop poster som inte är samma typ.";
+$pgv_lang["merge_step1"]		= "Slå ihop steg 1 av 3";
+$pgv_lang["merge_step2"]		= "Slå ihop steg 2 av 3";
+$pgv_lang["merge_step3"]		= "Slå ihop steg 3 av 3";
 $pgv_lang["select_gedcom_records"]	= "Välj 2 GEDCOM-poster att slå ihop. Posterna måste vara av samma typ.";
-$pgv_lang["merge_to"]           = "Slå ihop med ID:";
-$pgv_lang["merge_from"]         = "Slå ihop från ID:";
+$pgv_lang["merge_to"]   		= "Slå ihop med ID:";
+$pgv_lang["merge_from"] 		= "Slå ihop från ID:";
 $pgv_lang["merge_facts_same"]   = "Följande fakta är exakt samma i båda posterna och kommer att automatiskt slås ihop";
 $pgv_lang["no_matches_found"]   = "Inga matchande fakta hittades";
 $pgv_lang["unmatching_facts"]   = "Följande fakta matchade inte. Välj informationen du vill behålla.";
-$pgv_lang["record"]             = "Post";
-$pgv_lang["adding"]             = "Lägga till";
-$pgv_lang["updating_linked"]    = "Uppdatera länkade poster";
-$pgv_lang["merge_more"]         = "Slå ihop flera poster.";
-$pgv_lang["same_ids"]           = "Du skrev in samma ID. Du kan inte slå ihop samma poster.";
+$pgv_lang["record"] 			= "Post";
+$pgv_lang["adding"] 			= "Lägga till";
+$pgv_lang["updating_linked"]	= "Uppdatera länkade poster";
+$pgv_lang["merge_more"] 		= "Slå ihop flera poster.";
+$pgv_lang["same_ids"]   		= "Du skrev in samma ID. Du kan inte slå ihop samma poster.";
 $pgv_lang["updated_favorites"] 			= "favoriter uppdaterade.";
 
 //-- ANCESTRY FILE MESSAGES
 $pgv_lang["ancestry_chart"] 		= "Släktöversikt";
-$pgv_lang["gen_ancestry_chart"]     = "#PEDIGREE_GENERATIONS# generationer släktöversikten";
-$pgv_lang["chart_style"]        	= "Tavelstil";
+$pgv_lang["gen_ancestry_chart"] 	= "#PEDIGREE_GENERATIONS# generationer släktöversikten";
+$pgv_lang["chart_style"]			= "Tavelstil";
 $pgv_lang["chart_list"]				= "Lista";
 $pgv_lang["chart_booklet"]   		= "Häfte";
 $pgv_lang["show_cousins"]			= "Visa kusiner";
 // 1st generation
-$pgv_lang["sosa_2"] 			    = "Far";
+$pgv_lang["sosa_2"] 				= "Far";
 $pgv_lang["sosa_3"] 			  	= "Mor";
 // 2nd generation
 $pgv_lang["sosa_4"] 				= "Farfar";
@@ -1640,9 +1643,9 @@ $pgv_lang["sosa_maternal_female_n_generations"]	= "%3\$d x mormors mormor";
 //-- FAN CHART
 $pgv_lang["compact_chart"]		= "Kompakt släktöversikt";
 $pgv_lang["fan_chart"]			= "Solfjäder";
-$pgv_lang["gen_fan_chart"]    	= "#PEDIGREE_GENERATIONS# Generationer i Solfjädertavla";
+$pgv_lang["gen_fan_chart"]		= "#PEDIGREE_GENERATIONS# Generationer i Solfjädertavla";
 $pgv_lang["fan_width"]			= "Solfjäderns bredd";
-$pgv_lang["gd_library"]      	= "Felkonfigurering av PHP-servern: GD 2.x biblioteket behövs för att använda bildfunktioner.";
+$pgv_lang["gd_library"]  		= "Felkonfigurering av PHP-servern: GD 2.x biblioteket behövs för att använda bildfunktioner.";
 $pgv_lang["gd_freetype"]		= "Felkonfigurering av PHP-servern: Freetype biblioteket behövs för att använda TrueType-fonter.";
 $pgv_lang["gd_helplink"]		= "http://www.php.net/gd";
 $pgv_lang["fontfile_error"]   	= "Teckensnittsfilen finns inte på PHP servern";
@@ -1699,10 +1702,10 @@ $pgv_lang["witness"] 			= "Vittne";
 //-- statistics utility
 $pgv_lang["stat_create"]		= "Skapa ditt eget diagram";
 $pgv_lang["statutci"]			= "Kan inte skapa index";
-$pgv_lang["statnnames"]         = "antal namn";
-$pgv_lang["statnfam"]           = "antal familjer";
-$pgv_lang["statnmale"]          = "antal män";
-$pgv_lang["statnfemale"]        = "antal kvinnor";
+$pgv_lang["statnnames"] 		= "antal namn";
+$pgv_lang["statnfam"]   		= "antal familjer";
+$pgv_lang["statnmale"]  		= "antal män";
+$pgv_lang["statnfemale"]		= "antal kvinnor";
 $pgv_lang["with_sources"]		= "Med källor";
 $pgv_lang["without_sources"]	= "Utan källor";
 $pgv_lang["stat_sindi"]			= "Personer med källor";

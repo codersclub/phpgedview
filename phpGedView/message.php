@@ -3,7 +3,7 @@
  * Send a message to a user in the system
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2017  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2022  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -32,15 +32,20 @@ loadLangFile("pgv_confighelp");
 print_simple_header($pgv_lang["phpgedview_message"]);
 
 $subject   =isset($_REQUEST['subject'   ]) ? $_REQUEST['subject'   ] : '';
-$url       =isset($_REQUEST['url'       ]) ? $_REQUEST['url'       ] : '';
-$method    =isset($_REQUEST['method'    ]) ? $_REQUEST['method'    ] : 'messaging2';
-$body      =isset($_REQUEST['body'      ]) ? $_REQUEST['body'      ] : '';
+$url   	 =isset($_REQUEST['url'       ]) ? $_REQUEST['url'       ] : '';
+$method	 =isset($_REQUEST['method'    ]) ? $_REQUEST['method'    ] : 'messaging2';
+$body  	 =isset($_REQUEST['body'      ]) ? $_REQUEST['body'      ] : '';
 $from_email=isset($_REQUEST['from_email']) ? $_REQUEST['from_email'] : '';
 $from_name =isset($_REQUEST['from_name' ]) ? $_REQUEST['from_name' ] : '';
-$to        =isset($_REQUEST['to'        ]) ? $_REQUEST['to'        ] : '';
-$action    =isset($_REQUEST['action'    ]) ? $_REQUEST['action'    ] : 'compose';
-$from      =isset($_REQUEST['from'      ]) ? $_REQUEST['from'      ] : '';
-$time      =isset($_REQUEST['time'      ]) ? $_REQUEST['time'      ] : '';
+$to		 =isset($_REQUEST['to'        ]) ? $_REQUEST['to'        ] : '';
+$toUser	 =isset($_REQUEST['toUser'    ]) ? $_REQUEST['toUser'    ] : '';
+$action	 =isset($_REQUEST['action'    ]) ? $_REQUEST['action'    ] : 'compose';
+$from  	 =isset($_REQUEST['from'      ]) ? $_REQUEST['from'      ] : '';
+$time  	 =isset($_REQUEST['time'      ]) ? $_REQUEST['time'      ] : '';
+
+if (!empty($toUser) && empty($to)) {
+	$to = get_user_name($toUser);		// The JavaScript reply() function supplies the User ID, and we need the User Name here
+}
 
 if (empty($to)) {
 	print "<span class=\"error\">".$pgv_lang["no_to_user"]."</span><br />";
@@ -119,34 +124,41 @@ if (($action=="send")&&(isset($_SESSION["good_to_send"]))&&($_SESSION["good_to_s
 				}
 			}
 		}
+		$adminID = getAdminID();
 		$i = 0;
 		foreach($toarray as $to) {
-			$to_user_id=get_user_id($to);
+			$toUserID=get_user_id($to);
 			$message = array();
-			$message["to"]=$to;
-			$message["from"]=$from;
-			if (!empty($from_name)) {
-				$message["from_name"] = $from_name;
-				$message["from_email"] = $from_email;
+			$message["to"]=get_user_setting($toUserID, 'email');
+			$message["toFullName"]=getUserFullName($toUserID,false);
+			$message["toUserID"]=$toUserID;
+			if ($bulkMail) {
+				// Only the Admin can send bulk mails
+				$message["from"]=get_user_setting($adminID, 'email');
+				$message["fromFullName"]=$pgv_lang["siteadmin"];
+				$message["fromUserID"]=$adminID;
+			} else {
+				$message["from"]=get_user_setting(PGV_USER_ID, 'email');
+				$message["fromFullName"]=getUserFullName(PGV_USER_ID,false);
+				$message["fromUserID"]=PGV_USER_ID;
 			}
 			$message["subject"] = $subject;
 			$url = preg_replace("/".session_name()."=.*/", "", $url);
 			$message["body"] = $body;
 			$message["created"] = $time;
-			$message["method"] = get_user_setting($to_user_id, 'contactmethod');
+			$message["method"] = get_user_setting($toUserID, 'contactmethod');
 			$message["url"] = $url.'&amp;ged='.$GEDCOM;
-			if ($i>0) $message["no_from"] = true;
 			$message['bulkMail'] = $bulkMail;
 			if (addMessage($message)){
-				if ($to_user_id) {
-					print str_replace("#TO_USER#", "<b>".getUserFullName($to_user_id)."</b>", $pgv_lang["message_sent"]);
+				if ($toUserID) {
+					print str_replace("#TO_USER#", "<b>".getUserFullName($toUserID)."</b>", $pgv_lang["message_sent"]);
 					print "<br />";
 				} else {
-					AddToLog('Invalid TO user.'.$to.' Possible spam attack.');
+					AddToLog("Invalid TO user: {$message['to']}. Possible spam attack.");
 				}
 			} else {
 				echo '<span class="error">', $pgv_lang["message_failed"], '</span><br /';
-				AddToLog('Unable to send message.  TO:'.$to.' FROM:'.$from);
+				AddToLog("Unable to send message.  TO:{$message['to']} FROM:{$message['from']}");
 			}
 			$i++;
 		}
@@ -192,11 +204,11 @@ if ($action=="compose") {
 	print "<table>\n";
 	$toMethod = 'messaging2';
 	if ($to != 'all' && $to != 'never_logged' && $to != 'last_6mo') {
-		$to_user_id=get_user_id($to);
-		if ($to_user_id) {
-			$lang_temp = "lang_name_".get_user_setting($to_user_id, 'language');
-			$touserName = getUserFullName($to_user_id);
-			$toMethod = get_user_setting($to_user_id, 'contactmethod');
+		$toUserID=get_user_id($to);
+		if ($toUserID) {
+			$lang_temp = "lang_name_".get_user_setting($toUserID, 'language');
+			$touserName = getUserFullName($toUserID);
+			$toMethod = get_user_setting($toUserID, 'contactmethod');
 
 			print "<tr><td></td><td>".str_replace("#TO_USER#", "<b>".$touserName."</b>", $pgv_lang["sending_to"])."<br />";
 			print str_replace("#USERLANG#", "<b>".$pgv_lang[$lang_temp]."</b>", $pgv_lang["preferred_lang"])."</td></tr>\n";
@@ -222,7 +234,6 @@ if ($action=="compose") {
 	print "<tr><td></td><td><input type=\"submit\" value=\"".$pgv_lang["send"]."\" /></td></tr>\n";
 	print "</table>\n";
 	print "</form>\n";
-	if ($toMethod=="messaging2") print $pgv_lang["messaging2_help"];
 }
 else if ($action=="delete") {
 	if (deleteMessage($id)) print $pgv_lang["message_deleted"];

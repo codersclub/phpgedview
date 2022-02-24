@@ -3,7 +3,7 @@
  * Installation and Configuration
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2008 to 2021  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2008 to 2022  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -97,6 +97,17 @@ $head .= "	function checkForm(frm) {\n";
 $head .= "		if (window.validate) return validate(frm);\n";
 $head .= "		return true;\n";
 $head .= "	}\n";
+$head .= "  function toggleVizPW(whichForm, whichField) {\n";
+$head .= "  	// This script should really be in the general script file, /js/phpgedview.js\n";
+$head .= "  	// but we don't want to load the whole works just for this one seldom-used script.\n";
+$head .= "  	var frm = document[whichForm];\n";
+$head .= "  	var field = frm[whichField];\n";
+$head .= "  	if (field.type === 'password') field.type = 'text';\n";
+$head .= "  	else field.type = 'password';\n";
+$head .= "  }\n";
+
+
+
 $head .= "	//-->\n";
 $head .= "</script>\n";
 
@@ -336,9 +347,9 @@ switch($step) {
 			break;
 		}
 		$username =safe_POST('username', PGV_REGEX_USERNAME);
-		$pass1    =safe_POST('pass1', PGV_REGEX_PASSWORD);
-		$pass2    =safe_POST('pass2', PGV_REGEX_PASSWORD);
-		$email    =safe_POST('emailadress', PGV_REGEX_EMAIL);
+		$pass1	 =safe_POST('pass1', PGV_REGEX_PASSWORD);
+		$pass2	 =safe_POST('pass2', PGV_REGEX_PASSWORD);
+		$email	 =safe_POST('emailadress', PGV_REGEX_EMAIL);
 		$firstname=safe_POST('firstname');
 		$lastname =safe_POST('lastname');
 		if ($username && $pass1 && $firstname && $lastname) {
@@ -705,7 +716,8 @@ function printDBForm() {
 	</tr>
 	<tr>
 		<td class="descriptionbox wrap width30"><?php print_help_link("DBPASS_help", "qm", "DBPASS"); print $pgv_lang["DBPASS"];?></td>
-		<td class="optionbox"><input type="password" name="NEW_DBPASS" value="<?php print $DBPASS;?>" tabindex="<?php $i++; print $i?>" onfocus="getHelp('DBPASS_help');" /></td>
+		<td class="optionbox"><input type="password" name="NEW_DBPASS" value="<?php print $DBPASS;?>" tabindex="<?php $i++; print $i?>" onfocus="getHelp('DBPASS_help');" />&nbsp;&nbsp;&nbsp;<input type="checkbox" onclick="toggleVizPW('configform', 'NEW_DBPASS')" /><?php echo $pgv_lang["show"]; ?>
+		</td>
 	</tr>
 	<tr>
 		<td class="descriptionbox wrap width30"><?php print_help_link("DBNAME_help", "qm", "DBNAME"); print $pgv_lang["DBNAME"];?></td>
@@ -733,7 +745,7 @@ function printDBForm() {
 function printConfigForm(){
 	global $TEXT_DIRECTION, $PGV_DXHTMLTAB_COLORS, $PGV_STORE_MESSAGES, $USE_REGISTRATION_MODULE, $REQUIRE_ADMIN_AUTH_REGISTRATION;
 	global $ALLOW_CHANGE_GEDCOM, $PGV_SIMPLE_MAIL, $ALLOW_USER_THEMES, $LOGFILE_CREATE, $REMINDER_FREQ, $SERVER_URL;
-	global $PGV_SMTP_ACTIVE, $PGV_SMTP_DEBUG; 
+	global $PGV_SMTP_ACTIVE, $PGV_SMTP_DEBUG;
 	global $PGV_SMTP_HOST, $PGV_SMTP_HELO, $PGV_SMTP_PORT, $PGV_SMTP_AUTH, $PGV_SMTP_AUTH_USER, $PGV_SMTP_AUTH_PASS, $PGV_SMTP_SSL, $PGV_SMTP_FROM_NAME;
 	global $LOGIN_URL, $PGV_SESSION_SAVE_PATH, $PGV_SESSION_TIME, $PGV_MEMORY_LIMIT, $MAX_VIEWS;
 	global $MAX_VIEW_TIME, $INDEX_DIRECTORY;
@@ -779,7 +791,7 @@ function printConfigForm(){
 	if (isset($_SESSION['install_config']['PGV_CLUSTRMAPS_SITE'])) $PGV_CLUSTRMAPS_SITE = $_SESSION['install_config']['PGV_CLUSTRMAPS_SITE'];
 	if (isset($_SESSION['install_config']['PGV_CLUSTRMAPS_SERVER'])) $PGV_CLUSTRMAPS_SERVER = $_SESSION['install_config']['PGV_CLUSTRMAPS_SERVER'];
 	if (empty($PGV_CLUSTRMAPS_SITE)) $PGV_CLUSTRMAPS_SITE = $SERVER_URL;
-	
+
 	$oldmemorylimit = @ini_get('memory_limit');
 	if ($oldmemorylimit > $PGV_MEMORY_LIMIT) $PGV_MEMORY_LIMIT = $oldmemorylimit;
 
@@ -966,7 +978,7 @@ function printConfigForm(){
 			</tr>
 			<tr>
 				<td class="descriptionbox wrap width30"><?php print_help_link("PGV_SMTP_AUTH_PASS_help", "qm", "PGV_SMTP_AUTH_PASS"); print $pgv_lang["PGV_SMTP_AUTH_PASS"];?></td>
-				<td class="optionbox"><input type="password" name="NEW_PGV_SMTP_AUTH_PASS" value="<?php print $PGV_SMTP_AUTH_PASS;?>" tabindex="<?php $i++; print $i?>" onfocus="getHelp('PGV_SMTP_AUTH_PASS_help');" /></td>
+				<td class="optionbox"><input type="password" name="NEW_PGV_SMTP_AUTH_PASS" value="<?php print $PGV_SMTP_AUTH_PASS;?>" tabindex="<?php $i++; print $i?>" onfocus="getHelp('PGV_SMTP_AUTH_PASS_help');" />&nbsp;&nbsp;&nbsp;<input type="checkbox" onclick="toggleVizPW('configform', 'NEW_PGV_SMTP_AUTH_PASS')" /><?php echo $pgv_lang["show"]; ?></td>
 			</tr>
 			<tr>
 				<td class="descriptionbox wrap width30"><?php print_help_link("PGV_SMTP_SSL_help", "qm", "PGV_SMTP_SSL"); print $pgv_lang["PGV_SMTP_SSL"];?></td>
@@ -1179,7 +1191,7 @@ function printAdminUserForm() {
 				<tr><td class="descriptionbox"><?php print $pgv_lang["lastname"];?></td>
 				<td class="optionbox"><input type="text" name="lastname" /></td></tr>
 				<tr><td class="descriptionbox"><?php print $pgv_lang["password"];?></td>
-				<td class="optionbox"><input type="password" name="pass1" /></td></tr>
+				<td class="optionbox"><input type="password" name="pass1" />&nbsp;&nbsp;&nbsp;<input type="checkbox" onclick="toggleVizPW('configform', 'pass1');toggleVizPW('configform', 'pass2')" /><?php echo $pgv_lang["show"]; ?></td></tr>
 				<tr><td class="descriptionbox"><?php print $pgv_lang["confirm"];?></td>
 				<td class="optionbox"><input type="password" name="pass2" /></td></tr>
 				<tr><td class="descriptionbox"><?php print $pgv_lang["emailadress"];?></td>

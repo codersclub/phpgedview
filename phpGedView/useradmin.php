@@ -3,7 +3,7 @@
  * Administrative User Interface.
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2021  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2022  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -28,7 +28,7 @@ define('PGV_SCRIPT_NAME', 'useradmin.php');
 require './config.php';
 require_once PGV_ROOT.'includes/functions/functions_edit.php';
 
-loadLangFile('pgv_confighelp');
+loadLangFile('pgv_admin, pgv_confighelp');
 
 // Only admin users can access this page
 if (!PGV_USER_IS_ADMIN) {
@@ -52,42 +52,43 @@ foreach (get_theme_names() as $themename=>$themedir) {
 $ALL_EDIT_OPTIONS=array('none', 'access', 'edit', 'accept', 'admin');
 
 // Extract form actions (GET overrides POST if both set)
-$action                  =safe_POST('action',  $ALL_ACTIONS);
-$usrlang                 =safe_POST('usrlang', array_keys($pgv_language));
-$username                =safe_POST('username', PGV_REGEX_USERNAME);
-$filter                  =safe_POST('filter'   );
-$sort                    =safe_POST('sort'     );
-$ged                     =safe_POST('ged'      );
-
-$action                  =safe_GET('action',   $ALL_ACTIONS,              $action);
-$usrlang                 =safe_GET('usrlang',  array_keys($pgv_language), $usrlang);
-$username                =safe_GET('username', PGV_REGEX_USERNAME,        $username);
-$filter                  =safe_GET('filter',   PGV_REGEX_NOSCRIPT,        $filter);
-$sort                    =safe_GET('sort',     PGV_REGEX_NOSCRIPT,        $sort);
-$ged                     =safe_GET('ged',      PGV_REGEX_NOSCRIPT,        $ged);
-
+$action  				 =safe_POST('action',  $ALL_ACTIONS);
+$usrlang 				 =safe_POST('usrlang', array_keys($pgv_language));
+$username				 =safe_POST('username', PGV_REGEX_USERNAME);
+$filter  				 =safe_POST('filter'   );
+$sort					 =safe_POST('sort'     );
+$ged 					 =safe_POST('ged'      );
+		
+$action  				 =safe_GET('action',   $ALL_ACTIONS,              $action);
+$usrlang 				 =safe_GET('usrlang',  array_keys($pgv_language), $usrlang);
+$username				 =safe_GET('username', PGV_REGEX_USERNAME,        $username);
+$filter  				 =safe_GET('filter',   PGV_REGEX_NOSCRIPT,        $filter);
+$sort					 =safe_GET('sort',     PGV_REGEX_NOSCRIPT,        $sort);
+$ged 					 =safe_GET('ged',      PGV_REGEX_NOSCRIPT,        $ged);
+		
 // Extract form variables
-$oldusername             =safe_POST('oldusername',  PGV_REGEX_USERNAME);
-$firstname               =safe_POST('firstname'  );
-$lastname                =safe_POST('lastname'   );
-$pass1                   =safe_POST('pass1',        PGV_REGEX_PASSWORD);
-$pass2                   =safe_POST('pass2',        PGV_REGEX_PASSWORD);
-$emailaddress            =safe_POST('emailaddress', PGV_REGEX_EMAIL);
-$user_theme              =safe_POST('user_theme',               $ALL_THEME_DIRS);
-$user_language           =safe_POST('user_language',            array_keys($pgv_language), $LANGUAGE);
-$new_contact_method      =safe_POST('new_contact_method',       $ALL_CONTACT_METHODS, $CONTACT_METHOD);
-$new_default_tab         =safe_POST('new_default_tab',          array_keys($ALL_DEFAULT_TABS), $GEDCOM_DEFAULT_TAB);
-$new_comment             =safe_POST('new_comment',              PGV_REGEX_NOSCRIPT);
-$new_comment_exp         =safe_POST('new_comment_exp',          PGV_REGEX_NOSCRIPT);
+//$oldusername 			 =safe_POST('oldusername',  PGV_REGEX_USERNAME);
+$oldusername 			 =safe_POST('oldusername');
+$firstname   			 =safe_POST('firstname'  );
+$lastname				 =safe_POST('lastname'   );
+$pass1   				 =safe_POST('pass1',        PGV_REGEX_PASSWORD);
+$pass2   				 =safe_POST('pass2',        PGV_REGEX_PASSWORD);
+$emailaddress			 =safe_POST('emailaddress', PGV_REGEX_EMAIL);
+$user_theme  			 =safe_POST('user_theme',               $ALL_THEME_DIRS);
+$user_language   		 =safe_POST('user_language',            array_keys($pgv_language), $LANGUAGE);
+$new_contact_method  	 =safe_POST('new_contact_method',       $ALL_CONTACT_METHODS, $CONTACT_METHOD);
+$new_default_tab 		 =safe_POST('new_default_tab',          array_keys($ALL_DEFAULT_TABS), $GEDCOM_DEFAULT_TAB);
+$new_comment 			 =safe_POST('new_comment',              PGV_REGEX_NOSCRIPT);
+$new_comment_exp 		 =safe_POST('new_comment_exp',          PGV_REGEX_NOSCRIPT);
 $new_max_relation_path   =safe_POST_integer('new_max_relation_path', 1, $MAX_RELATION_PATH_LENGTH, 2);
-$new_sync_gedcom         =safe_POST('new_sync_gedcom',          'Y',   'N');
+$new_sync_gedcom 		 =safe_POST('new_sync_gedcom',          'Y',   'N');
 $new_relationship_privacy=safe_POST('new_relationship_privacy', 'Y',   'N');
-$new_auto_accept         =safe_POST('new_auto_accept',          'Y',   'N');
-$canadmin                =safe_POST('canadmin',                 'Y',   'N');
-$visibleonline           =safe_POST('visibleonline',            'Y',   'N');
-$editaccount             =safe_POST('editaccount',              'Y',   'N');
-$verified                =safe_POST('verified',                 'yes', 'no');
-$verified_by_admin       =safe_POST('verified_by_admin',        'yes', 'no');
+$new_auto_accept 		 =safe_POST('new_auto_accept',          'Y',   'N');
+$canadmin				 =safe_POST('canadmin',                 'Y',   'N');
+$visibleonline   		 =safe_POST('visibleonline',            'Y',   'N');
+$editaccount 			 =safe_POST('editaccount',              'Y',   'N');
+$verified				 =safe_POST('verified',                 'yes', 'no');
+$verified_by_admin   	 =safe_POST('verified_by_admin',        'yes', 'no');
 
 // Validate the Comment Expiry field
 if (!empty($new_comment_exp)) {
@@ -105,7 +106,7 @@ $all_gedcoms = get_all_gedcoms();
 //-- sorting by gedcom filename
 asort($all_gedcoms);
 
-// Delete a user
+// ---------------------- Delete a user ----------------------
 if ($action=='deleteuser') {
 	// don't delete ourselves
 	$user_id=get_user_id($username);
@@ -118,171 +119,246 @@ if ($action=='deleteuser') {
 	exit;
 }
 
-// Save new user info to the database
+// ---------------------- Save new user info to the database ----------------------
 if ($action=='createuser' || $action=='edituser2') {
-	if (($action=='createuser' || $action=='edituser2' && $username!=$oldusername) && get_user_id($username)) {
-		print_header($pgv_lang['user_admin']);
-		echo "<span class=\"error\">", $pgv_lang["duplicate_username"], "</span><br />";
+	// Perform some basic validity checks that can't be handled easily in the Javascipt checkform() function
+
+	$errorMessage = '';
+
+	$faultyName = str_replace(array('&', '<', '>'), array('&amp;', '&lt;', '&gt;'), $username);		// Sanitize the faulty name
+
+	if ($username!=$oldusername) {
+		$newID = get_user_id($username);
+		if (!empty($newID)) {
+			$errorMessage .=  str_replace('#username#', $faultyName, $pgv_lang['duplicate_username']).'<br />';
+		}
+	}
+
+	if (empty($username)) {
+		// The safe_POST() function above could have emptied the input username
+		$errorMessage .=  str_replace('#username#', $faultyName, $pgv_lang['invalid_username']).'<br />';
 	} else {
-		if ($pass1!=$pass2) {
-			print_header($pgv_lang['user_admin']);
-			echo "<span class=\"error\">", $pgv_lang["password_mismatch"], "</span><br />";
-		} else {
-			$alphabet=getAlphabet()."_-. ";
-			$i=1;
-			$pass=true;
-			while (strlen($username) > $i) {
-				if (stristr($alphabet, $username[$i])===false) {
-					$pass=false;
-					break;
-				}
-				$i++;
+
+##		// ASCII version
+##		$alphabet = getAlphabet()."_-.· ";		// Full-stop and Catalan middle dot are OK. Should a space be allowed here?
+##		$length = strlen($username);
+##		for ($i=0; $i<$length; $i++) {
+##			if (strpos($alphabet, $username[$i])===false) {
+##				// This character isn't in the alphabet
+##				$errorMessage .=  str_replace('#username#', $faultyName, $pgv_lang['invalid_username']).'<br />';
+##				break;
+##			}
+##		}
+
+		// UTF-8 version
+		$alphabet = getAlphabet('_-.· ', true);	// Full-stop and Catalan middle dot are OK. Should a space be allowed here?
+		$userName = UTF8_str_split($username);		// Make this an array of UTF-8 characters
+		$length = UTF8_strlen($userName);
+		for ($i=0; $i<$length; $i++) {
+			if (UTF8_strpos($alphabet, $userName[$i])===false) {
+				// This character isn't in the alphabet
+				$errorMessage .=  str_replace('#username#', $faultyName, $pgv_lang['invalid_username']).'<br />';
+				break;
 			}
-			if (!$pass) {
-				print_header($pgv_lang['user_admin']);
-				echo "<span class=\"error\">", $pgv_lang["invalid_username"], "</span><br />";
-			} else {
-				// New user
-				if ($action=='createuser') {
-					if ($user_id=create_user($username, crypt($pass1, PGV_SALT))) {
-						set_user_setting($user_id, 'reg_timestamp', date('U'));
-						set_user_setting($user_id, 'sessiontime', '0');
-						AddToLog("User ->{$username}<- created");
+		}
+
+		unset ($alphabet, $userName);		// Let's be nice, and release the large amount of memory used by these
+	}
+
+	if ($pass1!=$pass2) {
+		$errorMessage .= $pgv_lang['password_mismatch'].'<br />';		// shouldn't happen.  See Javascript checkform() function
+	}
+
+	if (!empty($emailaddress)) {
+		// Validate that email address
+		$validEmail = validEmail($emailaddress);
+		if ($validEmail !== true) {
+			if ($validEmail !== false) {
+				//	We have a message from the validation routine
+				$fullName = "{$firstname} {$lastname}";
+ 				if ($NAME_REVERSE) $fullName = "{$lastname} {$firstname}";
+ 				$emailAddr = "{$fullName} <{$emailaddress}>";
+ 				if ($PGV_SIMPLE_MAIL) $emailAddr = $emailaddress;
+ 				$printableEmailAddr = str_replace(array('&', '<', '>'), array('&amp;', '&lt;', '&gt;'), $emailAddr);
+				$errorMessage .= str_replace('#email#', $printableEmailAddr, $validEmail).'<br >';
+			} else $errorMessage .= $pgv_lang['email_invalid'].'<br />';
+		}
+	}
+
+
+	if (!empty($errorMessage)) {
+		// At least one basic validity check failed
+		print_header($pgv_lang['user_admin']);
+		echo "<span class='error'>{$errorMessage}</span>";
+		exit;
+	}
+
+	// The basic validity checks passed; we can proceed with the actual update
+
+	if ($action=='createuser') {
+		// New user
+		$newID = create_user($username, crypt($pass1, PGV_SALT));
+		if (empty($newID)) {
+			AddToLog("User ->{$username}<- was not created");
+			$errorMessage = str_replace('#username#', $faultyName, $pgv_lang['usercreate_fail']).'<br />';
+		} else {
+			set_user_setting($user_id, 'reg_timestamp', date('U'));
+			set_user_setting($user_id, 'sessiontime', '0');
+			AddToLog("User ->{$username}<- created");
+		}
+	}
+
+	$user_id=get_user_id($username);
+
+	if ($action=='edituser2' && !empty($pass1)) {
+		// Change password
+		set_user_password($user_id, crypt($pass1, PGV_SALT));
+		AddToLog("User ->{$oldusername}<- had password changed");
+	}
+
+	if ($action=='edituser2' && $username!=$oldusername) {
+		// Change username
+		rename_user($oldusername, $username);
+		AddToLog("User ->{$oldusername}<- renamed to ->{$username}<-");
+		$user_id = get_user_id($username);
+	}
+
+	// Create/change settings that can be updated in the user's gedcom record?
+	$email_changed=($emailaddress!=get_user_setting($user_id, 'email'));
+	$newly_verified=($verified_by_admin=='yes' && get_user_setting($user_id, 'verified_by_admin')!='yes');
+
+	// Create/change other settings
+	set_user_setting($user_id, 'firstname',            $firstname);
+	set_user_setting($user_id, 'lastname',             $lastname);
+	set_user_setting($user_id, 'email',                $emailaddress);
+	set_user_setting($user_id, 'theme',                $user_theme);
+	set_user_setting($user_id, 'language',             $user_language);
+	set_user_setting($user_id, 'contactmethod',        $new_contact_method);
+	set_user_setting($user_id, 'defaulttab',           $new_default_tab);
+	set_user_setting($user_id, 'comment',              $new_comment);
+	set_user_setting($user_id, 'comment_exp',          $new_comment_exp);
+	set_user_setting($user_id, 'max_relation_path',    $new_max_relation_path);
+	set_user_setting($user_id, 'sync_gedcom',          $new_sync_gedcom);
+	set_user_setting($user_id, 'relationship_privacy', $new_relationship_privacy);
+	set_user_setting($user_id, 'auto_accept',          $new_auto_accept);
+	set_user_setting($user_id, 'canadmin',             $canadmin);
+	set_user_setting($user_id, 'visibleonline',        $visibleonline);
+	set_user_setting($user_id, 'editaccount',          $editaccount);
+	set_user_setting($user_id, 'verified',             $verified);
+	set_user_setting($user_id, 'verified_by_admin',    $verified_by_admin);
+	foreach ($all_gedcoms as $ged_id=>$ged_name) {
+		set_user_gedcom_setting($user_id, $ged_id, 'gedcomid', safe_POST_xref('gedcomid'.$ged_id));
+		set_user_gedcom_setting($user_id, $ged_id, 'rootid',   safe_POST_xref('rootid'.$ged_id));
+		set_user_gedcom_setting($user_id, $ged_id, 'canedit',  safe_POST('canedit'.$ged_id,  $ALL_EDIT_OPTIONS));
+	}
+
+	if ($newly_verified && $action=='edituser2') {
+		// If we're verifying a new user, send them a message to let them know
+		if ($LANGUAGE != $user_language) {
+			loadLanguage($user_language);
+		}
+		$admin_id = getAdminID();
+		$message = array();
+		$message["to"] = get_user_setting($user_id, 'email');
+		$message["toFullName"] = getUserFullName($user_id, false);
+		$message["toUserID"] = $user_id;
+		$message["from"] = get_user_setting($admin_id, 'email');
+		$message["fromFullName"] = $pgv_lang['siteadmin'];
+		$message["fromUserID"] = $admin_id;
+		$message["subject"] = str_replace(array('#PGV_SERVER_NAME#','#PGV_SCRIPT_PATH#'), array(PGV_SERVER_NAME,PGV_SCRIPT_PATH), $pgv_lang["admin_OK_subject"]);
+		$message["body"] = str_replace(array('#PGV_SERVER_NAME#','#PGV_SCRIPT_PATH#'), array(PGV_SERVER_NAME,PGV_SCRIPT_PATH), $pgv_lang["admin_OK_message"]);
+		$message["created"] = "";
+		$message["method"] = get_user_setting($user_id, 'contactmethod');
+		$message['bulkMail'] = false;
+		addMessage($message);
+	}
+
+	if ($email_changed && $new_sync_gedcom=='Y') {
+		// update Gedcom record with new email address
+		foreach ($all_gedcoms as $ged_id=>$ged_name) {
+			$myid=get_user_gedcom_setting($username, $ged_id, 'gedcomid');
+			if ($myid) {
+				$OLDGEDCOM=$GEDCOM;
+				$GEDCOM=$ged_name;
+				$person=Person::getInstance($myid);
+				if ($person) {
+					if (preg_match('/\d _?EMAIL/', $person->getGedcomRecord())) {
+						replace_gedrec($myid, preg_replace("/(\n\d _?EMAIL).*/", '$1 '.$emailaddress, $person->getGedcomRecord()));
 					} else {
-						AddToLog("User ->{$username}<- was not created");
-						$user_id=get_user_id($username);
-					}
-				} else {
-					$user_id=get_user_id($username);
-				}
-				// Change password
-				if ($action=='edituser2' && !empty($pass1)) {
-					set_user_password($user_id, crypt($pass1, PGV_SALT));
-					AddToLog("User ->{$oldusername}<- had password changed");
-				}
-				// Change username
-				if ($action=='edituser2' && $username!=$oldusername) {
-					rename_user($oldusername, $username);
-					AddToLog("User ->{$oldusername}<- renamed to ->{$username}<-");
-					$user_id = get_user_id($username);
-				}
-				// Create/change settings that can be updated in the user's gedcom record?
-				$email_changed=($emailaddress!=get_user_setting($user_id, 'email'));
-				$newly_verified=($verified_by_admin=='yes' && get_user_setting($user_id, 'verified_by_admin')!='yes');
-				// Create/change other settings
-				set_user_setting($user_id, 'firstname',            $firstname);
-				set_user_setting($user_id, 'lastname',             $lastname);
-				set_user_setting($user_id, 'email',                $emailaddress);
-				set_user_setting($user_id, 'theme',                $user_theme);
-				set_user_setting($user_id, 'language',             $user_language);
-				set_user_setting($user_id, 'contactmethod',        $new_contact_method);
-				set_user_setting($user_id, 'defaulttab',           $new_default_tab);
-				set_user_setting($user_id, 'comment',              $new_comment);
-				set_user_setting($user_id, 'comment_exp',          $new_comment_exp);
-				set_user_setting($user_id, 'max_relation_path',    $new_max_relation_path);
-				set_user_setting($user_id, 'sync_gedcom',          $new_sync_gedcom);
-				set_user_setting($user_id, 'relationship_privacy', $new_relationship_privacy);
-				set_user_setting($user_id, 'auto_accept',          $new_auto_accept);
-				set_user_setting($user_id, 'canadmin',             $canadmin);
-				set_user_setting($user_id, 'visibleonline',        $visibleonline);
-				set_user_setting($user_id, 'editaccount',          $editaccount);
-				set_user_setting($user_id, 'verified',             $verified);
-				set_user_setting($user_id, 'verified_by_admin',    $verified_by_admin);
-				foreach ($all_gedcoms as $ged_id=>$ged_name) {
-					set_user_gedcom_setting($user_id, $ged_id, 'gedcomid', safe_POST_xref('gedcomid'.$ged_id));
-					set_user_gedcom_setting($user_id, $ged_id, 'rootid',   safe_POST_xref('rootid'.$ged_id));
-					set_user_gedcom_setting($user_id, $ged_id, 'canedit',  safe_POST('canedit'.$ged_id,  $ALL_EDIT_OPTIONS));
-				}
-				// If we're verifying a new user, send them a message to let them know
-				if ($newly_verified && $action=='edituser2') {
-					if ($LANGUAGE != $user_language) {
-						loadLanguage($user_language);
-					}
-					$serverURL = rtrim($SERVER_URL, '/');
-					$message=array();
-					$message["to"]=$username;
-					$headers="From: ".$PHPGEDVIEW_EMAIL;
-					$message["from"]=PGV_USER_NAME;
-//					$message["subject"]=str_replace("#SERVER_NAME#", $serverURL, $pgv_lang["admin_OK_subject"]);
-//					$message["body"]=str_replace("#SERVER_NAME#", $serverURL, $pgv_lang["admin_OK_message"]);
-					$message["subject"]=str_replace(array('#PGV_SERVER_NAME#','#PGV_SCRIPT_PATH#'), array(PGV_SERVER_NAME,PGV_SCRIPT_PATH), $pgv_lang["admin_OK_subject"]);
-					$message["body"]=str_replace(array('#PGV_SERVER_NAME#','#PGV_SCRIPT_PATH#'), array(PGV_SERVER_NAME,PGV_SCRIPT_PATH), $pgv_lang["admin_OK_message"]);
-					$message["created"]="";
-					$message["method"]="messaging2";
-					$message['bulkMail'] = false;
-					addMessage($message);
-					// and send a copy to the admin
-/*					$message=array();
-					$message["to"]=PGV_USER_NAME;
-					$headers="From: ".$PHPGEDVIEW_EMAIL;
-					$message["from"]=$username; // fake the from address - so the admin can "reply" to it.
-//					$message["subject"]=str_replace("#SERVER_NAME#", $serverURL, $pgv_lang["admin_OK_subject"]);
-//					$message["body"]=str_replace("#SERVER_NAME#", $serverURL, $pgv_lang["admin_OK_message"]);
-					$message["subject"]=str_replace(array('#PGV_SERVER_NAME#','#PGV_SCRIPT_PATH#'), array(PGV_SERVER_NAME,PGV_SCRIPT_PATH), $pgv_lang["admin_OK_subject"]);
-					$message["body"]=str_replace(array('#PGV_SERVER_NAME#','#PGV_SCRIPT_PATH#'), array(PGV_SERVER_NAME,PGV_SCRIPT_PATH), $pgv_lang["admin_OK_message"]);
-					$message["created"]="";
-					$message["method"]="messaging2";
-					$message['bulkMail'] = false;
-					addMessage($message); */
-				}
-				//-- update Gedcom record with new email address
-				if ($email_changed && $new_sync_gedcom=='Y') {
-					foreach ($all_gedcoms as $ged_id=>$ged_name) {
-						$myid=get_user_gedcom_setting($username, $ged_id, 'gedcomid');
-						if ($myid) {
-							$OLDGEDCOM=$GEDCOM;
-							$GEDCOM=$ged_name;
-							$person=Person::getInstance($myid);
-							if ($person) {
-								if (preg_match('/\d _?EMAIL/', $person->getGedcomRecord())) {
-									replace_gedrec($myid, preg_replace("/(\n\d _?EMAIL).*/", '$1 '.$emailaddress, $person->getGedcomRecord()));
-								} else {
-									replace_gedrec($myid, $person->getGedcomRecord()."\n1 EMAIL ".$emailaddress);
-								}
-							}
-							$GEDCOM=$OLDGEDCOM;
-						}
+						replace_gedrec($myid, $person->getGedcomRecord()."\n1 EMAIL ".$emailaddress);
 					}
 				}
-				// Reload the form cleanly, to allow the user to verify their changes
-				header("Location: ".encode_url("useradmin.php?action=edituser&username={$username}&ged={$ged}", false));
-				exit;
+				$GEDCOM=$OLDGEDCOM;
 			}
 		}
 	}
-} else {
-	print_header($pgv_lang['user_admin']);
 
-	if ($ENABLE_AUTOCOMPLETE) require PGV_ROOT.'js/autocomplete.js.htm';
+	// Reload the form cleanly, to allow the user to verify their changes
+	header("Location: ".encode_url("useradmin.php?action=edituser&username={$username}&ged={$ged}", false));
+	exit;
 }
 
-// Print the form to edit a user
+print_header($pgv_lang['user_admin']);
+
+if ($ENABLE_AUTOCOMPLETE) require PGV_ROOT.'js/autocomplete.js.htm';
+
+// ---------------------- Print the form to edit a user ----------------------
 if ($action=="edituser") {
 	$user_id=get_user_id($username);
 	init_calendar_popup();
 	?>
 	<script language="JavaScript" type="text/javascript">
 	<!--
+	function toggleVizPW(whichForm, whichField) {
+		// This script should really be in the general script file, /js/phpgedview.js
+		// but we don't want to load the whole works just for this one seldom-used script.
+		var frm = document[whichForm];
+		var field = frm[whichField];
+		if (field.type === "password") field.type = "text";
+		else field.type = "password";
+	}
+
 	function checkform(frm) {
 		if (frm.username.value=="") {
-			alert("<?php echo $pgv_lang["enter_username"]; ?>");
+			alert("<?php echo $pgv_lang['enter_username']; ?>");
 			frm.username.focus();
 			return false;
 		}
+		/*  the password 1 value checks should only be done when the User Name changed too
+			if (frm.pass1.value=="") {
+				alert("<?php echo $pgv_lang['enter_password']; ?>");
+				frm.pass1.value = "";
+				frm.pass2.value = "";
+				frm.pass1.focus();
+				return false;
+			}
+			if (frm.pass1.value.length < 6) {
+				alert("<?php echo $pgv_lang['passwordlength']; ?>");
+				frm.pass1.value = "";
+				frm.pass2.value = "";
+				frm.pass1.focus();
+				return false;
+			}
+		*/
+		if (frm.form_pass1.value != frm.form_pass2.value) {
+			alert("<?php echo $pgv_lang['password_mismatch']; ?>");
+			frm.pass1.value = "";
+			frm.pass2.value = "";
+			frm.form_pass1.focus();
+			return false;
+		}
 		if (frm.firstname.value=="") {
-			alert("<?php echo $pgv_lang["enter_fullname"]; ?>");
+			alert("<?php echo $pgv_lang['enter_fullname']; ?>");
 			frm.firstname.focus();
 			return false;
 		}
-		if ((frm.pass1.value!="")&&(frm.pass1.value.length < 6)) {
-			alert("<?php echo $pgv_lang["passwordlength"]; ?>");
-			frm.pass1.value = "";
-			frm.pass2.value = "";
-			frm.pass1.focus();
+		if (frm.lastname.value=="") {
+			alert("<?php echo $pgv_lang['enter_fullname']; ?>");
+			frm.lastname.focus();
 			return false;
 		}
-		if ((frm.emailaddress.value!="")&&(frm.emailaddress.value.indexOf("@")==-1)) {
-			alert("<?php echo $pgv_lang["enter_email"]; ?>");
+		if ((frm.emailaddress.value!="") && (frm.emailaddress.value.indexOf("@")==-1)) {
+			alert("<?php echo $pgv_lang['enter_email']; ?>");
 			frm.emailaddress.focus();
 			return false;
 		}
@@ -300,7 +376,7 @@ if ($action=="edituser") {
 	<input type="hidden" name="sort" value="<?php echo $sort; ?>" />
 	<input type="hidden" name="usrlang" value="<?php echo $usrlang; ?>" />
 	<input type="hidden" name="oldusername" value="<?php echo $username; ?>" />
-	<?php $tab=0; ?>
+	<?php $tab = 1; ?>
 	<table class="center list_table width80 <?php echo $TEXT_DIRECTION; ?>">
 	<tr><td colspan="2" class="facts_label"><?php
 	echo "<h2>", $pgv_lang["update_user"], "</h2>";
@@ -308,28 +384,28 @@ if ($action=="edituser") {
 	</td>
 	</tr>
 	<tr><td class="topbottombar" colspan="2">
-	<input type="submit" tabindex="<?php echo ++$tab; ?>" value="<?php echo $pgv_lang["save"]; ?>" />
-	<input type="button" tabindex="<?php echo ++$tab; ?>" value="<?php echo $pgv_lang["back"]; ?>" onclick="window.location='<?php echo encode_url("useradmin.php?action=listusers&sort={$sort}&filter={$filter}&usrlang={$usrlang}"); ?>';"/>
+	<input type="submit" tabindex="<?php echo $tab++; ?>" value="<?php echo $pgv_lang["save"]; ?>" />
+	<input type="button" tabindex="<?php echo $tab++; ?>" value="<?php echo $pgv_lang["back"]; ?>" onclick="window.location='<?php echo encode_url("useradmin.php?action=listusers&sort={$sort}&filter={$filter}&usrlang={$usrlang}"); ?>';"/>
 	</td></tr>
 	<tr>
 	<td class="descriptionbox width20 wrap"><?php print_help_link("useradmin_username_help", "qm", "username"); echo $pgv_lang["username"]; ?></td>
-	<td class="optionbox wrap"><input type="text" name="username" tabindex="<?php echo ++$tab; ?>" value="<?php echo $username; ?>" /></td>
-	</tr>
-	<tr>
-	<td class="descriptionbox wrap"><?php print_help_link("useradmin_firstname_help", "qm", "firstname"); echo $pgv_lang["firstname"]; ?></td>
-	<td class="optionbox wrap"><input type="text" name="firstname" tabindex="<?php echo ++$tab; ?>" value="<?php echo PrintReady(get_user_setting($user_id, 'firstname')); ?>" size="50" /></td>
-	</tr>
-	<tr>
-	<td class="descriptionbox wrap"><?php print_help_link("useradmin_lastname_help", "qm", "lastname");echo $pgv_lang["lastname"]; ?></td>
-	<td class="optionbox wrap"><input type="text" name="lastname" tabindex="<?php echo ++$tab; ?>" value="<?php echo PrintReady(get_user_setting($user_id, 'lastname')); ?>" size="50" /></td>
+	<td class="optionbox wrap"><input type="text" name="username" tabindex="<?php echo $tab++; ?>" value="<?php echo $username; ?>" /></td>
 	</tr>
 	<tr>
 	<td class="descriptionbox wrap"><?php print_help_link("useradmin_password_help", "qm", "password"); echo $pgv_lang["password"]; ?></td>
-	<td class="optionbox wrap"><input type="password" name="pass1" tabindex="<?php echo ++$tab; ?>" /><br /><?php echo $pgv_lang["leave_blank"]; ?></td>
+	<td class="optionbox wrap"><input type="password" name="pass1" tabindex="<?php echo $tab++; ?>" />&nbsp;&nbsp;&nbsp;<input type="checkbox" onclick="toggleVizPW('editform', 'pass1'); toggleVizPW('editform', 'pass2')" /><?php echo $pgv_lang["show"]; ?><br /><?php echo $pgv_lang["leave_blank"]; ?></td>
 	</tr>
 	<tr>
 	<td class="descriptionbox wrap"><?php print_help_link("useradmin_conf_password_help", "qm", "confirm"); echo $pgv_lang["confirm"]; ?></td>
-	<td class="optionbox wrap"><input type="password" name="pass2" tabindex="<?php echo ++$tab; ?>" /></td>
+	<td class="optionbox wrap"><input type="password" name="pass2" tabindex="<?php echo $tab++; ?>" /></td>
+	</tr>
+	<tr>
+	<td class="descriptionbox wrap"><?php print_help_link("useradmin_firstname_help", "qm", "firstname"); echo $pgv_lang["firstname"]; ?></td>
+	<td class="optionbox wrap"><input type="text" name="firstname" tabindex="<?php echo $tab++; ?>" value="<?php echo PrintReady(get_user_setting($user_id, 'firstname')); ?>" size="50" /></td>
+	</tr>
+	<tr>
+	<td class="descriptionbox wrap"><?php print_help_link("useradmin_lastname_help", "qm", "lastname");echo $pgv_lang["lastname"]; ?></td>
+	<td class="optionbox wrap"><input type="text" name="lastname" tabindex="<?php echo $tab++; ?>" value="<?php echo PrintReady(get_user_setting($user_id, 'lastname')); ?>" size="50" /></td>
 	</tr>
 	<tr>
 	<td class="descriptionbox wrap"><?php print_help_link("useradmin_gedcomid_help", "qm", "gedcomid"); echo $pgv_lang["gedcomid"]; ?></td>
@@ -341,7 +417,7 @@ if ($action=="edituser") {
 		?>
 		<tr valign="top">
 		<td><?php echo $ged_name; ?>:&nbsp;&nbsp;</td>
-		<td><input type="text" name="<?php echo $varname; ?>" id="<?php echo $varname; ?>" tabindex="<?php echo ++$tab; ?>" value="<?php
+		<td><input type="text" name="<?php echo $varname; ?>" id="<?php echo $varname; ?>" tabindex="<?php echo $tab++; ?>" value="<?php
 		$pid=get_user_gedcom_setting($user_id, $ged_id, 'gedcomid');
 		echo $pid, "\" />";
 		print_findindi_link($varname, "", false, false, $ged_name);
@@ -363,7 +439,7 @@ if ($action=="edituser") {
 		?>
 		<tr valign="top">
 		<td><?php echo $ged_name; ?>:&nbsp;&nbsp;</td>
-		<td> <input type="text" name="<?php echo $varname; ?>" id="<?php echo $varname; ?>" tabindex="<?php echo ++$tab; ?>" value="<?php
+		<td> <input type="text" name="<?php echo $varname; ?>" id="<?php echo $varname; ?>" tabindex="<?php echo $tab++; ?>" value="<?php
 		$pid=get_user_gedcom_setting($user_id, $ged_id, 'rootid');
 		echo $pid, "\" />";
 		print_findindi_link($varname, "", false, false, $ged_name);
@@ -380,7 +456,7 @@ if ($action=="edituser") {
 	</tr>
 	<tr>
 	<td class="descriptionbox wrap"><?php print_help_link("useradmin_sync_gedcom_help", "qm", "sync_gedcom"); echo $pgv_lang["sync_gedcom"]; ?></td>
-	<td class="optionbox wrap"><input type="checkbox" name="new_sync_gedcom" tabindex="<?php echo ++$tab; ?>" value="Y" <?php if (get_user_setting($user_id, 'sync_gedcom')=="Y") echo "checked=\"checked\""; ?> /></td>
+	<td class="optionbox wrap"><input type="checkbox" name="new_sync_gedcom" tabindex="<?php echo $tab++; ?>" value="Y" <?php if (get_user_setting($user_id, 'sync_gedcom')=="Y") echo "checked=\"checked\""; ?> /></td>
 	</tr>
 	<tr>
 	<td class="descriptionbox wrap"><?php print_help_link("useradmin_can_admin_help", "qm", "can_admin"); echo $pgv_lang["can_admin"]; ?></td>
@@ -393,7 +469,7 @@ if ($action=="edituser") {
 		<?php
 	} else {
 		?>
-		<td class="optionbox wrap"><input type="checkbox" name="canadmin" tabindex="<?php echo ++$tab; ?>" value="Y" <?php if (get_user_setting($user_id, 'canadmin')=='Y') echo "checked=\"checked\""; ?> /></td>
+		<td class="optionbox wrap"><input type="checkbox" name="canadmin" tabindex="<?php echo $tab++; ?>" value="Y" <?php if (get_user_setting($user_id, 'canadmin')=='Y') echo "checked=\"checked\""; ?> /></td>
 		<?php
 	}
 	?>
@@ -429,26 +505,26 @@ if ($action=="edituser") {
 	</td>
 	</tr>
 	<tr><td class="descriptionbox wrap"><?php print_help_link("useradmin_auto_accept_help", "qm", "user_auto_accept"); echo $pgv_lang["user_auto_accept"]; ?></td>
-	<td class="optionbox wrap"><input type="checkbox" name="new_auto_accept" tabindex="<?php echo ++$tab; ?>" value="Y" <?php if (get_user_setting($user_id, 'auto_accept')=='Y') echo "checked=\"checked\""; ?> /></td></tr>
+	<td class="optionbox wrap"><input type="checkbox" name="new_auto_accept" tabindex="<?php echo $tab++; ?>" value="Y" <?php if (get_user_setting($user_id, 'auto_accept')=='Y') echo "checked=\"checked\""; ?> /></td></tr>
 	<tr><td class="descriptionbox wrap"><?php print_help_link("useradmin_relation_priv_help", "qm", "user_relationship_priv"); echo $pgv_lang["user_relationship_priv"]; ?></td>
-	<td class="optionbox wrap"><input type="checkbox" name="new_relationship_privacy" tabindex="<?php echo ++$tab; ?>" value="Y" <?php if (get_user_setting($user_id, 'relationship_privacy')=="Y") echo "checked=\"checked\""; ?> /></td></tr>
+	<td class="optionbox wrap"><input type="checkbox" name="new_relationship_privacy" tabindex="<?php echo $tab++; ?>" value="Y" <?php if (get_user_setting($user_id, 'relationship_privacy')=="Y") echo "checked=\"checked\""; ?> /></td></tr>
 	<tr><td class="descriptionbox wrap"><?php print_help_link("useradmin_path_length_help", "qm", "user_path_length"); echo $pgv_lang["user_path_length"]; ?></td>
-	<td class="optionbox wrap"><input type="text" name="new_max_relation_path" tabindex="<?php echo ++$tab; ?>" value="<?php echo get_user_setting($user_id, 'max_relation_path'); ?>" size="5" /></td></tr>
-	<tr><td class="descriptionbox wrap"><?php print_help_link("useradmin_email_help", "qm", "emailadress"); echo $pgv_lang["emailadress"]; ?></td><td class="optionbox wrap"><input type="text" name="emailaddress" tabindex="<?php echo ++$tab; ?>" dir="ltr" value="<?php echo get_user_setting($user_id, 'email'); ?>" size="50" /></td></tr>
-	<tr><td class="descriptionbox wrap"><?php print_help_link("useradmin_verified_help", "qm", "verified"); echo $pgv_lang["verified"]; ?></td><td class="optionbox wrap"><input type="checkbox" name="verified" tabindex="<?php echo ++$tab; ?>" value="yes" <?php if (get_user_setting($user_id, 'verified')=="yes") echo "checked=\"checked\""; ?> /></td></tr>
-	<tr><td class="descriptionbox wrap"><?php print_help_link("useradmin_verbyadmin_help", "qm", "verified_by_admin"); echo $pgv_lang["verified_by_admin"]; ?></td><td class="optionbox wrap"><input type="checkbox" name="verified_by_admin" tabindex="<?php echo ++$tab; ?>" value="yes" <?php if (get_user_setting($user_id, 'verified_by_admin')=="yes") echo "checked=\"checked\""; ?> /></td></tr>
+	<td class="optionbox wrap"><input type="text" name="new_max_relation_path" tabindex="<?php echo $tab++; ?>" value="<?php echo get_user_setting($user_id, 'max_relation_path'); ?>" size="5" /></td></tr>
+	<tr><td class="descriptionbox wrap"><?php print_help_link("useradmin_email_help", "qm", "emailadress"); echo $pgv_lang["emailadress"]; ?></td><td class="optionbox wrap"><input type="text" name="emailaddress" tabindex="<?php echo $tab++; ?>" dir="ltr" value="<?php echo get_user_setting($user_id, 'email'); ?>" size="50" /></td></tr>
+	<tr><td class="descriptionbox wrap"><?php print_help_link("useradmin_verified_help", "qm", "verified"); echo $pgv_lang["verified"]; ?></td><td class="optionbox wrap"><input type="checkbox" name="verified" tabindex="<?php echo $tab++; ?>" value="yes" <?php if (get_user_setting($user_id, 'verified')=="yes") echo "checked=\"checked\""; ?> /></td></tr>
+	<tr><td class="descriptionbox wrap"><?php print_help_link("useradmin_verbyadmin_help", "qm", "verified_by_admin"); echo $pgv_lang["verified_by_admin"]; ?></td><td class="optionbox wrap"><input type="checkbox" name="verified_by_admin" tabindex="<?php echo $tab++; ?>" value="yes" <?php if (get_user_setting($user_id, 'verified_by_admin')=="yes") echo "checked=\"checked\""; ?> /></td></tr>
 	<tr><td class="descriptionbox wrap"><?php print_help_link("edituser_change_lang_help", "qm", "change_lang");echo $pgv_lang["change_lang"]; ?></td><td class="optionbox wrap" valign="top"><?php
 	if ($ENABLE_MULTI_LANGUAGE) {
-		$tab++;
-		echo "<select name=\"user_language\" tabindex=\"", $tab, "\" dir=\"ltr\" style=\"{ font-size: 9pt; }\">";
+		echo "<select name='user_language' tabindex='{$tab}' dir='ltr' style='font-size: 9pt;'>";
 		foreach ($pgv_language as $key => $value) {
-			if ($language_settings[$key]["pgv_lang_use"]) {
-				echo "\n\t\t\t<option value=\"$key\"";
-				if ($key == get_user_setting($user_id, 'language')) echo " selected=\"selected\"";
-				echo ">" . $pgv_lang[$key] . "</option>";
+			if ($language_settings[$key]['pgv_lang_use']) {
+				echo "\n\t\t\t<option value='{$key}'";
+				if ($key == get_user_setting($user_id, 'language')) echo " selected='selected'";
+				echo ">{$language_settings[$key]['pgv_lang_self']}</option>";
 			}
 		}
 		echo "</select>\n\t\t";
+		$tab++;		// the construct {$tab++} is not allowed -- see above
 	}
 	else echo "&nbsp;";
 	?></td></tr>
@@ -456,7 +532,7 @@ if ($action=="edituser") {
 	if ($ALLOW_USER_THEMES) {
 		?>
 		<tr><td class="descriptionbox wrap" valign="top" align="left"><?php print_help_link("useradmin_user_theme_help", "qm", "user_theme"); echo $pgv_lang["user_theme"]; ?></td><td class="optionbox wrap" valign="top">
-		<select name="user_theme" tabindex="<?php echo ++$tab; ?>" dir="ltr">
+		<select name="user_theme" tabindex="<?php echo $tab++; ?>" dir="ltr">
 		<option value=""><?php echo $pgv_lang["site_default"]; ?></option>
 		<?php
 		foreach(get_theme_names() as $themename=>$themedir) {
@@ -472,7 +548,7 @@ if ($action=="edituser") {
 	?>
 	<tr>
 	<td class="descriptionbox wrap"><?php print_help_link("useradmin_user_contact_help", "qm", "user_contact_method"); echo $pgv_lang["user_contact_method"]; ?></td>
-	<td class="optionbox wrap"><select name="new_contact_method" tabindex="<?php echo ++$tab; ?>">
+	<td class="optionbox wrap"><select name="new_contact_method" tabindex="<?php echo $tab++; ?>">
 		<?php
 		$currentMethod = get_user_setting($user_id, 'contactmethod');
 		foreach ($ALL_CONTACT_METHODS as $key=>$value) {
@@ -488,15 +564,15 @@ if ($action=="edituser") {
 	</tr>
 	<tr>
 	<td class="descriptionbox wrap"><?php print_help_link("useradmin_visibleonline_help", "qm", "visibleonline"); echo $pgv_lang["visibleonline"]; ?></td>
-	<td class="optionbox wrap"><input type="checkbox" name="visibleonline" tabindex="<?php echo ++$tab; ?>" value="Y" <?php if (get_user_setting($user_id, 'visibleonline')=='Y') echo "checked=\"checked\""; ?> /></td>
+	<td class="optionbox wrap"><input type="checkbox" name="visibleonline" tabindex="<?php echo $tab++; ?>" value="Y" <?php if (get_user_setting($user_id, 'visibleonline')=='Y') echo "checked=\"checked\""; ?> /></td>
 	</tr>
 	<tr>
 	<td class="descriptionbox wrap"><?php print_help_link("useradmin_editaccount_help", "qm", "editaccount"); echo $pgv_lang["editaccount"]; ?></td>
-	<td class="optionbox wrap"><input type="checkbox" name="editaccount" tabindex="<?php echo ++$tab; ?>" value="Y" <?php if (get_user_setting($user_id, 'editaccount')=='Y') echo "checked=\"checked\""; ?> /></td>
+	<td class="optionbox wrap"><input type="checkbox" name="editaccount" tabindex="<?php echo $tab++; ?>" value="Y" <?php if (get_user_setting($user_id, 'editaccount')=='Y') echo "checked=\"checked\""; ?> /></td>
 	</tr>
 	<tr>
 	<td class="descriptionbox wrap"><?php print_help_link("useradmin_user_default_tab_help", "qm", "user_default_tab"); echo $pgv_lang["user_default_tab"]; ?></td>
-	<td class="optionbox wrap"><select name="new_default_tab" tabindex="<?php echo ++$tab; ?>">
+	<td class="optionbox wrap"><select name="new_default_tab" tabindex="<?php echo $tab++; ?>">
 	<?php
 	foreach ($ALL_DEFAULT_TABS as $key=>$value) {
 		echo '<option value="', $key, '"';
@@ -511,15 +587,15 @@ if ($action=="edituser") {
 	</tr>
 	<tr>
 	<td class="descriptionbox wrap"><?php print_help_link("useradmin_comment_help", "qm", "comment"); echo $pgv_lang["comment"]; ?></td>
-	<td class="optionbox wrap"><textarea cols="50" rows="5" name="new_comment" tabindex="<?php echo ++$tab; ?>" ><?php $tmp = PrintReady(get_user_setting($user_id, 'comment')); echo $tmp; ?></textarea></td>
+	<td class="optionbox wrap"><textarea cols="50" rows="5" name="new_comment" tabindex="<?php echo $tab++; ?>" ><?php $tmp = PrintReady(get_user_setting($user_id, 'comment')); echo $tmp; ?></textarea></td>
 	</tr>
 	<tr>
 	<td class="descriptionbox wrap"><?php print_help_link("useradmin_comment_exp_help", "qm", "comment_exp"); echo $pgv_lang["comment_exp"]; ?></td>
-	<td class="optionbox wrap"><input type="text" name="new_comment_exp" id="new_comment_exp" tabindex="<?php echo ++$tab; ?>" value="<?php echo get_user_setting($user_id, 'comment_exp'); ?>" />&nbsp;&nbsp;<?php print_calendar_popup("new_comment_exp"); ?></td>
+	<td class="optionbox wrap"><input type="text" name="new_comment_exp" id="new_comment_exp" tabindex="<?php echo $tab++; ?>" value="<?php echo get_user_setting($user_id, 'comment_exp'); ?>" />&nbsp;&nbsp;<?php print_calendar_popup("new_comment_exp"); ?></td>
 	</tr>
 	<tr><td class="topbottombar" colspan="2">
-	<input type="submit" tabindex="<?php echo ++$tab; ?>" value="<?php echo $pgv_lang["save"]; ?>" />
-	<input type="button" tabindex="<?php echo ++$tab; ?>" value="<?php echo $pgv_lang["back"]; ?>" onclick="window.location='<?php echo encode_url("useradmin.php?action=listusers&sort={$sort}&filter={$filter}&usrlang={$usrlang}"); ?>';"/>
+	<input type="submit" tabindex="<?php echo $tab++; ?>" value="<?php echo $pgv_lang["save"]; ?>" />
+	<input type="button" tabindex="<?php echo $tab++; ?>" value="<?php echo $pgv_lang["back"]; ?>" onclick="window.location='<?php echo encode_url("useradmin.php?action=listusers&sort={$sort}&filter={$filter}&usrlang={$usrlang}"); ?>';"/>
 	</td></tr>
 	</table>
 	</form>
@@ -528,7 +604,7 @@ if ($action=="edituser") {
 	exit;
 }
 
-//-- echo out a list of the current users
+// ---------------------- list the current users ----------------------
 if ($action == "listusers") {
 	$showprivs=($view=="preview"); // expand gedcom privs by default in print-preview
 
@@ -601,9 +677,9 @@ if ($action == "listusers") {
 	</td></tr>
 	<tr>
 	<?php if ($view!="preview") { ?>
-	<td colspan="5" class="topbottombar rtl"><a href="useradmin.php?action=createform"><?php echo $pgv_lang["add_user"]; ?></a></td>
+	<td colspan="6" class="topbottombar"><a href="useradmin.php?action=createform"><?php echo $pgv_lang["add_user"]; ?></a></td>
 	<?php } ?>
-	<td colspan="<?php if ($view == "preview") echo "8"; else echo "5"; ?>" class="topbottombar rtl"><a href="useradmin.php"><?php if ($view != "preview") echo $pgv_lang["back_useradmin"]; else echo "&nbsp;"; ?></a></td>
+	<td colspan="<?php if ($view == "preview") echo "8"; else echo "4"; ?>" class="topbottombar"><a href="useradmin.php"><?php if ($view != "preview") echo $pgv_lang["back_useradmin"]; else echo "&nbsp;"; ?></a></td>
 	</tr>
 	<tr>
 	<?php if ($view != "preview") {
@@ -726,9 +802,9 @@ if ($action == "listusers") {
 	?>
 	<tr>
 		<?php if ($view!="preview") { ?>
-		<td colspan="6" class="topbottombar rtl"><a href="useradmin.php?action=createform"><?php echo $pgv_lang["add_user"]; ?></a></td>
+		<td colspan="6" class="topbottombar"><a href="useradmin.php?action=createform"><?php echo $pgv_lang["add_user"]; ?></a></td>
 		<?php } ?>
-		<td colspan="<?php if ($view == "preview") echo "8"; else echo "5"; ?>" class="topbottombar rtl"><a href="useradmin.php"><?php  if ($view != "preview") echo $pgv_lang["back_useradmin"]; else echo "&nbsp;"; ?></a></td>
+		<td colspan="<?php if ($view == "preview") echo "8"; else echo "4"; ?>" class="topbottombar"><a href="useradmin.php"><?php  if ($view != "preview") echo $pgv_lang["back_useradmin"]; else echo "&nbsp;"; ?></a></td>
 	</tr>
 	</table>
 	<?php
@@ -736,43 +812,66 @@ if ($action == "listusers") {
 	exit;
 }
 
-// -- echo out the form to add a new user
+// ---------------------- produce the form to add a new user ----------------------
 // NOTE: WORKING
 if ($action == "createform") {
 	init_calendar_popup();
 	?>
 	<script language="JavaScript" type="text/javascript">
 	<!--
+		function toggleVizPW(whichForm, whichField) {
+			// This script should really be in the general script file, /js/phpgedview.js
+			// but we don't want to load the whole works just for this one seldom-used script.
+			var frm = document[whichForm];
+			var field = frm[whichField];
+			if (field.type === "password") field.type = "text";
+			else field.type = "password";
+		}
+
 		function checkform(frm) {
 			if (frm.username.value=="") {
-				alert("<?php echo $pgv_lang["enter_username"]; ?>");
+				alert("<?php echo $pgv_lang['enter_username']; ?>");
 				frm.username.focus();
 				return false;
 			}
-			if (frm.firstname.value=="") {
-				alert("<?php echo $pgv_lang["enter_fullname"]; ?>");
-				frm.firstname.focus();
-				return false;
-			}
 			if (frm.pass1.value=="") {
-				alert("<?php echo $pgv_lang["enter_password"]; ?>");
-				frm.pass1.focus();
-				return false;
-			}
-			if (frm.pass2.value=="") {
-				alert("<?php echo $pgv_lang["confirm_password"]; ?>");
-				frm.pass2.focus();
-				return false;
-			}
-			if (frm.pass1.value.length < 6) {
-				alert("<?php echo $pgv_lang["passwordlength"]; ?>");
+				alert("<?php echo $pgv_lang['enter_password']; ?>");
 				frm.pass1.value = "";
 				frm.pass2.value = "";
 				frm.pass1.focus();
 				return false;
 			}
+			if (frm.pass1.value.length < 6) {
+				alert("<?php echo $pgv_lang['passwordlength']; ?>");
+				frm.pass1.value = "";
+				frm.pass2.value = "";
+				frm.pass1.focus();
+				return false;
+			}
+			if (frm.pass2.value=="") {
+				alert("<?php echo $pgv_lang['confirm_password']; ?>");
+				frm.pass2.focus();
+				return false;
+			}
+			if (frm.pass1.value != frm.pass2.value) {
+				alert("<?php print $pgv_lang['password_mismatch']; ?>");
+				frm.pass1.value = "";
+				frm.pass2.value = "";
+				frm.pass1.value.focus();
+				return false;
+			}
+			if (frm.firstname.value=="") {
+				alert("<?php echo $pgv_lang['enter_fullname']; ?>");
+				frm.firstname.focus();
+				return false;
+			}
+			if (frm.lastname.value == "") {
+				alert("<?php print $pgv_lang['enter_fullname']; ?>");
+				frm.lastname.focus();
+				return false;
+			}
 			if ((frm.emailaddress.value!="")&&(frm.emailaddress.value.indexOf("@")==-1)) {
-				alert("<?php echo $pgv_lang["enter_email"]; ?>");
+				alert("<?php echo $pgv_lang['enter_email']; ?>");
 				frm.emailaddress.focus();
 				return false;
 			}
@@ -788,7 +887,7 @@ if ($action == "createform") {
 	<form name="newform" method="post" action="useradmin.php" onsubmit="return checkform(this);">
 	<input type="hidden" name="action" value="createuser" />
 	<!--table-->
-	<?php $tab = 0; ?>
+	<?php $tab = 1; ?>
 	<table class="center list_table width80 <?php echo $TEXT_DIRECTION; ?>">
 	<tr>
 		<td class="facts_label" colspan="2">
@@ -796,14 +895,14 @@ if ($action == "createform") {
 		</td>
 	</tr>
 	<tr><td class="topbottombar" colspan="2">
-	<input type="submit" tabindex="<?php echo ++$tab; ?>" value="<?php echo $pgv_lang["create_user"]; ?>" />
-	<input type="button" tabindex="<?php echo ++$tab; ?>" value="<?php echo $pgv_lang["back"]; ?>" onclick="window.location='useradmin.php';"/>
+	<input type="submit" tabindex="<?php echo $tab++; ?>" value="<?php echo $pgv_lang["create_user"]; ?>" />
+	<input type="button" tabindex="<?php echo $tab++; ?>" value="<?php echo $pgv_lang["back"]; ?>" onclick="window.location='useradmin.php';"/>
 	</td></tr>
-		<tr><td class="descriptionbox wrap width20"><?php print_help_link("useradmin_username_help", "qm", "username"); echo $pgv_lang["username"]; ?></td><td class="optionbox wrap"><input type="text" name="username" tabindex="<?php echo ++$tab; ?>" /></td></tr>
-		<tr><td class="descriptionbox wrap"><?php print_help_link("useradmin_firstname_help", "qm", "firstname"); echo $pgv_lang["firstname"]; ?></td><td class="optionbox wrap"><input type="text" name="firstname" tabindex="<?php echo ++$tab; ?>" size="50" /></td></tr>
-		<tr><td class="descriptionbox wrap"><?php print_help_link("useradmin_lastname_help", "qm", "lastname"); echo $pgv_lang["lastname"]; ?></td><td class="optionbox wrap"><input type="text" name="lastname" tabindex="<?php echo ++$tab; ?>" size="50" /></td></tr>
-		<tr><td class="descriptionbox wrap"><?php print_help_link("useradmin_password_help", "qm", "password"); echo $pgv_lang["password"]; ?></td><td class="optionbox wrap"><input type="password" name="pass1" tabindex="<?php echo ++$tab; ?>" /></td></tr>
-		<tr><td class="descriptionbox wrap"><?php print_help_link("useradmin_conf_password_help", "qm", "confirm"); echo $pgv_lang["confirm"]; ?></td><td class="optionbox wrap"><input type="password" name="pass2" tabindex="<?php echo ++$tab; ?>" /></td></tr>
+		<tr><td class="descriptionbox wrap width20"><?php print_help_link("useradmin_username_help", "qm", "username"); echo $pgv_lang["username"]; ?></td><td class="optionbox wrap"><input type="text" name="username" tabindex="<?php echo $tab++; ?>" /></td></tr>
+		<tr><td class="descriptionbox wrap"><?php print_help_link("useradmin_password_help", "qm", "password"); echo $pgv_lang["password"]; ?></td><td class="optionbox wrap"><input type="password" name="pass1" tabindex="<?php echo $tab++; ?>" />&nbsp;&nbsp;&nbsp;<input type="checkbox" onclick="toggleVizPW('newform', 'pass1'); toggleVizPW('newform', 'pass2')" /><?php echo $pgv_lang["show"]; ?></td></tr>
+		<tr><td class="descriptionbox wrap"><?php print_help_link("useradmin_conf_password_help", "qm", "confirm"); echo $pgv_lang["confirm"]; ?></td><td class="optionbox wrap"><input type="password" name="pass2" tabindex="<?php echo $tab++; ?>" /></td></tr>
+		<tr><td class="descriptionbox wrap"><?php print_help_link("useradmin_firstname_help", "qm", "firstname"); echo $pgv_lang["firstname"]; ?></td><td class="optionbox wrap"><input type="text" name="firstname" tabindex="<?php echo $tab++; ?>" size="50" /></td></tr>
+		<tr><td class="descriptionbox wrap"><?php print_help_link("useradmin_lastname_help", "qm", "lastname"); echo $pgv_lang["lastname"]; ?></td><td class="optionbox wrap"><input type="text" name="lastname" tabindex="<?php echo $tab++; ?>" size="50" /></td></tr>
 		<tr><td class="descriptionbox wrap"><?php print_help_link("useradmin_gedcomid_help", "qm", "gedcomid"); echo $pgv_lang["gedcomid"]; ?></td><td class="optionbox wrap">
 
 		<table class="<?php echo $TEXT_DIRECTION; ?>">
@@ -813,7 +912,7 @@ if ($action == "createform") {
 			?>
 			<tr>
 			<td><?php echo $ged_name; ?>:&nbsp;&nbsp;</td>
-			<td><input type="text" name="<?php echo $varname; ?>" id="<?php echo $varname; ?>" tabindex="<?php echo ++$tab; ?>" value="" />
+			<td><input type="text" name="<?php echo $varname; ?>" id="<?php echo $varname; ?>" tabindex="<?php echo $tab++; ?>" value="" />
 			<?php
 			print_findindi_link($varname, "", false, false, $ged_name);
 			echo "</td></tr>";
@@ -829,7 +928,7 @@ if ($action == "createform") {
 			?>
 			<tr>
 			<td><?php echo $ged_name; ?>:&nbsp;&nbsp;</td>
-			<td><input type="text" name="<?php echo $varname; ?>" id="<?php echo $varname; ?>" tabindex="<?php echo ++$tab; ?>" value="<?php
+			<td><input type="text" name="<?php echo $varname; ?>" id="<?php echo $varname; ?>" tabindex="<?php echo $tab++; ?>" value="<?php
 			echo "\" />\n";
 			print_findindi_link($varname, "", false, false, $ged_name);
 			echo "</td></tr>\n";
@@ -838,8 +937,8 @@ if ($action == "createform") {
 		?>
 		</td></tr>
 		<tr><td class="descriptionbox wrap"><?php print_help_link("useradmin_sync_gedcom_help", "qm", "sync_gedcom"); echo $pgv_lang["sync_gedcom"]; ?></td>
-		<td class="optionbox wrap"><input type="checkbox" name="new_sync_gedcom" tabindex="<?php echo ++$tab; ?>" value="Y" /></td></tr>
-		<tr><td class="descriptionbox wrap"><?php print_help_link("useradmin_can_admin_help", "qm", "can_admin"); echo $pgv_lang["can_admin"]; ?></td><td class="optionbox wrap"><input type="checkbox" name="canadmin" tabindex="<?php echo ++$tab; ?>" value="Y" /></td></tr>
+		<td class="optionbox wrap"><input type="checkbox" name="new_sync_gedcom" tabindex="<?php echo $tab++; ?>" value="Y" /></td></tr>
+		<tr><td class="descriptionbox wrap"><?php print_help_link("useradmin_can_admin_help", "qm", "can_admin"); echo $pgv_lang["can_admin"]; ?></td><td class="optionbox wrap"><input type="checkbox" name="canadmin" tabindex="<?php echo $tab++; ?>" value="Y" /></td></tr>
 		<tr><td class="descriptionbox wrap"><?php print_help_link("useradmin_can_edit_help", "qm", "can_edit");echo $pgv_lang["can_edit"]; ?></td><td class="optionbox wrap">
 		<table class="<?php echo $TEXT_DIRECTION; ?>">
 		<?php
@@ -864,36 +963,36 @@ if ($action == "createform") {
 		</table>
 		</td></tr>
 		<tr><td class="descriptionbox wrap"><?php print_help_link("useradmin_auto_accept_help", "qm", "user_auto_accept");echo $pgv_lang["user_auto_accept"]; ?></td>
-			<td class="optionbox wrap"><input type="checkbox" name="new_auto_accept" tabindex="<?php echo ++$tab; ?>" value="Y" /></td></tr>
+			<td class="optionbox wrap"><input type="checkbox" name="new_auto_accept" tabindex="<?php echo $tab++; ?>" value="Y" /></td></tr>
 		<tr><td class="descriptionbox wrap"><?php print_help_link("useradmin_relation_priv_help", "qm", "user_relationship_priv");echo $pgv_lang["user_relationship_priv"]; ?></td>
-			<td class="optionbox wrap"><input type="checkbox" name="new_relationship_privacy" tabindex="<?php echo ++$tab; ?>" value="Y" /></td></tr>
+			<td class="optionbox wrap"><input type="checkbox" name="new_relationship_privacy" tabindex="<?php echo $tab++; ?>" value="Y" /></td></tr>
 		<tr><td class="descriptionbox wrap"><?php print_help_link("useradmin_path_length_help", "qm", "user_path_length"); echo $pgv_lang["user_path_length"]; ?></td>
-			<td class="optionbox wrap"><input type="text" name="new_max_relation_path" tabindex="<?php echo ++$tab; ?>" value="0" size="5" /></td></tr>
-		<tr><td class="descriptionbox wrap"><?php print_help_link("useradmin_email_help", "qm", "emailadress"); echo $pgv_lang["emailadress"]; ?></td><td class="optionbox wrap"><input type="text" name="emailaddress" tabindex="<?php echo ++$tab; ?>" value="" size="50" /></td></tr>
-		<tr><td class="descriptionbox wrap"><?php print_help_link("useradmin_verified_help", "qm", "verified"); echo $pgv_lang["verified"]; ?></td><td class="optionbox wrap"><input type="checkbox" name="verified" tabindex="<?php echo ++$tab; ?>" value="yes" checked="checked" /></td></tr>
-		<tr><td class="descriptionbox wrap"><?php print_help_link("useradmin_verbyadmin_help", "qm", "verified_by_admin"); echo $pgv_lang["verified_by_admin"]; ?></td><td class="optionbox wrap"><input type="checkbox" name="verified_by_admin" tabindex="<?php echo ++$tab; ?>" value="yes" checked="checked" /></td></tr>
-		<tr><td class="descriptionbox wrap"><?php print_help_link("useradmin_change_lang_help", "qm", "change_lang");echo $pgv_lang["change_lang"]; ?></td><td class="optionbox wrap" valign="top"><?php
+			<td class="optionbox wrap"><input type="text" name="new_max_relation_path" tabindex="<?php echo $tab++; ?>" value="0" size="5" /></td></tr>
+		<tr><td class="descriptionbox wrap"><?php print_help_link("useradmin_email_help", "qm", "emailadress"); echo $pgv_lang["emailadress"]; ?></td><td class="optionbox wrap"><input type="text" name="emailaddress" tabindex="<?php echo $tab++; ?>" value="" size="50" /></td></tr>
+		<tr><td class="descriptionbox wrap"><?php print_help_link("useradmin_verified_help", "qm", "verified"); echo $pgv_lang["verified"]; ?></td><td class="optionbox wrap"><input type="checkbox" name="verified" tabindex="<?php echo $tab++; ?>" value="yes" checked="checked" /></td></tr>
+		<tr><td class="descriptionbox wrap"><?php print_help_link("useradmin_verbyadmin_help", "qm", "verified_by_admin"); echo $pgv_lang["verified_by_admin"]; ?></td><td class="optionbox wrap"><input type="checkbox" name="verified_by_admin" tabindex="<?php echo $tab++; ?>" value="yes" checked="checked" /></td></tr>
+		<tr><td class="descriptionbox wrap"><?php print_help_link("useradmin_change_lang_help", "qm", "change_lang");echo $pgv_lang["language"]; ?></td><td class="optionbox wrap" valign="top"><?php
 
 		$user_lang = get_user_setting(PGV_USER_ID, 'language');
 		if ($ENABLE_MULTI_LANGUAGE) {
-			$tab++;
-			echo "<select name=\"user_language\" tabindex=\"", $tab, "\" style=\"{ font-size: 9pt; }\">";
+			echo "<select name='user_language' tabindex='{$tab}' style='font-size: 9pt;'>";
 			foreach ($pgv_language as $key => $value) {
-				if ($language_settings[$key]["pgv_lang_use"]) {
-					echo "\n\t\t\t<option value=\"$key\"";
+				if ($language_settings[$key]['pgv_lang_use']) {
+					echo "\n\t\t\t<option value='{$key}'";
 					if ($key == $user_lang) {
-						echo " selected=\"selected\"";
+						echo " selected='selected'";
 					}
-					echo ">" . $pgv_lang[$key] . "</option>";
+					echo ">{$language_settings[$key]['pgv_lang_self']}</option>";
 				}
 			}
 			echo "</select>\n\t\t";
+			$tab++;		// the construct {$tab++} is not allowed -- see above
 		}
 		else echo "&nbsp;";
 		?></td></tr>
 		<?php if ($ALLOW_USER_THEMES) { ?>
 			<tr><td class="descriptionbox wrap" valign="top" align="left"><?php print_help_link("useradmin_user_theme_help", "qm", "user_theme"); echo $pgv_lang["user_theme"]; ?></td><td class="optionbox wrap" valign="top">
-			<select name="new_user_theme" tabindex="<?php echo ++$tab; ?>">
+			<select name="new_user_theme" tabindex="<?php echo $tab++; ?>">
 			<option value="" selected="selected"><?php echo $pgv_lang["site_default"]; ?></option>
 			<?php
 			foreach(get_theme_names() as $themename=>$themedir) {
@@ -906,7 +1005,7 @@ if ($action == "createform") {
 		<?php } ?>
 		<tr>
 			<td class="descriptionbox wrap"><?php print_help_link("useradmin_user_contact_help", "qm", "user_contact_method"); echo $pgv_lang["user_contact_method"]; ?></td>
-			<td class="optionbox wrap"><select name="new_contact_method" tabindex="<?php echo ++$tab; ?>">
+			<td class="optionbox wrap"><select name="new_contact_method" tabindex="<?php echo $tab++; ?>">
 			<?php if ($PGV_STORE_MESSAGES) { ?>
 				<option value="messaging"><?php echo $pgv_lang["messaging"]; ?></option>
 				<option value="messaging2" selected="selected"><?php echo $pgv_lang["messaging2"]; ?></option>
@@ -919,15 +1018,15 @@ if ($action == "createform") {
 		</tr>
 		<tr>
 			<td class="descriptionbox wrap"><?php print_help_link("useradmin_visibleonline_help", "qm", "visibleonline"); echo $pgv_lang["visibleonline"]; ?></td>
-			<td class="optionbox wrap"><input type="checkbox" name="visibleonline" tabindex="<?php echo ++$tab; ?>" value="Y" <?php echo "checked=\"checked\""; ?> /></td>
+			<td class="optionbox wrap"><input type="checkbox" name="visibleonline" tabindex="<?php echo $tab++; ?>" value="Y" <?php echo "checked=\"checked\""; ?> /></td>
 		</tr>
 		<tr>
 			<td class="descriptionbox wrap"><?php print_help_link("useradmin_editaccount_help", "qm", "editaccount"); echo $pgv_lang["editaccount"]; ?></td>
-			<td class="optionbox wrap"><input type="checkbox" name="editaccount" tabindex="<?php echo ++$tab; ?>" value="Y" <?php echo "checked=\"checked\""; ?> /></td>
+			<td class="optionbox wrap"><input type="checkbox" name="editaccount" tabindex="<?php echo $tab++; ?>" value="Y" <?php echo "checked=\"checked\""; ?> /></td>
 		</tr>
 		<tr>
 			<td class="descriptionbox wrap"><?php print_help_link("useradmin_user_default_tab_help", "qm", "user_default_tab"); echo $pgv_lang["user_default_tab"]; ?></td>
-			<td class="optionbox wrap"><select name="new_default_tab" tabindex="<?php echo ++$tab; ?>">
+			<td class="optionbox wrap"><select name="new_default_tab" tabindex="<?php echo $tab++; ?>">
 			<?php
 			foreach ($ALL_DEFAULT_TABS as $key=>$value) {
 				echo '<option value="', $key, '"';
@@ -943,16 +1042,16 @@ if ($action == "createform") {
 		<?php if (PGV_USER_IS_ADMIN) { ?>
 		<tr>
 			<td class="descriptionbox wrap"><?php print_help_link("useradmin_comment_help", "qm", "comment"); echo $pgv_lang["comment"]; ?></td>
-			<td class="optionbox wrap"><textarea cols="50" rows="5" name="new_comment" tabindex="<?php echo ++$tab; ?>" ></textarea></td>
+			<td class="optionbox wrap"><textarea cols="50" rows="5" name="new_comment" tabindex="<?php echo $tab++; ?>" ></textarea></td>
 		</tr>
 		<tr>
 			<td class="descriptionbox wrap"><?php print_help_link("useradmin_comment_exp_help", "qm", "comment_exp"); echo $pgv_lang["comment_exp"]; ?></td>
-			<td class="optionbox wrap"><input type="text" name="new_comment_exp" tabindex="<?php echo ++$tab; ?>" id="new_comment_exp" />&nbsp;&nbsp;<?php print_calendar_popup("new_comment_exp"); ?></td>
+			<td class="optionbox wrap"><input type="text" name="new_comment_exp" tabindex="<?php echo $tab++; ?>" id="new_comment_exp" />&nbsp;&nbsp;<?php print_calendar_popup("new_comment_exp"); ?></td>
 		</tr>
 		<?php } ?>
 	<tr><td class="topbottombar" colspan="2">
-	<input type="submit" tabindex="<?php echo ++$tab; ?>" value="<?php echo $pgv_lang["create_user"]; ?>" />
-	<input type="button" tabindex="<?php echo ++$tab; ?>" value="<?php echo $pgv_lang["back"]; ?>" onclick="window.location='useradmin.php';"/>
+	<input type="submit" tabindex="<?php echo $tab++; ?>" value="<?php echo $pgv_lang["create_user"]; ?>" />
+	<input type="button" tabindex="<?php echo $tab++; ?>" value="<?php echo $pgv_lang["back"]; ?>" onclick="window.location='useradmin.php';"/>
 	</td></tr></table>
 	</form>
 	<?php
@@ -960,7 +1059,7 @@ if ($action == "createform") {
 	exit;
 }
 
-// Cleanup users and user rights
+// ---------------------- Cleanup users and user rights ----------------------
 //NOTE: WORKING
 if ($action == "cleanup") {
 	?>
@@ -1113,7 +1212,7 @@ if ($action == "cleanup2") {
 	echo "<br />";
 }
 
-// Print main menu
+// ---------------------- Print main menu ----------------------
 // NOTE: WORKING
 ?>
 <table class="center list_table width40 <?php echo $TEXT_DIRECTION; ?>">
@@ -1126,12 +1225,12 @@ if ($action == "cleanup2") {
 		<td colspan="3" class="topbottombar"><?php echo $pgv_lang["select_an_option"]; ?></td>
 	</tr>
 	<tr>
-		<td class="optionbox"><a href="useradmin.php?action=listusers"><?php echo $pgv_lang["current_users"]; ?></a></td>
-		<td class="optionbox" colspan="2" ><a href="useradmin.php?action=createform"><?php echo $pgv_lang["add_user"]; ?></a></td>
+		<td class="optionbox" width="33%"><a href="useradmin.php?action=listusers"><?php echo $pgv_lang["current_users"]; ?></a></td>
+		<td class="optionbox" width="34%"><a href="useradmin.php?action=createform"><?php echo $pgv_lang["add_user"]; ?></a></td>
+		<td class="optionbox" width="33%"><a href="useradmin.php?action=cleanup"><?php echo $pgv_lang["cleanup_users"]; ?></a></td>
 	</tr>
 	<tr>
-		<td class="optionbox"><a href="useradmin.php?action=cleanup"><?php echo $pgv_lang["cleanup_users"]; ?></a></td>
-		<td class="optionbox" colspan="2" >
+		<td class="optionbox" colspan="3" >
 			<a href="javascript: <?php echo $pgv_lang["message_to_all"]; ?>" onclick="message('all', 'messaging2', '', ''); return false;"><?php echo $pgv_lang["message_to_all"]; ?></a><br />
 			<a href="javascript: <?php echo $pgv_lang["broadcast_never_logged_in"]; ?>" onclick="message('never_logged', 'messaging2', '', ''); return false;"><?php echo $pgv_lang["broadcast_never_logged_in"]; ?></a><br />
 			<a href="javascript: <?php echo $pgv_lang["broadcast_not_logged_6mo"]; ?>" onclick="message('last_6mo', 'messaging2', '', ''); return false;"><?php echo $pgv_lang["broadcast_not_logged_6mo"]; ?></a><br />

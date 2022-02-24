@@ -1,31 +1,31 @@
 <?php
 /**
-* Functions to query the database.
-*
-* This file implements the datastore functions necessary for PhpGedView
-* to use an SQL database as its datastore.
-*
-* phpGedView: Genealogy Viewer
-* Copyright (C) 2002 to 2022  PGV Development Team.  All rights reserved.
-*
-* This program is free software; you can redistribute it and/or modify
-* it under the terms of the GNU General Public License as published by
-* the Free Software Foundation; either version 2 of the License, or
-* (at your option) any later version.
-*
-* This program is distributed in the hope that it will be useful,
-* but WITHOUT ANY WARRANTY; without even the implied warranty of
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-* GNU General Public License for more details.
-*
-* You should have received a copy of the GNU General Public License
-* along with this program; if not, write to the Free Software
-* Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-*
-* @version $Id$
-* @package PhpGedView
-* @subpackage DB
-*/
+ * Functions to query the database.
+ *
+ * This file implements the datastore functions necessary for PhpGedView
+ * to use an SQL database as its datastore.
+ *
+ * phpGedView: Genealogy Viewer
+ * Copyright (C) 2002 to 2022  PGV Development Team.  All rights reserved.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ *
+ * @version $Id$
+ * @package PhpGedView
+ * @subpackage DB
+ */
 
 if (!defined('PGV_PHPGEDVIEW')) {
 	header('HTTP/1.0 403 Forbidden');
@@ -83,7 +83,7 @@ function get_last_xref($type, $ged_id=PGV_GED_ID) {
 //-- gets the next person in the gedcom
 function get_next_xref($pid, $ged_id=PGV_GED_ID) {
 	$type=gedcom_record_type($pid, $ged_id);
-	
+
 	$myindilist = get_sorted_xref_list($type, $ged_id);
 	$templist = array_keys($myindilist); // convert to numeric keys to be able to get prev or next element
 	$x = array_search($pid,$templist);
@@ -96,7 +96,7 @@ function get_next_xref($pid, $ged_id=PGV_GED_ID) {
 //-- gets the previous person in the gedcom
 function get_prev_xref($pid, $ged_id=PGV_GED_ID) {
 	$type=gedcom_record_type($pid, $ged_id);
-	
+
 	$myindilist = get_sorted_xref_list($type, $ged_id);
 	$templist = array_keys($myindilist); // convert to numeric keys to be able to get prev or next element
 	$x = array_search($pid,$templist);
@@ -1116,7 +1116,7 @@ function examineOrderBy($selectList, $orderList) {
 		if ($columnName != '') {				// Don't try to process empty column names
 			$columnNameLength = strpos($columnName.' ',' ');			// The first ' ' defines the length of this column name
 			$columnName = substr($columnName,0,$columnNameLength);		// Remove any possible ASC or DESC or other garbage
-			
+
 			$found = strpos($selectList, ' '.$columnName.' ');
 			if ($found===false) {
 				// This ORDER BY column name is not in the SELECT list
@@ -1125,7 +1125,7 @@ function examineOrderBy($selectList, $orderList) {
 			}
 		}
 	}
-	
+
 	return $result;
 }
 
@@ -1855,24 +1855,24 @@ function delete_gedcom($ged_id) {
 	$ged=get_gedcom_from_id($ged_id);
 
 	PGV_DB::prepare("DELETE FROM {$TBLPREFIX}blocks              WHERE b_username=?")->execute(array($ged   ));
-	PGV_DB::prepare("DELETE FROM {$TBLPREFIX}dates               WHERE d_file    =?")->execute(array($ged_id));
-	PGV_DB::prepare("DELETE FROM {$TBLPREFIX}families            WHERE f_file    =?")->execute(array($ged_id));
+	PGV_DB::prepare("DELETE FROM {$TBLPREFIX}dates               WHERE d_file	 =?")->execute(array($ged_id));
+	PGV_DB::prepare("DELETE FROM {$TBLPREFIX}families            WHERE f_file	 =?")->execute(array($ged_id));
 	PGV_DB::prepare("DELETE FROM {$TBLPREFIX}favorites           WHERE fv_file   =?")->execute(array($ged_id));
 	PGV_DB::prepare("DELETE FROM {$TBLPREFIX}gedcom              WHERE gedcom_id =?")->execute(array($ged_id));
 	PGV_DB::prepare("DELETE FROM {$TBLPREFIX}gedcom_setting      WHERE gedcom_id =?")->execute(array($ged_id));
-	PGV_DB::prepare("DELETE FROM {$TBLPREFIX}individuals         WHERE i_file    =?")->execute(array($ged_id));
-	PGV_DB::prepare("DELETE FROM {$TBLPREFIX}link                WHERE l_file    =?")->execute(array($ged_id));
+	PGV_DB::prepare("DELETE FROM {$TBLPREFIX}individuals         WHERE i_file	 =?")->execute(array($ged_id));
+	PGV_DB::prepare("DELETE FROM {$TBLPREFIX}link                WHERE l_file	 =?")->execute(array($ged_id));
 	PGV_DB::prepare("DELETE FROM {$TBLPREFIX}media               WHERE m_gedfile =?")->execute(array($ged_id));
 	PGV_DB::prepare("DELETE FROM {$TBLPREFIX}media_mapping       WHERE mm_gedfile=?")->execute(array($ged_id));
 	PGV_DB::prepare("DELETE FROM {$TBLPREFIX}module_privacy      WHERE mp_file   =?")->execute(array($ged_id));
 	PGV_DB::prepare("DELETE FROM {$TBLPREFIX}mutex               WHERE mx_name   =?")->execute(array($ged   ));
-	PGV_DB::prepare("DELETE FROM {$TBLPREFIX}name                WHERE n_file    =?")->execute(array($ged_id));
+	PGV_DB::prepare("DELETE FROM {$TBLPREFIX}name                WHERE n_file	 =?")->execute(array($ged_id));
 	PGV_DB::prepare("DELETE FROM {$TBLPREFIX}news                WHERE n_username=?")->execute(array($ged   ));
 	PGV_DB::prepare("DELETE FROM {$TBLPREFIX}nextid              WHERE ni_gedfile=?")->execute(array($ged_id));
-	PGV_DB::prepare("DELETE FROM {$TBLPREFIX}other               WHERE o_file    =?")->execute(array($ged_id));
+	PGV_DB::prepare("DELETE FROM {$TBLPREFIX}other               WHERE o_file	 =?")->execute(array($ged_id));
 	PGV_DB::prepare("DELETE FROM {$TBLPREFIX}placelinks          WHERE pl_file   =?")->execute(array($ged_id));
-	PGV_DB::prepare("DELETE FROM {$TBLPREFIX}places              WHERE p_file    =?")->execute(array($ged_id));
-	PGV_DB::prepare("DELETE FROM {$TBLPREFIX}sources             WHERE s_file    =?")->execute(array($ged_id));
+	PGV_DB::prepare("DELETE FROM {$TBLPREFIX}places              WHERE p_file	 =?")->execute(array($ged_id));
+	PGV_DB::prepare("DELETE FROM {$TBLPREFIX}sources             WHERE s_file	 =?")->execute(array($ged_id));
 	PGV_DB::prepare("DELETE FROM {$TBLPREFIX}user_gedcom_setting WHERE gedcom_id =?")->execute(array($ged_id));
 	PGV_DB::prepare("DELETE FROM {$TBLPREFIX}hit_counter         WHERE gedcom_id =?")->execute(array($ged_id));
 
@@ -2497,7 +2497,7 @@ function create_user($username, $password) {
 		PGV_DB::prepare("INSERT INTO {$TBLPREFIX}user (user_name, password) VALUES (?, ?)")
 			->execute(array($username, $password));
 	} catch (PDOException $ex) {
-		// User already exists?
+		return false;  // User already exists?
 	}
 	return
 		PGV_DB::prepare("SELECT user_id FROM {$TBLPREFIX}user WHERE user_name=?")
@@ -2510,8 +2510,8 @@ function rename_user($old_username, $new_username) {
 	PGV_DB::prepare("UPDATE {$TBLPREFIX}user      SET user_name=?   WHERE user_name  =?")->execute(array($new_username, $old_username));
 	PGV_DB::prepare("UPDATE {$TBLPREFIX}blocks    SET b_username =? WHERE b_username =?")->execute(array($new_username, $old_username));
 	PGV_DB::prepare("UPDATE {$TBLPREFIX}favorites SET fv_username=? WHERE fv_username=?")->execute(array($new_username, $old_username));
-	PGV_DB::prepare("UPDATE {$TBLPREFIX}messages  SET m_from     =? WHERE m_from     =?")->execute(array($new_username, $old_username));
-	PGV_DB::prepare("UPDATE {$TBLPREFIX}messages  SET m_to       =? WHERE m_to       =?")->execute(array($new_username, $old_username));
+	PGV_DB::prepare("UPDATE {$TBLPREFIX}messages  SET m_from 	 =? WHERE m_from 	 =?")->execute(array($new_username, $old_username));
+	PGV_DB::prepare("UPDATE {$TBLPREFIX}messages  SET m_to   	 =? WHERE m_to   	 =?")->execute(array($new_username, $old_username));
 	PGV_DB::prepare("UPDATE {$TBLPREFIX}news      SET n_username =? WHERE n_username =?")->execute(array($new_username, $old_username));
 }
 
@@ -2520,13 +2520,13 @@ function delete_user($user_id) {
 
 	$user_name=get_user_name($user_id);
 
-	PGV_DB::prepare("DELETE FROM {$TBLPREFIX}user      				WHERE user_id =?"        )->execute(array($user_id));
+	PGV_DB::prepare("DELETE FROM {$TBLPREFIX}user  					WHERE user_id =?"        )->execute(array($user_id));
 	PGV_DB::prepare("DELETE FROM {$TBLPREFIX}user_gedcom_setting 	WHERE user_id =?"        )->execute(array($user_id));
-	PGV_DB::prepare("DELETE FROM {$TBLPREFIX}user_setting        	WHERE user_id =?"        )->execute(array($user_id));
-	PGV_DB::prepare("DELETE FROM {$TBLPREFIX}blocks    				WHERE b_username =?"     )->execute(array($user_name));
+	PGV_DB::prepare("DELETE FROM {$TBLPREFIX}user_setting			WHERE user_id =?"        )->execute(array($user_id));
+	PGV_DB::prepare("DELETE FROM {$TBLPREFIX}blocks					WHERE b_username =?"     )->execute(array($user_name));
 	PGV_DB::prepare("DELETE FROM {$TBLPREFIX}favorites 				WHERE fv_username=?"     )->execute(array($user_name));
 	PGV_DB::prepare("DELETE FROM {$TBLPREFIX}messages  				WHERE m_from=? OR m_to=?")->execute(array($user_name, $user_name));
-	PGV_DB::prepare("DELETE FROM {$TBLPREFIX}news      				WHERE n_username =?"     )->execute(array($user_name));
+	PGV_DB::prepare("DELETE FROM {$TBLPREFIX}news  					WHERE n_username =?"     )->execute(array($user_name));
 }
 
 function get_all_users($order='ASC', $key1='lastname', $key2='firstname') {
@@ -2702,6 +2702,21 @@ function set_user_setting($user_id, $setting_name, $setting_value) {
 
 function admin_user_exists() {
 	return get_admin_user_count()>0;
+}
+
+/**
+ * Get the Site Admin's user ID
+ *		When there are several Site Admins, we will pick the one with the lowest ID,
+ *		which should be the one that was defined when the site was set up.
+ */
+function getAdminID() {
+	global $TBLPREFIX;
+
+	$adminUserID = PGV_DB::prepare("SELECT user_id FROM {$TBLPREFIX}user_setting WHERE setting_name=? AND setting_value=? ORDER BY user_id")
+	->execute(array('canadmin', 'Y'))
+	->fetchOne();
+
+	return $adminUserID;
 }
 
 ////////////////////////////////////////////////////////////////////////////////

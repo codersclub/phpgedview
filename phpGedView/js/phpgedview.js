@@ -2,7 +2,7 @@
  * Common javascript functions
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2019	PGV Development Team.	All rights reserved.
+ * Copyright (C) 2002 to 2022	PGV Development Team.	All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -430,8 +430,8 @@ function chat(username) {
 	return false;
 }
 
-function reply(username, subject) {
-	window.open('message.php?to='+username+'&subject='+subject+"&"+sessionname+"="+sessionid, '_blank', 'top=50,left=50,width=600,height=500,resizable=1,scrollbars=1');
+function reply(userID, subject) {
+	window.open('message.php?toUser='+userID+'&subject='+subject+"&"+sessionname+"="+sessionid, '_blank', 'top=50,left=50,width=600,height=500,resizable=1,scrollbars=1');
 	return false;
 }
 

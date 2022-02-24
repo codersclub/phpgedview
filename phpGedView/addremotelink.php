@@ -5,7 +5,7 @@
 *  Allow a user the ability to add links to people from other servers and other gedcoms.
 *
 * phpGedView: Genealogy Viewer
-* Copyright (C) 2002 to 2009 PGV Development Team.  All rights reserved.
+* Copyright (C) 2002 to 2022 PGV Development Team.  All rights reserved.
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -98,6 +98,14 @@ function checkform(frm) {
 		return false;
 	}
 	return true;
+}
+function toggleVizPW(whichForm, whichField) {
+	// This script should really be in the general script file, /js/phpgedview.js
+	// but we don't want to load the whole works just for this one seldom-used script.
+	var frm = document[whichForm];
+	var field = frm[whichField];
+	if (field.type === "password") field.type = "text";
+	else field.type = "password";
 }
 <?php
 echo PGV_JS_END;
@@ -218,7 +226,9 @@ if (!$success) {
 						<td><input type="text" id="txtUsername" name="txtUsername" value="<?php echo $controller->form_txtUsername; ?>" /></td>
 					</tr><tr>
 						<td><?php echo $pgv_lang["label_password_id2"]; ?></td>
-						<td><input type="password" id="txtPassword" name="txtPassword" value="<?php echo $controller->form_txtPassword; ?>" /></td>
+						<td><input type="password" id="txtPassword" name="txtPassword" value="<?php echo $controller->form_txtPassword; ?>" />
+							&nbsp;&nbsp;&nbsp;<input type="checkbox" onclick="toggleVizPW('addRemoteRelationship', 'txtPassword')" /><?php echo $pgv_lang["show"]; ?>
+							</td>
 					</tr>
 				</table>
 			</div>

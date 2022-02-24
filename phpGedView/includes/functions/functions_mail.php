@@ -35,37 +35,58 @@ define('PGV_FUNCTIONS_MAIL_PHP', '');
  * for more info on format="flowed" see: http://www.joeclark.org/ffaq.html
  * for detailed info on MIME (RFC 1521) email see: http://www.freesoft.org/CIE/RFC/1521/index.htm
  */
-function pgvMail($to, $from, $subject, $message, $bulkMail=false, $fromFullName='') {
-	global $PGV_SMTP_ACTIVE, $PGV_SMTP_DEBUG; 
+function pgvMail($to, $from, $subject, $message, $bulkMail=false, $toFullName='', $fromFullName='') {
+	global $PGV_SIMPLE_MAIL, $PGV_SMTP_ACTIVE, $PGV_SMTP_DEBUG;
 	global $PGV_SMTP_HOST, $PGV_SMTP_HELO, $PGV_SMTP_FROM_NAME, $PGV_SMTP_PORT, $PGV_SMTP_AUTH, $PGV_SMTP_AUTH_USER, $PGV_SMTP_AUTH_PASS, $PGV_SMTP_SSL;
 	global $CHARACTER_SET, $PGV_STORE_MESSAGES, $TEXT_DIRECTION, $pgv_lang;
+
 	$mailFormat = "plain";
 	//$mailFormat = "html";
 	//$mailFormat = "multipart";
 
+	// Extract full names from $to and $from that are formatted as "full name <mailbox@domain>"
+	$found = preg_match('~(.*)\s<(.*)>~', $to, $match);
+	if ($found) {
+		$toFullName = $match[1];
+		$to = $match[2];
+	}
+	$found = preg_match('~(.*)\s<(.*)>~', $from, $match);
+	if ($found) {
+		$fromFullName = $match[1];
+		$from = $match[2];
+	}
+
+	if ($PGV_SIMPLE_MAIL) {
+		$toFullName = '';		// If simple mail is to be used
+		$fromFullName = '';		//   ignore any full names that may have been provided
+	}
+
 	$errorMessage = '';
+
+	$isValid = validEmail($to);		// Validate "to" e-mail address
+	if ($isValid !== true) {			// Validity check failed
+		if ($toFullName != '') $to = "{$toFullName} <{$to}>";		// Generate "full name <mailbox@domain>" form if possible
+		$to = str_replace(array('&', '<', '>'), array('&amp;', '&lt;', '&gt;'), $to);		// Sanitize that e-mail address
+		if ($isValid !== false) {		//	We have a message from the validation routine
+			$errorMessage .= str_replace('#email#', $to, $isValid);
+			$errorMessage .= '<br />';
+		}
+		$errorMessage .= str_replace('#email#', $to, $pgv_lang["message_invalid_from"]);
+		$errorMessage .= '<br />';
+	}
 
 	$isValid = validEmail($from);		// Validate "from" e-mail address
 	if ($isValid !== true) {			// Validity check failed
-		$emailAddr = str_replace(array('<', '>'), array('&lt;', '&gt'), $from);		// Make sure this is printable
+		if ($fromFullName != '') $from = "{$fromFullName} <{$from}>";		// Generate "full name <mailbox@domain>" form if possible
 		if ($isValid !== false) {		//	We have a message from the validation routine
-			$errorMessage .= str_replace('#email#', $emailAddr, $isValid);
+			$from = str_replace(array('&', '<', '>'), array('&amp;', '&lt;', '&gt;'), $from);		// Sanitize that e-mail address
+			$errorMessage .= str_replace('#email#', $from, $isValid);
 			$errorMessage .= '<br />';
 		}
-		$errorMessage .= str_replace('#email#', $emailAddr, $pgv_lang["message_invalid_from"]);
+		$errorMessage .= str_replace('#email#', $from, $pgv_lang["message_invalid_from"]);
 		$errorMessage .= '<br />';
 	}
 
-	$isValid = validEmail($to);			// Validate "to" e-mail address
-	if ($isValid !== true) {			// Validity check failed
-		$emailAddr = str_replace(array('<', '>'), array('&lt;', '&gt'), $to);		// Make sure this is printable
-		if ($isValid !== false) {		//	We have a message from the validation routine
-			$errorMessage .= str_replace('#email#', $emailAddr, $isValid);
-			$errorMessage .= '<br />';
-		}
-		$errorMessage .= str_replace('#email#', $emailAddr, $pgv_lang["message_invalid_to"]);
-		$errorMessage .= '<br />';
-	}
 
 	if ($errorMessage != '' ) {		// Quit if either address check failed
 		echo '<span class="error">', $errorMessage, '</span>';
@@ -89,10 +110,13 @@ function pgvMail($to, $from, $subject, $message, $bulkMail=false, $fromFullName=
 		$mailFormatText = "text/plain";
 	}
 
-	$extraHeaders = "From: $from\nContent-type: $mailFormatText;";
+	if (!$PGV_SMTP_ACTIVE && $fromFullName != '') {
+		$from = hex4email($fromFullName, $CHARACTER_SET)." <{$from}>";		// Generate the "full name <mailbox@domain>" form if possible
+	}
+	$extraHeaders = "From: {$from}\nContent-type: {$mailFormatText};";
 
 	if ($mailFormat != "multipart") {
-		$extraHeaders .= "\tcharset=\"$CHARACTER_SET\";\tformat=\"flowed\"\nContent-Transfer-Encoding: 8bit";
+		$extraHeaders .= "\tcharset=\"{$CHARACTER_SET}\";\tformat=\"flowed\"\nContent-Transfer-Encoding: 8bit";
 	}
 
 	if ($mailFormat == "html" || $mailFormat == "multipart") {
@@ -170,22 +194,22 @@ function pgvMail($to, $from, $subject, $message, $bulkMail=false, $fromFullName=
 				$mail_object->FromName = $from;
 			}
 		} else {
-			if (!empty($fromFullName)) {
+			if ($fromFullName != '') {
 				$mail_object->FromName = $fromFullName;
 			} else {
 				$mail_object->FromName = $from;
 			}
 		}
-		$mail_object->addAddress($to);
-		$mail_object->Subject = hex4email( $subject, $CHARACTER_SET );
+		$mail_object->addAddress($to, $toFullName);
+		$mail_object->Subject = hex4email($subject, $CHARACTER_SET);
 		$mail_object->ContentType = $mailFormatText;
-		if ( $mailFormat != "multipart" ) {
+		if ($mailFormat != "multipart") {
 			$mail_object->ContentType = $mailFormatText . '; format="flowed"';
 			$mail_object->CharSet = $CHARACTER_SET;
 			$mail_object->Encoding = '8bit';
 		}
-		if ( $mailFormat == "html" || $mailFormat == "multipart" ) {
-			$mail_object->addCustomHeader( 'Mime-Version: 1.0' );
+		if ($mailFormat == "html" || $mailFormat == "multipart") {
+			$mail_object->addCustomHeader('Mime-Version: 1.0');
 			$mail_object->isHTML(true);
 		}
 		$mail_object->Body = $message;
@@ -195,7 +219,10 @@ function pgvMail($to, $from, $subject, $message, $bulkMail=false, $fromFullName=
 			echo '<span class="error">', $pgv_lang["message_error"], $mail_object->ErrorInfo, '</span><br />';
 		}
 	} else {
-		// use original PGV mail sending function
+		// use native PHP mail sending function
+		if ($toFullName != '') {
+			$to = hex4email($toFullName, $CHARACTER_SET)." <{$to}>";		// Generate the "full name <mailbox@domain>" form if possible
+		}
 		$success = mail($to, hex4email($subject,$CHARACTER_SET), $message, $extraHeaders);
 	}
 	return $success;
@@ -313,8 +340,8 @@ function RFC2047Encode($string, $charset) {
 	}
 	if (preg_match('/[^a-z ]/i', $string)) {
 		$string = preg_replace_callback('/([^a-z ])/i',
-		                                'tempFunc_RFC2047Encode',
-		                                $string);
+										'tempFunc_RFC2047Encode',
+										$string);
 		$string = str_replace(' ', '_', $string);
 		return "=?$charset?Q?$string?=";
 	}
@@ -337,43 +364,43 @@ function RFC2047Encode($string, $charset) {
  */
 function validEmail($emailAddr, $verbose=true) {
 	global $pgv_lang;
-	
+
 	if (!isset(
 			$pgv_lang["message_illegal_chars"],
 			$pgv_lang["message_bad_format"],
 			$pgv_lang["message_no_MX"]
 		)) $verbose = false;		// If these messages don't exist, force "quiet" mode
-	
-	$found = preg_match('~\s<(.*)>~', $emailAddr, $match);		// Look for an e-mail address inside angle brackets
-	if ($found) $email = $match[1];
-	else $email = $emailAddr;		// No angle brackets: The entire input is the e-mail address to be checked
-	$email = trim($email);
 
-	$sanitizedEmail = filter_var($email, FILTER_SANITIZE_EMAIL);		// Sanitize the e-mail address
-	if ($sanitizedEmail != $email) {
+	$found = preg_match('~(.*)\s<(.*)>~', $emailAddr, $match);		// Look for an e-mail address inside angle brackets
+	if (!$found)
+		$found = preg_match('~(.*)\s&lt;(.*)&gt;~', $emailAddr, $match);
+	if ($found) $emailAddr = $match[2];
+	$emailAddr = trim($emailAddr);
+
+	$sanitizedEmail = filter_var($emailAddr, FILTER_SANITIZE_EMAIL);		// Sanitize the e-mail address
+	if ($sanitizedEmail != $emailAddr) {
 		if ($verbose) return $pgv_lang["message_illegal_chars"];
 		return false;		// The e-mail address contained illegal characters
 	}
 
-	$validatedEmail = filter_var($email, FILTER_VALIDATE_EMAIL);
+	$validatedEmail = filter_var($emailAddr, FILTER_VALIDATE_EMAIL);
 	if (!$validatedEmail) {
 		if ($verbose) return $pgv_lang["message_bad_format"];
 		return false;		// The e-mail address is not formatted correctly
 	}
-	
-	$atIndex = strrpos($email, "@");
+
+	$atIndex = strrpos($emailAddr, "@");
 	if ($atIndex === false) {		// This should never happen: the format check above takes care of this
 		if ($verbose) return $pgv_lang["message_bad_format"];
 		return false;		// The e-mail address does not contain an at-sign
 	}
 
-	$domain = substr($email, $atIndex+1);
-
-	if (!checkdnsrr($domain, "MX")) {
+	$domain = substr($emailAddr, $atIndex+1);
+	$pass = checkdnsrr($domain, "MX");		// NOTE: This check doesn't always work!!!
+	if ($pass === false) {
 		if ($verbose) return $pgv_lang["message_no_MX"];
 		return false;		// The domain is not found in DNS or does not support email
 	}
-	
 	return true;			// The e-mail address passed all checks
 }
 ?>

@@ -78,7 +78,7 @@ function print_user_messages($limitHeight, $config, $side, $index) {
 		$content .= '
 				return false;
 			}
-			//-->
+			-->
 			</script>
 		';
 		$content .= "<input type=\"hidden\" name=\"action\" value=\"deletemessage\" />";
