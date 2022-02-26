@@ -56,21 +56,6 @@ if (empty($url)) {
 
 $message='';
 
-	?>
-	<script language="JavaScript" type="text/javascript">
-	<!--
-		function toggleVizPW(whichForm, whichField) {
-			// This script should really be in the general script file, /js/phpgedview.js
-			// but we don't want to load the whole works just for this one seldom-used script.
-			var frm = document[whichForm];
-			var field = frm[whichField];
-			if (field.type === "password") field.type = "text";
-			else field.type = "password";
-		}
-	//-->
-	</script>
-	<?php
-
 if ($action=='login') {
 	if ($user_id=authenticateUser($username, $password)) {
 		if ($usertime) {
@@ -205,6 +190,19 @@ else {
 }
 $tab=0;		// initialize tab index
 	?>
+	<script language="JavaScript" type="text/javascript">
+	<!--
+		function toggleVizPW(whichForm, whichField) {
+			// This script should really be in the general script file, /js/phpgedview.js
+			// but we don't want to load the whole works just for this one seldom-used script.
+			var frm = document[whichForm];
+			var field = frm[whichField];
+			if (field.type === "password") field.type = "text";
+			else field.type = "password";
+		}
+	//-->
+	</script>
+
 	<form name="loginform" method="post" action="<?php print $LOGIN_URL; ?>" onsubmit="t = new Date(); document.loginform.usertime.value=t.getFullYear()+'-'+(t.getMonth()+1)+'-'+t.getDate()+' '+t.getHours()+':'+t.getMinutes()+':'+t.getSeconds(); return true;">
 		<input type="hidden" name="action" value="login" />
 		<input type="hidden" name="url" value="<?php print htmlentities($url,ENT_COMPAT,'UTF-8'); ?>" />
