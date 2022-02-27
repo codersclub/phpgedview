@@ -3,7 +3,7 @@
  * This file contains the code for the DISCO server, providing DISO and WSDL
  * services.
  *
- * PHP versions 4 and 5
+ * PHP versions 4 through 7.4 (maybe even 8)
  *
  * LICENSE: This source file is subject to version 2.02 of the PHP license,
  * that is bundled with this package in the file LICENSE, and is available at
@@ -365,7 +365,7 @@ class SOAP_DISCO_Server extends SOAP_Base_Object {
                 $this->_wsdl['definitions']['attr']['xmlns:' . $ns_pref] = $m[1][0];
             }
             $typens = $this->namespaces[$m[1][0]];
-            $type = ereg_replace($m[0][0],'',$type);
+			$type = preg_replace('~'.preg_quote($m[0][0],'/').'~', '', $type);
         } else {
             $typens = 'xsd';
         }

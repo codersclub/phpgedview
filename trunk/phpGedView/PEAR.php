@@ -844,7 +844,7 @@ class PEAR_Error
         }
 
         if (!$skiptrace) {
-            $this->backtrace = debug_backtrace();
+            $this->backtrace = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS);		// Ignore arguments to reduce memory requirements
             if (isset($this->backtrace[0]) && isset($this->backtrace[0]['object'])) {
                 unset($this->backtrace[0]['object']);
             }
