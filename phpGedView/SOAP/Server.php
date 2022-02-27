@@ -2,7 +2,7 @@
 /**
  * This file contains the code for the SOAP server.
  *
- * PHP versions 4 and 5
+ * PHP versions 4 through 7.4 (maybe even 8)
  *
  * LICENSE: This source file is subject to version 2.02 of the PHP license,
  * that is bundled with this package in the file LICENSE, and is available at
@@ -121,6 +121,7 @@ class SOAP_Server extends SOAP_Base
     {
         /* The error handler should ignore '0' errors, eg. hidden by @ - see
          * the set_error_handler manual page. (thanks to Alan Knowles). */
+        AddToLog("Caught error by error handler:".$errmsg);
         if (!$errno || $errno == E_NOTICE ||
             (defined('E_STRICT') && $errno == constant('E_STRICT'))) {
             return;

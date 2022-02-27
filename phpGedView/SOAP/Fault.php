@@ -3,7 +3,7 @@
  * This file contains the SOAP_Fault class, used for all error objects in this
  * package.
  *
- * PHP versions 4 and 5
+ * PHP versions 4 through 7.4 (maybe even 8)
  *
  * LICENSE: This source file is subject to version 2.02 of the PHP license,
  * that is bundled with this package in the file LICENSE, and is available at
@@ -50,7 +50,7 @@ class SOAP_Fault extends PEAR_Error
      */
     function __construct($faultstring = 'unknown error', $faultcode = 'Client', $faultactor=NULL, $detail=NULL, $mode = null, $options = null)
     {
-        parent::PEAR_Error($faultstring, $faultcode, $mode, $options, $detail);
+		parent::__construct($faultstring, $faultcode, $mode, $options, $detail);
         if ($faultactor) $this->error_message_prefix = $faultactor;
     }
 

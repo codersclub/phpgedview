@@ -2,7 +2,7 @@
 /**
  * This file contains the code for dealing with WSDL access and services.
  *
- * PHP versions 4 and 5
+ * PHP versions 4 through 7.4 (maybe even 8)
  *
  * LICENSE: This source file is subject to version 2.02 of the PHP license,
  * that is bundled with this package in the file LICENSE, and is available at
@@ -848,7 +848,7 @@ class SOAP_WSDL extends SOAP_Base
     {
         static $trail = array();
 
-        $arrayType = ereg_replace('\[\]$', '', $arrayType);
+		$arrayType = preg_replace('~\[\]$~', '', $arrayType);
 
         // Protect against circular references XXX We really need to remove
         // trail from this altogether (it's very inefficient and in the wrong
@@ -2174,7 +2174,7 @@ class SOAP_WSDL_ObjectParser extends SOAP_Base
                 $this->wsdl->namespaces[$ns_pref] = $m[1][0];
             }
             $typens = $this->wsdl->ns[$m[1][0]];
-            $type = ereg_replace($m[0][0], '', $type);
+			$type = preg_replace('~'.preg_quote($m[0][0],'/').'~', '', $type);
         } else {
             $typens = 'xsd';
         }

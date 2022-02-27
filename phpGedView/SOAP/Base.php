@@ -4,7 +4,7 @@
  * SOAP package, and defines the base classes that most other classes of this
  * package extend.
  *
- * PHP versions 4 and 5
+ * PHP versions 4 through 7.4 (maybe even 8)
  *
  * LICENSE: This source file is subject to version 2.02 of the PHP license,
  * that is bundled with this package in the file LICENSE, and is available at
@@ -480,7 +480,7 @@ class SOAP_Base extends SOAP_Base_Object
             if (is_array($vars)) {
                 foreach (array_keys($vars) as $k) {
                     // Hide private vars.
-                    if ($k[0] == '_') continue;
+					if ((is_string($k)) && ($k[0] == '_')) continue;
                     if (is_object($vars[$k])) {
                         if (is_a($vars[$k], 'SOAP_Value')) {
                             $xmlout_value .= $vars[$k]->serialize($this);
@@ -1011,7 +1011,7 @@ class SOAP_Base extends SOAP_Base_Object
                     $smsg .= $method[$i]->serialize($this);
                 }
             } else {
-                $smsg =& $method->serialize($this);
+                $smsg = $method->serialize($this);
             }
         } else {
             $smsg =& $method;
