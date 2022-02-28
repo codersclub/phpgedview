@@ -1489,7 +1489,7 @@ function compareStrings($aName, $bName, $ignoreCase=true) {
 
 	if ($LANGUAGE == "german") {
 		$germanFrom = array("AA", "Aa", "Æ", "AE", "Ae", "Ø", "OE", "Oe", "SS", "Ss", "UE", "Ue", "aa", "æ", "ae", "ø", "oe", "ss", "ue");
-		$germanTo 	= array("Å", "Å", "Ä", "Ä", "Ä", "Ö", "Ö", "Ö", "ß", "ß", "Ü", "Ü", "å", "ä", "ä", "ö", "ö", "ß", "ü");
+		$germanTo 	= array("Å", "Å", "Ä", "Ä", "Ä", "Ö", "Ö", "Ö", "ẞ", "ẞ", "Ü", "Ü", "å", "ä", "ä", "ö", "ö", "ß", "ü");
 	}
 
 	//-- split strings into strings and numbers
@@ -2810,13 +2810,20 @@ function getAlphabet($extraChars='', $UTF8_split=false) {
 		}
 
 		$alphabet_lang = $LANGUAGE;
-	}
 
-	// Make sure there aren't any duplicates in the returned result.  The GLOBAL results aren't affected
-	// array_values() is needed because array_unique() just unsets, leaving holes in the key sequence where there were duplicates
-	$tempAlphabet = array_values(array_unique(UTF8_str_split($alphabet . $extraChars)));
-	if ($UTF8_split) return $tempAlphabet;
-	return implode('', $tempAlphabet);
+		// Make sure there aren't any duplicates in any of the results.
+		// array_values() is needed because array_unique() just unsets, leaving holes in the key sequence where there were duplicates
+		$tempAlphabet = array_values(array_unique(UTF8_str_split($alphabet_lower)));
+		$alphabet_lower = implode('', $tempAlphabet);
+		$tempAlphabet = array_values(array_unique(UTF8_str_split($alphabet_upper)));
+		$alphabet_upper = implode('', $tempAlphabet);
+		$tempAlphabet = array_values(array_unique(UTF8_str_split($alphabet)));
+		$alphabet = implode('', $tempAlphabet);
+	}
+	
+	$result = $alphabet . $extraChars;
+	if ($UTF8_split) return UTF8_str_split($result);
+	return $result;
 }
 
 /**

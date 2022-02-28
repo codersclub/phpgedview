@@ -14,6 +14,7 @@ The session.php script uses this information to populate the constants : PGV_VER
 =====================================================================
 
 Version 4.3.1
+ - Fixed: Excessive CPU usage on Manage Media page when there are many Media items (canajun2eh)
  - Fixed: Excessive memory usage in SOAP error management (Pasquale Ceres)
  - Fixed: SOAP not working with PHP 7.4 (Pasquale Ceres)
  - Fixed: On some PhpGedView installations, nobody can log in: "Headers already sent" error (canajun2eh)
