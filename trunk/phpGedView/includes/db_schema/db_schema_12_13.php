@@ -1,6 +1,6 @@
 <?php
 /**
-  * Update the database schema from version 10 to version 11
+ * Update the database schema from version 12 to version 13
  *
  * Version 0: empty database
  * Version 1: create the pgv_site_setting table
@@ -29,7 +29,7 @@
  *
  * phpGedView: Genealogy Viewer
  * Copyright (C) 2010 Greg Roach
- * Copyright (C) 2011 to 2015  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2011 to 2022  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by

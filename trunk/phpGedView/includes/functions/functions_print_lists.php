@@ -50,7 +50,7 @@ function print_indi_table($datalist, $legend="", $option="") {
 
 	if ($option=="MARR_PLAC") return;
 	if (count($datalist)<1) return;
-	$tiny = (count($datalist)<=500);
+//	$tiny = (count($datalist)<=500);
 	require_once PGV_ROOT.'js/sorttable.js.htm';
 	require_once PGV_ROOT.'includes/classes/class_stats.php';
 	$stats = new stats($GEDCOM);
@@ -111,14 +111,17 @@ function print_indi_table($datalist, $legend="", $option="") {
 	echo "<th class=\"list_label\" style=\"display:none\">SURN</th>";
 	if ($option=="sosa") echo "<th class=\"list_label\">Sosa</th>";
 	echo "<th class=\"list_label\">", $factarray["BIRT"], "</th>";
-	if ($tiny) echo "<td class=\"list_label\"><img src=\"./images/reminder.gif\" alt=\"", $pgv_lang["anniversary"], "\" title=\"", $pgv_lang["anniversary"], "\" border=\"0\" /></td>";
+//	if ($tiny) echo "<td class=\"list_label\"><img src=\"./images/reminder.gif\" alt=\"", $pgv_lang["anniversary"], "\" title=\"", $pgv_lang["anniversary"], "\" border=\"0\" /></td>";
+	echo "<td class=\"list_label\"><img src=\"./images/reminder.gif\" alt=\"", $pgv_lang["anniversary"], "\" title=\"", $pgv_lang["anniversary"], "\" border=\"0\" /></td>";
 	echo "<th class=\"list_label\">", $factarray["PLAC"], "</th>";
-	if ($tiny) echo "<th class=\"list_label\"><img src=\"./images/children.gif\" alt=\"", $pgv_lang["children"], "\" title=\"", $pgv_lang["children"], "\" border=\"0\" /></th>";
+//	if ($tiny) echo "<th class=\"list_label\"><img src=\"./images/children.gif\" alt=\"", $pgv_lang["children"], "\" title=\"", $pgv_lang["children"], "\" border=\"0\" /></th>";
+	echo "<th class=\"list_label\"><img src=\"./images/children.gif\" alt=\"", $pgv_lang["children"], "\" title=\"", $pgv_lang["children"], "\" border=\"0\" /></th>";
 	echo "<th class=\"list_label\">", $factarray["DEAT"], "</th>";
-	if ($tiny) echo "<td class=\"list_label\"><img src=\"./images/reminder.gif\" alt=\"", $pgv_lang["anniversary"], "\" title=\"", $pgv_lang["anniversary"], "\" border=\"0\" /></td>";
+//	if ($tiny) echo "<td class=\"list_label\"><img src=\"./images/reminder.gif\" alt=\"", $pgv_lang["anniversary"], "\" title=\"", $pgv_lang["anniversary"], "\" border=\"0\" /></td>";
+	echo "<td class=\"list_label\"><img src=\"./images/reminder.gif\" alt=\"", $pgv_lang["anniversary"], "\" title=\"", $pgv_lang["anniversary"], "\" border=\"0\" /></td>";
 	echo "<th class=\"list_label\">", $factarray["AGE"], "</th>";
 	echo "<th class=\"list_label\">", $factarray["PLAC"], "</th>";
-	if ($tiny && $SHOW_LAST_CHANGE) echo "<th class=\"list_label rela\">", $factarray["CHAN"], "</th>";
+//	if ($tiny && $SHOW_LAST_CHANGE) echo "<th class=\"list_label rela\">", $factarray["CHAN"], "</th>";
 	echo "<th class=\"list_label\" style=\"display:none\">SEX</th>";
 	echo "<th class=\"list_label\" style=\"display:none\">BIRT</th>";
 	echo "<th class=\"list_label\" style=\"display:none\">DEAT</th>";
@@ -240,7 +243,7 @@ function print_indi_table($datalist, $legend="", $option="") {
 		}
 		echo '</td>';
 		//-- Birth anniversary
-		if ($tiny) {
+//		if ($tiny) {
 			echo '<td class="list_value_wrap rela">';
 			$bage =GedcomDate::GetAgeYears($birth_dates[0]);
 			if (empty($bage)) {
@@ -249,7 +252,7 @@ function print_indi_table($datalist, $legend="", $option="") {
 				echo '<span class="age">', $bage, '</span>';
 			}
 			echo '</td>';
-		}
+//		}
 		//-- Birth place
 		echo '<td class="list_value_wrap">';
 		if ($birth_places=$person->getAllBirthPlaces()) {
@@ -268,7 +271,7 @@ function print_indi_table($datalist, $legend="", $option="") {
 		}
 		echo '</td>';
 		//-- Number of children
-		if ($tiny) {
+//		if ($tiny) {
 			echo "<td class=\"list_value_wrap\">";
 			if (showFactDetails('NCHI', $person->getXref(), 'INDI')) {
 				if($SEARCH_SPIDER) {
@@ -280,7 +283,7 @@ function print_indi_table($datalist, $legend="", $option="") {
 				echo '&nbsp;';
 			}
 			echo "</td>";
-		}
+//		}
 		//-- Death date
 		echo "<td class=\"list_value_wrap\">";
 		if ($death_dates=$person->getAllDeathDates()) {
@@ -308,14 +311,14 @@ function print_indi_table($datalist, $legend="", $option="") {
 		}
 		echo "</td>";
 		//-- Death anniversary
-		if ($tiny) {
+//		if ($tiny) {
 			print "<td class=\"list_value_wrap rela\">";
 			if ($death_dates[0]->isOK())
 				echo "<span class=\"age\">", GedcomDate::GetAgeYears($death_dates[0]), "</span>";
 			else
 				echo "&nbsp;";
 			print '</td>';
-		}
+//		}
 		//-- Age at death
 		print "<td class=\"list_value_wrap\">";
 		if ($birth_dates[0]->isOK() && $death_dates[0]->isOK()) {
@@ -345,9 +348,9 @@ function print_indi_table($datalist, $legend="", $option="") {
 		}
 		echo '</td>';
 		//-- Last change
-		if ($tiny && $SHOW_LAST_CHANGE) {
-			echo "<td class=\"list_value_wrap rela\">", $person->LastChangeTimestamp(empty($SEARCH_SPIDER)), "</td>";
-		}
+//		if ($tiny && $SHOW_LAST_CHANGE) {
+//			echo "<td class=\"list_value_wrap rela\">", $person->LastChangeTimestamp(empty($SEARCH_SPIDER)), "</td>";
+//		}
 		//-- Sorting by gender
 		echo "<td style=\"display:none\">";
 		echo $person->getSex();
@@ -402,13 +405,15 @@ function print_indi_table($datalist, $legend="", $option="") {
 	echo "<td style=\"display:none\">SURN</td>";
 	if ($option=="sosa") echo "<td></td>"; // SOSA
 	echo "<td></td>"; // BIRT:DATE
-	if ($tiny) echo "<td></td>"; // BIRT:Reminder
+//	if ($tiny) echo "<td></td>"; // BIRT:Reminder
+	echo "<td></td>"; // BIRT:Reminder
 	echo "<td></td>"; // BIRT:PLAC
-	if ($tiny) echo "<td></td>"; // Children
+//	if ($tiny) echo "<td></td>"; // Children
+	echo "<td></td>"; // Children
 	echo "<td class=\"list_label\" colspan=\"3\">";
 	echo "<input id=\"charts_$table_id\" type=\"checkbox\" onclick=\"toggleByClassName('DIV', '$table_id-charts');\" /><label for=\"charts_$table_id\">", $pgv_lang["show_stats_charts"], "</label></td>"; //DEAT:DATE, DEAT:Reminder, DEAT:AGE
 	echo "<td></td>"; // DEAT:PLAC
-	if ($tiny && $SHOW_LAST_CHANGE) echo "<td></td>"; // CHAN
+//	if ($tiny && $SHOW_LAST_CHANGE) echo "<td></td>"; // CHAN
 	echo "<td style=\"display:none\">SEX</td>";
 	echo "<td style=\"display:none\">BIRT</td>";
 	echo "<td style=\"display:none\">DEAT</td>";
@@ -443,7 +448,7 @@ function print_fam_table($datalist, $legend="", $option="") {
 
 	if ($option=="BIRT_PLAC" || $option=="DEAT_PLAC") return;
 	if (count($datalist)<1) return;
-	$tiny = (count($datalist)<=500);
+//	$tiny = (count($datalist)<=500);
 	require_once PGV_ROOT.'js/sorttable.js.htm';
 	require_once PGV_ROOT.'includes/classes/class_family.php';
 	require_once PGV_ROOT.'includes/classes/class_stats.php';
@@ -501,10 +506,12 @@ function print_fam_table($datalist, $legend="", $option="") {
 	echo "<th style=\"display:none\">WIFE:GIVN</th>";
 	echo "<th class=\"list_label\">", $factarray["AGE"], "</th>";
 	echo "<th class=\"list_label\">", $factarray["MARR"], "</th>";
-	if ($tiny) echo "<td class=\"list_label\"><img src=\"./images/reminder.gif\" alt=\"", $pgv_lang["anniversary"], "\" title=\"", $pgv_lang["anniversary"], "\" border=\"0\" /></td>";
+//	if ($tiny) echo "<td class=\"list_label\"><img src=\"./images/reminder.gif\" alt=\"", $pgv_lang["anniversary"], "\" title=\"", $pgv_lang["anniversary"], "\" border=\"0\" /></td>";
+	echo "<td class=\"list_label\"><img src=\"./images/reminder.gif\" alt=\"", $pgv_lang["anniversary"], "\" title=\"", $pgv_lang["anniversary"], "\" border=\"0\" /></td>";
 	echo "<th class=\"list_label\">", $factarray["PLAC"], "</th>";
-	if ($tiny) echo "<th class=\"list_label\"><img src=\"./images/children.gif\" alt=\"", $pgv_lang["children"], "\" title=\"", $pgv_lang["children"], "\" border=\"0\" /></th>";
-	if ($tiny && $SHOW_LAST_CHANGE) echo "<th class=\"list_label rela\">", $factarray["CHAN"], "</th>";
+//	if ($tiny) echo "<th class=\"list_label\"><img src=\"./images/children.gif\" alt=\"", $pgv_lang["children"], "\" title=\"", $pgv_lang["children"], "\" border=\"0\" /></th>";
+	echo "<th class=\"list_label\"><img src=\"./images/children.gif\" alt=\"", $pgv_lang["children"], "\" title=\"", $pgv_lang["children"], "\" border=\"0\" /></th>";
+//	if ($tiny && $SHOW_LAST_CHANGE) echo "<th class=\"list_label rela\">", $factarray["CHAN"], "</th>";
 	echo "<th style=\"display:none\">MARR</th>";
 	echo "<th style=\"display:none\">DEAT</th>";
 	echo "<th style=\"display:none\">TREE</th>";
@@ -564,7 +571,8 @@ function print_fam_table($datalist, $legend="", $option="") {
 		if (!$husb->getChildFamilyIds()) $tdclass .= " patriarch";
 		echo "<td class=\"", $tdclass, "\" align=\"", get_align($names[$n1]['list']), "\">";
 		echo "<a href=\"", encode_url($family->getLinkUrl()), "\" class=\"list_item name2\" dir=\"", $TEXT_DIRECTION, "\">", PrintReady($names[$n1]['list']), "</a>";
-		if ($tiny) echo $husb->getSexImage();
+//		if ($tiny) echo $husb->getSexImage();
+		echo $husb->getSexImage();
 		if ($n1!=$n2) {
 			echo "<br /><a href=\"", encode_url($family->getLinkUrl()), "\" class=\"list_item\">", PrintReady($names[$n2]['list']), "</a>";
 		}
@@ -613,7 +621,8 @@ function print_fam_table($datalist, $legend="", $option="") {
 		if (!$wife->getChildFamilyIds()) $tdclass .= " patriarch";
 		echo "<td class=\"", $tdclass, "\" align=\"", get_align($names[$n1]['list']), "\">";
 		echo "<a href=\"", encode_url($family->getLinkUrl()), "\" class=\"list_item name2\" dir=\"", $TEXT_DIRECTION, "\">", PrintReady($names[$n1]['list']), "</a>";
-		if ($tiny) echo $wife->getSexImage();
+//		if ($tiny) echo $wife->getSexImage();
+		echo $wife->getSexImage();
 		if ($n1!=$n2) {
 			echo "<br /><a href=\"", encode_url($family->getLinkUrl()), "\" class=\"list_item\">", PrintReady($names[$n2]['list']), "</a>";
 		}
@@ -686,13 +695,13 @@ function print_fam_table($datalist, $legend="", $option="") {
 		}
 		echo "</td>";
 		//-- Marriage anniversary
-		if ($tiny) {
+//		if ($tiny) {
 			echo "<td class=\"list_value_wrap rela\">";
 			$mage=GedcomDate::GetAgeYears($mdate);
 			if (empty($mage)) echo "&nbsp;";
 			else echo "<span class=\"age\">", $mage, "</span>";
 			echo "</td>";
-		}
+//		}
 		//-- Marriage place
 		echo '<td class="list_value_wrap">';
 		if ($marriage_places=$family->getAllMarriagePlaces()) {
@@ -711,7 +720,7 @@ function print_fam_table($datalist, $legend="", $option="") {
 		}
 		echo '</td>';
 		//-- Number of children
-		if ($tiny) {
+//		if ($tiny) {
 			echo "<td class=\"list_value_wrap\">";
 			if (showFactDetails('NCHI', $family->getXref(), 'FAM')) {
 				if($SEARCH_SPIDER) {
@@ -723,10 +732,10 @@ function print_fam_table($datalist, $legend="", $option="") {
 				echo '&nbsp;';
 			}
 			echo "</td>";
-		}
+//		}
 		//-- Last change
-		if ($tiny && $SHOW_LAST_CHANGE)
-			echo '<td class="list_value_wrap rela">', $family->LastChangeTimestamp(empty($SEARCH_SPIDER)), '</td>';
+//		if ($tiny && $SHOW_LAST_CHANGE)
+//			echo '<td class="list_value_wrap rela">', $family->LastChangeTimestamp(empty($SEARCH_SPIDER)), '</td>';
 		//-- Sorting by marriage date
 		echo "<td style=\"display:none\">";
 		if (!$family->canDisplayDetails() || !$mdate->isOK()) {
@@ -788,8 +797,9 @@ function print_fam_table($datalist, $legend="", $option="") {
 	echo "<td></td>"; // WIFE:AGE
 	echo "<td class=\"list_label\" colspan=\"3\">";
 	echo "<input id=\"charts_$table_id\" type=\"checkbox\" onclick=\"toggleByClassName('DIV', '$table_id-charts');\" /><label for=\"charts_$table_id\">", $pgv_lang["show_stats_charts"], "</label></td>"; // MARR:DATE, MARR:Reminder, MARR:PLAC
-	if ($tiny) echo "<td></td>"; // FAM:ChildrenCount
-	if ($tiny && $SHOW_LAST_CHANGE) echo "<td></td>"; // FAM:CHAN
+//	if ($tiny) echo "<td></td>"; // FAM:ChildrenCount
+	echo "<td></td>"; // FAM:ChildrenCount
+//	if ($tiny && $SHOW_LAST_CHANGE) echo "<td></td>"; // FAM:CHAN
 	echo "<td style=\"display:none\">MARR</td>";
 	echo "<td style=\"display:none\">DEAT</td>";
 	echo "<td style=\"display:none\">TREE</td>";

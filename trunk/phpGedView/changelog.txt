@@ -14,6 +14,10 @@ The session.php script uses this information to populate the constants : PGV_VER
 =====================================================================
 
 Version 4.3.1
+ - Changed: Indi and Family lists should never print the Last Change information (canajun2eh)
+ - Changed: Indi and Family lists should always print the number of children (canajun2eh)
+ - Changed: Indi and Family lists should always print the anniversary of Birth, Marriage, and Death dates (canajun2eh)
+ - Fixed: Documentation in the Upgrade scripts, /includes/db_schema/db_schema_11_12.php, _12_13.php, and _13_14.php (canajun2eh)
  - Fixed: Excessive CPU usage on Manage Media page when there are many Media items (canajun2eh)
  - Fixed: Excessive memory usage in SOAP error management (Pasquale Ceres)
  - Fixed: SOAP not working with PHP 7.4 (Pasquale Ceres)
