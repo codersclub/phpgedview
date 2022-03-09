@@ -1,6 +1,6 @@
 <?php
 /**
-  * Update the database schema from version 10 to version 11
+ * Update the database schema from version 11 to version 12
  *
  * Version 0: empty database
  * Version 1: create the pgv_site_setting table
@@ -28,7 +28,7 @@
  *
  * phpGedView: Genealogy Viewer
  * Copyright (C) 2010 Greg Roach
- * Copyright (C) 2011 to 2015  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2011 to 2022  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -247,6 +247,10 @@ try {
 	// This could only fail if;
 	// a) we've already done it (upgrade)
 	// b) it doesn't exist (new install)
+	// c) mySQL is improperly configured to place a limit on the length of the INSERT command.
+	//    Assuming that the variable $TBLPREFIX is "pgv_", the above INSERT command is 2575 characters long. If it 
+	//    fails, the migration does not occur, and none of the users in the new pgv_user table will have Admin rights.  
+	//    This, in turn, will result in PhpGedView going through "new install", by launching the install.php script.
 }
 
 try {
