@@ -1866,9 +1866,7 @@ $pgv_lang["definitions"]				= "Definities";
 $pgv_lang["block_desc"]				= "Vakbeschrijvingen";
 $pgv_lang["click_here"]					= "Klik hier om door te gaan";
 $pgv_lang["click_here_help"]			= "~#pgv_lang[click_here]#~<br /><br />Klik op deze knop om de wijzigingen aan te brengen die eerder zijn opgeslagen.";
-$pgv_lang["block_summaries"]		= "~#pgv_lang[block_desc]#~<br /><br />Hier volgt een korte beschrijving van de vakken die u kunt toevoegen aan de #pgv_lang[welcome]# of de #pgv_lang[mygedview]# pagina.<br /><table border='1' align='center'><tr><td class='list_value'><b>#pgv_lang[name]#</b></td><td class='list_value'><b>#pgv_lang[description]#</b></td></tr>#pgv_lang[block_summary_table]#</table>";
-// Built in index_edit.php
-$pgv_lang["block_summary_table"]	= "&nbsp;";
+$pgv_lang["block_summaries"]		= "~#pgv_lang[block_desc]#~<br /><br />Hier volgt een korte beschrijving van de vakken die u kunt toevoegen aan de #pgv_lang[welcome]# of de #pgv_lang[mygedview]# pagina.<br /><br /><table border='1' width='95%'><tr><td class='list_value'><b>#pgv_lang[name]#</b></td><td class='list_value'><b>#pgv_lang[description]#</b></td></tr>#GLOBALS[blockSummaries]#</table>";
 
 //-- Find page
 $pgv_lang["total_places"]			= "Locaties gevonden";

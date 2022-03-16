@@ -3,7 +3,7 @@
  * Czech Language file for PhpGedView.
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2020  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2022  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -1901,9 +1901,7 @@ $pgv_lang["definitions"]			= "Definice";
 $pgv_lang["block_desc"]				= "Popisy Bloků";
 $pgv_lang["click_here"]				= "Klikni sem pro pokračování";
 $pgv_lang["click_here_help"]		= "~#pgv_lang[click_here]#~<br /><br />Klikněte na toto tlačítko pro uložení změn.<br /><br />Ty budou vráceny do straně #pgv_lang[welcome]# nebo #pgv_lang[mygedview]#, ale vaše změny nemusí být zobrazeny. Možná budete muset použít Strana znovu načíst funkci vašem prohlížeči pro zobrazení změny správně.";
-$pgv_lang["block_summaries"]		= "~#pgv_lang[block_desc]#~<br /><br />Zde je krátký popis každého bloku lze umístit na straně #pgv_lang[welcome]# nebo #pgv_lang[mygedview]#.<br /><table border='1' align='center'><tr><td class='list_value'><b>#pgv_lang[name]#</b></td><td class='list_value'><b>#pgv_lang[description]#</b></td></tr>#pgv_lang[block_summary_table]#</table><br /><br />";
-// Built in index_edit.php
-$pgv_lang["block_summary_table"]	= "&nbsp;";
+$pgv_lang["block_summaries"]		= "~#pgv_lang[block_desc]#~<br /><br />Zde je krátký popis každého bloku lze umístit na straně #pgv_lang[welcome]# nebo #pgv_lang[mygedview]#.<br /><br /><table border='1' width='95%'><tr><td class='list_value'><b>#pgv_lang[name]#</b></td><td class='list_value'><b>#pgv_lang[description]#</b></td></tr>#GLOBALS[blockSummaries]#</table>";
 
 //-- Find page
 $pgv_lang["total_places"]			= "Místa nalezeno";

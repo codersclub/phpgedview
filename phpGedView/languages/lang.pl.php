@@ -3,7 +3,7 @@
  * Polish texts
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2019  PGV Development Team. All rights reserved.
+ * Copyright (C) 2002 to 2022  PGV Development Team. All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -1849,9 +1849,7 @@ $pgv_lang["definitions"]	= "Definicje";
 $pgv_lang["block_desc"]		= "Opisy bloków";
 $pgv_lang["click_here"]		= "Dalej";
 $pgv_lang["click_here_help"] = "~#pgv_lang[click_here]#~<br /><br />Kliknij ten przycisk aby zapisać zmiany.<br /><br />Zostaniesz przekierowany(a) na stronę #pgv_lang[welcome]# lub #pgv_lang[mygedview]#, ale twoje zmiany mogą nie być widoczne. Aby je zobaczyć, prawdopodobnie trzeba będzie odświeżyć stronę za pomocą odpowiedniej funkcji Twojej przeglądarki.";
-$pgv_lang["block_summaries"] = "~#pgv_lang[block_desc]#~<br /><br />Oto krótki opis każdego z bloków, które możesz umieszczać na stronie #pgv_lang[welcome]# lub #pgv_lang[mygedview]#.<br /><table border='1' align='center'><tr><td class='list_value'><b>#pgv_lang[name]#</b></td><td class='list_value'><b>#pgv_lang[description]#</b></td></tr>#pgv_lang[block_summary_table]#</table><br /><br />";
-// Built in index_edit.php
-$pgv_lang["block_summary_table"] = "&nbsp;";
+$pgv_lang["block_summaries"] = "~#pgv_lang[block_desc]#~<br /><br />Oto krótki opis każdego z bloków, które możesz umieszczać na stronie #pgv_lang[welcome]# lub #pgv_lang[mygedview]#.<br /><br /><table border='1' width='95%'><tr><td class='list_value'><b>#pgv_lang[name]#</b></td><td class='list_value'><b>#pgv_lang[description]#</b></td></tr>#GLOBALS[blockSummaries]#</table>";
 
 //-- Find page
 $pgv_lang["total_places"]	= "znalezionych miejsc";

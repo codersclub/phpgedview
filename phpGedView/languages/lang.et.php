@@ -3,7 +3,7 @@
  * Estonian texts
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2019  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2022  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -1188,9 +1188,7 @@ $pgv_lang["description"]			= "Kirjeldus";
 $pgv_lang["block_desc"]			= "Ploki kirjeldus";
 $pgv_lang["click_here"]			= "Jätkamiseks vajuta siis";
 $pgv_lang["click_here_help"]		= "~#pgv_lang[click_here]#~<br /><br />Muudatuste salvestamiseks vajuta siia.<br /><br />Satud tagasi leheküljele #pgv_lang[welcome]# või leheküljele #pgv_lang[mygedview]#, Kuid muudatused võivad sealt puududa.  Muudatuste nägemiseks pead kasutama brauseri värskendamise funktsiooni (refresh).";
-$pgv_lang["block_summaries"]		= "~#pgv_lang[block_desc]#~<br /><br />Lühidalt on kirjeldatud iga blokki, mida saad paigutada lehtedele #pgv_lang[welcome]# või #pgv_lang[mygedview]#.<br /><table border='1' align='center'><tr><td class='list_value'><b>#pgv_lang[name]#</b></td><td class='list_value'><b>#pgv_lang[description]#</b></td></tr>#pgv_lang[block_summary_table]#</table><br /><br />";
-// Built in index_edit.php
-$pgv_lang["block_summary_table"]	= "&nbsp;";
+$pgv_lang["block_summaries"]		= "~#pgv_lang[block_desc]#~<br /><br />Lühidalt on kirjeldatud iga blokki, mida saad paigutada lehtedele #pgv_lang[welcome]# või #pgv_lang[mygedview]#.<br /><br /><table border='1' width='95%'><tr><td class='list_value'><b>#pgv_lang[name]#</b></td><td class='list_value'><b>#pgv_lang[description]#</b></td></tr>#GLOBALS[blockSummaries]#</table>";
 
 //-- Find page
 $pgv_lang["total_places"]			= "Kohta leitud";

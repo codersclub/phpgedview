@@ -4,7 +4,7 @@
  * to keep bookmarks, see a list of upcoming events, etc.
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2021  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2022  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -161,15 +161,15 @@ asort($SortedBlocks);
 reset($SortedBlocks);
 
 // Build sorted table of block summary descriptions
-global $pgv_lang;
-$pgv_lang["block_summary_table"] = "";
+global $blockSummaries;
+$blockSummaries = "";
 $SortedBlocks = array_flip($SortedBlocks);
 foreach($SortedBlocks as $key => $b) {
 	$temp = $PGV_BLOCKS[$b]["descr"];
-	$pgv_lang["block_summary_table"] .= "<tr valign='top'>";
-	$pgv_lang["block_summary_table"] .= "<td>".$PGV_BLOCKS[$b]["name"]."</td>";
-	$pgv_lang["block_summary_table"] .= "<td>#pgv_lang[$temp]#</td>";
-	$pgv_lang["block_summary_table"] .= "</tr>";
+	$blockSummaries .= "<tr valign='top'>";
+	$blockSummaries .= "<td>".$PGV_BLOCKS[$b]["name"]."</td>";
+	$blockSummaries .= "<td>#pgv_lang[$temp]#</td>";
+	$blockSummaries .= "</tr>";
 }
 $SortedBlocks = array_flip($SortedBlocks);
 

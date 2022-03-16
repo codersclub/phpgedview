@@ -3,7 +3,7 @@
  * Hebrew Language Help-file
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2019  PGV Development Team
+ * Copyright (C) 2002 to 2022  PGV Development Team
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -1831,9 +1831,7 @@ $pgv_lang["definitions"]		= "הגדרות";
 $pgv_lang["block_desc"]		= "תיאורי אזורים";
 $pgv_lang["click_here"]		= "לחץ כאן כדי להמשיך";
 $pgv_lang["click_here_help"]		= "~#pgv_lang[click_here]#~<br /><br />לחץ על כפתור זה כדי לשמור את השינויים שלך.<br /><br />תוחזר לדף #pgv_lang[welcome]# או לדף #pgv_lang[mygedview]#, אבל יתכן שהשינויים שלך לא יוצגו. יתכן שעליך להשתמש בפונקצית רענון תצוגה של הדפדפן כדי שהשינויים שלך יוצגו.";
-$pgv_lang["block_summaries"]		= "~#pgv_lang[block_desc]#~<br /><br />כאן תמצא תאור קצר של כל אזור שניתן לשים על דף ה#pgv_lang[welcome]# או #pgv_lang[mygedview]#.<br /><table border='1' align='center'><tr><td class='list_value'><b>#pgv_lang[name]#</b></td><td class='list_value'><b>#pgv_lang[description]#</b></td></tr>#pgv_lang[block_summary_table]#</table><br /><br />";
-// Built in index_edit.php
-$pgv_lang["block_summary_table"]	= "&nbsp;";
+$pgv_lang["block_summaries"]		= "~#pgv_lang[block_desc]#~<br /><br />כאן תמצא תאור קצר של כל אזור שניתן לשים על דף ה#pgv_lang[welcome]# או #pgv_lang[mygedview]#.<br /><br /><table border='1' width='95%'><tr><td class='list_value'><b>#pgv_lang[name]#</b></td><td class='list_value'><b>#pgv_lang[description]#</b></td></tr>#GLOBALS[blockSummaries]#</table>";
 
 //-- Find page
 $pgv_lang["total_places"]		= "נמצאו מקומות";

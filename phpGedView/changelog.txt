@@ -14,6 +14,8 @@ The session.php script uses this information to populate the constants : PGV_VER
 =====================================================================
 
 Version 4.3.1
+ - Fixed: Block summaries don't print when Help is asked for during Index Page edit (canajun2eh)
+ - Fixed: Error in modules/research_assistant/ra_functions.php when Birth or Death dates missing (canajun2eh)
  - Changed: Indi and Family lists should never print the Last Change information (canajun2eh)
  - Changed: Indi and Family lists should always print the number of children (canajun2eh)
  - Changed: Indi and Family lists should always print the anniversary of Birth, Marriage, and Death dates (canajun2eh)

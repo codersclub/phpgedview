@@ -3,7 +3,7 @@
  * Slovak Language file for PhpGedView.
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2020  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2022  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -1175,8 +1175,7 @@ $pgv_lang["description"]		= "Popis";
 $pgv_lang["block_desc"]			= "Popis bloku";
 $pgv_lang["click_here"]			= "Kliknúť sem pre pokračovanie";
 $pgv_lang["click_here_help"]		= "~#pgv_lang[click_here]#~<br /><br />Kliknite na toto tlačítko na uloženie zmien, ktoré ste urobili.<br /><br />Vrátite sa na  stránku #pgv_lang[welcome]# alebo #pgv_lang[mygedview]#, ale zmeny nebudú zobrazené. Na zobrazenie uložených zmien môžete použiť funkciu vašeho prehliadača Aktualizovať.";
-$pgv_lang["block_summaries"]		= "~#pgv_lang[block_desc]#~<br /><br />Tu je krátký popis každého z blokov, ktorý môžete umiestniť na stránku #pgv_lang[welcome]# alebo #pgv_lang[mygedview]#.<br /><table border='1' align='center'><tr><td class='list_value'><b>#pgv_lang[name]#</b></td><td class='list_value'><b>#pgv_lang[description]#</b></td></tr>#pgv_lang[block_summary_table]#</table><br /><br />";
-$pgv_lang["block_summary_table"]	= "&nbsp;";
+$pgv_lang["block_summaries"]		= "~#pgv_lang[block_desc]#~<br /><br />Tu je krátký popis každého z blokov, ktorý môžete umiestniť na stránku #pgv_lang[welcome]# alebo #pgv_lang[mygedview]#.<br /><br /><table border='1' width='95%'><tr><td class='list_value'><b>#pgv_lang[name]#</b></td><td class='list_value'><b>#pgv_lang[description]#</b></td></tr>#GLOBALS[blockSummaries]#</table>";
 $pgv_lang["total_places"]		= "Nájdené miesta";
 $pgv_lang["media_contains"]		= "Médiá obsahujú:";
 $pgv_lang["repo_contains"]		= "Pramene obsahujú:";

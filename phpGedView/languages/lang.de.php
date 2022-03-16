@@ -1868,9 +1868,7 @@ $pgv_lang["definitions"]				= "Definitionen";
 $pgv_lang["block_desc"]					= "Block Beschreibungen";
 $pgv_lang["click_here"]					= "Weiter";
 $pgv_lang["click_here_help"]			= "~#pgv_lang[click_here]#~<br /><br />Klicken Sie diesen Button, um die zuvor gespeicherten Änderungen zu verwenden.<br /><br />Sie werden zu der #pgv_lang[welcome]# oder #pgv_lang[mygedview]# Seite zurückgenommen, aber es kann sein, dass Ihre Änderungen nicht gezeigt werden. Sie können dann die »Seite Erneuern« Funktion Ihres Browsers benutzen um Ihre Änderungen richtig zu sehen.";
-$pgv_lang["block_summaries"]			= "~#pgv_lang[block_desc]#~<br /><br />Hier finden Sie eine kurze Beschreibung aller Blöcke, die Sie auf die #pgv_lang[welcome]# oder #pgv_lang[mygedview]# Seite stellen können.<br /><table border='1' align='center'><tr><td class='list_value'><b>#pgv_lang[name]#</b></td><td class='list_value'><b>#pgv_lang[description]#</b></td></tr>#pgv_lang[block_summary_table]#</table>";
-// Built in index_edit.php
-$pgv_lang["block_summary_table"]		= "&nbsp;";
+$pgv_lang["block_summaries"]			= "~#pgv_lang[block_desc]#~<br /><br />Hier finden Sie eine kurze Beschreibung aller Blöcke, die Sie auf die #pgv_lang[welcome]# oder #pgv_lang[mygedview]# Seite stellen können.<br /><br /><table border='1' width='95%'><tr><td class='list_value'><b>#pgv_lang[name]#</b></td><td class='list_value'><b>#pgv_lang[description]#</b></td></tr>#GLOBALS[blockSummaries]#</table>";
 
 //-- Find page
 $pgv_lang["total_places"]				= "Gefundene Orte";

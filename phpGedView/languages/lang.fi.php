@@ -3,7 +3,7 @@
  * Finnish Language file for PhpGedView.
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2019  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2022  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -1588,8 +1588,7 @@ $pgv_lang["definitions"]		= "Määritelmiä";
 $pgv_lang["block_desc"]		= "Alueiden kuvaukset";
 $pgv_lang["click_here"]		= "Klikkaa tästä jatkaaksesi";
 $pgv_lang["click_here_help"]		= "~#pgv_lang[click_here]#~<br /><br />Klikkaa tätä painiketta toteuttaaksesi aiemmin tallentamasi muutokset.<br /><br />Sinut viedään takaisin joko sivulle #pgv_lang[welcome]# tai #pgv_lang[mygedview]#, mutta muutoksiasi ei ehkä näytetä. Voit joutua käyttämään sivun lataamista uudelleen nähdäksesi muutoksesi kunnolla.";
-$pgv_lang["block_summaries"]	= "~#pgv_lang[block_desc]#~<br /><br />Tässä on lyhyt selostus jokaisesta alueesta, jonka voit sijoittaa #pgv_lang[welcome]#- tai #pgv_lang[mygedview]#-sivulle.<br /><table border='1' align='center'><tr><td class='list_value'><b>#pgv_lang[name]#</b></td><td class='list_value'><b>#pgv_lang[description]#</b></td></tr>#pgv_lang[block_summary_table]#</table><br /><br />";
-$pgv_lang["block_summary_table"]	= "&nbsp;";
+$pgv_lang["block_summaries"]	= "~#pgv_lang[block_desc]#~<br /><br />Tässä on lyhyt selostus jokaisesta alueesta, jonka voit sijoittaa #pgv_lang[welcome]#- tai #pgv_lang[mygedview]#-sivulle.<br /><br /><table border='1' width='95%'><tr><td class='list_value'><b>#pgv_lang[name]#</b></td><td class='list_value'><b>#pgv_lang[description]#</b></td></tr>#GLOBALS[blockSummaries]#</table>";
 
 //-- Find page
 $pgv_lang["total_places"]		= "Paikkoja löytyi";

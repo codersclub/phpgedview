@@ -3,7 +3,7 @@
  * Indonesian texts
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2020  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2022  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -1664,9 +1664,7 @@ $pgv_lang["definitions"]			= "Definisi";
 $pgv_lang["block_desc"]				= "Uraian Blok";
 $pgv_lang["click_here"]				= "Klik di sini untuk melanjutkan";
 $pgv_lang["click_here_help"]			= "~#pgv_lang[click_here]#~<br /><br />Klik tombol ini untuk menyimpan perubahan Anda.<br /><br />Anda akan kembali ke halaman #pgv_lang[welcome]# atau #pgv_lang[mygedview]#, namun perubahan Anda mungkin tidak diperlihatkan. Anda mungkin perlu untuk menggunakan fungsi Muatkembali Halaman dari perambah Anda untuk menampilkan perubahan Anda dengan benar.";
-$pgv_lang["block_summaries"]			= "~#pgv_lang[block_desc]#~<br /><br />Berikut adalah uraian singkat dari tiap blok yang dapat Anda tempatkan pada halaman #pgv_lang[welcome]# atau #pgv_lang[mygedview]#.<br /><table border='1' align='center'><tr><td class='list_value'><b>#pgv_lang[name]#</b></td><td class='list_value'><b>#pgv_lang[description]#</b></td></tr>#pgv_lang[block_summary_table]#</table><br /><br />";
-// Built in index_edit.php
-$pgv_lang["block_summary_table"]		= "&nbsp;";
+$pgv_lang["block_summaries"]			= "~#pgv_lang[block_desc]#~<br /><br />Berikut adalah uraian singkat dari tiap blok yang dapat Anda tempatkan pada halaman #pgv_lang[welcome]# atau #pgv_lang[mygedview]#.<br /><br /><table border='1' width='95%'><tr><td class='list_value'><b>#pgv_lang[name]#</b></td><td class='list_value'><b>#pgv_lang[description]#</b></td></tr>#GLOBALS[blockSummaries]#</table>";
 
 //-- Find page
 $pgv_lang["total_places"]			= "Tempat yang ditemukan";

@@ -3,7 +3,7 @@
  * Romanian texts
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2020  PGV Development Team
+ * Copyright (C) 2002 to 2022  PGV Development Team
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -1620,9 +1620,7 @@ $pgv_lang["definitions"]			= "Definiţii";
 $pgv_lang["block_desc"]				= "Bloc descrieri";
 $pgv_lang["click_here"]				= "Daţi click aici pentru a continua";
 $pgv_lang["click_here_help"]		= "~#pgv_lang[click_here]#~<br /><br />Daţi clic pe acest buton pentru a vă salva schimbările.<br /><br />Vă veţi întoarce la pagina #pgv_lang[welcome]# sau pagina #pgv_lang[mygedview]#, dar schimbările dumneavoastră s-ar putea să nu fie arătate.  S-ar putea să trebuiască să folosiţi funţia de reîncărcare de la navigatorul dumneavoastră pentru a vedea corect schimbările dumneavoastră.";
-$pgv_lang["block_summaries"]		= "~#pgv_lang[block_desc]#~<br /><br />Aici este o scurtă descriere de la fiecare bloc pe care-l puteţi pune pe pagina #pgv_lang[welcome]# sau pagina #pgv_lang[mygedview]#.<br /><table border='1' align='center'><tr><td class='list_value'><b>#pgv_lang[name]#</b></td><td class='list_value'><b>#pgv_lang[description]#</b></td></tr>#pgv_lang[block_summary_table]#</table><br /><br />";
-// Built in index_edit.php
-$pgv_lang["block_summary_table"]	= "&nbsp;";
+$pgv_lang["block_summaries"]		= "~#pgv_lang[block_desc]#~<br /><br />Aici este o scurtă descriere de la fiecare bloc pe care-l puteţi pune pe pagina #pgv_lang[welcome]# sau pagina #pgv_lang[mygedview]#.<br /><br /><table border='1' width='95%'><tr><td class='list_value'><b>#pgv_lang[name]#</b></td><td class='list_value'><b>#pgv_lang[description]#</b></td></tr>#GLOBALS[blockSummaries]#</table>";
 
 //-- Find page
 $pgv_lang["total_places"]			= "Locurile găsite";

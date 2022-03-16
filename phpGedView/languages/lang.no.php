@@ -1867,9 +1867,7 @@ $pgv_lang["definitions"]		= "Definisjoner";
 $pgv_lang["block_desc"]			= "Blokkbeskrivelser";
 $pgv_lang["click_here"]			= "Klikk her for å fortsette";
 $pgv_lang["click_here_help"]	= "~#pgv_lang[click_here]#~<br /><br />Klikk på denne knappen for godkjenne endringer du har lagret tidligere.";
-$pgv_lang["block_summaries"]	= "~#pgv_lang[block_desc]#~<br /><br />Her er en kort beskrivelse for hver av de blokkene du har valgt for sidene #pgv_lang[welcome]# eller #pgv_lang[mygedview]#.<br /><table border='1' align='center'><tr><td class='list_value'><b>#pgv_lang[name]#</b></td><td class='list_value'><b>#pgv_lang[description]#</b></td></tr>#pgv_lang[block_summary_table]#</table>";
-// Built in index_edit.php
-$pgv_lang["block_summary_table"]	= "&nbsp;";
+$pgv_lang["block_summaries"]	= "~#pgv_lang[block_desc]#~<br /><br />Her er en kort beskrivelse for hver av de blokkene du har valgt for sidene #pgv_lang[welcome]# eller #pgv_lang[mygedview]#.<br /><br /><table border='1' width='95%'><tr><td class='list_value'><b>#pgv_lang[name]#</b></td><td class='list_value'><b>#pgv_lang[description]#</b></td></tr>#GLOBALS[blockSummaries]#</table>";
 
 //-- Find page
 $pgv_lang["total_places"]		= "steder funnet";
