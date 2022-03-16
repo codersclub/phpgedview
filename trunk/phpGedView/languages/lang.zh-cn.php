@@ -3,7 +3,7 @@
  * Chinese (Simplified) texts
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2019 PGV Development Team.  All rights reserved.
+ * Copyright (C) 2019 to 2022  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -2083,9 +2083,7 @@ $pgv_lang["definitions"] = 	 "定义";
 $pgv_lang["block_desc"] = "块描述";
 $pgv_lang["click_here"] = "点击此处继续";
 $pgv_lang["click_here_help"] = "~#pgv_lang[click_here]#~<br /><br />點擊此按鈕保存更改。<br /><br />您將返回页#pgv_lang[welcome]#或# pgv_lang[mygedview]#，但您的更改可能不會顯示。您可能需要使用瀏覽器的Page Reload功能正確查看更改。";
-$pgv_lang["block_summaries"] = "~#pgv_lang[block_desc]#~<br /><br />以下是您可以在#pgv_lang[welcome]#或#pgv_lang[mygedview]#页面上每个块的简短描述。<br /><table border='1'align='center'><tr><td class='list_value'><b>#pgv_lang[name]#</b></td><td class='list_value'><b>#pgv_lang[description]#</b></td></tr>#pgv_lang[block_summary_table]#</table><br /><br />";
-//Built in index_edit.php
-$pgv_lang["block_summary_table"] = 	 "&nbsp;";
+$pgv_lang["block_summaries"] = "~#pgv_lang[block_desc]#~<br /><br />以下是您可以在#pgv_lang[welcome]#或#pgv_lang[mygedview]#页面上每个块的简短描述。<br /><br /><table border='1' width='95%'><tr><td class='list_value'><b>#pgv_lang[name]#</b></td><td class='list_value'><b>#pgv_lang[description]#</b></td></tr>#GLOBALS[blockSummaries]#</table>";
 
 //-- Find page
 $pgv_lang["total_places"] = "找到的地方";

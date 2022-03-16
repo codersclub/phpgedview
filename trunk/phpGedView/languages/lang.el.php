@@ -3,7 +3,7 @@
  * Greek Language file for PhpGedView.
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2019  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2022  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -1776,9 +1776,8 @@ $pgv_lang["both_alive"]				= "Και οι δύο ζωντανοί";
 $pgv_lang["definitions"]			= "Ορισμοί";
 $pgv_lang["block_desc"]				= "Πλαίσιο περιγραφών";
 $pgv_lang["click_here_help"]		= "~#pgv_lang[click_here]#~<br /><br />Επιλέξτε αυτό το πλήκτρο για να αποθηκεύσετε τις αλλαγές.<br /><br />Θα επιστραφείτε στην σελίδα #pgv_lang[welcome]# ή #pgv_lang[mygedview]#, αλλά οι αλλαγές μπορεί να μην εμφανιστούν. Μπορεί να χρειαστεί να χρησιμοποιήσετε τη λειτουργία Ανανέωση σελίδας στον φυλλομετρητή σας, για να προβάλετε τις αλλαγές σωστά.";
-$pgv_lang["block_summaries"]		= "~#pgv_lang[block_desc]#~<br /><br />Εδώ υπάρχει μια σύντομη περιγραφή του κάθε πλαισίου που μπορείτε να τοποθετήσετε στη σελίδα #pgv_lang[welcome]# ή #pgv_lang[mygedview]#.<br /><table border='1' align='center'><tr><td class='list_value'><b>#pgv_lang[name]#</b></td><td class='list_value'><b>#pgv_lang[description]#</b></td></tr>#pgv_lang[block_summary_table]#</table><br /><br />";
+$pgv_lang["block_summaries"]		= "~#pgv_lang[block_desc]#~<br /><br />Εδώ υπάρχει μια σύντομη περιγραφή του κάθε πλαισίου που μπορείτε να τοποθετήσετε στη σελίδα #pgv_lang[welcome]# ή #pgv_lang[mygedview]#.<br /><br /><table border='1' width='95%'><tr><td class='list_value'><b>#pgv_lang[name]#</b></td><td class='list_value'><b>#pgv_lang[description]#</b></td></tr>#GLOBALS[blockSummaries]#</table>";
 $pgv_lang["total_places"]			= "Ευρεθείσες τοποθεσίες";
-$pgv_lang["block_summary_table"]	= "&nbsp;";
 $pgv_lang["media_contains"]			= "Το μέσο περιέχει:";
 $pgv_lang["repo_contains"]			= "Ο χώρος φύλαξης περιέχει:";
 $pgv_lang["shared_note_contains"]	= "Η κοινόχρηστη σημείωση περιέχει:";

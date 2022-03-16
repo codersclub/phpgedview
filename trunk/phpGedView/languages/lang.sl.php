@@ -3,7 +3,7 @@
  * Slovenian texts
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2020  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2022  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -1860,9 +1860,7 @@ $pgv_lang["definitions"]			= "Definicije";
 $pgv_lang["block_desc"]				= "Označi opise";
 $pgv_lang["click_here"]				= "Klikni za nadaljevanje";
 $pgv_lang["click_here_help"]		= "~#pgv_lang[click_here]#~<br /><br />Kliknite ta gumb za shranitev sprememb.<br /><br />Čeprav se boste vrnili na #pgv_lang[welcome]# ali #pgv_lang[mygedview]# stran, vaših sprememb mogoče ne bo videti. Za ustrezen prikaz sprememb boste mogoče morali uporabiti funkcijo ponovnega nalaganja na vašem brskalniku.";
-$pgv_lang["block_summaries"]		= "~#pgv_lang[block_desc]#~<br /><br />Tu je kratek opis posameznih blokov, ki jih lahko postavite na #pgv_lang[welcome]# ali #pgv_lang[mygedview]# stran.<br /><table border='1' align='center'><tr><td class='list_value'><b>#pgv_lang[name]#</b></td><td class='list_value'><b>#pgv_lang[description]#</b></td></tr>#pgv_lang[block_summary_table]#</table><br /><br />";
-// Built in index_edit.php
-$pgv_lang["block_summary_table"]	= "&nbsp;";
+$pgv_lang["block_summaries"]		= "~#pgv_lang[block_desc]#~<br /><br />Tu je kratek opis posameznih blokov, ki jih lahko postavite na #pgv_lang[welcome]# ali #pgv_lang[mygedview]# stran.<br /><br /><table border='1' width='95%'><tr><td class='list_value'><b>#pgv_lang[name]#</b></td><td class='list_value'><b>#pgv_lang[description]#</b></td></tr>#GLOBALS[blockSummaries]#</table>";
 
 //-- Find page
 $pgv_lang["total_places"]			= "Najdeni kraji";

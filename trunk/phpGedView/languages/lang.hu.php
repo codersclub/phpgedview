@@ -3,7 +3,7 @@
  * Hungarian texts
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2019  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2022  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -1399,7 +1399,7 @@ $pgv_lang["stplipot"]                   			= " / időszak";
 $pgv_lang["stplmonth"]                  			= "hónap";
 $pgv_lang["click_here"]						= "Kattintson ide hogy folytassa";
 $pgv_lang["click_here_help"]					= "~#pgv_lang[click_here]#~<br /><br />Kattintson erre a gombra hogy elmentse a változtatásokat.<br /><br />Vissza fog kerülni a #pgv_lang[welcome]# vagy a #pgv_lang[mygedview]# oldalra, de a változtatásai lehet hogy még nem fognaklátsztani. Lehet hogy az oldalt frissítenie kell a változások megjelenítéséhez.";
-$pgv_lang["block_summaries"]		= "~#pgv_lang[block_desc]#~<br /><br />Egy rövid leírás minden egyes blokkról amit a #pgv_lang[welcome]# vagy a #pgv_lang[mygedview]# oldalra tud tenni.<br /><table border='1' align='center'><tr><td class='list_value'><b>#pgv_lang[name]#</b></td><td class='list_value'><b>#pgv_lang[description]#</b></td></tr>#pgv_lang[block_summary_table]#</table><br /><br />";
+$pgv_lang["block_summaries"]		= "~#pgv_lang[block_desc]#~<br /><br />Egy rövid leírás minden egyes blokkról amit a #pgv_lang[welcome]# vagy a #pgv_lang[mygedview]# oldalra tud tenni.<br /><br /><table border='1' width='95%'><tr><td class='list_value'><b>#pgv_lang[name]#</b></td><td class='list_value'><b>#pgv_lang[description]#</b></td></tr>#GLOBALS[blockSummaries]#</table>";
 $pgv_lang["display_all"]					= "Mutass mindent";
 $pgv_lang["source_contains"]					= "A Forrás tartalma:";
 $pgv_lang["repo_contains"]					= "A Szervezet tartalma:";

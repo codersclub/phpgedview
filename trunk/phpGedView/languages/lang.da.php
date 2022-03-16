@@ -1866,9 +1866,7 @@ $pgv_lang["definitions"]			= "Definitioner";
 $pgv_lang["block_desc"]				= "Beskrivelse af blokke";
 $pgv_lang["click_here"]				= "Klik her for at fortsætte";
 $pgv_lang["click_here_help"]		= "~#pgv_lang[click_here]#~<br /><br />Klik på denne knap for at gemme dine ændringer.<br /><br />Du vil blive sendt tilbage til en af siderne:<b>#pgv_lang[welcome]# eller #pgv_lang[mygedview]#</b>, men dine ændringer bliver muligvis ikke vist.  Du skal muligvis klikke på din browsers opdateringsknap (Reload/Refresh) for at se ændringerne.";
-$pgv_lang["block_summaries"]		= "~#pgv_lang[block_desc]#~<br /><br />Her gives en kort beskrivelse af hver af de blokke du kan placere på #pgv_lang[welcome]# eller #pgv_lang[mygedview]# siden.<br /><table border='1' align='center'><tr><td class='list_value'><b>#pgv_lang[name]#</b></td><td class='list_value'><b>#pgv_lang[description]#</b></td></tr>#pgv_lang[block_summary_table]#</table>";
-// Built in index_edit.php
-$pgv_lang["block_summary_table"]	= "&nbsp;";
+$pgv_lang["block_summaries"]		= "~#pgv_lang[block_desc]#~<br /><br />Her gives en kort beskrivelse af hver af de blokke du kan placere på #pgv_lang[welcome]# eller #pgv_lang[mygedview]# siden.<br /><br /><table border='1' width='95%'><tr><td class='list_value'><b>#pgv_lang[name]#</b></td><td class='list_value'><b>#pgv_lang[description]#</b></td></tr>#GLOBALS[blockSummaries]#</table>";
 
 //-- Find page
 $pgv_lang["total_places"]			= "Steder fundet";

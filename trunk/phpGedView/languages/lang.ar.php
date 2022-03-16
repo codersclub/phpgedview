@@ -3,7 +3,7 @@
  * Arabic Language file for PhpGedView.
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2019  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2022  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -1645,11 +1645,7 @@ $pgv_lang["block_desc"]			= "وصف الصناديق";
 $pgv_lang["click_here"]			= "إضغط هنا للاستمرار";
 $pgv_lang["click_here_help"]		= "~#pgv_lang[click_here]#~<br /><br /> اضغط على هذا الزر لحفظ التغييرات. <br /><br /> سيتم إعادتك إلى #pgv_lang[welcome]# أو#pgv_lang[mygedview]# ولكن قد لا تظهر تغييراتك حتى تقوم بإعادة تحميل المتصفح.";
 
-$pgv_lang["block_summaries"]		= "~#pgv_lang[block_desc]#~<br /><br /> هنا شرح موجزا لكل الصناديق المتاحة لصفحتك #pgv_lang[welcome]# أو #pgv_lang[mygedview]#. <br /><table border='1' align='center'><tr><td class='list_value'><b>#pgv_lang[name]#</b></td><td class='list_value'><b>#pgv_lang[description]#</b></td></tr>#pgv_lang[block_summary_table]#</table><br /><br />";
-
-
-// Built in index_edit.php
-$pgv_lang["block_summary_table"]	= "&nbsp;";
+$pgv_lang["block_summaries"]		= "~#pgv_lang[block_desc]#~<br /><br /> هنا شرح موجزا لكل الصناديق المتاحة لصفحتك #pgv_lang[welcome]# أو #pgv_lang[mygedview]#.<br /><br /><table border='1' width='95%'><tr><td class='list_value'><b>#pgv_lang[name]#</b></td><td class='list_value'><b>#pgv_lang[description]#</b></td></tr>#GLOBALS[blockSummaries]#</table>";
 
 //-- Find page
 $pgv_lang["total_places"]		= "Places found";

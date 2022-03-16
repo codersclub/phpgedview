@@ -4,7 +4,7 @@
  * phpGedView Research Assistant Tool - Functions File.
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2021  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2022  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -1237,10 +1237,14 @@ class ra_functions {
 		global $factarray;
 
 		if (!is_object($person)) return "";
+
 		$bdate = $person->getEstimatedBirthDate();
+		if (is_null($bdate)) $byear = '';
+		else $byear = $bdate->gregorianYear();
+ 
 		$ddate = $person->getEstimatedDeathDate();
-		$byear = $bdate->gregorianYear();
-		$dyear = $ddate->gregorianYear();
+		if (is_null($ddate)) $dyear = '';
+		else $dyear = $ddate->gregorianYear();
 
 		if (isset ($_REQUEST['action']) && $_REQUEST['action'] == 'ra_addtask')
 			$this->auto_add_task($person, $_POST['folder']);
@@ -1291,18 +1295,24 @@ class ra_functions {
 										'</td>
 									</tr>';
 										$bdatea = $person->getEstimatedBirthDate();
-										$bdatea = $bdatea->MinDate();
-										$bdatea = $bdatea->convert_to_cal('gregorian');
-										$bdate  = $bdatea->Format('Y');
-										$bdate .= ($bdatea->m) ? $bdatea->Format('m') : '00';
-										$bdate .= ($bdatea->d) ? $bdatea->Format('d') : '00';
+										if (is_null($bdatea)) $bdate = '';
+										else {
+											$bdatea = $bdatea->MinDate();
+											$bdatea = $bdatea->convert_to_cal('gregorian');
+											$bdate  = $bdatea->Format('Y');
+											$bdate .= ($bdatea->m) ? $bdatea->Format('m') : '00';
+											$bdate .= ($bdatea->d) ? $bdatea->Format('d') : '00';
+										}
 
 										$ddatea = $person->getEstimatedDeathDate();
-										$ddatea = $ddatea->MinDate();
-										$ddatea = $ddatea->convert_to_cal('gregorian');
-										$ddate  = $ddatea->Format('Y');
-										$ddate .= ($ddatea->m) ? $ddatea->Format('m') : '00';
-										$ddate .= ($ddatea->d) ? $ddatea->Format('d') : '00';
+										if (is_null($ddatea)) $ddate = '';
+										else {
+											$ddatea = $ddatea->MinDate();
+											$ddatea = $ddatea->convert_to_cal('gregorian');
+											$ddate  = $ddatea->Format('Y');
+											$ddate .= ($ddatea->m) ? $ddatea->Format('m') : '00';
+											$ddate .= ($ddatea->d) ? $ddatea->Format('d') : '00';
+										}
 
 										$sourcesInferred = array();
 										$sourcesPrinted = array();
@@ -1545,9 +1555,11 @@ class ra_functions {
 													$tempPlace = $tVal->getPlace();
 
 													$tempDate = $tempDate->date1;
-													$sortdate = $tempDate->y;
-													$sortdate.=($tempDate->m) ? $tempDate->Format('m') : '00';
-													$sortdate.=($tempDate->d) ? $tempDate->Format('d') : '00';
+													if (is_object($tempDate)) {
+														$sortdate = $tempDate->y;
+														$sortdate.=($tempDate->m) ? $tempDate->Format('m') : '00';
+														$sortdate.=($tempDate->d) ? $tempDate->Format('d') : '00';
+													} else $sortdate = '';
 
 													$place = trim($tempPlace);
 
