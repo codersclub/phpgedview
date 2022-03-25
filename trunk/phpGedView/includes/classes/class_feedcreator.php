@@ -791,14 +791,14 @@ class FeedDate {
 		}
 		if (preg_match("~(\\d{4})-(\\d{2})-(\\d{2})T(\\d{2}):(\\d{2}):(\\d{2})(.*)~",$dateString,$matches)) {
 			$this->unix = mktime($matches[4],$matches[5],$matches[6],$matches[2],$matches[3],$matches[1]);
-			if (substr($matches[7],0,1)=='+' OR substr($matches[7],0,1)=='-') {
-				$tzOffset = (substr($matches[7],0,3) * 60 + substr($matches[7],-2)) * 60;
-			} else {
-				if ($matches[7]=="Z") {
-					$tzOffset = 0;
-				}
-			}
-			$this->unix += $tzOffset;
+##			if (substr($matches[7],0,1)=='+' OR substr($matches[7],0,1)=='-') {
+##				$tzOffset = (substr($matches[7],0,3) * 60 + substr($matches[7],-2)) * 60;
+##			} else {
+##				if ($matches[7]=="Z") {
+##					$tzOffset = 0;
+##				}
+##			}
+##			$this->unix += $tzOffset;
 			return;
 		}
 		$this->unix = 0;
@@ -1193,9 +1193,9 @@ class PIECreator01 extends FeedCreator {
  * @since 1.7.2-mod (modified)
  * @author Mohammad Hafiz Ismail (mypapit@gmail.com)
  */
- class AtomCreator10 extends FeedCreator {
+class AtomCreator10 extends FeedCreator {
 
-	function AtomCreator10() {
+	function __construct() {
 		$this->contentType = "application/atom+xml";
 		$this->encoding = "utf-8";
 

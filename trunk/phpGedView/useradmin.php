@@ -202,8 +202,8 @@ if ($action=='createuser' || $action=='edituser2') {
 			AddToLog("User ->{$username}<- was not created");
 			$errorMessage = str_replace('#username#', $faultyName, $pgv_lang['usercreate_fail']).'<br />';
 		} else {
-			set_user_setting($user_id, 'reg_timestamp', date('U'));
-			set_user_setting($user_id, 'sessiontime', '0');
+			set_user_setting($newID, 'reg_timestamp', date('U'));
+			set_user_setting($newID, 'sessiontime', '0');
 			AddToLog("User ->{$username}<- created");
 		}
 	}
