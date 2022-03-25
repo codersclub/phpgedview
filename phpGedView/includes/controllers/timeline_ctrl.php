@@ -3,7 +3,7 @@
 * Controller for the timeline chart
 *
 * phpGedView: Genealogy Viewer
-* Copyright (C) 2002 to 2017 PGV Development Team.  All rights reserved.
+* Copyright (C) 2002 to 2022 PGV Development Team.  All rights reserved.
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -119,17 +119,19 @@ class TimelineControllerRoot extends BaseController {
 					if (!in_array($fact, $this->nonfacts)) {
 						//-- check for a date
 						$date = $event->getDate();
-						$date=$date->MinDate();
-						$date=$date->convert_to_cal('gregorian');
-						if ($date->y) {
-							$this->baseyear=min($this->baseyear, $date->y);
-							$this->topyear =max($this->topyear,  $date->y);
-
-							if (!$indi->isDead())
-								$this->topyear=max($this->topyear, date('Y'));
-							$event->temp = $p;
-							//-- do not add the same fact twice (prevents marriages from being added multiple times)
-	 						if (!in_array($event, $this->indifacts, true)) $this->indifacts[] = $event;
+						if (is_object($date) {
+							$date=$date->MinDate();
+							$date=$date->convert_to_cal('gregorian');
+							if ($date->y) {
+								$this->baseyear=min($this->baseyear, $date->y);
+								$this->topyear =max($this->topyear,  $date->y);
+                        	
+								if (!$indi->isDead())
+									$this->topyear=max($this->topyear, date('Y'));
+								$event->temp = $p;
+								//-- do not add the same fact twice (prevents marriages from being added multiple times)
+	 							if (!in_array($event, $this->indifacts, true)) $this->indifacts[] = $event;
+							}
 						}
 					}
 				}

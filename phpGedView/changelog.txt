@@ -14,6 +14,10 @@ The session.php script uses this information to populate the constants : PGV_VER
 =====================================================================
 
 Version 4.3.1
+ - Fixed: Error while creating a new user (canajun2eh)
+ - Fixed: Error in RSS feed when server's time zone is not stated correctly (canajun2eh)
+ - Fixed: PHP 7.4 incompatibility in RSS feed (canajun2eh) 
+ - Fixed: Error in Timeline when a date is missing (canajun2eh)
  - Fixed: Block summaries don't print when Help is asked for during Index Page edit (canajun2eh)
  - Fixed: Error in modules/research_assistant/ra_functions.php when Birth or Death dates missing (canajun2eh)
  - Changed: Indi and Family lists should never print the Last Change information (canajun2eh)
