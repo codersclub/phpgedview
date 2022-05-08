@@ -3,7 +3,7 @@
  * Functions used Tools to cleanup and manipulate Gedcoms before they are imported
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2021  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2022  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -438,11 +438,11 @@ function xref_change($tag="RIN")
  * @return boolean 	returns true if the file claims to be ANSI encoded
  * @see convert_ansi_utf8()
  */
-function is_ansi() {
-	global $fcontents;
-
-	return preg_match("/1 CHAR (ANSI|ANSEL)/", $fcontents);
-}
+// function is_ansi() {
+// 	global $fcontents;
+// 
+// 	return preg_match("/1 CHAR (ANSI|ANSEL)/", $fcontents);
+// }
 
 /**
  * Convert an ANSI encoded file to UTF8

@@ -14,6 +14,7 @@ The session.php script uses this information to populate the constants : PGV_VER
 =====================================================================
 
 Version 4.3.1
+ - Fixed: GEDCOM Import does not reliably recognize UTF-8 files (canajun2eh)
  - Fixed: Error while creating a new user (canajun2eh)
  - Fixed: Error in RSS feed when server's time zone is not stated correctly (canajun2eh)
  - Fixed: PHP 7.4 incompatibility in RSS feed (canajun2eh) 
