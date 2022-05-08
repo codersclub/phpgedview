@@ -7,7 +7,7 @@
  * file.
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2016  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2022  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -69,24 +69,24 @@ import_req_variables('gp');
 @ini_set('zlib.output_compression','0');
 
 if (empty ($action)) $action = "upload_form";
-if (!isset ($path)) $path = "";
-if (!isset ($check)) $check = "";
-if (!isset ($error)) $error = "";
-if (!isset ($verify)) $verify = "";
-if (!isset ($import)) $import = false;
-if (!isset ($bakfile)) $bakfile = "";
-if (!isset ($cleanup_needed)) $cleanup_needed = false;
-if (!isset ($ok)) $ok = false;
-if (!isset ($startimport)) $startimport = false;
-if (!isset ($timelimit)) $timelimit = $TIME_LIMIT;
-if (!isset ($importtime)) $importtime = 0;
-if (!isset ($no_upload)) $no_upload = false;
-if (!isset ($override)) $override = false;
+if (!isset($path)) $path = "";
+if (!isset($check)) $check = "";
+if (!isset($error)) $error = "";
+if (!isset($verify)) $verify = "";
+if (!isset($import)) $import = false;
+if (!isset($bakfile)) $bakfile = "";
+if (!isset($cleanup_needed)) $cleanup_needed = false;
+if (!isset($ok)) $ok = false;
+if (!isset($startimport)) $startimport = false;
+if (!isset($timelimit)) $timelimit = $TIME_LIMIT;
+if (!isset($importtime)) $importtime = 0;
+if (!isset($no_upload)) $no_upload = false;
+if (!isset($override)) $override = false;
 if ($no_upload == "cancel_upload" || $override == "no") $check = "cancel_upload";
-if (!isset ($exists)) $exists = false;
-if (!isset ($config_gedcom)) $config_gedcom = "";
-if (!isset ($continue)) $continue = false;
-if (!isset ($import_existing)) $import_existing = false;
+if (!isset($exists)) $exists = false;
+if (!isset($config_gedcom)) $config_gedcom = "";
+if (!isset($continue)) $continue = false;
+if (!isset($import_existing)) $import_existing = false;
 if (!isset($utf8convert)) $utf8convert = "no";
 if (isset($_REQUEST['keepmedia']) && $_REQUEST['keepmedia']=='yes') $keepmedia=true;
 else $keepmedia = false;
@@ -220,7 +220,7 @@ if ($cleanup_needed == "cleanup_needed" && $continue == $pgv_lang["del_proceed"]
 				macfile_cleanup();
 			}
 
-			if (isset ($_POST["cleanup_places"]) && $_POST["cleanup_places"] == "YES") {
+			if (isset($_POST["cleanup_places"]) && $_POST["cleanup_places"] == "YES") {
 //				if (($sample = need_place_cleanup()) !== false) {
 //					$l_placecleanup = true;
 					place_cleanup();
@@ -231,7 +231,7 @@ if ($cleanup_needed == "cleanup_needed" && $continue == $pgv_lang["del_proceed"]
 				$filechanged = true;
 			}
 
-			if (isset ($_POST["datetype"])) {
+			if (isset($_POST["datetype"])) {
 				$filechanged = true;
 				//month first
 				date_cleanup($_POST["datetype"]);
@@ -242,7 +242,7 @@ if ($cleanup_needed == "cleanup_needed" && $continue == $pgv_lang["del_proceed"]
 				xref_change($_POST["xreftype"]);
 				}
 				**/
-			if (isset ($_POST["utf8convert"]) == "YES") {
+			if (isset($_POST["utf8convert"]) && $_POST["utf8convert"] == "YES") {
 				$filechanged = true;
 				convert_ansi_utf8();
 			}
@@ -576,6 +576,7 @@ if ($verify == "validate_form") {
 		// then we won't ask the user to choose between DMY and YMD.
 
 		//-- read the gedcom and test it in 8KB chunks
+		$knowCharset = false;		// We haven't found a 1 CHAR xx line yet
 		while ($fp && !feof($fp)) {
 			$fcontents = fread($fp, 1024 * 8);
 			if (!$l_BOMcleanup && need_BOM_cleanup()) $l_BOMcleanup = true;
@@ -584,7 +585,15 @@ if ($verify == "validate_form") {
 			if (!$l_lineendingscleanup && need_line_endings_cleanup()) $l_lineendingscleanup = true;
 //			if (!$l_placecleanup && ($placesample = need_place_cleanup()) !== false) $l_placecleanup = true;
 //			if (!$l_datecleanup && ($datesample = need_date_cleanup()) !== false) $l_datecleanup = true;
-			if (!$l_isansi && is_ansi()) $l_isansi = true;
+//			if (!$l_isansi && is_ansi()) $l_isansi = true;
+			if (!$knowCharset) {		// Have we seen a 1 CHAR line?
+				// It's expedient to rely on the first 1 CHAR line for now.  
+				// We should probably examine the entire file to look for a UTF-8 character.
+				$knowCharset = preg_match('~1 CHAR (ANSI|ANSEL|UTF-8)~', $fcontents, $match);
+				if ($knowCharset) {
+					if ($match[1] != 'UTF-8') $l_isansi = true;		// treat ANSEL as if it's ANSI (probably wrong!!)
+				}
+			}
 			$sample = need_place_cleanup();
 			if ($sample !== false) {
 				$l_placecleanup = true;
@@ -783,21 +792,21 @@ if ($import == true) {
 
 	print "<input type=\"hidden\" name=\"startimport\" value=\"true\" />";
 	print "<input type=\"hidden\" name=\"ged\" value=\"";
-	if (isset ($GEDFILENAME))
+	if (isset($GEDFILENAME))
 	print $GEDFILENAME;
 	print "\" />";
 	print "<input type=\"hidden\" name=\"GEDFILENAME\" value=\"";
-	if (isset ($GEDFILENAME))
+	if (isset($GEDFILENAME))
 	print $GEDFILENAME;
 	print "\" />";
 	print "<input type=\"hidden\" name=\"exists\" value=\"";
-	if (isset ($exists))
+	if (isset($exists))
 	print $exists;
 	print "\" />";
 	print "<input type=\"hidden\" name=\"ok\" value=\"".$ok."\" />";
 	print "<input type=\"hidden\" name=\"import\" value=\"".$import."\" />";
 	print "<input type=\"hidden\" name=\"l_isansi\" value=\"";
-	if (isset ($l_isansi))
+	if (isset($l_isansi))
 	print $l_isansi;
 	print "\" />";
 	print "<input type=\"hidden\" name=\"check\" value=\"\" />";
@@ -808,7 +817,7 @@ if ($import == true) {
 if ($startimport == "true") {
 	set_gedcom_setting(get_id_from_gedcom($GEDFILENAME), 'imported', false);
 
-	if (isset ($exectime)) {
+	if (isset($exectime)) {
 		$oldtime = time() - $exectime;
 		$skip_table = 0;
 	} else
@@ -886,7 +895,7 @@ if ($startimport == "true") {
 	}
 //-- end of setup_progress_bar function
 
-if (!isset ($stage))
+if (!isset($stage))
 $stage = 0;
 if ((empty ($ged)) || (!get_id_from_gedcom($ged))) {
 	$ged = $GEDCOM;
@@ -904,7 +913,7 @@ $temp2 = $THEME_DIR;
 $THEME_DIR = $temp;
 $THEME_DIR = $temp2;
 
-if (isset ($GEDCOM_FILE)) {
+if (isset($GEDCOM_FILE)) {
 	if ((!isFileExternal($GEDCOM_FILE)) && (!file_exists($GEDCOM_FILE))) {
 		print "<span class=\"error\"><b>Could not locate gedcom file at $GEDCOM_FILE<br /></b></span>\n";
 		unset ($GEDCOM_FILE);
@@ -1170,7 +1179,7 @@ if ($stage == 1) {
 	echo "<tr><td class=\"topbottombar $TEXT_DIRECTION\">", $pgv_lang["import_statistics"], "</td></tr>";
 	print "<tr><td class=\"optionbox\">";
 	print "<table cellspacing=\"20px\"><tr><td class=\"optionbox\" style=\"vertical-align: top;\">";
-	if (isset ($skip_table)) {
+	if (isset($skip_table)) {
 	 print "<br />...";
 	} else {
 		print $show_table1;
