@@ -14,6 +14,9 @@ The session.php script uses this information to populate the constants : PGV_VER
 =====================================================================
 
 Version 4.3.1
+ - Fixed: Various references to the re-named debugging function DumpString (canajun2eh)
+ - Fixed: Undefined index while configuring GEDCOM when active language isn't English (canajun2eh)
+ - Fixed: Clarify the "Do not update the CHAN (Last Change) record" option (canajun2eh)
  - Fixed: GEDCOM Import does not reliably recognize UTF-8 files (canajun2eh)
  - Fixed: Error while creating a new user (canajun2eh)
  - Fixed: Error in RSS feed when server's time zone is not stated correctly (canajun2eh)
