@@ -980,9 +980,9 @@ print "&nbsp;<a href=\"javascript: ".$pgv_lang["gedcom_conf"]."\" onclick=\"expa
 		<?php
 			foreach ($pgv_language as $key=>$value) {
 			if ($language_settings[$key]["pgv_lang_use"]) {
-					print "\n\t\t\t<option value=\"$key\"";
-					if ($GEDCOMLANG==$key) print " selected=\"selected\"";
-					print ">".$pgv_lang[$key]."</option>";
+					print "\n\t\t\t<option value='{$key}'";
+					if ($GEDCOMLANG==$key) print " selected='selected'";
+					echo ">{$language_settings[$key]['pgv_lang_self']}</option>";
 				}
 			}
 			print "</select>";
@@ -2092,8 +2092,8 @@ print "&nbsp;<a href=\"javascript: ".$pgv_lang["editopt_conf"]."\" onclick=\"exp
 	</tr>
 
 	<tr>
-		<td class="descriptionbox wrap width20"><?php print_help_link("no_update_CHAN_help", "qm", "no_update_CHAN"); print $pgv_lang["no_update_CHAN"]; ?></td>
-		<td class="optionbox"><select name="NEW_NO_UPDATE_CHAN" tabindex="<?php $i++; print $i; ?>" onfocus="getHelp('no_update_CHAN_help');">
+		<td class="descriptionbox wrap width20"><?php print_help_link("config_update_CHAN_help", "qm", "no_update_CHAN"); print $pgv_lang["no_update_CHAN"]; ?></td>
+		<td class="optionbox"><select name="NEW_NO_UPDATE_CHAN" tabindex="<?php $i++; print $i; ?>" onfocus="getHelp('config_update_CHAN_help');">
 				<option value="yes" <?php if ($NO_UPDATE_CHAN) print "selected=\"selected\""; ?>><?php print $pgv_lang["yes"]; ?></option>
 				<option value="no" <?php if (!$NO_UPDATE_CHAN) print "selected=\"selected\""; ?>><?php print $pgv_lang["no"]; ?></option>
 			</select>

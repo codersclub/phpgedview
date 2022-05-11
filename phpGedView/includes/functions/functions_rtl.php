@@ -85,10 +85,10 @@ function spanLTRRTL($inputText, $direction='BOTH', $class='') {
 
 	if ($inputText == '') return '';		// Nothing to do
 
-	$debug = false;		// false for normal operation (no calls of the DumpString function)
+	$debug = false;		// false for normal operation (no calls of the string_dump function)
 
 	$spanNumber ++;
-	if ($debug) {echo '<br /><b>Input ', $spanNumber, ':</b>'; DumpString($inputText);}
+	if ($debug) {echo '<br /><b>Input ', $spanNumber, ':</b>'; string_dump($inputText);}
 
 	$workingText = str_replace("\n", '<br />', $inputText);
 	$workingText = str_replace(array('<span class="starredname"><br />', '<span<br />class="starredname">'), '<br /><span class="starredname">',$workingText);		// Reposition some incorrectly placed line breaks
@@ -375,7 +375,7 @@ function spanLTRRTL($inputText, $direction='BOTH', $class='') {
 	}
 
 	// Lastly, do some more cleanups
-	if ($debug) {echo '<b>Interim Output:</b>'; DumpString($result);}
+	if ($debug) {echo '<b>Interim Output:</b>'; string_dump($result);}
 
 	// Move leading RTL numeric strings to following LTR text
 	// (this happens when the page direction is RTL and the original text begins with a number and is followed by LTR text)
@@ -491,7 +491,7 @@ function spanLTRRTL($inputText, $direction='BOTH', $class='') {
 		break;
 	}
 	$result = str_replace(array($startLTR, $endLTR, $startRTL, $endRTL), array($sLTR, $eLTR, $sRTL, $eRTL), $result);
-	if ($debug) {echo '<b>Final Output:</b>'; DumpString($result);}
+	if ($debug) {echo '<b>Final Output:</b>'; string_dump($result);}
 	return $result;
 }
 

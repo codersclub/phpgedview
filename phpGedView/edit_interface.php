@@ -719,7 +719,7 @@ case 'linkfamaction':
 					//-- change a of the old ids to the new id
 					$famrec = str_replace("1 $famtag @$spid@", "1 $famtag @$pid@", $famrec);
 					if (PGV_DEBUG) {
-						DumpString($famrec);
+						string_dump($famrec);
 					}
 					replace_gedrec($famid, $famrec, $update_CHAN);
 					//-- remove the FAMS reference from the old husb/wife
@@ -729,7 +729,7 @@ case 'linkfamaction':
 						if ($srec) {
 							$srec = str_replace("1 $itag @$famid@", "", $srec);
 							if (PGV_DEBUG) {
-								DumpString($srec);
+								string_dump($srec);
 							}
 							replace_gedrec($spid, $srec, $update_CHAN);
 						}
@@ -738,7 +738,7 @@ case 'linkfamaction':
 			} else {
 				$famrec .= "\n1 $famtag @$pid@\n";
 				if (PGV_DEBUG) {
-					DumpString($famrec);
+					string_dump($famrec);
 				}
 				replace_gedrec($famid, $famrec, $update_CHAN);
 			}
@@ -889,7 +889,7 @@ case 'addsourceaction':
 		if (!empty($CALN)) $newgedrec .= "2 CALN $CALN\n";
 	}
 	if (PGV_DEBUG) {
-		DumpString($newgedrec);
+		string_dump($newgedrec);
 	}
 	$xref = append_gedrec($newgedrec, $update_CHAN);
 	$link = "source.php?sid=$xref&show_changes=yes";
@@ -1013,7 +1013,7 @@ case 'addnoteaction':
 		if (!empty($CALN)) $newgedrec .= "2 CALN $CALN\n";
 	}
 	if (PGV_DEBUG) {
-		DumpString($newgedrec);
+		string_dump($newgedrec);
 	}
 	// $xref = "Test";
 	$xref = append_gedrec($newgedrec, $update_CHAN);
@@ -1330,7 +1330,7 @@ case 'addrepoaction':
 	if (!empty($WWW)) $newgedrec .= "1 WWW $WWW\n";
 
 	if (PGV_DEBUG) {
-		DumpString($newgedrec);
+		string_dump($newgedrec);
 	}
 	$xref = append_gedrec($newgedrec, $update_CHAN);
 	$link = "repo.php?rid=$xref&show_changes=yes";
@@ -1345,7 +1345,7 @@ case 'updateraw':
 	if (isset($_REQUEST['newgedrec'])) $newgedrec = $_REQUEST['newgedrec'];
 	if (PGV_DEBUG) {
 		phpinfo(INFO_VARIABLES);
-		DumpString($newgedrec);
+		string_dump($newgedrec);
 	}
 	$newgedrec = trim($newgedrec);
 	$success = (!empty($newgedrec)&&(replace_gedrec($pid, $newgedrec, $update_CHAN)));
@@ -1392,7 +1392,7 @@ case 'update':
 
 		if (PGV_DEBUG) {
 			phpinfo(INFO_VARIABLES);
-			DumpString($gedrec);
+			string_dump($gedrec);
 		}
 
 		if ($text !== null) {
@@ -1558,7 +1558,7 @@ case 'update':
 
 		}
 		if (PGV_DEBUG) {
-			DumpString($newged);
+			string_dump($newged);
 		}
 
 		$success = replace_gedrec($pid, $newged, $update_CHAN);
@@ -1621,7 +1621,7 @@ case 'addchildaction':
 	}
 
 	if (PGV_DEBUG) {
-		DumpString($gedrec);
+		string_dump($gedrec);
 	}
 	$xref = append_gedrec($gedrec, $update_CHAN);
 	$link = "individual.php?pid=$xref&show_changes=yes";
@@ -1654,7 +1654,7 @@ case 'addchildaction':
 															$gedrec);
 			}
 			if (PGV_DEBUG) {
-				DumpString($gedrec);
+				string_dump($gedrec);
 			}
 			replace_gedrec($famid, $gedrec, $update_CHAN);
 		}
@@ -1687,7 +1687,7 @@ case 'addspouseaction':
 	}
 
 	if (PGV_DEBUG) {
-		DumpString($gedrec);
+		string_dump($gedrec);
 	}
 	$xref = append_gedrec($gedrec, $update_CHAN);
 	$link = "individual.php?pid=$xref&show_changes=yes";
@@ -1722,7 +1722,7 @@ case 'addspouseaction':
 		}
 
 		if (PGV_DEBUG) {
-			DumpString($famrec);
+			string_dump($famrec);
 		}
 		$famid = append_gedrec($famrec, $update_CHAN);
 	}
@@ -1746,7 +1746,7 @@ case 'addspouseaction':
 			}
 
 			if (PGV_DEBUG) {
-				DumpString($famrec);
+				string_dump($famrec);
 			}
 			replace_gedrec($famid, $famrec, $update_CHAN);
 		}
@@ -1755,7 +1755,7 @@ case 'addspouseaction':
 		$gedrec = $spouserec;
 		$gedrec = trim($gedrec) . "\n1 FAMS @$famid@\n";
 		if (PGV_DEBUG) {
-			DumpString($gedrec);
+			string_dump($gedrec);
 		}
 		replace_gedrec($xref, $gedrec, $update_CHAN);
 	}
@@ -1766,7 +1766,7 @@ case 'addspouseaction':
 		if ($indirec) {
 			$indirec = trim($indirec) . "\n1 FAMS @$famid@\n";
 			if (PGV_DEBUG) {
-				DumpString($indirec);
+				string_dump($indirec);
 			}
 			replace_gedrec($pid, $indirec, $update_CHAN);
 		}
@@ -1816,14 +1816,14 @@ case 'linkspouseaction':
 				}
 
 				if (PGV_DEBUG) {
-					DumpString($famrec);
+					string_dump($famrec);
 				}
 				$famid = append_gedrec($famrec, $update_CHAN);
 			}
 			if ((!empty($famid))&&($famid!="new")) {
 				$gedrec .= "\n1 FAMS @$famid@\n";
 				if (PGV_DEBUG) {
-					DumpString($gedrec);
+					string_dump($gedrec);
 				}
 				replace_gedrec($spid, $gedrec, $update_CHAN);
 			}
@@ -1834,7 +1834,7 @@ case 'linkspouseaction':
 				if (!empty($indirec)) {
 					$indirec = trim($indirec) . "\n1 FAMS @$famid@\n";
 					if (PGV_DEBUG) {
-						DumpString($indirec);
+						string_dump($indirec);
 					}
 					replace_gedrec($pid, $indirec, $update_CHAN);
 				}
@@ -1868,7 +1868,7 @@ case 'addnewparentaction':
 	}
 
 	if (PGV_DEBUG) {
-		DumpString($gedrec);
+		string_dump($gedrec);
 	}
 	$xref = append_gedrec($gedrec, $update_CHAN);
 	$link = "individual.php?pid=$xref&show_changes=yes";
@@ -1900,7 +1900,7 @@ case 'addnewparentaction':
 		}
 
 		if (PGV_DEBUG) {
-			DumpString($famrec);
+			string_dump($famrec);
 		}
 		$famid = append_gedrec($famrec, $update_CHAN);
 	}
@@ -1924,7 +1924,7 @@ case 'addnewparentaction':
 			}
 
 			if (PGV_DEBUG) {
-				DumpString($famrec);
+				string_dump($famrec);
 			}
 			replace_gedrec($famid, $famrec, $update_CHAN);
 		}
@@ -1933,7 +1933,7 @@ case 'addnewparentaction':
 			$gedrec = $spouserec;
 			$gedrec = trim($gedrec) . "\n1 FAMS @$famid@\n";
 			if (PGV_DEBUG) {
-				DumpString($gedrec);
+				string_dump($gedrec);
 			}
 			replace_gedrec($xref, $gedrec, $update_CHAN);
 	}
@@ -1946,7 +1946,7 @@ case 'addnewparentaction':
 			if (strpos($indirec, "1 FAMC @$famid@")===false) {
 				$indirec = trim($indirec) . "\n1 FAMC @$famid@\n";
 				if (PGV_DEBUG) {
-					DumpString($indirec);
+					string_dump($indirec);
 				}
 				replace_gedrec($pid, $indirec, $update_CHAN);
 			}
@@ -1993,9 +1993,9 @@ case 'addopfchildaction':
 	if ($indirec) {
 		$indirec.="\n1 FAMS @{$newfamxref}@";
 		if (PGV_DEBUG) {
-			DumpString($gedrec);
-			DumpString($famrec);
-			DumpString($indirec);
+			string_dump($gedrec);
+			string_dump($famrec);
+			string_dump($indirec);
 		}
 		if (replace_gedrec($pid, $indirec, $update_CHAN) && append_gedrec($gedrec, $update_CHAN) && append_gedrec($famrec, $update_CHAN)) {
 			echo "<br /><br />", $pgv_lang["update_successful"];
@@ -2007,7 +2007,7 @@ case 'addopfchildaction':
 case 'deleteperson':
 	if (PGV_DEBUG) {
 		phpinfo(INFO_VARIABLES);
-		DumpString($gedrec);
+		string_dump($gedrec);
 	}
 	if (!checkFactEdit($gedrec)) {
 		echo "<br />", $pgv_lang["privacy_prevented_editing"];
@@ -2023,7 +2023,7 @@ case 'deleteperson':
 case 'deletefamily':
 	if (PGV_DEBUG) {
 		phpinfo(INFO_VARIABLES);
-		DumpString($gedrec);
+		string_dump($gedrec);
 	}
 	if (!checkFactEdit($gedrec)) {
 		echo "<br />", $pgv_lang["privacy_prevented_editing"];
@@ -2050,7 +2050,7 @@ if (isset($_REQUEST['action'])) $action = $_REQUEST['action'];
 
 	if (PGV_DEBUG) {
 		phpinfo(INFO_VARIABLES);
-		DumpString($gedrec);
+		string_dump($gedrec);
 	}
 	if (!empty($gedrec)) {
 		$success = true;
@@ -2081,7 +2081,7 @@ if (isset($_REQUEST['action'])) $action = $_REQUEST['action'];
 				}
 			}
 			if (PGV_DEBUG) {
-				DumpString($newrec);
+				string_dump($newrec);
 			}
 			$success = $success && replace_gedrec($xref, $newrec, $update_CHAN);
 		}
@@ -2150,7 +2150,7 @@ case 'paste':
 	$gedrec .= "\n".$_SESSION["clipboard"][$fact]["factrec"]."\n";
 	if (PGV_DEBUG) {
 		phpinfo(INFO_VARIABLES);
-		DumpString($gedrec);
+		string_dump($gedrec);
 	}
 	$success = replace_gedrec($pid, $gedrec, $update_CHAN);
 	if ($success) echo "<br /><br />", $pgv_lang["update_successful"];
@@ -2198,7 +2198,7 @@ case 'reorder_media_update': // Update sort using popup
 		$newgedrec .= "1 _PGV_OBJS @".$m_media."@\n";
 	}
 	if (PGV_DEBUG) {
-		DumpString($newgedrec);
+		string_dump($newgedrec);
 	}
 	$success = (replace_gedrec($pid, $newgedrec, $update_CHAN));
 	if ($success) echo "<br />", $pgv_lang["update_successful"], "<br /><br />";
@@ -2264,7 +2264,7 @@ case 'al_reorder_media_update': // Update sort using Album Page
 		$newgedrec .= "1 _PGV_OBJS @".$m_media."@\n";
 	}
 	if (PGV_DEBUG) {
-		DumpString($newgedrec);
+		string_dump($newgedrec);
 	}
 	$success = (replace_gedrec($pid, $newgedrec, $update_CHAN));
 	if ($success) {
@@ -2693,7 +2693,7 @@ case 'reorder_update':
 		$newgedrec .= "\n".$subrec."\n";
 	}
 	if (PGV_DEBUG) {
-		DumpString($newgedrec);
+		string_dump($newgedrec);
 	}
 	$success = (replace_gedrec($pid, $newgedrec, $update_CHAN));
 	if ($success) echo "<br /><br />", $pgv_lang["update_successful"];
@@ -2764,7 +2764,7 @@ case 'reorder_fams_update':
 		$newgedrec .= "1 FAMS @".$famid."@\n";
 	}
 	if (PGV_DEBUG) {
-		DumpString($newgedrec);
+		string_dump($newgedrec);
 	}
 	$success = (replace_gedrec($pid, $newgedrec, $update_CHAN));
 	if ($success) {
