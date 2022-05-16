@@ -3,7 +3,7 @@
  * Swedish texts
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2021  PGV Development Team
+ * Copyright (C) 2002 to 2022  PGV Development Team
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -36,7 +36,6 @@ $pgv_lang["edit_concurrency_change"] = "Denna post ändrades senast av <i>#CHANG
 $pgv_lang["edit_concurrency_msg2"]	= "Posten med id #PID# har ändrats av en annan användare sedan du senast  besökte den.";
 $pgv_lang["edit_concurrency_msg1"]	= "Ett fel uppstod när redigeringsformuläret skapades. En annan användare kan ha ändrat posten sedan du senast tittade på den.";
 $pgv_lang["edit_concurrency_reload"]	= "Använd ditt webprograms tillbaka-knapp för att ladda om sidan så att du är säker på att du arbetar med den senaste datan.";
-$pgv_lang["admin_override"]			= "Administratörsinställningar";
 $pgv_lang["no_update_CHAN"]			= "Uppdatera inte CHAN (Senast ändrade) posten";
 $pgv_lang["select_events"]			= "Välj händelse";
 $pgv_lang["source_events"]			= "Associera händelse med denna källa";

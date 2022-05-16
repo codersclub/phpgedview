@@ -3,7 +3,7 @@
  * Dutch texts
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2021  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2022  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -36,7 +36,6 @@ $pgv_lang["edit_concurrency_change"] 	= "Deze kaart is het laatst gewijzigd door
 $pgv_lang["edit_concurrency_msg2"]		= "De kaart met id #PID# is gewijzigd door een andere gebruiker sinds u het heeft bekeken.";
 $pgv_lang["edit_concurrency_msg1"]		= "Een fout is opgetreden bij het maken van het Wijzigen Formulier.  Een andere gebruiker kan de kaart hebben gewijzigd sinds u het heeft bekeken.";
 $pgv_lang["edit_concurrency_reload"]	= "Herlaad a.u.b. de vorige pagina, om er zeker van te zijn dat u met de meest recente kaart werkt.";
-$pgv_lang["admin_override"]				= "Beheerder's Optie";
 $pgv_lang["no_update_CHAN"]				= "De CHAN (Laatste Wijziging) -kaart niet bijwerken";
 $pgv_lang["select_events"]				= "Selecteer Gebeurtenissen";
 $pgv_lang["source_events"]				= "Gebeurtenis met deze bron verbinden";

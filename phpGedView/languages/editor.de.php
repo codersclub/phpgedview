@@ -3,7 +3,7 @@
  * German texts
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2021  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2022  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -36,7 +36,6 @@ $pgv_lang["edit_concurrency_change"] = "Dieser Datensatz wurde zuletzt von <i>#C
 $pgv_lang["edit_concurrency_msg2"]	= "Ein anderer Benutzer hat den Datensatz mit ID-Nummer #PID# geändert, seit Sie ihn aufruften.";
 $pgv_lang["edit_concurrency_msg1"]	= "Ein Fehler trat während dem Aufbau des Editier-Formulars auf.  Ein anderer Benutzer hat womöglich den Datensatz geändert, seit Sie ihn aufruften.";
 $pgv_lang["edit_concurrency_reload"] = "Bitte rufen Sie die vorige Seite erneut auf.  So können Sie sicher sein, dass Sie den neuesten Datensatz bearbeiten.";
-$pgv_lang["admin_override"]			= "Verwalter Option";
 $pgv_lang["no_update_CHAN"]			= "CHAN (letzte Änderung) Datensatz nicht ändern";
 $pgv_lang["select_events"]			= "Ereignisse wählen";
 $pgv_lang["source_events"]			= "Ereignisse mit dieser Quelle verbinden";

@@ -3,7 +3,7 @@
  * Catalan texts
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2021  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2022  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -36,7 +36,6 @@ $pgv_lang["edit_concurrency_change"] = "El darrer a modificar aquest registre fo
 $pgv_lang["edit_concurrency_msg2"]	= "El registre amb l'id #PID# fou canviat per un altre usuari d'ençà el darrer cop que vareu accedir-lo.";
 $pgv_lang["edit_concurrency_msg1"]	= "Ha ocorregut un error tot creant el formulari d'edició. Un altre usuari deu haver canviat aquest registre d'ençà que us l'havíeu mirat.";
 $pgv_lang["edit_concurrency_reload"]	= "Feu servir el botó «enrere» del vostre navegador i actualitzeu la pàgina anterior per estar ben segur que esteu treballant amb el registre més recent";
-$pgv_lang["admin_override"]			= "Opció d'administració";
 $pgv_lang["no_update_CHAN"]			= "No canviïs el registre CHAN (darrer canvi)";
 $pgv_lang["select_events"]			= "Selecciona esdeveniments";
 $pgv_lang["source_events"]			= "Esdeveniments associats amb aquesta font";

@@ -3079,15 +3079,7 @@ function refine_filter_search($skip, $search, $gedrec, $matchType) {
 		//    1 CHAN record will get rid of the offending 2 _PGVU line too.
 		//  SUBM is just a pointer to the 0 @SUBM@ SUBM record which is not returned by any of the database searches we are doing.
 
-		// remove all occurrences of a 1 CHAN record, including all its subordinate lines
-		$tempGedrec .= "\n1 NULL";		// Make sure the 1 CHAN structure isn't last in the GEDCOM record
-		while (true) {
-			$leftPos = stripos($tempGedrec, "\n1 CHAN");	// Find the start of the 1 CHAN record
-			if ($leftPos === false) break;		// No more 1 CHAN records exist: we're done
-			$rightPos = strpos($tempGedrec, "\n1 ", $leftPos+7);	// Find the start of the 1-level record that follows the 1 CHAN record
-			$tempGedrec = substr($tempGedrec, 0, $leftPos) . substr($tempGedrec, $rightPos);
-		}
-		$tempGedrec = substr($tempGedrec, 0, -7);		// Strip that "\n1 NULL" we just added
+		$tempGedrec = removeCHAN($tempGEDREC);		// Remove all 1 CHAN sub-records, including all their subordinate lines
 	}
 
  	// remove lines that should be skipped
@@ -3114,6 +3106,22 @@ function refine_filter_search($skip, $search, $gedrec, $matchType) {
 			return true;
 		}
 	}
+}
+
+/**
+* Remove all occurrences of 1 CHAN sub-records, including all their subordinate 2 DATE, 3 TIME, and 2 _PGVU lines
+*/
+function removeCHAN($tempGedrec) {
+	$tempGedrec .= "\n1 NULL";		// Make sure the 1 CHAN structure isn't last in the GEDCOM record
+	while (true) {
+		$leftPos = strpos($tempGedrec, "\n1 CHAN");	// Find the start of the 1 CHAN record
+		if ($leftPos === false) break;		// No more 1 CHAN records exist: we're done
+		$rightPos = strpos($tempGedrec, "\n1 ", $leftPos+7);	// Find the start of the 1-level record that follows the 1 CHAN record
+		$tempGedrec = substr($tempGedrec, 0, $leftPos) . substr($tempGedrec, $rightPos);
+	}
+	$tempGedrec = substr($tempGedrec, 0, -7);		// Strip that "\n1 NULL" we just added
+
+	return $tempGedrec;
 }
 
 ?>

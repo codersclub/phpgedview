@@ -3,7 +3,7 @@
  * Italian texts
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2021  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2022  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -36,7 +36,6 @@ $pgv_lang["edit_concurrency_change"] = "L\'ultima modifica a questo record è st
 $pgv_lang["edit_concurrency_msg2"]	= "Il record con ID #PID# è stato modificato da un altro utente da quando hai avuto l\'ultimo accesso.";
 $pgv_lang["edit_concurrency_msg1"]	= "Si è verificato un errore mentre veniva creato il modulo di modifica. Un altro utente potrebbe aver modificato questo record mentre tu lo visionavi.";
 $pgv_lang["edit_concurrency_reload"]	= "Per favore, ricarica la pagina precedente per essere certo di lavorare sul record più recente";
-$pgv_lang["admin_override"]			= "Opzioni di Amministrazione";
 $pgv_lang["no_update_CHAN"]			= "Non aggiornare il record CHAN (Ultima modifica)";
 $pgv_lang["select_events"]			= "Selezionare Eventi";
 $pgv_lang["source_events"]			= "Associa eventi a questa fonte";
