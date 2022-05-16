@@ -253,23 +253,10 @@ if (!$success) {
 			</div>
 		</td>
 	</tr>
-	<?php
-	if (PGV_USER_IS_ADMIN) {
-		echo "<tr><td class=\"descriptionbox ", $TEXT_DIRECTION, " wrap width25\">";
-		print_help_link("no_update_CHAN_help", "qm", "no_update_CHAN");
-		echo $pgv_lang["admin_override"], "</td><td class=\"optionbox wrap\">\n";
-		if ($NO_UPDATE_CHAN) {
-			echo "<input type=\"checkbox\" checked=\"checked\" name=\"preserve_last_changed\" />\n";
-		} else {
-			echo "<input type=\"checkbox\" name=\"preserve_last_changed\" />\n";
-		}
-		echo $pgv_lang["no_update_CHAN"], "<br />\n";
-		$event = new Event(get_sub_record(1, "1 CHAN", ""));
-		echo format_fact_date($event, false, true);
-		echo "</td></tr>\n";
-	}
-	?>
 </table>
+<?php
+	print_noUpdate_CHAN_checkbox();
+?>
 <br />
 <input type="submit" value="<?php echo $pgv_lang["label_add_remote_link"]; ?>" id="btnSubmit" name="btnSubmit" />
 </form>

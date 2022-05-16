@@ -84,11 +84,11 @@ function safe_POST_integer($var, $min, $max, $default) {
 	return (int)$num;
 }
 
-function safe_GET_bool($var, $true='(y|Y|1|yes|YES|Yes|true|TRUE|True|on)') {
-	return !is_null(safe_GET($var, $true));
+function safe_GET_bool($var) {
+	return !is_null(safe_GET($var, PGV_REGEX_BOOL));
 }
-function safe_POST_bool($var, $true='(y|Y|1|yes|YES|Yes|true|TRUE|True|on)') {
-	return !is_null(safe_POST($var, $true));
+function safe_POST_bool($var) {
+	return !is_null(safe_POST($var, PGV_REGEX_BOOL));
 }
 
 function safe_GET_xref($var, $default=null) {

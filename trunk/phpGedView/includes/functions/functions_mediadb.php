@@ -4,7 +4,7 @@
 * Various functions used by the media DB interface
 *
 * phpGedView: Genealogy Viewer
-* Copyright (C) 2002 to 2021 PGV Development Team.  All rights reserved.
+* Copyright (C) 2002 to 2022 PGV Development Team.  All rights reserved.
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -1571,21 +1571,8 @@ function show_media_form($pid, $action = "newentry", $filename = "", $linktoid =
 			add_simple_tag(($sourceLevel+1) ." QUAY ". $sourceQUAY);
 		}
 	}
-	if (PGV_USER_IS_ADMIN) {
-		echo "<tr><td class=\"descriptionbox ", $TEXT_DIRECTION, " wrap width25\">";
-		print_help_link("no_update_CHAN_help", "qm");
-		echo $pgv_lang["admin_override"], "</td><td class=\"optionbox wrap\">\n";
-		if ($NO_UPDATE_CHAN) {
-			echo "<input type=\"checkbox\" checked=\"checked\" name=\"preserve_last_changed\" />\n";
-		} else {
-			echo "<input type=\"checkbox\" name=\"preserve_last_changed\" />\n";
-		}
-		echo $pgv_lang["no_update_CHAN"], "<br />\n";
-		$event = new Event(get_sub_record(1, "1 CHAN", $gedrec));
-		echo format_fact_date($event, false, true);
-		echo "</td></tr>\n";
-	}
 	print "</table>\n";
+	print_noUpdate_CHAN_checkbox();
 ?>
 		<script language="JavaScript" type="text/javascript">
 			var formid = '<?php print $formid; ?>';

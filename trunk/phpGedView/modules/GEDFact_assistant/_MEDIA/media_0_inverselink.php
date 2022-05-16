@@ -5,7 +5,7 @@
  * Media Link information about an individual
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2009  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2022  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -32,7 +32,7 @@
 $more_links		= safe_REQUEST($_REQUEST, 'more_links', PGV_REGEX_UNSAFE);
 $exist_links	= safe_REQUEST($_REQUEST, 'exist_links', PGV_REGEX_UNSAFE);
 $gid			= safe_GET_xref('gid');
-$update_CHAN	= safe_REQUEST($_REQUEST, 'preserve_last_changed', PGV_REGEX_UNSAFE);
+$update_CHAN	= !safe_GET_bool('preserve_last_changed');
 
 
 if (empty($linktoid) || empty($linkto)) {
@@ -127,6 +127,9 @@ global $pgv_lang;
 	echo '<tr><td class="topbottombar" colspan="2">';
 	print_help_link("add_media_linkid", "qm", "link_media");
 	echo $pgv_lang["link_media"], ' ', $toitems, '</td></tr>';
+	echo '<tr><td colspan="2">';
+	echo '<input type="submit" value="', $pgv_lang["save"], '" onclick="javascript:shiftlinks();" />';
+	echo '</td></tr>';
 	echo '<tr><td class="descriptionbox width20 wrap">', $pgv_lang["media_id"], '</td>';
 	echo '<td class="optionbox wrap">';
 	if (!empty($mediaid)) {
@@ -198,30 +201,18 @@ global $pgv_lang;
 	echo '<input type="hidden" name="idName" id="idName" size="36" value="Name of ID" />';
 	require 'modules/GEDFact_assistant/_MEDIA/media_query_2a.php';
 	echo '</td></tr>';
-	// Admin Option CHAN log update override =======================
-	if (PGV_USER_IS_ADMIN) {
-		echo "<tr><td class=\"descriptionbox ", $TEXT_DIRECTION, " wrap width25\">";
-		print_help_link("no_update_CHAN_help", "qm");
-		echo $pgv_lang["admin_override"], "</td><td class=\"optionbox wrap\">\n";
-		echo "<input type=\"checkbox\" name=\"preserve_last_changed\" value=\"no_change\"/ >\n";
-		echo $pgv_lang["no_update_CHANs"], "<br /><br />\n";
-		echo "</td></tr>\n";
-	}
-	echo '</tr>';
 	echo '<input type="hidden" name="more_links" value="No_Values" />';
 	echo '<input type="hidden" name="exist_links" value="No_Values" />';
-	echo '<tr><td colspan="2">';
-	echo '</td></tr>';
-	echo '<tr><td class="topbottombar" colspan="2">';
-	echo '<center><input type="submit" value="', $pgv_lang["save"], '" onclick="javascript:shiftlinks();" />';
-	echo '</center></td></tr>';
 	require 'modules/GEDFact_assistant/_MEDIA/media_7_parse_addLinksTbl.php';
 	echo '</table>';
+	print_noUpdate_CHAN_checkbox(true);
+	echo '<input type="submit" value="', $pgv_lang["save"], '" onclick="javascript:shiftlinks();" />';
 	echo '</form>';
 	echo '<br/><br/><center><a href="javascript:;" onclick="if (window.opener.showchanges) window.opener.showchanges(); window.close(); winNav.close(); ">', $pgv_lang["close_window"], '</a><br /></center>';
 	// print_simple_footer();
 	
 } elseif ($action == "update" && $paramok) {
+	global $remLinkId, $addLinkId;
 
 	echo "<b>", $mediaid, "</b><br/><br />";
 	
@@ -230,19 +221,11 @@ global $pgv_lang;
 		$exist_links = substr($exist_links, 0, -1);
 		$rem_exist_links = (explode(", ", $exist_links));
 		foreach ($rem_exist_links as $remLinkId) {
-			global $linkToId;
-			$linkToId = PrintReady($remLinkId);
+			unlinkMedia($remLinkId, 'OBJE', $mediaid, 1, $update_CHAN);
 			print_text("link_deleted");
 			echo '<br />';
-			if ($update_CHAN=='no_change') {
-				unlinkMedia($remLinkId, 'OBJE', $mediaid, 1, false);
-			} else {
-				unlinkMedia($remLinkId, 'OBJE', $mediaid, 1, true);
-			}
 		}
 		echo '<br />';
-	}else{
-		// echo nothing and do nothing
 	}
 	
 	// Add new Links ====================================
@@ -250,26 +233,10 @@ global $pgv_lang;
 		$more_links = substr($more_links, 0, -1);
 		$add_more_links = (explode(", ", $more_links));
 		foreach ($add_more_links as $addLinkId) {
-			global $unlinkFromId;
-			$$unlinkFromId = PrintReady($addLinkId);
+			linkMedia($mediaid, $addLinkId, 1, $update_CHAN);
 			print_text("link_added");
-			if ($update_CHAN=='no_change') {
-				linkMedia($mediaid, $addLinkId, 1, false);
-			} else {
-				linkMedia($mediaid, $addLinkId, 1, true);
-			}
 			echo '<br />';
 		}
-		echo '<br />';
-	}else if ($more_links==",") {
-		// echo nothing and do nothing
-	}else{
-		//	echo $mediaid, $pgv_lang["media_now_linked to"], '(', $gid, ')<br />';
-		//	linkMedia($mediaid, $gid);
-	}
-	
-	if ($update_CHAN=='no_change') {
-		echo $pgv_lang["no_CHANs_update"];
 		echo '<br />';
 	}
 	
@@ -277,9 +244,7 @@ global $pgv_lang;
 	print_simple_footer();
 		
 } else {
-	// echo '<center>You must be logged in as an Administrator<center>';
 	echo '<br/><br/><center><a href="javascript:;" onclick="if (window.opener.showchanges) window.opener.showchanges(); window.close(); winNav.close();">', $pgv_lang["close_window"], '</a><br /></center>';
-	//print_simple_footer();
 }
 
 ?>

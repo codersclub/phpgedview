@@ -3,7 +3,7 @@
  * Spanish language file for PhpGedView
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2021  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2022  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -37,7 +37,6 @@ $pgv_lang["edit_concurrency_change"] = "Este registro fue modificado por última
 $pgv_lang["edit_concurrency_msg2"]	= "El registro con id #PID# fue modificado por otro usuario desde que accedió a él por última vez.";
 $pgv_lang["edit_concurrency_msg1"]	= "Ocurrió un error mientras se creaba el formulario de Edición.  Otro usuario puede haber cambiado este registro desde que lo visualizó.";
 $pgv_lang["edit_concurrency_reload"]	= "Por favor, recargue la página anterior para asegurarse de que trabaja con el registro más reciente.";
-$pgv_lang["admin_override"]			= "Opción de administración";
 $pgv_lang["no_update_CHAN"]			= "No actualizar el registro CHAN (último cambio)";
 $pgv_lang["select_events"]			= "Seleccionar eventos";
 $pgv_lang["source_events"]			= "Asociar eventos a esta fuente";

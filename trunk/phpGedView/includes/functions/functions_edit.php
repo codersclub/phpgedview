@@ -3,7 +3,7 @@
 * Various functions used by the Edit interface
 *
 * phpGedView: Genealogy Viewer
-* Copyright (C) 2002 to 2021  PGV Development Team.  All rights reserved.
+* Copyright (C) 2002 to 2022  PGV Development Team.  All rights reserved.
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -86,13 +86,12 @@ function checkChangeTime($pid, $gedrec, $last_time) {
 * the id $gid with the $gedrec
 * @param string $gid The XREF id of the record to replace
 * @param string $gedrec The new gedcom record to replace with
-* @param boolean $chan Whether or not to update/add the CHAN record
+* @param boolean $update_CHAN Whether or not to update/add the CHAN record
 * @param string $linkpid Tells whether or not this record change is linked with the record change of another record identified by $linkpid
 */
-function replace_gedrec($gid, $gedrec, $chan=true, $linkpid='') {
+function replace_gedrec($gid, $gedrec, $update_CHAN=true, $linkpid='') {
 	global $fcontents, $pgv_changes, $manual_save, $pgv_private_records;
 	global $GEDCOM, $pgv_lang;
-
 	$gid = strtoupper($gid);
 	//-- restore any data that was hidden during privatizing
 	if (isset($pgv_private_records[$gid])) {
@@ -150,7 +149,7 @@ function replace_gedrec($gid, $gedrec, $chan=true, $linkpid='') {
 	}
 	if ($fail) return false;
 	
-	if (($gedrec = check_gedcom($gedrec, $chan))!==false) {
+	if (($gedrec = check_gedcom($gedrec, $update_CHAN))!==false) {
 		//-- the following block of code checks if the XREF was changed in this record.
 		//-- if it was changed we add a warning to the change log
 		$ct = preg_match("/0 @(.*)@/", $gedrec, $match);
@@ -169,29 +168,29 @@ function replace_gedrec($gid, $gedrec, $chan=true, $linkpid='') {
 			}
 		}
 
-			$change = array();
-			$change["gid"] = $gid;
-			$change["gedcom"] = PGV_GEDCOM;
-			$change["type"] = "replace";
-			$change["status"] = "submitted";
-			$change["user"] = PGV_USER_NAME;
-			$change["time"] = time();
-			if (!empty($linkpid)) $change["linkpid"] = $linkpid;
-			$change["undo"] = reformat_record_import($gedrec);
-			if (!isset($pgv_changes[$gid."_".PGV_GEDCOM])) $pgv_changes[$gid."_".PGV_GEDCOM] = array();
-			else {
-				$lastchange = end($pgv_changes[$gid."_".PGV_GEDCOM]);
-				if (!empty($lastchange)) {
-					//-- append recods should continue to be marked as append
-					if ($lastchange["type"]=="append") $change["type"] = "append";
-					//-- delete records will be added back in when they are accepted
-					//-- but we should add a warning to the log
-					else if ($lastchange["type"]=="delete") {
-						AddToLog("Possible GEDCOM corruption: Attempting to replace GEDCOM record $gid which has already been marked for deletion.");
-					}
+		$change = array();
+		$change["gid"] = $gid;
+		$change["gedcom"] = PGV_GEDCOM;
+		$change["type"] = "replace";
+		$change["status"] = "submitted";
+		$change["user"] = PGV_USER_NAME;
+		$change["time"] = time();
+		if (!empty($linkpid)) $change["linkpid"] = $linkpid;
+		$change["undo"] = reformat_record_import($gedrec);
+		if (!isset($pgv_changes[$gid."_".PGV_GEDCOM])) $pgv_changes[$gid."_".PGV_GEDCOM] = array();
+		else {
+			$lastchange = end($pgv_changes[$gid."_".PGV_GEDCOM]);
+			if (!empty($lastchange)) {
+				//-- append records should continue to be marked as append
+				if ($lastchange["type"]=="append") $change["type"] = "append";
+				//-- delete records will be added back in when they are accepted
+				//-- but we should add a warning to the log
+				else if ($lastchange["type"]=="delete") {
+					AddToLog("Possible GEDCOM corruption: Attempting to replace GEDCOM record $gid which has already been marked for deletion.");
 				}
 			}
-			$pgv_changes[$gid."_".PGV_GEDCOM][] = $change;
+		}
+		$pgv_changes[$gid."_".PGV_GEDCOM][] = $change;
 
 		if (PGV_USER_AUTO_ACCEPT) {
 			accept_changes($gid."_".PGV_GEDCOM);
@@ -213,10 +212,10 @@ function replace_gedrec($gid, $gedrec, $chan=true, $linkpid='') {
 
 //-- this function will append a new gedcom record at
 //-- the end of the gedcom file.
-function append_gedrec($gedrec, $chan=true, $linkpid='') {
+function append_gedrec($gedrec, $update_CHAN=true, $linkpid='') {
 	global $fcontents, $pgv_changes, $manual_save;
 
-	if (($gedrec = check_gedcom($gedrec, $chan))!==false) {
+	if (($gedrec = check_gedcom($gedrec, $update_CHAN))!==false) {
 		$ct = preg_match("/0 @(".PGV_REGEX_XREF.")@ (".PGV_REGEX_TAG.")/", $gedrec, $match);
 		$gid = $match[1];
 		$type = trim($match[2]);
@@ -298,12 +297,12 @@ function delete_gedrec($gid, $linkpid='') {
 }
 
 //-- this function will check a GEDCOM record for valid gedcom format
-function check_gedcom($gedrec, $chan=true) {
-	global $pgv_lang;
+//		It will optionally delete all existing 1 CHAN sub-records and then add a new one
+function check_gedcom($gedrec, $update_CHAN=true) {
 
 	$gedrec = trim(stripLRMRLM($gedrec));
 
-	$ct = preg_match("/0 @(.*)@ (.*)/", $gedrec, $match);
+	$ct = preg_match("~0 @(.*)@ (.*)~", $gedrec, $match);
 	if ($ct==0) {
 		echo "ERROR 20: Invalid GEDCOM format";
 		AddToChangeLog("ERROR 20: Invalid GEDCOM format.->" . PGV_USER_NAME ."<-");
@@ -314,25 +313,6 @@ function check_gedcom($gedrec, $chan=true) {
 		return false;
 	}
 	$gedrec = trim($gedrec);
-	if ($chan) {
-		$pos1 = strpos($gedrec, "1 CHAN");
-		if ($pos1!==false) {
-			$pos2 = strpos($gedrec, "\n1", $pos1+4);
-			if ($pos2===false) $pos2 = strlen($gedrec);
-			$newgedrec = substr($gedrec, 0, $pos1);
-			$newgedrec .= "1 CHAN\n2 DATE ".strtoupper(date("d M Y"))."\n";
-			$newgedrec .= "3 TIME ".date("H:i:s")."\n";
-			$newgedrec .= "2 _PGVU ".PGV_USER_NAME."\n";
-			$newgedrec .= substr($gedrec, $pos2);
-			$gedrec = $newgedrec;
-		}
-		else {
-			$newgedrec = "\n1 CHAN\n2 DATE ".strtoupper(date("d M Y"))."\n";
-			$newgedrec .= "3 TIME ".date("H:i:s")."\n";
-			$newgedrec .= "2 _PGVU ".PGV_USER_NAME;
-			$gedrec .= $newgedrec;
-		}
-	}
 	$gedrec = preg_replace('/\\\+/', "\\", $gedrec);
 
 	//-- remove any empty lines
@@ -345,6 +325,16 @@ function check_gedcom($gedrec, $chan=true) {
 	}
 
 	$newrec = html_entity_decode($newrec, ENT_COMPAT, 'UTF-8');
+	if ($update_CHAN) {
+		$newrec = removeCHAN($newrec);		// Remove all 1 CHAN sub-records, including all their subordinate lines
+	}
+	if (strpos($newrec, "\n1 CHAN") === false) {
+		// The original record never had a 1 CHAN sub-record, or all of them have been removed
+		$newrec .= "\n1 CHAN\n2 DATE ".strtoupper(date("d M Y"));	// Now add a new 1 CHAN sub-record
+		$newrec .= "\n3 TIME ".date("H:i:s")."\n";
+		$newrec .= "\n2 _PGVU ".PGV_USER_NAME;
+	}
+
 	return $newrec;
 }
 
@@ -759,23 +749,8 @@ function print_indi_form($nextaction, $famid, $linenum='', $namerec='', $famtag=
 			}
 		}
 	}
-	if (PGV_USER_IS_ADMIN) {
-		echo "<tr><td class=\"descriptionbox ", $TEXT_DIRECTION, " wrap width25\">";
-		print_help_link("no_update_CHAN_help", "qm", "no_update_CHAN");
-		echo $pgv_lang["admin_override"], "</td><td class=\"optionbox wrap\">\n";
-		if ($NO_UPDATE_CHAN) {
-			echo "<input type=\"checkbox\" checked=\"checked\" name=\"preserve_last_changed\" />\n";
-		} else {
-			echo "<input type=\"checkbox\" name=\"preserve_last_changed\" />\n";
-		}
-		echo $pgv_lang["no_update_CHAN"], "<br />\n";
-		if (isset($famrec)) {
-			$event = new Event(get_sub_record(1, "1 CHAN", $famrec));
-			echo format_fact_date($event, false, true);
-		}
-		echo "</td></tr>\n";
-	}
 	echo "</table>\n";
+	print_noUpdate_CHAN_checkbox();
 	if ($nextaction=='update') { // GEDCOM 5.5.1 spec says NAME doesn't get a OBJE
 		print_add_layer('SOUR');
 		print_add_layer('NOTE');
@@ -977,6 +952,27 @@ function print_indi_form($nextaction, $famid, $linenum='', $namerec='', $famtag=
 	//-->
 	</script>
 	<?php
+}
+
+/**
+* print the "no_update_CHAN" checkbox
+*
+*/
+function print_noUpdate_CHAN_checkbox($plural=false) {
+	global $TEXT_DIRECTION, $pgv_lang, $NO_UPDATE_CHAN;
+	
+	if (!PGV_USER_IS_ADMIN) return;		// Do nothing if user doesn't have Admin rights
+
+	echo "<center>";
+	print_help_link("no_update_CHAN_help", "qm", "no_update_CHAN");
+	echo "&nbsp;&nbsp;&nbsp;";
+	echo "<input type='checkbox' ";
+	if ($NO_UPDATE_CHAN) echo "checked='checked' ";
+	echo "name='preserve_last_changed' />\n";
+	echo "&nbsp;&nbsp;&nbsp;";
+	if ($plural) echo $pgv_lang["no_update_CHANs"];
+	else echo $pgv_lang["no_update_CHAN"];
+	echo "</center>";
 }
 
 /**
@@ -2438,10 +2434,10 @@ function print_quick_resn($name) {
 * @param  string  $mediaid Media ID to be linked
 * @param string $linktoid Indi, Family, or Source ID that the Media ID should link to
 * @param int $level Level where the Media Object reference should be created
-* @param boolean $chan Whether or not to update/add the CHAN record
+* @param boolean $update_CHAN Whether or not to update/add the CHAN record
 * @return  bool success or failure
 */
-function linkMedia($mediaid, $linktoid, $level=1, $chan=true) {
+function linkMedia($mediaid, $linktoid, $level=1, $update_CHAN=true) {
 	global $pgv_lang, $pgv_changes;
 
 	if (empty($level)) $level = 1;
@@ -2458,7 +2454,7 @@ function linkMedia($mediaid, $linktoid, $level=1, $chan=true) {
 
 	if ($gedrec) {
 		$newrec = $gedrec."\n1 OBJE @".$mediaid."@";
-		replace_gedrec($linktoid, $newrec, $chan);
+		replace_gedrec($linktoid, $newrec, $update_CHAN);
 		return true;
 	} else {
 		echo "<br /><center>", $pgv_lang["invalid_id"], "</center>";
@@ -2473,11 +2469,11 @@ function linkMedia($mediaid, $linktoid, $level=1, $chan=true) {
 * @param string $linktoid Indi, Family, or Source ID that the Media ID should be unlinked from.
 * @param $linenum should be ALWAYS set to 'OBJE'.
 * @param int $level Level where the Media Object reference should be removed from (not used)
-* @param boolean $chan Whether or not to update/add the CHAN record
+* @param boolean $update_CHAN Whether or not to update/add the CHAN record
 *
 * @return  bool success or failure
 */
-function unlinkMedia($linktoid, $linenum, $mediaid, $level=1, $chan=true) {
+function unlinkMedia($linktoid, $linenum, $mediaid, $level=1, $update_CHAN=true) {
 	global $pgv_lang, $pgv_changes;
 
 	if (empty($level)) $level = 1;
@@ -2496,7 +2492,7 @@ function unlinkMedia($linktoid, $linenum, $mediaid, $level=1, $chan=true) {
 	}else{
 		$newged = remove_subline($gedrec, $linenum);
 	}
-	replace_gedrec($linktoid, $newged, $chan);
+	replace_gedrec($linktoid, $newged, $update_CHAN);
 }
 
 

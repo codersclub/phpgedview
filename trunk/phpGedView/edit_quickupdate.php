@@ -3,7 +3,7 @@
 * PopUp Window to provide users with a simple quick update form.
 *
 * phpGedView: Genealogy Viewer
-* Copyright (C) 2002 to 2021  PGV Development Team.  All rights reserved.
+* Copyright (C) 2002 to 2022  PGV Development Team.  All rights reserved.
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -32,10 +32,7 @@ require_once PGV_ROOT.'includes/functions/functions_edit.php';
 
 loadLangFile("pgv_editor");
 
-if ((isset($_POST["preserve_last_changed"])) && ($_POST["preserve_last_changed"] == "on"))
-	$update_CHAN = false;
-else
-	$update_CHAN = true;
+$update_CHAN=!safe_POST_bool('preserve_last_changed');
 
 $addfacts = preg_split("/[,; ]/", $QUICK_ADD_FACTS);
 usort($addfacts, "factsort");
@@ -3194,20 +3191,7 @@ $chil = find_children_in_record($famrec, $pid);
 	<?php
 	$i++;
 }
-if (PGV_USER_IS_ADMIN) {
-	echo "<table class=\"facts_table width80\">\n";
-	echo "<tr><td class=\"descriptionbox ", $TEXT_DIRECTION, " wrap\">";
-	print_help_link("no_update_CHAN_help", "qm");
-	echo $pgv_lang["admin_override"], "</td><td class=\"optionbox wrap\">\n";
-	if ($NO_UPDATE_CHAN) {
-		echo "<input type=\"checkbox\" checked=\"checked\" name=\"preserve_last_changed\" />\n";
-	} else {
-		echo "<input type=\"checkbox\" name=\"preserve_last_changed\" />\n";
-	}
-	echo $pgv_lang["no_update_CHAN"], "<br />\n";
-	echo "</td></tr>\n";
-	echo "</table>";
-}
+print_noUpdate_CHAN_checkbox();
 ?>
 <input type="submit" value="<?php echo $pgv_lang["save"]; ?>" />
 </form>

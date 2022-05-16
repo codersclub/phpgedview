@@ -3,7 +3,7 @@
  * Danish texts
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2021  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2022  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -36,7 +36,6 @@ $pgv_lang["edit_concurrency_change"] = "Posten blev sidst ændret af <i>#CHANGEU
 $pgv_lang["edit_concurrency_msg2"]	= "Posten med id #PID# er blevet ændret af en anden bruger siden du sidst tilgik den.";
 $pgv_lang["edit_concurrency_msg1"]	= "En fejl opstod ved oprettelse af Redigering form. En anden bruger er måske igang med at lave ændringer.";
 $pgv_lang["edit_concurrency_reload"]	= "Brug venligst din browsers Forige side knap og genindlæs den forrige side for at sikre at du arbejder med den nyeste post.";
-$pgv_lang["admin_override"]			= "Admin indstilling";
 $pgv_lang["no_update_CHAN"]			= "Opdatér ikke CHAN (sidst ændret) posten";
 $pgv_lang["select_events"]			= "Vælg hændelser";
 $pgv_lang["source_events"]			= "Tilknyt hændelser med denne kilde";
