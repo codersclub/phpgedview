@@ -482,7 +482,6 @@ $pgv_lang["privacy_error"]		= "Detaljer om denna personen är skyddade.";
 $pgv_lang["more_information"]	= "För mer information kontakta";
 $pgv_lang["given_name"]			= "Förnamn";
 $pgv_lang["surname"]			= "Efternamn";
-$pgv_lang["suffix"]				= "Ändelse";
 $pgv_lang["sex"]				= "Kön";
 $pgv_lang["personal_details"]	= "Personliga detaljer";
 $pgv_lang["personal_facts"]		= "Personliga fakta och detaljer";

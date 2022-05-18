@@ -3,7 +3,7 @@
  * Dutch Language file for PhpGedView.
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2021  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2022  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -111,8 +111,8 @@ $factarray["NCHI"] 		= "Aantal kinderen";
 $factarray["NICK"] 		= "Roepnaam";
 $factarray["NMR"] 		= "Aantal huwelijken";
 $factarray["NOTE"] 		= "Notitie";
-$factarray["NPFX"] 		= "Achternaam Voorvoegsel";
-$factarray["NSFX"] 		= "Achternaam Achtervoegsel";
+$factarray["NPFX"] 		= "Naam Voorvoegsel";
+$factarray["NSFX"] 		= "Naam Achtervoegsel";
 $factarray["OBJE"] 		= "Multimedia-object";
 $factarray["OCCU"] 		= "Beroep";
 $factarray["ORDI"] 		= "Verordening";
@@ -140,7 +140,7 @@ $factarray["SEX"] 		= "Geslacht";
 $factarray["SLGC"] 		= "Kind verzegeling HLD";
 $factarray["SLGS"] 		= "Ega verzegeling HLD";
 $factarray["SOUR"] 		= "Bron";
-$factarray["SPFX"] 		= "Voorvoegsel achternaam";
+$factarray["SPFX"] 		= "Achternaam Voorvoegsel";
 $factarray["SSN"] 		= "SOFI nummer";
 $factarray["STAE"] 		= "Staat";
 $factarray["STAT"] 		= "Status";

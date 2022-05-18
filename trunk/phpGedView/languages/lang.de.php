@@ -486,7 +486,6 @@ $pgv_lang["privacy_error"]				= "Details sind vertraulich und dürfen deshalb ni
 $pgv_lang["more_information"]			= "Für weitere Informationen wenden Sie sich an:";
 $pgv_lang["given_name"]					= "Vorname";
 $pgv_lang["surname"]					= "Nachname";
-$pgv_lang["suffix"]						= "Namenszusatz";
 $pgv_lang["sex"]						= "Geschlecht";
 $pgv_lang["personal_details"]			= "Persönliche Details";
 $pgv_lang["personal_facts"]				= "Persönliche Fakten und Details";

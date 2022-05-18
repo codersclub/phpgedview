@@ -483,7 +483,6 @@ $pgv_lang["privacy_error"]			= "This information is private and cannot be shown.
 $pgv_lang["more_information"]		= "For more information contact";
 $pgv_lang["given_name"] 			= "Given Names";
 $pgv_lang["surname"]				= "Surname";
-$pgv_lang["suffix"] 				= "Suffix";
 $pgv_lang["sex"]					= "Gender";
 $pgv_lang["personal_details"]		= "Personal Details";
 $pgv_lang["personal_facts"] 		= "Personal Facts and Details";

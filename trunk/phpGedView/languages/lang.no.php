@@ -485,7 +485,6 @@ $pgv_lang["privacy_error"]		= "Opplysninger om denne personen er privat.";
 $pgv_lang["more_information"]	= "For mer informasjon, kontakt";
 $pgv_lang["given_name"]			= "Fornavn";
 $pgv_lang["surname"]			= "Etternavn";
-$pgv_lang["suffix"]				= "Suffiks";
 $pgv_lang["sex"]				= "Kjønn";
 $pgv_lang["personal_details"]	= "Personlige opplysninger";
 $pgv_lang["personal_facts"]		= "Personlige fakta og opplysninger";

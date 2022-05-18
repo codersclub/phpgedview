@@ -484,7 +484,6 @@ $pgv_lang["privacy_error"]  		= "Aquesta informació és privada i no pot veure'
 $pgv_lang["more_information"]		= "Per més informació adreceu-vos a";
 $pgv_lang["given_name"]				= "Noms de Pila";
 $pgv_lang["surname"]			= "Cognom";
-$pgv_lang["suffix"] 				= "Sufix";
 $pgv_lang["sex"]				= "Sexe";
 $pgv_lang["personal_details"]	= "Dades personals";
 $pgv_lang["personal_facts"]	   	= "Dades personals i detalls";

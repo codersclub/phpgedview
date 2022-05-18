@@ -484,7 +484,6 @@ $pgv_lang["privacy_error"]			= "Details van deze persoon zijn privé.";
 $pgv_lang["more_information"]		= "Neem voor meer informatie contact op met ";
 $pgv_lang["given_name"]				= "Voornaamen";
 $pgv_lang["surname"]				= "Achternaam";
-$pgv_lang["suffix"]					= "Toevoeging";
 $pgv_lang["sex"]					= "Geslacht";
 $pgv_lang["personal_details"]		= "Persoonlijke details";
 $pgv_lang["personal_facts"]			= "Persoonlijke feiten en details";

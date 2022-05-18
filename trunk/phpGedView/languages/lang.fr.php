@@ -483,7 +483,6 @@ $pgv_lang["privacy_error"]  			= "Respect de la vie privée : les détails de ce
 $pgv_lang["more_information"]   		= "Pour plus d'informations contacter";
 $pgv_lang["given_name"] 				= "Prénom";
 $pgv_lang["surname"]					= "Nom de famille";
-$pgv_lang["suffix"] 					= "Suffixe";
 $pgv_lang["sex"]						= "Sexe";
 $pgv_lang["personal_details"]			= "Détails personnels";
 $pgv_lang["personal_facts"] 			= "Faits et détails personnels";
