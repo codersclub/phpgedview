@@ -3,7 +3,7 @@
  * Norwegian texts
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2021  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2022  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -112,8 +112,8 @@ $factarray["NCHI"] = "Antall barn";
 $factarray["NICK"] = "Kallenavn";
 $factarray["NMR"]  = "Antall ekteskap";
 $factarray["NOTE"] = "Note";
-$factarray["NPFX"] = "Etternavn Prefiks";
-$factarray["NSFX"] = "Etternavn Postfiks";
+$factarray["NPFX"] = "Navn Prefiks";
+$factarray["NSFX"] = "Navn Postfiks";
 $factarray["OBJE"] = "Multimedia objekt";
 $factarray["OCCU"] = "Yrke";
 $factarray["ORDI"] = "Forordning";

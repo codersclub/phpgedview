@@ -3,7 +3,7 @@
  * English Language file for PhpGedView.
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2021 PGV Development Team. All rights reserved.
+ * Copyright (C) 2002 to 2022  PGV Development Team. All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -108,8 +108,8 @@ $factarray["NCHI"]	= "Number of Children";
 $factarray["NICK"]	= "Nickname";
 $factarray["NMR"]	= "Number of Marriages";
 $factarray["NOTE"]	= "Note";
-$factarray["NPFX"]	= "Surname Prefix";
-$factarray["NSFX"]	= "Surname Suffix";
+$factarray["NPFX"]	= "Name Prefix";
+$factarray["NSFX"]	= "Name Suffix";
 $factarray["OBJE"]	= "Multimedia Object";
 $factarray["OCCU"]	= "Occupation";
 $factarray["ORDI"]	= "Ordinance";

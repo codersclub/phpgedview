@@ -154,7 +154,7 @@ class GedcomRecord {
 			}
 
 			// If we didn't find the record in the database, it may be remote
-			if (!$data && !is_null($pid) && strpos($pid, ':')) {
+			if (!$data && strpos($pid, ':')) {
 				list($servid, $remoteid)=explode(':', $pid);
 				$service=ServiceClient::getInstance($servid);
 				if ($service) {
@@ -614,7 +614,12 @@ class GedcomRecord {
 		global $pgv_lang;
 		if ($this->canDisplayName()) {
 			$tmp=$this->getAllNames();
-			return $tmp[$this->getPrimaryName()]['full'];
+			$nobilityTitle = '';
+			if (preg_match("~^0 @(.*)@ INDI\n~", $this->gedrec)) {
+				$nobilityTitle = get_gedcom_value('TITL', 1, $this->gedrec, '0', false);	// Find the Nobility Title of this person
+			}
+			if (!empty($nobilityTitle)) $nobilityTitle .= ' ';		// The Nobility Title is actually a special Name Prefix
+			return $nobilityTitle.$tmp[$this->getPrimaryName()]['full'];
 		} else {
 			return $pgv_lang['private'];
 		}

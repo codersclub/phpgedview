@@ -3,7 +3,7 @@
  * Swedish Language file for PhpGedView.
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2021  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2022  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -110,8 +110,8 @@ $factarray["NCHI"] = "Antal barn";
 $factarray["NICK"] = "Smeknamn";
 $factarray["NMR"]  = "Antal äktenskap";
 $factarray["NOTE"] = "Anteckning";
-$factarray["NPFX"] = "Prefix Efternamn";
-$factarray["NSFX"] = "Suffix Efternamn";
+$factarray["NPFX"] = "Namn Prefix";
+$factarray["NSFX"] = "Namn Suffix";
 $factarray["OBJE"] = "Multimediaobjekt";
 $factarray["OCCU"] = "Yrke";
 $factarray["ORDI"] = "Förordning";
@@ -139,7 +139,7 @@ $factarray["SEX"]  = "Kön";
 $factarray["SLGC"] = "SDH Barns försegling";
 $factarray["SLGS"] = "SDH Makens försegling";
 $factarray["SOUR"] = "Källa";
-$factarray["SPFX"] = "Efternamnsprefix";
+$factarray["SPFX"] = "Efternamn Prefix";
 $factarray["SSN"]  = "Personnummer";
 $factarray["STAE"] = "Stat / Län";
 $factarray["STAT"] = "Status";

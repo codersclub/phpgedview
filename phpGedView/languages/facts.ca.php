@@ -3,7 +3,7 @@
  * Catalan texts
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2021  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2022  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -111,8 +111,8 @@ $factarray["NCHI"] = "Nombre de fills";
 $factarray["NICK"] = "Sobrenom";
 $factarray["NMR"]  = "Nombre de matrimonis";
 $factarray["NOTE"] = "Nota";
-$factarray["NPFX"] = "Prefix de Cognom";
-$factarray["NSFX"] = "Sufix de Cognom";
+$factarray["NPFX"] = "Prefix del Nom";
+$factarray["NSFX"] = "Sufix del Nom";
 $factarray["OBJE"] = "Objecte multimèdia";
 $factarray["OCCU"] = "Ocupació";
 $factarray["ORDI"] = "Ordenança SDD";

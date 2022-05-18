@@ -3079,7 +3079,7 @@ function refine_filter_search($skip, $search, $gedrec, $matchType) {
 		//    1 CHAN record will get rid of the offending 2 _PGVU line too.
 		//  SUBM is just a pointer to the 0 @SUBM@ SUBM record which is not returned by any of the database searches we are doing.
 
-		$tempGedrec = removeCHAN($tempGEDREC);		// Remove all 1 CHAN sub-records, including all their subordinate lines
+		$tempGedrec = removeCHAN($tempGedrec);		// Remove all 1 CHAN sub-records, including all their subordinate lines
 	}
 
  	// remove lines that should be skipped

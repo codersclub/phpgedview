@@ -14,6 +14,11 @@ The session.php script uses this information to populate the constants : PGV_VER
 =====================================================================
 
 Version 4.3.1
+ - Fixed: Error on Search page (canajun2eh)
+ - Fixed: When displaying a person's name, the NPFX and NSFX fields don't always display (canajun2eh)
+ - Fixed: When displaying a person's name, the TITL field does not display (canajun2eh)
+ - Changed: Clarify use of TITL, SPFX, NPFX, and NSFX on the Personal Details page (canajun2eh)
+ - Fixed: Several NAME sub-fields are not properly identified when editing the Personal Details page (canajun2eh)
  - Fixed: CHAN (Last Change) does not work consistently (canajun2eh)
  - Fixed: Various references to the re-named debugging function DumpString (canajun2eh)
  - Fixed: Undefined index while configuring GEDCOM when active language isn't English (canajun2eh)

@@ -3,7 +3,7 @@
  * Danish Language file for PhpGedView.
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2021  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2022  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -108,8 +108,8 @@ $factarray["NCHI"] = "Antal børn";
 $factarray["NICK"] = "Kaldenavn";
 $factarray["NMR"]  = "Antal ægteskaber";
 $factarray["NOTE"] = "Note";
-$factarray["NPFX"] = "Efternavn Præfiks";
-$factarray["NSFX"] = "Efternavn Suffiks";
+$factarray["NPFX"] = "Navn Præfiks";
+$factarray["NSFX"] = "Navn Suffiks";
 $factarray["OBJE"] = "Multimedie objekt";
 $factarray["OCCU"] = "Erhverv";
 $factarray["ORDI"] = "Ordination";
@@ -137,7 +137,7 @@ $factarray["SEX"]  = "Køn";
 $factarray["SLGC"] = "Besegling SDH af barn";
 $factarray["SLGS"] = "Ægteskabsbesegling SDH";
 $factarray["SOUR"] = "Kilde";
-$factarray["SPFX"] = "Præfiks";
+$factarray["SPFX"] = "Efternavn Præfiks";
 $factarray["SSN"]  = "Personnummer";
 $factarray["STAE"] = "Stat";
 $factarray["STAT"] = "Status";

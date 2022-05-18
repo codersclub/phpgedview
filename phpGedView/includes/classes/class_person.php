@@ -1732,10 +1732,14 @@ class Person extends GedcomRecord {
 			$full=substr($full, 0, $pos).'@P.N. '.substr($full, $pos);
 		}
 
-		// Some systems don't include the NPFX in the NAME record.
+		// Some systems don't include the NPFX or NSFX in the NAME record.
 		$npfx=preg_match('/^'.$sublevel.' NPFX (.+)/m', $gedrec, $match) ? $match[1] : '';
 		if ($npfx && stristr($full, $npfx)===false) {
 			$full=$npfx.' '.$full;
+		}
+		$nsfx=preg_match('/^'.$sublevel.' NSFX (.+)/m', $gedrec, $match) ? $match[1] : '';
+		if ($nsfx && stristr($full, $nsfx)===false) {
+			$full=$full.' '.$nsfx;
 		}
 
 		// Make sure the NICK is included in the NAME record.
