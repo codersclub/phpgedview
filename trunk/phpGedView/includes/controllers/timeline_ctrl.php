@@ -119,7 +119,7 @@ class TimelineControllerRoot extends BaseController {
 					if (!in_array($fact, $this->nonfacts)) {
 						//-- check for a date
 						$date = $event->getDate();
-						if (is_object($date) {
+						if (is_object($date)) {
 							$date=$date->MinDate();
 							$date=$date->convert_to_cal('gregorian');
 							if ($date->y) {

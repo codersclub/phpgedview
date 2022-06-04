@@ -612,40 +612,35 @@ class GedcomRecord {
 	// Get the three variants of the name
 	function getFullName() {
 		global $pgv_lang;
-		if ($this->canDisplayName()) {
-			$tmp=$this->getAllNames();
-			$nobilityTitle = '';
-			if (preg_match("~^0 @(.*)@ INDI\n~", $this->gedrec)) {
-				$nobilityTitle = get_gedcom_value('TITL', 1, $this->gedrec, '0', false);	// Find the Nobility Title of this person
+		if (!$this->canDisplayName()) return $pgv_lang['private'];
+		$tmp = $this->getAllNames();
+		$fullName = $tmp[$this->getPrimaryName()]['full'];
+		if (preg_match("~^0 @.*@ INDI\n~", $this->gedrec)) {
+			// Find the Nobility Title of this person
+			$tempGedrec = $this->gedrec."\n1 NULL";		// Make SURE that the 1 TITL sub-record isn't last
+			if (preg_match("~\n1 TITL (.*)\n~", $tempGedrec, $match)) {
+				return $match[1].' '.$fullName;		// Nobility Titles are actually special Name Prefixes
 			}
-			if (!empty($nobilityTitle)) $nobilityTitle .= ' ';		// The Nobility Title is actually a special Name Prefix
-			return $nobilityTitle.$tmp[$this->getPrimaryName()]['full'];
-		} else {
-			return $pgv_lang['private'];
 		}
+		return $fullName;
 	}
 	function getSortName() {
 		// The sortable name is never displayed, no need to call canDisplayName()
-		$tmp=$this->getAllNames();
+		$tmp = $this->getAllNames();
 		return $tmp[$this->getPrimaryName()]['sort'];
 	}
 	function getListName() {
 		global $pgv_lang;
-		if ($this->canDisplayName()) {
-			$tmp=$this->getAllNames();
-			return $tmp[$this->getPrimaryName()]['list'];
-		} else {
-			return $pgv_lang['private'];
-		}
+		if (!$this->canDisplayName()) return $pgv_lang['private'];
+		$tmp = $this->getAllNames();
+		return $tmp[$this->getPrimaryName()]['list'];
 	}
 	// Get the fullname in an alternative character set
 	function getAddName() {
-		if ($this->canDisplayName() && $this->getPrimaryName()!=$this->getSecondaryName()) {
-			$all_names=$this->getAllNames();
-			return $all_names[$this->getSecondaryName()]['full'];
-		} else {
-			return null;
-		}
+		if (!$this->canDisplayName()) return null;
+		if ($this->getPrimaryName() == $this->getSecondaryName()) return null;
+		$tmp = $this->getAllNames();
+		return $tmp[$this->getSecondaryName()]['full'];
 	}
 
 	//////////////////////////////////////////////////////////////////////////////
