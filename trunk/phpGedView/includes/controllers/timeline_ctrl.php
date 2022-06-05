@@ -104,11 +104,14 @@ class TimelineControllerRoot extends BaseController {
 				$bdate = $indi->getBirthDate();
 				if ($bdate->isOK()) {
 					$date = $bdate->MinDate();
-					$date = $date->convert_to_cal('gregorian');
-					if ($date->y) {
-						$this->birthyears [$indi->getXref()] = $date->y;
-						$this->birthmonths[$indi->getXref()] = max(1, $date->m);
-						$this->birthdays  [$indi->getXref()] = max(1, $date->d);
+					if (!is_null($date)) {
+						// This event is dated
+						$date = $date->convert_to_cal('gregorian');
+						if ($date->y) {
+							$this->birthyears [$indi->getXref()] = $date->y;
+							$this->birthmonths[$indi->getXref()] = max(1, $date->m);
+							$this->birthdays  [$indi->getXref()] = max(1, $date->d);
+						}
 					}
 				}
 				// find all the fact information
@@ -121,16 +124,19 @@ class TimelineControllerRoot extends BaseController {
 						$date = $event->getDate();
 						if (is_object($date)) {
 							$date=$date->MinDate();
-							$date=$date->convert_to_cal('gregorian');
-							if ($date->y) {
-								$this->baseyear=min($this->baseyear, $date->y);
-								$this->topyear =max($this->topyear,  $date->y);
-                        	
-								if (!$indi->isDead())
-									$this->topyear=max($this->topyear, date('Y'));
-								$event->temp = $p;
-								//-- do not add the same fact twice (prevents marriages from being added multiple times)
-	 							if (!in_array($event, $this->indifacts, true)) $this->indifacts[] = $event;
+							if (!is_null($date)) {
+								// This event is dated
+								$date=$date->convert_to_cal('gregorian');
+								if ($date->y) {
+									$this->baseyear=min($this->baseyear, $date->y);
+									$this->topyear =max($this->topyear,  $date->y);
+                        		
+									if (!$indi->isDead())
+										$this->topyear=max($this->topyear, date('Y'));
+									$event->temp = $p;
+									//-- do not add the same fact twice (prevents marriages from being added multiple times)
+	 								if (!in_array($event, $this->indifacts, true)) $this->indifacts[] = $event;
+								}
 							}
 						}
 					}
@@ -192,6 +198,7 @@ class TimelineControllerRoot extends BaseController {
 				}
 				$gdate=$event->getDate();
 				$date=$gdate->MinDate();
+				if (is_null($date)) return;		// Date is missing
 				$date=$date->convert_to_cal('gregorian');
 				$year  = $date->y;
 				$month = max(1, $date->m);
