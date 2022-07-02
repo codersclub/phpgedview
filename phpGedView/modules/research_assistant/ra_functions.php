@@ -1197,6 +1197,9 @@ class ra_functions {
 
 	function determineClosest(&$currentDate, $dateToCompare, $dateCompareAgainst )
 	{
+		if (!is_numeric($dateToCompare)) $dateToCompare = 0;
+		if (!is_numeric($dateCompareAgainst)) $dateCompareAgainst = 0;
+
 		if($dateCompareAgainst > $dateToCompare)
 		{
 			$compareDiff = $dateCompareAgainst - $dateToCompare;
@@ -1298,20 +1301,26 @@ class ra_functions {
 										if (is_null($bdatea)) $bdate = '';
 										else {
 											$bdatea = $bdatea->MinDate();
-											$bdatea = $bdatea->convert_to_cal('gregorian');
-											$bdate  = $bdatea->Format('Y');
-											$bdate .= ($bdatea->m) ? $bdatea->Format('m') : '00';
-											$bdate .= ($bdatea->d) ? $bdatea->Format('d') : '00';
+											if (is_null($bdatea)) $bdate = '';
+											else {
+												$bdatea = $bdatea->convert_to_cal('gregorian');
+												$bdate  = $bdatea->Format('Y');
+												$bdate .= ($bdatea->m) ? $bdatea->Format('m') : '00';
+												$bdate .= ($bdatea->d) ? $bdatea->Format('d') : '00';
+											}
 										}
 
 										$ddatea = $person->getEstimatedDeathDate();
 										if (is_null($ddatea)) $ddate = '';
 										else {
 											$ddatea = $ddatea->MinDate();
-											$ddatea = $ddatea->convert_to_cal('gregorian');
-											$ddate  = $ddatea->Format('Y');
-											$ddate .= ($ddatea->m) ? $ddatea->Format('m') : '00';
-											$ddate .= ($ddatea->d) ? $ddatea->Format('d') : '00';
+											if (is_null($ddatea)) $ddate = '';
+											else {
+												$ddatea = $ddatea->convert_to_cal('gregorian');
+												$ddate  = $ddatea->Format('Y');
+												$ddate .= ($ddatea->m) ? $ddatea->Format('m') : '00';
+												$ddate .= ($ddatea->d) ? $ddatea->Format('d') : '00';
+											}
 										}
 
 										$sourcesInferred = array();

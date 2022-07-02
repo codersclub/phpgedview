@@ -1189,7 +1189,8 @@ class GedcomDate {
 
 		// Add URLs, if requested
 		if ($url) {
-			$d1='<a href="'.$this->date1->CalendarURL($date_fmt).'">'.$d1.'</a>';
+			if (!is_null($this->date1))
+				$d1='<a href="'.$this->date1->CalendarURL($date_fmt).'">'.$d1.'</a>';
 			if (!is_null($this->date2))
 				$d2='<a href="'.$this->date2->CalendarURL($date_fmt).'">'.$d2.'</a>';
 		}
