@@ -1162,19 +1162,19 @@ $pgv_lang["requestaccount"] 			= "Minta akun pengguna baru";
 $pgv_lang["emailadress"]			= "Alamat Email";
 $pgv_lang["mandatory"] 				= "Isian yang ditandai dengan * adalah wajib.";
 $pgv_lang["mail01_line01"]			= "Halo #user_fullname# ...";
-$pgv_lang["mail01_line02"]			= "Permintaan diterima di #PGV_SERVER_NAME##PGV_SCRIPT_NAME# untuk membuat akun PhpGedView dengan alamat email Anda #user_email#.";
+$pgv_lang["mail01_line02"]			= "Permintaan diterima di #PGV_SERVER_NAME##PGV_SCRIPT_PATH# untuk membuat akun PhpGedView dengan alamat email Anda #user_email#.";
 $pgv_lang["mail01_line03"]			= "Informasi tentang permintaan diperlihatkan dibawah pranala di bawah.";
 $pgv_lang["mail01_line04"]			= "Silakan klik pada pranala berikut dan isilah data yang diminta untuk mengonfirmasikan permintaan dan alamat email Anda.";
 $pgv_lang["mail01_line05"]			= "Jika Anda tidak meminta akun, Anda dapat menghapus pesan ini.";
 $pgv_lang["mail01_line06"]			= "Anda tidak akan mendapat email lagi dari situs ini, karena permintaan akun akan dihapus secara otomatis setelah tujuh hari.";
-$pgv_lang["mail01_subject"] 			= "Pendaftaran Anda di #PGV_SERVER_NAME##PGV_SCRIPT_NAME#";
+$pgv_lang["mail01_subject"] 			= "Pendaftaran Anda di #PGV_SERVER_NAME##PGV_SCRIPT_PATH#";
 
 $pgv_lang["mail02_line01"]			= "Halo Administrator ...";
-$pgv_lang["mail02_line02"]			= "Pengguna prospektif mengdaftarkan dirinya dengan PhpGedView di #PGV_SERVER_NAME##PGV_SCRIPT_NAME#.";
+$pgv_lang["mail02_line02"]			= "Pengguna prospektif mengdaftarkan dirinya dengan PhpGedView di #PGV_SERVER_NAME##PGV_SCRIPT_PATH#.";
 $pgv_lang["mail02_line03"]			= "Pengguna menerima email dengan informasi yang diperlukan untuk mengonfirmasi permintaan aksesnya.";
 $pgv_lang["mail02_line04"]			= "Anda akan diberitahu lewat email saat pengguna prospektif ini telah mengonfirmasikan permintaannya. Anda kemudian dapat menyempurnakan proses dengan mengaktifkan nama penggunanya. Pengguna baru tidak akan dapat masuk log hingga Anda mengaktifkan akunnya.";
 $pgv_lang["mail02_line04a"]			= "You will be informed by email when this prospective user has confirmed his request. After this, the user will be able to login without any action on your part.";
-$pgv_lang["mail02_subject"] 			= "Pendaftaraan baru di #PGV_SERVER_NAME##PGV_SCRIPT_NAME#";
+$pgv_lang["mail02_subject"] 			= "Pendaftaraan baru di #PGV_SERVER_NAME##PGV_SCRIPT_PATH#";
 
 $pgv_lang["hashcode"]				= "Kode verifikasi:";
 $pgv_lang["thankyou"]				= "Halo #user_fullname# ...<br />Terima kasih atas pendaftaran Anda.";
@@ -1192,7 +1192,7 @@ $pgv_lang["mail03_line01"]			= "Halo Administrator ...";
 $pgv_lang["mail03_line02"]			= "Pengguna #newuser[username]# (#newuser[fullname]#) telah mengonfirmasikan permintaannya untuk sebuah akun.";
 $pgv_lang["mail03_line03"]			= "Silakan klik pada pranala di bawah untuk masuk log ke situs Anda. Anda harus menyunting pengguna untuk mengaktifkan akunnya sehingga ia dapat masuk log ke situs Anda.";
 $pgv_lang["mail03_line03a"]			= "Anda tidak harus mengambil tindakan apapun; pengguna sekarang dapat masuk log.";
-$pgv_lang["mail03_subject"] 			= "Pengguna baru di #PGV_SERVER_NAME##PGV_SCRIPT_NAME#";
+$pgv_lang["mail03_subject"] 			= "Pengguna baru di #PGV_SERVER_NAME##PGV_SCRIPT_PATH#";
 
 $pgv_lang["pls_note09"] 			= "Anda telah mengkonfirmasikan permintaan Anda menjadi pengguna terdaftar.";
 $pgv_lang["pls_note10"] 			= "Administrator telah diberitahu. Setelah ia memberi Anda izin untuk masuk log, Anda dapat masuk log dengan nama pengguna dan sandi Anda.";
@@ -1208,7 +1208,7 @@ $pgv_lang["mail04_line02"]			= "Sandi baru telah diminta untuk nama pengguna And
 $pgv_lang["mail04_line03"]			= "Rekomendasi:";
 $pgv_lang["mail04_line04"]			= "Silakan klik pada pranala di bawah atau temaple pada perambah Anda, catatmasuk dengan sandi yang baru, dan segera ganti untuk menjaga integritas keamanan data Anda.";
 $pgv_lang["mail04_line05"]			= "Setelah Anda masuk log, pilih pranala «#pgv_lang[editowndata]#» di bawah menu «#pgv_lang[mygedview]#» dan isilah isian sandi untuk mengubah sandi Anda.";
-$pgv_lang["mail04_subject"] 			= "Sandi baru di #PGV_SERVER_NAME##PGV_SCRIPT_NAME#";
+$pgv_lang["mail04_subject"] 			= "Sandi baru di #PGV_SERVER_NAME##PGV_SCRIPT_PATH#";
 
 $pgv_lang["pwreqinfo"]				= "Halo...<br /><br />Email dengan sandi baru Anda telah terkirim ke alamat yang kami miliki pada berkas untuk <b>#user[email]#</b>.<br /><br />Silakan periksa akun email Anda; Anda seharusnya segera menerima pesan kami.<br /><br />Rekomendasi:<br />Anda sebaiknya masuk log ke situs ini dengan sandi baru Anda secepat mungkin, dan Anda sebaiknya mengubah sandi Anda untuk mempertahankam keamanan data Anda.";
 

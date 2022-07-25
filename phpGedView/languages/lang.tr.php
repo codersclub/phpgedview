@@ -1222,19 +1222,19 @@ $pgv_lang["requestaccount"]		= "Şimdi Kayıt Ol";
 $pgv_lang["emailadress"]		= "Email Adresi";
 $pgv_lang["mandatory"] 			= "* İşaretli alanların doldurulması zorunludur.";
 $pgv_lang["mail01_line01"]		= "Merhaba: #user_fullname# ...";
-$pgv_lang["mail01_line02"]		= "Bu #user_email# email adresi ile #PGV_SERVER_NAME##PGV_SCRIPT_NAME# PhpGedView sitede üyelik hesabi açılmıştır.";
+$pgv_lang["mail01_line02"]		= "Bu #user_email# email adresi ile #PGV_SERVER_NAME##PGV_SCRIPT_PATH# PhpGedView sitede üyelik hesabi açılmıştır.";
 $pgv_lang["mail01_line03"]		= "Üyelik hakkında bilgiler aşağıdaki linkin altında gösterilmiştir.";
 $pgv_lang["mail01_line04"]		= "Üyelik işlemi tamamlamak için lütfen aşağıdaki inki tıklayıp istekleri doldurup onaylayın.";
 $pgv_lang["mail01_line05"]		= "Eğer bu üyelik siz oluşturmadınız ise bu mesajı silip unutabilirsiniz.";
 $pgv_lang["mail01_line06"]		= "Çünkü onaylanmayan hesaplar otomatik olarak yedi gün sonra silinecek ve bu siteden bir daha email mesajı almayacaksınız.";
-$pgv_lang["mail01_subject"]		= "#PGV_SERVER_NAME##PGV_SCRIPT_NAME# sitedeki üyeliğiniz";
+$pgv_lang["mail01_subject"]		= "#PGV_SERVER_NAME##PGV_SCRIPT_PATH# sitedeki üyeliğiniz";
 
 $pgv_lang["mail02_line01"]		= "Merhaba Yönetici ...";
-$pgv_lang["mail02_line02"]		= "#PGV_SERVER_NAME##PGV_SCRIPT_NAME# PhpGedView sitede bir kullanıcı kaydolmuştur ve bekliyor.";
+$pgv_lang["mail02_line02"]		= "#PGV_SERVER_NAME##PGV_SCRIPT_PATH# PhpGedView sitede bir kullanıcı kaydolmuştur ve bekliyor.";
 $pgv_lang["mail02_line03"]		= "Kullanıcıya üyelik işlemini tamamlaması için gerekli bilgiler gönderilmiştir.";
 $pgv_lang["mail02_line04"]		= "Kullanıcı hesabini onayladıktan sonra onayladığına dair tekrar email mesajı ile bilgilendirileceksiniz. Kullanıcı siteye giriş yapabilmesi için yönetici onayı gerekecektir.";
 $pgv_lang["mail02_line04a"]			= "Kullanıcı kendi hesabini onayladıktan sonra yönetici onayına gerek duymadan siteye giriş yapabilecek.";
-$pgv_lang["mail02_subject"]		= "#PGV_SERVER_NAME##PGV_SCRIPT_NAME# sitede yeni kullanıcı kaydolmuştur";
+$pgv_lang["mail02_subject"]		= "#PGV_SERVER_NAME##PGV_SCRIPT_PATH# sitede yeni kullanıcı kaydolmuştur";
 
 $pgv_lang["hashcode"]			= "Doğrulama kodu:";
 $pgv_lang["thankyou"]			= "Merhaba #user_fullname# ...<br />Kaydolduğunuz için teşekkür ederiz.";
@@ -1252,7 +1252,7 @@ $pgv_lang["mail03_line01"]		= "Merhaba Yönetici ...";
 $pgv_lang["mail03_line02"]		= "Kullanıcı #newuser[username]# (#newuser[fullname]#) kendisine gönderilen verileri onaylamıştır.";
 $pgv_lang["mail03_line03"]		= "Kullanıcının hesabını aktif etmek için yada kullanıcıyı düzenlemek için sitenize giriş yapabilirsiniz. Lütfen aşağıdaki sitenizin linkini tıklayın.";
 $pgv_lang["mail03_line03a"]			= "Herhangi bir işlem yapmanıza gerek yok; kullanıcı şimdi giriş yapabilir.";
-$pgv_lang["mail03_subject"]		= "#PGV_SERVER_NAME##PGV_SCRIPT_NAME# kullanıcı kendini onayladı";
+$pgv_lang["mail03_subject"]		= "#PGV_SERVER_NAME##PGV_SCRIPT_PATH# kullanıcı kendini onayladı";
 
 $pgv_lang["pls_note09"]			= "Kayıtlı bir kullanıcı olma isteğiniz onaylanmıştır.";
 $pgv_lang["pls_note10"]			= "Üyeliğinizi onayladığınızı söyleyen bir mesaj Yöneticiye gönderilmiştir.<br />Yönetici üyeliğinizi kontrol edip onayladığında siteye giriş yapabileceğinizi söyleyen ikinci email mesajı aldıktan sonra Kullanıcı adı ve şifrenizi kullanarak siteye giriş yapabilirsiniz.";
@@ -1268,7 +1268,7 @@ $pgv_lang["mail04_line02"]		= "Kullanıcı adınız için yeni bir şifre istenm
 $pgv_lang["mail04_line03"]		= "Tavsiye:";
 $pgv_lang["mail04_line04"]		= "Lütfen aşağıdaki linki tıklayın veya URL adresi tarayıcınıza yapıştırın. Yeni şifreniz giriş yaparak hesabinizi korumak için hemen şifrenizi değiştirin.";
 $pgv_lang["mail04_line05"]			= "Giriş yaptıktan sonra «#pgv_lang[mygedview]#» menüsü altında «#pgv_lang[editowndata]#» bağlantısını seçin ve şifrenizi değiştirmek için her iki alana yeni şifrenizi girerek kaydedin.";
-$pgv_lang["mail04_subject"] 		= "#PGV_SERVER_NAME##PGV_SCRIPT_NAME# siteden yeni şifre";
+$pgv_lang["mail04_subject"] 		= "#PGV_SERVER_NAME##PGV_SCRIPT_PATH# siteden yeni şifre";
 
 $pgv_lang["pwreqinfo"]				= "Merhaba ...<br /><br /><b>#user[email]#</b> hesabi için yeni şifre talebiniz hesapta kayıtlı email adresine gönderilmiştir.<br /><br />Email hesabinizi kontrol edin; yeni şifre içeren mesajınız şimdi almış olmalısınız.<br /><br />Tavsiye:<br />Hesabinizi korumak için mümkün olan en kısa süre içinde yeni şifre ile siteye giriş yaparak hemen şifrenizi değiştirmeniz gerekir.";
 

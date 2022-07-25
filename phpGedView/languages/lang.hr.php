@@ -1220,19 +1220,19 @@ $pgv_lang["requestaccount"] 		= "Zahtjevajte novi korisničko ime";
 $pgv_lang["emailadress"]			= "Email adresa";
 $pgv_lang["mandatory"] 			= "Polja označena sa * su obavezna.";
 $pgv_lang["mail01_line01"]			= "Poštovanje #user_fullname# ...";
-$pgv_lang["mail01_line02"]			= "Zahtjev je zaprimljen za #PGV_SERVER_NAME##PGV_SCRIPT_NAME# zbog otvaranja PhpGedView korisničkog računa sa vašom e-mail adresom: #user_email#.";
+$pgv_lang["mail01_line02"]			= "Zahtjev je zaprimljen za #PGV_SERVER_NAME##PGV_SCRIPT_PATH# zbog otvaranja PhpGedView korisničkog računa sa vašom e-mail adresom: #user_email#.";
 $pgv_lang["mail01_line03"]			= "Informacija o zahtjevu je prikazana na poveznici ispod.";
 $pgv_lang["mail01_line04"]			= "Molim kliknite na slijedeću poveznicu i ispunite zahtijevane podatke kako bi potvrdili vaš zahtjev i e-mail adresu.";
 $pgv_lang["mail01_line05"]			= "Ako niste zatražili otvaranje korisničkog imena, samo obrišite ovu poruku.";
 $pgv_lang["mail01_line06"]			= "Vi nećete više dobiti nijednu e-mail poruku s ove web stranice, jer će zahtje za otvaranjem korisničkog računa biti automatski obrisan poslije sedam dana.";
-$pgv_lang["mail01_subject"] 		= "Vaša registracija na #PGV_SERVER_NAME##PGV_SCRIPT_NAME#";
+$pgv_lang["mail01_subject"] 		= "Vaša registracija na #PGV_SERVER_NAME##PGV_SCRIPT_PATH#";
 
 $pgv_lang["mail02_line01"]			= "Poštovanje Administrator ...";
-$pgv_lang["mail02_line02"]			= "A prospective user registered himself with PhpGedView at #PGV_SERVER_NAME##PGV_SCRIPT_NAME#.";
+$pgv_lang["mail02_line02"]			= "A prospective user registered himself with PhpGedView at #PGV_SERVER_NAME##PGV_SCRIPT_PATH#.";
 $pgv_lang["mail02_line03"]			= "The user received an email with the information necessary to confirm his access request.";
 $pgv_lang["mail02_line04"]			= "You will be informed by email when this prospective user has confirmed his request.  You can then complete the process by activating the user name.  The new user will not be able to login until you activate the account.";
 $pgv_lang["mail02_line04a"]			= "You will be informed by email when this prospective user has confirmed his request.  After this, the user will be able to login bez any action on your part.";
-$pgv_lang["mail02_subject"] 		= "New registration at #PGV_SERVER_NAME##PGV_SCRIPT_NAME#";
+$pgv_lang["mail02_subject"] 		= "New registration at #PGV_SERVER_NAME##PGV_SCRIPT_PATH#";
 
 $pgv_lang["hashcode"]				= "Kod provjere:";
 $pgv_lang["thankyou"]				= "Poštovanje #user_fullname# ...<br />Zahvaljujem na registraciji.";
@@ -1250,7 +1250,7 @@ $pgv_lang["mail03_line01"]			= "Poštovanje Administrator ...";
 $pgv_lang["mail03_line02"]			= "Korisnik #newuser[username]# (#newuser[fullname]#) je potvrdio svoj zahtjevza korisničkim računaom.";
 $pgv_lang["mail03_line03"]			= "Molim kliknite na poveznicu dolje za prijavu na vašu stranicu.  You must Edit the user to activate the account so that he can login to your site.";
 $pgv_lang["mail03_line03a"]			= "Vi ne morate poduzeti nakakvu akciju; korisnik se sad može prijaviti.";
-$pgv_lang["mail03_subject"] 		= "Novi korisnik na #PGV_SERVER_NAME##PGV_SCRIPT_NAME#";
+$pgv_lang["mail03_subject"] 		= "Novi korisnik na #PGV_SERVER_NAME##PGV_SCRIPT_PATH#";
 
 $pgv_lang["pls_note09"] 			= "Vi ste potvrdili vaš zahtjev kako bi postali registrirani korisnik.";
 $pgv_lang["pls_note10"] 			= "Administrator je upoznat.  Uskoro kad vam izda dozvolu za prijavu, vi ćete moći se prijaviti sa svojim korisničkim imenom i lozinkom.";
@@ -1266,7 +1266,7 @@ $pgv_lang["mail04_line02"]			= "Nova lozinka je zatražena za vaše korisničko 
 $pgv_lang["mail04_line03"]			= "Recommendation:";
 $pgv_lang["mail04_line04"]			= "Molim kliknite na poveznicu ispod ili kopirajte ju u vaš browser, login sa novom lozinkom, i promijenite ju odmah da očuvate integritet sigurnosti vaših podataka.";
 $pgv_lang["mail04_line05"]			= "Nakon što ste se prijavili, odaberite «#pgv_lang[editowndata]#» poveznicu ispod «#pgv_lang[mygedview]#» meni i ispuni polja lozinki da promijenite vašu lozinku.";
-$pgv_lang["mail04_subject"] 		= "Nova lozinka na #PGV_SERVER_NAME##PGV_SCRIPT_NAME#";
+$pgv_lang["mail04_subject"] 		= "Nova lozinka na #PGV_SERVER_NAME##PGV_SCRIPT_PATH#";
 
 $pgv_lang["pwreqinfo"]				= "Hello...<br /><br />Email sa novom lozinkom vam je poslan na adresu koju smo umali u datoteci za <b>#user[email]#</b>.<br /><br />Molimo provjerite vaš email račun; vi ćete primiti našu poruku uskoro.<br /><br />Preporuka:<br />Vi biste morali se prijaviti na ovu stranicu sa novom lozinkom što prije, i vi biste trebali promijeniti vašu lozinku da sačuvate svoje podatke sigurnim.";
 

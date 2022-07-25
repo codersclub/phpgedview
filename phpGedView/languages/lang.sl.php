@@ -1229,19 +1229,19 @@ $pgv_lang["requestaccount"] 			= "Zahtevajte nov uporabniški račun";
 $pgv_lang["emailadress"]			= "E-poštni naslov";
 $pgv_lang["mandatory"] 				= "Polja označena z * so obvezna.";
 $pgv_lang["mail01_line01"]			= "Zdravo, #user_fullname# ...";
-$pgv_lang["mail01_line02"]			= "Na strežnik #PGV_SERVER_NAME##PGV_SCRIPT_NAME# je bil sprejet zahtevek za vzpostavitev računa PhpGedView z vašim e-poštnim naslovom #user_email#.";
+$pgv_lang["mail01_line02"]			= "Na strežnik #PGV_SERVER_NAME##PGV_SCRIPT_PATH# je bil sprejet zahtevek za vzpostavitev računa PhpGedView z vašim e-poštnim naslovom #user_email#.";
 $pgv_lang["mail01_line03"]			= "Podatki o zahtevku so prikazani na spodnji povezavi.";
 $pgv_lang["mail01_line04"]			= "Kliknite na naslednjo povezavo in vpišite zahtevane podatke za potrditev zahtevka in elektronskega naslova.";
 $pgv_lang["mail01_line05"]			= "Izbrišite sporočilo, če računa niste zahtevali.";
 $pgv_lang["mail01_line06"]			= "S te strani ne boste več prejemali sporočil, ker bo zahtevek po računu samodejno izbrisan v sedmih dneh.";
-$pgv_lang["mail01_subject"] 			= "Registrirali ste se na strežniku #PGV_SERVER_NAME##PGV_SCRIPT_NAME#";
+$pgv_lang["mail01_subject"] 			= "Registrirali ste se na strežniku #PGV_SERVER_NAME##PGV_SCRIPT_PATH#";
 
 $pgv_lang["mail02_line01"]			= "Zdravo, upravitelj ...";
-$pgv_lang["mail02_line02"]			= "Možni uporabnik se je prijavil pri PhpGedView na strežniku #PGV_SERVER_NAME##PGV_SCRIPT_NAME#.";
+$pgv_lang["mail02_line02"]			= "Možni uporabnik se je prijavil pri PhpGedView na strežniku #PGV_SERVER_NAME##PGV_SCRIPT_PATH#.";
 $pgv_lang["mail02_line03"]			= "Uporabnik je prejel elektronsko sporočilo z zahtevanimi podatki za potrditev zahtevka po dostopu.";
 $pgv_lang["mail02_line04"]			= "Po elektronski pošti boste obveščeni, ko bo možni uporabnik potrdil svoj zahtevek. Z aktivacijo uporabniškega imena lahko postopek zaključite. Novi uporabnik se ne bo mogel prijaviti, dokler ne aktivirate računa.";
 $pgv_lang["mail02_line04a"]			= "Po elektronski pošti boste obveščeni, kdaj je možni uporabnik potrdil svoj zahtevek. Potem se bo lahko uporabnik prijavil brez vašega posredovanja.";
-$pgv_lang["mail02_subject"] 			= "Nova registracija na strežniku #PGV_SERVER_NAME##PGV_SCRIPT_NAME#";
+$pgv_lang["mail02_subject"] 			= "Nova registracija na strežniku #PGV_SERVER_NAME##PGV_SCRIPT_PATH#";
 
 $pgv_lang["hashcode"]				= "Koda za preverjanje:";
 $pgv_lang["thankyou"]				= "Zdravo, #user_fullname# ...<br />Zahvaljujemo se, da ste se registrirali.";
@@ -1259,7 +1259,7 @@ $pgv_lang["mail03_line01"]			= "Zdravo, upravljalec ...";
 $pgv_lang["mail03_line02"]			= "Uporabnik #newuser[username]# (#newuser[fullname]#) je potrdil zahtevek po odprtju računa.";
 $pgv_lang["mail03_line03"]			= "Kliknite na spodnjo povezavo za prijavo na vašo stran. Najprej uredite (edit) uporabnika, da se bo račun aktiviral in omogočil uporabniku dostop na vašo stran.";
 $pgv_lang["mail03_line03a"]			= "Ni vam več treba posredovati. Uporabnik se lahko sam prijavi.";
-$pgv_lang["mail03_subject"] 		= "Nov uporabnik na strežniku #PGV_SERVER_NAME##PGV_SCRIPT_NAME#";
+$pgv_lang["mail03_subject"] 		= "Nov uporabnik na strežniku #PGV_SERVER_NAME##PGV_SCRIPT_PATH#";
 
 $pgv_lang["pls_note09"] 			= "Potrdili ste zahtevek za registriranega uporabnika.";
 $pgv_lang["pls_note10"] 			= "Upravitelj je prejel obvestilo. Ko vam bo dal dovoljenje za prijavo, se boste lahko prijavljali sami s svojim uporabniškim imenom in geslom.";
@@ -1275,7 +1275,7 @@ $pgv_lang["mail04_line02"]			= "Novo geslo je bilo zahtevano za vaše uporabniš
 $pgv_lang["mail04_line03"]			= "Priporočilo:";
 $pgv_lang["mail04_line04"]			= "Kliknite na spodno povezavo ali pa jo prelepite v brskalnik. Prijavite se z novim geslom in ga takoj zamenjajte, da ohranite vaše podatke varne.";
 $pgv_lang["mail04_line05"]			= "Potem ko ste se prijavili izberite povezavo «#pgv_lang[editowndata]#» v meniju «#pgv_lang[mygedview]#» in izpolnite polji za geslo.";
-$pgv_lang["mail04_subject"] 		= "Novo geslo na #PGV_SERVER_NAME##PGV_SCRIPT_NAME#";
+$pgv_lang["mail04_subject"] 		= "Novo geslo na #PGV_SERVER_NAME##PGV_SCRIPT_PATH#";
 
 $pgv_lang["pwreqinfo"]				= "Zdravo,...<br /><br />Pošta z vašim novim geslom je bila poslana na naveden naslov za uporabnika <b>#user[email]#</b>.<br /><br />Preverite vaš poštni predal. Sporočilo boste prejeli v kratkem.<br /><br />Nasvet:<br />Ponovno se prijavite semkaj kakor hitro je to mogoče in zamenjajte geslo, da ohranite varnost podatkov.";
 
