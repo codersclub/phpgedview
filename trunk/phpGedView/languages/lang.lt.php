@@ -3,7 +3,7 @@
  * Lithuanian Language file for PhpGedView.
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2019  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2022  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -412,11 +412,11 @@ $pgv_lang["day"]					= "Diena:";
 $pgv_lang["today"]					= "Šiandien";
 $pgv_lang["year_error"] 			= "Atsiprašome, bet datos iki 1970 nera palaikomos.";
 $pgv_lang["mail01_line01"]			= "Sveiki #user_fullname# ...";
-$pgv_lang["mail01_line02"]			= "Serveryje ( #PGV_SERVER_NAME##PGV_SCRIPT_NAME# )  gauta užklausa sukurti naudotoja su Jusu elektroniniu adresu ( #user_email# ).";
+$pgv_lang["mail01_line02"]			= "Serveryje ( #PGV_SERVER_NAME##PGV_SCRIPT_PATH# )  gauta užklausa sukurti naudotoja su Jusu elektroniniu adresu ( #user_email# ).";
 $pgv_lang["mail01_line04"]			= "Tam kad patvirtinti naudotoja varda ir elektronini adresa, prašom eiti pagal šia nuoroda ir užpildyti  pageidaujamus duomenis.";
 $pgv_lang["mail01_line03"]			= "Informacija apie užklausa yra žemiau esancioje nuorodoje.";
 $pgv_lang["mail01_line06"]			= "Jus negausite daugiau jokiu laišku iš šio puslapio, nes prašymas sukurti naudotoja yra ištrinamas po septyniu dienu.";
-$pgv_lang["mail01_subject"] 		= "Jusu prisijungimas prie #PGV_SERVER_NAME##PGV_SCRIPT_NAME#|";
+$pgv_lang["mail01_subject"] 		= "Jusu prisijungimas prie #PGV_SERVER_NAME##PGV_SCRIPT_PATH#|";
 $pgv_lang["mail01_line05"]			= "Jei Jus neprašete prisijungimo vardo, tai galite tik ištrinti ši laiška.";
 $pgv_lang["pls_note06a"] 			= "Mes pasiusime patvirtinimo laiška adresu ( #user_email# ). Jums reikes patvirtinti naudotojo užklausima pagal instrukcijas, esancias tame laiške. Jei per 7 dienas nepatvirtinsite naudotojo, jusu prašymas bus automatiškai atmestas. Jums reikes pildyti viska iš naujo. .<br /><br /> Po to, kai naudojantis instrukcijomis patvirtinsite save, Jus galesite prisijungti. Norint prisijungti prie puslapio reikia žinoti naudotojo varda ir slaptažodi.<br /><br /><br />";
 $pgv_lang["pls_note06"] 			= "Mes pasiusime patvirtinimo laiška adresu ( #user_email# ). Jums reikes patvirtinti naudotojo užklausima pagal instrukcijas, esancias tame laiške. Jei per 7 dienas nepatvirtinsite naudotojo, jusu prašymas bus automatiškai atmestas. Jums reikes pildyti viska iš naujo. .<br /><br /> Po to, kai naudojantis instrukcijomis patvirtinsite save, administratorius dar tures patvirinti Jusu nora tapti naudotoju prieš tai, kol galesite prisijungti.<br /><br /> Norint prisijungti prie puslapio reikia žinoti naudotojo varda ir slaptažodi.<br /><br /><br />";
@@ -425,8 +425,8 @@ $pgv_lang["registernew"]			= "Naujo naudotojo patvirtinimas";
 $pgv_lang["mail02_line04a"]			= "Jus elektroniniu laisku busite informuotas  kai b9simas naudotojas patvirtins save. Po patvirtinimo vartotojas gales prisijungti  be jokiu  pastangu iš Jusu puses.";
 $pgv_lang["mail02_line04"]			= "Jus busite informuotas elektroniniu laišku kai busimas naudotojas patvirtins save. Tada Jus galesite testi vartotojo aktyvavima. Naujas naudotojas negales prisijungti kol Jus neaktyvuosite naudotojo.";
 $pgv_lang["thankyou"]				= "Sveiki #user_fullname# ...<br /> Aciu už registravimasi";
-$pgv_lang["mail02_subject"] 		= "Nauja registracija #PGV_SERVER_NAME##PGV_SCRIPT_NAME#|";
-$pgv_lang["mail02_line02"]			= "Busimas naudotojas užregistravo save ( #PGV_SERVER_NAME##PGV_SCRIPT_NAME# ).";
+$pgv_lang["mail02_subject"] 		= "Nauja registracija #PGV_SERVER_NAME##PGV_SCRIPT_PATH#|";
+$pgv_lang["mail02_line02"]			= "Busimas naudotojas užregistravo save ( #PGV_SERVER_NAME##PGV_SCRIPT_PATH# ).";
 $pgv_lang["mail02_line03"]			= "Naudotojas gavo elektronini laiška su visa informacija, reikalinga patvirtinti jo prisijungimo vardui.";
 $pgv_lang["hashcode"]				= "Patvirtinimo kodas:";
 $pgv_lang["mail02_line01"]			= "Sveikas Administratoriau ...";
@@ -457,13 +457,13 @@ $pgv_lang["lost_password"]			= "Pamiršote slaptažodi?";
 $pgv_lang["mail04_line02"]			= "Jusu naudotojo vardui buvo naujo slaptažodžio užklausimas.";
 $pgv_lang["pwreqinfo"]				= "Sveiki...<br /><br /><br /> Elektroninis laiškas pasiustas adresu #user[email]#).<br /><br /> Patikrinkite savo pašta; jums netrukus turi buti nusiustas laiškas.<br /><br /> Rekomendacija: <br /><br />Prisijunkite su nauju slaptažodžiu, ir, noredami garantuoti sauguma,  nedelsiant ji pakeiskite.";
 $pgv_lang["mail04_line04"]			= "Paspauskite ant nuorodos arba nukopijuokite ja i interneto naršykle. Prisijunkite su nauju slaptažodžiu, ir, noredami garantuoti sauguma,  nedelsiant ji pakeiskite.";
-$pgv_lang["mail04_subject"] 		= "Duomenu užklausa serveryje #PGV_SERVER_NAME##PGV_SCRIPT_NAME#";
+$pgv_lang["mail04_subject"] 		= "Duomenu užklausa serveryje #PGV_SERVER_NAME##PGV_SCRIPT_PATH#";
 $pgv_lang["mail04_line05"]			= "Prisijungus  pasirinkite '#pgv_lang[myuserdata]#'nuoroda iš  '#pgv_lang[mygedview]#'  meniu ir  slaptažodžiui pakeisti užpildykite slaptažodžio laukus.";
 $pgv_lang["mail04_line03"]			= "Rekomendacija:";
 $pgv_lang["datachanged"]			= "Naudotojo duomenys buvo pakeisti";
 $pgv_lang["mail03_line02"]			= "Naudotojas #newuser[username]# ( #newuser[fullname]# ) patvirtino savo registracijos duomenis.";
 $pgv_lang["mail03_line03a"]			= "Jums nereikia imtis jokiu veiksmu; naudotojas gali prisijungti.";
-$pgv_lang["mail03_subject"] 		= "Naujas patvirtinimas  severyje #PGV_SERVER_NAME##PGV_SCRIPT_NAME#";
+$pgv_lang["mail03_subject"] 		= "Naujas patvirtinimas  severyje #PGV_SERVER_NAME##PGV_SCRIPT_PATH#";
 $pgv_lang["datachanged_name"]		= "Jums gali reiketi persisveikinti  nauju naudotoja vardu.";
 $pgv_lang["user_theme"] 			= "Mano tema";
 $pgv_lang["todays_events_descr"]	= "Šia diena Jusu istorijoje .... blokas rodo ivykiu jubiliejus šiai dienai. Jus galite keisti kiek detaliu yra rodoma.";

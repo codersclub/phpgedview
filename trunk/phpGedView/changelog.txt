@@ -14,6 +14,7 @@ The session.php script uses this information to populate the constants : PGV_VER
 =====================================================================
 
 Version 4.3.1
+ - Fixed: Incorrect use of #PGV_SCRIPT_NAME# in several language files.  Should be #PGV_SCRIPT_PATH#. (canajun2eh, tbabczynski)
  - Fixed: PHP 7.4 incompatibilities in ra_functions.php when dates are missing (canajun2eh)
  - Fixed: PHP 7.4 incompatibility in class_date.php when undated event exists (canajun2eh)
  - Fixed: PHP 7.4 incompatibility in timeline_ctrl.php when undated events exist (canajun2eh)

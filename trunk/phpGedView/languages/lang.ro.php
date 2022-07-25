@@ -1127,19 +1127,19 @@ $pgv_lang["requestaccount"] 		= "Cereţi un nou cont";
 $pgv_lang["emailadress"]			= "Adresă email";
 $pgv_lang["mandatory"] 				= "Câmpurile marcate cu * sunt obligatorii.";
 $pgv_lang["mail01_line01"]			= "Salut #user_fullname# ...";
-$pgv_lang["mail01_line02"]			= "O cerere a fost primită la #PGV_SERVER_NAME##PGV_SCRIPT_NAME# pentru a crea un cont PhpGedView cu adresa voastră de email #user_email#.";
+$pgv_lang["mail01_line02"]			= "O cerere a fost primită la #PGV_SERVER_NAME##PGV_SCRIPT_PATH# pentru a crea un cont PhpGedView cu adresa voastră de email #user_email#.";
 $pgv_lang["mail01_line03"]			= "Informaţia despre cerere este arătată sub linkul de mai jos.";
 $pgv_lang["mail01_line04"]			= "Vă rugăm daţi click pe următorul link şi completaţi datele cerute şi adresa de email.";
 $pgv_lang["mail01_line05"]			= "Dacă nu aţi cerut un cont, puteţi să ştergeţi acest mesaj.";
 $pgv_lang["mail01_line06"]			= "Nu veţi mai primi nici un email de la acest site, deoarece contul cerut va fi şters automat după 7 zile.";
-$pgv_lang["mail01_subject"] 		= "Înregistrarea dumneavoastră la #PGV_SERVER_NAME##PGV_SCRIPT_NAME#";
+$pgv_lang["mail01_subject"] 		= "Înregistrarea dumneavoastră la #PGV_SERVER_NAME##PGV_SCRIPT_PATH#";
 
 $pgv_lang["mail02_line01"]			= "Bună administratore ...";
-$pgv_lang["mail02_line02"]			= "Un utilizator prospectiv s-a înregistrat la PhpGedView pe #PGV_SERVER_NAME##PGV_SCRIPT_NAME#.";
+$pgv_lang["mail02_line02"]			= "Un utilizator prospectiv s-a înregistrat la PhpGedView pe #PGV_SERVER_NAME##PGV_SCRIPT_PATH#.";
 $pgv_lang["mail02_line03"]			= "Utilizatorul a primit un email cu informaţia necesară pentru a confirma cererea lui de acces.";
 $pgv_lang["mail02_line04"]			= "Veţi fi informat prin email cand acest utilizator prospectiv a confirmat cererea sa.  Puteţi apoi să completaţi procesul prin activarea sa.  Noul utilizator nu va putea să se autentifice până nu veţi activa contul său.";
 $pgv_lang["mail02_line04a"]			= "Veţi fi informat prin email cand acest utilizator prospectiv a confirmat cererea sa.  După aceasta, utilizatorul va putea să se autentifice fără nici o acţiune din partea voastră.";
-$pgv_lang["mail02_subject"] 		= "Înregistrare nouă la #PGV_SERVER_NAME##PGV_SCRIPT_NAME#";
+$pgv_lang["mail02_subject"] 		= "Înregistrare nouă la #PGV_SERVER_NAME##PGV_SCRIPT_PATH#";
 
 $pgv_lang["hashcode"]				= "Codul de verificare:";
 $pgv_lang["thankyou"]				= "Salut #user_fullname# ...<br />Mulţumesc pentru înregistrare.";
@@ -1157,7 +1157,7 @@ $pgv_lang["mail03_line01"]			= "Bună administratore ...";
 $pgv_lang["mail03_line02"]			= "Utilizatorul #newuser[username]# (#newuser[fullname]#) a confirmat cererea sa pentru cont.";
 $pgv_lang["mail03_line03"]			= "Vă rugăm daţi clic pe linkul de mai jos pentru a vă loga pe siteul dumneavoastră.  Trebuie să editaţi utilizatorul pentru a-i activa contul, astfel încât să se poată autentifica pe siteul dumneavoastră.";
 $pgv_lang["mail03_line03a"]			= "Nu trebuie să faceţi nimic; utilizatorul se poate autentifica acum.";
-$pgv_lang["mail03_subject"] 		= "Utilizator nou la #PGV_SERVER_NAME##PGV_SCRIPT_NAME#";
+$pgv_lang["mail03_subject"] 		= "Utilizator nou la #PGV_SERVER_NAME##PGV_SCRIPT_PATH#";
 
 $pgv_lang["pls_note09"] 			= "Aţi confirmat cererea dumneavoastră pentru a deveni un utilizator înregistrat.";
 $pgv_lang["pls_note10"] 			= "Administratorul a fost notificat.  De îndată ce vă dă permisiunea să vă autentificaţi, puteţi să vă autentificaţi cu utilizatorul si parola dumneavoastră.";
@@ -1173,7 +1173,7 @@ $pgv_lang["mail04_line02"]			= "O nouă parolă a fost cerută pentru dumneavoas
 $pgv_lang["mail04_line03"]			= "Recomandare:";
 $pgv_lang["mail04_line04"]			= "Vă rugăm să daţi click pe linkul de mai jos sau sa-l copiaţi si să-l lipiţi în navigatorul dumneavoastră, să vă autentificaţi cu noua parolă, şi s-o schimbaţi imediat pentru a vă păstra datele sigure.";
 $pgv_lang["mail04_line05"]			= "După ce v-aţi autentificat, selectaţi linkul «#pgv_lang[editowndata]#» de sub meniul «#pgv_lang[mygedview]#» şi completaţi câmpurile de parole pentru a vă schimba parola.";
-$pgv_lang["mail04_subject"] 		= "Nouă parolă la #PGV_SERVER_NAME##PGV_SCRIPT_NAME#";
+$pgv_lang["mail04_subject"] 		= "Nouă parolă la #PGV_SERVER_NAME##PGV_SCRIPT_PATH#";
 
 $pgv_lang["pwreqinfo"]				= "Bună...<br /><br />Un email cu parola nouă a fost trimis la adresa care o avem pentru  <b>#user[email]#</b>.<br /><br />Vă rugăm verificaţi adresa de email; ar trebui să primiţi mesajul nostru în curând.<br /><br />Recomandare:<br />Ar trebui să vă logaţi pe acest site cu noua parolă cât mai curând şi ar trebui să schimbaţi parola pentru a vă menţine datele în siguranţă.";
 
