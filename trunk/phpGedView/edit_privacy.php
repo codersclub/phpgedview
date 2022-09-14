@@ -3,7 +3,7 @@
  * Edit Privacy Settings
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2021  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2022  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -31,9 +31,9 @@ require PGV_ROOT.'includes/functions/functions_print_facts.php';
 
 loadLangFile('pgv_confighelp, pgv_help');
 
-if (empty($ged)) $ged = $GEDCOM;
+if (empty($ged_id)) $ged_id = PGV_GED_ID;
 
-if (!userGedcomAdmin(PGV_USER_ID, $ged)) {
+if (!userGedcomAdmin(PGV_USER_ID, $ged_id)) {
 	header('Location: editgedcoms.php');
 	exit;
 }

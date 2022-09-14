@@ -3,7 +3,7 @@
  * Print logfiles
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2016  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2022  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -71,7 +71,7 @@ $auth = false;
 if (($logtype == "syslog") && PGV_USER_IS_ADMIN) {
 	$auth = true;
 }
-if ((($logtype == "gedlog") || ($logtype == "searchlog")) && (userGedcomAdmin(PGV_USER_ID, get_gedcom_from_id($gedname)))) {
+if ((($logtype == "gedlog") || ($logtype == "searchlog")) && (userGedcomAdmin(PGV_USER_ID, get_id_from_gedcom($gedname)))) {
 	$auth = true;
 }
 
