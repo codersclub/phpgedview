@@ -148,7 +148,7 @@ if ($action=='login') {
 }
 
 if ($type=="full") print_header($pgv_lang["login_head"]);
-else print_simple_header($pgv_lang["login_head"]);
+else print_header($pgv_lang["login_head"], false);
 print "<div class=\"center\">\n";
 
 if ($WELCOME_TEXT_AUTH_MODE!="0") {

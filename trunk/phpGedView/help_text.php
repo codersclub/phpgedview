@@ -3,7 +3,7 @@
  * Shows helptext to the users
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2009 PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2022 PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -34,7 +34,7 @@ loadLangFile('pgv_help, pgv_admin, pgv_editor, research_assistant:lang, googlema
 
 require PGV_ROOT.'includes/help_text_vars.php';
 
-print_simple_header($pgv_lang['help_header']);
+print_header($pgv_lang['help_header'], false);
 
 echo '<a name="top"></a><span class="helpheader">', $pgv_lang['help_header'], '</span><br /><br /><div class="helptext">';
 

@@ -5,7 +5,7 @@
 * You must supply a $famid value with the identifier for the family.
 *
 * phpGedView: Genealogy Viewer
-* Copyright (C) 2002 to 2017 PGV Development Team.  All rights reserved.
+* Copyright (C) 2002 to 2022 PGV Development Team.  All rights reserved.
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -65,6 +65,7 @@ class FamilyRoot extends BaseController {
 			$GEDCOM,
 			$pgv_lang,
 			$CONTACT_EMAIL,
+			$PRINTER_FRIENDLY,
 			$show_famlink,
 			$pgv_changes
 		;
@@ -72,7 +73,7 @@ class FamilyRoot extends BaseController {
 		$pbwidth = $bwidth + 12;
 		$pbheight = $bheight + 14;
 
-		$show_famlink = $this->view!='preview';
+		$show_famlink = !$PRINTER_FRIENDLY;
 
 		$this->famid = safe_GET_xref('famid');
 

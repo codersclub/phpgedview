@@ -143,6 +143,7 @@ class TimelineControllerRoot extends BaseController {
 				}
 			}
 		}
+		if (strlen($this->pidlinks) > 5) $this->pidlinks = substr($this->pidlinks, 0, -5);		// get rid of trailing '&amp;'
 		$_SESSION['timeline_pids'] = $this->pids;
 		$scale=safe_GET_integer('scale', 0, 200, 0);
 		if ($scale==0) {

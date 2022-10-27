@@ -3,7 +3,7 @@
  * Controller for the Hourglass Page
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2021  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2022  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -91,7 +91,7 @@ class HourglassControllerRoot extends BaseController {
 		// This is passed as a global.  A parameter would be better...
 		$show_full=$this->show_full;
 
-		if (!empty($_REQUEST["action"])) $this->action = $_REQUEST["action"];
+//		if (!empty($_REQUEST["action"])) $this->action = $_REQUEST["action"];	// Not sure why this is here: let's comment it out for now
 		if (!empty($rootid)) $this->pid = $rootid;
 
 		//-- flip the arrows for RTL languages
@@ -129,18 +129,19 @@ class HourglassControllerRoot extends BaseController {
 			$this->position = "absolute";
 			$this->display = "none";
 		}
-		//-- perform the desired action
-		switch($this->action) {
-/*			case "addfav":
-				$this->addFavorite();
-				break; */
-			case "accept":
-				$this->acceptChanges();
-				break;
-			case "undo":
-				$this->hourPerson->undoChange();
-				break;
-		}
+		// Not sure why this is here: let's comment it out for now
+// 		//-- perform the desired action
+// 		switch($this->action) {
+// /*			case "addfav":
+// 				$this->addFavorite();
+// 				break; */
+// 			case "accept":
+// 				$this->acceptChanges();
+// 				break;
+// 			case "undo":
+// 				$this->hourPerson->undoChange();
+// 				break;
+// 		}
 	}
 
 	/**
@@ -179,8 +180,10 @@ class HourglassControllerRoot extends BaseController {
 			print "<td id=\"td_".$ARID."\">";
 
 			//-- print an Ajax arrow on the last generation of the adult male
-			if ($count==$this->generations-1 && (count(find_family_ids($ARID))>0) && !is_null (find_family_ids($ARID))) {
-				print "<a href=\"#\" onclick=\"return ChangeDiv('td_".$ARID."','".$ARID."','".$this->show_full."','".$this->show_spouse."','".$this->box_width."')\"><img src=\"".$PGV_IMAGE_DIR."/".$PGV_IMAGES["rarrow"]["other"]."\" border=\"0\" alt=\"\" /></a> ";
+			if (!$this->isPrintPreview()) {
+				if ($count==$this->generations-1 && (count(find_family_ids($ARID))>0) && !is_null (find_family_ids($ARID))) {
+					print "<a href=\"#\" onclick=\"return ChangeDiv('td_".$ARID."','".$ARID."','".$this->show_full."','".$this->show_spouse."','".$this->box_width."')\"><img src=\"".$PGV_IMAGE_DIR."/".$PGV_IMAGES["rarrow"]["other"]."\" border=\"0\" alt=\"\" /></a> ";
+				}
 			}
 			//-- recursively get the father's family
 			$this->print_person_pedigree($parents["HUSB"], $count+1);
@@ -197,10 +200,11 @@ class HourglassControllerRoot extends BaseController {
 			$ARID = $parents["WIFE"];
 			print "<td id=\"td_".$ARID."\">";
 
-
-			//-- print an ajax arrow on the last generation of the adult female
-			if ($count==$this->generations-1 && (count(find_family_ids($ARID))>0) && !is_null (find_family_ids($ARID))) {
-				print "<a href=\"#\" onclick=\"ChangeDiv('td_".$ARID."','".$ARID."','".$this->show_full."','".$this->show_spouse."','".$this->box_width."'); return false;\"><img src=\"".$PGV_IMAGE_DIR."/".$PGV_IMAGES["rarrow"]["other"]."\" border=\"0\" alt=\"\" /></a> ";
+			//-- print an Ajax arrow on the last generation of the adult female
+			if (!$this->isPrintPreview()) {
+				if ($count==$this->generations-1 && (count(find_family_ids($ARID))>0) && !is_null (find_family_ids($ARID))) {
+					print "<a href=\"#\" onclick=\"ChangeDiv('td_".$ARID."','".$ARID."','".$this->show_full."','".$this->show_spouse."','".$this->box_width."'); return false;\"><img src=\"".$PGV_IMAGE_DIR."/".$PGV_IMAGES["rarrow"]["other"]."\" border=\"0\" alt=\"\" /></a> ";
+				}
 			}
 
 			//-- recursively print the mother's family
@@ -225,6 +229,8 @@ class HourglassControllerRoot extends BaseController {
 		global $lastGenSecondFam;
 		global $HouARootBoxPosn, $HouAColumnWidth, $HouALastBoxAdj, $boxPosn;
 
+		$show_full = safe_GET('show_full', '1', '0');	// '1': Show details
+		
 		if ($count>$this->dgenerations) return 0;
 		$person = Person::getInstance($pid);
 		if (is_null($person)) return;
@@ -304,31 +310,36 @@ class HourglassControllerRoot extends BaseController {
 		}
 
 		// Print the descendancy expansion arrow
-		if ($count==$this->dgenerations) {
-			$numkids = 1;
-			$tbwidth = $bwidth+16;
-			for($j=$count; $j<$this->dgenerations; $j++) {
-				print "<div style=\"width: ".($tbwidth)."px;\"><br /></div>\n</td>\n<td width=\"$bwidth\">";
-			}
-			$kcount = 0;
-			foreach($families as $famid=>$family) $kcount+=$family->getNumberOfChildren();
-			if ($kcount==0) {
-				print "<div style=\"width: ".($this->arrwidth)."px;\"><br /></div>\n</td>\n<td width=\"$bwidth\">";
-			} else {
-				print "<div style=\"width: ".($this->arrwidth)."px;\"><a href=\"$pid\" onclick=\"return ChangeDis('td_".$pid."','".$pid."','".$this->show_full."','".$this->show_spouse."','".$this->box_width."')\"><img src=\"".$PGV_IMAGE_DIR."/".$PGV_IMAGES["larrow"]["other"]."\" border=\"0\" alt=\"\" /></a></div>\n";
-				//-- move the arrow up to line up with the correct box
-				if ($this->show_spouse) {
-					foreach($families as $famid => $family) {
-						/* @var $family Family */
-						if (!is_null($family)) {
-							$spouse = $family->getSpouse($person);
-							if ($spouse!=null) {
-								print "<br /><br /><br />";
+		if (!$this->isPrintPreview()) {
+			if ($count==$this->dgenerations) {
+				$numkids = 1;
+				$tbwidth = $bwidth+16;
+				for($j=$count; $j<$this->dgenerations; $j++) {
+					print "<div style=\"width: ".($tbwidth)."px;\"><br /></div>\n</td>\n<td width=\"$bwidth\">";
+				}
+				$kcount = 0;
+				foreach($families as $famid=>$family) $kcount+=$family->getNumberOfChildren();
+				if ($kcount==0) {
+					print "<div style=\"width: ".($this->arrwidth)."px;\"><br /></div>\n</td>\n<td width=\"$bwidth\">";
+				} else {
+					print "<div style=\"width: ".($this->arrwidth)."px;\"><a href=\"$pid\" onclick=\"return ChangeDis('td_".$pid."','".$pid."','".$this->show_full."','".$this->show_spouse."','".$this->box_width."')\"><img src=\"".$PGV_IMAGE_DIR."/".$PGV_IMAGES["larrow"]["other"]."\" border=\"0\" alt=\"\" /></a></div>\n";
+					//-- move the arrow up to line up with the correct box
+					if ($this->show_spouse) {
+						foreach($families as $famid => $family) {
+							/* @var $family Family */
+							if (!is_null($family)) {
+								$spouse = $family->getSpouse($person);
+								if ($spouse!=null) {
+									print "<br /><br /><br />";
+									if ($show_full == '1') {
+										print "<br /><br /><br /><br />";
+									}
+								}
 							}
 						}
 					}
+					print "</td>\n<td width=\"$bwidth\">";
 				}
-				print "</td>\n<td width=\"$bwidth\">";
 			}
 		}
 
@@ -362,7 +373,7 @@ class HourglassControllerRoot extends BaseController {
 				}
 			}
 			//-- add offset divs to make things line up better
-			if ($count==$this->dgenerations) print "<tr><td colspan\"2\"><div style=\"height: ".($bhalfheight/2)."px; width: ".$bwidth."px;\"><br /></div>";
+			if ($count==$this->dgenerations) print "<tr><td colspan=\"2\"><div style=\"height: ".($bhalfheight/2)."px; width: ".$bwidth."px;\"><br /></div>";
 		}
 		print "</td></tr></table>";
 
@@ -384,7 +395,7 @@ class HourglassControllerRoot extends BaseController {
 				if ($num>0) {
 					print "\n\t\t<div class=\"center\" id=\"childarrow\" dir=\"".$TEXT_DIRECTION."\"";
 					print " style=\"position:absolute; width:".$bwidth."px; \">";
-					if ($this->view!="preview") {
+					if (!$this->isPrintPreview()) {
 						print "<a href=\"javascript: ".$pgv_lang["show"]."\" onclick=\"togglechildrenbox(); return false;\" onmouseover=\"swap_image('larrow',3);\" onmouseout=\"swap_image('larrow',3);\">";
 						print "<img id=\"larrow\" src=\"".$PGV_IMAGE_DIR."/".$PGV_IMAGES["darrow"]["other"]."\" border=\"0\" alt=\"\" />";
 						print "</a><br />";
@@ -534,37 +545,37 @@ class HourglassControllerRoot extends BaseController {
 	}
 
 	// Hourglass control..... Ajax arrows at the end of chart
- 	function ChangeDiv(div_id, ARID, full, spouse, width) {
- 		var divelement = document.getElementById(div_id);
- 		var oXmlHttp = createXMLHttp();
- 		oXmlHttp.open("get", "hourglass_ajax.php?show_full="+full+"&pid="+ ARID + "&generations=1&box_width="+width+"&show_spouse="+spouse, true);
- 		oXmlHttp.onreadystatechange=function()
- 		{
-  			if (oXmlHttp.readyState==4)
-   			{
-    			divelement.innerHTML = oXmlHttp.responseText;
-    			sizeLines();
-    		}
-   		};
-  		oXmlHttp.send(null);
-  		return false;
+	function ChangeDiv(div_id, ARID, full, spouse, width) {
+		var divelement = document.getElementById(div_id);
+		var oXmlHttp = createXMLHttp();
+		oXmlHttp.open("get", "hourglass_ajax.php?show_full="+full+"&pid="+ ARID + "&generations=1&box_width="+width+"&show_spouse="+spouse, true);
+		oXmlHttp.onreadystatechange=function()
+		{
+			if (oXmlHttp.readyState==4)
+			{
+				divelement.innerHTML = oXmlHttp.responseText;
+				sizeLines();
+			}
+		};
+		oXmlHttp.send(null);
+		return false;
 	}
 
 	// Hourglass control..... Ajax arrows at the end of descendants chart
 	function ChangeDis(div_id, ARID, full, spouse, width) {
- 		var divelement = document.getElementById(div_id);
- 		var oXmlHttp = createXMLHttp();
- 		oXmlHttp.open("get", "hourglass_ajax.php?type=desc&show_full="+full+"&pid="+ ARID + "&generations=1&box_width="+width+"&show_spouse="+spouse, true);
- 		oXmlHttp.onreadystatechange=function()
- 		{
-  			if (oXmlHttp.readyState==4)
-   			{
-    				divelement.innerHTML = oXmlHttp.responseText;
-    				sizeLines();
-    		}
-   		};
-  		oXmlHttp.send(null);
-  		return false;
+		var divelement = document.getElementById(div_id);
+		var oXmlHttp = createXMLHttp();
+		oXmlHttp.open("get", "hourglass_ajax.php?type=desc&show_full="+full+"&pid="+ ARID + "&generations=1&box_width="+width+"&show_spouse="+spouse, true);
+		oXmlHttp.onreadystatechange=function()
+		{
+			if (oXmlHttp.readyState==4)
+			{
+				divelement.innerHTML = oXmlHttp.responseText;
+				sizeLines();
+		}
+		};
+		oXmlHttp.send(null);
+		return false;
 	}
 
 	function sizeLines() {

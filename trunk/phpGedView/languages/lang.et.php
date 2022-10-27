@@ -520,7 +520,6 @@ $pgv_lang["add_another"]		= "Lisa tabelisse isik:<br />Person ID:";
 $pgv_lang["find_id"]			= "Leia ID";
 $pgv_lang["show"]			= "Näita";
 $pgv_lang["year"]			= "Aasta:";
-$pgv_lang["timeline_instructions"]	= "Enamikes uuemates brauserites võid kasutada kastikeste liigutamiseks drag-and-drop meetodit.";
 $pgv_lang["zoom_in"]		= "Suurenda";
 $pgv_lang["zoom_out"]		= "Vähenda";
 

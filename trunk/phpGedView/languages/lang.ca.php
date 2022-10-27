@@ -721,7 +721,6 @@ $pgv_lang["add_another"]		= "Afegeix una altra persona al gràfic";
 $pgv_lang["find_id"]			= "Cerca la Persona";
 $pgv_lang["show"]				= "Mostra";
 $pgv_lang["year"]				= "Any:";
-$pgv_lang["timeline_instructions"]	= "La majoria de navegadors moderns us permeten polsar i arrossegar els caixetins arreu del gràfic.";
 $pgv_lang["zoom_in"]			= "Eixampla";
 $pgv_lang["zoom_out"]			= "Redueix";
 $pgv_lang["timeline_beginYear"] 	= "Començant l'any";

@@ -720,7 +720,6 @@ $pgv_lang["add_another"]			= "Dodaj drugu osobu to dijagram:<br />Person ID:";
 $pgv_lang["find_id"]				= "Nađi ID";
 $pgv_lang["show"]					= "Prikaži";
 $pgv_lang["year"]					= "Year:";
-$pgv_lang["timeline_instructions"]	= "In most recent browsers you can click and drag the boxes around on the dijagram.";
 $pgv_lang["zoom_in"]				= "Zoom In";
 $pgv_lang["zoom_out"]				= "Zoom Out";
 $pgv_lang["timeline_beginYear"] = "Početna godina";

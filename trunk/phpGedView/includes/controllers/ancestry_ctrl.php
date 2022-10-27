@@ -3,7 +3,7 @@
  * Controller for the Ancestry Page
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2021	PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2022	PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -143,7 +143,7 @@ class AncestryControllerRoot extends BaseController {
 	function print_child_ascendancy($pid, $sosa, $depth) {
 		global $pgv_lang, $TEXT_DIRECTION, $OLD_PGENS;
 		global $PGV_IMAGE_DIR, $PGV_IMAGES, $Dindent;
-		global $SHOW_EMPTY_BOXES, $pidarr, $box_width;
+		global $SHOW_EMPTY_BOXES, $PRINTER_FRIENDLY, $pidarr, $box_width;
 		global $boxPosn, $columnWidth;
 
 		$person = Person::getInstance($pid);
@@ -156,7 +156,7 @@ class AncestryControllerRoot extends BaseController {
 			print "<img src=\"".$PGV_IMAGE_DIR."/".$PGV_IMAGES["spacer"]["other"]."\" height=\"3\" width=\"2\" border=\"0\" alt=\"\" />";
 			print "<img src=\"".$PGV_IMAGE_DIR."/".$PGV_IMAGES["hline"]["other"]."\" height=\"3\" width=\"".($Dindent-2)."\" border=\"0\" alt=\"\" /></td><td>\n";
 		}
-		print_pedigree_person($pid, 1, $this->view!="preview");
+		print_pedigree_person($pid, 1, !$this->isPrintPreview());
 		print "</td>";
 		print "<td>";
 		if ($TEXT_DIRECTION=="ltr") {
@@ -164,7 +164,7 @@ class AncestryControllerRoot extends BaseController {
 		} else {
 			$label = $pid." :".$pgv_lang["ancestry_chart"];
 		}
-		if ($sosa>1) print_url_arrow($pid, encode_url("?rootid={$pid}&PEDIGREE_GENERATIONS={$OLD_PGENS}&show_full={$this->show_full}&box_width={$box_width}&chart_style={$this->chart_style}"), $label, 3);
+		if ($sosa>1 && !$PRINTER_FRIENDLY) print_url_arrow($pid, encode_url("?rootid={$pid}&PEDIGREE_GENERATIONS={$OLD_PGENS}&show_full={$this->show_full}&box_width={$box_width}&chart_style={$this->chart_style}"), $label, 3);
 		print "</td>";
 		print "<td class=\"details1\">&nbsp;<span dir=\"ltr\" class=\"person_box". (($sosa==1)?"NN":(($sosa%2)?"F":"")) . "\">&nbsp;$sosa&nbsp;</span>&nbsp;";
 		print "</td><td class=\"details1\">";

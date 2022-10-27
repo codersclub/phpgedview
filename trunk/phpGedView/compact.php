@@ -3,7 +3,7 @@
  * Compact pedigree tree
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2010  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2022  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -61,7 +61,7 @@ if ($addname != "") print "<br />" . PrintReady($addname);
 print "</h2>";
 
 // -- print the form
-if ($view != "preview") {
+if (!$PRINTER_FRIENDLY) {
 	?>
 	<script language="JavaScript" type="text/javascript">
 	<!--
@@ -303,7 +303,7 @@ print_footer();
 function print_td_person($n) {
 	global $treeid, $PGV_IMAGE_DIR, $PGV_IMAGES, $pgv_lang;
 	global $TEXT_DIRECTION, $MULTI_MEDIA, $SHOW_HIGHLIGHT_IMAGES, $USE_SILHOUETTE, $PGV_IMAGES;
-	global $showids, $showthumbs;
+	global $showids, $showthumbs, $PRINTER_FRIENDLY;
 
 	$text = "";
 	$pid = $treeid[$n];
@@ -375,11 +375,19 @@ function print_td_person($n) {
 				$text .="\" class=\"".$class."\" border=\"none\" alt=\"\" />";
 			}
 		}
-
-		$text .= "<a class=\"name1\" href=\"individual.php?pid=$pid\" title=\"$title\"> ";
-		$text .= PrintReady(htmlspecialchars(strip_tags($name),ENT_QUOTES,'UTF-8'));
-		if ($addname) $text .= "<br />" . PrintReady($addname);
-		$text .= "</a>";
+		if (!$PRINTER_FRIENDLY) {
+			// active box contents
+			$text .= "<a class=\"name1\" href=\"individual.php?pid=$pid\" title=\"$title\"> ";
+			$text .= PrintReady(htmlspecialchars(strip_tags($name),ENT_QUOTES,'UTF-8'));
+			if ($addname) $text .= "<br />" . PrintReady($addname);
+			$text .= "</a>";
+		} else {
+			// inactive box contents
+			$text .= "<span class=\"name1\">";
+			$text .= PrintReady(htmlspecialchars(strip_tags($name),ENT_QUOTES,'UTF-8'));
+			if ($addname) $text .= "<br />" . PrintReady($addname);
+			$text .= "</span>";
+		}
 		if ($showids) {
 			$text .= " <span class='details1' ";
 			if ($TEXT_DIRECTION=="ltr") $text .= "dir=\"ltr\">";
@@ -428,9 +436,9 @@ function print_td_person($n) {
 
 function print_arrow_person($n, $arrow_dir) {
 	global $treeid;
-	global $view, $showids, $showthumbs;
+	global $showids, $showthumbs, $PRINTER_FRIENDLY, $SHOW_ARROWS;
 	global $pgv_lang, $TEXT_DIRECTION, $PGV_IMAGE_DIR, $PGV_IMAGES;
-
+	
 	$pid = $treeid[$n];
 
 	$arrow_swap = array("l"=>"0", "r"=>"1", "u"=>"2", "d"=>"3");
@@ -453,12 +461,17 @@ function print_arrow_person($n, $arrow_dir) {
 
 	$text = "";
 	if ($pid) {
-		$text .= "<a href=\"?rootid=".$pid;
-		if ($showids) $text .="&amp;showids=".$showids;
-		if ($showthumbs) $text .= "&amp;showthumbs=".$showthumbs;
-		if ($view) $text .="&amp;view=".$view;
-		$text .= "\" onmouseover=\"swap_image('arrow$n',".$arrow_swap[$arrow_dir].");\" onmouseout=\"swap_image('arrow$n',".$arrow_swap[$arrow_dir].");\" >";
-		$text .= $arrow_img."</a>";
+		if (!$PRINTER_FRIENDLY) {
+			// active arrows
+			$text .= "<a href=\"?rootid=".$pid;
+			if ($showids) $text .="&amp;showids=".$showids;
+			if ($showthumbs) $text .= "&amp;showthumbs=".$showthumbs;
+			$text .= "\" onmouseover=\"swap_image('arrow$n',".$arrow_swap[$arrow_dir].");\" onmouseout=\"swap_image('arrow$n',".$arrow_swap[$arrow_dir].");\" >";
+			$text .= $arrow_img."</a>";
+		} else {
+			// inactive arrows
+			$text .= $arrow_img;
+		}
 	}
 	// -- arrow to empty box does not have a url attached.
 	else $text = $hideArrow;

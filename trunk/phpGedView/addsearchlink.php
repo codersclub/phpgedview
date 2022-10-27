@@ -4,7 +4,7 @@
  * to a person selected from the search results.
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2021  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2022  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -28,7 +28,7 @@
 define('PGV_SCRIPT_NAME', 'addsearchlink.php');
 require './config.php';
 
-print_simple_header($pgv_lang["title_search_link"]);
+print_header($pgv_lang["title_search_link"], false);
 
 //-- only allow users with editing access to this page
 if (!PGV_USER_CAN_EDIT) {

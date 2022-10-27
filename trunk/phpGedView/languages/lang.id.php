@@ -677,7 +677,6 @@ $pgv_lang["add_another"]				= "Tambahkan orang lain ke bagan:<br />ID orang:";
 $pgv_lang["find_id"]					= "Cari ID";
 $pgv_lang["show"]					= "Perlihatkan";
 $pgv_lang["year"]					= "Tahun:";
-$pgv_lang["timeline_instructions"]			= "Pada perambah terkini, Anda dapat meng-klik dan menyeret kotak di sekitar bagan.";
 $pgv_lang["zoom_in"]					= "Perbesar";
 $pgv_lang["zoom_out"]					= "Perkecil";
 $pgv_lang["timeline_beginYear"]				= "Tahun Bermula";

@@ -3,7 +3,7 @@
  * Module system for adding features to phpGedView.
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2017  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2022  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -227,7 +227,7 @@ switch($modinfo['Module']['type']) {
 				if (!isset($results['head'])) {
 					$results['head'] = '';
 				}
-				print_header($results['title'], $results['head']);
+				print_header($results['title']);
 				print $results['content'];
 				print_footer();
 				break;
@@ -252,31 +252,23 @@ switch($modinfo['Module']['type']) {
  * Action: Error
  */
 			default:
-				print_header($results['title'], $results['head']);
+				print_header($results['title']);
 				print str_replace('[action]', $results['action'], $pgv_lang['module_error_unknown_action_v2']);
 				print_footer();
 				exit;
 		}
 		break;
 	default:
-		print_header(get_gedcom_setting(PGV_GED_ID, 'title'));
+		print_header(get_gedcom_setting(PGV_GED_ID));
 		print $pgv_lang['module_error_unknown_type'];
 		print_footer();
 		break;
 }
 logHacker($log_msg);		// Log the hack attempt, if any
 
-function mod_print_header($title, $head='', $use_alternate_styles=true) {
+function mod_print_header($title, $COMPLETE_HEADER=true) {
 	ob_start();
-	print_header($title, $head, $use_alternate_styles);
-	$out = ob_get_contents();
-	ob_end_clean();
-	return $out;
-}
-
-function mod_print_simple_header($title) {
-	ob_start();
-	print_simple_header($title);
+	print_header($title, $COMPLETE_HEADER);
 	$out = ob_get_contents();
 	ob_end_clean();
 	return $out;

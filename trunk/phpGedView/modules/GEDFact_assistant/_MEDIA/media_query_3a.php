@@ -5,7 +5,7 @@
  * Media Link information about an individual
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2008  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2022  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -28,7 +28,7 @@
 
 $iid2		= safe_GET('iid');
 
-print_simple_header($pgv_lang["link_media"]);
+print_header($pgv_lang["link_media"], false);
 
 $record=GedcomRecord::getInstance($iid2);
 $headjs="";

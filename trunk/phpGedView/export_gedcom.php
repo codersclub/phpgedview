@@ -3,7 +3,7 @@
  * Exports data from the database to a gedcom file
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2008 to 2009  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2008 to 2022  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -45,7 +45,7 @@ if (empty($gedcoms)) {
 // Which gedcom have we requested to export
 $export = safe_GET('export', $gedcoms);
 
-print_simple_header($pgv_lang['ged_export']);
+print_header($pgv_lang['ged_export'], false);
 
 if ($export) {
 	$ged_id = get_id_from_gedcom($export);

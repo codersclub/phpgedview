@@ -3,7 +3,7 @@
  * Popup window for Editing news items
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2005  PGV Development Team
+ * Copyright (C) 2002 to 2022  PGV Development Team
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -32,7 +32,7 @@ if($useFCK){
 }
 
 if (!PGV_USER_ID) {
-	print_simple_header("");
+	print_header($pgv_lang["edit_news"], false);
 	print $pgv_lang["access_denied"];
 	print_simple_footer();
 	exit;
@@ -45,7 +45,7 @@ $date    =safe_POST('date', PGV_REGEX_UNSAFE);
 $title   =safe_POST('title', PGV_REGEX_UNSAFE);
 $text    =safe_POST('text', PGV_REGEX_UNSAFE);
 
-print_simple_header($pgv_lang["edit_news"]);
+print_header($pgv_lang["edit_news"], false);
 
 if (empty($username)) $username=$GEDCOM;
 

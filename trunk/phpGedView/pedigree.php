@@ -6,7 +6,7 @@
  * with id = $rootid in the GEDCOM file.
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2019  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2022  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -48,11 +48,7 @@ if (PGV_USE_LIGHTBOX) {
 }
 
 echo '<table><tr><td valign="middle">';
-if ($controller->isPrintPreview()) {
-	echo "<h2>", str_replace("#PEDIGREE_GENERATIONS#", $PEDIGREE_GENERATIONS, $pgv_lang["gen_ped_chart"]);
-} else {
-	echo "<h2>", $pgv_lang["index_header"];
-}
+echo "<h2>", str_replace("#PEDIGREE_GENERATIONS#", $PEDIGREE_GENERATIONS, $pgv_lang["gen_ped_chart"]);
 echo '<br />', PrintReady($controller->name);
 if ($controller->addname!="") {
 	echo '<br />', PrintReady($controller->addname);
@@ -141,9 +137,11 @@ if (!$controller->isPrintPreview()) {
 				</td>
 			</tr>
 		</table>
+		<?php if ($talloffset==0) echo '<br />'; ?>
 	</form>
+	<br />
 <?php
-	if ($show_full==0) {
+	if ($show_full==0 && !$controller->isPrintPreview()) {
 		echo '<span class="details2">', $pgv_lang['charts_click_box'], '</span><br />';
 	}
 } ?>
@@ -237,7 +235,7 @@ for($i=($controller->treesize-1); $i>=0; $i--) {
 
 		if (($curgen==1)&&(!empty($controller->treeid[$i]))&&(count(find_family_ids($controller->treeid[$i]))>0)) $widthadd = 20;
 		if (($curgen >2) && ($curgen < $controller->PEDIGREE_GENERATIONS)) $widthadd = 10;
-		if ($talloffset == 2 && $view!="preview") {
+		if ($talloffset == 2 && !$controller->isPrintPreview()) {
 			echo '<div id="uparrow" dir="';
 			if ($TEXT_DIRECTION=="rtl") echo 'rtl" style="position:absolute; right:';
 			else echo 'ltr" style="position:absolute; left:';
@@ -272,7 +270,7 @@ for($i=($controller->treesize-1); $i>=0; $i--) {
 		else echo "<tr><td width=\"100%\">";
 		if (!isset($controller->treeid[$i])) $controller->treeid[$i] = false;
 		print_pedigree_person($controller->treeid[$i], 1, $controller->show_famlink, $iref, 1);
-		if (($curgen==1) && (count(find_family_ids($controller->treeid[$i]))>0) && $view!="preview") {
+		if (($curgen==1) && (count(find_family_ids($controller->treeid[$i]))>0) && !$controller->isPrintPreview()) {
 			$did = 1;
 			if ($i > ($controller->treesize/2) + ($controller->treesize/4)-1) $did++;
 			if ($talloffset==3) {
@@ -328,7 +326,7 @@ if ($controller->rootPerson->canDisplayDetails()) {
 		else {
 			echo ($linexoffset-10+$controller->pbwidth/2+$vlength/2), "px; top:", ($yoffset+$controller->pbheight/2+10), "px; width:10px; height:10px; \">";
 		}
-		if ($view!="preview") {
+		if (!$controller->isPrintPreview()) {
 			if ($talloffset < 2) {
 				if ($TEXT_DIRECTION=="rtl") echo "<a href=\"javascript: ", $pgv_lang["show"], "\" onclick=\"togglechildrenbox(); return false;\" onmouseover=\"swap_image('larrow', 1);\" onmouseout=\"swap_image('larrow', 1);\">";
 				else echo "<a href=\"javascript: ", $pgv_lang["show"], "\" onclick=\"togglechildrenbox(); return false;\" onmouseover=\"swap_image('larrow', 0);\" onmouseout=\"swap_image('larrow', 0);\">";
@@ -410,7 +408,8 @@ if ($controller->rootPerson->canDisplayDetails()) {
 	}
 }
 // -- print html footer
-$maxyoffset+=30;
+//$maxyoffset+=30;
+$maxyoffset+=60;
 ?>
 </div>
 <script language="JavaScript" type="text/javascript">
@@ -418,7 +417,7 @@ $maxyoffset+=30;
 	if (content_div) {
 		content_div.style.height = <?php echo $maxyoffset; ?> + "px";
 	}
-	<?php if ($view=="preview") { ?>
+	<?php if ($controller->isPrintPreview()) { ?>
 	pedigree_div = document.getElementById("pedigree_chart");
 	if (pedigree_div) {
 		pedigree_div.style.height = <?php echo $maxyoffset; ?> + "px";

@@ -371,7 +371,6 @@ $pgv_lang["add_another"]						= "Προσθήκη και άλλου ατόμου
 $pgv_lang["find_id"]							= "Εύρεση ID";
 $pgv_lang["show"]								= "Εμφάνιση";
 $pgv_lang["year"]								= "Έτος:";
-$pgv_lang["timeline_instructions"]				= "Σε πιο πρόσφατους φυλλομετρητές μπορείτε να σύρετε τα κουτιά γύρω από το διάγραμμα.";
 $pgv_lang["zoom_in"]							= "Μεγέθυνση";
 $pgv_lang["zoom_out"]							= "Σμίκρυνση";
 

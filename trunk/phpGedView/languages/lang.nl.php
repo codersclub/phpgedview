@@ -721,7 +721,6 @@ $pgv_lang["add_another"]			= "Nog een persoon aan de tijdlijn toevoegen";
 $pgv_lang["find_id"]				= "Zoek ID";
 $pgv_lang["show"]					= "Toon";
 $pgv_lang["year"]					= "Jaar:";
-$pgv_lang["timeline_instructions"]	= "In de nieuwste Internet Verkenners is het mogelijk om de weergegeven blokken te verschuiven zoals u dat wilt.";
 $pgv_lang["zoom_in"]				= "Inzoomen";
 $pgv_lang["zoom_out"]				= "Uitzoomen";
 $pgv_lang["timeline_beginYear"] 	= "Begin Jaar";

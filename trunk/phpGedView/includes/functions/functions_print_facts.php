@@ -5,7 +5,7 @@
  * Various printing functions used to print fact records
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2021  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2022  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -77,7 +77,7 @@ function print_fact(&$eventObj, $noedit=false) {
 	global $WORD_WRAPPED_NOTES;
 	global $TEXT_DIRECTION;
 	global $HIDE_GEDCOM_ERRORS, $SHOW_ID_NUMBERS, $SHOW_FACT_ICONS, $SHOW_MEDIA_FILENAME;
-	global $CONTACT_EMAIL, $view;
+	global $CONTACT_EMAIL, $PRINTER_FRIENDLY;
 	global $n_chil, $n_gchi, $n_ggch;
 	global $SEARCH_SPIDER;
 
@@ -163,7 +163,7 @@ function print_fact(&$eventObj, $noedit=false) {
 			if ($fact=="_BIRT_CHIL" and isset($n_chil)) echo "<br />", $pgv_lang["number_sign"], $n_chil++;
 			if ($fact=="_BIRT_GCHI" and isset($n_gchi)) echo "<br />", $pgv_lang["number_sign"], $n_gchi++;
 			if ($fact=="_BIRT_GGCH" and isset($n_ggch)) echo "<br />", $pgv_lang["number_sign"], $n_ggch++;
-			if (!$noedit && PGV_USER_CAN_EDIT && $styleadd!="change_old" && $linenum>0 && $view!="preview" && !FactEditRestricted($pid, $factrec)) {
+			if (!$noedit && PGV_USER_CAN_EDIT && $styleadd!="change_old" && $linenum>0 && !$PRINTER_FRIENDLY && !FactEditRestricted($pid, $factrec)) {
 				$menu = new Menu($pgv_lang["edit"], "#", "right", "down");
 				if (empty($taskid)) {
 					$menu->addOnclick("return edit_record('$pid', $linenum);");
@@ -221,7 +221,7 @@ function print_fact(&$eventObj, $noedit=false) {
 			if ($SHOW_FACT_ICONS)
 				echo $eventObj->Icon(), ' ';
 			echo $label;
-			if (!$noedit && PGV_USER_CAN_EDIT && $styleadd!="change_old" && $linenum>0 && $view!="preview" && !FactEditRestricted($pid, $factrec)) {
+			if (!$noedit && PGV_USER_CAN_EDIT && $styleadd!="change_old" && $linenum>0 && !$PRINTER_FRIENDLY && !FactEditRestricted($pid, $factrec)) {
 				$menu = new Menu($pgv_lang["edit"], "#", "right", "down");
 				if (empty($taskid)) {
 					$menu->addOnclick("return edit_record('$pid', $linenum);");
@@ -299,8 +299,8 @@ function print_fact(&$eventObj, $noedit=false) {
 					}
 					echo "</a>";
 				}
-				if ($view!="preview" && $spouse) echo " - ";
-				if ($view!="preview" && empty($SEARCH_SPIDER)) {
+				if (!$PRINTER_FRIENDLY && $spouse) echo " - ";
+				if (!$PRINTER_FRIENDLY && empty($SEARCH_SPIDER)) {
 					echo "<a href=\"", encode_url("family.php?famid={$pid}"), "\">";
 					if ($TEXT_DIRECTION == "ltr") echo " ", getLRM();
 					else echo " ", getRLM();
@@ -628,7 +628,7 @@ function print_fact_sources($factrec, $level, $return=false) {
 //-- Print the links to multi-media objects
 function print_media_links($factrec, $level, $pid='') {
 	global $MULTI_MEDIA, $TEXT_DIRECTION, $TBLPREFIX;
-	global $pgv_lang, $factarray, $SEARCH_SPIDER, $view;
+	global $pgv_lang, $factarray, $SEARCH_SPIDER, $PRINTER_FRIENDLY;
 	global $THUMBNAIL_WIDTH, $USE_MEDIA_VIEWER;
 	global $LB_URL_WIDTH, $LB_URL_HEIGHT;
 	global $GEDCOM, $SHOW_ID_NUMBERS;
@@ -746,8 +746,8 @@ function print_media_links($factrec, $level, $pid='') {
 						}
 						echo "</a>";
 					}
-					if ($view!="preview" && $spouse && empty($SEARCH_SPIDER)) echo " - ";
-					if ($view != "preview") {
+					if (!$PRINTER_FRIENDLY && $spouse && empty($SEARCH_SPIDER)) echo " - ";
+					if (!$PRINTER_FRIENDLY) {
 						$ct = preg_match("/PGV_FAMILY_ID: (.*)/", $factrec, $match);
 						if ($ct>0) {
 							$famid = trim($match[1]);
@@ -897,7 +897,7 @@ function print_address_structure($factrec, $level) {
 
 function print_main_sources($factrec, $level, $pid, $linenum, $noedit=false) {
 	global $pgv_lang;
-	global $factarray, $view;
+	global $factarray, $PRINTER_FRIENDLY;
 	global $PGV_IMAGE_DIR, $PGV_IMAGES, $SHOW_SOURCES;
 	if ($SHOW_SOURCES<PGV_USER_ACCESS_LEVEL) return;
 
@@ -924,7 +924,7 @@ function print_main_sources($factrec, $level, $pid, $linenum, $noedit=false) {
 			if ($level==1) echo "<img class=\"icon\" src=\"", $PGV_IMAGE_DIR, "/", $PGV_IMAGES["source"]["small"], "\" alt=\"\" /><br />";
 			$temp = preg_match("/^\d (\w*)/", $factrec, $factname);
 			echo $factarray[$factname[1]];
-			if (!$noedit && PGV_USER_CAN_EDIT && !FactEditRestricted($pid, $factrec) && $styleadd!="red" && $view!="preview") {
+			if (!$noedit && PGV_USER_CAN_EDIT && !FactEditRestricted($pid, $factrec) && $styleadd!="red" && !$PRINTER_FRIENDLY) {
 				$menu = new Menu($pgv_lang["edit"], "#", "right", "down");
 				$menu->addOnclick("return edit_record('$pid', $linenum);");
 				$menu->addClass("", "", "submenu");
@@ -1134,7 +1134,7 @@ function getSourceStructure($srec) {
  */
 function print_main_notes($factrec, $level, $pid, $linenum, $noedit=false) {
 	global $pgv_lang, $pgv_changes, $GEDCOM;
-	global $factarray, $view;
+	global $factarray, $PRINTER_FRIENDLY;
 	global $PGV_IMAGE_DIR;
 	global $PGV_IMAGES;
 	global $TEXT_DIRECTION;
@@ -1183,7 +1183,7 @@ function print_main_notes($factrec, $level, $pid, $linenum, $noedit=false) {
 				echo $factname;
 			}
 		}
-		if (!$noedit && PGV_USER_CAN_EDIT && !FactEditRestricted($pid, $factrec) && $styleadd!="change_old" && $view!="preview") {
+		if (!$noedit && PGV_USER_CAN_EDIT && !FactEditRestricted($pid, $factrec) && $styleadd!="change_old" && !$PRINTER_FRIENDLY) {
 			$menu = new Menu($pgv_lang["edit"], "#", "right", "down");
 			$menu->addOnclick("return edit_record('$pid', $linenum);");
 			$menu->addClass("", "", "submenu");
@@ -1442,7 +1442,7 @@ function print_main_media($pid, $level=1, $related=false, $noedit=false) {
  * @param string $pid	The record id this media item was attached to
  */
 function print_main_media_row($rtype, $rowm, $pid) {
-	global $PGV_IMAGE_DIR, $PGV_IMAGES, $view, $TEXT_DIRECTION, $SERVER_URL;
+	global $PGV_IMAGE_DIR, $PGV_IMAGES, $PRINTER_FRIENDLY, $TEXT_DIRECTION, $SERVER_URL;
 	global $SHOW_ID_NUMBERS, $GEDCOM, $factarray, $pgv_lang, $THUMBNAIL_WIDTH, $USE_MEDIA_VIEWER;
 	global $SEARCH_SPIDER;
 
@@ -1460,7 +1460,7 @@ function print_main_media_row($rtype, $rowm, $pid) {
 
 	$linenum = 0;
 	echo "\n\t\t<tr><td class=\"descriptionbox $styleadd center width20\"><img class=\"icon\" src=\"", $PGV_IMAGE_DIR, "/", $PGV_IMAGES["media"]["small"], "\" alt=\"\" /><br />", $factarray["OBJE"];
-	if (PGV_USER_CAN_EDIT && (!FactEditRestricted($rowm['m_media'], $rowm['m_gedrec'])) && ($styleadd!="change_old") && ($view!="preview")) {
+	if (PGV_USER_CAN_EDIT && (!FactEditRestricted($rowm['m_media'], $rowm['m_gedrec'])) && ($styleadd!="change_old") && (!$PRINTER_FRIENDLY)) {
 		$menu = new Menu($pgv_lang["edit"], "#", "right", "down");
 		$menu->addOnclick("return window.open('addmedia.php?action=editmedia&pid={$rowm['m_media']}&linktoid={$rowm['mm_gid']}', '_blank', 'top=50, left=50, width=600, height=500, resizable=1, scrollbars=1');");
 		$menu->addClass("", "", "submenu");
@@ -1600,8 +1600,8 @@ function print_main_media_row($rtype, $rowm, $pid) {
 				echo "</a>";
 			}
 			if(empty($SEARCH_SPIDER)) {
-				if ($view!="preview" && $spouse) echo " - ";
-				if ($view!="preview") {
+				if (!$PRINTER_FRIENDLY && $spouse) echo " - ";
+				if (!$PRINTER_FRIENDLY) {
 						$famid = $rowm['mm_gid'];
 						echo "<a href=\"", encode_url("family.php?famid={$famid}"), "\">[", $pgv_lang["view_family"];
 						if ($SHOW_ID_NUMBERS) echo " " . getLRM() . "($famid)" . getLRM();

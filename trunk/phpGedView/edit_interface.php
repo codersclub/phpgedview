@@ -107,7 +107,7 @@ foreach ($assokeys as $indexval => $key) {
 }
 uasort($assorela, "stringsort");
 
-print_simple_header('Edit Interface');
+print_header('Edit Interface', false);
 
 if ($ENABLE_AUTOCOMPLETE) {
 	require PGV_ROOT.'js/autocomplete.js.htm';

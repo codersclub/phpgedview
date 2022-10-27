@@ -720,7 +720,6 @@ $pgv_lang["add_another"]				= "Ajouter une personne au diagramme";
 $pgv_lang["find_id"]					= "Choisir";
 $pgv_lang["show"]   					= "Afficher";
 $pgv_lang["year"]   					= "Année";
-$pgv_lang["timeline_instructions"]  	= "Avec un navigateur récent, vous pouvez cliquer sur les cadres et les faire glisser.";
 $pgv_lang["zoom_in"]					= "Zoom avant";
 $pgv_lang["zoom_out"]   				= "Zoom arrière";
 $pgv_lang["timeline_beginYear"] 		= "Année début";

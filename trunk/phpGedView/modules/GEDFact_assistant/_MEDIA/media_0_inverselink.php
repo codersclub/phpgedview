@@ -52,9 +52,9 @@ if (empty($linktoid) || empty($linkto)) {
 	}
 }
 if (PGV_USER_IS_ADMIN) {
-	print_simple_header($pgv_lang["link_media"]." ".$toitems);
+	print_header($pgv_lang["link_media"]." ".$toitems, false);
 }else{
-	print_simple_header($pgv_lang["admin"]);
+	print_header($pgv_lang["admin"], false);
 	echo $pgv_lang["no_login"];
 }
 

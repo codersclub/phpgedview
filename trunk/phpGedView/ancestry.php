@@ -5,7 +5,7 @@
 * ($rootid=1, father=2, mother=3 ...)
 *
 * phpGedView: Genealogy Viewer
-* Copyright (C) 2002 to 2009  PGV Development Team.  All rights reserved.
+* Copyright (C) 2002 to 2022  PGV Development Team.  All rights reserved.
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -28,8 +28,8 @@
 
 define('PGV_SCRIPT_NAME', 'ancestry.php');
 require './config.php';
-require PGV_ROOT.'includes/controllers/ancestry_ctrl.php';
-require PGV_ROOT.'includes/functions/functions_print_lists.php';
+require_once PGV_ROOT.'includes/controllers/ancestry_ctrl.php';
+require_once PGV_ROOT.'includes/functions/functions_print_lists.php';
 
 $controller=new AncestryController();
 $controller->init();
@@ -45,7 +45,7 @@ if (PGV_USE_LIGHTBOX) {
 }
 
 echo '<table><tr><td valign="middle">';
-if ($view=="preview") {
+if ($controller->isPrintPreview()) {
 	echo '<h2>', str_replace('#PEDIGREE_GENERATIONS#', $PEDIGREE_GENERATIONS, $pgv_lang["gen_ancestry_chart"]);
 } else {
 	echo '<h2>', $pgv_lang["ancestry_chart"];
@@ -56,7 +56,7 @@ if ($controller->addname!="") {
 }
 echo '</h2>';
 // -- print the form to change the number of displayed generations
-if ($view!="preview") {
+if (!$controller->isPrintPreview()) {
 	$show_famlink=true;
 	echo PGV_JS_START, 'var pastefield; function paste_id(value) {pastefield.value=value;}', PGV_JS_END;
 	?>
@@ -188,7 +188,7 @@ if ($view!="preview") {
 </td></tr></table>
 
 <?php
-if ($show_full==0) {
+if ($controller->show_full==0 && !$controller->isPrintPreview()) {
 	echo '<span class="details2">', $pgv_lang["charts_click_box"], '</span><br /><br />';
 }
 

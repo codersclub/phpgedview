@@ -3,7 +3,7 @@
  * Interface to edit place locations
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2021  PGV Development Team. All rights reserved.
+ * Copyright (C) 2002 to 2022  PGV Development Team. All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -39,7 +39,7 @@ if (isset($_REQUEST['placeid'])) $placeid = $_REQUEST['placeid'];
 if (isset($_REQUEST['place_name'])) $place_name = $_REQUEST['place_name'];
 if (isset($_REQUEST['action']))  $action  = $_REQUEST['action'];
 
-print_simple_header($pgv_lang["edit_place_locations"]);
+print_header($pgv_lang["edit_place_locations"], false);
 
 if (!PGV_USER_IS_ADMIN) {
 	echo "<table class=\"facts_table\">\n";

@@ -606,7 +606,7 @@ if ($action=="edituser") {
 
 // ---------------------- list the current users ----------------------
 if ($action == "listusers") {
-	$showprivs=($view=="preview"); // expand gedcom privs by default in print-preview
+	$showprivs=($PRINTER_FRIENDLY); // expand gedcom privs by default in print-preview
 
 	switch ($sort) {
 		case "sortfname":
@@ -671,18 +671,18 @@ if ($action == "listusers") {
 	// Then show the users
 	?>
 	<table class="center list_table width80 <?php echo $TEXT_DIRECTION; ?>">
-	<tr><td colspan="<?php if ($view == "preview") echo "8"; else echo "11"; ?>" class="facts_label"><?php
+	<tr><td colspan="<?php if ($PRINTER_FRIENDLY) echo "8"; else echo "11"; ?>" class="facts_label"><?php
 		echo "<h2>", $pgv_lang["current_users"], "</h2>";
 	?>
 	</td></tr>
 	<tr>
-	<?php if ($view!="preview") { ?>
+	<?php if (!$PRINTER_FRIENDLY) { ?>
 	<td colspan="6" class="topbottombar"><a href="useradmin.php?action=createform"><?php echo $pgv_lang["add_user"]; ?></a></td>
 	<?php } ?>
-	<td colspan="<?php if ($view == "preview") echo "8"; else echo "4"; ?>" class="topbottombar"><a href="useradmin.php"><?php if ($view != "preview") echo $pgv_lang["back_useradmin"]; else echo "&nbsp;"; ?></a></td>
+	<td colspan="<?php if ($PRINTER_FRIENDLY) echo "8"; else echo "4"; ?>" class="topbottombar"><a href="useradmin.php"><?php if (!$PRINTER_FRIENDLY) echo $pgv_lang["back_useradmin"]; else echo "&nbsp;"; ?></a></td>
 	</tr>
 	<tr>
-	<?php if ($view != "preview") {
+	<?php if (!$PRINTER_FRIENDLY) {
 	echo "<td class=\"descriptionbox wrap\">";
 	echo $pgv_lang["message"], "</td>";
 	} ?>
@@ -706,7 +706,7 @@ if ($action == "listusers") {
 	<td class="descriptionbox wrap width20"><a href="<?php echo encode_url("useradmin.php?action=listusers&sort=sortllgn&filter={$filter}&usrlang={$usrlang}&ged={$ged}"); ?>"><?php echo $pgv_lang["last_login"]; ?></a></td>
 	<td class="descriptionbox wrap"><a href="<?php echo encode_url("useradmin.php?action=listusers&sort=sortver&filter={$filter}&usrlang={$usrlang}&ged={$ged}"); ?>"><?php echo $pgv_lang["verified"]; ?></a></td>
 	<td class="descriptionbox wrap"><a href="<?php echo encode_url("useradmin.php?action=listusers&sort=sortveradmin&filter={$filter}&usrlang={$usrlang}&ged={$ged}"); ?>"><?php echo $pgv_lang["verified_by_admin"]; ?></a></td>
-	<?php if ($view != "preview") {
+	<?php if (!$PRINTER_FRIENDLY) {
 	echo "<td class=\"descriptionbox wrap\">";
 	echo $pgv_lang["delete"], "</td>";
 	} ?>
@@ -715,7 +715,7 @@ if ($action == "listusers") {
 	$k++;
 	foreach($users as $user_id=>$user_name) {
 		echo "<tr>\n";
-		if ($view != "preview") {
+		if (!$PRINTER_FRIENDLY) {
 			echo "\t<td class=\"optionbox wrap\">";
 			if ($user_id!=PGV_USER_ID && get_user_setting($user_id, 'contactmethod')!='none') {
 				echo "<a href=\"javascript:;\" onclick=\"return message('", $user_name, "');\">", $pgv_lang["message"], "</a>";
@@ -792,7 +792,7 @@ if ($action == "listusers") {
 		if (get_user_setting($user_id, 'verified_by_admin')=="yes") echo $pgv_lang["yes"];
 		else echo '<span class="warning">',$pgv_lang["no"],'</span>';
 		echo "</td>\n";
-		if ($view != "preview") {
+		if (!$PRINTER_FRIENDLY) {
 			echo "\t<td class=\"optionbox wrap\">";
 			if (PGV_USER_ID!=$user_id) echo "<a href=\"", encode_url("useradmin.php?action=deleteuser&username={$user_name}&sort={$sort}&filter={$filter}&usrlang={$usrlang}&ged={$ged}"), "\" onclick=\"return confirm('", $pgv_lang["confirm_user_delete"], " $user_name');\">", $pgv_lang["delete"], "</a>";
 			echo "</td>\n";
@@ -801,10 +801,10 @@ if ($action == "listusers") {
 	}
 	?>
 	<tr>
-		<?php if ($view!="preview") { ?>
+		<?php if (!$PRINTER_FRIENDLY) { ?>
 		<td colspan="6" class="topbottombar"><a href="useradmin.php?action=createform"><?php echo $pgv_lang["add_user"]; ?></a></td>
 		<?php } ?>
-		<td colspan="<?php if ($view == "preview") echo "8"; else echo "4"; ?>" class="topbottombar"><a href="useradmin.php"><?php  if ($view != "preview") echo $pgv_lang["back_useradmin"]; else echo "&nbsp;"; ?></a></td>
+		<td colspan="<?php if ($PRINTER_FRIENDLY) echo "8"; else echo "4"; ?>" class="topbottombar"><a href="useradmin.php"><?php  if (!$PRINTER_FRIENDLY) echo $pgv_lang["back_useradmin"]; else echo "&nbsp;"; ?></a></td>
 	</tr>
 	</table>
 	<?php

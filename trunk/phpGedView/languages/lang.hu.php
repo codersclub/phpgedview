@@ -408,7 +408,6 @@ $pgv_lang["add_another"]					= "Új személy hozzáadása:<br />Személyi azonos
 $pgv_lang["find_id"]						= "Azonosító";
 $pgv_lang["show"]						= "Mutat";
 $pgv_lang["year"]						= "Év:";
-$pgv_lang["timeline_instructions"]				= "Az elterjedtebb böngészők támogatják a szövegdobozok grafikonon belüli mozgatását.";
 $pgv_lang["zoom_in"]						= "Nagyítás";
 $pgv_lang["zoom_out"]						= "Kicsinyítés";
 $pgv_lang["cal_gregorian"]            				= "Gregorián";

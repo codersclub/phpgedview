@@ -6,7 +6,7 @@
  * age -> periodes of 10 years (different for 0-1,1-5,5-10,10-20 etc)
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2016  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2022  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -911,7 +911,7 @@ else {
 	unset($savedInput);
 }
 
-print_simple_header($pgv_lang["statistiek_list"]);
+print_header($pgv_lang["statistiek_list"], false);
 echo "\n\t<center><h2>", $pgv_lang["statistiek_list"], "</h2>\n\t";
 echo "</center><br />";
 

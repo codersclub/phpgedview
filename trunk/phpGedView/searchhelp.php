@@ -3,7 +3,7 @@
  * Search in help files
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2021  PGV Development Team.  All rights reerved.
+ * Copyright (C) 2002 to 2022  PGV Development Team.  All rights reerved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -28,7 +28,7 @@
 define('PGV_SCRIPT_NAME', 'searchhelp.php');
 require './config.php';
 
-print_simple_header($pgv_lang["hs_title"]);
+print_header($pgv_lang["hs_title"], false);
 
 // On first entry, initially check the boxes
 if (!isset($action)) {

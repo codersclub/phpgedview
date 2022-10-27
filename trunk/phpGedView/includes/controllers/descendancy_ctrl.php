@@ -193,7 +193,7 @@ class DescendancyControllerRoot extends BaseController {
 	function print_child_descendancy(&$person, $depth) {
 		global $pgv_lang;
 		global $PGV_IMAGE_DIR, $PGV_IMAGES, $Dindent;
-		global $personcount;
+		global $personcount, $PRINTER_FRIENDLY;
 		global $boxPosn, $columnWidth;
 
 		if (is_null($person)) return;
@@ -205,7 +205,7 @@ class DescendancyControllerRoot extends BaseController {
 			print "<img src=\"".$PGV_IMAGE_DIR."/".$PGV_IMAGES["spacer"]["other"]."\" height=\"3\" width=\"3\" border=\"0\" alt=\"\" />";
 			print "<img src=\"".$PGV_IMAGE_DIR."/".$PGV_IMAGES["hline"]["other"]."\" height=\"3\" width=\"".($Dindent-3)."\" border=\"0\" alt=\"\" /></td><td>\n";
 		}
-		print_pedigree_person($person->getXref(), 1, $this->view!="preview",'',$personcount);
+		print_pedigree_person($person->getXref(), 1, !$PRINTER_FRIENDLY,'',$personcount);
 		print "</td>";
 
 		// check if child has parents and add an arrow
@@ -261,7 +261,7 @@ class DescendancyControllerRoot extends BaseController {
 	 */
 	function print_family_descendancy(&$person, &$family, $depth) {
 		global $pgv_lang, $factarray;
-		global $GEDCOM, $PGV_IMAGE_DIR, $PGV_IMAGES, $Dindent, $personcount;
+		global $GEDCOM, $PGV_IMAGE_DIR, $PGV_IMAGES, $PRINTER_FRIENDLY, $Dindent, $personcount;
 		global $boxPosn, $columnWidth;
 
 		if (is_null($family)) return;
@@ -293,7 +293,7 @@ class DescendancyControllerRoot extends BaseController {
 			print "<ul style=\"list-style: none; display: block;\" id=\"".$famid.$personcount."\">";
 			print "<li>";
 			print "<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\"><tr><td>";
-			print_pedigree_person($id, 1, $this->view!="preview",''.$personcount);
+			print_pedigree_person($id, 1, !$PRINTER_FRIENDLY, ''.$personcount);
 			print "</td>";
 
 			// check if spouse has parents and add an arrow

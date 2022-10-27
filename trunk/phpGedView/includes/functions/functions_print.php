@@ -5,7 +5,7 @@
 * Various printing functions used by all scripts and included by the functions.php file.
 *
 * phpGedView: Genealogy Viewer
-* Copyright (C) 2002 to 2021  PGV Development Team.  All rights reserved.
+* Copyright (C) 2002 to 2022  PGV Development Team.  All rights reserved.
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -46,7 +46,7 @@ require_once PGV_ROOT.'includes/classes/class_menubar.php';
 * @param int $count on some charts it is important to keep a count of how many boxes were printed
 */
 function print_pedigree_person($pid, $style=1, $show_famlink=true, $count=0, $personcount="1") {
-	global $HIDE_LIVE_PEOPLE, $SHOW_LIVING_NAMES, $PRIV_PUBLIC, $factarray, $ZOOM_BOXES, $LINK_ICONS, $view, $GEDCOM;
+	global $HIDE_LIVE_PEOPLE, $SHOW_LIVING_NAMES, $PRIV_PUBLIC, $factarray, $ZOOM_BOXES, $LINK_ICONS, $PRINTER_FRIENDLY, $GEDCOM;
 	global $pgv_lang, $MULTI_MEDIA, $SHOW_HIGHLIGHT_IMAGES, $bwidth, $bheight, $PEDIGREE_FULL_DETAILS, $SHOW_ID_NUMBERS, $SHOW_PEDIGREE_PLACES;
 	global $CONTACT_EMAIL, $CONTACT_METHOD, $TEXT_DIRECTION, $DEFAULT_PEDIGREE_GENERATIONS, $OLD_PGENS, $talloffset, $PEDIGREE_LAYOUT, $MEDIA_DIRECTORY;
 	global $USE_SILHOUETTE, $PGV_IMAGE_DIR, $PGV_IMAGES, $ABBREVIATE_CHART_LABELS, $USE_MEDIA_VIEWER;
@@ -54,6 +54,12 @@ function print_pedigree_person($pid, $style=1, $show_famlink=true, $count=0, $pe
 	global $menuLeftPosn, $boxPosn, $brborder, $basexoffset;
 	global $CHART_BOX_TAGS, $SHOW_LDS_AT_GLANCE, $PEDIGREE_SHOW_GENDER;
 	global $SEARCH_SPIDER;
+
+	
+	if ($PRINTER_FRIENDLY) {
+		$LINK_ICONS = 'disabled';
+		$ZOOM_BOXES = 'disabled';
+	}
 
 	if ($style != 2) $style=1;
 	if (empty($show_full)) $show_full = 0;
@@ -198,7 +204,7 @@ function print_pedigree_person($pid, $style=1, $show_famlink=true, $count=0, $pe
 			if (($ZOOM_BOXES!="disabled")&&(!$show_full)) {
 				if ($ZOOM_BOXES=="mouseover") $outBoxAdd .= $mouseAction2;
 				if ($ZOOM_BOXES=="mousedown") $outBoxAdd .= $mouseAction3;
-				if (($ZOOM_BOXES=="click")&&($view!="preview")) $outBoxAdd .= $mouseAction4;
+				if (($ZOOM_BOXES=="click")&&(!$PRINTER_FRIENDLY)) $outBoxAdd .= $mouseAction4;
 			}
 			//-- links and zoom icons
 			// NOTE: Start div icons-$personcount.$pid.$count
@@ -282,7 +288,7 @@ function print_pedigree_person($pid, $style=1, $show_famlink=true, $count=0, $pe
 			if (($ZOOM_BOXES!="disabled")&&(empty($SEARCH_SPIDER))) {
 				if ($ZOOM_BOXES=="mouseover") $outBoxAdd .= $mouseAction2;
 				if ($ZOOM_BOXES=="mousedown") $outBoxAdd .= $mouseAction3;
-				if (($ZOOM_BOXES=="click")&&($view!="preview")) $outBoxAdd .= $mouseAction4;
+				if (($ZOOM_BOXES=="click")&&(!$PRINTER_FRIENDLY)) $outBoxAdd .= $mouseAction4;
 			}
 		}
 	}
@@ -438,23 +444,23 @@ function print_pedigree_person($pid, $style=1, $show_famlink=true, $count=0, $pe
 * other auxiliary files needed to run PGV.  It will also include the theme specific header file.
 * This function should be called by every page, except popups, before anything is output.
 *
-* Popup pages, because of their different format, should invoke function print_simple_header() instead.
+* Popup pages, because of their different format, should invoke this function with the second parameter set to FALSE.
 *
-* @param string $title the title to put in the <TITLE></TITLE> header tags
-* @param string $head
-* @param boolean $use_alternate_styles
+* @param boolean $COMPLETE_HEADER  Set to TRUE to produce a complete header instead of a simplified one
 */
-function print_header($title, $head="", $use_alternate_styles=true) {
+function print_header($title, $COMPLETE_HEADER=true) {
 	global $pgv_lang, $bwidth;
 	global $HOME_SITE_URL, $HOME_SITE_TEXT, $SERVER_URL;
+	global $PRINTER_FRIENDLY;
 	global $BROWSERTYPE, $SEARCH_SPIDER;
-	global $view, $cart;
 	global $CHARACTER_SET, $PGV_IMAGE_DIR, $GEDCOM, $GEDCOM_TITLE, $CONTACT_EMAIL, $COMMON_NAMES_THRESHOLD, $INDEX_DIRECTORY;
 	global $QUERY_STRING, $action, $query, $changelanguage, $theme_name;
-	global $FAVICON, $stylesheet, $print_stylesheet, $rtl_stylesheet, $headerfile, $toplinks, $THEME_DIR, $print_headerfile;
+	global $FAVICON, $stylesheet, $print_stylesheet, $rtl_stylesheet, $headerfile, $toplinks, $THEME_DIR;
 	global $PGV_IMAGES, $TEXT_DIRECTION, $ONLOADFUNCTION, $REQUIRE_AUTHENTICATION, $SHOW_SOURCES, $ENABLE_RSS, $RSS_FORMAT;
 	global $META_AUTHOR, $META_PUBLISHER, $META_COPYRIGHT, $META_DESCRIPTION, $META_PAGE_TOPIC, $META_AUDIENCE, $META_PAGE_TYPE, $META_ROBOTS, $META_REVISIT, $META_KEYWORDS, $META_TITLE;
 
+	// The second paramter, $COMPLETE_HEADER, is used by each theme's header.php script
+	
 	header("Content-Type: text/html; charset=$CHARACTER_SET");
 
 	if (empty($META_TITLE)) $metaTitle = ' - '.PGV_PHPGEDVIEW;
@@ -474,7 +480,7 @@ function print_header($title, $head="", $use_alternate_styles=true) {
 		$query_string=normalize_query_string($QUERY_STRING."&amp;changelanguage=&amp;NEWLANGUAGE=");
 	else
 		$query_string = $QUERY_STRING;
-	if ($view!="preview") {
+	if (!$PRINTER_FRIENDLY) {
 		$old_META_AUTHOR = $META_AUTHOR;
 		$old_META_PUBLISHER = $META_PUBLISHER;
 		$old_META_COPYRIGHT = $META_COPYRIGHT;
@@ -587,55 +593,35 @@ function print_header($title, $head="", $use_alternate_styles=true) {
 	//-->
 	'.PGV_JS_END.'<script src="js/phpgedview.js" language="JavaScript" type="text/javascript"></script>';
 	$bodyOnLoad = '';
-	if ($view=="preview") $bodyOnLoad .= " onbeforeprint=\"hidePrint();\" onafterprint=\"showBack();\"";
+	if ($PRINTER_FRIENDLY) $bodyOnLoad .= " onbeforeprint=\"hidePrint();\" onafterprint=\"showBack();\"";
 	$bodyOnLoad .= " onload=\"";
 	if (!empty($ONLOADFUNCTION)) $bodyOnLoad .= $ONLOADFUNCTION;
 	if ($TEXT_DIRECTION=="rtl") {
 		$bodyOnLoad .= " maxscroll = document.documentElement.scrollLeft;";
 	}
 	$bodyOnLoad .= "\"";
-	if ($view!="preview") {
-		require $headerfile;
+	require $headerfile;
+	
+	if (!$PRINTER_FRIENDLY) {
 		$META_AUTHOR = $old_META_AUTHOR;
 		$META_PUBLISHER = $old_META_PUBLISHER;
 		$META_COPYRIGHT = $old_META_COPYRIGHT;
 		$META_DESCRIPTION = $old_META_DESCRIPTION;
 		$META_PAGE_TOPIC = $old_META_PAGE_TOPIC;
-	} else {
-		require $headerfile;
 	}
-}
-
-/**
-* print simple HTML header
-*
-* This function will print out the HTML, HEAD, and BODY tags and will load in the CSS javascript and
-* other auxiliary files needed to run PGV.  It does not include any theme specific header files.
-* This function should be called by every page before anything is output on popup pages.
-*
-* @param string $title the title to put in the <TITLE></TITLE> header tags
-* @param string $head
-* @param boolean $use_alternate_styles
-*/
-function print_simple_header($title) {
-	global $view;
-	$view = 'simple';
-	print_header($title);
 }
 
 // -- print the html to close the page
 function print_footer() {
-	global $pgv_lang, $view;
+	global $pgv_lang, $PRINTER_FRIENDLY;
 	global $SHOW_STATS, $QUERY_STRING, $footerfile, $print_footerfile, $ALLOW_CHANGE_GEDCOM, $printlink;
 	global $PGV_IMAGE_DIR, $theme_name, $PGV_IMAGES, $TEXT_DIRECTION, $footer_count;
 	global $SEARCH_SPIDER, $SHOW_SPIDER_TAGLINE;
 
-	$view = safe_get('view');
-
 	if (!isset($footer_count)) $footer_count = 1;
 	else $footer_count++;
 	echo "<!-- begin footer -->";
-	if ($view!="preview") {
+	if (!$PRINTER_FRIENDLY) {
 		if($SEARCH_SPIDER && $SHOW_SPIDER_TAGLINE) {
 			echo '<div class="center"><br />', $pgv_lang["label_search_engine_detected"].": ".$SEARCH_SPIDER, '</div>';
 		}
@@ -1390,12 +1376,12 @@ function print_privacy_error($username) {
 * @param boolean $return return the text instead of printing it
 */
 function print_help_link($help, $helpText, $show_desc="", $use_print_text=false, $return=false) {
-	global $pgv_lang, $view, $PGV_USE_HELPIMG, $PGV_IMAGES, $PGV_IMAGE_DIR, $SEARCH_SPIDER;
+	global $pgv_lang, $PGV_USE_HELPIMG, $PGV_IMAGES, $PGV_IMAGE_DIR, $SEARCH_SPIDER, $PRINTER_FRIENDLY;
 
 	loadLangFile('pgv_help,pgv_facts');
 
 	$output='';
-	if (!$SEARCH_SPIDER && $view!='preview' && $_SESSION['show_context_help']) {
+	if (!$SEARCH_SPIDER && !$PRINTER_FRIENDLY && $_SESSION['show_context_help']) {
 		$output.=' <a class="help" tabindex="0" title="';
 		if (isset($pgv_lang[$show_desc])) {
 			$desc = $pgv_lang[$show_desc];
@@ -1829,7 +1815,7 @@ function PrintReady($text, $InHeaders=false, $trim=true) {
 * @param string $linebr optional linebreak
 */
 function print_asso_rela_record($pid, $factrec, $linebr=false, $type='INDI') {
-	global $SHOW_ID_NUMBERS, $TEXT_DIRECTION, $pgv_lang, $factarray, $PGV_IMAGE_DIR, $PGV_IMAGES, $view;
+	global $SHOW_ID_NUMBERS, $TEXT_DIRECTION, $pgv_lang, $factarray, $PGV_IMAGE_DIR, $PGV_IMAGES, $PRINTER_FRIENDLY;
 	global $PEDIGREE_FULL_DETAILS, $LANGUAGE, $lang_short_cut;
 
 	// get ASSOciate(s) ID(s)
@@ -1960,7 +1946,7 @@ function print_asso_rela_record($pid, $factrec, $linebr=false, $type='INDI') {
 			}
 
 			// RELAtionship calculation : for a family print relationship to both spouses
-			if ($view!="preview" && !$autoRela) {
+			if (!$PRINTER_FRIENDLY && !$autoRela) {
 				if ($type=='FAM') {
 					$famrec = find_family_record($pid, PGV_GED_ID);
 					if ($famrec) {

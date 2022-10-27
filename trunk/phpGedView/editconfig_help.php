@@ -3,7 +3,7 @@
  * English Language Configure Help file for PHPGedView
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2009  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2022  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -42,7 +42,7 @@ if (substr($help,-5)!="_help") {
 	}
 }
 
-print_simple_header($pgv_lang["config_help"]);
+print_header($pgv_lang["config_help"], false);
 print '<span class="helpheader">';
 print_text("config_help");
 print '</span><br /><br /><span class="helptext">';

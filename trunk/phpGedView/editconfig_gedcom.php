@@ -121,7 +121,7 @@ if (isset($_REQUEST['oldged'])) $oldged = $_REQUEST['oldged'];
 if (isset($_REQUEST['GEDFILENAME'])) $GEDFILENAME = $_REQUEST['GEDFILENAME'];
 if (isset($_REQUEST['GEDCOMPATH'])) $GEDCOMPATH = $_REQUEST['GEDCOMPATH'];
 if (isset($_REQUEST['ged'])) $ged = $_REQUEST['ged'];
-if (isset($_REQUEST['gedcom_title'])) $gedcom_title = $_REQUEST['gedcom_title'];
+if (isset($_REQUEST['gedcom_title'])) $gedcom_title = stripLRMRLM($_REQUEST['gedcom_title']);
 if (isset($_REQUEST['THEME_DIR'])) $THEME_DIR = $_REQUEST['THEME_DIR'];
 
 if (empty($oldged)) $oldged = "";
