@@ -3,7 +3,7 @@
  * Popup window for viewing images
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2018  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2022  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -29,7 +29,7 @@ require './config.php';
 
 $filename=decrypt(safe_GET('filename'));
 
-print_simple_header($pgv_lang["imageview"]);
+print_header($pgv_lang["imageview"], false);
 ?>
 <script language="JavaScript" type="text/javascript">
 <!--

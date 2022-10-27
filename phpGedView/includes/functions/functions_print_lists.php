@@ -1952,10 +1952,10 @@ function print_events_list($startjd, $endjd, $events='BIRT MARR DEAT', $only_liv
  */
 function print_chart_by_age($data, $title) {
 	global $pgv_lang, $GEDCOM;
-	global $view, $stylesheet, $print_stylesheet;
+	global $PRINTER_FRIENDLY, $stylesheet, $print_stylesheet;
 
 	$css = new cssparser();
-	if ($view=="preview") {
+	if ($PRINTER_FRIENDLY) {
 		$ParseCSSIndex = $css->ParseCSS($print_stylesheet);
 	} else {
 		$ParseCSSIndex = $css->ParseCSS($stylesheet);
@@ -2030,10 +2030,10 @@ function print_chart_by_age($data, $title) {
  */
 function print_chart_by_decade($data, $title) {
 	global $pgv_lang;
-	global $view, $stylesheet, $print_stylesheet;
+	global $PRINTER_FRIENDLY, $stylesheet, $print_stylesheet;
 
 	$css = new cssparser();
-	if ($view=="preview") $ParseCSSIndex = $css->ParseCSS($print_stylesheet);
+	if ($PRINTER_FRIENDLY) $ParseCSSIndex = $css->ParseCSS($print_stylesheet);
 	else $ParseCSSIndex = $css->ParseCSS($stylesheet);
 	$color = $css->GetCSSFiltered($ParseCSSIndex, 'body', 'background-color', 'all');
 	$color = str_replace("#", "", $color);

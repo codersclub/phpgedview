@@ -95,7 +95,7 @@ function split_align_text($data, $maxlen) {
  */
 function print_fan_chart($treeid, $fanw=640, $fandeg=270) {
 	global $PEDIGREE_GENERATIONS, $fan_width, $fan_style;
-	global $name, $pgv_lang, $SHOW_ID_NUMBERS, $view, $TEXT_DIRECTION;
+	global $name, $pgv_lang, $PRINTER_FRIENDLY, $SHOW_ID_NUMBERS, $TEXT_DIRECTION;
 	global $stylesheet, $print_stylesheet;
 	global $PGV_IMAGE_DIR, $PGV_IMAGES, $LINK_ICONS, $GEDCOM, $SERVER_URL;
 	global $fanChart;
@@ -304,7 +304,7 @@ function print_fan_chart($treeid, $fanw=640, $fandeg=270) {
 				if ($SHOW_ID_NUMBERS) $tempURL .= " (".$pid.")";
 				$imagemap .= "\" href=\"$tempURL\" ";
 				$tempURL = "fanchart.php?rootid={$pid}&PEDIGREE_GENERATIONS={$PEDIGREE_GENERATIONS}&fan_width={$fan_width}&fan_style={$fan_style}";
-				if (!empty($view)) $tempURL .= "&view={$view}";
+				if ($PRINTER_FRIENDLY) $tempURL .= "&view=preview";
 				$count=0;
 				$lbwidth=200;
 				echo "<div id=\"I".$pid.".".$count."links\" style=\"position:absolute; >";
@@ -446,14 +446,14 @@ if ($ENABLE_AUTOCOMPLETE) require PGV_ROOT.'js/autocomplete.js.htm';
 if (strlen($name)<30) $cellwidth="420";
 else $cellwidth=(strlen($name)*14);
 echo "<table class=\"list_table $TEXT_DIRECTION\"><tr><td width=\"".$cellwidth."px\" valign=\"top\">";
-if ($view == "preview") echo "<h2>" . str_replace("#PEDIGREE_GENERATIONS#", $PEDIGREE_GENERATIONS, $pgv_lang["gen_fan_chart"]) . ":";
+if ($PRINTER_FRIENDLY) echo "<h2>" . str_replace("#PEDIGREE_GENERATIONS#", $PEDIGREE_GENERATIONS, $pgv_lang["gen_fan_chart"]) . ":";
 else echo "<h2>" . $pgv_lang["fan_chart"] . ":";
 echo "<br />".PrintReady($name);
 if ($addname != "") echo "<br />" . PrintReady($addname);
 echo "</h2>";
 
 // -- print the form to change the number of displayed generations
-if ($view != "preview") {
+if (!$PRINTER_FRIENDLY) {
 	echo PGV_JS_START;
 	echo "var pastefield; function paste_id(value) { pastefield.value=value; }";
 	echo PGV_JS_END;

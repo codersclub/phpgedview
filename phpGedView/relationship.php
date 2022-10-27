@@ -3,7 +3,7 @@
  * Calculates the relationship between two individuals in the gedcom
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2019  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2022  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -487,7 +487,6 @@ $disp = true;
 $title_string .= $pgv_lang["relationship_chart"];
 // -- print html header information
 print_header($title_string);
-
 if ($ENABLE_AUTOCOMPLETE) require PGV_ROOT.'js/autocomplete.js.htm';
 
 // Lbox additions if installed ---------------------------------------------------------------------------------------------
@@ -555,7 +554,8 @@ function paste_id(value) {
 <h2><?php print PrintReady($title_string);?></h2><br />
 <!-- // Print the form to change the number of displayed generations -->
 <?php
-if ($view!="preview") {
+
+if (!$PRINTER_FRIENDLY) {
 	$Dbaseyoffset += 110; ?>
 	<form name="people" method="get" action="relationship.php">
 	<input type="hidden" name="path_to_find" value="<?php print $path_to_find ?>" />
@@ -776,7 +776,7 @@ else {
 ?>
 </div>
 <?php
-if ($show_full==0) {
+if ($show_full==0 && !$PRINTER_FRIENDLY) {
 	echo '<br /><span class="details2">', $pgv_lang['charts_click_box'], '</span><br />';
 }
 ?>
@@ -1002,7 +1002,7 @@ if ((!empty($pid1))&&(!empty($pid2))) {
 
 				print "<div id=\"box$pid.0\" style=\"position:absolute; ".($TEXT_DIRECTION=="ltr"?"left":"right").":".$pxoffset."px; top:".$pyoffset."px; width:".$Dbwidth."px; height:".$Dbheight."px; z-index:".$zIndex."; \"><table><tr><td colspan=\"2\" width=\"$Dbwidth\" height=\"$Dbheight\">";
 				$boxPosn = 8;		// This makes the pop-up menu appear exactly to the right of the Person Box  (Weird!!)
-				print_pedigree_person($pid, 1, ($view!="preview"));
+				print_pedigree_person($pid, 1, (!$PRINTER_FRIENDLY));
 				print "</td></tr></table></div>\n";
 			}
 

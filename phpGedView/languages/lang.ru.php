@@ -725,7 +725,6 @@ $pgv_lang["add_another"]		= "Добавить еще одно лицо<br />Ид
 $pgv_lang["find_id"]			= "Найти идент. номер";
 $pgv_lang["show"]			= "Показать";
 $pgv_lang["year"]			= "Год: ";
-$pgv_lang["timeline_instructions"]	= "В новых браузерах можно двигать этикетки и оси мышью.";
 $pgv_lang["zoom_in"]			= "Расширить информацию<br />";
 $pgv_lang["zoom_out"]			= "Сжать информацию";
 $pgv_lang["timeline_beginYear"]		= "Начало года";

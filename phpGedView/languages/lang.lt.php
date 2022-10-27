@@ -323,7 +323,6 @@ $pgv_lang["next"]					= "Tolesnis >";
 $pgv_lang["remove_person"]			= "Išmesti asmeni";
 $pgv_lang["show_age"]				= "Rodyti amžiaus skirtuka";
 $pgv_lang["add_another"]			= "I diagrama ideti kita asmeni: <br /> Asmens ID:";
-$pgv_lang["timeline_instructions"]	= "Su  visomis naujuomis  naršyklemis galite  pernešineti dežutes diagramoje.";
 $pgv_lang["timeline_chart"] 		= "Laiko tekmes diagrma";
 $pgv_lang["find_id"]				= "Surasti ID";
 $pgv_lang["year"]					= "Metai:";

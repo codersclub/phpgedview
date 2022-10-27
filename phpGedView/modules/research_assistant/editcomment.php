@@ -3,7 +3,7 @@
  * PopUp Window to allow editing of comments.
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2007  John Finlay and Others
+ * Copyright (C) 2002 to 2022  John Finlay and Others
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -81,7 +81,7 @@ loadLangFile("research_assistant:lang");
 			PGV_DB::prepare("SELECT c_body FROM {$TBLPREFIX}comments WHERE c_id=?")
 			->execute(array($_REQUEST['commentid']))
 			->fetchOne();
-		print_simple_header($pgv_lang["edit_comment"]);
+		print_header($pgv_lang["edit_comment"], false);
 		print '<span class="subheaders">'.$pgv_lang["edit_comment"].'</span>';
 		print print_comment_body($html, 'task', $_REQUEST['commentid'], $_REQUEST['taskid']);
 	}
@@ -93,21 +93,21 @@ loadLangFile("research_assistant:lang");
 			PGV_DB::prepare("SELECT uc_comment FROM {$TBLPREFIX}user_comments WHERE uc_id=?")
 			->execute(array($_REQUEST['ucommentid']))
 			->fetchOne();
-		print_simple_header($pgv_lang["edit_comment"]);
+		print_header($pgv_lang["edit_comment"], false);
 		print '<span class="subheaders">'.$pgv_lang["edit_comment"].'</span>';
 		print print_comment_body($html, 'person', $_REQUEST['ucommentid'], $_REQUEST['pid']);
 	}
 	//**********************************************************************************************
 	// If the user is not editing an existing comment, check if the user is adding a NEW comment.
 	elseif (isset($_REQUEST['taskid']) && $_REQUEST['taskid'] != ""){
-		print_simple_header($pgv_lang["add_new_comment"]);
+		print_header($pgv_lang["add_new_comment"], false);
 		print '<span class="subheaders">'.$pgv_lang["add_new_comment"].'</span>';
 		print print_comment_body('', 'task', 'new', $_REQUEST['taskid']);
 	}
 	//**********************************************************************************************
 	// If the user is not editing an existing comment, check if the user is adding a NEW person comment.
 	elseif (isset($_REQUEST['pid']) && $_REQUEST['pid'] != ""){
-		print_simple_header($pgv_lang["add_new_comment"]);
+		print_header($pgv_lang["add_new_comment"], false);
 		print '<span class="subheaders">'.$pgv_lang["add_new_comment"].'</span>';
 		print print_comment_body('', 'person', 'new', $_REQUEST['pid']);
 	}
@@ -115,7 +115,7 @@ loadLangFile("research_assistant:lang");
 	//**********************************************************************************************
 	// If none of the above occur, then give an error message.
 	else{
-		print_simple_header("Error");
+		print_header("Error", false);
 		print "An error has occured.";
 
 	}

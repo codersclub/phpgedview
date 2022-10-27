@@ -395,7 +395,6 @@ $pgv_lang["add_another"]		= "Pridať na osu ďalšiu osobu:<br />ID osoby:";
 $pgv_lang["find_id"]			= "Nájsť ID";
 $pgv_lang["show"]			= "Ukázať";
 $pgv_lang["year"]			= "Rok:";
-$pgv_lang["timeline_instructions"]	= "Vo väčšine novších prehliadačov môžete klepnúť na meno v rámčeku a pretiahnuť ho na osu.";
 $pgv_lang["zoom_in"]			= "Zväčšiť";
 $pgv_lang["zoom_out"]			= "Zmenšiť";
 $pgv_lang["timeline_beginYear"] 	= "Počiatočný rok";

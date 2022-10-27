@@ -34,7 +34,7 @@ if (!PGV_USER_GEDCOM_ADMIN) {
 
 loadLangFile("pgv_confighelp");
 
-print_simple_header("Print logfile");
+print_header("Print logfile", false);
 
 $logfile=safe_GET('logfile');
 

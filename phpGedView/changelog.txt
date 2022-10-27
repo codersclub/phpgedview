@@ -14,6 +14,18 @@ The session.php script uses this information to populate the constants : PGV_VER
 =====================================================================
 
 Version 4.3.1
+ - Deleted: In all themes, unused file print_header.php (canajuneh)
+ - Fixed: Error in Lifespan chart due to PHP 7 incompatibility (canajun2eh)
+ - Fixed: GEDCOM "Abbreviate chart labels" option does not use abbreviations defined in langage files (anajun2eh)
+ - Fixed: Time line chart "Remove person" causes "You are not welcome" error (canajun2eh)
+ - Updated: PHPMailer from version 6.5.3 to version 6.6.5 (canajun2eh)
+ - Fixed: "Printer friendly" option not preparing charts pages for printing (canajun2eh)
+ - Changed: Remove useless Cloudy theme "Data Loading" message (canajun2eh)
+ - Fixed: LRM and RLM are not removed when saving new GEDCOM title (canajun2eh)
+ - Fixed: E-mail to originator not sent when reviewing pending changes (tbabczynski)
+ - Fixed: Googlemap module errors when unknown places occur in the GEDCOM file (tbabczynski)
+ - Fixed: languages/faqlist.pl.php minor text errors (tbabczynski)
+ - Fixed: BOM in languages/countries.pl.php and languages/countries.tr.php (canajun2eh, tbabczynski)
  - Fixed: Incorrect calls to function userGedcomAdmin() in edit_privacy.php and printlog.php (tbabczynski)
  - Fixed: Incorrect use of #PGV_SCRIPT_NAME# in several language files.  Should be #PGV_SCRIPT_PATH#. (canajun2eh, tbabczynski)
  - Fixed: PHP 7.4 incompatibilities in ra_functions.php when dates are missing (canajun2eh)

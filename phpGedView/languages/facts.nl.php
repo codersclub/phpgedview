@@ -489,7 +489,7 @@ $factarray["_GEDF"] 	= "GEDCOM-bestand";
  *		The length of these abbreviations is not restricted to 1 letter.
  */
 
-unset($factAbbrev);		// Don't let other languages specify Fact abbreviations for this language
+$factAbbrev = array();		// Don't let other languages specify Fact abbreviations for this language
 
 /*-- The following lines have been commented out.  They should serve as examples.
 

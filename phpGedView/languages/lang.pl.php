@@ -722,7 +722,6 @@ $pgv_lang["add_another"]			= "Dodaj nową osobę do wykresu:<br />Identyfikator 
 $pgv_lang["find_id"]				= "Znajdź ID";
 $pgv_lang["show"]					= "Pokaż";
 $pgv_lang["year"]					= "Rok:";
-$pgv_lang["timeline_instructions"]	= "W większości nowych przeglądarek można przeciągać ramki po wykresie.";
 $pgv_lang["zoom_in"]				= "Powiększ";
 $pgv_lang["zoom_out"]				= "Pomniejsz";
 $pgv_lang["timeline_beginYear"]		= "Rok początkowy";

@@ -720,7 +720,6 @@ $pgv_lang["add_another"]			= "Add another person to chart";
 $pgv_lang["find_id"]				= "Find ID";
 $pgv_lang["show"]					= "Show";
 $pgv_lang["year"]					= "Year:";
-$pgv_lang["timeline_instructions"]	= "In most recent browsers you can click and drag the boxes around on the chart.";
 $pgv_lang["zoom_in"]				= "Zoom In";
 $pgv_lang["zoom_out"]				= "Zoom Out";
 $pgv_lang["timeline_beginYear"] = "Begin Year";

@@ -3,7 +3,7 @@
  * Functions used for charts
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2021  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2022  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -42,7 +42,7 @@ require_once PGV_ROOT.'includes/classes/class_person.php';
  * @param boolean $wideCell		true to make the SOSA cell wider
  */
 function print_sosa_number($sosa, $pid='', $arrowDirection='up') {
-	global $view, $pbwidth, $pbheight, $wideSosa;
+	global $pbwidth, $pbheight, $wideSosa;
 	global $SOSA_WIDTH_NORMAL, $SOSA_WIDTH_WIDE;
 	global $PGV_IMAGE_DIR, $PGV_IMAGES;
 
@@ -101,7 +101,7 @@ function print_family_header($famid) {
  * @param string $gparid optional gd-parent ID (descendancy booklet)
  */
 function print_family_parents($famid, $sosa = 0, $label="", $parid="", $gparid="", $personcount="1") {
-	global $pgv_lang, $view, $show_full, $show_famlink;
+	global $pgv_lang, $PRINTER_FRIENDLY, $show_full, $show_famlink;
 	global $TEXT_DIRECTION, $SHOW_EMPTY_BOXES, $SHOW_ID_NUMBERS, $LANGUAGE;
 	global $pbwidth, $pbheight;
 	global $boxPosn, $columnWidth;
@@ -189,7 +189,7 @@ function print_family_parents($famid, $sosa = 0, $label="", $parid="", $gparid="
 		}
 		print "</td>";
 	}
-	if (!empty($upfamid) and ($sosa!=-1) and ($view != "preview")) {
+	if (!empty($upfamid) and ($sosa!=-1) and (!$PRINTER_FRIENDLY)) {
 		print "<td valign=\"middle\" rowspan=\"2\">";
 		print_url_arrow($upfamid, ($sosa==0 ? "?famid=$upfamid&amp;show_full=$show_full" : "#$upfamid"), "$upfamid", 1);
 		print "</td>\n";
@@ -269,7 +269,7 @@ function print_family_parents($famid, $sosa = 0, $label="", $parid="", $gparid="
 		}
 		print "</td>\n";
 	}
-	if (!empty($upfamid) and ($sosa!=-1) and ($view != "preview")) {
+	if (!empty($upfamid) and ($sosa!=-1) and (!$PRINTER_FRIENDLY)) {
 		print "<td valign=\"middle\" rowspan=\"2\">";
 		print_url_arrow($upfamid, ($sosa==0 ? "?famid=$upfamid&amp;show_full=$show_full" : "#$upfamid"), "$upfamid", 1);
 		print "</td>\n";
@@ -299,7 +299,7 @@ function print_family_parents($famid, $sosa = 0, $label="", $parid="", $gparid="
  * @param string $label optional indi label (descendancy booklet)
  */
 function print_family_children($famid, $childid = "", $sosa = 0, $label="", $personcount="1") {
-	global $pgv_lang, $factarray, $pbwidth, $pbheight, $view, $show_famlink, $show_cousins;
+	global $pgv_lang, $factarray, $pbwidth, $pbheight, $PRINTER_FRIENDLY, $show_famlink, $show_cousins;
 	global $PGV_IMAGE_DIR, $PGV_IMAGES, $show_changes, $pgv_changes, $GEDCOM, $SHOW_ID_NUMBERS, $TEXT_DIRECTION;
 	global $boxPosn, $columnWidth;
 
@@ -328,7 +328,7 @@ function print_family_children($famid, $childid = "", $sosa = 0, $label="", $per
 	echo ')', getLRM(), '</span>';
 	print "<br />";
 	// moved to top of list, changed from style to class, and font12 added by Nigel
-	if ($view!="preview" && $sosa==0 && PGV_USER_CAN_EDIT) {
+	if (!$PRINTER_FRIENDLY && $sosa==0 && PGV_USER_CAN_EDIT) {
 		print "<br />";
 		print "<span class='nowrap font12'>";
 		print_help_link("add_child_help", "qm", "add_child_to_family");
@@ -450,7 +450,7 @@ function print_family_children($famid, $childid = "", $sosa = 0, $label="", $per
 						print "</td>\n";
 						// spouse information
 						print "<td style=\"vertical-align: center;";
-						if (!empty($divrec) and ($view != "preview")) print " filter:alpha(opacity=40);-moz-opacity:0.4\">";
+						if (!empty($divrec) and (!$PRINTER_FRIENDLY)) print " filter:alpha(opacity=40);-moz-opacity:0.4\">";
 						else print "\">";
 						print_pedigree_person($spouse, 1, $show_famlink, 9, $personcount);
 						$personcount++;
@@ -515,10 +515,10 @@ function print_family_children($famid, $childid = "", $sosa = 0, $label="", $per
  * @param int $sosa optional child sosa number
  */
 function print_family_facts(&$family, $sosa = 0) {
-	global $pgv_lang, $pbwidth, $pbheight, $view;
+	global $pgv_lang, $pbwidth, $pbheight;
 	global $nonfacts, $factarray;
 	global $TEXT_DIRECTION, $GEDCOM, $SHOW_ID_NUMBERS;
-	global $show_changes, $pgv_changes;
+	global $show_changes, $pgv_changes, $PRINTER_FRIENDLY;
 	global $linkToID;
 	global $MULTI_MEDIA;
 
@@ -573,7 +573,7 @@ function print_family_facts(&$family, $sosa = 0) {
 			}
 		}
 		// -- new fact link
-		if ($view!="preview" && $sosa==0 && PGV_USER_CAN_EDIT) {
+		if (!$PRINTER_FRIENDLY && $sosa==0 && PGV_USER_CAN_EDIT) {
 			print_add_new_fact($famid, $indifacts, "FAM");
 
 			// -- new note
@@ -632,13 +632,13 @@ function print_family_facts(&$family, $sosa = 0) {
  * @param string $gparid optional gd-parent ID (descendancy booklet)
  */
 function print_sosa_family($famid, $childid, $sosa, $label="", $parid="", $gparid="", $personcount="1") {
-	global $pgv_lang, $pbwidth, $pbheight, $view;
+	global $pgv_lang, $pbwidth, $pbheight;
 	global $boxPosn, $columnWidth;
 	global $aRootBoxPosn, $aColumnWidth;	// -- Position and horizontal spacing of Parent boxes
 	global $bRootBoxPosn, $bColumnWidth;	// -- Position and horizontal spacing of Children boxes
 	global $forceSosa;						// -- Do empty SOSA numbers have to be printed anyway?
 
-	if ($view != "preview") print "<hr />";
+	print "<hr />";
 	print "\r\n\r\n<p style='page-break-before:always' />\r\n";
 	if (!empty($famid)) print"<a name=\"{$famid}\"></a>\r\n";
 	$boxPosn = $aRootBoxPosn;
@@ -737,12 +737,12 @@ function ancestry_array($rootid, $maxgen=0) {
  * @param string $dir arrow direction 0=left 1=right 2=up 3=down (default=2)
  */
 function print_url_arrow($id, $url, $label, $dir=2) {
-	global $pgv_lang, $view;
+	global $pgv_lang, $PRINTER_FRIENDLY;
 	global $PGV_IMAGE_DIR, $PGV_IMAGES;
 	global $TEXT_DIRECTION;
 
 	if ($id=="" or $url=="") return;
-	if ($view=="preview") return;
+	if ($PRINTER_FRIENDLY) return;
 
 	// arrow direction
 	$adir=$dir;

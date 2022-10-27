@@ -3,7 +3,7 @@
  * Interface to edit place locations
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2010 PGV Development Team. All rights reserved.
+ * Copyright (C) 2002 to 2022 PGV Development Team. All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -40,7 +40,7 @@ if (isset($_REQUEST['action'])) $action = $_REQUEST['action'];
 
 if (!isset($countrySelected)) $countrySelected="Countries";
 
-print_simple_header($pgv_lang["flags_edit"]);
+print_header($pgv_lang["flags_edit"], false);
 
 if (!is_dir('./places/flags/')) {
 	echo '<br /><div class="optionbox wrap">', $pgv_lang["pl_no_flags"], '</div><br />';

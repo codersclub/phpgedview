@@ -721,7 +721,6 @@ $pgv_lang["add_another"]			= "Aggiungere un'altra persona al diagramma";
 $pgv_lang["find_id"]				= "Cerca un ID";
 $pgv_lang["show"]					= "Visualizza";
 $pgv_lang["year"]					= "Anno:";
-$pgv_lang["timeline_instructions"]	= "Nei browser più recenti è possibile selezionare e trascinare i riquadri.";
 $pgv_lang["zoom_in"]				= "Ingrandisci";
 $pgv_lang["zoom_out"]				= "Rimpicciolisci";
 $pgv_lang["timeline_beginYear"] = "Anno di inizio";

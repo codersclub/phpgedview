@@ -92,33 +92,33 @@ require PGV_ROOT.'includes/specialchars.php';
 
 switch ($type) {
 case "indi":
-	print_simple_header($pgv_lang["find_individual"]);
+	print_header($pgv_lang["find_individual"], false);
 	break;
 case "fam":
-	print_simple_header($pgv_lang["find_fam_list"]);
+	print_header($pgv_lang["find_fam_list"], false);
 	break;
 case "media":
-	print_simple_header($pgv_lang["find_media"]);
+	print_header($pgv_lang["find_media"], false);
 	$action="filter";
 	break;
 case "place":
-	print_simple_header($pgv_lang["find_place"]);
+	print_header($pgv_lang["find_place"], false);
 	$action="filter";
 	break;
 case "repo":
-	print_simple_header($pgv_lang["repo_list"]);
+	print_header($pgv_lang["repo_list"], false);
 	$action="filter";
 	break;
 case "note":
-	print_simple_header($pgv_lang["find_shared_note"]);
+	print_header($pgv_lang["find_shared_note"], false);
 	$action="filter";
 	break;
 case "source":
-	print_simple_header($pgv_lang["find_source"]);
+	print_header($pgv_lang["find_source"], false);
 	$action="filter";
 	break;
 case "specialchar":
-	print_simple_header($pgv_lang["find_specialchar"]);
+	print_header($pgv_lang["find_specialchar"], false);
 	$action="filter";
 	break;
 }
@@ -425,7 +425,7 @@ if ($action=="filter") {
 			echo "<td class=\"list_value_wrap $TEXT_DIRECTION\"><ul>";
 			usort($myindilist, array('GedcomRecord', 'Compare'));
 			foreach($myindilist as $indi) {
-				echo $indi->format_list('li', true);
+				echo $indi->format_list('li', false);
 			}
 			echo '</ul></td></tr><tr><td class="list_label">', $pgv_lang['total_indis'], ' ', count($myindilist), '</tr></td>';
 		} else {
@@ -450,7 +450,7 @@ if ($action=="filter") {
 			echo "<td class=\"list_value_wrap $TEXT_DIRECTION\"><ul>";
 			usort($myfamlist, array('GedcomRecord', 'Compare'));
 			foreach($myfamlist as $family) {
-				echo $family->format_list('li', true);
+				echo $family->format_list('li', false);
 			}
 			echo '</ul></td></tr><tr><td class="list_label">', $pgv_lang['total_fams'], ' ', count($myfamlist), '</tr></td>';
 		} else {
@@ -516,7 +516,7 @@ if ($action=="filter") {
 		 */
 		if ($create=="thumbnail") {
 			$filename = $_REQUEST["file"];
-			generate_thumbnail($directory.$filename, $thumbdir.$filename, true);
+			generate_thumbnail($directory.$filename, $thumbdir.$filename, false);
 		}
 
 		echo "<br />";
@@ -678,7 +678,7 @@ if ($action=="filter") {
 	if ($type=="note") {
 		echo '<table class="tabs_table ', $TEXT_DIRECTION, ' width90">';
 		if ($filter) {
-			$mynotelist = search_notes($filter_array, array(PGV_GED_ID), 'AND', true);
+			$mynotelist = search_notes($filter_array, array(PGV_GED_ID), 'AND', false);
 		} else {
 			$mynotelist = get_note_list(PGV_GED_ID);
 		}
@@ -700,7 +700,7 @@ if ($action=="filter") {
 	if ($type=="source") {
 		echo '<table class="tabs_table ', $TEXT_DIRECTION, ' width90">';
 		if ($filter) {
-			$mysourcelist = search_sources($filter_array, array(PGV_GED_ID), 'AND', true);
+			$mysourcelist = search_sources($filter_array, array(PGV_GED_ID), 'AND', false);
 		} else {
 			$mysourcelist = get_source_list(PGV_GED_ID);
 		}

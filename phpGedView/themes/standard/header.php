@@ -3,7 +3,7 @@
  * Header for Standard theme
  *
  * PhpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2016  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2022  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -37,7 +37,7 @@ if (!defined('PGV_PHPGEDVIEW')) {
 		<?php if (isset($_GET["pgvaction"]) && $_GET["pgvaction"]=="places_edit") { ?>
 			<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> <?php }
 		?>
-		<?php if ($FAVICON) { ?><link rel="shortcut icon" href="<?php echo $FAVICON; ?>" type="image/x-icon" /> <?php } ?>
+		<link rel="shortcut icon" href="<?php echo $FAVICON; ?>" type="image/x-icon" />
 
 		<title><?php echo $title; ?></title>
 		<?php if ($ENABLE_RSS && !$REQUIRE_AUTHENTICATION){ ?>
@@ -45,9 +45,7 @@ if (!defined('PGV_PHPGEDVIEW')) {
 		<?php } ?>
 		<link rel="stylesheet" href="<?php echo $stylesheet; ?>" type="text/css" media="all" />
 		<?php if ((!empty($rtl_stylesheet))&&($TEXT_DIRECTION=="rtl")) {?> <link rel="stylesheet" href="<?php echo $rtl_stylesheet; ?>" type="text/css" media="all" /> <?php } ?>
-		<?php if ($use_alternate_styles && $BROWSERTYPE != "other") { ?>
-			<link rel="stylesheet" href="<?php echo PGV_THEME_DIR.$BROWSERTYPE; ?>.css" type="text/css" media="all" />
-		<?php }
+		<?php
 		// Additional css files required (Only if Lightbox installed)
 		if (PGV_USE_LIGHTBOX) {
 			if ($TEXT_DIRECTION=='rtl') {
@@ -65,7 +63,7 @@ if (!defined('PGV_PHPGEDVIEW')) {
 		FORM { margin-top: 0px; margin-bottom: 0px; }
 	</style>
 	<?php }
-	if ($view!="preview" && $view!="simple") { ?>
+	if (!$PRINTER_FRIENDLY && $COMPLETE_HEADER) { ?>
 		<?php if (!empty($META_AUTHOR)) { ?><meta name="author" content="<?php echo htmlspecialchars($META_AUTHOR); ?>" /><?php } ?>
 		<?php if (!empty($META_PUBLISHER)) { ?><meta name="publisher" content="<?php echo htmlspecialchars($META_PUBLISHER); ?>" /><?php } ?>
 		<?php if (!empty($META_COPYRIGHT)) { ?><meta name="copyright" content="<?php echo htmlspecialchars($META_COPYRIGHT); ?>" /><?php } ?>
@@ -79,15 +77,13 @@ if (!defined('PGV_PHPGEDVIEW')) {
 		<meta name="generator" content="<?php echo PGV_PHPGEDVIEW, ' - ', PGV_PHPGEDVIEW_URL; ?>" />
 	<?php } ?>
 	<?php echo $javascript; ?>
-	<?php echo $head; //-- additional header information ?>
 	<link type="text/css" href="<?php echo PGV_THEME_DIR?>modules.css" rel="Stylesheet" />
 </head>
 <body id="body" <?php echo $bodyOnLoad; ?>>
 <!-- begin header section -->
 <?php
-if ($view!='simple')
-if ($view=='preview') include($print_headerfile);
-else {?>
+	if (!$PRINTER_FRIENDLY && $COMPLETE_HEADER) {
+?>
 <div id="header" class="<?php echo $TEXT_DIRECTION; ?>">
 <table width="99%">
 	<tr>

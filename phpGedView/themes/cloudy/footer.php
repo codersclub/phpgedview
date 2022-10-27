@@ -3,7 +3,7 @@
  * Footer for Cloudy theme
  *
  * PhpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2018  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2022  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -37,13 +37,7 @@ if (!$footerscriptshown) {
         echo <<<JSCRIPT
         <script type="text/javascript" language="javascript" >
 <!--
-function hidebar()
-{ // hides the loading message
-	loadbar = document.getElementById("ProgBar");
-	if (loadbar) loadbar.style.display = "none";
-}
 JSCRIPT;
-        $onload ="hidebar();";
         if (PGV_SCRIPT_NAME!='individual.php')
         {
                 if (PGV_SCRIPT_NAME=='pedigree.php' ||
@@ -151,10 +145,6 @@ JSCRIPT;
                 $onload.="\n\tresize_content_div(1);";
         }
 
-        echo "\nwindow.onload = function() {\n\t";
-        echo $onload, "\n";
-		echo "if (window.sizeLines) sizeLines();\n";
-        echo "}\n-->\n";
         echo "</script>\n";
         $footerscriptshown=true;
 }

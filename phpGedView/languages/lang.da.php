@@ -721,7 +721,6 @@ $pgv_lang["add_another"]		= "Tilføj en person til tidslinien";
 $pgv_lang["find_id"]			= "Find ID";
 $pgv_lang["show"]				= "Vis";
 $pgv_lang["year"]				= "År:";
-$pgv_lang["timeline_instructions"]	= "I nyere browsere kan du kan flytte på boksene nedenunder ved hjælp af musen!";
 $pgv_lang["zoom_in"]			= "Zoom ind";
 $pgv_lang["zoom_out"]			= "Zoom ud";
 $pgv_lang["timeline_beginYear"] = "Start år";

@@ -722,7 +722,6 @@ $pgv_lang["add_another"]		= "Legg til en person på tidslinjen";
 $pgv_lang["find_id"]			= "Finn ID";
 $pgv_lang["show"]				= "Vis";
 $pgv_lang["year"]				= "År";
-$pgv_lang["timeline_instructions"]	= "I de siste nettleserne kan du klikke og dra boksene rundt på diagrammet.";
 $pgv_lang["zoom_out"]			= "Zoom ut";
 $pgv_lang["zoom_in"]			= "Zoom inn";
 $pgv_lang["timeline_beginYear"]		= "Første år";

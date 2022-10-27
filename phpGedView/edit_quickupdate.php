@@ -45,7 +45,7 @@ $famreqdfacts = preg_split("/[,; ]/", $QUICK_REQUIRED_FAMFACTS);
 $align="right";
 if ($TEXT_DIRECTION=="rtl") $align="left";
 
-print_simple_header($pgv_lang["quick_update_title"]);
+print_header($pgv_lang["quick_update_title"], false);
 
 if ($ENABLE_AUTOCOMPLETE) require PGV_ROOT.'js/autocomplete.js.htm';
 

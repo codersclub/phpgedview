@@ -4,7 +4,7 @@
  * and other common errors.
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2019  PGV Development Team. All rights reserved.
+ * Copyright (C) 2002 to 2022  PGV Development Team. All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -280,6 +280,9 @@ case 'go':
 					PGV_DB::prepare("SELECT pl_id, pl_place, pl_long, pl_lati, pl_zoom FROM {$TBLPREFIX}placelocation WHERE pl_level=? AND pl_parent_id=? AND pl_place ".PGV_DB::$LIKE." ? ORDER BY pl_place")
 					->execute(array($z, $id, $placename))
 					->fetchOneRow(PDO::FETCH_ASSOC);
+				if(is_null($row)) {
+					$row = array('pl_id'=>'', 'pl_place'=>'', 'pl_long'=>0, 'pl_lati'=>'', 'pl_placerequested'=>$levels[$z]);
+				}
 				if (!empty($row['pl_id'])) {
 					$row['pl_placerequested']=$levels[$z]; // keep the actual place name that was requested so we can display that instead of what is in the db
 					break;

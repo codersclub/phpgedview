@@ -5,7 +5,7 @@
  * Set the root person using the $pid variable
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2019  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2022  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -40,12 +40,12 @@ print_header(PrintReady($controller->name)." ".$pgv_lang["hourglass_chart"]);
 
 if ($ENABLE_AUTOCOMPLETE) require PGV_ROOT.'js/autocomplete.js.htm';
 
-if ($controller->view=="preview") {
-	print "<h2 style=\"text-align: center\">".$pgv_lang["hourglass_chart"]."&nbsp;&nbsp;&nbsp;".PrintReady($controller->name)."</h2>";
+if ($controller->isPrintPreview()) {
+	print "<h2>".$pgv_lang["hourglass_chart"]."<br />".PrintReady($controller->name)."</h2><br />";
 } else {
 	print "<!-- // NOTE: Start table header -->";
 	print "<table><tr><td valign=\"top\">";
-	print "<h2>".$pgv_lang["hourglass_chart"]."<br />".PrintReady($controller->name)."</h2>";
+	print "<h2>".$pgv_lang["hourglass_chart"]."<br />".PrintReady($controller->name)."</h2><br />";
 }
 
 $controller->setupJavascript();
@@ -62,7 +62,7 @@ if (PGV_USE_LIGHTBOX) {
 global $HouARootBoxPosn, $HouAColumnWidth, $HouALastBoxAdj, $HouBRootBoxPosn, $HouBColumnWidth, $boxPosn;
 
 $gencount=0;
-if ($view!="preview") {
+if (!$controller->isPrintPreview()) {
 ?>
 <!--	// NOTE: Start form and table -->
 	</td><td width="50px">&nbsp;</td><td><form method="get" name="people" action="?">
@@ -140,11 +140,12 @@ if ($view!="preview") {
 	</table></form>
 
 	<!-- // NOTE: Close table header -->
-	</td></tr></table>
+	</td></tr></table><br />
 <?php
 	if ($show_full==0) {
-		echo '<br /><span class="details2">', $pgv_lang['charts_click_box'], '</span><br />';
+		echo '<span class="details2">', $pgv_lang['charts_click_box'], '</span><br />';
 	}
+	echo '<br />';
 } ?>
 <div id="hourglass_chart<?php if ($TEXT_DIRECTION=="rtl") print "_rtl"; ?>" <?php if ($controller->isPrintPreview()) print " style=\"top: 1px;\""; else print "style=\"width:98%; direction:".$TEXT_DIRECTION."; z-index:1;\""; ?> >
 <table cellspacing="0" cellpadding="0" border="0"><tr>

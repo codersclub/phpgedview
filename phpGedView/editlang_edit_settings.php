@@ -76,7 +76,7 @@ if (array_key_exists($ln, $configuredlanguages["gedcom"]) or
 $d_LangName = "lang_name_" . $ln;
 $sentHeader = false;    // Indicates whether HTML headers have been sent
 if ($action !="save" and $action != "toggleActive") {
-	print_simple_header($pgv_lang["edit_lang_utility"]);
+	print_header($pgv_lang["edit_lang_utility"], false);
 	$sentHeader = true;
 
 	echo PGV_JS_START, "self.focus();", PGV_JS_END;
@@ -616,7 +616,7 @@ if ($action == "save" or $action=="toggleActive") {
 
 	if ($error != "") {
 		if (!$sentHeader) {
-			print_simple_header($pgv_lang["config_lang_utility"]);
+			print_header($pgv_lang["config_lang_utility"], false);
 			$sentHeader = true;
 			echo '<div class="center"><center>';
 		}

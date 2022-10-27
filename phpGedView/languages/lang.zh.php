@@ -353,7 +353,6 @@ $pgv_lang["add_another"] = "增加其它人:<br />個人ID號::";
 $pgv_lang["find_id"] = "尋找ID號";
 $pgv_lang["show"] = "顯示";
 $pgv_lang["year"] = "年:";
-$pgv_lang["timeline_instructions"] = "在大多數最近的瀏覽器上，您可以單擊並拖動圖表上的框";
 $pgv_lang["zoom_in"] = "放大";
 $pgv_lang["zoom_out"] = "縮小";
 $pgv_lang["timeline_beginYear"] = "開始年";

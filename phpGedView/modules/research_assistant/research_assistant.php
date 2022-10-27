@@ -77,7 +77,7 @@ class research_assistant extends ra_functions {
 		// PGV modules use the mod_print_header function to print out the default PGV full header
 		// above their main content. There is also a pgv_print_simple_header which prints out an empty header.
 		if ($_REQUEST['action']=='editcomment') {
-			$out = mod_print_simple_header($pgv_lang["research_assistant"]);
+			$out = mod_print_header($pgv_lang["research_assistant"], false);
 		} else {
 			$out = mod_print_header($pgv_lang["research_assistant"]);
 		}

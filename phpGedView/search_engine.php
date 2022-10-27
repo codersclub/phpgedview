@@ -1,12 +1,11 @@
 <?php
 /**
 * A landing spot for pages that are restricted from search engines.
-* WARNING: The functions print_header() and print_simple_header()
-* cannot be called from here because they would cause an infinite
-* back to here.
+* WARNING: The function print_header() cannot be called from here 
+* because it would cause an infinite loop back to here.
 *
 * phpGedView: Genealogy Viewer
-* Copyright (C) 2002 to 2018  PGV Development Team.  All rights reserved.
+* Copyright (C) 2002 to 2022  PGV Development Team.  All rights reserved.
 * Author: Mike Elliott (coloredpixels)
 *
 * This program is free software; you can redistribute it and/or modify

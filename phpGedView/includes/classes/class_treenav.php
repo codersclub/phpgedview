@@ -3,7 +3,7 @@
 * Class file for the tree navigator
 *
 * phpGedView: Genealogy Viewer
-* Copyright (C) 2002 to 2010  PGV Development Team.  All rights reserved.
+* Copyright (C) 2002 to 2022  PGV Development Team.  All rights reserved.
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -145,7 +145,8 @@ class TreeNav {
 	* @param string $height the height parameter for the outer style
 	*/
 	function drawViewport($id='', $width='', $height='') {
-		global $PGV_IMAGE_DIR, $PGV_IMAGES, $GEDCOM, $pgv_lang, $CONTACT_EMAIL, $SERVER_URL;
+		global $PGV_IMAGE_DIR, $PGV_IMAGES, $GEDCOM, $pgv_lang, $CONTACT_EMAIL, $SERVER_URL, $PRINTER_FRIENDLY;
+
 		if (empty($id)) $id = $this->rootPerson->getXref();
 		$widthS = "";
 		$heightS = "";
@@ -161,16 +162,18 @@ class TreeNav {
 			if (!$this->allSpouses) $this->drawPerson($this->rootPerson, $this->generations, 0, $parent);
 			else $this->drawPersonAllSpouses($this->rootPerson, $this->generations, 0);?>
 			</div>
-			<div id="controls" style="position: absolute; left: 0px; top: 0px; z-index: 100; background-color: #EEEEEE">
-			<table>
-				<tr><td><a href="#" onclick="<?php print $this->name; ?>.zoomIn(); return false;"><img src="<?php print $SERVER_URL.$PGV_IMAGE_DIR."/".$PGV_IMAGES['zoomin']['other'];?>" border="0" alt="zoomin" /></a></td></tr>
-				<tr><td><a href="#" onclick="<?php print $this->name; ?>.zoomOut(); return false;"><img src="<?php print $SERVER_URL.$PGV_IMAGE_DIR."/".$PGV_IMAGES['zoomout']['other'];?>" border="0" alt="zoomout" /></a></td></tr>
-				<tr><td <?php if (is_null($this->rootPerson) || PGV_SCRIPT_NAME=='treenav.php') print "style=\"display: none;\"";?>><a id="biglink" href="#" onclick="<?php print $this->name; ?>.loadBigTree('<?php if (!is_null($this->rootPerson)) print $this->rootPerson->getXref();?>','<?php print htmlentities($GEDCOM,ENT_COMPAT,'UTF-8');?>'); return false;" title="<?php print $pgv_lang["load_full_tree"]; ?>"><img src="<?php print $SERVER_URL.$PGV_IMAGE_DIR."/".$PGV_IMAGES['gedcom']['small'];?>" border="0" alt="" /></a></td></tr>
-				<tr><td><a href="#" onclick="<?php print $this->name; ?>.toggleSpouses('<?php if ($this->rootPerson!=null) print $this->rootPerson->getXref(); ?>'); return false;" title="<?php print $pgv_lang["hide_show_spouses"]; ?>"><img src="<?php print $SERVER_URL.$PGV_IMAGE_DIR."/".$PGV_IMAGES['sfamily']['small']; ?>" border="0" alt="" /></a></td></tr>
-				<tr><td><?php print_help_link('help_treenav.php','qm'); ?></td></tr>
-				<tr><td><img id="<?php print $this->name; ?>_loading" src="<?php print $SERVER_URL; ?>images/loading.gif" style="display: none;" alt="Loading..." /></td></tr>
-			</table>
-			</div>
+			<?php if (!$PRINTER_FRIENDLY) { ?>
+				<div id="controls" style="position: absolute; left: 0px; top: 0px; z-index: 100; background-color: #EEEEEE">
+				<table>
+					<tr><td><a href="#" onclick="<?php print $this->name; ?>.zoomIn(); return false;"><img src="<?php print $SERVER_URL.$PGV_IMAGE_DIR."/".$PGV_IMAGES['zoomin']['other'];?>" border="0" alt="zoomin" /></a></td></tr>
+					<tr><td><a href="#" onclick="<?php print $this->name; ?>.zoomOut(); return false;"><img src="<?php print $SERVER_URL.$PGV_IMAGE_DIR."/".$PGV_IMAGES['zoomout']['other'];?>" border="0" alt="zoomout" /></a></td></tr>
+					<tr><td <?php if (is_null($this->rootPerson) || PGV_SCRIPT_NAME=='treenav.php') print "style=\"display: none;\"";?>><a id="biglink" href="#" onclick="<?php print $this->name; ?>.loadBigTree('<?php if (!is_null($this->rootPerson)) print $this->rootPerson->getXref();?>','<?php print htmlentities($GEDCOM,ENT_COMPAT,'UTF-8');?>'); return false;" title="<?php print $pgv_lang["load_full_tree"]; ?>"><img src="<?php print $SERVER_URL.$PGV_IMAGE_DIR."/".$PGV_IMAGES['gedcom']['small'];?>" border="0" alt="" /></a></td></tr>
+					<tr><td><a href="#" onclick="<?php print $this->name; ?>.toggleSpouses('<?php if ($this->rootPerson!=null) print $this->rootPerson->getXref(); ?>'); return false;" title="<?php print $pgv_lang["hide_show_spouses"]; ?>"><img src="<?php print $SERVER_URL.$PGV_IMAGE_DIR."/".$PGV_IMAGES['sfamily']['small']; ?>" border="0" alt="" /></a></td></tr>
+					<tr><td><?php print_help_link('help_treenav.php','qm'); ?></td></tr>
+					<tr><td><img id="<?php print $this->name; ?>_loading" src="<?php print $SERVER_URL; ?>images/loading.gif" style="display: none;" alt="Loading..." /></td></tr>
+				</table>
+				</div>
+			<?php } ?>
 		</div>
 		<script type="text/javascript">
 		<!--

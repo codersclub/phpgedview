@@ -723,7 +723,6 @@ $pgv_lang["add_another"]				= "Andere Person zur Ansicht hinzufügen";
 $pgv_lang["find_id"]					= "ID suchen";
 $pgv_lang["show"]						= "Zeigen";
 $pgv_lang["year"]						= "Jahr:";
-$pgv_lang["timeline_instructions"]		= "In den meisten neueren Browsern, kann man die Rechtecke durch Klicken und gleichzeitiges Ziehen innerhalb der Ansicht bewegen.";
 $pgv_lang["zoom_in"]					= "Vergrößern";
 $pgv_lang["zoom_out"]					= "Verkleinern";
 $pgv_lang["timeline_beginYear"]			= "Start Jahr";

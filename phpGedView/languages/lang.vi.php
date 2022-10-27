@@ -359,7 +359,6 @@ $pgv_lang["add_another"]			= "Thêm người nữa trong đồ thị:<br />Nhậ
 $pgv_lang["find_id"]				= "Tìm Nhận Diện";
 $pgv_lang["show"]					= "Cho xem";
 $pgv_lang["year"]					= "Năm:";
-$pgv_lang["timeline_instructions"]	= "Với những bộ duyệt tìm tân thời, bạn có thể nhấn và kéo hộp khắp nơi trong đồ thị.";
 $pgv_lang["zoom_in"]				= "Phóng to";
 $pgv_lang["zoom_out"]				= "Thu nhỏ";
 $pgv_lang["jan"]					= "Tháng Giêng";

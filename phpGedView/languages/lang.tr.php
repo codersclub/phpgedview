@@ -722,7 +722,6 @@ $pgv_lang["add_another"]		= "Çizelgeye başka kişi ekle:<br />Kişi ID:";
 $pgv_lang["find_id"]			= "ID Bul";
 $pgv_lang["show"]			= "Göster";
 $pgv_lang["year"]			= "Yıl:";
-$pgv_lang["timeline_instructions"]	= "En son tarayıcılarda kutuları tıklayıp çizelgenin çevresinde sürükleyebilrsiniz.";
 $pgv_lang["zoom_in"]			= "Yakınlaştır";
 $pgv_lang["zoom_out"]			= "Uzaklaştır";
 $pgv_lang["timeline_beginYear"] = "Başlangıç Yılı";

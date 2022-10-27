@@ -48,7 +48,7 @@ if (isset($_REQUEST['name'])) $name = $_REQUEST['name'];
 //-- make sure that they have user status before they can use this page
 //-- otherwise have them login again
 if (!PGV_USER_ID) {
-	print_simple_header("");
+	print_header("", false);
 	print $pgv_lang["access_denied"];
 	print "<div class=\"center\"><a href=\"javascript:;\" onclick=\"self.close();\">".$pgv_lang["close_window"]."</a></div>\n";
 	print_simple_footer();
@@ -217,9 +217,9 @@ else {
 }
 
 if ($ctype=="user") {
-	print_simple_header($pgv_lang["mygedview"]);
+	print_header($pgv_lang["mygedview"], false);
 } else {
-	print_simple_header(get_gedcom_setting(PGV_GED_ID, 'title'));
+	print_header(get_gedcom_setting(PGV_GED_ID, 'title'), false);
 }
 
 $GEDCOM_TITLE=PrintReady(get_gedcom_setting(PGV_GED_ID, 'title'));  // needed in $pgv_lang["rss_descr"]

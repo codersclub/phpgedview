@@ -657,7 +657,6 @@ $pgv_lang["add_another"]		= "Lisää uusi henkilö kaavioon:<br />Henkilön ID:"
 $pgv_lang["find_id"]			= "Hae ID";
 $pgv_lang["show"]			= "Näytä";
 $pgv_lang["year"]			= "Vuosi:";
-$pgv_lang["timeline_instructions"]	= "Useimmissa uusissa selaimissa laatikoita voi siirtää hiirellä kaaviossa paikasta toiseen.";
 $pgv_lang["zoom_out"]		= "Loitonna";
 $pgv_lang["timeline_beginYear"] 	= "Aloitusvuosi";
 $pgv_lang["timeline_endYear"] 	= "Lopetusvuosi";

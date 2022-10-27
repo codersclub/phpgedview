@@ -450,6 +450,7 @@ class LifespanControllerRoot extends BaseController {
 				foreach($unparsedEvents as $index=>$val) {
 					$date = $val->getDate();
 					if (!empty($date) && !empty($date->date1)) {
+						if (!is_object($date)) continue;
 						$fact = $val->getTag();
 						$yearsin = $date->date1->y-$birthYear;
 						if ($lifespannumeral==0) {

@@ -5,7 +5,7 @@
  * This is the page that does the work of linking items.
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2009  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2022  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -64,7 +64,7 @@ if (PGV_USER_IS_ADMIN && $linkto=='manage' && file_exists(PGV_ROOT.'modules/GEDF
 		}
 	}
 
-	print_simple_header($pgv_lang["link_media"]." ".$toitems);
+	print_header($pgv_lang["link_media"]." ".$toitems, false);
 
 	if ($ENABLE_AUTOCOMPLETE) require PGV_ROOT.'js/autocomplete.js.htm';
 

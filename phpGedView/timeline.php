@@ -5,7 +5,7 @@
  * Use the $pids array to set which individuals to show on the chart
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2009  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2022  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -347,7 +347,6 @@ $controller->checkPrivacy();
 <?php
 if (count($controller->people)>0) {
 	?>
-	<?php if ($controller->isPrintPreview()) print "\n\t".$pgv_lang['timeline_instructions']."<br /><br />"; ?>
 <div id="timeline_chart">
 	<!-- print the timeline line image -->
 	<div id="line" style="position:absolute; <?php print $TEXT_DIRECTION =="ltr"?"left: ".($basexoffset+22):"right: ".($basexoffset+22); ?>px; top: <?php print $baseyoffset; ?>px; ">

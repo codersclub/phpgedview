@@ -729,7 +729,6 @@ $pgv_lang["add_another"]		= "Dodaj še eno osebo na stran:<br />ID osebe:";
 $pgv_lang["find_id"]			= "Poišči ID";
 $pgv_lang["show"]			= "Pokaži";
 $pgv_lang["year"]			= "Leto:";
-$pgv_lang["timeline_instructions"]	= "V večini brskalnikov lahko kliknete in prenesete okvirčke na različna mesta v preglednici.";
 $pgv_lang["zoom_in"]			= "Približaj";
 $pgv_lang["zoom_out"]			= "Oddalji";
 $pgv_lang["timeline_beginYear"]		= "Začetno leto";

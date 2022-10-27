@@ -719,7 +719,6 @@ $pgv_lang["add_another"]		= "Lägg till en ny person till tavlan";
 $pgv_lang["find_id"]			= "Sök ID";
 $pgv_lang["show"]				= "Visa";
 $pgv_lang["year"]				= "År:";
-$pgv_lang["timeline_instructions"]	= "I de flesta nyare webläsare kan man klicka och dra runt boxarna i tavlan.";
 $pgv_lang["zoom_in"]			= "Zooma in";
 $pgv_lang["zoom_out"]			= "Zooma ut";
 $pgv_lang["timeline_beginYear"] = "Börja år";

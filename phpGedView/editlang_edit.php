@@ -3,7 +3,7 @@
  * Edit a language file
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2018  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2022  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -47,7 +47,7 @@ $lang_filename_orig	= safe_REQUEST($_REQUEST, 'lang_filename_orig',	PGV_REGEX_NO
 $action				= safe_REQUEST($_REQUEST, 'action',				PGV_REGEX_NOSCRIPT, '');
 $anchor				= safe_REQUEST($_REQUEST, 'anchor',				PGV_REGEX_NOSCRIPT, '');
 
-print_simple_header($pgv_lang["editlang"]);
+print_header($pgv_lang["editlang"], false);
 
 echo PGV_JS_START, "self.focus();", PGV_JS_END;
 

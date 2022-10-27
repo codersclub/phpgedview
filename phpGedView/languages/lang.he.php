@@ -703,7 +703,6 @@ $pgv_lang["add_another"]		= "הוסף אדם לתרשים:<br >קוד זיהוי
 $pgv_lang["find_id"]			= "מצא קוד זיהוי";
 $pgv_lang["show"]			= "הצג";
 $pgv_lang["year"]			= "שנה:";
-$pgv_lang["timeline_instructions"]	= "ברוב תוכנות הגלישה החדשות ניתן להקיש ולגרור קופסאות על התרשים.";
 $pgv_lang["zoom_in"]			= "קרב";
 $pgv_lang["zoom_out"]		= "הרחק";
 $pgv_lang["timeline_beginYear"] 	= "שנת התחלה";

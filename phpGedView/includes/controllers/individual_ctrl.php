@@ -96,7 +96,7 @@ class IndividualControllerRoot extends BaseController {
 
 		$this->pid = safe_GET_xref('pid');
 
-		$show_famlink = $this->view!='preview';
+		$show_famlink = !$this->isPrintPreview();
 
 		$pid = $this->pid;
 
@@ -2118,7 +2118,7 @@ class IndividualControllerRoot extends BaseController {
 		//-- the tree is already ajax enabled
 
 	/*
-		global $pgv_lang, $pgv_changes, $factarray, $view;
+		global $pgv_lang, $pgv_changes, $factarray;
 		// Show or Hide Navigator -----------
 		if (isset($_COOKIE['famnav'])) {
 			$Fam_Navigator=$_COOKIE['famnav'];
@@ -2146,7 +2146,7 @@ class IndividualControllerRoot extends BaseController {
 	*/
 	function print_lightbox_tab() {
 		global $MULTI_MEDIA, $SHOW_ID_NUMBERS, $MEDIA_EXTERNAL;
-		global $pgv_lang, $pgv_changes, $factarray, $view;
+		global $pgv_lang, $pgv_changes, $factarray;
 		global $GEDCOM, $MEDIATYPE, $pgv_changes;
 		global $WORD_WRAPPED_NOTES, $MEDIA_DIRECTORY, $PGV_IMAGE_DIR, $PGV_IMAGES, $TEXT_DIRECTION, $is_media;
 		global $cntm1, $cntm2, $cntm3, $cntm4, $t, $mgedrec ;
@@ -2207,7 +2207,7 @@ class IndividualControllerRoot extends BaseController {
 	function print_spare_tab() {
 	/*
 		global $MULTI_MEDIA, $SHOW_ID_NUMBERS, $MEDIA_EXTERNAL;
-		global $pgv_lang, $pgv_changes, $factarray, $view;
+		global $pgv_lang, $pgv_changes, $factarray;
 		global $GEDCOM, $MEDIATYPE;
 		global $WORD_WRAPPED_NOTES, $MEDIA_DIRECTORY, $PGV_IMAGE_DIR, $PGV_IMAGES, $TEXT_DIRECTION, $is_media;
 		global $mgedrec ;

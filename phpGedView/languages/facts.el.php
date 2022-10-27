@@ -3,7 +3,7 @@
  * Greek Language file for PhpGedView.
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2019  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2022  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -440,7 +440,7 @@ $factarray["_CHR_MSIB"] = "Βάφτιση αδερφιού της μητέρας
  *		The length of these abbreviations is not restricted to 1 letter.
  */
 
-unset($factAbbrev);		// Don't let other languages specify Fact abbreviations for this language
+$factAbbrev = array();		// Don't let other languages specify Fact abbreviations for this language
 
 /*-- The following lines have been commented out.  They should serve as examples.
 

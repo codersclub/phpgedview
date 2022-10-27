@@ -645,7 +645,6 @@ $pgv_lang["add_another"]			= "Adaugă altă persoană la diagramă:<br />ID pers
 $pgv_lang["find_id"]				= "Găseşte ID";
 $pgv_lang["show"]					= "Arată";
 $pgv_lang["year"]					= "An:";
-$pgv_lang["timeline_instructions"]	= "În cele mai recente navigatoare puteţi da click şi să trageţi cutiile în jurul diagramei.";
 $pgv_lang["zoom_in"]				= "Măreşte";
 $pgv_lang["zoom_out"]				= "Micşorează";
 $pgv_lang["timeline_beginYear"] 	= "Anul de început";

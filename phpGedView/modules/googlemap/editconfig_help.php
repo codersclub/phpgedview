@@ -3,7 +3,7 @@
  * Configure Help file for PHPGedView
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2008  PGV Development Team. All rights reserved.
+ * Copyright (C) 2002 to 2022  PGV Development Team. All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -34,7 +34,7 @@ loadLangFile("pgv_confighelp, pgv_help, googlemap:help_text");
 
 if (isset($_REQUEST['help'])) $help=$_REQUEST['help'];
 
-print_simple_header($pgv_lang["config_help"]);
+print_header($pgv_lang["config_help"], false);
 echo '<span class="helpheader">';
 print_text("config_help");
 echo '</span><br /><br /><span class="helptext">';

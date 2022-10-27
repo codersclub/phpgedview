@@ -35,7 +35,7 @@ loadLangFile("lightbox:lang, lightbox:help_text");
 
 $help = safe_GET("help");
 
-print_simple_header($pgv_lang["config_help"]);
+print_header($pgv_lang["config_help"], false);
 print '<span class="helpheader">';
 print_text("config_help");
 print '</span><br /><br /><span class="helptext">';

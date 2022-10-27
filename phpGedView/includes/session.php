@@ -482,6 +482,13 @@ if (empty($SEARCH_SPIDER) && !isset($_SESSION['initiated']) && !isset($_SESSION[
 	// An existing session
 }
 
+if ($SEARCH_SPIDER) {
+	$PRINTER_FRIENDLY = false;		// Search spiders aren't allowed to request "Printer-friendly version"
+} else {
+	$PRINTER_FRIENDLY = safe_GET('view', 'preview', null);		// 'preview': Printer-friendly version
+}
+$SHOW_ARROWS = !$PRINTER_FRIENDLY;	// Show Ajax arrows?  Let's have this depend on Printer-friendly version for now
+
 // MD-5 SALT for use in the crypt() function: use 1st 8 bytes of session ID padded with junk (in case it's too short)
 define ('PGV_SALT', '$1$'.substr(session_id().'padpadpa', 0, 8).'$');
 
@@ -499,6 +506,7 @@ if (isset($_REQUEST['ged'])) {
 	// .... we'll need to query the DB to find one
 	$GEDCOM='';
 }
+$ged = $GEDCOM;		// Some scripts still use this
 
 require PGV_ROOT.'config_gedcom.php'; // Load default gedcom settings
 

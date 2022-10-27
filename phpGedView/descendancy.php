@@ -3,7 +3,7 @@
  * Parses gedcom file and displays a descendancy tree.
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2019  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2022  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -26,8 +26,8 @@
 
 define('PGV_SCRIPT_NAME', 'descendancy.php');
 require './config.php';
-require PGV_ROOT.'includes/controllers/descendancy_ctrl.php';
-require PGV_ROOT.'includes/functions/functions_print_lists.php';
+require_once PGV_ROOT.'includes/controllers/descendancy_ctrl.php';
+require_once PGV_ROOT.'includes/functions/functions_print_lists.php';
 
 $controller=new DescendancyController();
 $controller->init();
@@ -49,7 +49,7 @@ echo 'var pastefield; function paste_id(value) {pastefield.value=value;}';
 echo PGV_JS_END;
 
 $gencount=0;
-if ($view!="preview") {
+if (!$controller->isPrintPreview()) {
 	$show_famlink = true;
 	echo '</td><td width="50px">&nbsp;</td><td><form method="get" name="people" action="?">';
 	echo '<input type="hidden" name="show_full" value="', $controller->show_full, '" />';
@@ -122,7 +122,7 @@ if (is_null($controller->descPerson)) {
 
 switch ($controller->chart_style) {
 case 0: //-- list
-	if ($show_full==0) {
+	if ($controller->show_full==0 && !$controller->isPrintPreview()) {
 		echo '<span class="details2">', $pgv_lang["charts_click_box"], '</span><br /><br />';
 	}
 	echo '<ul style="list-style: none; display: block;" id="descendancy_chart', $TEXT_DIRECTION=='rtl' ? '_rtl' : '', '">';
@@ -134,7 +134,7 @@ case 0: //-- list
 	echo '</ul>';
 	break;
 case 1: //-- booklet
-	if ($show_full==0) {
+	if ($controller->show_full==0 && !$controller->isPrintPreview()) {
 		echo '<span class="details2">', $pgv_lang["charts_click_box"], '</span><br /><br />';
 	}
 	$show_cousins = true;

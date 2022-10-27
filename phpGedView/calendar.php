@@ -5,7 +5,7 @@
  * Displays events on a daily, monthly, or yearly calendar.
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2021  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2022  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -105,7 +105,7 @@ if ($cal_date->d>$days_in_month && $action=='today')
 print_header($pgv_lang['anniversary_calendar']);
 echo '<div style="text-align: center;" id="calendar_page">';
 
-if ($view!='preview') {
+if (!$PRINTER_FRIENDLY) {
 	// Calendar form
 	echo '<form name="dateform" method="get" action="calendar.php">';
 	echo "<input type=\"hidden\" name=\"cal\"      value=\"{$cal}\"         />";
@@ -133,7 +133,7 @@ case 'year':
 }
 echo '</h2></td></tr>';
 
-if ($view!='preview') {
+if (!$PRINTER_FRIENDLY) {
 	// Day selector
 	echo '<tr><td class="descriptionbox vmiddle">';
 	print_help_link('annivers_date_select_help', 'qm', 'day');
@@ -514,7 +514,7 @@ case 'calendar':
 	break;
 }
 
-if ($view=="preview") {
+if ($PRINTER_FRIENDLY) {
 	// Print details of any filtering
 	$filters=array();
 	if ($filterof=='living') {

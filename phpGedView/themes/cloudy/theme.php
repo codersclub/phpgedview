@@ -3,7 +3,7 @@
  * Cloudy theme
  *
  * PhpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2019  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2022  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -39,9 +39,8 @@ $toplinks = PGV_THEME_DIR."toplinks.php";                 //-- File to display t
 $headerfile = PGV_THEME_DIR."header.php";                 //-- Header information for the site
 $footerfile = PGV_THEME_DIR."footer.php";                 //-- Footer information for the site
 $print_footerfile = PGV_THEME_DIR."print_footer.php";     //-- Print Preview Footer information for the site
-$print_headerfile = PGV_THEME_DIR."print_header.php";     //-- Print Preview Header information for the site
+
 $PGV_IMAGE_DIR = "themes/cloudy/images";                //-- directory to look for images
-$FAVICON=$PGV_IMAGE_DIR."/favicon.ico";
 $PGV_USE_HELPIMG = true;                                // set to true to use image for help questionmark, set to false to use $pgv_lang["qm"]
 
 //-- variables for image names
