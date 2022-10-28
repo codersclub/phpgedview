@@ -14,9 +14,12 @@ The session.php script uses this information to populate the constants : PGV_VER
 =====================================================================
 
 Version 4.3.1
+ - Changed: Additional language variables in facts.pl.php (tbabczynski)
+ - Fixed: Function rela_localisation_pl() does not belong in functions.sl.php (tbabczynski, canajun2eh)
+ - Fixed: Errors in find.php and media_3_find.php introduced in SVN 7354 (tbabczynski, canajun2eh)
  - Deleted: In all themes, unused file print_header.php (canajuneh)
  - Fixed: Error in Lifespan chart due to PHP 7 incompatibility (canajun2eh)
- - Fixed: GEDCOM "Abbreviate chart labels" option does not use abbreviations defined in langage files (anajun2eh)
+ - Fixed: GEDCOM "Abbreviate chart labels" option does not use abbreviations defined in language files (canajun2eh)
  - Fixed: Time line chart "Remove person" causes "You are not welcome" error (canajun2eh)
  - Updated: PHPMailer from version 6.5.3 to version 6.6.5 (canajun2eh)
  - Fixed: "Printer friendly" option not preparing charts pages for printing (canajun2eh)

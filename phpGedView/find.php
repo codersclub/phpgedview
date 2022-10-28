@@ -425,7 +425,7 @@ if ($action=="filter") {
 			echo "<td class=\"list_value_wrap $TEXT_DIRECTION\"><ul>";
 			usort($myindilist, array('GedcomRecord', 'Compare'));
 			foreach($myindilist as $indi) {
-				echo $indi->format_list('li', false);
+				echo $indi->format_list('li', true);
 			}
 			echo '</ul></td></tr><tr><td class="list_label">', $pgv_lang['total_indis'], ' ', count($myindilist), '</tr></td>';
 		} else {
@@ -450,7 +450,7 @@ if ($action=="filter") {
 			echo "<td class=\"list_value_wrap $TEXT_DIRECTION\"><ul>";
 			usort($myfamlist, array('GedcomRecord', 'Compare'));
 			foreach($myfamlist as $family) {
-				echo $family->format_list('li', false);
+				echo $family->format_list('li', true);
 			}
 			echo '</ul></td></tr><tr><td class="list_label">', $pgv_lang['total_fams'], ' ', count($myfamlist), '</tr></td>';
 		} else {
@@ -516,7 +516,7 @@ if ($action=="filter") {
 		 */
 		if ($create=="thumbnail") {
 			$filename = $_REQUEST["file"];
-			generate_thumbnail($directory.$filename, $thumbdir.$filename, false);
+			generate_thumbnail($directory.$filename, $thumbdir.$filename, true);
 		}
 
 		echo "<br />";
@@ -678,7 +678,7 @@ if ($action=="filter") {
 	if ($type=="note") {
 		echo '<table class="tabs_table ', $TEXT_DIRECTION, ' width90">';
 		if ($filter) {
-			$mynotelist = search_notes($filter_array, array(PGV_GED_ID), 'AND', false);
+			$mynotelist = search_notes($filter_array, array(PGV_GED_ID), 'AND', true);
 		} else {
 			$mynotelist = get_note_list(PGV_GED_ID);
 		}
@@ -700,7 +700,7 @@ if ($action=="filter") {
 	if ($type=="source") {
 		echo '<table class="tabs_table ', $TEXT_DIRECTION, ' width90">';
 		if ($filter) {
-			$mysourcelist = search_sources($filter_array, array(PGV_GED_ID), 'AND', false);
+			$mysourcelist = search_sources($filter_array, array(PGV_GED_ID), 'AND', true);
 		} else {
 			$mysourcelist = get_source_list(PGV_GED_ID);
 		}
