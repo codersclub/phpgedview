@@ -244,6 +244,12 @@ $factarray["MARR:SOUR"] = "Źródło ślubu";
 $factarray["ENGA:PLAC"] = "Miejsce zaręczyn";
 $factarray["ENGA:DATE"] = "Data zaręczyn";
 $factarray["ENGA:SOUR"] = "Źródło zaręczyn";
+$factarray["REPO:NAME"] = "Nazwa repozytorium";
+$factarray["REPO:ADDR"] = "Adres repozytorium";
+$factarray["REPO:PHON"] = "Telefon do repozytorium";
+$factarray["REPO:FAX"]  = "FAX do repozytorium";
+$factarray["REPO:EMAIL"] = "Adres email repozytorium";
+$factarray["REPO:WWW"]  = "Strona domowa repozytorium";
 
 // Fakty specyficzne dla eksportu GedCom z programu Family Tree Maker
 $factarray["_MDCL"] = "Służba medyczna";
@@ -465,7 +471,7 @@ $factarray["_FAMC_RESI"] = "Miejsce zamieszkania rodziców";
 
 //-- PGV Only facts
 $factarray["_THUM"] = "Zawsze używać głównego obrazu?";
-$factarray["_PGVU"] = "przez";
+$factarray["_PGVU"] = "przez";	// ostatnio zmieniony przez
 $factarray["SERV"]	= "Zdalny serwer";
 $factarray["_GEDF"] = "Plik GEDCOM";
 

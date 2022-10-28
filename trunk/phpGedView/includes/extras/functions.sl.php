@@ -2,7 +2,7 @@
 /**
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2010  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2022  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -143,7 +143,7 @@ function date_diff_localisation_sl(&$label, &$gap) {
 	else if ($gap != 0) $label .= $gap." ".$pgv_lang["months"]; // x mesecev
 }
 ////////////////////////////////////////////////////////////////////////////////
-// Localise a number of people. Lokalizacija števila oseb. //Glej  lifespan.php
+// Localise a number of people. Lokalizacija Å¡tevila oseb. //Glej  lifespan.php
 ////////////////////////////////////////////////////////////////////////////////
 function num_people_localisation_sl(&$count) {
 	global $pgv_lang;
@@ -166,12 +166,12 @@ function fact_AKA_localisation_sl(&$fact, &$pid) {
 	$person = Person::getInstance($pid);
 	$sex = $person->getSex();
 	if ($fact == "_INTE") {
-		if ($sex == "M")      $factarray[$fact] = "Pokopan"; // moški
-		else if ($sex == "F") $factarray[$fact] = "Pokopana"; // ženska
+		if ($sex == "M")      $factarray[$fact] = "Pokopan"; // moÅ¡ki
+		else if ($sex == "F") $factarray[$fact] = "Pokopana"; // Å¾enska
 	}
 	else {
-		if ($sex == "M")      $factarray[$fact] = "Znan tudi kot"; // moški
-		else if ($sex == "F") $factarray[$fact] = "Znana tudi kot "; // ženska
+		if ($sex == "M")      $factarray[$fact] = "Znan tudi kot"; // moÅ¡ki
+		else if ($sex == "F") $factarray[$fact] = "Znana tudi kot "; // Å¾enska
 	}
 }
 ///////////////////////////////////////////////////////////////////////////////////////////
@@ -184,21 +184,12 @@ function fact_NMR_localisation_sl($fact, &$fid) {
 	$husb = $family->getHusband();
 	$wife = $family->getWife();
 	if ($fact == "_NMR") {
-		if (empty($wife) && !empty($husb))	$factarray[$fact] = "Samski"; // moški
-		else if (empty($husb) && !empty($wife))	$factarray[$fact] = "Samska"; // ženska
+		if (empty($wife) && !empty($husb))	$factarray[$fact] = "Samski"; // moÅ¡ki
+		else if (empty($husb) && !empty($wife))	$factarray[$fact] = "Samska"; // Å¾enska
 	}
 	else if ($fact == "_NMAR") {
-		if (empty($wife) && !empty($husb))	$factarray[$fact] = "Nikoli poroèen"; // moški
-		else if (empty($husb) && !empty($wife))	$factarray[$fact] = "Nikoli poroèena"; // ženska
+		if (empty($wife) && !empty($husb))	$factarray[$fact] = "Nikoli poroÃ¨en"; // moÅ¡ki
+		else if (empty($husb) && !empty($wife))	$factarray[$fact] = "Nikoli poroÃ¨ena"; // Å¾enska
 	}
-}
-
-
-////////////////////////////////////////////////////////////////////////////////
-// Localise the relationships. Lokalizacja pokrewieñstwa.
-////////////////////////////////////////////////////////////////////////////////
-function rela_localisation_pl(&$rela, &$pid2) {
-
-	return UTF8_ucfirst($rela);
 }
 ?>
