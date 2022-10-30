@@ -275,8 +275,6 @@ var show = false;
 				}
 			}
 		}
-		//if (!lasttab) lasttab=0;
-		//if (window.resize_content_div) resize_content_div(lasttab+1);
 		return false;
 	}
 
