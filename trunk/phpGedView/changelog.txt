@@ -14,6 +14,7 @@ The session.php script uses this information to populate the constants : PGV_VER
 =====================================================================
 
 Version 4.3.1
+ - Fixed: Undefined variable $onload in /themes/cloudy/footer.php (canajun2eh)
  - Changed: Additional language variables in facts.pl.php (tbabczynski)
  - Fixed: Function rela_localisation_pl() does not belong in functions.sl.php (tbabczynski, canajun2eh)
  - Fixed: Errors in find.php and media_3_find.php introduced in SVN 7354 (tbabczynski, canajun2eh)
