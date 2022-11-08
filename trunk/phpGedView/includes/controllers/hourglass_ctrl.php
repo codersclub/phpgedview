@@ -296,7 +296,7 @@ class HourglassControllerRoot extends BaseController {
 							}
 							print "<td valign=\"top\"><img name=\"bvertline\" id=\"vline_$chil\" src=\"".$PGV_IMAGE_DIR."/".$PGV_IMAGES["vline"]["other"]."\" width=\"3\" height=\"".$h."\" alt=\"\" /></td>";
 						} else {
-							print "<td style=\"background: url('".$PGV_IMAGE_DIR."/".$PGV_IMAGES["vline"]["other"]."');\"><img src=\"".$PGV_IMAGE_DIR."/".$PGV_IMAGES["spacer"]["other"]."\" width=\"3\" alt=\"\" /></td>";
+							print "<td><img name=\"mvertline\" src=\"".$PGV_IMAGE_DIR."/".$PGV_IMAGES["vline"]["other"]."\" width=\"3\" alt=\"\"/></td>";
 						}
 					}
 					print "</tr>";
@@ -572,7 +572,7 @@ class HourglassControllerRoot extends BaseController {
 			{
 				divelement.innerHTML = oXmlHttp.responseText;
 				sizeLines();
-		}
+			}
 		};
 		oXmlHttp.send(null);
 		return false;
@@ -582,19 +582,28 @@ class HourglassControllerRoot extends BaseController {
 		var vlines;
 		vlines = document.getElementsByName("tvertline");
 		for(i=0; i < vlines.length; i++) {
-			var pid = vlines[i].id.substr(vlines[i].id.indexOf("_")+1);
+			var pid = vlines[i].id.substring(vlines[i].id.indexOf("_")+1);
 			var hline = document.getElementById("table_"+pid);
 			var hline2 = document.getElementById("table2_"+pid);
-			var newHeight = Math.abs(hline.offsetHeight - (hline2.offsetTop + <?php print $bhalfheight+2;1?>));
+			//var newHeight = Math.abs(hline.offsetHeight - (hline2.offsetTop + <?php //print $bhalfheight+2;1?>//));
+			var newHeight = Math.abs(hline.offsetHeight - (hline2.offsetTop + hline2.querySelector('td > img').offsetTop + 2));
 			vlines[i].style.height=newHeight+'px';
 		}
 
 		vlines = document.getElementsByName("bvertline");
 		for(i=0; i < vlines.length; i++) {
-			var pid = vlines[i].id.substr(vlines[i].id.indexOf("_")+1);
+			var pid = vlines[i].id.substring(vlines[i].id.indexOf("_")+1);
 			var hline = document.getElementById("table_"+pid);
 			var hline2 = document.getElementById("table2_"+pid);
-			vlines[i].style.height=(hline.offsetTop+hline2.offsetTop + <?php print $bhalfheight+2; ?>)+'px';
+			//vlines[i].style.height=(hline.offsetTop+hline2.offsetTop + <?php //print $bhalfheight+2; ?>//)+'px';
+			vlines[i].style.height=(hline.offsetTop+hline2.offsetTop + hline2.querySelector('td > img').offsetTop + 2)+'px';
+		}
+
+		vlines = document.getElementsByName("mvertline");
+		//alert(vlines[0].parentNode.parentNode.parentNode);
+		for(i=0; i < vlines.length; i++) {
+			//vlines[i].parentNode.style.height="50%";
+			vlines[i].style.height=(vlines[i].parentNode.offsetHeight)+'px';
 		}
 
 		vlines = document.getElementsByName("pvline");

@@ -3,7 +3,7 @@
  * Polish texts
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2011  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2022  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -36,7 +36,7 @@ $pgv_lang["append"]						= "Dołącz wpis";
 $pgv_lang["review_changes"]				= "Przejrzyj zmiany w pliku GEDCOM";
 $pgv_lang["remove_object"]				= "Usuń obiekt";
 $pgv_lang["remove_links"]				= "Usuń odnośniki";
-$pgv_lang["media_not_deleted"]			= "Katalog mediów nie został usunięty.";
+$pgv_lang["media_not_deleted"]			= "Katalog mediów - <span style=\"font-size:larger\">#GLOBALS[whichDir]#</span> - nie został usunięty.";
 $pgv_lang["thumbs_not_deleted"]			= "Katalog miniaturek nie został usunięty.";
 $pgv_lang["thumbs_deleted"]				= "Katalog miniaturek został usunięty pomyślnie.";
 $pgv_lang["show_thumbnail"]				= "Pokaż miniaturki";
@@ -145,10 +145,10 @@ $pgv_lang["current_person"]				= "Bieżąca osoba";
 $pgv_lang["date"]						= "Data";
 $pgv_lang["deathdate_search"]			= "Data śmierci: ";
 $pgv_lang["deathplace_search"]			= "Miejsce śmierci: ";
-$pgv_lang["delete_dir_success"]			= "Przenoszenie katalogów multimediów i miniaturek zostało zakończone pomyślnie.";
+$pgv_lang["delete_dir_success"]			= "Przenoszenie katalogów multimediów i miniaturek - <b>#GLOBALS[whichDir]#</b> - zostało zakończone pomyślnie.";
 $pgv_lang["delete_file"]				= "Usuń plik";
 $pgv_lang["delete_repo"]				= "Usuń repozytorium";
-$pgv_lang["directory_not_empty"]		= "Katalog nie jest pusty.";
+$pgv_lang["directory_not_empty"]		= "Katalog <span style=\"font-size:larger\">#GLOBALS[whichDir]#</span> nie jest pusty.";
 $pgv_lang["directory_not_exist"]		= "Katalog nie istnieje.";
 $pgv_lang["error_remote"]				= "Wybrano zewnętrzną stronę.";
 $pgv_lang["error_same"]					= "Wybrano tą samą stronę.";
@@ -189,9 +189,9 @@ $pgv_lang["link_as_child"]				= "Powiąż jako dziecko z istniejącą rodziną";
 $pgv_lang["link_as_husband"]			= "Powiąż jako męża z istniejącą rodziną";
 $pgv_lang["link_success"]				= "Powiązanie zostało dodane.";
 $pgv_lang["link_to_existing_media"]		= "Powiąż z istniejącym obiektem multimedialnym";
-$pgv_lang["max_media_depth"]			= "Możesz wprowadzić tylko #MEDIA_DIRECTORY_LEVELS# poziomów katalogów.";
+$pgv_lang["max_media_depth"]			= "Możesz wprowadzić tylko #GLOBALS[MEDIA_DIRECTORY_LEVELS]# poziomów katalogów.";
 $pgv_lang["max_upload_size"]			= "Maksymalny rozmiar wgrywania:";
-$pgv_lang["media_deleted"]				= "Katalog multimediów usunięty.";
+$pgv_lang["media_deleted"]				= "Katalog multimediów (<b>#GLOBALS[whichDir]#</b>) usunięty.";
 $pgv_lang["media_exists"]				= "Plik multimedialny już istnieje.";
 $pgv_lang["media_file"]					= "Plik multimedialny do wgrania";
 $pgv_lang["media_file_deleted"]			= "Plik multimedialny został usunięty.";
@@ -242,4 +242,16 @@ $pgv_lang["edit_concurrency_msg2"]		= "Wpis z identyfikatorem #PID# został zmie
 $pgv_lang["edit_concurrency_msg1"]		= "Wystąpił błąd podczas edytowania. Inny użytkownik w tym czasie mógł dokonać zmian w tym wpisie.";
 $pgv_lang["edit_concurrency_reload"]	= "Odśwież poprzednią stronę, aby mieć pewność, że pracujesz z najbardziej aktualnym wpisem.";
 $pgv_lang["edit_repo"]					= "Edytuj repozytorium";
+$pgv_lang["update_failed"]			= "Aktualizacja nie udała się";
+$pgv_lang["media_thumb_deleted"]	= "Miniaturka <b>#GLOBALS[whichFile]#</b> została usunięta.";
+$pgv_lang["media_thumb_not_deleted"]	= "Miniaturka <span style=\"font-size:larger\">#GLOBALS[whichFile]#</span> nie może być usunięta.";
+$pgv_lang["media_thumb_cant_delete"]	= "Miniaturka #GLOBALS[whichFile]# nie może być usunięta.";
+$pgv_lang["media_file_not_deleted"]	= "Plik multimedialny <span style=\"font-size:larger\">#GLOBALS[whichFile]#</span> nie może być usunięty.";
+$pgv_lang["media_file_cant_delete"]	= "Plik multimedialny #GLOBALS[whichFile]# nie może być usunięty.";
+$pgv_lang["media_cant_delete"]		= "Nie można usunąć katalogu mediów: #GLOBALS[whichDir]#.";
+$pgv_lang["directory_not_mt"]		= "Katalog #GLOBALS[whichDir]# nie jest pusty.";
+$pgv_lang["media_not_exist"]		= "Medium %s nie istnieje";
+$pgv_lang["sour_not_exist"]			= "Źródło %s nie istnieje";
+$pgv_lang["note_not_exist"]			= "Wspólna notatka %s nie istnieje";
+$pgv_lang["repo_not_exist"]			= "Repozytorium %s nie istnieje";
 ?>

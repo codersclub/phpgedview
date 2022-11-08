@@ -188,8 +188,8 @@ function fact_NMR_localisation_sl($fact, &$fid) {
 		else if (empty($husb) && !empty($wife))	$factarray[$fact] = "Samska"; // ženska
 	}
 	else if ($fact == "_NMAR") {
-		if (empty($wife) && !empty($husb))	$factarray[$fact] = "Nikoli poroèen"; // moški
-		else if (empty($husb) && !empty($wife))	$factarray[$fact] = "Nikoli poroèena"; // ženska
+		if (empty($wife) && !empty($husb))	$factarray[$fact] = "Nikoli poročen"; // moški
+		else if (empty($husb) && !empty($wife))	$factarray[$fact] = "Nikoli poročena"; // ženska
 	}
 }
 ?>

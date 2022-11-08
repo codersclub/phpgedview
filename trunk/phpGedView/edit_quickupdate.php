@@ -902,7 +902,7 @@ if ($action=="update") {
 			$childrec .= "\n1 FAMC @$newfamid@\n";
 			replace_gedrec($cxref, $childrec, $update_CHAN);
 		}
-		echo $pgv_lang["update_successful"], "<br />\n";
+		echo "<br /><br />", $pgv_lang["update_successful"];
 	}
 	if (!empty($newfamid)) {
 		$famrec = preg_replace("/0 @(.*)@/", "0 @".$newfamid."@", $famrec);
@@ -1261,7 +1261,7 @@ if ($action=="update") {
 	}
 
 	if ($updated && $allOK) {
-		echo $pgv_lang["update_successful"], "<br />";
+		echo "<br /><br />", $pgv_lang["update_successful"];
 		AddToChangeLog("Quick update for $pid by >".PGV_USER_NAME."<");
 		//echo "<pre>$gedrec</pre>";
 		if ($oldgedrec!=$gedrec) replace_gedrec($pid, $gedrec, $update_CHAN);

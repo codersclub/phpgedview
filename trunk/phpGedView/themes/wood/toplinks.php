@@ -3,7 +3,7 @@
  * Top-of-page menus for Wood theme
  *
  * PhpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2020  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2022  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -33,83 +33,109 @@ global $SEARCH_SPIDER;
 $menubar = new MenuBar();
 
 print "<br />\n";
+
+$menu = $menubar->getHomeMenu();
+if($menu->link != "") {
+	$menu->addLabel("", "right");
+	$menu->printMenu();
+	print "<br />\n";
+}
+
 $menu = $menubar->getGedcomMenu();
 if($menu->link != "") {
-	print "<br />\n";
 	$menu->addLabel("", "right");
 	$menu->printMenu();
+	print "<br />\n";
 }
+
 $menu = $menubar->getMygedviewMenu();
 if($menu->link != "") {
-	print "<br />\n";
 	$menu->addLabel("", "right");
 	$menu->printMenu();
+	print "<br />\n";
 }
+
 $menu = $menubar->getChartsMenu();
 if($menu->link != "") {
-	print "<br />\n";
 	$menu->addLabel("", "right");
 	$menu->printMenu();
+	print "<br />\n";
 }
+
 $menu = $menubar->getListsMenu();
 if($menu->link != "") {
-	print "<br />\n";
 	$menu->addLabel("", "right");
 	$menu->printMenu();
+	print "<br />\n";
 }
+
 $menu = $menubar->getMediaMenu();
 if($menu->link != "") {
-	print "<br />\n";
 	$menu->addLabel("", "right");
 	$menu->printMenu();
+	print "<br />\n";
 }
+
 $menu = $menubar->getCalendarMenu();
 if($menu->link != "") {
-	print "<br />\n";
 	$menu->addLabel("", "right");
 	$menu->printMenu();
+	print "<br />\n";
 }
+
 $menu = $menubar->getReportsMenu();
 if($menu->link != "") {
-	print "<br />\n";
 	$menu->addLabel("", "right");
 	$menu->printMenu();
+	print "<br />\n";
 }
+
 $menu = $menubar->getClippingsMenu();
 if($menu->link != "") {
-	print "<br />\n";
 	$menu->addLabel("", "right");
 	$menu->printMenu();
+	print "<br />\n";
 }
+
 $menu = $menubar->getSearchMenu();
 if($menu->link != "") {
-	print "<br />\n";
 	$menu->addLabel("", "right");
 	$menu->printMenu();
+	print "<br />\n";
 }
+
 $menu = $menubar->getOptionalMenu();
 if($menu->link != "") {
-	print "<br />\n";
 	$menu->addLabel("", "right");
 	$menu->printMenu();
+	print "<br />\n";
 }
+
 $menus = $menubar->getModuleMenus();
 foreach($menus as $m=>$menu) {
 	if($menu->link != "") {
-		print "<br />\n";
 		$menu->addLabel("", "right");
 		$menu->printMenu();
+		print "<br />\n";
 	}
 }
-$menu = $menubar->getHelpMenu();
+
+$menu = $menubar->getPreviewMenu();
 if($menu->link != "") {
-	print "<br />\n";
 	$menu->addLabel("", "right");
 	$menu->printMenu();
+	print "<br />\n";
+}
+
+$menu = $menubar->getHelpMenu();
+if($menu->link != "") {
+	$menu->addLabel("", "right");
+	$menu->printMenu();
+	print "<br />\n";
 }
 
 print "<br />\n";
-print_user_links();
+print_user_links(true);
 print "<br />\n";
 print "<br />\n";
 

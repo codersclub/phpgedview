@@ -3,7 +3,7 @@
 * Date Functions that can be used by any page in PGV
 *
 * phpGedView: Genealogy Viewer
-* Copyright (C) 2002 to 2017 PGV Development Team.  All rights reserved.
+* Copyright (C) 2002 to 2022 PGV Development Team.  All rights reserved.
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -298,12 +298,13 @@ function timestamp_to_gedcom_date($time) {
 ////////////////////////////////////////////////////////////////////////////////
 // Get the current timestamp of the client, not the server
 ////////////////////////////////////////////////////////////////////////////////
-function client_time() {
+function client_time($which='local') {
+	$time = time();		// get the current server time
+	if ($which == 'server') return $time;
 	if (isset($_SESSION["timediff"])) {
-		return time()-$_SESSION["timediff"];
-	} else {
-		return time();
+		$time -= $_SESSION["timediff"];		// get the current client time
 	}
+	return $time;
 }
 
 ////////////////////////////////////////////////////////////////////////////////

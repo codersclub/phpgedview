@@ -3,7 +3,7 @@
 * System for generating menus.
 *
 * phpGedView: Genealogy Viewer
-* Copyright (C) 2002 to 2021 PGV Development Team. All rights reserved.
+* Copyright (C) 2002 to 2022 PGV Development Team. All rights reserved.
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -776,7 +776,7 @@ class MenuBar
 	static function getPreviewMenu() {
 		global $TEXT_DIRECTION, $PGV_IMAGE_DIR, $PGV_IMAGES, $pgv_lang, $SEARCH_SPIDER;
 		if ($TEXT_DIRECTION=="rtl") $ff="_rtl"; else $ff="";
-		if (!empty($SEARCH_SPIDER)) {
+		if (!empty($SEARCH_SPIDER) || !showPrinterFriendly()) {
 			$menu = new Menu("", "", "");
 			return $menu;
 			}

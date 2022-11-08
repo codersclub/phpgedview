@@ -293,7 +293,7 @@ var oldMx = 0;
 	document.onmouseup = releaseimage;
 //-->
 </script>
-</td><td>
+</td><td valign="top">
 <?php if (!$controller->isPrintPreview()) { ?>
 <form name="buttons" action="lifespan.php" method="get">
 

@@ -87,53 +87,48 @@ if (!defined('PGV_PHPGEDVIEW')) {
 <div id="header" class="<?php echo $TEXT_DIRECTION; ?>">
 <table class="header_table" width="100%" cellpadding="0" cellspacing="0">
   <tr>
-    <td>
-      <table width="100%">
-        <tr>
-          <td><img src="<?php echo PGV_THEME_DIR; ?>header.jpg" width="281" height="50" alt="" /></td>
-          <td>
-            <table width="100%">
-              <tr>
-                <td colspan="2">
-                  <div class="title" style="<?php echo $TEXT_DIRECTION=="rtl"?"left":"right"; ?>">
-                    <?php print_gedcom_title_link(TRUE); ?>
-                  </div>
-                </td>
+	<td>
+	  <table width="100%">
+		<tr>
+		  <td><img src="<?php echo PGV_THEME_DIR; ?>header.jpg" width="281" height="50" alt="" /></td>
+		  <td>
+			<table width="100%">
+			  <tr>
+				<td colspan="2">
+				  <div class="title" style="<?php echo $TEXT_DIRECTION=="rtl"?"left":"right"; ?>">
+					<?php echo PrintReady($GEDCOM_TITLE, true); ?>
+				  </div>
+				</td>
 		<?php if (empty($SEARCH_SPIDER)) { ?>
-                <td align="<?php echo $TEXT_DIRECTION=="rtl"?"left":"right"; ?>" valign="middle" >
-                  <form action="search.php" method="post">
-                    <input type="hidden" name="action" value="general" />
-                    <input type="hidden" name="topsearch" value="yes" />
-                    <input type="text" name="query" size="25" value="<?php echo $pgv_lang['search']?>"
-                    	onfocus="if (this.value == '<?php echo $pgv_lang['search']?>') this.value=''; focusHandler();"
-                    	onblur="if (this.value == '') this.value='<?php echo $pgv_lang['search']?>';" />
-                    <input type="submit" name="search" value="&gt;" />
-                  </form>
-                </td>
+				<td align="<?php echo $TEXT_DIRECTION=="rtl"?"left":"right"; ?>" valign="middle" >
+				  <form action="search.php" method="post">
+					<input type="hidden" name="action" value="general" />
+					<input type="hidden" name="topsearch" value="yes" />
+					<input type="text" name="query" size="25" value="<?php echo $pgv_lang['search']?>"
+						onfocus="if (this.value == '<?php echo $pgv_lang['search']?>') this.value=''; focusHandler();"
+						onblur="if (this.value == '') this.value='<?php echo $pgv_lang['search']?>';" />
+					<input type="submit" name="search" value="&gt;" />
+				  </form>
+				</td>
 		<?php } ?>
-              </tr>
-              <tr>
-                <td valign="top">
-                  <b>
-                  <a href="<?php echo $HOME_SITE_URL; ?>"><?php echo $HOME_SITE_TEXT; ?></a>
-                  </b>
-                </td>
-                <td align="center">
-                  <b>
-                  <?php print_user_links(); ?>
-                  </b>
-                </td>
+			  </tr>
+			  <tr>
+				<td>&nbsp;</td>
+				<td align="center">
+				<br />
+				  <b><?php print_user_links(true); ?></b>
+				</td>
 		<?php if (empty($SEARCH_SPIDER)) { ?>
-                <td align="<?php echo $TEXT_DIRECTION=="rtl"?"left":"right"; ?>" valign="top" >
-                  <?php print_favorite_selector(); ?>
-                </td>
+				<td align="<?php echo $TEXT_DIRECTION=="rtl"?"left":"right"; ?>" valign="top" >
+				  <?php print_favorite_selector(); ?>
+				</td>
 		<?php } ?>
-              </tr>
-            </table>
-          </td>
-        </tr>
-      </table>
-    </td>
+			  </tr>
+			</table>
+		  </td>
+		</tr>
+	  </table>
+	</td>
   </tr>
 <?php include($toplinks);
 } ?>

@@ -88,6 +88,7 @@ $pgv_lang["activate"]			= "Włącz";
 $pgv_lang["deactivate"]			= "Wyłącz";
 $pgv_lang["play"]				= "Odtwórz";
 $pgv_lang["stop"]				= "Zatrzymaj";
+$pgv_lang["play_stop"]			= "Odtwórz / Zatrzymaj";
 $pgv_lang["random_media_start_slide"]	= "Włącz pokaz slajdów po wczytaniu strony";
 $pgv_lang["random_media_ajax_controls"]	= "Pokaż panel kontrolny pokazu slajdów";
 $pgv_lang["description"]			= "Opis";
@@ -434,8 +435,8 @@ $pgv_lang["media_list"]			= "Lista multimediów";
 $pgv_lang["repo_list"]			= "Lista repozytoriów";
 $pgv_lang["search"]				= "Szukaj";
 $pgv_lang["clippings_cart"]		= "Wycinki";
-$pgv_lang["print_preview"]		= "Wersja do druku";
-$pgv_lang["cancel_preview"]		= "Powrót do normalnego widoku";
+$pgv_lang["print_preview"]		= "Uprość stronę";
+$pgv_lang["cancel_preview"]		= "Normalny widok";
 $pgv_lang["change_lang"]		= "Zmień język";
 $pgv_lang["print"]				= "Drukuj";
 $pgv_lang["total_queries"]		= "Zapytań do bazy danych:";
@@ -730,6 +731,8 @@ $pgv_lang["timeline_scrollSpeed"]	= "Prędkość";
 $pgv_lang["timeline_controls"]		= "Panel kontrolny osi czasu";
 $pgv_lang["include_family"]			= "Uwzględnij najbliższą rodzinę";
 $pgv_lang["lifespan_chart"]			= "Wykres długości życia";
+$pgv_lang["serverTime"]				= "Czas serwera";
+$pgv_lang["localTime"]				= "Czas lokalny";
 
 // calendar conversion options
 $pgv_lang["cal_none"]			= "Brak konwersji kalendarza";
@@ -1920,7 +1923,7 @@ $pgv_lang["relations_heading"]	= "Ten obraz odnosi się do:";
 $pgv_lang["file_size"]			= "Rozmiar pliku";
 $pgv_lang["img_size"]			= "Rozmiar obrazu";
 $pgv_lang["media_broken"]		= "Te multimedia są uszkodzone i nie mogą być zaznaczone znakiem wodnym";
-$pgv_lang["unknown_mime"]		= "Błąd Firewalla multimediów: >Nieznany Mimetype< dla pliku";
+$pgv_lang["unknown_mime"]		= "Błąd Firewalla multimediów: &gt;Nieznany Mimetype&lt; dla pliku";
 
 //-- Modules
 $pgv_lang["module_error_unknown_action_v2"] = "Nieznana czynność: [action].";

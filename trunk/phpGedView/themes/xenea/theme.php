@@ -54,6 +54,7 @@ $PGV_IMAGES["media"]["large"] = "media.gif";
 $PGV_IMAGES["mygedview"]["large"] = "my_gedview.gif";
 $PGV_IMAGES["notes"]["large"] = "notes.gif";
 $PGV_IMAGES["pedigree"]["large"] = "pedigree.gif";
+$PGV_IMAGES["printer"]["large"] = "printer.gif";
 $PGV_IMAGES["reports"]["large"] = "report.gif";
 $PGV_IMAGES["repository"]["large"] = "repository.gif";
 $PGV_IMAGES["search"]["large"] = "search.gif";

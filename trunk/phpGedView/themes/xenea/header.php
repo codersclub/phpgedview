@@ -103,7 +103,7 @@ $displayDate=timestamp_to_gedcom_date(client_time())->Display(false, $DATE_FORMA
 			?>background-repeat:repeat-y; height:40px;">
 			  <tr>
 				<td width="10"><img src="<?php echo $PGV_IMAGE_DIR; ?>/pixel.gif" width="1" height="1" alt="" /></td>
-				<td valign="middle"><font color="#FFFFFF" size="5" face="Verdana, Arial, Helvetica, sans-serif">
+				<td valign="middle"><font color="white" size="5" face="Verdana, Arial, Helvetica, sans-serif">
 				<?php echo PrintReady($GEDCOM_TITLE, true); ?>
 				</font></td>
 		<?php if (empty($SEARCH_SPIDER)) { ?>

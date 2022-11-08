@@ -769,7 +769,7 @@ if (PGV_SCRIPT_NAME!='install.php' && PGV_SCRIPT_NAME!='editconfig_help.php') {
 	$cart = $_SESSION['cart'];
 
 	$_SESSION['CLANGUAGE'] = $LANGUAGE;
-	if (!isset($_SESSION['timediff'])) {
+	if (!isset($_SESSION['timediff']) || (abs($_SESSION['timediff']) < 10*60)) {
 		$_SESSION['timediff'] = 0;
 	}
 

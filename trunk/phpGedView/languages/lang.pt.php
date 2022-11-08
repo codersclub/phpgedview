@@ -435,8 +435,8 @@ $pgv_lang["media_list"]					= "Mídias";
 $pgv_lang["repo_list"]					= "Reposição";
 $pgv_lang["search"]						= "Pesquisar";
 $pgv_lang["clippings_cart"]				= "Extração de Dados";
-$pgv_lang["print_preview"]				= "Exibir formato de Impressão";
-$pgv_lang["cancel_preview"]				= "Voltar ao modo normal de exibição";
+$pgv_lang["print_preview"]				= "Simplificar página";
+$pgv_lang["cancel_preview"]				= "Visualização normal";
 $pgv_lang["change_lang"]				= "Trocar o Idioma";
 $pgv_lang["language"]					= "Idioma";
 $pgv_lang["print"]						= "Imprimir";
@@ -729,6 +729,8 @@ $pgv_lang["timeline_scrollSpeed"] 		= "Velocidade";
 $pgv_lang["timeline_controls"] 			= "Controles da cronologia";
 $pgv_lang["include_family"] 			= "Incluem família imediata";
 $pgv_lang["lifespan_chart"] 			= "Gráfico tempo de vida";
+$pgv_lang["serverTime"]					= "Hora do servidor";
+$pgv_lang["localTime"]					= "Horário local";
 
 // calendar conversion options
 $pgv_lang["cal_none"] 					= "Nenhuma conversão calendário";

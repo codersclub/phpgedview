@@ -92,13 +92,11 @@ if (!defined('PGV_PHPGEDVIEW')) {
 			<tr>
 			<td valign="middle">
 				<div class="title" style="<?php echo $TEXT_DIRECTION=="rtl"?"left":"right"; ?>">
-					<?php print_gedcom_title_link(TRUE); ?>
+					<?php echo PrintReady($GEDCOM_TITLE, true); ?>
 				</div>
-				<br />
-				<a href="<?php echo $HOME_SITE_URL; ?>"><?php echo $HOME_SITE_TEXT; ?></a>
 			</td>
 			<td align="center" valign="middle">
-				<?php print_user_links(); ?>
+				<?php print_user_links(true); ?>
 			</td>
 			<?php if (empty($SEARCH_SPIDER)) { ?>
 			<td align="<?php echo $TEXT_DIRECTION=="rtl"?"left":"right"; ?>" valign="middle" >

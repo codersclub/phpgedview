@@ -92,12 +92,12 @@ if (!defined('PGV_PHPGEDVIEW')) {
 			<table width="100%">
 			<tr>
 				<td align="center" valign="top">
-					<b>
-					<?php print_user_links(); ?>
+					<div class="title" style="<?php echo $TEXT_DIRECTION=="rtl"?"left":"right"; ?>">
+					<?php echo PrintReady($GEDCOM_TITLE, true); ?>
+					</div>
 					<br />
 					<br />
-					<a href="<?php echo $HOME_SITE_URL; ?>"><?php echo $HOME_SITE_TEXT; ?></a>
-					</b>
+					<?php print_user_links(true); ?>
 				</td>
 				<?php if (empty($SEARCH_SPIDER)) { ?>
 				<td align="<?php echo $TEXT_DIRECTION=="rtl"?"left":"right"; ?>" valign="middle" >
@@ -105,7 +105,7 @@ if (!defined('PGV_PHPGEDVIEW')) {
 					<?php print_theme_dropdown(); ?>
 				</td>
 				<?php } ?>
-                    <td align="<?php echo $TEXT_DIRECTION=="rtl"?"left":"right"; ?>" valign="middle" >
+					<td align="<?php echo $TEXT_DIRECTION=="rtl"?"left":"right"; ?>" valign="middle" >
 				<?php if (empty($SEARCH_SPIDER)) { ?>
 					<form action="search.php" method="post">
 						<input type="hidden" name="action" value="general" />
@@ -120,15 +120,6 @@ if (!defined('PGV_PHPGEDVIEW')) {
 				</td>
 			</tr>
 			</table>
-		</td>
-	</tr>
-</table>
-<table width="99%">
-	<tr>
-		<td width="75%">
-			<div class="title" style="<?php echo $TEXT_DIRECTION=="rtl"?"left":"right"; ?>">
-				<?php print_gedcom_title_link(TRUE); ?>
-			</div>
 		</td>
 	</tr>
 </table>

@@ -434,9 +434,9 @@ $pgv_lang["place_list_aft"]			= "Locaties binnen";
 $pgv_lang["media_list"]				= "Multimedia";
 $pgv_lang["repo_list"]				= "Bewaarplaatsen";
 $pgv_lang["search"]					= "Zoeken";
-$pgv_lang["clippings_cart"]				= "Stamboomknipsels";
-$pgv_lang["print_preview"]			= "Printervriendelijke versie";
-$pgv_lang["cancel_preview"]			= "Annuleren printervriendelijke versie";
+$pgv_lang["clippings_cart"]			= "Stamboomknipsels";
+$pgv_lang["print_preview"]			= "Vereenvoudig pagina";
+$pgv_lang["cancel_preview"]			= "Normaal uitzicht";
 $pgv_lang["change_lang"]			= "Wijzig taal";
 $pgv_lang["language"]				= "Taal";
 $pgv_lang["print"]					= "Afdrukken";
@@ -729,6 +729,8 @@ $pgv_lang["timeline_scrollSpeed"] 	= "Snelheid";
 $pgv_lang["timeline_controls"] 		= "Tijdlijn Controls";
 $pgv_lang["include_family"] 		= "Inclusief directe familie";
 $pgv_lang["lifespan_chart"] 		= "Levensduur Grafiek";
+$pgv_lang["serverTime"]				= "Servertijd";
+$pgv_lang["localTime"]				= "Lokale tijd";
 
 // calendar conversion options
 $pgv_lang["cal_none"]   				= "Geen kalendar conversie";

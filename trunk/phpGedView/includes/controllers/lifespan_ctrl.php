@@ -55,17 +55,68 @@ class LifespanControllerRoot extends BaseController {
 	var $YrowLoc = 125;
 	var $minYear = 0;
 
-	// The following colours are deliberately omitted from the $colors list:
+	// The following colors are deliberately omitted from the $Ucolors list:
 	// Blue, Red, Black, White, Green
-	var $colors = array ('Aliceblue', 'Antiquewhite', 'Aqua', 'Aquamarine', 'Azure', 'Beige', 'Bisque', 'Blanchedalmond', 'Blueviolet', 'Brown', 'Burlywood', 'Cadetblue', 'Chartreuse', 'Chocolate', 'Coral', 'Cornflowerblue', 'Cornsilk', 'Crimson', 'Cyan', 'Darkcyan', 'Darkgoldenrod', 'Darkgray', 'Darkgreen', 'Darkkhaki', 'Darkmagenta', 'Darkolivegreen', 'Darkorange', 'Darkorchid', 'Darkred', 'Darksalmon', 'Darkseagreen', 'Darkslateblue', 'Darkturquoise', 'Darkviolet', 'Deeppink', 'Deepskyblue', 'Dimgray', 'Dodgerblue', 'Firebrick', 'Floralwhite', 'Forestgreen', 'Fuchsia', 'Gainsboro', 'Ghostwhite', 'Gold', 'Goldenrod', 'Gray', 'Greenyellow', 'Honeydew', 'Hotpink', 'Indianred', 'Ivory', 'Khaki', 'Lavender', 'Lavenderblush', 'Lawngreen', 'Lemonchiffon', 'Lightblue', 'Lightcoral', 'Lightcyan', 'Lightgoldenrodyellow', 'Lightgreen', 'Lightgrey', 'Lightpink', 'Lightsalmon', 'Lightseagreen', 'Lightskyblue', 'Lightslategray', 'Lightsteelblue', 'Lightyellow', 'Lime', 'Limegreen', 'Linen', 'Magenta', 'Maroon', 'Mediumaqamarine', ' Mediumblue', 'Mediumorchid', 'Mediumpurple', 'Mediumseagreen', 'Mediumslateblue', 'Mediumspringgreen', 'Mediumturquoise', 'Mediumvioletred', 'Mintcream', 'Mistyrose', 'Moccasin', 'Navajowhite', 'Oldlace', 'Olive', 'Olivedrab', 'Orange', 'Orangered', 'Orchid', 'Palegoldenrod', 'Palegreen', 'Paleturquoise', 'Palevioletred', 'Papayawhip', 'Peachpuff', 'Peru', 'Pink', 'Plum', 'Powderblue', 'Purple', 'Rosybrown', 'Royalblue', 'Saddlebrown', 'Salmon', 'Sandybrown', 'Seagreen', 'Seashell', 'Sienna', 'Silver', 'Skyblue', 'Slateblue', 'Slategray', 'Snow', 'Springgreen', 'Steelblue', 'Tan', 'Teal', 'Thistle', 'Tomato', 'Turquoise', 'Violet', 'Wheat', 'Whitesmoke', 'Yellow', 'YellowGreen');
-	var $malecolorR = array('000', ' 010', ' 020', ' 030', ' 040', ' 050', ' 060', ' 070', ' 080', ' 090', ' 100', ' 110', ' 120', ' 130', ' 140', ' 150', ' 160', ' 170', ' 180', ' 190', ' 200', ' 210', ' 220', ' 230', ' 240', ' 250');
-	var $malecolorG = array('000', ' 010', ' 020', ' 030', ' 040', ' 050', ' 060', ' 070', ' 080', ' 090', ' 100', ' 110', ' 120', ' 130', ' 140', ' 150', ' 160', ' 170', ' 180', ' 190', ' 200', ' 210', ' 220', ' 230', ' 240', ' 250');
-	var $malecolorB = 255;
-	var $femalecolorR = 255;
-	var $femalecolorG = array('000', ' 010', ' 020', ' 030', ' 040', ' 050', ' 060', ' 070', ' 080', ' 090', ' 100', ' 110', ' 120', ' 130', ' 140', ' 150', ' 160', ' 170', ' 180', ' 190', ' 200', ' 210', ' 220', ' 230', ' 240', ' 250');
-	var $femalecolorB = array('250', ' 240', ' 230', ' 220', ' 210', ' 200', ' 190', ' 180', ' 170', ' 160', ' 150', ' 140', ' 130', ' 120', ' 110', ' 100', ' 090', ' 080', ' 070', ' 060', ' 050', ' 040', ' 030', ' 020', ' 010', '000');
+	var $Ucolors = array ('Aliceblue', 'Antiquewhite', 'Aqua', 'Aquamarine', 'Azure', 'Beige', 'Bisque', 'Blanchedalmond', 'Blueviolet', 'Brown', 'Burlywood', 'Cadetblue', 'Chartreuse', 'Chocolate', 'Coral', 'Cornflowerblue', 'Cornsilk', 'Crimson', 'Cyan', 'Darkcyan', 'Darkgoldenrod', 'Darkgray', 'Darkgreen', 'Darkkhaki', 'Darkmagenta', 'Darkolivegreen', 'Darkorange', 'Darkorchid', 'Darkred', 'Darksalmon', 'Darkseagreen', 'Darkslateblue', 'Darkturquoise', 'Darkviolet', 'Deeppink', 'Deepskyblue', 'Dimgray', 'Dodgerblue', 'Firebrick', 'Floralwhite', 'Forestgreen', 'Fuchsia', 'Gainsboro', 'Ghostwhite', 'Gold', 'Goldenrod', 'Gray', 'Greenyellow', 'Honeydew', 'Hotpink', 'Indianred', 'Ivory', 'Khaki', 'Lavender', 'Lavenderblush', 'Lawngreen', 'Lemonchiffon', 'Lightblue', 'Lightcoral', 'Lightcyan', 'Lightgoldenrodyellow', 'Lightgreen', 'Lightgrey', 'Lightpink', 'Lightsalmon', 'Lightseagreen', 'Lightskyblue', 'Lightslategray', 'Lightsteelblue', 'Lightyellow', 'Lime', 'Limegreen', 'Linen', 'Magenta', 'Maroon', 'Mediumaqamarine', ' Mediumblue', 'Mediumorchid', 'Mediumpurple', 'Mediumseagreen', 'Mediumslateblue', 'Mediumspringgreen', 'Mediumturquoise', 'Mediumvioletred', 'Mintcream', 'Mistyrose', 'Moccasin', 'Navajowhite', 'Oldlace', 'Olive', 'Olivedrab', 'Orange', 'Orangered', 'Orchid', 'Palegoldenrod', 'Palegreen', 'Paleturquoise', 'Palevioletred', 'Papayawhip', 'Peachpuff', 'Peru', 'Pink', 'Plum', 'Powderblue', 'Purple', 'Rosybrown', 'Royalblue', 'Saddlebrown', 'Salmon', 'Sandybrown', 'Seagreen', 'Seashell', 'Sienna', 'Silver', 'Skyblue', 'Slateblue', 'Slategray', 'Snow', 'Springgreen', 'Steelblue', 'Tan', 'Teal', 'Thistle', 'Tomato', 'Turquoise', 'Violet', 'Wheat', 'Whitesmoke', 'Yellow', 'YellowGreen');
+	var $Mcolors = array(
+//						 "#0000FF",		// 000 000 255  (R  G  B)
+//						 "#0A0AFF",		// 010 010 255
+//						 "#1414FF",		// 020 020 255
+//						 "#1E1EFF",		// 030 030 255
+						 "#2828FF",		// 040 040 255
+//						 "#3232FF",		// 050 050 255
+						 "#3C3CFF",		// 060 060 255
+//						 "#4646FF",		// 070 070 255
+						 "#5050FF",		// 080 080 255
+//						 "#5A5AFF",		// 090 090 255
+						 "#6464FF",		// 100 100 255
+//						 "#6E6EFF",		// 110 110 255
+						 "#7878FF",		// 120 120 255
+//						 "#8282FF",		// 130 130 255
+						 "#8C8CFF",		// 140 140 255
+//						 "#9696FF",		// 150 150 255
+						 "#A0A0FF",		// 160 160 255
+//						 "#AAAAFF",		// 170 170 255
+						 "#B4B4FF",		// 180 180 255
+//						 "#BEBEFF",		// 190 190 255
+						 "#C8C8FF",		// 200 200 255
+//						 "#D2D2FF",		// 210 210 255
+						 "#DCDCFF",		// 220 220 255
+//						 "#E6E6FF",		// 230 230 255
+//						 "#F0F0FF",		// 240 240 255
+//						 "#FAFAFF"		// 250 250 255
+						 );
+	var $Fcolors = array(
+//						 "#FF00FA",		// 255 000 250  (R  G  B)
+//						 "#FF0AFO",		// 255 010 240
+//						 "#FF14E6",		// 255 020 230
+//						 "#FF1EDC",		// 255 030 220
+						 "#FF28D2",		// 255 040 210
+//						 "#FF32C8",		// 255 050 200
+						 "#FF3CBE",		// 255 060 190
+//						 "#FF46B4",		// 255 070 180
+						 "#FF50AA",		// 255 080 170
+//						 "#FF5AA0",		// 255 090 160
+						 "#FF6496",		// 255 100 150
+//						 "#FF6E8C",		// 255 110 140
+						 "#FF7882",		// 255 120 130
+//						 "#FF8278",		// 255 130 120
+//						 "#FF8C6E",		// 255 140 110
+//						 "#FF9664",		// 255 150 100
+//						 "#FFA05A",		// 255 160 090
+//						 "#FFAA50",		// 255 170 080
+//						 "#FFB446",		// 255 180 070
+//						 "#FFBE3C",		// 255 190 060
+//						 "#FFC832",		// 255 200 050
+//						 "#FFD228",		// 255 210 040
+//						 "#FFDC1E",		// 255 220 030
+//						 "#FFE614",		// 255 230 020
+//						 "#FFF00A",		// 255 240 010
+//						 "#FFFA00"		// 255 250 000
+						 );
+
 	var $color;
-	var $colorindex;
+	var $Ucolorindex;
 	var $Fcolorindex;
 	var $Mcolorindex;
 	var $zoomfactor;
@@ -85,9 +136,9 @@ class LifespanControllerRoot extends BaseController {
 	*/
 	function init() {
 		global $GEDCOM_ID_PREFIX;
-		$this->colorindex = 0;
-		$this->Fcolorindex = 0;
+		$this->Ucolorindex = 0;
 		$this->Mcolorindex = 0;
+		$this->Fcolorindex = 0;
 		$this->zoomfactor = 10;
 		$this->color = "#0000FF";
 		$this->currentYear = date("Y");
@@ -172,7 +223,6 @@ class LifespanControllerRoot extends BaseController {
 				}
 			}
 
-
 			//--Finds if the begin year and end year textboxes are not empty
 			else {
 				//-- reset the people array when doing a year range search
@@ -198,7 +248,7 @@ class LifespanControllerRoot extends BaseController {
 				unset($_SESSION['timeline_pids']);
 			}
 
-			//--Sort the arrar in order of being year
+			//--Sort the array in order of being year
 			uasort($this->people, "compare_people");
 			//If there is people in the array posted back this if occurs
 			if (isset ($this->people[0])) {
@@ -255,7 +305,7 @@ class LifespanControllerRoot extends BaseController {
 				}
 			}
 			$families = $person->getChildFamilies();
-			//-- foreach gets the father, mother and sibblings of the individual.
+			//-- foreach gets the father, mother and siblings of the individual.
 			foreach($families as $famID => $family){
 				if ($gen>0) $this->pids[] = addFamily($family->getHusbId(), $gen-1);
 				else $this->pids[] = $family->getHusbId();
@@ -324,6 +374,7 @@ class LifespanControllerRoot extends BaseController {
 	//method used to place the person boxes onto the timeline
 	function fillTL($ar, $int, $top) {
 		global $maxX, $zindex, $pgv_lang, $factarray, $factAbbrev;
+		global $SHOW_ID_NUMBERS;
 
 		$zindex = count($ar);
 
@@ -340,34 +391,19 @@ class LifespanControllerRoot extends BaseController {
 			//Creates appropriate color scheme to show relationships
 			$this->currentsex = $value->getSex();
 			if ($this->currentsex == "M"){
+				if (!isset($this->Mcolors[$this->Mcolorindex])) $this->Mcolorindex = 0;
+				$this->color = $this->Mcolors[$this->Mcolorindex];
 				$this->Mcolorindex++;
-				if (!isset($this->malecolorR[$this->Mcolorindex])) $this->Mcolorindex=0;
-				$this->malecolorR[$this->Mcolorindex];
-				$this->Mcolorindex++;
-				if (!isset($this->malecolorG[$this->Mcolorindex])) $this->Mcolorindex=0;
-				$this->malecolorG[$this->Mcolorindex];
-				$red = dechex($this->malecolorR[$this->Mcolorindex]);
-				$green =dechex($this->malecolorR[$this->Mcolorindex]);
-				if(strlen($red)<2){
-					$red = "0".$red;
-				}
-				if(strlen($green)<2){
-					$green = "0".$green;
-				}
-
-				$this->color = "#".$red.$green.dechex($this->malecolorB);
 			}
 			else if($this->currentsex == "F"){
+				if (!isset($this->Fcolors[$this->Fcolorindex])) $this->Fcolorindex = 0;
+				$this->color = $this->Fcolors[$this->Fcolorindex];
 				$this->Fcolorindex++;
-				if (!isset($this->femalecolorG[$this->Fcolorindex])) $this->Fcolorindex = 0;
-				$this->femalecolorG[$this->Fcolorindex];
-				$this->Fcolorindex++;
-				if (!isset($this->femalecolorB[$this->Fcolorindex])) $this->Fcolorindex = 0;
-				$this->femalecolorB[$this->Fcolorindex];
-				$this->color = "#".dechex($this->femalecolorR).dechex($this->femalecolorG[$this->Fcolorindex]).dechex($this->femalecolorB[$this->Fcolorindex]);
 			}
 			else{
-				$this->color = $this->colors[$this->colorindex];
+				if (!isset($this->Ucolors[$this->Ucolorindex])) $this->Ucolorindex = 0;
+				$this->color = $this->Ucolors[$this->Ucolorindex];
+				$this->Ucolorindex++;
 			}
 
 			//set start position and size of person-box according to zoomfactor
@@ -495,6 +531,7 @@ class LifespanControllerRoot extends BaseController {
 						echo "</b><span>", PrintReady($val), "</span></a></div>";
 					}
 					$indiName = PrintReady(str_replace(array('<span class="starredname">', '</span>'), array('<u>', '</u>'), $value->getFullName()));
+					if ($SHOW_ID_NUMBERS) $indiName .= " ({$value->getXref()})";
 					echo "\n\t<table><tr>\n\t\t<td width=\"15\"><a class=\"showit\" href=\"#\"><b>";
 					if (isset ($factAbbrev["BIRT"])) {
 						echo $factAbbrev["BIRT"];
@@ -510,7 +547,7 @@ class LifespanControllerRoot extends BaseController {
 					if ($value->isDead()) {
 						if ($deathReal || $value->isDead()) {
 							print "<a class=\"showit\" href=\"#\"><b>";
-							if (isset ($factAbbrev["DEAT"])) print $factAbbrev["DEAT"];
+							if (isset($factAbbrev["DEAT"])) print $factAbbrev["DEAT"];
 							else print UTF8_substr($factarray["DEAT"], 0, 1);
 							if (!$deathReal) print "*";
 							print "</b><span>".$value->getSexImage().$indiName."<br/>".$factarray["DEAT"]." ".strip_tags($ddate->Display(false))." ".PrintReady($value->getDeathPlace())."</span></a>";

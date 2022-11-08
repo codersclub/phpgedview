@@ -2044,7 +2044,7 @@ case 'reset_media_update': // Reset sort using popup
 	}
 	$success = (replace_gedrec($pid, $newgedrec, $update_CHAN));
 	if ($success) {
-		echo "<br />", $pgv_lang["update_successful"], "<br /><br />";
+		echo "<br /><br />", $pgv_lang["update_successful"];
 	}
 	break;
 
@@ -2068,7 +2068,7 @@ case 'reorder_media_update': // Update sort using popup
 		string_dump($newgedrec);
 	}
 	$success = (replace_gedrec($pid, $newgedrec, $update_CHAN));
-	if ($success) echo "<br />", $pgv_lang["update_successful"], "<br /><br />";
+	if ($success) echo "<br /><br />", $pgv_lang["update_successful"];
 		// $mediaordsuccess='yes';
 		if ($_COOKIE['lasttabs'][strlen($_COOKIE['lasttabs'])-1]==8) {
 			$link = "individual.php?pid=$pid&tab=7&show_changes=yes";
@@ -2092,7 +2092,7 @@ case 'al_reset_media_update': // Reset sort using Album Page
 		}
 	}
 	$success = (replace_gedrec($pid, $newgedrec, $update_CHAN));
-	if ($success) echo "<br />", $pgv_lang["update_successful"], "<br /><br />";
+	if ($success) echo "<br /><br />", $pgv_lang["update_successful"];
 		if (!file_exists(PGV_ROOT.'modules/googlemap/defaultconfig.php')) {
 			$tabno = "7";
 		}else{

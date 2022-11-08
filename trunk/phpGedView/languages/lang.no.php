@@ -436,8 +436,8 @@ $pgv_lang["media_list"]			= "Bilder / medier";
 $pgv_lang["repo_list"]			= "Arkiv";
 $pgv_lang["search"]				= "Søk";
 $pgv_lang["clippings_cart"]		= "Utklippsmappe";
-$pgv_lang["print_preview"]		= "Utskrifts-vennlig utgave";
-$pgv_lang["cancel_preview"]		= "Tilbake til vanlig visning";
+$pgv_lang["print_preview"]		= "Forenkle siden";
+$pgv_lang["cancel_preview"]		= "Normal visning";
 $pgv_lang["change_lang"]		= "Velg språk";
 $pgv_lang["language"]			= "Språk";
 $pgv_lang["print"]				= "Skriv ut";
@@ -730,6 +730,8 @@ $pgv_lang["timeline_scrollSpeed"]	= "hastighet";
 $pgv_lang["timeline_controls"]		= "Instillinger for tidslinje";
 $pgv_lang["include_family"]			= "Inkluder nærmeste familie";
 $pgv_lang["lifespan_chart"]			= "Livslinjediagram";
+$pgv_lang["serverTime"]				= "Servertid";
+$pgv_lang["localTime"]				= "Lokal tid";
 
 // calendar conversion options
 $pgv_lang["cal_none"] 				= "Ingen kalenderkonvertering";

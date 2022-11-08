@@ -58,19 +58,21 @@ a:hover {
 }
 
 a.title {
+	font-weight: normal;
+	font: 32px tahoma, arial, helvetica, sans-serif;
 	color: white;
-	font: bold 32px tahoma, arial, helvetica, sans-serif;
 	text-decoration: none;
 }
 
 .title {
+	font-weight: normal;
+	font: 32px tahoma, arial, helvetica, sans-serif;
 	color: white;
-	font: bold 32px tahoma, arial, helvetica, sans-serif;
 	text-decoration: none;
 }
 
 th {
-	font-weight: 100;
+	font-weight: thin;
 }
 
 ul {

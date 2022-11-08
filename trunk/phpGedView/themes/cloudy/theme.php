@@ -261,8 +261,6 @@ $PGV_STATS_CHART_COLOR1 = "ffffff";
 $PGV_STATS_CHART_COLOR2 = "95b8e0";
 $PGV_STATS_CHART_COLOR3 = "c8e7ff";
 
-$ONLOADFUNCTION = "loadHandler();";		//-- function that should be called in the <body onload="
-
 // Arrow symbol or icon for up-page links on Help pages
 // This icon is referred to in Help text by: #GLOBALS[UpArrow]#
 if (file_exists($PGV_IMAGE_DIR."/uarrow3.gif")) $UpArrow = "<img src=\"{$PGV_IMAGE_DIR}/uarrow3.gif\" class=\"icon\" border=\"0\" alt=\"^\" />";

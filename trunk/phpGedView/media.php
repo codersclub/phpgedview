@@ -3,7 +3,7 @@
  * Popup window that will allow a user to search for a media
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2021  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2022  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -763,7 +763,7 @@ if (check_media_structure()) {
 					}
 			}
 		}
-//		if ($finalResult) print $pgv_lang["update_successful"];
+//		if ($finalResult) echo '<br /><br />, $pgv_lang["update_successful"];
 		$action = "filter";
 		print "</td></tr></table>";
 	}

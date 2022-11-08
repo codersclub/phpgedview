@@ -437,8 +437,8 @@ $pgv_lang["media_list"]					= "Multimedia";
 $pgv_lang["repo_list"]					= "Archive";
 $pgv_lang["search"]						= "Suche";
 $pgv_lang["clippings_cart"]				= "Sammelbehälter";
-$pgv_lang["print_preview"]				= "Für Drucker optimierte Version";
-$pgv_lang["cancel_preview"]				= "Zurück zur normalen Ansicht";
+$pgv_lang["print_preview"]				= "Seite vereinfachen";
+$pgv_lang["cancel_preview"]				= "Normale Ansicht";
 $pgv_lang["change_lang"]				= "Sprache ändern";
 $pgv_lang["language"]					= "Sprache";
 $pgv_lang["print"]						= "Drucken";
@@ -731,6 +731,8 @@ $pgv_lang["timeline_scrollSpeed"]		= "Geschwindigkeit";
 $pgv_lang["timeline_controls"]			= "Lebensspannenregler";
 $pgv_lang["include_family"]				= "Direkte Familie hinzufügen";
 $pgv_lang["lifespan_chart"]				= "Lebensspannendiagramm";
+$pgv_lang["serverTime"]					= "Serverzeit";
+$pgv_lang["localTime"]					= "Lokale Zeit";
 
 // calendar conversion options
 $pgv_lang["cal_none"] 					= "Keine Übersetzung";
