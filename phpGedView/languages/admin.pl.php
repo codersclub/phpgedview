@@ -3,7 +3,7 @@
  * Polish texts
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2021  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2022  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -465,25 +465,32 @@ $pgv_lang["index_dir_cleanup"]		= "Wyczysc katalog Index";
 $pgv_lang["error_remote_duplicate"]	= "Ta baza danych istnieje na liscie jako <i>#GLOBALS[whichFile]#</i>";
 $pgv_lang["error_remove_site"]			= "Zdalny serwer nie moze byc usuniety.";
 $pgv_lang["error_remove_site_linked"]	= "Zdalny serwer nie moze byc usuniety poniewaz jego lista polaczen nie jest pusta.";
+$pgv_lang["label_timedban_servers"]		= "Czasowa odmowa dostępu";
+$pgv_lang["PGV_SMTP_DEBUG"]				= "Błędy modułu pocztowego (PHPMailer)";
+$pgv_lang["PGV_SMTP_DEBUG_OPTION0"]		= "Bez komunikatów błędów";
+$pgv_lang["PGV_SMTP_DEBUG_OPTION1"]		= "Komunikaty klienta";
+$pgv_lang["PGV_SMTP_DEBUG_OPTION2"]		= "Komunikaty klienta i serwera";
+$pgv_lang["PGV_SMTP_DEBUG_OPTION3"]		= "Komunikaty klienta, serwera i status połączenia";
+$pgv_lang["PGV_SMTP_DEBUG_OPTION4"]		= "Szczegółowe komunikaty niskopoziomowe (rzadko potrzebne)";
 
 // -- The following text is used to build the phrase "i years, j months, k days, l hours, m minutes"
 // -- for use in text such as "xxx ago" or "after xxx" or "in xxx"
-$pgv_lang["elapsedYear1"]	=	"1 rok";
-$pgv_lang["elapsedYear2"]	=	"#pgv_lang[global_num1]# lata";	// used in Polish for 2,3,4 or 22,23,24 or 32,33,34 etc.
-$pgv_lang["elapsedYears"]	=	"#pgv_lang[global_num1]# lat";
-$pgv_lang["elapsedMonth1"]	=	"1 miesiac";
-$pgv_lang["elapsedMonth2"]	=	"#pgv_lang[global_num1]# miesiace";	// used in Polish for 2,3,4 or 22,23,24 or 32,33,34 etc.
-$pgv_lang["elapsedMonths"]	=	"#pgv_lang[global_num1]# miesiecy";
-$pgv_lang["elapsedDay1"]	=	"1 dzien";
-$pgv_lang["elapsedDay2"]	=	"#pgv_lang[global_num1]# dni";		// used in Polish for 2,3,4 or 22,23,24 or 32,33,34 etc.
-$pgv_lang["elapsedDays"]	=	"#pgv_lang[global_num1]# dni";
-$pgv_lang["elapsedHour1"]	=	"1 godzine";
-$pgv_lang["elapsedHour2"]	=	"#pgv_lang[global_num1]# godziny";	// used in Polish for 2,3,4 or 22,23,24 or 32,33,34 etc.
-$pgv_lang["elapsedHours"]	=	"#pgv_lang[global_num1]# godzin";
-$pgv_lang["elapsedMinute1"]	=	"1 minute";
-$pgv_lang["elapsedMinute2"]	=	"#pgv_lang[global_num1]# minuty";	// used in Polish for 2,3,4 or 22,23,24 or 32,33,34 etc.
-$pgv_lang["elapsedMinutes"]	=	"#pgv_lang[global_num1]# minut";
+$pgv_lang["elapsedYear1"]		= "1 rok";
+$pgv_lang["elapsedYear2"]		= "#pgv_lang[global_num1]# lata";	// used in Polish for 2,3,4 or 22,23,24 or 32,33,34 etc.
+$pgv_lang["elapsedYears"]		= "#pgv_lang[global_num1]# lat";
+$pgv_lang["elapsedMonth1"]		= "1 miesiac";
+$pgv_lang["elapsedMonth2"]		= "#pgv_lang[global_num1]# miesiace";	// used in Polish for 2,3,4 or 22,23,24 or 32,33,34 etc.
+$pgv_lang["elapsedMonths"]		= "#pgv_lang[global_num1]# miesiecy";
+$pgv_lang["elapsedDay1"]		= "1 dzien";
+$pgv_lang["elapsedDay2"]		= "#pgv_lang[global_num1]# dni";		// used in Polish for 2,3,4 or 22,23,24 or 32,33,34 etc.
+$pgv_lang["elapsedDays"]		= "#pgv_lang[global_num1]# dni";
+$pgv_lang["elapsedHour1"]		= "1 godzine";
+$pgv_lang["elapsedHour2"]		= "#pgv_lang[global_num1]# godziny";	// used in Polish for 2,3,4 or 22,23,24 or 32,33,34 etc.
+$pgv_lang["elapsedHours"]		= "#pgv_lang[global_num1]# godzin";
+$pgv_lang["elapsedMinute1"]		= "1 minute";
+$pgv_lang["elapsedMinute2"]		= "#pgv_lang[global_num1]# minuty";	// used in Polish for 2,3,4 or 22,23,24 or 32,33,34 etc.
+$pgv_lang["elapsedMinutes"]		= "#pgv_lang[global_num1]# minut";
 
-$pgv_lang["elapsedAgo"]		=	"#pgv_lang[global_string1]# temu";
+$pgv_lang["elapsedAgo"]			= "#pgv_lang[global_string1]# temu";
 
 ?>

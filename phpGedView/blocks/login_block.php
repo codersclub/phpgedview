@@ -120,7 +120,14 @@ function print_login_block($limitHeight, $config, $side, $index) {
 		$content .= "<td ";
 		$content .= write_align_with_textdir_check("left", true);
 		$content .= " class=\"{$TEXT_DIRECTION}\"><input type=\"password\" tabindex=\"{$i}\" name=\"password\"  size=\"20\" class=\"formField\" />";
-		$content .= '<br /><input type="checkbox" onclick="toggleVizPW(\'loginform\', \'password\')" />';
+		$content .= "</td></tr>";
+
+		// Row 2a: "Show password" checkbox
+		$i++;
+		$content .= "<tr><td >&nbsp;</td><td ";
+		$content .= write_align_with_textdir_check("left", true);
+		$content .= " class=\"{$TEXT_DIRECTION}\">";
+		$content .= '<input type="checkbox" onclick="toggleVizPW(\'loginform\', \'password\')" />';
 		$content .= $pgv_lang['show'];
 		$content .= "</td></tr>";
 

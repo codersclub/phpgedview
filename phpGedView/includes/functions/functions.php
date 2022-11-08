@@ -1186,6 +1186,37 @@ function exists_pending_change($user_id=PGV_USER_ID, $ged_id=PGV_GED_ID) {
 	return false;
 }
 
+/* Determine whether the "Printer-friendly" option should be shown in the page footer region of each theme.
+ *
+ * Search engines will NEVER see this option, and it's meaningless on pages other than charts.
+ * Even on some charts, it's meaningless.
+ */
+function showPrinterFriendly() {
+	global $SEARCH_SPIDER;
+
+	if (!empty($SEARCH_SPIDER)) return false;
+	
+	$chartPages = array(	// List of pages where the "Printer-friendly" option has some meaning
+		'ancestry.php',
+		'compact.php',
+		'descendancy.php',
+		'familybook.php',
+		'fanchart.php',
+		'hourglass.php',
+		'lifespan.php',
+		'pedigree.php',
+		'relationship.php',
+//		'statistics.php',
+		'timeline.php',
+		'treenav.php'
+		);
+
+	if (in_array(PGV_SCRIPT_NAME, $chartPages)) return true;
+
+	return false;
+}
+
+
 // ************************************************* START OF MULTIMEDIA FUNCTIONS ********************************* //
 /**
  * find the highlighted media object for a gedcom entity

@@ -435,7 +435,7 @@ a:hover .nameZoom {
 .link {
 	font-size: 14px;
 	text-align: center;
-	color: white;
+	color: brown;
 }
 
 .sublinks_table {
@@ -501,7 +501,7 @@ a:hover .nameZoom {
 
 .contact_links {
 	font: 14px tahoma, arial, helvetica, sans-serif;
-	color: white;
+	color: brown;
 }
 
 .contact_links a {
@@ -562,7 +562,7 @@ a:hover .nameZoom {
 }
 
 .menuitem, .menuitem_rtl {
-	color: #eeeeee;
+	color: brown;
 	text-decoration: none;
 	font: 14px tahoma, arial, helvetica, sans-serif;
 	padding: 1px;
@@ -604,7 +604,7 @@ a:hover .nameZoom {
 }
 
 .submenuitem, .submenuitem_rtl {
-	color: #eeeeee;
+	color: brown;
 	text-decoration: none;
 	font: 12px tahoma, arial, helvetica, sans-serif;
 	background-color: #EAE0D4;
@@ -635,11 +635,11 @@ a:hover .nameZoom {
 }
 
 .menuitem a {
-	color: #eeeeee;
+	color: brown;
 }
 
 .menuitem_rtl a {
-	color: #eeeeee;
+	color: brown;
 }
 
 /* .menuitem_hover a {
@@ -667,13 +667,13 @@ a:hover .nameZoom {
 }
 
 .favmenuitem {
-	color: #eeeeee;
+	color: brown;
 	text-decoration: none;
 	font: 14px tahoma, arial, helvetica, sans-serif;
 	padding: 1px;
 }
 
-.favmenuitem_hover	{
+.favmenuitem_hover {
 	color: white;
 	text-decoration: underline;
 	font: 14px tahoma, arial, helvetica, sans-serif;
@@ -812,7 +812,7 @@ a:hover .nameZoom {
 }
 
 #footer * {
-	color: white;
+	color: brown;
 }
 
 /*-- index.php specific style sheets -- */
@@ -1349,7 +1349,7 @@ a.showit:hover span {
 	z-index: 1;
 }
 .iwstyle {
-	width:360px;
+	width: 360px;
 	/*background-color: #FFFFFF;*/
 }
 .iwstyle a {
@@ -1408,7 +1408,7 @@ a.showit:hover span {
 
 /* Tag Cloud styles*/
 .tag_cloud_table {
-	width:70%;
+	width: 70%;
 	margin-left: auto;
 	margin-right: auto;
 }
@@ -1422,7 +1422,7 @@ a.showit:hover span {
 .tag_cloud_sub {
 	font-family: tahoma, arial, helvetica, sans-serif;
 	font-size: 8px;
-	color:#808080;
+	color: #808080;
 }
 /* End of Tag Cloud styles*/
 
@@ -1483,14 +1483,14 @@ a.showit:hover span {
 
 /* Flyout menu Styles */
 .flyout {
-	color:#000000;
+	color: #000000;
 	text-align: left;
 	margin-top: -20px;
 	right: 210px;
 	padding: 3px;
 }
 .flyoutrtl {
-	color:#000000;
+	color: #000000;
 	text-align: right;
 	margin-top: -20px;
 	left: 210px;

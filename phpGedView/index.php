@@ -4,7 +4,7 @@
  * to keep bookmarks, see a list of upcoming events, etc.
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2021  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2022  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -488,7 +488,7 @@ print "</td></tr></table><br />";		// Close off that table
 if ($ctype=="user" && !$welcome_block_present && !$SEARCH_SPIDER) {
 	print "<div align=\"center\" style=\"width: 99%;\">";
 	print_help_link("mygedview_customize_help", "qm");
-	print "<a href=\"javascript:;\" onclick=\"window.open('index_edit.php?name=".PGV_USER_NAME."&ctype=user', '_blank', 'top=50,left=10,width=600,height=500,scrollbars=1,resizable=1');\">".$pgv_lang["customize_page"]."</a>";
+	print "<a href=\"javascript:;\" onclick=\"window.open('index_edit.php?name=".PGV_USER_NAME."&ctype=user', '_blank', 'top=50,left=10,width=600,height=500,scrollbars=1,resizable=1');\"><button type='button'>".$pgv_lang["customize_page"]."</button></a>";
 	print "</div>";
 }
 if ($ctype=="gedcom" && !$gedcom_block_present && !$SEARCH_SPIDER) {

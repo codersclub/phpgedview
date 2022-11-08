@@ -3,7 +3,7 @@
  * Top-of-page menu for Minimal theme
  *
  * PhpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2020  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2022  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -34,6 +34,14 @@ $menubar = new MenuBar();
 <table width="100%" border="1" cellspacing="0">
 	<tr>
 		<?php
+		$menu = $menubar->getHomeMenu();
+		if($menu->link != "") {
+			print "\t<td width=\"7%\" valign=\"top\">\n";
+			$menu->addIcon(null);
+			$menu->printMenu();
+			print "\t</td>\n";
+		}
+
 		$menu = $menubar->getGedcomMenu();
 		if ($menu->link != "") {
 			print "\t<td width=\"7%\" valign=\"top\">\n";
@@ -122,6 +130,14 @@ $menubar = new MenuBar();
 				$menu->printMenu();
 				print "\t</td>\n";
 			}
+		}
+
+		$menu = $menubar->getPreviewMenu();
+		if ($menu->link != "") {
+			print "\t<td width=\"7%\" valign=\"top\">\n";
+			$menu->addIcon(null);
+			$menu->printMenu();
+			print "</td>";
 		}
 
 		$menu = $menubar->getHelpMenu();

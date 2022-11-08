@@ -5,7 +5,7 @@
  * This block prints basic information about the active gedcom
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2021  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2022  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -46,15 +46,22 @@ function print_gedcom_block($limitHeight, $config, $side, $index) {
 
 	$id = "gedcom_welcome";
 	$title = PrintReady(get_gedcom_setting(PGV_GED_ID, 'title'));
+
+	$serverTime = client_time('server');
+	$localTime = client_time('client');
+
 	$content = "<div class=\"center\">";
-	$content .= "<br />".format_timestamp(client_time())."<br />\n";
-	if ($SHOW_COUNTER)
-		$content .=  $pgv_lang["hit_count"]." ".$hitCount."<br />\n";
-	$content .=  "\n<br />";
-	if (PGV_USER_GEDCOM_ADMIN) {
-		$content .=  "<a href=\"javascript:;\" onclick=\"window.open('".encode_url("index_edit.php?name=".PGV_GEDCOM."&ctype=gedcom")."', '_blank', 'top=50,left=10,width=600,height=500,scrollbars=1,resizable=1'); return false;\">".$pgv_lang["customize_gedcom_page"]."</a><br />\n";
+	$content .= "<br />{$pgv_lang['serverTime']}: ".format_timestamp($serverTime);
+	if ($serverTime != $localTime) {
+		$content .= "<br />{$pgv_lang['localTime']}: ".format_timestamp($localTime);
 	}
-	$content .=  "</div>";
+	$content .= '<br />';
+	if ($SHOW_COUNTER)
+		$content .=  "<br />{$pgv_lang['hit_count']} {$hitCount}<br />\n";
+	if (PGV_USER_GEDCOM_ADMIN) {
+		$content .=  "<br /><a href=\"javascript:;\" onclick=\"window.open('".encode_url("index_edit.php?name=".PGV_GEDCOM."&ctype=gedcom")."', '_blank', 'top=50,left=10,width=600,height=500,scrollbars=1,resizable=1'); return false;\"><button type='button'>".$pgv_lang["customize_gedcom_page"]."</button></a><br />\n";
+	}
+	$content .=  "\n<br /></div>";
 
 	global $THEME_DIR;
 	require $THEME_DIR.'templates/block_main_temp.php';

@@ -334,6 +334,7 @@ a:hover .nameZoom {
 
 .date {
 	color: #333377;
+	font-weight: bold;
 }
 
 .label, .field {

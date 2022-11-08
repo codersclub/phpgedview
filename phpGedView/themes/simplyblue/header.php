@@ -89,52 +89,49 @@ $displayDate=timestamp_to_gedcom_date(client_time())->Display(false);
 <div id="header" class="<?php echo $TEXT_DIRECTION; ?>">
 <div class="headerimg" style="margin: 3px; background: url(<?php echo $PGV_IMAGE_DIR; ?>/bannerimage.jpg) no-repeat center <?php echo $TEXT_DIRECTION=="ltr"?"left":"right"; ?>;">
   <table width="99%" class="headerimg" cellpadding="3" cellspacing="0" style="height:186;">
-    <tr>
-      <td width="760">
-        &nbsp;
-      </td>
-    <?php if (empty($SEARCH_SPIDER)) { ?>
-      <td>
-        <?php print_lang_form(1); ?>
-        <?php print_theme_dropdown(); ?>
-      </td>
-    <?php } ?>
-    </tr>
-    <tr>
-      <td valign="bottom">
-        <div class="title">
-          <?php print_gedcom_title_link(TRUE); ?>
-        </div>
-      </td>
-    <?php if (empty($SEARCH_SPIDER)) { ?>
-      <td style="white-space: nowrap">
-        <form action="search.php" method="post">
-          <input type="hidden" name="action" value="general" />
-          <input type="hidden" name="topsearch" value="yes" />
-          <input type="text" name="query" size="25" value="<?php echo $pgv_lang['search']?>"
-              onfocus="if (this.value == '<?php echo $pgv_lang['search']?>') this.value=''; focusHandler();"
-              onblur="if (this.value == '') this.value='<?php echo $pgv_lang['search']?>';" />
-          <input type="submit" name="search" value=">" />
-        </form>
-        <?php print_favorite_selector(); ?>
-      </td>
-    <?php } ?>
-    </tr>
-    <tr>
-      <td>
-        <?php print_user_links(); ?>
-      </td>
-      <td valign="bottom">
-        <?php if (empty($SEARCH_SPIDER)) { ?>
-        <div class="date">
-          <?php echo $displayDate; ?>
-        </div>
-        <?php } ?>
-        <a href="<?php echo $HOME_SITE_URL; ?>">
-        <?php echo $HOME_SITE_TEXT; ?>
-        </a>
-      </td>
-    </tr>
+	<tr>
+	  <td width="760">
+		&nbsp;
+	  </td>
+	<?php if (empty($SEARCH_SPIDER)) { ?>
+	  <td>
+		<?php print_lang_form(1); ?>
+		<?php print_theme_dropdown(); ?>
+	  </td>
+	<?php } ?>
+	</tr>
+	<tr>
+	  <td valign="bottom">
+		<div class="title">
+			<?php echo PrintReady($GEDCOM_TITLE, true); ?>
+		</div>
+	  </td>
+	<?php if (empty($SEARCH_SPIDER)) { ?>
+	  <td style="white-space: nowrap">
+		<form action="search.php" method="post">
+		  <input type="hidden" name="action" value="general" />
+		  <input type="hidden" name="topsearch" value="yes" />
+		  <input type="text" name="query" size="25" value="<?php echo $pgv_lang['search']?>"
+			  onfocus="if (this.value == '<?php echo $pgv_lang['search']?>') this.value=''; focusHandler();"
+			  onblur="if (this.value == '') this.value='<?php echo $pgv_lang['search']?>';" />
+		  <input type="submit" name="search" value=">" />
+		</form>
+		<?php print_favorite_selector(); ?>
+	  </td>
+	<?php } ?>
+	</tr>
+	<tr>
+	  <td>
+		<?php print_user_links(true); ?>
+	  </td>
+	  <td valign="bottom">
+		<?php if (empty($SEARCH_SPIDER)) { ?>
+		<div class="date">
+		  <?php echo $displayDate; ?>
+		</div>
+		<?php } ?>
+	  </td>
+	</tr>
   </table>
 </div>
 <?php include($toplinks);

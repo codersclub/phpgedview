@@ -632,8 +632,10 @@ function print_footer() {
 		$query = '?' . get_query_string();
 		if ($query == '?') $query = '';		// Make sure the URL doesn't end with an orphan question-mark
 		if (!$printlink) {
-			echo "<br /><a id=\"printlink\" href=\"javascript:;\" onclick=\"print(); return false;\">", $pgv_lang["print"], "</a><br />";
-			echo " <a id=\"printlinktwo\" href=\"javascript:;\" onclick=\"window.location='", PGV_SCRIPT_NAME, $query, "'; return false;\">", $pgv_lang["cancel_preview"], "</a><br />";
+			echo "<br /><a id=\"printlink\" href=\"javascript:;\" onclick=\"print(); return false;\"><button type='button'>", $pgv_lang["print"], "</button></a>";
+			echo '&nbsp;&nbsp;&nbsp;';
+			echo " <a id=\"printlinktwo\" href=\"javascript:;\" onclick=\"window.location='", PGV_SCRIPT_NAME, $query, "'; return false;\"><button type='button'>", $pgv_lang["cancel_preview"], "</button></a>";
+			echo '<br /><br /><br />';
 		}
 		$printlink = true;
 		echo "</div>";
@@ -776,24 +778,36 @@ function print_lang_form($option=0) {
 * print user links
 *
 * this function will print login/logout links and other links based on user privileges
+*
+* Links are printed as text when the parameter is false (the default), and as buttons when that parameter is true.
 */
-function print_user_links() {
+function print_user_links($asButtons=false) {
 	global $pgv_lang, $QUERY_STRING, $GEDCOM;
 	global $LOGIN_URL, $SEARCH_SPIDER;
 
+	if ($asButtons) {
+		$buttonStart = '<button type = "button">';
+		$buttonEnd = '</button>';
+		$separator = '&nbsp;&nbsp;&nbsp;';
+	} else {
+		$buttonStart = '';
+		$buttonEnd = '';
+		$separator = '&nbsp;|&nbsp;';
+	}
+	
 	if (PGV_USER_ID) {
 		echo '<a href="edituser.php" class="link">', $pgv_lang["logged_in_as"], ' (', PGV_USER_NAME, ')</a><br />';
 		if (PGV_USER_GEDCOM_ADMIN) {
-			echo "<a href=\"admin.php\" class=\"link\">", $pgv_lang["admin"], "</a> | ";
+			echo "<a href='admin.php' class='link'>{$buttonStart}{$pgv_lang['admin']}{$buttonEnd}</a>{$separator}";
 		}
-		echo "<a href=\"index.php?logout=1\" class=\"link\">", $pgv_lang["logout"], "</a>";
+		echo "<a href='index.php?logout=1' class='link'>{$buttonStart}{$pgv_lang['logout']}{$buttonEnd}</a>";
 	} else {
 		$QUERY_STRING = normalize_query_string($QUERY_STRING.'&amp;logout=');
 		if (empty($SEARCH_SPIDER)) {
 			if (PGV_SCRIPT_NAME=='login.php') {
-				echo "<a href=\"#\" class=\"link\">", $pgv_lang["login"], "</a>";
+				echo "<a href='#' class='link'>{$buttonStart}{$pgv_lang['login']}{$buttonEnd}</a>";
 			} else {
-				echo "<a href=\"$LOGIN_URL?url=", rawurlencode(PGV_SCRIPT_NAME.decode_url(normalize_query_string($QUERY_STRING."&amp;ged=$GEDCOM"))), "\" class=\"link\">", $pgv_lang["login"], "</a>";
+				echo "<a href='{$LOGIN_URL}?url=", rawurlencode(PGV_SCRIPT_NAME.decode_url(normalize_query_string($QUERY_STRING."&amp;ged=$GEDCOM"))), "' class='link'>{$buttonStart}{$pgv_lang['login']}{$buttonEnd}</a>";
 			}
 		}
 	}

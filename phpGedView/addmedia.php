@@ -404,7 +404,7 @@ if ($action=="newentry") {
 				echo PGV_JS_END;
 			}
 		}
-		print $pgv_lang["update_successful"];
+		echo '<br /><br />', $pgv_lang["update_successful"];
 	}
 }
 // **** end action "newentry"
@@ -553,7 +553,7 @@ if ($action == "update") {
 		}
 	}
 
-	if ($finalResult) print $pgv_lang["update_successful"];
+	if ($finalResult) echo '<br /><br />', $pgv_lang["update_successful"];
 }
 // **** end action "update"
 
@@ -561,7 +561,7 @@ if ($action == "update") {
 if ($action=="delete") {
 	if (delete_gedrec($pid)) {
 		AddToChangeLog("Media ID ".$pid." successfully deleted.");
-		print $pgv_lang["update_successful"];
+		echo '<br /><br />', $pgv_lang["update_successful"];
 	}
 }
 // **** end action "delete"

@@ -2,7 +2,7 @@
 /**
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2017  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2022  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -182,7 +182,7 @@ function date_diff_localisation_pl(&$label, &$gap) {
 ////////////////////////////////////////////////////////////////////////////////
 // Localise a number of people. Lokalizacja liczby osób.
 ////////////////////////////////////////////////////////////////////////////////
-function num_people_localisation_pl(&$count) {
+function num_people_localisation_pl($count) {
 	global $pgv_lang;
 
 	if ($count == 1)

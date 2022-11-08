@@ -434,8 +434,8 @@ $pgv_lang["media_list"] 				= "Liste des objets MultiMédia";
 $pgv_lang["repo_list"]  				= "Liste des dépôts d'archives";
 $pgv_lang["search"] 					= "Recherche";
 $pgv_lang["clippings_cart"] 			= "Extraction de données";
-$pgv_lang["print_preview"]  			= "Page imprimable";
-$pgv_lang["cancel_preview"] 			= "Retour page complète";
+$pgv_lang["print_preview"]				= "Simplifier la page";
+$pgv_lang["cancel_preview"] 			= "Vue normale";
 $pgv_lang["change_lang"]				= "Changer de langue";
 $pgv_lang["language"]					= "Langue";
 $pgv_lang["print"]  					= "Imprimer";
@@ -728,6 +728,8 @@ $pgv_lang["timeline_scrollSpeed"]   	= "Vitesse";
 $pgv_lang["timeline_controls"]  		= "Actions";
 $pgv_lang["include_family"] 			= "Inclure la proche famille";
 $pgv_lang["lifespan_chart"] 			= "Ligne de temps";
+$pgv_lang["serverTime"]					= "Heure du serveur";
+$pgv_lang["localTime"]					= "Heure locale";
 
 // calendar conversion options
 $pgv_lang["cal_none"]   				= "Aucune conversion de calendrier";
