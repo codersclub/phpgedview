@@ -19,9 +19,11 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *
+ * @author Łukasz Wileński <wooc@users.sourceforge.net>
+ * @author Tomasz Babczyński <tomasz.babczynski@gmail.com>
+ * @translations by Google Translate (verified by natives)
  * @package PhpGedView
  * @subpackage Languages
- * @author Łukasz Wileński <wooc@users.sourceforge.net>
  * @version $Id$
  */
 
@@ -80,7 +82,7 @@ $countries["CHE"]="Szwajcaria";
 $countries["CHI"]="Wyspy Normandzkie";
 $countries["CHL"]="Chile";
 $countries["CHN"]="Chiny";
-$countries["CIV"]="Wybrzeże Kości Słoniowej";
+$countries["CIV"]="Wybrzeże Kości Słoniowej"; //why Côte d'Ivoire?, it is not polish name
 $countries["CMR"]="Kamerun";
 $countries["COD"]="Demokratyczna Republika Konga (Kinszasa)";
 $countries["COG"]="Republika Konga (Brazzaville)";
@@ -186,7 +188,7 @@ $countries["MHL"]="Wyspy Marshalla";
 $countries["MKD"]="Macedonia";
 $countries["MLI"]="Mali";
 $countries["MLT"]="Malta";
-$countries["MMR"]="Birma";
+$countries["MMR"]="Myanmar (Birma)";
 $countries["MNE"]="Czarnogóra";
 $countries["MNG"]="Mongolia";
 $countries["MNP"]="Mariany Północne";
@@ -228,7 +230,7 @@ $countries["PRY"]="Paragwaj";
 $countries["PSE"]="Palestyna";
 $countries["PYF"]="Polinezja Francuska";
 $countries["QAT"]="Katar";
-$countries["REU"]="Reunion";
+$countries["REU"]="Reunion"; //in polish it is just Reunion
 $countries["ROU"]="Rumunia";
 $countries["RUS"]="Rosja";
 $countries["RWA"]="Rwanda";
@@ -251,7 +253,7 @@ $countries["SOM"]="Somalia";
 $countries["SPM"]="Saint-Pierre i Miquelon";
 $countries["SRB"]="Serbia";
 $countries["SSD"]="Południowy Sudan";
-$countries["STP"]="Wyspy Świętego Tomasza i Książęca";
+$countries["STP"]	= "Świętego Tomasza i Książęca";
 $countries["SUN"]="ZSSR";
 $countries["SUR"]="Surinam";
 $countries["SVK"]="Słowacja";
@@ -300,4 +302,42 @@ $countries["ZAR"]="Zair";
 $countries["ZMB"]="Zambia";
 $countries["ZWE"]="Zimbabwe";
 $countries["???"]="Nieznane";
+
+/*
+ * The following table lists alternate names for various Chapman codes.
+ * It will be used when country names have to be converted to Chapman codes.
+ * You do not have to list all the possibilities in all page languages.  This
+ * will be done automatically by the country-to-Chapman conversion routine.
+ *
+ * Because the list, and its contents, are specific to each language, the
+ * Translator Tool won't let you work on the list directly.  The list will
+ * have to be updated and amended manually.
+ *
+ * Suppose Chapman code "XYZ" represents the same country, and that country
+ * had the names "Name1", "Name2", "Name3" in its history.  It is now known
+ * as "Current name".  You can list the various names like this:
+ *
+ * $countries["XYZ"]	= "Current name";
+ * $altCountryNames["XYZ"]	= "Name1; Name2; Name3";
+ *
+ * The Chapman-to-country conversion will always use the $countries list of
+ * the current page language, no matter what the original country name was.
+ *
+ */
+/* The Polish version of these codes needs to be developed */
+$altCountryNames["COD"]		= "Zair";
+$altCountryNames["DEU"]		= "Republika Federalna Niemiec (RFN); Niemiecka Republika Demokratyczna (NRD)";
+$altCountryNames["FLK"]		= "Falklandy; Malwiny"; //both names are used with similar frequency (but it is already in regular names table)
+$altCountryNames["GBR"]		= "Wielka Brytania"; //already in reg. table
+$altCountryNames["LKA"]		= "Cejlon";
+$altCountryNames["MAC"]		= "Makao";
+$altCountryNames["MMR"]		= "Burma";
+$altCountryNames["NLD"]		= "Niderlandy"; //old name, now only used in books
+$altCountryNames["PLW"]		= "Belau";
+$altCountryNames["SUN"]		= "Związek Radziecki; Związek Sowiecki";//some historians insist that Sowiecki but in those days it was Radziecki
+$altCountryNames["TLS"]		= "Timor Wschodni"; //no alt name in polish
+$altCountryNames["USA"]		= "USA; Stany Zjednoczone Ameryki";
+$altCountryNames["VAT"]		= "Stolica Apostolska; Stolica Piotrowa";
+$altCountryNames["WSM"]		= "Samoa Zachodnie";
+
 ?>

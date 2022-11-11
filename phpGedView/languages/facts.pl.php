@@ -20,6 +20,8 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *
  * @author Łukasz Wileński <wooc@users.sourceforge.net>
+ * @author Tomasz Babczyński <tomasz.babczynski@gmail.com>
+ * @translations by Google Translate (verified by natives)
  * @package PhpGedView
  * @subpackage Languages
  * @version $Id$
@@ -29,6 +31,7 @@ if (!defined('PGV_PHPGEDVIEW')) {
 	header('HTTP/1.0 403 Forbidden');
 	exit;
 }
+
 
 // -- Tabela faktów GedCom
 $factarray["ABBR"]	= "Skrót";
@@ -176,7 +179,7 @@ $factarray["TITL:FONE"]	= "Tytuł fonetycznie";
 
 $factarray["SHARED_NOTE"] = "Wspólna notatka";
 
-//These facts are compounds for the view probabilities page
+//These facts are compounds for the view probabilities and the advanced search pages
 $factarray["FAMC:HUSB:SURN"]		= "Nazwisko ojca";
 $factarray["FAMC:WIFE:SURN"]		= "Nazwisko matki";
 $factarray["FAMC:HUSB:BIRT:PLAC"]	= "Miejsce urodzenia ojca";
@@ -244,12 +247,14 @@ $factarray["MARR:SOUR"] = "Źródło ślubu";
 $factarray["ENGA:PLAC"] = "Miejsce zaręczyn";
 $factarray["ENGA:DATE"] = "Data zaręczyn";
 $factarray["ENGA:SOUR"] = "Źródło zaręczyn";
+
 $factarray["REPO:NAME"] = "Nazwa repozytorium";
 $factarray["REPO:ADDR"] = "Adres repozytorium";
 $factarray["REPO:PHON"] = "Telefon do repozytorium";
 $factarray["REPO:FAX"]  = "FAX do repozytorium";
 $factarray["REPO:EMAIL"] = "Adres email repozytorium";
 $factarray["REPO:WWW"]  = "Strona domowa repozytorium";
+
 
 // Fakty specyficzne dla eksportu GedCom z programu Family Tree Maker
 $factarray["_MDCL"] = "Służba medyczna";
@@ -325,7 +330,7 @@ $factarray["_NLIV"]	= "Nie żyje";
 $factarray["_NMAR"]	= "Nigdy nieżonaty/niezamężna";
 $factarray["_PRMN"]	= "Stały numer";
 $factarray["_WEIG"]	= "Waga";
-$factarray["_YART"]	= "Yahrzeit";
+$factarray["_YART"]	= "Yahrzeit (rocznica śmierci)";
 $factarray["_MARNM"] = "Po ślubie";
 $factarray["_MARNM_SURN"] = "Nazwisko po ślubie";
 $factarray["_STAT"]	= "Stan cywilny";

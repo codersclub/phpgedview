@@ -14,6 +14,7 @@ The session.php script uses this information to populate the constants : PGV_VER
 =====================================================================
 
 Version 4.3.1
+ - Fixed: Missing diacritics in most Polish language files (tbabczynski)
  - Fixed: Welcome blocks should show both Server time and Client time when they differ (canajun2eh)
  - Changed: Minor improvements to page headers in all themes (canajun2eh)
  - Changed: Links at the bottom of Charts pages should be buttons (canajun2eh)
