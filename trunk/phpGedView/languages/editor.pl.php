@@ -20,6 +20,8 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *
  * @author Łukasz Wileński <wooc@users.sourceforge.net>
+ * @author Tomasz Babczyński <tomasz.babczynski@gmail.com>
+ * @translations by Google Translate (verified by natives)
  * @package PhpGedView
  * @subpackage Languages
  * @version $Id$
@@ -30,15 +32,21 @@ if (!defined('PGV_PHPGEDVIEW')) {
 	exit;
 }
 
+$pgv_lang["add_marriage"]							= "Dodaj szczegóły małżeństwa";
+$pgv_lang["edit_concurrency_change"]				= "Ten wpis został ostatnio zmieniony przez <i>#CHANGEUSER#</i> #CHANGEDATE#";
+$pgv_lang["edit_concurrency_msg2"]					= "Wpis z identyfikatorem #PID# został zmieniony przez innego użytkownika podczas Twojego dostępu.";
+$pgv_lang["edit_concurrency_msg1"]					= "Wystąpił błąd podczas edytowania. Inny użytkownik w tym czasie mógł dokonać zmian w tym wpisie.";
+$pgv_lang["edit_concurrency_reload"]				= "Odśwież poprzednią stronę, aby mieć pewność, że pracujesz z najbardziej aktualnym wpisem.";
+$pgv_lang["no_update_CHAN"]							= "Nie aktualizuj wpisu CHAN (ostatnia zmiana)";
+$pgv_lang["select_events"]							= "Wybierz wydarzenia";
+$pgv_lang["source_events"]							= "Przypisz wydarzenia do tego źródła";
+$pgv_lang["advanced_name_fields"]					= "Dodatkowe imiona (przezwisko, po ślubie, itp.)";
 $pgv_lang["accept_changes"]				= "Zatwierdź / odrzuć zmiany";
 $pgv_lang["replace"]					= "Zastąp wpis";
 $pgv_lang["append"]						= "Dołącz wpis";
 $pgv_lang["review_changes"]				= "Przejrzyj zmiany w pliku GEDCOM";
 $pgv_lang["remove_object"]				= "Usuń obiekt";
 $pgv_lang["remove_links"]				= "Usuń odnośniki";
-$pgv_lang["media_not_deleted"]			= "Katalog mediów - <span style=\"font-size:larger\">#GLOBALS[whichDir]#</span> - nie został usunięty.";
-$pgv_lang["thumbs_not_deleted"]			= "Katalog miniaturek nie został usunięty.";
-$pgv_lang["thumbs_deleted"]				= "Katalog miniaturek został usunięty pomyślnie.";
 $pgv_lang["show_thumbnail"]				= "Pokaż miniaturki";
 $pgv_lang["link_media"]					= "Powiąż obiekt multimedialny";
 $pgv_lang["to_person"]					= "z osobą";
@@ -47,6 +55,7 @@ $pgv_lang["to_source"]					= "ze źródłem";
 $pgv_lang["to_note"]					= "z notatką";
 $pgv_lang["to_repository"]				= "z repozytorium";
 $pgv_lang["edit_fam"]					= "Edytuj rodzinę";
+$pgv_lang["edit_repo"]								= "Edytuj repozytorium";
 $pgv_lang["copy"]						= "Kopiuj";
 $pgv_lang["cut"]						= "Wytnij";
 $pgv_lang["sort_by_birth"]				= "Sortuj według daty urodzenia";
@@ -88,6 +97,18 @@ $pgv_lang["thumb_media_fail0"]			= "Plik miniaturek <b>#GLOBALS[oldThumbFolder]#
 $pgv_lang["thumb_media_fail1"]			= "Nie można zmienić nazwy pliku miniaturek <b>#GLOBALS[oldMediaName]#</b> na <b>#GLOBALS[newMediaName]#</b>.";
 $pgv_lang["thumb_media_fail2"]			= "Nie można przenieść pliku miniaturek <b>#GLOBALS[oldMediaName]#</b> z <b>#GLOBALS[oldThumbFolder]#</b> do <b>#GLOBALS[newThumbFolder]#</b>.";
 $pgv_lang["thumb_media_fail3"]			= "Nie można przenieść i zmienić nazwy pliku miniaturek z <b>#GLOBALS[oldThumbFolder]##GLOBALS[oldMediaName]#</b> do <b>#GLOBALS[newThumbFolder]##GLOBALS[newMediaName]#</b>.";
+$pgv_lang["thumb_create_ok0a"]						= "Miniatura <b>#GLOBALS[imageThumbnail]#</b> utworzona automatycznie.";
+$pgv_lang["thumb_create_ok0b"]						= "Miniatura #GLOBALS[imageThumbnail]# utworzona automatycznie.";
+$pgv_lang["thumb_create_fail0a"]					= "Miniatura <span style=\"font-size:larger\">#GLOBALS[imageThumbnail]#</span> nie mogła zostać utworzona automatycznie. Kod błędu : ";
+$pgv_lang["thumb_create_fail0b"]					= "Miniatura #GLOBALS[imageThumbnail]# nie mogła zostać utworzona automatycznie. Kod błędu : ";
+$pgv_lang["thumb_create_fail1"]						= "Ta funkcja jest wyłączona w konfiguracji GEDCOM.";
+$pgv_lang["thumb_create_fail2"]						= "Katalog docelowy nie jest zapisywalny.";
+$pgv_lang["thumb_create_fail3"]						= "Ta funkcja nie obsługuje typu obrazu <span style=\"font-size:larger\">#GLOBALS[imageType]#</span>.";
+$pgv_lang["thumb_create_fail4"]						= "Nie można utworzyć katalogu docelowego.";
+$pgv_lang["thumb_create_fail5"]						= "Obraz wejściowy <span style=\"font-size:larger\">#GLOBALS[imageFilename]#</span> nie istnieje lub nie można go odczytać.";
+$pgv_lang["thumb_create_fail6"]						= "Nie można określić rozmiaru obrazu wejściowego <span style=\"font-size:larger\">#GLOBALS[imageFilename]#</span>.";
+$pgv_lang["thumb_create_fail7"]						= "Nie ma wystarczającej ilości wolnej pamięci.<br /><br />Zmniejsz rozmiar obrazu wejściowego lub dostosuj alokację pamięci w Konfiguracji Witryny, Krok 4, Ustawienia Zaawansowane.";
+$pgv_lang["thumb_create_fail8"]						= "Obraz wejściowy <span style=\"font-size:larger\">#GLOBALS[imageFilename]#</span> jest uszkodzony.";
 $pgv_lang["add_asso"]					= "Dodaj nowe powiązanie";
 $pgv_lang["edit_sex"]					= "Edytuj płeć";
 $pgv_lang["add_obje"]					= "Dodaj nowy obiekt multimedialny";
@@ -130,17 +151,21 @@ $pgv_lang["basic_search_discription"]	= "Wyszukiwanie proste";
 $pgv_lang["birthdate_search"]			= "Data urodzin: ";
 $pgv_lang["birthplace_search"]			= "Miejsce urodzin: ";
 $pgv_lang["change"]						= "Zmień";
-$pgv_lang["change_family_instr"]		= "Na tej stronie możesz zmieniać lub usuwać członków rodziny. <br /><br />Możesz skorzystać z odnośnika Zmień dla każdego członka, aby wybrać inną osobę na to miejsce w rodzinie. Możesz także użyć odnośnika Usuń aby usunąć tę osobę z rodziny.<br /><br />Po zakończeniu wprowadzania zmian kliknij przycisk Zapisz, aby je zapamiętać.<br />";
+$pgv_lang["change_family_instr"]		= "Na tej stronie możesz zmieniać lub usuwać członków rodziny. <br /><br />Możesz skorzystać z odnośnika Zmień dla każdego członka, aby wybrać inną osobę na to miejsce w rodzinie. Możesz także użyć odnośnika Usuń, aby usunąć tę osobę z rodziny.<br /><br />Po zakończeniu wprowadzania zmian kliknij przycisk Zapisz, aby je zapamiętać.<br />";
 $pgv_lang["change_family_members"]		= "Zmień członków rodziny";
 $pgv_lang["changes_occurred"]			= "W tym wpisie dokonano następujących zmian:";
 $pgv_lang["confirm_remove"]				= "Czy na pewno chcesz usunąć tę osobę z rodziny?";
 $pgv_lang["confirm_remove_object"]		= "Czy na pewno chcesz usunąć ten obiekt z bazy danych?";
 $pgv_lang["create_repository"]			= "Utwórz repozytorium";
+$pgv_lang["repo_not_exist"]							= "Repozytorium %s nie istnieje";
 $pgv_lang["shared_note_assisted"]       = "Za pomocą Asystenta";
 $pgv_lang["create_shared_note"]			= "Utwórz nową wspólną notatkę";
+$pgv_lang["note_not_exist"]							= "Wspólna notatka %s nie istnieje";
 $pgv_lang["create_shared_note_assisted"]= "Utwórz nową wspólną notatkę używając Asystenta";
 $pgv_lang["add_new_event_assisted"]		= "Utwórz nowe wydarzenie używając Asystenta";
 $pgv_lang["create_source"]				= "Utwórz nowe źródło";
+$pgv_lang["sour_not_exist"]							= "Źródło %s nie istnieje";
+$pgv_lang["media_not_exist"]						= "Medium %s nie istnieje";
 $pgv_lang["current_person"]				= "Bieżąca osoba";
 $pgv_lang["date"]						= "Data";
 $pgv_lang["deathdate_search"]			= "Data śmierci: ";
@@ -149,6 +174,7 @@ $pgv_lang["delete_dir_success"]			= "Przenoszenie katalogów multimediów i mini
 $pgv_lang["delete_file"]				= "Usuń plik";
 $pgv_lang["delete_repo"]				= "Usuń repozytorium";
 $pgv_lang["directory_not_empty"]		= "Katalog <span style=\"font-size:larger\">#GLOBALS[whichDir]#</span> nie jest pusty.";
+$pgv_lang["directory_not_mt"]						= "Katalog #GLOBALS[whichDir]# nie jest pusty.";
 $pgv_lang["directory_not_exist"]		= "Katalog nie istnieje.";
 $pgv_lang["error_remote"]				= "Wybrano zewnętrzną stronę.";
 $pgv_lang["error_same"]					= "Wybrano tą samą stronę.";
@@ -163,9 +189,9 @@ $pgv_lang["file_bad_extension"]			= "PHP zablokowało plik przez rozszerzenie";
 $pgv_lang["file_unkown_err"]			= "Nieznany błąd podczas wgrywania pliku #pgv_lang[global_num1]#. Zgłoś raport o tym błędzie.";
 $pgv_lang["folder"]						= "Katalog na serwerze";
 $pgv_lang["gedrec_deleted"]				= "Wpis w pliku GEDCOM został usunięty.";
+$pgv_lang["gen_thumb"]								= "Utwórz miniaturkę";
 $pgv_lang["gen_missing_thumbs"]			= "Utwórz brakujące miniaturki";
 $pgv_lang["gen_missing_thumbs_lbl"]		= "Brakujące miniaturki";
-$pgv_lang["gen_thumb"]					= "Utwórz miniaturkę";
 $pgv_lang["gender_search"]				= "Płeć:";
 $pgv_lang["generate_thumbnail"]			= "Automatycznie twórz miniaturkę z&nbsp;";
 $pgv_lang["hebrew_givn"]				= "Imiona hebrajskie";
@@ -192,13 +218,20 @@ $pgv_lang["link_to_existing_media"]		= "Powiąż z istniejącym obiektem multime
 $pgv_lang["max_media_depth"]			= "Możesz wprowadzić tylko #GLOBALS[MEDIA_DIRECTORY_LEVELS]# poziomów katalogów.";
 $pgv_lang["max_upload_size"]			= "Maksymalny rozmiar wgrywania:";
 $pgv_lang["media_deleted"]				= "Katalog multimediów (<b>#GLOBALS[whichDir]#</b>) usunięty.";
+$pgv_lang["media_not_deleted"]						= "Katalog mediów - <span style=\"font-size:larger\">#GLOBALS[whichDir]#</span> - nie został usunięty.";
+$pgv_lang["media_cant_delete"]						= "Nie można usunąć katalogu mediów: #GLOBALS[whichDir]#.";
 $pgv_lang["media_exists"]				= "Plik multimedialny już istnieje.";
 $pgv_lang["media_file"]					= "Plik multimedialny do wgrania";
 $pgv_lang["media_file_deleted"]			= "Plik multimedialny został usunięty.";
+$pgv_lang["media_file_not_deleted"]					= "Plik multimedialny <span style=\"font-size:larger\">#GLOBALS[whichFile]#</span> nie może być usunięty.";
+$pgv_lang["media_file_cant_delete"]					= "Plik multimedialny #GLOBALS[whichFile]# nie może być usunięty.";
 $pgv_lang["media_file_moved"]			= "Plik multimediów zostal przeniesiony.";
 $pgv_lang["media_file_not_moved"]		= "Nie można przenieść pliku multimedialnego.";
 $pgv_lang["media_file_not_renamed"]		= "Nie można przenieść ani zmienić nazwy pliku multimedialnego.";
 $pgv_lang["media_thumb_exists"]			= "Miniaturka multimediów już istnieje.";
+$pgv_lang["media_thumb_deleted"]					= "Miniaturka <b>#GLOBALS[whichFile]#</b> została usunięta.";
+$pgv_lang["media_thumb_not_deleted"]				= "Miniaturka <span style=\"font-size:larger\">#GLOBALS[whichFile]#</span> nie może być usunięta.";
+$pgv_lang["media_thumb_cant_delete"]				= "Miniaturka #GLOBALS[whichFile]# nie może być usunięta.";
 $pgv_lang["multiple_gedcoms"]			= "Ten plik jest powiązany z inną genealogiczną bazą danych na tym serwerze. Nie można go usunąć, przenieść ani zmienić jego nazwy dopóki te powiązania nie zostaną usunięte.";
 $pgv_lang["must_provide"]				= "Podaj ";
 $pgv_lang["name_search"]				= "Imię/nazwisko:";
@@ -215,8 +248,6 @@ $pgv_lang["paste_rid_into_field"]		= "Wklej poniższy identyfikator w pole edycj
 $pgv_lang["record_marked_deleted"]		= "Ten wpis został zaznaczony do usunięcia po zatwierdzeniu przez administratora.";
 $pgv_lang["replace_with"]				= "Zamień na";
 $pgv_lang["show_changes"]				= "Wpis został zaktualizowany. Kliknij tutaj aby zobaczyć zmiany.";
-$pgv_lang["thumb_genned"]				= "Miniaturka #thumbnail# została wygenerowana automatycznie.";
-$pgv_lang["thumbgen_error"]				= "Nie można automatycznie wygenerować miniaturki #thumbnail#.";
 $pgv_lang["thumbnail"]					= "Miniaturka do wgrania";
 $pgv_lang["title_remote_link"]			= "Dodaj zewnętrzne powiązanie";
 $pgv_lang["undo"]						= "Cofnij";
@@ -224,34 +255,12 @@ $pgv_lang["undo_all"]					= "Cofnij wszystkie zmiany";
 $pgv_lang["undo_all_confirm"]			= "Czy na pewno chcesz cofnąć wszystkie zmiany dla tego pliku GEDCOM?";
 $pgv_lang["undo_successful"]			= "Cofnięcie zakończone pomyślnie";
 $pgv_lang["update_successful"]			= "Aktualizacja zakończona pomyślnie";
+$pgv_lang["update_failed"]							= "Aktualizacja nie udała się";
 $pgv_lang["upload"]						= "Wgraj";
 $pgv_lang["upload_error"]				= "Błąd podczas wgrywania pliku.";
 $pgv_lang["copy_error"]					= "Plik #GLOBALS[whichFile2]# nie może być skopiowany z #GLOBALS[whichFile1]#";
 $pgv_lang["upload_media"]				= "Wgraj pliki multimedialne";
-$pgv_lang["upload_media_help"]			= "~#pgv_lang[upload_media]#~<br /><br />Wybierz pliki ze swojego komputera do wgrania na serwer. Wszystkie pliki zostaną wgrane do katalogu <b>#MEDIA_DIRECTORY#</b> lub jednego z jego podkatalogów.<br /><br />Podane przez ciebie nazwy katalogów zostaną dołączone do nazwy katalogu #MEDIA_DIRECTORY#, np. #MEDIA_DIRECTORY#mojarodzina. Jeśli katalog miniaturek nie istnieje, zostanie utworzony automatycznie.";
 $pgv_lang["upload_successful"]			= "Wgrywanie zakończone pomyślnie";
 $pgv_lang["view_change_diff"]			= "Pokaż porównanie zmian";
-$pgv_lang["admin_override"]				= "Opcja administratora";
-$pgv_lang["no_update_CHAN"]				= "Nie aktualizuj wpisu CHAN (ostatnia zmiana)";
-$pgv_lang["select_events"]				= "Wybierz wydarzenia";
-$pgv_lang["source_events"]				= "Przypisz wydarzenia do tego źródła";
-$pgv_lang["advanced_name_fields"]		= "Dodatkowe imiona (przezwisko, po ślubie, itp.)";
-$pgv_lang["add_marriage"]				= "Dodaj szczegóły małżeństwa";
-$pgv_lang["edit_concurrency_change"]	= "Ten wpis został ostatnio zmieniony przez <i>#CHANGEUSER#</i> #CHANGEDATE#";
-$pgv_lang["edit_concurrency_msg2"]		= "Wpis z identyfikatorem #PID# został zmieniony przez innego użytkownika podczas Twojego dostępu.";
-$pgv_lang["edit_concurrency_msg1"]		= "Wystąpił błąd podczas edytowania. Inny użytkownik w tym czasie mógł dokonać zmian w tym wpisie.";
-$pgv_lang["edit_concurrency_reload"]	= "Odśwież poprzednią stronę, aby mieć pewność, że pracujesz z najbardziej aktualnym wpisem.";
-$pgv_lang["edit_repo"]					= "Edytuj repozytorium";
-$pgv_lang["update_failed"]			= "Aktualizacja nie udała się";
-$pgv_lang["media_thumb_deleted"]	= "Miniaturka <b>#GLOBALS[whichFile]#</b> została usunięta.";
-$pgv_lang["media_thumb_not_deleted"]	= "Miniaturka <span style=\"font-size:larger\">#GLOBALS[whichFile]#</span> nie może być usunięta.";
-$pgv_lang["media_thumb_cant_delete"]	= "Miniaturka #GLOBALS[whichFile]# nie może być usunięta.";
-$pgv_lang["media_file_not_deleted"]	= "Plik multimedialny <span style=\"font-size:larger\">#GLOBALS[whichFile]#</span> nie może być usunięty.";
-$pgv_lang["media_file_cant_delete"]	= "Plik multimedialny #GLOBALS[whichFile]# nie może być usunięty.";
-$pgv_lang["media_cant_delete"]		= "Nie można usunąć katalogu mediów: #GLOBALS[whichDir]#.";
-$pgv_lang["directory_not_mt"]		= "Katalog #GLOBALS[whichDir]# nie jest pusty.";
-$pgv_lang["media_not_exist"]		= "Medium %s nie istnieje";
-$pgv_lang["sour_not_exist"]			= "Źródło %s nie istnieje";
-$pgv_lang["note_not_exist"]			= "Wspólna notatka %s nie istnieje";
-$pgv_lang["repo_not_exist"]			= "Repozytorium %s nie istnieje";
+
 ?>
