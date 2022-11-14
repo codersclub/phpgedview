@@ -300,6 +300,7 @@ $pgv_lang["fams_with_surname"]			= "Famílias com o sobrenome #surname#";
 $pgv_lang["support_contact"]			= "Contato para ajuda técnica";
 $pgv_lang["genealogy_contact"]			= "Contato para ajuda genealógica";
 $pgv_lang["common_upload_errors"]		= "Este êrro indica que o arquivo enviado excedeu o tamanho máximo permitido pelo provedor do site. O limite padrão do PHP é de 2MB. Peça ao suporte de seu provedor para aumentar este limite no arquivo php.ini, ou tente enviar o arquivo por FTP. Use a página <a href=\"uploadgedcom.php?action=add_form\"><b>#pgv_lang[add_gedcom]#</b></a> para processar o arquivo GEDCOM enviado por FTP.";
+$pgv_lang["max_upload_advice"]			= "Se você precisar enviar arquivos maiores que o máximo mostrado aqui, a opção de configuração <i>upload_max_filesize</i> no arquivo <i>php.ini</i> no servidor deve ser ajustada. Pode ser necessário consultar o suporte do servidor.";
 $pgv_lang["total_memory_usage"]			= "Total de Memória Utilizada:";
 $pgv_lang["mothers_family_with"]		= "Família Materna com ";
 $pgv_lang["fathers_family_with"]		= "Família Paterna com ";

@@ -299,6 +299,7 @@ $pgv_lang["fams_with_surname"]		= "Families with surname #surname#";
 $pgv_lang["support_contact"]		= "Technical help contact";
 $pgv_lang["genealogy_contact"]		= "Genealogy contact";
 $pgv_lang["common_upload_errors"]	= "This error probably means that the file you tried to upload exceeded the limit set by your host.  The default limit in PHP is 2MB.  You can contact your host's Support group to have them increase the limit in the php.ini file, or you can upload the file using FTP.  Use the <a href=\"uploadgedcom.php?action=add_form\"><b>#pgv_lang[add_gedcom]#</b></a> page to add a GEDCOM file you have uploaded using FTP.";
+$pgv_lang["max_upload_advice"]		= "If you need to upload files larger than the maximum shown here, the <i>upload_max_filesize</i> configuration option in the <i>php.ini</i> file on the server must be adjusted. You may need to consult your server support.";
 $pgv_lang["total_memory_usage"]		= "Total Memory Usage:";
 $pgv_lang["mothers_family_with"]	= "Mother's Family with ";
 $pgv_lang["fathers_family_with"]	= "Father's Family with ";

@@ -523,7 +523,7 @@ class IndividualControllerRoot extends BaseController {
 				echo " </span><br />";
 			}
 		}
-		if ($this->total_names>1 && !$this->isPrintPreview() && $this->userCanEdit() && !strpos($factrec, 'PGV_OLD')) {
+		if ($this->total_names>=1 && !$this->isPrintPreview() && $this->userCanEdit() && !strpos($factrec, 'PGV_OLD')) {
 			echo "&nbsp;&nbsp;&nbsp;<a href=\"javascript:;\" class=\"font9\" onclick=\"edit_name('".$this->pid."', ".$linenum."); return false;\">", $pgv_lang["edit_name"], "</a> | ";
 			echo "<a class=\"font9\" href=\"javascript:;\" onclick=\"delete_record('".$this->pid."', ".$linenum."); return false;\">", $pgv_lang["delete_name"], "</a>\n";
 			if ($this->name_count==2) {

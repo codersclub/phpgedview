@@ -49,9 +49,12 @@ function print_gedcom_block($limitHeight, $config, $side, $index) {
 
 	$serverTime = client_time('server');
 	$localTime = client_time('client');
+	$serverTimeZoneAbbr = date('T');		// Get the server's time zone (English only, unfortunately)
+	if ($serverTimeZoneAbbr == 'UTC') $serverTimeZoneAbbr = 'GMT';		// GMT is more meaningful to most people
 
 	$content = "<div class=\"center\">";
 	$content .= "<br />{$pgv_lang['serverTime']}: ".format_timestamp($serverTime);
+	$content .= "&nbsp;&nbsp;<span class='date'>{$serverTimeZoneAbbr}</span>";
 	if ($serverTime != $localTime) {
 		$content .= "<br />{$pgv_lang['localTime']}: ".format_timestamp($localTime);
 	}

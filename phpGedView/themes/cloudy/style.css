@@ -396,8 +396,14 @@ ul {
 	padding: 0px 2px 0px 0px; /* top right bottom left */
 }
 
-a.link: link, a.link: active, a.link: visited {
-	color: #6699ff;
+a.link:link, a.link:active, a.link:visited {
+/*	color: #6699ff; */
+	color: #003399;
+	font-family: tahoma, arial, helvetica, sans-serif;
+}
+
+a.link:hover {
+	color: red;
 	font-family: tahoma, arial, helvetica, sans-serif;
 }
 

@@ -1115,9 +1115,6 @@ function show_mediaUpload_form($URL='media.php') {
 	echo '<form name="uploadmedia" enctype="multipart/form-data" method="post" action="', encode_url($URL), '">';
 	echo '<input type="hidden" name="action" value="upload" />';
 	echo '<table class="list_table ', $TEXT_DIRECTION, ' width100">';
-	echo '<tr><td class="topbottombar" colspan="2">';
-		echo $pgv_lang["upload_media"], '<br />', $pgv_lang["max_upload_size"], $filesize;
-	echo '</td></tr>';
 	$tab = 1;
 	// Print the Submit button for uploading the media
 	echo '<tr><td class="topbottombar" colspan="2">';
@@ -1132,7 +1129,11 @@ function show_mediaUpload_form($URL='media.php') {
 			echo '</td>';
 			echo '<td class="optionbox ', $TEXT_DIRECTION, ' wrap">';
 			echo '<input name="mediafile', $i, '" type="file" size="40" tabindex="', $tab++, '" />';
-			if ($i==1) echo '<br /><sub>', $pgv_lang["use_browse_advice"], '</sub>';
+			if ($i==1) {
+				echo "&nbsp;&nbsp;{$pgv_lang['max_upload_size']} {$filesize}";
+				echo '<br /><sub>', $pgv_lang["use_browse_advice"], '</sub>';
+				echo '<br /><sub>', $pgv_lang["max_upload_advice"], '</sub>';
+			}
 		echo '</td></tr>';
 
 		if ($thumbSupport != "") {

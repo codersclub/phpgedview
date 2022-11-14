@@ -302,6 +302,7 @@ $pgv_lang["fams_with_surname"]			= "Familien mit dem Nachnamen #surname#";
 $pgv_lang["support_contact"]			= "Kontakt für technische Fragen";
 $pgv_lang["genealogy_contact"]			= "Kontakt für genealogische Fragen";
 $pgv_lang["common_upload_errors"]		= "Dieser Fehler bedeutet vermutlich, dass die Datei die Sie hochladen möchten, die Größengrenze ihres Hosts überschreitet. Die Standard-Grenze liegt in PHP bei 2MB. Sie können entweder den Support Ihres Hosts kontaktieren und ihn bitten, die Grenze in der Datei php.ini zu erhöhen, oder Sie können Ihre Datei mit FTP hochladen. Benutzen Sie die Seite <a href=\"uploadgedcom.php?action=add_form\"><b>#pgv_lang[add_gedcom]#</b></a>, um eine bereits hochgeladene Datei zu verwenden.";
+$pgv_lang["max_upload_advice"]		= "Wenn Sie Dateien hochladen müssen, die größer als das hier gezeigte Maximum sind, muss die Konfigurationsoption <i>upload_max_filesize</i> in der Datei <i>php.ini</i> auf dem Server angepasst werden. Möglicherweise müssen Sie sich an Ihren Server-Support wenden.";
 $pgv_lang["total_memory_usage"]			= "Speicherbedarf insgesamt:";
 $pgv_lang["mothers_family_with"]		= "Familie der Mutter mit ";
 $pgv_lang["fathers_family_with"]		= "Familie des Vaters mit ";

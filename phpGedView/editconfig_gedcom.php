@@ -936,7 +936,8 @@ print "&nbsp;<a href=\"javascript: ".$pgv_lang["gedcom_conf"]."\" onclick=\"expa
 			print "<input name=\"GEDCOMPATH\" type=\"file\" size=\"60\" dir=\"ltr\" />";
 			if ($source=="replace_form") print "<input type=\"hidden\" name=\"path\" value=\"".preg_replace('/\\*/', '\\', $path)."\" />";
 			if (!$filesize = ini_get('upload_max_filesize')) $filesize = "2M";
-			print " ( ".$pgv_lang["max_upload_size"]." $filesize )";
+			echo "&nbsp;&nbsp;&nbsp;({$pgv_lang['max_upload_size']} {$filesize})";
+			echo "<br /><sub>{$pgv_lang['max_upload_advice']}</sub>";
 		}
 		else {
 			print_help_link("gedcom_path_help", "qm", "gedcom_path"); print $pgv_lang["gedcom_path"];

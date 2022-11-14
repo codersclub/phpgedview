@@ -300,6 +300,7 @@ $pgv_lang["fams_with_surname"]			= "Gezinnen met achternaam #surname#";
 $pgv_lang["support_contact"]		= "Contactpersoon technische hulp";
 $pgv_lang["genealogy_contact"]			= "Contactpersoon genealogie";
 $pgv_lang["common_upload_errors"]		= "Deze foutboodschap betekent waarschijnlijk dat het bestand dat u probeert te uploaden, groter is dan het maximum dat de beheerder van de webserver heeft ingesteld. Standaard is de maximum grootte 2Mb. U kunt contact opnemen met de beheerder van de webserver om hem de limiet te laten verhogen, of u kunt het bestand met behulp van een FTP-programma uploaden.<br />Gebruik de functie <a href=\"uploadgedcom.php?action=add_form\"<b>#pgv_lang[add_gedcom]#</b></a> om een bestand in PhpGedView toe te voegen, dat u met zo'n programma heeft ge-upload.";
+$pgv_lang["max_upload_advice"]		= "Als u bestanden moet uploaden die groter zijn dan het hier getoonde maximum, moet de configuratieoptie <i>upload_max_filesize</i> in het bestand <i>php.ini</i> op de server worden aangepast. Mogelijk moet u uw serverondersteuning raadplegen.";
 $pgv_lang["total_memory_usage"]		= "Totaal geheugengebruik:";
 $pgv_lang["mothers_family_with"]	= "Moeders gezin met ";
 $pgv_lang["fathers_family_with"]		= "Vaders gezin met ";
