@@ -298,6 +298,7 @@ $pgv_lang["fams_with_surname"]		= "Rodziny o nazwisku #surname#";
 $pgv_lang["support_contact"]		= "Kontakt techniczny";
 $pgv_lang["genealogy_contact"]		= "Kontakt genealogiczny";
 $pgv_lang["common_upload_errors"]	= "Błąd: Prawdopodobnie próbowano załadować plik większy niż dozwolona wielkość. Domyślnie w PHP limit jest ustawiony na 2MB. Skontaktuj się z administratorem, aby zwiększył limit w pliku php.ini lub załaduj plik używając FTP. Użyj strony <a href=\"uploadgedcom.php?action=add_form\"><b>Dodaj GedCom</b></a> po przegraniu pliku GedCom za pomocą FTP.";
+$pgv_lang["max_upload_advice"]		= "Jeśli chcesz przesyłać pliki większe niż pokazane tutaj maksimum, musi być zmieniona opcja konfiguracyjna <i>upload_max_filesize</i> w pliku <i>php.ini</i> na serwerze. W tym celu może być konieczny kontakt z obsługą serwera.";
 $pgv_lang["total_memory_usage"]		= "Zużycie pamięci:";
 $pgv_lang["mothers_family_with"]	= "Rodzina matki z: ";
 $pgv_lang["fathers_family_with"]	= "Rodzina ojca z: ";

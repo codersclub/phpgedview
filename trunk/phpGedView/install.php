@@ -610,6 +610,7 @@ function checkEnvironment() {
 		print $pgv_lang["check_upload"]."<br />";
 
 		print $pgv_lang["current_max_upload"]." ".ini_get("upload_max_filesize")."<br />";
+		echo $pgv_lang['max_upload_advice'], '<br />';
 		print "</td></tr>";
 	}
 

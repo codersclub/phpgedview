@@ -139,12 +139,16 @@ if (empty($pgv_changes)) {
 				$output .= "<td class=\"list_value $TEXT_DIRECTION\">&nbsp;</td>";
 			}
 			$output .= "<td class=\"list_value $TEXT_DIRECTION\"><b>".$pgv_lang[$change['type']]."</b></td>";
-			$output .= "<td class=\"list_value $TEXT_DIRECTION\"><a href=\"javascript:;\" onclick=\"return reply('".$change['user']."', '".$pgv_lang['review_changes']."')\" alt=\"".$pgv_lang['message']."\">";
+			$output .= "<td class=\"list_value $TEXT_DIRECTION\">";
 			if ($user_id=get_user_id($change['user'])) {
-				$output.=PrintReady(getUserFullName($user_id));
+				$output .= "<a href=\"javascript:;\" onclick=\"return reply('".$user_id."', '".$pgv_lang['review_changes']."')\" alt=\"".$pgv_lang['message']."\">";
+					$output .= PrintReady(getUserFullName($user_id)."&nbsp;(".$change['user'].")");
+				$output .= "</a>";
+			} else {
+				$output .= $pgv_lang['unknown'];
 			}
- 			$output .= PrintReady("&nbsp;(".$change['user'].")")."</a></td>";
- 			$output .= "<td class=\"list_value $TEXT_DIRECTION\">".format_timestamp($change['time'])."</td>";
+			$output .= "</td>";
+			$output .= "<td class=\"list_value $TEXT_DIRECTION\">".format_timestamp($change['time'])."</td>";
 			$output .= "<td class=\"list_value $TEXT_DIRECTION\">".$change['gedcom']."</td>";
 			if ($i==count($changes)-1) {
 				$output .= "<td class=\"list_value $TEXT_DIRECTION\"><a href=\"".encode_url("edit_changes.php?action=undo&cid={$cid}&index={$i}")."\">".$pgv_lang['undo']."</a></td>";

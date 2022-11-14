@@ -213,8 +213,12 @@ function pgvMail($to, $from, $subject, $message, $bulkMail=false, $toFullName=''
 			$mail_object->isHTML(true);
 		}
 		$mail_object->Body = $message;
-		// attempt to send mail
-		$success = $mail_object->send();
+		// attempt to send mail (can throw Exception)
+		try {
+			$success = $mail_object->send();
+		} catch (Exception $e) {
+			$success = false;
+		}
 		if (!$success) {
 			echo '<span class="error">', $pgv_lang["message_error"], $mail_object->ErrorInfo, '</span><br />';
 		}

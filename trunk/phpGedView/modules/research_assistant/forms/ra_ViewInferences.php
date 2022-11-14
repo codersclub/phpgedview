@@ -3,7 +3,7 @@
  * phpGedView Research Assistant Tool - ra_ViewInferences
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2009  John Finlay and Others
+ * Copyright (C) 2002 to 2022  John Finlay and Others
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -78,19 +78,19 @@ class ra_ViewInferences extends ra_form {
 		
 		return $out;
 	}
-    /**
-     * content 
-     * 
-     * @param mixed $folder_id The id of the folder to edit
-     * @return mixed
-     */
-    /**
-     * The contents function access the probabilities table in the database.
-     * From this table it draws out 4 things. The first level element in the gedcom record
-     * The second level element in the gedcom file **If there is one**
-     * The relationship that the fact is concerned with
-     * The percentage of matches for this fact
-     */
+	/**
+	 * content 
+	 * 
+	 * @param mixed $folder_id The id of the folder to edit
+	 * @return mixed
+	 */
+	/**
+	 * The contents function access the probabilities table in the database.
+	 * From this table it draws out 4 things. The first level element in the gedcom record
+	 * The second level element in the gedcom file **If there is one**
+	 * The relationship that the fact is concerned with
+	 * The percentage of matches for this fact
+	 */
 	function contents() {
 		global $TBLPREFIX, $LANGUAGE, $factarray, $pgv_lang;
 
@@ -280,37 +280,37 @@ class ra_ViewInferences extends ra_form {
 	function display_form(){ 
 		$output = ra_form::heading();
 
-        $output .= ra_form::title();
+		$output .= ra_form::title();
 
-        $output .= $this->contents();
+		$output .= $this->contents();
 
-        $output .= ra_form::footer();
+		$output .= ra_form::footer();
 
-        return $output;
+		return $output;
 	}
 	//Creates the header of the HTML page
 	 function heading($action = 'self', $tableAlign = 'center', $heading = '') {
-        $out = '<form action="' . $action . '" method="post">
-            <table class="list_table" align="' . $tableAlign . '">
-                <tr>
-                    <th colpsan="4" align="right"><h2>' . $heading . '</h2></th>
-                </tr>';
-        return $out;
-    }
+		$out = '<form action="' . $action . '" method="post">
+			<table class="list_table" align="' . $tableAlign . '">
+				<tr>
+					<th colspan="4" align="right"><h2>' . $heading . '</h2></th>
+				</tr>';
+		return $out;
+	}
 
-    /**
-     * title 
-     * 
-     * @param string $title 
-     * @access public
-     * @return void
-     */
-     //Creates the title
-    function title($title = '') {
-        $out = '<tr>
-                    <th>' . $title . '</th>
-                </tr>';
-        return $out;
-    }
+	/**
+	 * title 
+	 * 
+	 * @param string $title 
+	 * @access public
+	 * @return void
+	 */
+	 //Creates the title
+	function title($title = '') {
+		$out = '<tr>
+					<th>' . $title . '</th>
+				</tr>';
+		return $out;
+	}
  }
 ?>

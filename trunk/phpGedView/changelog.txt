@@ -14,6 +14,12 @@ The session.php script uses this information to populate the constants : PGV_VER
 =====================================================================
 
 Version 4.3.1
+ - Added: Advice on file upload size limit (canajun2eh, tbabczynski)
+ - Changed: Show server's time zone in Welcome blocks (canajun2eh)
+ - Fixed: Typo in line 296 of modules/research_assistant/forms/ra_ViewInferences.php (tbabczynski)
+ - Fixed: E-mail to originator not sent when reviewing pending changes -- original fix disappeared (tbabczynski)
+ - Fixed: Uncaught exception when the send() function fails while attempting to send an e-mail (tbabczynski)
+ - Changed: When editing an individual's details, the edit/delete name link should always show (tbabczynski)
  - Fixed: Missing diacritics in most Polish language files (tbabczynski)
  - Fixed: Welcome blocks should show both Server time and Client time when they differ (canajun2eh)
  - Changed: Minor improvements to page headers in all themes (canajun2eh)

@@ -389,7 +389,8 @@ if (isset($GEDFILENAME)) {
 	if (!$filesize = ini_get('upload_max_filesize')) {
 		$filesize = "2M";
 	}
-	echo " ( ", $pgv_lang["max_upload_size"], " $filesize )";
+	echo "&nbsp;&nbsp;&nbsp;({$pgv_lang['max_upload_size']} {$filesize})";
+	echo "<br /><sub>{$pgv_lang['max_upload_advice']}</sub>";
 }
 ?>
 </td>

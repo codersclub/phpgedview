@@ -301,6 +301,7 @@ $pgv_lang["fams_with_surname"]		= "Familier med etternavnet #surname#";
 $pgv_lang["support_contact"]		= "Teknisk hjelp";
 $pgv_lang["genealogy_contact"]		= "Slektsspørsmål";
 $pgv_lang["common_upload_errors"]	= "Denne feilen skyldes sannsynligvis at filen som du prøvde å hente (upload) var for stor i forhold til grenser satt av verten til serveren.  Standard grense i PHP er 2MB.  Du kan prøve å kontakte eierene av serveren for å få dem til å heve denne grensen som er er angitt i filen php.ini, eller så kan du laste opp (upload) filen ved hjelp av FTP.  Bruk siden <a href=\"uploadgedcom.php?action=add_form\"><b>#pgv_lang[add_gedcom]#</b></a> for å legge til en slektsfil som du har lastet opp ved hjelp av FTP.";
+$pgv_lang["max_upload_advice"]		= "Hvis du trenger å laste opp filer som er større enn det maksimale som vises her, må <i>upload_max_filesize</i>-konfigurasjonsalternativet i <i>php.ini</i>-filen på serveren justeres. Du må kanskje konsultere serverstøtten.";
 $pgv_lang["total_memory_usage"]		= "Totalt bruk av minne:";
 $pgv_lang["mothers_family_with"]	= "Familien til mor til ";
 $pgv_lang["fathers_family_with"]	= "Familien til far til ";

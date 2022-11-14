@@ -299,6 +299,7 @@ $pgv_lang["fams_with_surname"]  		= "Familles avec le nom #surname#";
 $pgv_lang["support_contact"]			= "Contact technique";
 $pgv_lang["genealogy_contact"]  		= "Contact généalogie";
 $pgv_lang["common_upload_errors"]   	= "La cause probable de cette erreur est la taille autorisée par votre hébergeur (valeur PHP par défaut : 2MB). Renseignez-vous auprès de votre hébergeur pour modifier le fichier php.ini, ou utilisez un logiciel FTP pour télécharger votre fichier sur le serveur. Voir la page <a href=\"uploadgedcom.php ?action=add_form\"><b>#pgv_lang[add_gedcom]#</b></a>.";
+$pgv_lang["max_upload_advice"]			= "Si vous avez besoin de télécharger des fichiers plus volumineux que le maximum indiqué ici, l'option de configuration <i>upload_max_filesize</i> dans le fichier <i>php.ini</i> sur le serveur doit être ajustée. Vous devrez peut-être consulter le support de votre serveur.";
 $pgv_lang["total_memory_usage"] 		= "Mémoire utilisée:";
 $pgv_lang["mothers_family_with"]		= "Famille maternelle avec ";
 $pgv_lang["fathers_family_with"]		= "Famille paternelle avec ";

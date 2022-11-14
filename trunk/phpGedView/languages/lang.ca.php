@@ -300,6 +300,7 @@ $pgv_lang["fams_with_surname"]			= "Famílies amb cognom començant per #surname
 $pgv_lang["support_contact"]				= "Responsable de qüestions tècniques";
 $pgv_lang["genealogy_contact"]			= "Responsable de qüestions genealògiques";
 $pgv_lang["common_upload_errors"]			= "Aquest error és degut probablement a que el fitxer que heu escollit per pujar excedeix el límit permès pel vostre servidor web. El límit per defecte a PHP és de 2MB. Contacteu amb l'administració del vostre servidor per a demanar-li augmentar el límit al fitxer php.ini file. També teniu l'opció de pujar el fitxer emprant FTP. Feu servir la pàgina <a href=\"uploadgedcom.php?action=add_form\"><b>#pgv_lang[add_gedcom]#</b></a> per a afegir un fitxer GEDCOM que hagueu pujat amb FTP.";
+$pgv_lang["max_upload_advice"]		= "Si necessiteu penjar fitxers més grans que el màxim que es mostra aquí, cal ajustar l'opció de configuració <i>upload_max_filesize</i> al fitxer <i>php.ini</i> del servidor. És possible que hàgiu de consultar l'assistència del vostre servidor.";
 $pgv_lang["total_memory_usage"]			= "Total memòria emprada:";
 $pgv_lang["mothers_family_with"]			= "Família per part de mare amb ";
 $pgv_lang["fathers_family_with"]			= "Família per part de pare amb ";
