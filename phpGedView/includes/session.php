@@ -892,9 +892,12 @@ if ($databasePresent) {
 	//		$tempText .= "\nNext email due: " . date("Y-m-d H:i:s", $emailDue);
 	//		$tempText .= "\nCurrent time: " . date("Y-m-d H:i:s", $currentTime);
 			$admin_id = getAdminID();
+			$sessionLanguage = $LANGUAGE;
 			foreach (get_all_users() as $user_id=>$user_name) {
 				if (userIsAdmin($user_id) || userGedcomAdmin($user_id, PGV_GED_ID) || userCanAccept($user_id, PGV_GED_ID)) {
 					// This user has "Accept" rights; send them an e-mail
+					$userLanguage = get_user_setting($user_id, 'language');
+					if ($userLanguage != $LANGUAGE) loadLanguage($userLanguage, true);		// The e-mail should be sent in this user's language
 					$message = array();
 					$message["to"] = get_user_setting($user_id, 'email');
 					$message["toFullName"] = getUserFullName($user_id, false);
@@ -913,6 +916,7 @@ if ($databasePresent) {
 					addMessage($message);
 				}
 			}
+			if ($sessionLanguage != $LANGUAGE) loadLanguage($sessionLanguage, true);		// Make sure we get back to the correct language for this session
 		}
 	}
 

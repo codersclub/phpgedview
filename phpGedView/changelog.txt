@@ -14,6 +14,8 @@ The session.php script uses this information to populate the constants : PGV_VER
 =====================================================================
 
 Version 4.3.1
+ - Fixed: E-mail about GEDCOM changes sent in session language instead of accepting user's language (canajun2eh)
+ - Fixed: "View Change Diff" link on Review GEDCOM Changes page doesn't work (canajun2eh)
  - Added: Advice on file upload size limit (canajun2eh, tbabczynski)
  - Changed: Show server's time zone in Welcome blocks (canajun2eh)
  - Fixed: Typo in line 296 of modules/research_assistant/forms/ra_ViewInferences.php (tbabczynski)

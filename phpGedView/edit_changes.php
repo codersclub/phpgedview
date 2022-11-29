@@ -119,7 +119,8 @@ if (empty($pgv_changes)) {
 
 				$record=GedcomRecord::getInstance($change['gid']);
 				$output.='<b>'.PrintReady($record->getFullName()).'</b> '.getLRM().'('.$record->getXref().')'.getLRM().'<br />';
-				$output.='<a href="javascript:;" onclick="return show_diff(\''.encode_url($record->getLinkUrl().'&show_changes=yes').'\');">'.$pgv_lang['view_change_diff'].'</a> | ';
+//				$output.='<a href="javascript:;" onclick="return show_diff(\''.encode_url($record->getLinkUrl().'&show_changes=yes').'\');">'.$pgv_lang['view_change_diff'].'</a> | ';
+				$output.='<a href="'.encode_url($record->getLinkUrl().'&show_changes=yes').'" target="_blank">'.$pgv_lang['view_change_diff'].'</a> | ';
 				$output.="<a href=\"javascript:show_gedcom_record('".$change['gid']."');\">".$pgv_lang['view_gedcom']."</a> | ";
 				$output.="<a href=\"javascript:;\" onclick=\"return edit_raw('".$change['gid']."');\">".$pgv_lang['edit_raw']."</a><br />";
 				$output.='<div class="indent">';
