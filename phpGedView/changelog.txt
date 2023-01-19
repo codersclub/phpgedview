@@ -14,6 +14,10 @@ The session.php script uses this information to populate the constants : PGV_VER
 =====================================================================
 
 Version 4.3.1
+ - Fixed: Date range input does not work when both dates are of the form DD MMM YYYY (canajun2eh)
+ - Changed: Limited support of date expressions in languages other than English (canajun2eh)
+ - Fixed: Fully spelled out month names are sometimes ignored when entering dates (canajun2eh)
+ - Fixed: Person record is deleted when an unsupported date escape code is entered (canajun2eh)
  - Fixed: E-mail about GEDCOM changes sent in session language instead of accepting user's language (canajun2eh)
  - Fixed: "View Change Diff" link on Review GEDCOM Changes page doesn't work (canajun2eh)
  - Added: Advice on file upload size limit (canajun2eh, tbabczynski)

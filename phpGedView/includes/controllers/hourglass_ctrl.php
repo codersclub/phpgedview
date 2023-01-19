@@ -3,7 +3,7 @@
  * Controller for the Hourglass Page
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2022  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2023  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -161,7 +161,8 @@ class HourglassControllerRoot extends BaseController {
 		if (is_null($person)) return;
 		$families = $person->getChildFamilies();
 		//-- calculate how tall the lines should be
-		$lh = ($bhalfheight+3) * pow(2, ($this->generations-$count-1));
+//		$lh = ($bhalfheight+3) * pow(2, ($this->generations-$count-1));
+		$lh = ($bhalfheight+3) * 2;
 		foreach($families as $famid => $family) {
 			print "<table cellspacing=\"0\" cellpadding=\"0\" border=\"0\" style=\"empty-cells: show;\">\n";
 			$parents = find_parents($famid);
@@ -169,7 +170,7 @@ class HourglassControllerRoot extends BaseController {
 			$height="100%";
 			print "<tr>";
 			print "<td valign=\"bottom\"><img name=\"pvline\" src=\"".$PGV_IMAGE_DIR."/".$PGV_IMAGES["vline"]["other"]."\" width=\"3\" height=\"$lh\" alt=\"\" /></td>";
-			print "<td><img src=\"".$PGV_IMAGE_DIR."/".$PGV_IMAGES["hline"]["other"]."\" width=\"7\" height=\"3\" alt=\"\" /></td>";
+			print "<td><img name='hline' src=\"".$PGV_IMAGE_DIR."/".$PGV_IMAGES["hline"]["other"]."\" width=\"7\" height=\"3\" alt=\"\" /></td>";
 			print "<td>";
 			//-- print the father box
 			echo "\n<!-- Line 173, count: {$count}-->\n";
@@ -190,7 +191,7 @@ class HourglassControllerRoot extends BaseController {
 			print "</td>";
 			print "</tr>\n<tr>\n";
 			print "<td valign=\"top\"><img name=\"pvline\" src=\"".$PGV_IMAGE_DIR."/".$PGV_IMAGES["vline"]["other"]."\" width=\"3\" height=\"$lh\" alt=\"\" /></td>";
-			print "<td><img src=\"".$PGV_IMAGE_DIR."/".$PGV_IMAGES["hline"]["other"]."\" width=\"7\" height=\"3\" alt=\"\" /></td>";
+			print "<td><img name='hline' src=\"".$PGV_IMAGE_DIR."/".$PGV_IMAGES["hline"]["other"]."\" width=\"7\" height=\"3\" alt=\"\" /></td>";
 			print "<td>";
 			//-- print the mother box
 			echo "\n<!-- Line 189, count: {$count}-->\n";
@@ -348,7 +349,7 @@ class HourglassControllerRoot extends BaseController {
 		$boxPosn = $HouARootBoxPosn + ($this->dgenerations - $count) * ($bwidth + $HouAColumnWidth);
 		if ($count == 1) $boxPosn += $HouALastBoxAdj;			// -- Correction to last box position (the actual Root person box)
 		print_pedigree_person($pid);
-		print "</td><td><img src=\"".$PGV_IMAGE_DIR."/".$PGV_IMAGES["hline"]["other"]."\" width=\"7\" height=\"3\" alt=\"\" />";
+		print "</td><td><img name='hline' src=\"".$PGV_IMAGE_DIR."/".$PGV_IMAGES["hline"]["other"]."\" width=\"7\" height=\"3\" alt=\"\" />";
 
 		//----- Print the spouse
 		if ($this->show_spouse) {
@@ -586,7 +587,7 @@ class HourglassControllerRoot extends BaseController {
 			var hline = document.getElementById("table_"+pid);
 			var hline2 = document.getElementById("table2_"+pid);
 			//var newHeight = Math.abs(hline.offsetHeight - (hline2.offsetTop + <?php //print $bhalfheight+2;1?>//));
-			var newHeight = Math.abs(hline.offsetHeight - (hline2.offsetTop + hline2.querySelector('td > img').offsetTop + 2));
+			var newHeight = Math.abs(hline.offsetHeight - (hline2.offsetTop + hline2.querySelector('td > img[name="hline"]').offsetTop + 2));
 			vlines[i].style.height=newHeight+'px';
 		}
 
@@ -596,7 +597,7 @@ class HourglassControllerRoot extends BaseController {
 			var hline = document.getElementById("table_"+pid);
 			var hline2 = document.getElementById("table2_"+pid);
 			//vlines[i].style.height=(hline.offsetTop+hline2.offsetTop + <?php //print $bhalfheight+2; ?>//)+'px';
-			vlines[i].style.height=(hline.offsetTop+hline2.offsetTop + hline2.querySelector('td > img').offsetTop + 2)+'px';
+			vlines[i].style.height=(hline.offsetTop+hline2.offsetTop + hline2.querySelector('td > img[name="hline"]').offsetTop + 2)+'px';
 		}
 
 		vlines = document.getElementsByName("mvertline");
