@@ -3,7 +3,7 @@
  * Classes for Gedcom Date/Calendar functionality.
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2007 to 2022  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2007 to 2023  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -244,27 +244,27 @@ class CalendarDate {
 	// Convert a date from one calendar to another.
 	function convert_to_cal($calendar) {
 		global $LANGUAGE;
-  	switch ($calendar) {
-		case 'gregorian':
-			return new GregorianDate($this);
-		case 'julian':
-			return new JulianDate($this);
-		case 'jewish':
-			if ($LANGUAGE!='hebrew')
-				return new JewishDate($this);
-			// no  break
-		case 'hebrew':
-			return new HebrewDate($this);
-		case 'french':
-			return new FrenchRDate($this);
-		case 'arabic':
-			if ($LANGUAGE!='arabic')
-				return new ArabicDate($this);
-			// no  break
-		case 'hijri':
-			return new HijriDate($this);
-		default:
-			return $this;
+		switch ($calendar) {
+			case 'gregorian':
+				return new GregorianDate($this);
+			case 'julian':
+				return new JulianDate($this);
+			case 'jewish':
+				if ($LANGUAGE!='hebrew')
+					return new JewishDate($this);
+				// no  break
+			case 'hebrew':
+				return new HebrewDate($this);
+			case 'french':
+				return new FrenchRDate($this);
+			case 'arabic':
+				if ($LANGUAGE!='arabic')
+					return new ArabicDate($this);
+				// no  break
+			case 'hijri':
+				return new HijriDate($this);
+			default:
+				return $this;
 		}
 	}
 
@@ -305,32 +305,32 @@ class CalendarDate {
 		if (!$this->d || !$this->m || !$this->y) {
 			$format=trim($format, ',. ;/-');
 		}
-		// Build up the formated date, character at a time
+		// Build up the formatted date, character at a time
 		$str='';
 		foreach (str_split($format) as $code)
 			switch ($code) {
-			case 'd': $str.=$this->FormatDayZeros(); break;
-			case 'j': $str.=$this->FormatDay(); break;
-			case 'l': $str.=$this->FormatLongWeekday(); break;
-			case 'D': $str.=$this->FormatShortWeekday(); break;
-			case 'N': $str.=$this->FormatISOWeekday(); break;
-			case 'S': $str.=$this->FormatOrdinalSuffix(); break;
-			case 'w': $str.=$this->FormatNumericWeekday(); break;
-			case 'z': $str.=$this->FormatDayOfYear(); break;
-			case 'F': $str.=$this->FormatLongMonth(); break;
-			case 'm': $str.=$this->FormatMonthZeros(); break;
-			case 'M': $str.=$this->FormatShortMonth(); break;
-			case 'n': $str.=$this->FormatMonth(); break;
-			case 't': $str.=$this->DaysInMonth(); break;
-			case 'L': $str.=(int)$this->IsLeapYear(); break;
-			case 'Y': $str.=$this->FormatLongYear(); break;
-			case 'y': $str.=$this->FormatShortYear(); break;
-			// The 4 extensions might be useful for re-formatting gedcom dates.
-			case '@': $str.=$this->CALENDAR_ESCAPE(); break;
-			case 'A': $str.=$this->FormatGedcomDay(); break;
-			case 'O': $str.=$this->FormatGedcomMonth(); break;
-			case 'E': $str.=$this->FormatGedcomYear(); break;
-			default:  $str.=$code; break;
+				case 'd': $str.=$this->FormatDayZeros(); break;
+				case 'j': $str.=$this->FormatDay(); break;
+				case 'l': $str.=$this->FormatLongWeekday(); break;
+				case 'D': $str.=$this->FormatShortWeekday(); break;
+				case 'N': $str.=$this->FormatISOWeekday(); break;
+				case 'S': $str.=$this->FormatOrdinalSuffix(); break;
+				case 'w': $str.=$this->FormatNumericWeekday(); break;
+				case 'z': $str.=$this->FormatDayOfYear(); break;
+				case 'F': $str.=$this->FormatLongMonth(); break;
+				case 'm': $str.=$this->FormatMonthZeros(); break;
+				case 'M': $str.=$this->FormatShortMonth(); break;
+				case 'n': $str.=$this->FormatMonth(); break;
+				case 't': $str.=$this->DaysInMonth(); break;
+				case 'L': $str.=(int)$this->IsLeapYear(); break;
+				case 'Y': $str.=$this->FormatLongYear(); break;
+				case 'y': $str.=$this->FormatShortYear(); break;
+				// The 4 extensions might be useful for re-formatting gedcom dates.
+				case '@': $str.=$this->CALENDAR_ESCAPE(); break;
+				case 'A': $str.=$this->FormatGedcomDay(); break;
+				case 'O': $str.=$this->FormatGedcomMonth(); break;
+				case 'E': $str.=$this->FormatGedcomYear(); break;
+				default:  $str.=$code; break;
 			}
 		return $str;
 	}
@@ -456,7 +456,7 @@ class CalendarDate {
 	// Convert a decimal number to roman numerals
 	static function NumToRoman($num) {
 		static $lookup=array(1000=>'M', '900'=>'CM', '500'=>'D', 400=>'CD', 100=>'C', 90=>'XC', 50=>'L', 40=>'XL', 10=>'X', 9=>'IX', 5=>'V', 4=>'IV', 1=>'I');
-  	if ($num<1) return $num;
+		if ($num<1) return $num;
 		$roman='';
 		foreach ($lookup as $key=>$value)
 			while ($num>=$key) {
@@ -794,11 +794,11 @@ class HebrewDate extends JewishDate {
 			$sb .= $tavTaz[1];
 		} else {
 			$tens = $num / 10;
-			if($num % 10 == 0) {                                    // if evenly divisable by 10
+			if($num % 10 == 0) {				// if evenly divisable by 10
 				if($singleDigitYear == false) {
-					$sb .= $jTenEnds[$tens]; // use end letters so that for example 5750 will end with an end nun
+					$sb .= $jTenEnds[$tens];	// use end letters so that for example 5750 will end with an end nun
 				} else {
-					$sb .= $jTens[$tens]; // use standard letters so that for example 5050 will end with a regular nun
+					$sb .= $jTens[$tens];		// use standard letters so that for example 5050 will end with a regular nun
 				}
 			} else {
 				$sb .= $jTens[$tens];
@@ -809,8 +809,8 @@ class HebrewDate extends JewishDate {
 		if ($singleDigitYear == true) {
 			$sb .= self::GERSH; //append single quote
 		} else { // append double quote before last digit
-        	$pos1 = strlen($sb)-2;
- 			$sb = substr($sb, 0, $pos1) . self::GERSHAYIM . substr($sb, $pos1);
+			$pos1 = strlen($sb)-2;
+			$sb = substr($sb, 0, $pos1) . self::GERSHAYIM . substr($sb, $pos1);
 			$sb = str_replace(self::GERSHAYIM . self::GERSHAYIM, self::GERSHAYIM, $sb); //replace double gershayim with single instance
 		}
 		return $sb;
@@ -954,26 +954,6 @@ class ArabicDate extends HijriDate {
 } // class ArabicDate
 
 ////////////////////////////////////////////////////////////////////////////////
-// Definitions for the Roman calendar
-// TODO The 5.5.1 gedcom spec mentions this calendar, but gives no details of
-// how it is to be represented....  This class is just a place holder so that
-// PGV won't compain if it receives one.
-////////////////////////////////////////////////////////////////////////////////
-class RomanDate extends CalendarDate {
-	static function CALENDAR_ESCAPE() {
-		return '@#DROMAN@';
-	}
-
-	function FormatGedcomYear() {
-		return sprintf('%04dAUC',$this->y);
-	}
-
-	function FormatLongYear() {
-		return $this->y.'AUC';
-	}
-} // class RomanDate
-
-////////////////////////////////////////////////////////////////////////////////
 //
 // GedcomDate represents the date or date range from a gedcom DATE record.
 //
@@ -992,11 +972,11 @@ class GedcomDate {
 				$date=$match[1];
 				$this->text=$match[2];
 			}
-			// Ignore punctuation and normalise whitespace
+			// Ignore punctuation and normalise whitespace.  The Date expression can contain UTF-8 characters.
 			$date=preg_replace(
 				array('/(\d+|@#[^@]+@)/', '/[\s;:.,-]+/', '/^ /', '/ $/'),
 				array(' $1 ', ' ', '', ''),
-				strtolower($date)
+				UTF8_strtolower($date)
 			);
 			if (preg_match('/^(from|bet) (.+) (and|to) (.+)/', $date, $match)) {
 				$this->qual1=$match[1];
@@ -1086,28 +1066,29 @@ class GedcomDate {
 		}
 		// Now construct an object of the correct type
 		switch ($cal) {
-		case '@#dgregorian@':
-			return new GregorianDate(array($y, $m, $d));
-		case '@#djulian@':
-	 		return new JulianDate(array($y, $m, $d));
-		case '@#dhebrew@':
-			if ($LANGUAGE=='hebrew')
-	 			return new HebrewDate(array($y, $m, $d));
-			else
-	 			return new JewishDate(array($y, $m, $d));
-		case '@#dhijri@':
-			if ($LANGUAGE=='arabic')
-				return new ArabicDate(array($y, $m, $d));
-			else
-				return new HijriDate(array($y, $m, $d));
-		case '@#dfrench r@':
-		 	return new FrenchRDate(array($y, $m, $d));
-		case '@#droman@':
-			return new RomanDate(array($y, $m, $d));
+			case '@#dgregorian@':
+				return new GregorianDate(array($y, $m, $d));
+			case '@#djulian@':
+				return new JulianDate(array($y, $m, $d));
+			case '@#dhebrew@':
+				if ($LANGUAGE=='hebrew')
+					return new HebrewDate(array($y, $m, $d));
+				else
+					return new JewishDate(array($y, $m, $d));
+			case '@#dhijri@':
+				if ($LANGUAGE=='arabic')
+					return new ArabicDate(array($y, $m, $d));
+				else
+					return new HijriDate(array($y, $m, $d));
+			case '@#dfrench r@':
+				return new FrenchRDate(array($y, $m, $d));
+			default:
+				$cal = '@#dgregorian@';		// Default unsupported calendars to gregorian
+				return new GregorianDate(array($y, $m, $d));
 		}
 	}
 
-	// Convert a date to the prefered format and calendar(s) display.
+	// Convert a date to the preferred format and calendar(s) display.
 	// Optionally make the date a URL to the calendar.
 	function Display($url=false, $date_fmt=null, $cal_fmts=null) {
 		global $pgv_lang, $lang_short_cut, $LANGUAGE, $TEXT_DIRECTION, $DATE_FORMAT, $CALENDAR_FORMAT;

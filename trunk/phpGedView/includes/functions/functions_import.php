@@ -4,7 +4,7 @@
 * Import specific functions
 *
 * phpGedView: Genealogy Viewer
-* Copyright (C) 2002 to 2021  PGV Development Team.  All rights reserved.
+* Copyright (C) 2002 to 2023  PGV Development Team.  All rights reserved.
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -715,7 +715,7 @@ function import_record($gedrec, $ged_id, $update) {
 
 	// Update the cross-reference/index tables.
 	update_places($xref, $ged_id, $gedrec);
-	update_dates ($xref, $ged_id, $gedrec);
+	update_dates ($xref, $ged_id, $gedrec);		// This function might alter the input GEDCOM record
 	update_links ($xref, $ged_id, $gedrec);
 	update_rlinks($xref, $ged_id, $gedrec);
 	update_names ($xref, $ged_id, $record);
@@ -879,7 +879,7 @@ function update_places($gid, $ged_id, $gedrec) {
 }
 
 // extract all the dates from the given record and insert them into the database
-function update_dates($xref, $ged_id, $gedrec) {
+function update_dates($xref, $ged_id, &$gedrec) {
 	global $TBLPREFIX, $factarray;
 
 	static $sql_insert_date=null;
@@ -895,7 +895,12 @@ function update_dates($xref, $ged_id, $gedrec) {
 			if (($fact=='FACT' || $fact=='EVEN') && preg_match("/\n2 TYPE (\w+)/", $match[0], $tmatch) && array_key_exists($tmatch[1], $factarray)) {
 				$fact=$tmatch[1];
 			}
-			$date=new GedcomDate($match[2]);
+
+			$originalDate = $match[2];
+			$transformedDate = transformDate($originalDate);						// Transform the input Date expression as needed and
+			$gedrec = str_replace($originalDate, $transformedDate, $gedrec);		//   stuff it into the GEDCOM record
+
+			$date=new GedcomDate($transformedDate);
 			// TODO: we cast JDs to (int) for the benefit of Postgres.  It may (or may not) give
 			// better overall performance if we change the code that generates them to force integer values.
 			$sql_insert_date->execute(array($date->date1->d, $date->date1->Format('O'), $date->date1->m, $date->date1->y, (int)$date->date1->minJD, (int)$date->date1->maxJD, $fact, $xref, $ged_id, $date->date1->CALENDAR_ESCAPE()));
@@ -1635,4 +1640,208 @@ function subrecord_createobjectref($objrec, $objlevel, $m_media) {
 
 	//- return the object media reference
 	return $objmed;
+}
+
+// Transform bits of the Date expression, including month names, to their English GEDCOM abbreviations
+//
+// We have to use the "Brute Force" method; feeding this text into Google Translate is not an option; Google produces mixed and inconsistent results.
+//
+function transformDate($date) {
+	$date = " {$date} ";				// Add guard spaces so that none of the words we're trying to transform start or end the date phrase
+	$date = UTF8_strtoupper($date);		// The Date expression can contain UTF-8 characters and we want the result to be in upper-case
+
+	// Speed things up:  Remove numbers, spaces, and all of the "official" GEDCOM abbreviations that can occur in Date expressions.
+	// If text is left over, we have to go through the full Brute Force routine.
+	$tempDate = str_replace(array(' ABT ',' AFT ',' BEF ',' BET ',' FROM ',' AND ',' TO ',' CAL ',' EST ',' INT ',' CIR ',' APX ',
+								  ' JAN ',' FEB ',' MAR ',' APR ',' MAY ',' JUN ',' JUL ',' AUG ',' SEP ',' OCT ',' NOV ',' DEC ',
+								  ' '),
+							'',
+							$date);
+	$tempDate = preg_replace('~\d~', '', $tempDate);
+	if (!empty($tempDate)) {
+		// The Date expression contains text that's illegal according to the GEDCOM standard; we'll try to translate what we can.
+
+		$date = preg_replace(array("~ [DL]'~",'~ +~'), ' ', $date);		// Get rid of some apostropes and doubled spaces
+		$date = str_replace('.', '', $date);		// Likewise, all full-stops that can occur in abbreviations in some languages
+
+		// ===================== DATE EXPRESSIONS
+		// Any duplications in the several languages are removed after the first occurrence.  For clarity, we will NOT do more than one language at a time.
+		// English
+		$date = str_replace(array(' ABOUT ',' AFTER ',' BEFORE ',' BETWEEN ',' CALCULATED ',' ESTIMATED ',' INTERPRETED ',' CIRCA ',' CA ',' APPROXIMATELY ',' APPROX ',' THE ',' IN ',' ON '),
+							array(' ABT ',' AFT ',' BEF ',' BET ',' CAL ',' EST ',' INT ',' CIR ',' CIR ',' APX ',' APX ',' ',' ',' '),
+							$date);
+		// Hebrew, same as English
+		// Arabic, same as English
+		// Catalan: "A", "I", and "DES" are special cases
+		$date = str_replace(array(' CAP EL ',' DESPRÈS DE ',' ABANS DE ',' ENTRE ',' CALCULADA ',' ESTIMADA ',' DES DE ',' INTERPRETADA ',' CIRCA ',' APROX ',' DESPRÈS ',' ABANS ',' EL '),
+							array(' ABT ',' AFT ',' BEF ',' BET ',' CAL ',' EST ',' FROM ',' INT ',' CIR ',' APX ',' AFT ',' BEF ',' '),
+							$date);
+		// Portuguese: "DE" is a special case
+		$date = str_replace(array(' AO REDOR DE ',' APÓS ',' E ',' ANTES DE ',' CALCULADO ',' ESTIMADO EM ',' INTERPRETADO ',' ATÉ ',' APROXIMADAMENTE ',' APROX ',' REDOR ',' ANTES ',' ESTIMADO '),
+							array(' ABT ',' AFT ',' AND ',' BEF ',' CAL ',' EST ',' FROM ',' INT ',' CIR ',' APX ',' ABT ',' BEF ',' EST '),
+							$date);
+		// Spanish
+		$date = str_replace(array(' HACIA ',' DESPUÉS DE ',' Y ',' DESDE ',' A ',' CERCANA ',' DESPUÉS '),
+							array(' ABT ',' AFT ',' AND ',' FROM ',' TO ',' CIR ',' AFT '),
+							$date);
+		// Danish
+		$date = str_replace(array(' OMKRING ',' EFTER ',' OG ',' FØR ',' MELLEM ',' BEREGNET ',' ANSLÅET ',' FRA ',' FORTOLKET ',' TIL ',' CIRKA ',' CA '),
+							array(' ABT ',' AFT ',' AND ',' BEF ',' BET ',' CAL ',' EST ',' FROM ',' INT ',' TO ',' CIR ',' APX '),
+							$date);
+		// Norwegian
+		$date = str_replace(array(' ETTER ',' MELLOM ',' TOLKET '),
+							array(' AFT ',' BET ',' INT '),
+							$date);
+		// Swedish
+		$date = str_replace(array(' OCH ',' FÖRE ',' MELLAN ',' BERÄKNAD ',' UPPSKATTAT ',' FRÅN ',' TOLKAT ',' TILL ',' UNGEFÄR ',' UNGEF '),
+							array(' AND ',' BEF ',' BET ',' CAL ',' EST ',' FROM ',' INT ',' TO ',' APX ',' APX '),
+							$date);
+		// Dutch:  "EN" is a special case
+		$date = str_replace(array(' ONGEVEER ',' NA ',' VOOR ',' TUSSEN ',' BEREKEND ',' GESCHAT ',' VAN ',' AFGELEID ',' TOT ',' CIRCA ',' ONGEV ',' BEREK ',' GESCH ',' AFGEL '),
+							array(' ABT ',' AFT ',' BEF ',' BET ',' CAL ',' EST ',' FROM ',' INT ',' TO ',' CIR ',' APX ',' CAL ',' EST ',' INT '),
+							$date);
+		// French
+		$date = str_replace(array(' VERS ',' APRÈS ',' ET ',' AVANT ',' ENTRE ',' CALCULÉE ',' ESTIMÉE ',' INTERPRÉTÉE ',' À ',' ENVIRON ',' APPROXIMATIVEMENT ',' LE '),
+							array(' ABT ',' AFT ',' AND ',' BEF ',' BET ',' CAL ',' EST ',' INT ',' TO ',' CIR ',' APX ',' '),
+							$date);
+		// German
+		$date = str_replace(array(' UM ',' NACH ',' UND ',' VOR ',' ZWISCHEN ',' BERECHNET ',' GESCHÄTZT ',' VON ',' INTERPRETIERT ',' BIS ',' UNGEFÄHR ',' BER ',' GESCH ',' UNGEF ',' RUND ',' AB ',' DEN ',' DEM ',' IM ',' AM ',' AN '),
+							array(' ABT ',' AFT ',' AND ',' BEF ',' BET ',' CAL ',' EST ',' FROM ',' INT ',' TO ',' APX ',' CAL ',' EST ',' APX ',' APX ',' FROM ',' ',' ',' ',' ',' '),
+							$date);
+		// Italian: Handle "A" (left over from Catalan) now
+		$date = str_replace(array(' DOPO ',' PRIMA ',' TRA ',' CALCOLATO ',' STIMATO ',' DA ',' INTERPRETATO ',' FINO A ',' APPROSS ',' STIM ',' FINO ',' CALCOLATO ',' APPROSSIMATIVAMENTE ',' A ',' IL '),
+							array(' AFT ',' BEF ',' BET ',' CAL ',' EST ',' FROM ',' INT ',' TO ',' APX ',' EST ',' TO ',' CAL ',' APX ',' TO ',' '),
+							$date);
+		// Polish
+		$date = str_replace(array(' OK ',' PO ',' PRZED ',' MIĘDZY ',' WYLICZONE ',' SZACOWANE ',' OD ',' ZINTERPRETOWANE ',' DO ',' OKOŁO '),
+							array(' ABT ',' AFT ',' BEF ',' BET ',' CAL ',' EST ',' FROM ',' INT ',' TO ',' APX '),
+							$date);
+	
+		// ===================== Month names
+		// Abbreviation source: Library of Congress  https://www.loc.gov/aba/pcc/conser/conserhold/Mosabbr.html
+		// English
+		$date = str_replace(array(' JANUARY ',' FEBRUARY ',' MARCH ',' APRIL ',' MAY ',' JUNE ',' JULY ',' AUGUST ',' SEPTEMBER ',' OCTOBER ',' NOVEMBER ',' DECEMBER '),
+							array(' JAN ',' FEB ',' MAR ',' APR ',' MAY ',' JUN ',' JUL ',' AUG ',' SEP ',' OCT ',' NOV ',' DEC '),
+							$date);
+		// Hebrew
+		$date = str_replace(array(' TISHREI ',' HESHVAN ',' KISLEV ',' TEVET ',' SHEVAT ',' ADAR ',' ADAR II ',' NISSAN ',' IYAR ',' SIVAN ',' TAMUZ ',' AV ',' ELUL '),
+							array(' TSH ',' CSH ',' KSL ',' TVT ',' SHV ',' ADR ',' ADS ',' NSN ',' IYR ',' SVN ',' TMZ ',' AAV ',' ELL '),
+							$date);
+		// Arabic
+		$date = str_replace(array(' MUHARRAM ',' SAFAR' ," RABI'AL-AWWAL "," RABI'AL-THANI ",' JUMADA AL-AWWAL ',' JUMADA AL-THANI ',' RAJAB' ," SHA'ABAN ",' RAMADAN ',' SHAWWAL' ," DHU AL-QI'DAH ",' DHU AL-HIJJAH '),
+							array(' MUHAR ',' SAFAR ',' RABIA ',' RABIT ',' JUMAA ',' JUMAT ',' RAJAB ',' SHAAB ',' RAMAD ',' SHAWW ',' DHUAQ ',' DHUAH '),
+							$date);
+		// Catalan  "DES" is a special case
+		$date = str_replace(array(' GENER ',' FEBRER ',' MARÇ ',' ABRIL ',' MAIG ',' JUNY ',' JULIOL ',' AGOST ',' SETEMBRE ',' OCTUBRE ',' NOVEMBRE ',' DESEMBRE ',' GEN ',' ABR ',' MAI ',' AGO ',' SET '),
+							array(' JAN ',' FEB ',' MAR ',' APR ',' MAY ',' JUN ',' JUL ',' AUG ',' SEP ',' OCT ',' NOV ',' DEC ',' JAN ',' APR ',' MAY ',' AUG ',' SEP '),
+							$date);
+		// Portuguese
+		$date = str_replace(array(' JANEIRO ',' FEVEREIRO ',' MARÇO ',' MAIO ',' JUNHO ',' JULHO ',' AGOSTO ',' SETEMBRO ',' OUTUBRO ',' NOVEMBRO ',' DEZEMBRO ',' FEV ',' OUT ',' DEZ '),
+							array(' JAN ',' FEB ',' MAR ',' MAY ',' JUN ',' JUL ',' AUG ',' SEP ',' OCT ',' NOV ',' DEC ',' FEB ',' OCT ',' DEC '),
+							$date);
+		// Spanish
+		$date = str_replace(array(' ENERO ',' FEBRERO ',' MARZO ',' MAYO ',' JUNIO ',' JULIO ',' SEPTIEMBRE ',' NOVIEMBRE ',' DICIEMBRE ',' DIC '),
+							array(' JAN ',' FEB ',' MAR ',' MAY ',' JUN ',' JUL ',' SEP ',' NOV ',' DEC ',' DEC '),
+							$date);
+		// Danish
+		$date = str_replace(array(' JANUAR ',' FEBRUAR ',' MARTS ',' MAJ ',' JUNI ',' JULI ',' OKTOBER ',' FEBR ',' SEPT ',' OKT. '),
+							array(' JAN ',' FEB ',' MAR ',' MAY ',' JUN ',' JUL ',' OCT ',' FEB ',' SEP ',' OCT '),
+							$date);
+		// Norwegian  "DES" is a special case
+		$date = str_replace(array(' MARS ',' DESEMBER '),
+							array(' MAR ',' DEC '),
+							$date);
+		// Swedish
+		$date = str_replace(array(' JANUARI ',' FEBRUARI ',' AUGUSTI '),
+							array(' JAN ',' FEB ',' AUG '),
+							$date);
+		// Dutch
+		$date = str_replace(array(' MAART ',' MEI ',' AUGUSTUS '),
+							array(' MAR ',' MAY ',' AUG '),
+							$date);
+		// French
+		$date = str_replace(array(' JANVIER ',' FÉVRIER ',' AVRIL ',' JUIN ',' JUILLET ',' AÔUT ',' SEPTEMBRE ',' OCTOBRE ',' DÉCEMBRE ',' JANV ',' FÉVR ',' AOÛT ',' DÉC '),
+							array(' JAN ',' FEB ',' APR ',' JUN ',' JUL ',' AUG ',' SEP ',' OCT ',' DEC ',' JAN ',' FEB ',' AUG ',' DEC '),
+							$date);
+		// French Revolutionary
+		$count = 0;		// non-zero:  French Revolutionary.
+		$date = str_replace(array(' VENDÉMIAIRE ',' BRUMAIRE ',' FRIMAIRE ',' NIVÔSE ',' PLUVIÔSE ',' VENTÔSE ',' GERMINAL ',' FLORÉAL ',' PRAIRIAL ',' MESSIDOR ',' THERMIDOR ',' FRUCTIDOR ',' JOURS COMPLÉMENTAIRES '),
+							array(' VEND ',' BRUM ',' FRIM ',' NIVO ',' PLUV ',' VENT ',' GERM ',' FLOR ',' PRAI ',' MESS ',' THER ',' FRUC ',' COMP '),
+							$date, $count);
+		if ($count == 0) {
+			$date = str_replace(array(' VEND ',' BRUM ',' FRIM ',' NIVO ',' PLUV ',' VENT ',' GERM ',' FLOR ',' PRAI ',' MESS ',' THER ',' FRUC ',' COMP '),
+								array(' VEND ',' BRUM ',' FRIM ',' NIVO ',' PLUV ',' VENT ',' GERM ',' FLOR ',' PRAI ',' MESS ',' THER ',' FRUC ',' COMP '),
+								$date, $count);
+		}
+		// German
+		$date = str_replace(array(' JÄNNER ',' MÄRZ ',' DEZEMBER ',' JÄN '),		// JÄNNER is commonly used in Austria
+							array(' JAN ',' MAR ',' DEC ',' JAN '),
+							$date);
+		// Italian
+		$date = str_replace(array(' GENNAIO ',' FEBBRAIO ',' APRILE ',' MAGGIO ',' GIUGNO ',' LUGLIO ',' SETTEMBRE ',' OTTOBRE ',' DICEMBRE ',' GENN ',' FEBBR ',' MAGG ',' AG ',' SETT ',' OTT '),
+							array(' JAN ',' FEB ',' APR ',' MAY ',' JUN ',' JUL ',' SEP ',' OCT ',' DEC ',' JAN ',' FEB ',' MAY ',' AUG ',' SEP ',' OCT '),
+							$date);
+		// Polish
+		$date = str_replace(array(' STYCZEŃ ',' LUTY ',' MARZEC ',' KWIECIEŃ ',' CZERWIEC ',' LIPIEC ',' SIERPIEŃ ',' WRZESIEŃ ',' PAŹDZIERNIK ',' LISTOPAD ',' GRUDZIEŃ '),
+							array(' JAN ',' FEB ',' MAR ',' APR ',' JUN ',' JUL ',' AUG ',' SEP ',' OCT ',' NOV ',' DEC '),
+							$date);
+		$date = str_replace(array(' STYCZNIA ',' LUTEGO ',' MARCA ',' KWIETNIA ',' MAJA ',' CZERWCA ',' LIPCA ',' SIERPNIA ',' WRZEŚNIA ',' PAŹDZIERNIKA ',' LISTOPADA ',' GRUDNIA '),
+							array(' JAN ',' FEB ',' MAR ',' APR ',' MAY ',' JUN ',' JUL ',' AUG ',' SEP ',' OCT ',' NOV ',' DEC '),
+							$date);
+		$date = str_replace(array(' STYCZNIEM ',' LUTYM ',' MARCEM ',' KWIETNIEM ',' MAJEM ',' CZERWCEM ',' LIPCEM ',' SIERPNIEM ',' WRZEŚNIEM ',' PAŹDZIERNIKIEM ',' LISTOPADEM ',' GRUDNIEM ',' STYCZ ',' LUTY ',' MAR ',' KWIEC ',' CZERW ',' LIP ',' SIERP ',' WRZEŚ ',' PAŹDZ ',' LISTOP ',' GRUDZ '),
+							array(' JAN ',' FEB ',' MAR ',' APR ',' MAY ',' JUN ',' JUL ',' AUG ',' SEP ',' OCT ',' NOV ',' DEC ',' JAN ',' FEB ',' MAR ',' APR ',' JUN ',' JUL ',' AUG ',' SEP ',' OCT ',' NOV ',' DEC '),
+							$date);
+		$date = str_replace(array(' STYCZNIU ',' LUTYM ',' MARCU ',' KWIETNIU ',' MAJU ',' CZERWCU ',' LIPCU ',' SIERPNIU ',' WRZEŚNIU ',' PAŹDZIERNIKU ',' LISTOPADZIE ',' GRUDNIU '),
+							array(' JAN ',' FEB ',' MAR ',' APR ',' MAY ',' JUN ',' JUL ',' AUG ',' SEP ',' OCT ',' NOV ',' DEC '),
+							$date);
+		if ($count == 0) {
+			// Month expressed as a roman numeral.  Do this ONLY if not French Revolutionary.  "I" is a special case
+			$date = str_replace(array(' II ',' III ',' IV ',' V ',' VI ',' VII ',' VIII ',' IX ',' X ',' XI ',' XII '),
+								array(' FEB ',' MAR ',' APR ',' MAY ',' JUN ',' JUL ',' AUG ',' SEP ',' OCT ',' NOV ',' DEC '),
+								$date);
+		}
+
+		// ===================== SPECIAL CASES
+		// Do these last, because other words need to be translated to English first
+		//   " I " preceded by 4 digits becomes " AND " since it's not likely to be a month expressed in roman numerals
+		//   " I " followed by 4 digits becomes " JAN " since it probably IS a month expressed in roman numerals
+		$date = preg_replace(array('~ (\d\d\d\d) I ~','~ I (\d\d\d\d)~'), array(' $1 AND ',' JAN $1'), $date);
+		//   "DES" at the beginning of a Date phrase means "FROM", elsewhere it's probably an abbreviation of "DESEMBRE" ("DEC")
+		if (substr($date,0,5) == ' DES ') $date = $date = ' FROM '.substr($date,5);
+		//   "DE" at the beginning of a Date phrase means "FROM", otherwise it's a noise word
+		if (substr($date,0,4) == ' DE ') $date = ' FROM '.substr($date,4);
+		//   "EN" should only appear in the "BET" date phrase, otherwise it's a noise word
+		if (substr($date,0,5) == ' BET ') $date = str_replace(' EN ', ' AND ', $date);
+		// Now for those "otherwise" cases
+		$date = str_replace(array(' DES ',' DE ',' EN '), array(' DEC ',' ',' '), $date);
+
+		}
+
+	$date = preg_replace('~ +~', ' ', $date);		// Get rid of doubled spaces that can be the result of eliminating certain "noise" words
+
+	// ===================== FIX OTHER CODING ERRORS 
+	// Users occasionally enter dates in the form YYYY MMM DD or YYYY MMM, where these dates should be DD MMM YYYY or MMM YYYY
+	//   The JavaScript function valid_date() that fires when an input Date field loses focus is supposed to correct this error.
+	//   Unfortunately, the code to perform this task doesn't work properly and has been disabled.  Moreover, this JavaScript function
+	//   cannot be used when importing a GEDCOM.
+	//
+	//   Now that everything is in English with predictable month names, it's somewhat simpler.
+	$months = 'JAN|FEB|MAR|APR|MAY|JUN|JUL|AUG|SEP|OCT|NOV|DEC';
+	
+	preg_match_all('~\d\d\d\d ('.$months.') \d\d? ~', $date, $matches, PREG_SET_ORDER);		// look for YYYY MMM DD
+	foreach ($matches as $match) {		// there could be two of these in the Date expression  (eg: BET/FROM date1 AND/TO date2)
+		$wrongDate = $match[0];
+		$correctDate = preg_replace('~(\d\d\d\d) (\w+) (\d\d?)~', '$3 $2 $1', $wrongDate);	// swap YYYY and DD
+		$date = str_replace($wrongDate, $correctDate, $date);
+	}
+	preg_match_all('~\d\d\d\d ('.$months.') ~', $date, $matches, PREG_SET_ORDER);			// look for YYYY MMM
+	foreach ($matches as $match) {		// there could be two of these in the Date expression  (eg: BET/FROM date1 AND/TO date2)
+		$wrongDate = $match[0];
+		$correctDate = preg_replace('~(\d\d\d\d) (\w+)~', '$2 $1', $wrongDate);				// swap YYYY and MMM
+		$date = str_replace($wrongDate, $correctDate, $date);
+	}
+
+	$date = trim($date);		// Get rid of those guard spaces
+
+	return $date;
 }
