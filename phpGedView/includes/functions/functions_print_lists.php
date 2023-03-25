@@ -6,7 +6,7 @@
  * used on the indilist, famlist, find, and search pages.
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2022  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2023  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -425,11 +425,11 @@ function print_indi_table($datalist, $legend="", $option="") {
 	//-- charts
 	echo "<div class=\"", $table_id, "-charts\" style=\"display:none\">";
 	echo "<table class=\"list_table center\">";
-	echo "<tr><td class=\"list_value_wrap\">";
+	echo "<tr><td class=\"facts_value statistics_chart\">";
 	print_chart_by_decade($birt_by_decade, $pgv_lang["decade_birth"]);
-	echo "</td><td class=\"list_value_wrap\">";
+	echo "</td><td class=\"facts_value statistics_chart\">";
 	print_chart_by_decade($deat_by_decade, $pgv_lang["decade_death"]);
-	echo "</td></tr><tr><td colspan=\"2\" class=\"list_value_wrap\">";
+	echo "</td></tr><tr><td colspan=\"2\" class=\"facts_value statistics_chart\">";
 	print_chart_by_age($deat_by_age, $pgv_lang["stat_18_ard"]);
 	echo "</td></tr></table>";
 	echo "</div>";
@@ -809,11 +809,11 @@ function print_fam_table($datalist, $legend="", $option="") {
 	//-- charts
 	echo "<div class=\"", $table_id, "-charts\" style=\"display:none\">";
 	echo "<table class=\"list_table center\">";
-	echo "<tr><td class=\"list_value_wrap\">";
+	echo "<tr><td class=\"facts_value statistics_chart\">";
 	print_chart_by_decade($birt_by_decade, $pgv_lang["decade_birth"]);
-	echo "</td><td class=\"list_value_wrap\">";
+	echo "</td><td class=\"facts_value statistics_chart\">";
 	print_chart_by_decade($marr_by_decade, $pgv_lang["decade_marriage"]);
-	echo "</td></tr><tr><td colspan=\"2\" class=\"list_value_wrap\">";
+	echo "</td></tr><tr><td colspan=\"2\" class=\"facts_value statistics_chart\">";
 	print_chart_by_age($marr_by_age, $pgv_lang["stat_19_arm"]);
 	echo "</td></tr></table>";
 	echo "</div>";
@@ -1954,12 +1954,14 @@ function print_chart_by_age($data, $title) {
 	global $pgv_lang, $GEDCOM;
 	global $PRINTER_FRIENDLY, $stylesheet, $print_stylesheet;
 
-	$css = new cssparser();
 	if ($PRINTER_FRIENDLY) {
-		$ParseCSSIndex = $css->ParseCSS($print_stylesheet);
+		$stylesheetContents = file_get_contents($print_stylesheet);
 	} else {
-		$ParseCSSIndex = $css->ParseCSS($stylesheet);
+		$stylesheetContents = file_get_contents($stylesheet);
 	}
+
+	$css = new cssparser();
+	$ParseCSSIndex = $css->ParseCSS($stylesheetContents);
 	$color = $css->GetCSSFiltered($ParseCSSIndex, 'body', 'background-color', 'all');
 	$color = str_replace("#", "", $color);
 	switch(strtoupper($color)) {
@@ -1982,7 +1984,7 @@ function print_chart_by_age($data, $title) {
 	if ($count<1) return;
 	$avg = round($avg/$count);
 	$chart_url = "https://chart.apis.google.com/chart?cht=bvs"; // chart type
-	$chart_url .= "&amp;chs=725x150"; // size
+	$chart_url .= "&amp;chs=775x150"; // size
 	$chart_url .= "&amp;chbh=3,2,2"; // bvg : 4,1,2
 	$chart_url .= "&amp;chf=bg,s,".$color; //background color
 	$chart_url .= "&amp;chco=0000FF,FFA0CB,FF0000"; // bar color
@@ -2019,7 +2021,7 @@ function print_chart_by_age($data, $title) {
 	for ($age=0; $age<=$agemax; $age++) {
 		$chart_url .= $CHART_ENCODING61[intval(substr_count($data[$age], "F")*61/$vmax)];
 	}
-	echo "<img src=\"", $chart_url, "\" alt=\"", $title, "\" title=\"", $title, "\" class=\"gchart\" />";
+	echo "<img src=\"", $chart_url, "\" alt=\"", $title, "\" title=\"", $title, "\" />";
 }
 
 /**
@@ -2032,9 +2034,15 @@ function print_chart_by_decade($data, $title) {
 	global $pgv_lang;
 	global $PRINTER_FRIENDLY, $stylesheet, $print_stylesheet;
 
+
+	if ($PRINTER_FRIENDLY) {
+		$stylesheetContents = file_get_contents($print_stylesheet);
+	} else {
+		$stylesheetContents = file_get_contents($stylesheet);
+	}
+
 	$css = new cssparser();
-	if ($PRINTER_FRIENDLY) $ParseCSSIndex = $css->ParseCSS($print_stylesheet);
-	else $ParseCSSIndex = $css->ParseCSS($stylesheet);
+	$ParseCSSIndex = $css->ParseCSS($stylesheetContents);
 	$color = $css->GetCSSFiltered($ParseCSSIndex, 'body', 'background-color', 'all');
 	$color = str_replace("#", "", $color);
 	switch(strtoupper($color)) {
@@ -2087,7 +2095,7 @@ function print_chart_by_decade($data, $title) {
 	for ($y=1570; $y<2030; $y+=10) {
 		$chart_url .= $CHART_ENCODING61[intval(substr_count($data[$y], "F")*61/$vmax)];
 	}
-	echo "<img src=\"", $chart_url, "\" alt=\"", $title, "\" title=\"", $title, "\" class=\"gchart\" />";
+	echo "<img src=\"", $chart_url, "\" alt=\"", $title, "\" title=\"", $title, "\" />";
 }
 
 /**

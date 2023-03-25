@@ -3,7 +3,7 @@
  * Displays a fan chart
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2022  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2023  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -115,8 +115,9 @@ function print_fan_chart($treeid, $fanw=640, $fandeg=270) {
 	if (empty($fanChart)) {
 		// For compatibility reasons only, parse CSS file
 		require_once PGV_ROOT.'includes/classes/class_cssparser.php';
+		$stylesheetContents = file_get_contents($stylesheet);
 		$css = new cssparser();
-		$ParseCSSIndex = $css->ParseCSS($stylesheet);
+		$ParseCSSIndex = $css->ParseCSS($stylesheetContents);
 
 		$fanChart = array();
 		$fanChart['font'] = $css->GetCSSFiltered($ParseCSSIndex, '.fan_chart', 'font-family', 'all');

@@ -5,7 +5,7 @@
  * To learn more about CSS visit http: //www.w3.org/TR/REC-CSS2/
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2022  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2023  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -69,7 +69,7 @@ ul {
 }
 
 .button {
-	width: 60px
+	width: 60px;
 }
 
 .gedcom_table {
@@ -1146,7 +1146,7 @@ h4 {
 }
 
 .vmiddle {
-	vertical-align: middle
+	vertical-align: middle;
 }
 
 /* Colors */
@@ -1338,7 +1338,7 @@ a.showit:hover span {
 	left: -10px;
 	top: -65px;
 	z-index: 2;
-	background-color: white
+	background-color: white;
 }
 
 .lifespan_people {

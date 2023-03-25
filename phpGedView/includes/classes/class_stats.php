@@ -6,7 +6,7 @@
 * about the GEDCOM.
 *
 * phpGedView: Genealogy Viewer
-* Copyright (C) 2002 to 2021 PGV Development Team.  All rights reserved.
+* Copyright (C) 2002 to 2023 PGV Development Team.  All rights reserved.
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -1113,6 +1113,7 @@ class stats {
 	function chartDistribution($chart_shows='world', $chart_type='', $surname='') {
 		global $pgv_lang, $pgv_lang_use, $countries;
 		global $PGV_STATS_CHART_COLOR1, $PGV_STATS_CHART_COLOR2, $PGV_STATS_CHART_COLOR3, $PGV_STATS_MAP_X, $PGV_STATS_MAP_Y;
+		global $LANGUAGE;
 
 		if ($this->totalPlaces()==0) return '';
 
@@ -1123,6 +1124,7 @@ class stats {
 			foreach (self::$iso3166 as $three=>$two) {
 				$country_to_iso3166[UTF8_strtolower($three)]=$two;
 			}
+			$activeLanguage = $LANGUAGE;
 			foreach ($pgv_lang_use as $lang=>$use) {
 				if ($use) {
 					loadLangFile('pgv_country', $lang);
@@ -1133,6 +1135,7 @@ class stats {
 					}
 				}
 			}
+			loadLangFile('pgv_country', $activeLanguage);		// Restore the country name list
 		}
 		switch ($chart_type) {
 		case 'surname_distribution_chart':

@@ -73,7 +73,7 @@ class CSSParser {
           $codeLen = strlen($code);
           $parenthesis = array();
           while($idx < $codeLen) {
-            $c = $code[$idx];
+            $c = $code{$idx};
             $idx++;
             if($inQuote !== false) {
               if($inQuote === $c) {
