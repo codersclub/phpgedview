@@ -14,6 +14,10 @@ The session.php script uses this information to populate the constants : PGV_VER
 =====================================================================
 
 Version 4.3.1
+ - Fixed: "Potential error in stylesheet" message while viewing Statistics charts on Individual and Family lists (canajun2eh)
+ - Fixed: "Age related to death year" chart on Family and Individual pages not wide enough (canajun2eh)
+ - Fixed: Wrong language in country distribution chart on Statistics page (canajun2eh)
+ - Fixed: Dates of the form MMM DD, YYYY aren't always corrected to their proper form DD MMM YYYY (canajun2eh)
  - Fixed: Date range input does not work when both dates are of the form DD MMM YYYY (canajun2eh)
  - Changed: Limited support of date expressions in languages other than English (canajun2eh)
  - Fixed: Fully spelled out month names are sometimes ignored when entering dates (canajun2eh)

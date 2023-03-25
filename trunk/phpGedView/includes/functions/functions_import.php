@@ -1662,7 +1662,7 @@ function transformDate($date) {
 		// The Date expression contains text that's illegal according to the GEDCOM standard; we'll try to translate what we can.
 
 		$date = preg_replace(array("~ [DL]'~",'~ +~'), ' ', $date);		// Get rid of some apostropes and doubled spaces
-		$date = str_replace('.', '', $date);		// Likewise, all full-stops that can occur in abbreviations in some languages
+		$date = str_replace(array('.',','), '', $date);		// Likewise, all full-stops and commas
 
 		// ===================== DATE EXPRESSIONS
 		// Any duplications in the several languages are removed after the first occurrence.  For clarity, we will NOT do more than one language at a time.
@@ -1824,6 +1824,8 @@ function transformDate($date) {
 	//   The JavaScript function valid_date() that fires when an input Date field loses focus is supposed to correct this error.
 	//   Unfortunately, the code to perform this task doesn't work properly and has been disabled.  Moreover, this JavaScript function
 	//   cannot be used when importing a GEDCOM.
+	// Users also occasionally enter dates in the form MMM DD, YYYY where these dates should be DD MMM YYYY.
+	//   The comma has already been eliminated, so we just need to fix the order of the day and month.
 	//
 	//   Now that everything is in English with predictable month names, it's somewhat simpler.
 	$months = 'JAN|FEB|MAR|APR|MAY|JUN|JUL|AUG|SEP|OCT|NOV|DEC';
@@ -1838,6 +1840,12 @@ function transformDate($date) {
 	foreach ($matches as $match) {		// there could be two of these in the Date expression  (eg: BET/FROM date1 AND/TO date2)
 		$wrongDate = $match[0];
 		$correctDate = preg_replace('~(\d\d\d\d) (\w+)~', '$2 $1', $wrongDate);				// swap YYYY and MMM
+		$date = str_replace($wrongDate, $correctDate, $date);
+	}
+	preg_match_all('~('.$months.') \d\d? \d\d\d\d~', $date, $matches, PREG_SET_ORDER);		// look for MMM DD YYYY
+	foreach ($matches as $match) {		// there could be two of these in the Date expression  (eg: BET/FROM date1 AND/TO date2)
+		$wrongDate = $match[0];
+		$correctDate = preg_replace('~(\w+) (\d\d?) (\d\d\d\d)~', '$2 $1 $3', $wrongDate);	// swap MMM and DD
 		$date = str_replace($wrongDate, $correctDate, $date);
 	}
 

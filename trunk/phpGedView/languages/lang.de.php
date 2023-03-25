@@ -3,7 +3,7 @@
  * German Language file for PhpGedView.
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2022  PGV Development Team.  All rights reerved.
+ * Copyright (C) 2002 to 2023  PGV Development Team.  All rights reerved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -1574,7 +1574,7 @@ $pgv_lang["show_stats_charts"]			= "Statistiken-Diagramme zeigen";
 $pgv_lang["decade_birth"]				= "Geburten: Jahrzehnt";
 $pgv_lang["decade_death"]				= "Tode: Jahrzehnt";
 $pgv_lang["decade_marriage"]			= "Ehen: Jahrzehnt";
-$pgv_lang["avg_age"]					= "Durchschnitt: Todesalter";
+$pgv_lang["avg_age"]					= "Durchschnittsalter";
 
 //-- Merge Records
 $pgv_lang["merge_same"]					= "Die Datensätze sind nicht vom gleichen Typ und können daher nicht zusammengefügt werden.";
