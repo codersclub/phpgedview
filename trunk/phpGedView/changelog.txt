@@ -14,6 +14,7 @@ The session.php script uses this information to populate the constants : PGV_VER
 =====================================================================
 
 Version 4.3.1
+ - Fixed: More problems with the CSS parser (canajun2eh)
  - Fixed: Incorrect use of curly braces in CSS parser (introduced in previous SVN update) (canajun2eh)
  - Fixed: "Potential error in stylesheet" message while viewing Statistics charts on Individual and Family lists (canajun2eh)
  - Fixed: "Age related to death year" chart on Family and Individual pages not wide enough (canajun2eh)
