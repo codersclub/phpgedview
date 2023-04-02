@@ -3,7 +3,7 @@
  * Swedish Language file for PhpGedView.
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2022  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2023  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -1733,12 +1733,12 @@ $pgv_lang["stat_13_mm"]			= "Vigselmånad";
 $pgv_lang["stat_14_mb1"]		= "Födelsemånad för det första barnet i relationen";
 $pgv_lang["stat_15_mm1"]		= "Månad för första vigseln";
 $pgv_lang["stat_16_mmb"]		= "Månader mellan vigsel och första barnet";
-$pgv_lang["stat_17_arb"]		= "Ålder i förhållande till födelseår";
-$pgv_lang["stat_18_ard"]		= "Ålder i förhållande till dödsår";
-$pgv_lang["stat_18_aard"]		= "Genomsnittlig ålder relaterad till dödsårhundrade";
+$pgv_lang["stat_17_arb"]		= "Födelseår";
+$pgv_lang["stat_18_ard"]		= "Ålder vid döden";
+$pgv_lang["stat_18_aard"]		= "Medelålder vid döden";
 $pgv_lang["stat_19_arm"]		= "Ålder vid vigsel";
-$pgv_lang["stat_19_aarm"]		= "Genomsnittsålder i äktenskapets århundrade";
-$pgv_lang["stat_20_arm1"]		= "Ålder vid första vigseln";
+$pgv_lang["stat_19_aarm"]		= "Medelålder vid vigsel";
+$pgv_lang["stat_20_arm1"]		= "Ålder vid första vigsel";
 $pgv_lang["stat_21_nok"]		= "Antal barn";
 $pgv_lang["stat_22_fwok"]		= "Antal familjer utan barn";
 $pgv_lang["stat_200_none"]		= "alla (eller tom)";

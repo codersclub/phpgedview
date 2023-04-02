@@ -14,6 +14,10 @@ The session.php script uses this information to populate the constants : PGV_VER
 =====================================================================
 
 Version 4.3.1
+ - Fixed: Various PHP 8 compatibility issues in Webservice and SOAP (Pasquale Ceres)
+ - Changed: Clearly identify local corrections to the CSS parser (canajun2eh)
+ - Fixed: Still more problems with the CSS parser (canajun2eh)
+ - Changed: Minor adjustments to some texts in the lang.xx.php files (canajun2eh)
  - Fixed: More problems with the CSS parser (canajun2eh)
  - Fixed: Incorrect use of curly braces in CSS parser (introduced in previous SVN update) (canajun2eh)
  - Fixed: "Potential error in stylesheet" message while viewing Statistics charts on Individual and Family lists (canajun2eh)

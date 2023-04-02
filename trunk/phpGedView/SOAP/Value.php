@@ -93,7 +93,6 @@ class SOAP_Value
         $this->namespace = $this->nqn->namespace;
         $this->tqn = new QName($type);
         $this->type = $this->tqn->name;
-        $this->type_prefix = $this->tqn->ns;
         $this->type_namespace = $this->tqn->namespace;
         $this->value =& $value;
         $this->attributes = $attributes;

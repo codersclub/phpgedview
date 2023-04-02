@@ -7,7 +7,11 @@
  * This is version 2 of the CSS Parser,
  *
  * $Id$
- *				Note: This file is named "cssparser.php" in the official distribution
+ *
+ *		Notes: 
+ *			This file is named "cssparser.php" in the official distribution
+ *			The official distribution has a number of errors that have been corrected in this version.  Look for the text "by canajun2eh".
+ *			Do NOT try to use the official distribution without first applying the noted changes.
  *
  * @author http://www.phpclasses.org/browse/package/1289.html
  * @package PhpGedView
@@ -63,7 +67,6 @@ class CSSParser {
       return $index;
     }
     $css = preg_replace('/\/\*.*\*\//Us', '', $css);
-    $codeCount = 0;
     while(preg_match('/^\s*(\@(media|import|local)([^\{\}]+)(\{)|([^\{\}]+)(\{)|([^\{\}]*)(\}))/Usi', $css, $match)) {
       if(isset($match[8]) && ($match[8] == '}')) {
         if($section !== false) {
@@ -71,10 +74,12 @@ class CSSParser {
           $idx = 0;
           $inQuote = false;
           $property = false;
+//        $codeLen = strlen($code);				// deleted by canajun2eh
           $parenthesis = array();
-          while (true) {
-            if ($idx >= strlen($code)) break;
-            $c = $code[$idx];
+//        while($idx < $codeLen) {				// deleted by canajun2eh
+//          $c = $code{$idx};					// deleted by canajun2eh
+          while($idx < strlen($code)) {			// added by canajun2eh
+            $c = $code[$idx];					// added by canajun2eh
             $idx++;
             if($inQuote !== false) {
               if($inQuote === $c) {
@@ -287,11 +292,14 @@ class CSSParser {
       if(is_array($this->cssData[$index][$media])) {
         $result = array();
         foreach($this->cssData[$index][$media] as $section => $values) {
-          if(isset($values[$matchKey])) {
-            if($values[$matchKey] == $matchValue) {
-              $result[] = $section;
-            }
-          }
+//        if(isset($values[$matchKey])) {				// deleted by canajun2eh
+//          if($values[$matchKey] == $matchValue) {		// deleted by canajun2eh
+//            $result[] = $section;						// deleted by canajun2eh
+//          }											// deleted by canajun2eh
+//        }												// deleted by canajun2eh
+          if ($section == $matchKey) {					// added by canajun2eh
+            $result = array_merge($result,$values);		// added by canajun2eh
+          }												// added by canajun2eh
         }
         return $result;
       }
@@ -355,24 +363,27 @@ class CSSParser {
       }
     }
     $sections = $this->GetSectionsFiltered($index, $matchKey, $matchValue, $media);
-    if($sections !== false) {
-      if(is_array($sections)) {
-        $result = '';
-        foreach($sections as $section) {
-          $result .= $section.' {';
-          $temp = $this->cssData[$index][$media];
-          if(is_array($temp)) {
-            foreach($temp as $key => $value) {
-              $key = preg_replace('/(\[[0-9]*\])$/Usi', '', $key);
-              $result .= $key.': '.$value.';';
-            }
-          }
-          $result .= $section.' }';
-        }
-        return $result;
-      }
-    }
-    return false;
+//  if($sections !== false) {										// deleted by canajun2eh
+//    if(is_array($sections)) {										// deleted by canajun2eh
+//      $result = '';												// deleted by canajun2eh
+//      foreach($sections as $section) {							// deleted by canajun2eh
+//        $result .= $section.' {';									// deleted by canajun2eh
+//        $temp = $this->cssData[$index][$media];					// deleted by canajun2eh
+//        if(is_array($temp)) {										// deleted by canajun2eh
+//          foreach($temp as $key => $value) {						// deleted by canajun2eh
+//            $key = preg_replace('/(\[[0-9]*\])$/Usi', '', $key);	// deleted by canajun2eh
+//            $result .= $key.': '.$value.';';						// deleted by canajun2eh
+//          }														// deleted by canajun2eh
+//        }															// deleted by canajun2eh
+//        $result .= $section.' }';									// deleted by canajun2eh
+//      }															// deleted by canajun2eh
+//      return $result;												// deleted by canajun2eh
+//    }																// deleted by canajun2eh
+//  return false;													// deleted by canajun2eh
+    if (!is_array($sections)) return false;							// added by canajun2eh
+    if (isset($sections[$matchValue])) {							// added by canajun2eh
+      return $sections[$matchValue];								// added by canajun2eh
+    } else return '';												// added by canajun2eh
   }
 
   public function GetCSSArray($index, $media = 'screen') {

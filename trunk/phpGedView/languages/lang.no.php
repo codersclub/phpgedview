@@ -3,7 +3,7 @@
  * Norwegian Language file for PhpGedView.
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2022  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2023  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -1736,12 +1736,12 @@ $pgv_lang["stat_13_mm"]			= "Måned for vielse";
 $pgv_lang["stat_14_mb1"]		= "Fødselsmåned til første barn i et forhold";
 $pgv_lang["stat_15_mm1"]		= "Måned for første eksteskap";
 $pgv_lang["stat_16_mmb"]		= "Måneder mellom ekteskap og første barn";
-$pgv_lang["stat_17_arb"]		= "Alder i forhold til fødeår";
-$pgv_lang["stat_18_ard"]		= "Alder i forhold til dødsår";
-$pgv_lang["stat_18_aard"]		= "Gjennomsnittsalder relatert til dødsårhundre";
-$pgv_lang["stat_19_arm"]		= "Alder i vielsesåret";
-$pgv_lang["stat_19_aarm"]		= "Gjennomsnittsalder i ekteskapets århundre";
-$pgv_lang["stat_20_arm1"]		= "Alder i året for første ekteskap";
+$pgv_lang["stat_17_arb"]		= "Fødselsår";
+$pgv_lang["stat_18_ard"]		= "Alder ved død";
+$pgv_lang["stat_18_aard"]		= "Gjennomsnittlig alder ved død";
+$pgv_lang["stat_19_arm"]		= "Alder ved ekteskap";
+$pgv_lang["stat_19_aarm"]		= "Gjennomsnittlig alder ved ekteskap";
+$pgv_lang["stat_20_arm1"]		= "Alder ved første ekteskap";
 $pgv_lang["stat_21_nok"]		= "Antall barn";
 $pgv_lang["stat_22_fwok"]		= "Antall familier uten barn";
 $pgv_lang["stat_200_none"]		= "alle (eller blank)";

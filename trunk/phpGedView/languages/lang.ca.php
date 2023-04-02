@@ -3,7 +3,7 @@
  * Catalan Language file for PhpGedView.
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2022  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2023  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -1735,12 +1735,12 @@ $pgv_lang["stat_13_mm"]			= "Mes de casament";
 $pgv_lang["stat_14_mb1"]		= "Mes de naixement del primer fill/a en una relació";
 $pgv_lang["stat_15_mm1"]		= "Mes del primer casament";
 $pgv_lang["stat_16_mmb"]		= "Mesos entre el casament i el primer fill";
-$pgv_lang["stat_17_arb"]		= "Edat en relació a l'any de naixement";
-$pgv_lang["stat_18_ard"]		= "Edat en relació a l'any de defunció";
-$pgv_lang["stat_18_aard"]		= "Promig d'edat en relació a la centúria de defunció";
-$pgv_lang["stat_19_arm"]		= "Edat l'any de casament";
-$pgv_lang["stat_19_aarm"]		= "Promig d'edat en relació a la centúria de casament";
-$pgv_lang["stat_20_arm1"]		= "Edat l'any del primer casament";
+$pgv_lang["stat_17_arb"]		= "Any de naixement";
+$pgv_lang["stat_18_ard"]		= "Edat a la mort";
+$pgv_lang["stat_18_aard"]		= "Edat mitjana a la mort";
+$pgv_lang["stat_19_arm"]		= "Edat en el matrimoni";
+$pgv_lang["stat_19_aarm"]		= "Edat mitjana en el matrimoni";
+$pgv_lang["stat_20_arm1"]		= "Edat al primer matrimoni";
 $pgv_lang["stat_21_nok"]		= "Nombre de fills";
 $pgv_lang["stat_22_fwok"]		= "Nombre de famílies sense fills";
 $pgv_lang["stat_200_none"]		= "tot (o en blanc)";

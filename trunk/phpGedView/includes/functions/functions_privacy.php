@@ -5,7 +5,7 @@
 * See http://www.phpgedview.net/privacy.php for more information on privacy in PhpGedView
 *
 * phpGedView: Genealogy Viewer
-* Copyright (C) 2002 to 2021 PGV Development Team.  All rights reserved.
+* Copyright (C) 2002 to 2023 PGV Development Team.  All rights reserved.
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -201,7 +201,7 @@ function is_dead($indirec, $current_year='', $import=false, $sitemap=false) {
 				} else {
 					$spid = $parents['WIFE'];
 				}
-				preg_match_all('/\n2 DATE (.+)/', find_person_record($spid, $ged_id), $date_matches);
+				preg_match_all('/\n2 DATE (.+)/', (string)find_person_record($spid, $ged_id), $date_matches);
 				foreach ($date_matches[1] as $date_match) {
 					$date=new GedcomDate($date_match);
 					if ($date->isOK()) {
