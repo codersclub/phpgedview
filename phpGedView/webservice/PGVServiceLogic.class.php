@@ -3,7 +3,7 @@
  *  PGV SOAP implementation of the genealogy web service
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2022  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2023  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -677,7 +677,7 @@ class PGVServiceLogic extends GenealogyService {
 			// if both exist then merge them
 			// if not then is one set if so the set that to be the one that is merged with the $results_from_name array
 			if ($both_dates_exist) {
-				$results_from_dates = array_uintersect($results_from_birth_date, $results_from_death_date, function ($a1, $a2) { return $a1 != $a2; });
+				$results_from_dates = array_uintersect($results_from_birth_date, $results_from_death_date, function ($a1, $a2) { return $a1 != $a2 ? 1 : 0; });
 			} elseif (isset($results_from_birth_date)|| isset($results_from_death_date)) {
 				if (isset($results_from_birth_date)) {
 					$results_from_dates = $results_from_birth_date;
@@ -690,7 +690,7 @@ class PGVServiceLogic extends GenealogyService {
 			// returned from the two searches and the unsimilar people are left out.
 			// only merge them if both are set else then set the one that is to $newarray
 			if (isset($results_from_name) && isset($results_from_dates)) {
-				$newarray = array_uintersect($results_from_name, $results_from_dates, function ($a1, $a2) { return $a1 != $a2; });
+				$newarray = array_uintersect($results_from_name, $results_from_dates, function ($a1, $a2) { return $a1 != $a2 ? 1 : 0; });
 			} elseif (isset($results_from_name)|| isset($results_from_dates)) {
 				if (isset($results_from_name)) {
 					$newarray = $results_from_name;

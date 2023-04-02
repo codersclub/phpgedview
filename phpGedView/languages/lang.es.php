@@ -3,7 +3,7 @@
  * Spanish Language file for PhpGedView
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2022  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2023  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -1736,12 +1736,12 @@ $pgv_lang["stat_13_mm"]			= "Mes de matrimonio";
 $pgv_lang["stat_14_mb1"]		= "Mes de nacimiento del primer hijo de una relación";
 $pgv_lang["stat_15_mm1"]		= "Mes del primer matrimonio";
 $pgv_lang["stat_16_mmb"]		= "Meses entre matrimonio y primer hijo";
-$pgv_lang["stat_17_arb"]		= "Edad según el año de nacimiento";
-$pgv_lang["stat_18_ard"]		= "Edad según el año de fallecimiento";
-$pgv_lang["stat_18_aard"]		= "Edad promedio según el siglo de defunción";
-$pgv_lang["stat_19_arm"]		= "Edad el año de matrimonio";
-$pgv_lang["stat_19_aarm"]		= "Edad promedio en el siglo de matrimonio";
-$pgv_lang["stat_20_arm1"]		= "Edad el año del primer matrimonio";
+$pgv_lang["stat_17_arb"]		= "Año de nacimiento";
+$pgv_lang["stat_18_ard"]		= "Edad al morir";
+$pgv_lang["stat_18_aard"]		= "Edad promedio al morir";
+$pgv_lang["stat_19_arm"]		= "Edad al matrimonio";
+$pgv_lang["stat_19_aarm"]		= "Edad promedio al matrimonio";
+$pgv_lang["stat_20_arm1"]		= "Edad en el primer matrimonio";
 $pgv_lang["stat_21_nok"]		= "Número de hijos";
 $pgv_lang["stat_22_fwok"]		= "Número de familias sin hijos";
 $pgv_lang["stat_200_none"]		= "todos (o en blanco)";

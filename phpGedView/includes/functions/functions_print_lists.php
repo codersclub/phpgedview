@@ -1963,13 +1963,16 @@ function print_chart_by_age($data, $title) {
 	$css = new cssparser();
 	$ParseCSSIndex = $css->ParseCSS($stylesheetContents);
 	$color = $css->GetCSSFiltered($ParseCSSIndex, 'body', 'background-color', 'all');
-	$color = str_replace("#", "", $color);
-	switch(strtoupper($color)) {
-	case "": case "FFFFFF": case "WHITE":
-	case "002540": case "004025": case "400025": // simply themes needs bright backgound
-		$color="FFFFFF99"; // opacity
-		break;
+	$color = strtoupper(str_replace('#', '', $color));
+	switch($color) {
+		case '':
+		case 'WHITE':
+		case '002540':
+		case '004025':
+		case '400025':
+			$color = 'FFFFFF';
 	}
+	$opacity = '99';		// 60%
 	$count = 0;
 	$agemax = 0;
 	$vmax = 0;
@@ -1986,7 +1989,7 @@ function print_chart_by_age($data, $title) {
 	$chart_url = "https://chart.apis.google.com/chart?cht=bvs"; // chart type
 	$chart_url .= "&amp;chs=775x150"; // size
 	$chart_url .= "&amp;chbh=3,2,2"; // bvg : 4,1,2
-	$chart_url .= "&amp;chf=bg,s,".$color; //background color
+	$chart_url .= "&amp;chf=bg,s,{$color}{$opacity}"; // background color and opacity
 	$chart_url .= "&amp;chco=0000FF,FFA0CB,FF0000"; // bar color
 	$chart_url .= "&amp;chdl=".$pgv_lang["males"]."|".$pgv_lang["females"]."|".$pgv_lang["avg_age"].": ".$avg; // legend & average age
 	$chart_url .= "&amp;chtt=".urlencode($title); // title
@@ -2044,13 +2047,16 @@ function print_chart_by_decade($data, $title) {
 	$css = new cssparser();
 	$ParseCSSIndex = $css->ParseCSS($stylesheetContents);
 	$color = $css->GetCSSFiltered($ParseCSSIndex, 'body', 'background-color', 'all');
-	$color = str_replace("#", "", $color);
-	switch(strtoupper($color)) {
-	case "": case "FFFFFF": case "WHITE":
-	case "002540": case "004025": case "400025": // simply themes needs bright backgound
-		$color="FFFFFF99"; // opacity
-		break;
+	$color = strtoupper(str_replace('#', '', $color));
+	switch($color) {
+		case '':
+		case 'WHITE':
+		case '002540':
+		case '004025':
+		case '400025':
+			$color = 'FFFFFF';
 	}
+	$opacity = '99';		// 60%
 	$count = 0;
 	$vmax = 0;
 	foreach ($data as $age=>$v) {
@@ -2062,7 +2068,7 @@ function print_chart_by_decade($data, $title) {
 	$chart_url = "https://chart.apis.google.com/chart?cht=bvs"; // chart type
 	$chart_url .= "&amp;chs=360x150"; // size
 	$chart_url .= "&amp;chbh=3,3"; // bvg : 4,1,2
-	$chart_url .= "&amp;chf=bg,s,".$color; //background color
+	$chart_url .= "&amp;chf=bg,s,{$color}{$opacity}"; // background color and opacity
 	$chart_url .= "&amp;chco=0000FF,FFA0CB"; // bar color
 	$chart_url .= "&amp;chtt=".urlencode($title); // title
 	$chart_url .= "&amp;chxt=x,y,r"; // axis labels specification

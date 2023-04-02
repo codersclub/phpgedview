@@ -117,11 +117,11 @@ class SOAP_Server extends SOAP_Base
      *
      * @see http://www.php.net/set_error_handler
      */
-    function _errorHandler($errno, $errmsg, $filename, $linenum, $vars)
+    function _errorHandler($errno, $errmsg, $filename, $linenum)
     {
         /* The error handler should ignore '0' errors, eg. hidden by @ - see
          * the set_error_handler manual page. (thanks to Alan Knowles). */
-        AddToLog("Caught error by error handler:".$errmsg);
+        AddToLog("Caught error by error handler:{$errmsg}; {$filename}, Line:{$linenum}");
         if (!$errno || $errno == E_NOTICE ||
             (defined('E_STRICT') && $errno == constant('E_STRICT'))) {
             return;

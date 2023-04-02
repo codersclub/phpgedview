@@ -3,7 +3,7 @@
  * Danish Language file for PhpGedView.
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2022  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2023  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -1735,11 +1735,11 @@ $pgv_lang["stat_13_mm"]			= "Ægteskabsmåned";
 $pgv_lang["stat_14_mb1"]		= "Fødselsmåned for førstefødte i familie";
 $pgv_lang["stat_15_mm1"]		= "Måned for første ægteskab";
 $pgv_lang["stat_16_mmb"]		= "Måneder mellem ægteskab og første barn";
-$pgv_lang["stat_17_arb"]		= "Alder i forhold til fødselsår";
-$pgv_lang["stat_18_ard"]		= "Alder i forhold til dødsår";
-$pgv_lang["stat_18_aard"]		= "Gennemsnitlig alder relateret til dødsårhundrede";
-$pgv_lang["stat_19_arm"]		= "Alder i forhold til vielsesår";
-$pgv_lang["stat_19_aarm"]		= "Gennemsnitlig alder i ægteskabs århundrede";
+$pgv_lang["stat_17_arb"]		= "Fødselsår";
+$pgv_lang["stat_18_ard"]		= "Alder ved døden";
+$pgv_lang["stat_18_aard"]		= "Gennemsnitsalder ved døden";
+$pgv_lang["stat_19_arm"]		= "Alder ved ægteskab";
+$pgv_lang["stat_19_aarm"]		= "Gennemsnitsalder ved ægteskab";
 $pgv_lang["stat_20_arm1"]		= "Alder ved første ægteskab";
 $pgv_lang["stat_21_nok"]		= "Antal børn";
 $pgv_lang["stat_22_fwok"]		= "Antal familier uden børn";

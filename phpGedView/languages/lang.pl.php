@@ -3,7 +3,7 @@
  * Polish texts
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2022  PGV Development Team. All rights reserved.
+ * Copyright (C) 2002 to 2023  PGV Development Team. All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -1734,12 +1734,12 @@ $pgv_lang["stat_13_mm"]		= "Miesiąc ślubu";
 $pgv_lang["stat_14_mb1"]	= "Miesiąc urodzin pierwszego dziecka";
 $pgv_lang["stat_15_mm1"]	= "Miesiąc pierwszego ślubu";
 $pgv_lang["stat_16_mmb"]	= "Liczba miesięcy między ślubem a pierwszym dzieckiem";
-$pgv_lang["stat_17_arb"]	= "Długość życia względem roku urodzenia";
-$pgv_lang["stat_18_ard"]	= "Długość życia względem roku śmierci";
-$pgv_lang["stat_18_aard"]	= "Średnia długość życia względem wieku śmierci";
-$pgv_lang["stat_19_arm"]	= "Liczba lat podczas ślubu";
-$pgv_lang["stat_19_aarm"]	= "Średnia liczba lat podczas ślubu";
-$pgv_lang["stat_20_arm1"]	= "Liczba lat podczas pierwszego ślubu";
+$pgv_lang["stat_17_arb"]	= "Rok urodzenia";
+$pgv_lang["stat_18_ard"]	= "Długość życia";
+$pgv_lang["stat_18_aard"]	= "Średnia";
+$pgv_lang["stat_19_arm"]	= "Wiek w dniu ślubu";
+$pgv_lang["stat_19_aarm"]	= "Średni wiek w dniu ślubu";
+$pgv_lang["stat_20_arm1"]	= "Wiek w dniu pierwszego ślubu";
 $pgv_lang["stat_21_nok"]	= "Liczba dzieci w rodzinie";
 $pgv_lang["stat_22_fwok"]	= "Liczba bezdzietnych rodzin";
 $pgv_lang["stat_200_none"]	= "wszystko (albo puste)";

@@ -3,7 +3,7 @@
  * Dutch Language file for PhpGedView.
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2022  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2023  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -1735,12 +1735,12 @@ $pgv_lang["stat_13_mm"]				= "Huwelijksmaand";
 $pgv_lang["stat_14_mb1"]			= "Maand van geboorte van eerste kind in relatie";
 $pgv_lang["stat_15_mm1"]			= "Maand eerste huwelijk";
 $pgv_lang["stat_16_mmb"]			= "Maanden tussen huwelijk en eerste kind";
-$pgv_lang["stat_17_arb"]			= "Leeftijd ten opzichte van geboortejaar";
-$pgv_lang["stat_18_ard"]			= "Leeftijd ten opzichte van overlijdensjaar";
-$pgv_lang["stat_18_aard"]			= "Gem. leeftijd in relatie tot eeuw van overlijden";
-$pgv_lang["stat_19_aarm"]			= "Gemiddelde leeftijd in eeuw van huwelijk";
+$pgv_lang["stat_17_arb"]			= "Geboortejaar";
+$pgv_lang["stat_18_ard"]			= "Leeftijd bij overlijden";
+$pgv_lang["stat_18_aard"]			= "Gemiddelde leeftijd bij overlijden";
 $pgv_lang["stat_19_arm"]			= "Leeftijd bij huwelijk";
-$pgv_lang["stat_20_arm1"]			= "Leeftijd in jaar eerste huwelijk";
+$pgv_lang["stat_19_aarm"]			= "Gemiddelde leeftijd bij huwelijk";
+$pgv_lang["stat_20_arm1"]			= "Leeftijd bij eerste huwelijk";
 $pgv_lang["stat_21_nok"]			= "Aantal kinderen";
 $pgv_lang["stat_22_fwok"]			= "Aantal gezinnen zonder kinderen";
 $pgv_lang["stat_200_none"]			= "alle (of leeg)";
