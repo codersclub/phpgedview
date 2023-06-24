@@ -73,7 +73,7 @@ function is_dead($indirec, $current_year='', $import=false, $sitemap=false) {
 	global $CHECK_CHILD_DATES, $MAX_ALIVE_AGE, $GEDCOM;
 	$ged_id=get_id_from_gedcom($GEDCOM);
 
-	if (preg_match('/^0 @('.PGV_REGEX_XREF.')@ INDI/', $indirec, $match)) {
+	if (preg_match('/^0 @('.PGV_REGEX_XREF.')@ INDI/', (string)$indirec, $match)) {
 		$pid=$match[1];
 	} else {
 		return false;

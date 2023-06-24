@@ -228,8 +228,8 @@ function reformat_record_import($rec) {
 				$date=$data;
 				$text='';
 			}
-			// Capitals
-			$date=strtoupper($date);
+			// Translate and capitalize date
+			$date=transformDate($date);
 			// Temporarily add leading/trailing spaces, to allow efficient matching below
 			$date=" {$date} ";
 			// Ensure space digits and letters
@@ -715,7 +715,7 @@ function import_record($gedrec, $ged_id, $update) {
 
 	// Update the cross-reference/index tables.
 	update_places($xref, $ged_id, $gedrec);
-	update_dates ($xref, $ged_id, $gedrec);		// This function might alter the input GEDCOM record
+	update_dates ($xref, $ged_id, $gedrec);
 	update_links ($xref, $ged_id, $gedrec);
 	update_rlinks($xref, $ged_id, $gedrec);
 	update_names ($xref, $ged_id, $record);
@@ -879,7 +879,7 @@ function update_places($gid, $ged_id, $gedrec) {
 }
 
 // extract all the dates from the given record and insert them into the database
-function update_dates($xref, $ged_id, &$gedrec) {
+function update_dates($xref, $ged_id, $gedrec) {
 	global $TBLPREFIX, $factarray;
 
 	static $sql_insert_date=null;
@@ -895,12 +895,7 @@ function update_dates($xref, $ged_id, &$gedrec) {
 			if (($fact=='FACT' || $fact=='EVEN') && preg_match("/\n2 TYPE (\w+)/", $match[0], $tmatch) && array_key_exists($tmatch[1], $factarray)) {
 				$fact=$tmatch[1];
 			}
-
-			$originalDate = $match[2];
-			$transformedDate = transformDate($originalDate);						// Transform the input Date expression as needed and
-			$gedrec = str_replace($originalDate, $transformedDate, $gedrec);		//   stuff it into the GEDCOM record
-
-			$date=new GedcomDate($transformedDate);
+			$date=new GedcomDate($match[2]);
 			// TODO: we cast JDs to (int) for the benefit of Postgres.  It may (or may not) give
 			// better overall performance if we change the code that generates them to force integer values.
 			$sql_insert_date->execute(array($date->date1->d, $date->date1->Format('O'), $date->date1->m, $date->date1->y, (int)$date->date1->minJD, (int)$date->date1->maxJD, $fact, $xref, $ged_id, $date->date1->CALENDAR_ESCAPE()));
@@ -1652,7 +1647,7 @@ function transformDate($date) {
 
 	// Speed things up:  Remove numbers, spaces, and all of the "official" GEDCOM abbreviations that can occur in Date expressions.
 	// If text is left over, we have to go through the full Brute Force routine.
-	$tempDate = str_replace(array(' ABT ',' AFT ',' BEF ',' BET ',' FROM ',' AND ',' TO ',' CAL ',' EST ',' INT ',' CIR ',' APX ',
+	$tempDate = str_replace(array(' ABT ',' AFT ',' BEF ',' BET ',' FROM ',' AND ',' TO ',' CAL ',' EST ',' INT ',
 								  ' JAN ',' FEB ',' MAR ',' APR ',' MAY ',' JUN ',' JUL ',' AUG ',' SEP ',' OCT ',' NOV ',' DEC ',
 								  ' '),
 							'',
@@ -1661,60 +1656,64 @@ function transformDate($date) {
 	if (!empty($tempDate)) {
 		// The Date expression contains text that's illegal according to the GEDCOM standard; we'll try to translate what we can.
 
-		$date = preg_replace(array("~ [DL]'~",'~ +~'), ' ', $date);		// Get rid of some apostropes and doubled spaces
-		$date = str_replace(array('.',','), '', $date);		// Likewise, all full-stops and commas
+		$date = str_replace(array('.','/',','), ' ', $date);		// Full-stops, slashes, and commas become spaces
+		$date = str_replace(' - ', ' / ', $date);		// temporarily change solitary dashes to slashes
+		$date = str_replace('-', ' ', $date);		// Dashes that might be embedded in dates become spaces
+		$date = str_replace('/', '-', $date);		// Restore those solitary dashes (see above)
+		// The above series of str_replace could be combined into two massive arrays. They are kept separate to make it clear what was intended.
+		$date = preg_replace(array('~ +~',"~ [DL]'~"), ' ', $date);		// Get rid of doubled spaces and some apostropes
 
 		// ===================== DATE EXPRESSIONS
 		// Any duplications in the several languages are removed after the first occurrence.  For clarity, we will NOT do more than one language at a time.
 		// English
-		$date = str_replace(array(' ABOUT ',' AFTER ',' BEFORE ',' BETWEEN ',' CALCULATED ',' ESTIMATED ',' INTERPRETED ',' CIRCA ',' CA ',' APPROXIMATELY ',' APPROX ',' THE ',' IN ',' ON '),
-							array(' ABT ',' AFT ',' BEF ',' BET ',' CAL ',' EST ',' INT ',' CIR ',' CIR ',' APX ',' APX ',' ',' ',' '),
+		$date = str_replace(array(' ABOUT ',' AFTER ',' BEFORE ',' BETWEEN ',' CALCULATED ',' ESTIMATED ',' INTERPRETED ',' CIRCA ',' CIR ',' CA ',' APPROXIMATELY ',' APPROX ',' APX ',' SINCE ',' UNTIL ',' TIL ',' TILL ',' THE ',' IN ',' ON '),
+							array(' ABT ',' AFT ',' BEF ',' BET ',' CAL ',' EST ',' INT ',' ABT ',' ABT ',' ABT ',' ABT ',' ABT ',' ABT ',' FROM ',' TO ',' TO ',' TO ',' ',' ',' '),
 							$date);
 		// Hebrew, same as English
 		// Arabic, same as English
 		// Catalan: "A", "I", and "DES" are special cases
-		$date = str_replace(array(' CAP EL ',' DESPRÈS DE ',' ABANS DE ',' ENTRE ',' CALCULADA ',' ESTIMADA ',' DES DE ',' INTERPRETADA ',' CIRCA ',' APROX ',' DESPRÈS ',' ABANS ',' EL '),
-							array(' ABT ',' AFT ',' BEF ',' BET ',' CAL ',' EST ',' FROM ',' INT ',' CIR ',' APX ',' AFT ',' BEF ',' '),
+		$date = str_replace(array(' CAP EL ',' DESPRÈS DE ',' ABANS DE ',' ENTRE ',' CALCULADA ',' ESTIMADA ',' DES DE ',' INTERPRETADA ',' APROX ',' DESPRÈS ',' ABANS ',' EL '),
+							array(' ABT ',' AFT ',' BEF ',' BET ',' CAL ',' EST ',' FROM ',' INT ',' ABT ',' AFT ',' BEF ',' '),
 							$date);
 		// Portuguese: "DE" is a special case
 		$date = str_replace(array(' AO REDOR DE ',' APÓS ',' E ',' ANTES DE ',' CALCULADO ',' ESTIMADO EM ',' INTERPRETADO ',' ATÉ ',' APROXIMADAMENTE ',' APROX ',' REDOR ',' ANTES ',' ESTIMADO '),
-							array(' ABT ',' AFT ',' AND ',' BEF ',' CAL ',' EST ',' FROM ',' INT ',' CIR ',' APX ',' ABT ',' BEF ',' EST '),
+							array(' ABT ',' AFT ',' AND ',' BEF ',' CAL ',' EST ',' FROM ',' INT ',' ABT ',' ABT ',' ABT ',' BEF ',' EST '),
 							$date);
 		// Spanish
-		$date = str_replace(array(' HACIA ',' DESPUÉS DE ',' Y ',' DESDE ',' A ',' CERCANA ',' DESPUÉS '),
-							array(' ABT ',' AFT ',' AND ',' FROM ',' TO ',' CIR ',' AFT '),
+		$date = str_replace(array(' HACIA ',' DESPUÉS DE ',' Y ',' DESDE ',' A ',' CERCANA ',' CER ',' DESPUÉS '),
+							array(' ABT ',' AFT ',' AND ',' FROM ',' TO ',' ABT ',' ABT ',' AFT '),
 							$date);
 		// Danish
-		$date = str_replace(array(' OMKRING ',' EFTER ',' OG ',' FØR ',' MELLEM ',' BEREGNET ',' ANSLÅET ',' FRA ',' FORTOLKET ',' TIL ',' CIRKA ',' CA '),
-							array(' ABT ',' AFT ',' AND ',' BEF ',' BET ',' CAL ',' EST ',' FROM ',' INT ',' TO ',' CIR ',' APX '),
+		$date = str_replace(array(' OMKRING ',' EFTER ',' OG ',' FØR ',' MELLEM ',' BEREGNET ',' ANSLÅET ',' FRA ',' FORTOLKET ',' OMK ',' CIRKA '),
+							array(' ABT ',' AFT ',' AND ',' BEF ',' BET ',' CAL ',' EST ',' FROM ',' INT ',' ABT ',' ABT '),
 							$date);
 		// Norwegian
 		$date = str_replace(array(' ETTER ',' MELLOM ',' TOLKET '),
 							array(' AFT ',' BET ',' INT '),
 							$date);
 		// Swedish
-		$date = str_replace(array(' OCH ',' FÖRE ',' MELLAN ',' BERÄKNAD ',' UPPSKATTAT ',' FRÅN ',' TOLKAT ',' TILL ',' UNGEFÄR ',' UNGEF '),
-							array(' AND ',' BEF ',' BET ',' CAL ',' EST ',' FROM ',' INT ',' TO ',' APX ',' APX '),
+		$date = str_replace(array(' OCH ',' FÖRE ',' MELLAN ',' BERÄKNAD ',' UPPSKATTAT ',' FRÅN ',' TOLKAT ',' UNGEFÄR ',' UNGEF '),
+							array(' AND ',' BEF ',' BET ',' CAL ',' EST ',' FROM ',' INT ',' ABT ',' ABT '),
 							$date);
 		// Dutch:  "EN" is a special case
-		$date = str_replace(array(' ONGEVEER ',' NA ',' VOOR ',' TUSSEN ',' BEREKEND ',' GESCHAT ',' VAN ',' AFGELEID ',' TOT ',' CIRCA ',' ONGEV ',' BEREK ',' GESCH ',' AFGEL '),
-							array(' ABT ',' AFT ',' BEF ',' BET ',' CAL ',' EST ',' FROM ',' INT ',' TO ',' CIR ',' APX ',' CAL ',' EST ',' INT '),
+		$date = str_replace(array(' ONGEVEER ',' NA ',' VOOR ',' TUSSEN ',' BEREKEND ',' GESCHAT ',' VAN ',' AFGELEID ',' TOT ',' ONGEV ',' BEREK ',' GESCH ',' AFGEL '),
+							array(' ABT ',' AFT ',' BEF ',' BET ',' CAL ',' EST ',' FROM ',' INT ',' TO ',' ABT ',' CAL ',' EST ',' INT '),
 							$date);
 		// French
-		$date = str_replace(array(' VERS ',' APRÈS ',' ET ',' AVANT ',' ENTRE ',' CALCULÉE ',' ESTIMÉE ',' INTERPRÉTÉE ',' À ',' ENVIRON ',' APPROXIMATIVEMENT ',' LE '),
-							array(' ABT ',' AFT ',' AND ',' BEF ',' BET ',' CAL ',' EST ',' INT ',' TO ',' CIR ',' APX ',' '),
+		$date = str_replace(array(' VERS ',' APRÈS ',' ET ',' AVANT ',' ENTRE ',' CALCULÉE ',' ESTIMÉE ',' INTERPRÉTÉE ',' À ',' ENVIRON ',' ENV ',' APPROXIMATIVEMENT ',' LE '),
+							array(' ABT ',' AFT ',' AND ',' BEF ',' BET ',' CAL ',' EST ',' INT ',' TO ',' ABT ',' ABT ',' ABT ',' '),
 							$date);
 		// German
-		$date = str_replace(array(' UM ',' NACH ',' UND ',' VOR ',' ZWISCHEN ',' BERECHNET ',' GESCHÄTZT ',' VON ',' INTERPRETIERT ',' BIS ',' UNGEFÄHR ',' BER ',' GESCH ',' UNGEF ',' RUND ',' AB ',' DEN ',' DEM ',' IM ',' AM ',' AN '),
-							array(' ABT ',' AFT ',' AND ',' BEF ',' BET ',' CAL ',' EST ',' FROM ',' INT ',' TO ',' APX ',' CAL ',' EST ',' APX ',' APX ',' FROM ',' ',' ',' ',' ',' '),
+		$date = str_replace(array(' UM ',' NACH ',' UND ',' VOR ',' ZWISCHEN ',' BERECHNET ',' GESCHÄTZT ',' VON ',' INTERPRETIERT ',' BIS ',' UNGEFÄHR ',' BER ',' GESCH ',' UNGEF ',' RUND ',' AB ',' SEIT ',' DEN ',' DEM ',' IM ',' AM ',' AN '),
+							array(' ABT ',' AFT ',' AND ',' BEF ',' BET ',' CAL ',' EST ',' FROM ',' INT ',' TO ',' ABT ',' CAL ',' EST ',' ABT ',' ABT ',' FROM ',' FROM ',' ',' ',' ',' ',' '),
 							$date);
 		// Italian: Handle "A" (left over from Catalan) now
 		$date = str_replace(array(' DOPO ',' PRIMA ',' TRA ',' CALCOLATO ',' STIMATO ',' DA ',' INTERPRETATO ',' FINO A ',' APPROSS ',' STIM ',' FINO ',' CALCOLATO ',' APPROSSIMATIVAMENTE ',' A ',' IL '),
-							array(' AFT ',' BEF ',' BET ',' CAL ',' EST ',' FROM ',' INT ',' TO ',' APX ',' EST ',' TO ',' CAL ',' APX ',' TO ',' '),
+							array(' AFT ',' BEF ',' BET ',' CAL ',' EST ',' FROM ',' INT ',' TO ',' ABT ',' EST ',' TO ',' CAL ',' ABT ',' TO ',' '),
 							$date);
 		// Polish
 		$date = str_replace(array(' OK ',' PO ',' PRZED ',' MIĘDZY ',' WYLICZONE ',' SZACOWANE ',' OD ',' ZINTERPRETOWANE ',' DO ',' OKOŁO '),
-							array(' ABT ',' AFT ',' BEF ',' BET ',' CAL ',' EST ',' FROM ',' INT ',' TO ',' APX '),
+							array(' ABT ',' AFT ',' BEF ',' BET ',' CAL ',' EST ',' FROM ',' INT ',' TO ',' ABT '),
 							$date);
 	
 		// ===================== Month names
@@ -1744,7 +1743,7 @@ function transformDate($date) {
 							array(' JAN ',' FEB ',' MAR ',' MAY ',' JUN ',' JUL ',' SEP ',' NOV ',' DEC ',' DEC '),
 							$date);
 		// Danish
-		$date = str_replace(array(' JANUAR ',' FEBRUAR ',' MARTS ',' MAJ ',' JUNI ',' JULI ',' OKTOBER ',' FEBR ',' SEPT ',' OKT. '),
+		$date = str_replace(array(' JANUAR ',' FEBRUAR ',' MARTS ',' MAJ ',' JUNI ',' JULI ',' OKTOBER ',' FEBR ',' SEPT ',' OKT '),
 							array(' JAN ',' FEB ',' MAR ',' MAY ',' JUN ',' JUL ',' OCT ',' FEB ',' SEP ',' OCT '),
 							$date);
 		// Norwegian  "DES" is a special case
@@ -1800,7 +1799,6 @@ function transformDate($date) {
 								array(' FEB ',' MAR ',' APR ',' MAY ',' JUN ',' JUL ',' AUG ',' SEP ',' OCT ',' NOV ',' DEC '),
 								$date);
 		}
-
 		// ===================== SPECIAL CASES
 		// Do these last, because other words need to be translated to English first
 		//   " I " preceded by 4 digits becomes " AND " since it's not likely to be a month expressed in roman numerals

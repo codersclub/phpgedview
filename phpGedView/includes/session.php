@@ -3,7 +3,7 @@
  * Startup and session logic
  *
  * phpGedView: Genealogy Viewer
- * Copyright (C) 2002 to 2022  PGV Development Team.  All rights reserved.
+ * Copyright (C) 2002 to 2023  PGV Development Team.  All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -33,10 +33,6 @@ if (!defined('PGV_SCRIPT_NAME')) {
 /*
  *	Read the optional changelog.txt file to get identifying information
  *		This has to be done here, since none of the functions have been loaded
- *
- *		Note:  	For clarity, this routine should be using binary constants like 0b111 , 0b10, etc.
- *				Unfortunately, binary constants are only supported from PHP 5.4 onwards.
- *				We need to preserve compatibility with PHP 5.3
  */
 $version = '4.3.1';			// The changelog.txt file can override the version number
 $release = 'SVN';			// The changelog.txt file can override the release type

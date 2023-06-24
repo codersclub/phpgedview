@@ -4,7 +4,7 @@
 // and other common errors.
 //
 // phpGedView: Genealogy Viewer
-// Copyright (C) 2006-2021 Greg Roach and the PhpGedView team, all rights reserved
+// Copyright (C) 2006-2023 Greg Roach and the PhpGedView team, all rights reserved
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -294,6 +294,7 @@ $TAG['NAME_TYPE']                     ='(aka|birth|immigrant|maiden|married|.{5,
 $TAG['NATIONAL_ID_NUMBER']            ='.{1,30}';
 $TAG['NATIONAL_OR_TRIBAL_ORIGIN']     ='.{1,120}';
 $TAG['NOBILITY_TYPE_TITLE']           ='.{1,120}';
+$TAG['NOTE_TEXT']                     ='.{0,248}';
 $TAG['NULL']                          ='^$';
 $TAG['OCCUPATION']                    ='.{1,90}';
 $TAG['ORDINANCE_PROCESS_FLAG']        ='(no|yes)';
@@ -622,9 +623,9 @@ function add_structure($prefix, $min, $max, $structure)
 		add_structure($prefix.'OBJE:',               0,    9999, '<<SOURCE_CITATION>>');
 		break;
 	case '<<NOTE_RECORD>>':
-		add_element  ($prefix.'NOTE',           $min, $max, $TAG['SUBMITTER_TEXT']);
-		add_element  ($prefix.'NOTE:CONC',      0,    9999, $TAG['SUBMITTER_TEXT']);
-		add_element  ($prefix.'NOTE:CONT',      0,    9999, $TAG['SUBMITTER_TEXT']);
+		add_element  ($prefix.'NOTE',           $min, $max, $TAG['NOTE_TEXT']);
+		add_element  ($prefix.'NOTE:CONC',      0,    9999, $TAG['NOTE_TEXT']);
+		add_element  ($prefix.'NOTE:CONT',      0,    9999, $TAG['NOTE_TEXT']);
 		add_element  ($prefix.'NOTE:REFN',      0,    9999, $TAG['USER_REFERENCE_NUMBER']);
 		add_element  ($prefix.'NOTE:REFN:TYPE', 0,    1,    $TAG['USER_REFERENCE_TYPE']);
 		add_element  ($prefix.'NOTE:RIN',       0,    1,    $TAG['AUTOMATED_RECORD_ID']);
@@ -632,9 +633,9 @@ function add_structure($prefix, $min, $max, $structure)
 		add_structure($prefix.'NOTE:',          0,    9999, '<<SOURCE_CITATION>>');
 		break;
 	case '<<NOTE_STRUCTURE>>':
-		add_element  ($prefix.'NOTE',      $min, $max, $TAG['XREF'].'|'.$TAG['SUBMITTER_TEXT']);
-		add_element  ($prefix.'NOTE:CONT', 0,    9999, $TAG['SUBMITTER_TEXT']);
-		add_element  ($prefix.'NOTE:CONC', 0,    9999, $TAG['SUBMITTER_TEXT']);
+		add_element  ($prefix.'NOTE',      $min, $max, $TAG['XREF'].'|'.$TAG['NOTE_TEXT']);
+		add_element  ($prefix.'NOTE:CONT', 0,    9999, $TAG['NOTE_TEXT']);
+		add_element  ($prefix.'NOTE:CONC', 0,    9999, $TAG['NOTE_TEXT']);
 		break;
 	case '<<PERSONAL_NAME_PIECES>>':
 		add_element  ($prefix.'NPFX', $min, $max, $TAG['NAME_PIECE_PREFIX']);
